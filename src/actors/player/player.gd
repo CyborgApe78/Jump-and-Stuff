@@ -134,6 +134,7 @@ func consecutive_jump_cancel() -> void:
 func landed() -> void:
 	if get_last_slide_collision() != null:
 			groundColor = get_last_slide_collision().get_collider().color
+	particles.land.restart()
 
 
 func get_slope_angle() -> void:
