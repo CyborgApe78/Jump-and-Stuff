@@ -500,8 +500,17 @@ script = ExtResource("14_gdhgo")
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("9_hid0t")
 
+[node name="FallTimeMax" type="Timer" parent="StateMachine/Fall"]
+one_shot = true
+
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource("19_52i1t")
+
+[node name="RollPressed" type="Timer" parent="StateMachine/Dive"]
+one_shot = true
+
+[node name="FallTimeMax" type="Timer" parent="StateMachine/Dive"]
+one_shot = true
 
 [node name="BellySlide" type="Node" parent="StateMachine"]
 script = ExtResource("20_134m1")

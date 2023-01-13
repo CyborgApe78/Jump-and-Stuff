@@ -2,15 +2,16 @@ extends PlayerInfo
 #TODO: falling to long and bonk
 #TODO: slow fall while jump held, slightly faster when pressing down
 
+@onready var fallTimer: Timer = $FallTimeMax
 
 @export var transTime: float = 0.1
-@export var fallTimeTillBonk: float = 1.0
-var fallTimer: float ## keek track of time falling
+@export var fallTimeTillBonk: float = 0.9
 
 
 func enter() -> void:
+	fallTimer.wait_time = fallTimeTillBonk
+	fallTimer.start()
 	topSpeed = 0
-	fallTimer = fallTimeTillBonk
 	neutral_move_direction_logic()
 	player.set_up_direction(Vector2.UP)
 	if player.rotation != 0:
@@ -24,7 +25,6 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	fallTimer -= delta
 	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)):
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
@@ -68,7 +68,7 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-		if fallTimer < 0:
+		if fallTimer.is_stopped():
 			return State.BonkGround
 		else:
 			player.sounds.land.play()

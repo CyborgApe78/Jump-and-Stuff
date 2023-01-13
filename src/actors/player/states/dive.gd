@@ -1,21 +1,21 @@
 extends PlayerInfo
 #FIXME: rotation is borked
-#TODO: falling to long and bonk
-#TODO: Roll state, timer to dive right before ground to roll
+#TODO: Roll state
 #TODO: further dive if coming from ground pound
+@onready var rollTimer: Timer = $RollPressed
+@onready var fallTimer: Timer = $FallTimeMax
 
+@export var rollTime: float = 0.5
 @export var diveSpeedMultiplier: float = 1
 @export var transformTime: float = 0.05
-@export var fallTimeTillBonk: float = 500
-var fallTimer: float ## keep track of time falling
+@export var fallTimeTillBonk: float = 1.2
 
-@export var rollTime: float = 2
-var rollTimer: float
 
 func enter() -> void:
+	rollTimer.wait_time = rollTime
+	fallTimer.wait_time = fallTimeTillBonk
 	neutral_move_direction_logic()
-	fallTimer = fallTimeTillBonk
-	rollTimer = rollTime
+	fallTimer.start()
 	player.velocity.x = max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)) * player.facing  ## dive at dive speed or current velocity, whichever's high
 	player.velocity.y = 10
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -27,8 +27,6 @@ func exit() -> void:
 
 
 func physics(delta: float) -> void:
-	fallTimer -= delta
-	rollTimer -= delta
 	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)):
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
@@ -48,7 +46,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	
+	if Input.is_action_just_pressed("roll"):
+		rollTimer.start()
 
 	return State.Null
 
@@ -59,10 +58,10 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if player.is_on_floor():
 		player.landed()
-		if fallTimer < 0:
-			return State.BonkGround
-#		if rollTimer > 0:
+#		if !rollTimer.is_stopped():
 #			return State.Roll
+		if fallTimer.is_stopped():
+			return State.BonkGround
 		else:
 			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 			tween.tween_property(player.characterRig, "rotation", 45 * player.facing, transformTime).from(0)
