@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="2_slpti"]
 [ext_resource type="Script" path="res://src/levels/Ground.gd" id="3_7mvmu"]
-[ext_resource type="PackedScene" uid="uid://cg8ndp4s1y4ri" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
+[ext_resource type="PackedScene" uid="uid://cnkunmvsp7jes" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
 size = Vector2(6160, 64)
@@ -16,7 +16,7 @@ radius = 574.78
 size = Vector2(418, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pybkr"]
-size = Vector2(48, 261)
+size = Vector2(48, 509.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxdpf"]
 size = Vector2(992, 23.5)
@@ -95,7 +95,7 @@ shape = SubResource("RectangleShape2D_qpv6n")
 script = ExtResource("1_isl6d")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D"]
-position = Vector2(571, -221)
+position = Vector2(416, -344)
 shape = SubResource("RectangleShape2D_pybkr")
 script = ExtResource("1_isl6d")
 

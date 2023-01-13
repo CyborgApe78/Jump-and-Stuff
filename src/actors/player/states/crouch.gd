@@ -50,6 +50,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+#	if player.groundAngle > 1:
+#		return State.BackSlide
 	if !player.is_on_floor():
 		player.timers.coyoteJump.start()
 		return State.Fall
