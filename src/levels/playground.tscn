@@ -22,7 +22,7 @@ size = Vector2(48, 509.5)
 size = Vector2(992, 23.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqbas"]
-size = Vector2(393.244, 22)
+size = Vector2(416.164, 22)
 
 [node name="Playground" type="Node"]
 script = ExtResource("1_fgo7i")
@@ -95,7 +95,7 @@ shape = SubResource("RectangleShape2D_qpv6n")
 script = ExtResource("1_isl6d")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D"]
-position = Vector2(416, -344)
+position = Vector2(584, -336)
 shape = SubResource("RectangleShape2D_pybkr")
 script = ExtResource("1_isl6d")
 
@@ -117,7 +117,7 @@ shape = SubResource("RectangleShape2D_yqbas")
 script = ExtResource("1_isl6d")
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="ground/StaticBody2D2"]
-position = Vector2(145.262, -207.836)
+position = Vector2(155.582, -212.819)
 rotation = -0.449796
 shape = SubResource("RectangleShape2D_yqbas")
 script = ExtResource("1_isl6d")

@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-
+#TODO: shrink hit box
 @export var jumpModifier: float = 1.5
 
 
