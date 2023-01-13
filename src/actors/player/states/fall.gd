@@ -4,9 +4,13 @@ extends PlayerInfo
 
 
 @export var transTime: float = 0.1
+@export var fallTimeTillBonk: float = 1.0
+var fallTimer: float ## keek track of time falling
 
 
 func enter() -> void:
+	topSpeed = 0
+	fallTimer = fallTimeTillBonk
 	neutral_move_direction_logic()
 	player.set_up_direction(Vector2.UP)
 	if player.rotation != 0:
@@ -20,13 +24,14 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
+	fallTimer -= delta
 	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)):
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	gravity_logic(gravityFall, delta)
 	fall_speed_logic(terminalVelocity)
-	track_top_speed()
+	track_top_speed(player.velocity.x)
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)
@@ -63,18 +68,20 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-		player.sounds.land.play()
-		player.particles.land.restart()
-		player.timers.consecutiveJump.start()
-		player.landed()
-		if Input.is_action_pressed("crouch"):
-			return State.Crouch
-		elif player.velocity.x != 0: 
-#			if player.neutralMoveDirection:
-#				return State.NeutralGround #TODO: keep momentum if jumping
-#			else:
-			return State.Walk
+		if fallTimer < 0:
+			return State.BonkGround
 		else:
-			return State.Idle
+			player.sounds.land.play()
+			player.timers.consecutiveJump.start()
+			player.landed()
+			if Input.is_action_pressed("crouch"):
+				return State.Crouch
+			elif player.velocity.x != 0: 
+	#			if player.neutralMoveDirection:
+	#				return State.NeutralGround #TODO: keep momentum if jumping
+	#			else:
+				return State.Walk
+			else:
+				return State.Idle
 
 	return State.Null

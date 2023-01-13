@@ -2,6 +2,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	topSpeed = 0
 	neutral_move_direction_logic()
 
 
@@ -18,7 +19,7 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	gravity_logic(gravityApex, delta)
-	track_top_speed()
+	track_top_speed(player.velocity.x)
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)

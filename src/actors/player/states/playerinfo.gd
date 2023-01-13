@@ -23,7 +23,8 @@ var jumpCornerCorrectionHorizontal: int = 15
 var percentMinJumpVelocity: float = 0.8
 var percentKeepJumpConsecutive: float = 0.9
 
-var topSpeed: int ## keeps track of player speed for bonking
+var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need to be state by state, from leftover variable
+
 
 func _ready() -> void:
 	EventBus.connect("playerStatsUpdate", update_stats)
@@ -146,7 +147,7 @@ func neutral_air_momentum_logic(speed) -> void:
 		player.neutralMoveDirection = false
 
 
-func track_top_speed() -> void:
+func track_top_speed(speed:int) -> void:
 	#LOOKAT: might break if char is rotated
 	if abs(player.velocity.x) > topSpeed:
-		topSpeed = abs(player.velocity.x)
+		topSpeed = abs(speed)

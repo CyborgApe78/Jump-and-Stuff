@@ -5,6 +5,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	topSpeed = 0
 	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = jumpModifier
 	player.sounds.jump.play()
@@ -24,7 +25,7 @@ func physics(delta) -> void:
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	gravity_logic(gravityJump, delta)
-	track_top_speed()
+	
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)
@@ -35,6 +36,7 @@ func physics(delta) -> void:
 	player.velocity = player.velocity.rotated(player.rotation)
 	player.move_and_slide()
 	player.velocity = player.velocity.rotated(-player.rotation)
+	track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:

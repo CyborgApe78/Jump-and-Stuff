@@ -5,39 +5,32 @@ extends PlayerInfo
 var currentBonkTime: float
 @export var bonkTime: float = 1.5
 @export var bounceBack: int = 400
-var landed: bool
 #TODO:variables for amimation
 
 
 func enter() -> void:
-	landed = false
+	player.landed()
 	player.sounds.bonk.play()
+	player.sounds.splat.play()
 	currentBonkTime = bonkTime
 	player.velocity.x = bounceBack * -player.facing #TODO: get wall detection
 	var tween = create_tween()
-	tween.tween_property(player.characterRig, "scale", Vector2(0.2, 0.8), .05) #FIXME: not always working
+	tween.tween_property(player.characterRig, "scale", Vector2(0.8, 0.2), .2)
 
 
 func exit() -> void:
-	topSpeed = 0
+	pass
 
 
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	gravity_logic(gravityFall, delta)
-	fall_speed_logic(terminalVelocity)
-	if player.is_on_floor():
-		currentBonkTime -= delta
-		player.velocity = Vector2.ZERO
-		var tween = create_tween()
-		tween.tween_property(player.characterRig, "scale", Vector2(1, 1), .5)
-		if !landed:
-			player.landed()
-			landed = true
-	
-	if !player.is_on_floor(): #breaks on slops
-		align_to_ground()
+	currentBonkTime -= delta
+	if abs(player.groundAngle) > 1: ## slide if on slope
+		player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, accelerationGround) * sin(player.groundAngle)
+	else: #lookat: letting enviroment effects move
+		player.velocity = Vector2.ZERO 
+
 
 
 func visual(delta) -> void:

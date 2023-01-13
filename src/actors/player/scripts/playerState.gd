@@ -22,6 +22,7 @@ enum State {
 	Dive,
 	BellySlide,
 	BonkAir,
+	BonkGround,
 	
 	Teleport,
 	Die,

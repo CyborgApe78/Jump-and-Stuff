@@ -18,6 +18,7 @@ extends Node
 	PlayerState.State.Dive: $Dive,
 	PlayerState.State.BellySlide:$BellySlide,
 	PlayerState.State.BonkAir: $BonkAir,
+	PlayerState.State.BonkGround: $BonkGround,
 	
 #	PlayerState.State.Teleport: $Teleport,
 #	PlayerState.State.Die: $Die,
