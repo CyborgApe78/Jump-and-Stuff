@@ -23,6 +23,8 @@ var jumpCornerCorrectionHorizontal: int = 15
 var percentMinJumpVelocity: float = 0.8
 var percentKeepJumpConsecutive: float = 0.9
 
+var topSpeed: int ## keeps track of player speed for bonking
+
 func _ready() -> void:
 	EventBus.connect("playerStatsUpdate", update_stats)
 
@@ -88,11 +90,11 @@ func fall_speed_logic(amount) -> void:
 	player.velocity.y = min(player.velocity.y, amount)
 
 
-func speed_bend(forwardLean: bool = true, topSpeed = moveSpeed, leanAmount: float = 0.1) -> void:
+func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float = 0.1) -> void:
 	if forwardLean:
-		player.characterRig.skew = remap(player.velocity.x, 0, topSpeed, 0.0, leanAmount)
+		player.characterRig.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
 	if !forwardLean:
-		player.characterRig.skew = remap(-player.velocity.x, 0, topSpeed, 0.0, leanAmount)
+		player.characterRig.skew = remap(-player.velocity.x, 0, speed, 0.0, leanAmount)
 
 
 func squash_and_stretch(delta):
@@ -142,3 +144,9 @@ func neutral_air_momentum_logic(speed) -> void:
 	if player.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
 		#TODO: variable to keep speed and timer 
 		player.neutralMoveDirection = false
+
+
+func track_top_speed() -> void:
+	#LOOKAT: might break if char is rotated
+	if abs(player.velocity.x) > topSpeed:
+		topSpeed = abs(player.velocity.x)

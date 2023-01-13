@@ -2,6 +2,7 @@ extends PlayerInfo
 #TODO: falling to long and bonk
 #TODO: slow fall while jump held, slightly faster when pressing down
 
+
 @export var transTime: float = 0.1
 
 
@@ -25,6 +26,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	gravity_logic(gravityFall, delta)
 	fall_speed_logic(terminalVelocity)
+	track_top_speed()
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)
@@ -57,6 +59,9 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if player.is_on_wall() and topSpeed > moveSpeed:
+		topSpeed = 0
+		return State.BonkAir
 	if player.is_on_floor():
 		player.sounds.land.play()
 		player.particles.land.restart()

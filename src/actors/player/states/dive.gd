@@ -29,6 +29,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	gravity_logic(gravityFall, delta)
 	fall_speed_logic(terminalVelocity)
+	track_top_speed()
 	align_to_ground()
 
 
@@ -47,6 +48,9 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if player.is_on_wall() and topSpeed > moveSpeed:
+		topSpeed = 0
+		return State.BonkAir
 	if player.is_on_floor():
 #		if rollTimer > 0:
 #			return State.Roll

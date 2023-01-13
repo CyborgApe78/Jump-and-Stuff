@@ -21,6 +21,7 @@ enum State {
 	Fall,
 	Dive,
 	BellySlide,
+	BonkAir,
 	
 	Teleport,
 	Die,
@@ -39,7 +40,6 @@ enum State {
 	Swim,
 	SwimDash,
 	FallDamage,
-	Bonk,
 }
 
 

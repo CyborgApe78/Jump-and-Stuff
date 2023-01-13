@@ -5,3 +5,4 @@ extends Node
 @onready var land: AudioStreamPlayer = $land
 @onready var jump: AudioStreamPlayer = $jump
 @onready var skid: AudioStreamPlayer = $skid
+@onready var bonkAir: AudioStreamPlayer = $bonkAir

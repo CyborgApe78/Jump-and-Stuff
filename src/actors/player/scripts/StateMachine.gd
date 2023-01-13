@@ -17,6 +17,7 @@ extends Node
 	PlayerState.State.Fall: $Fall,
 	PlayerState.State.Dive: $Dive,
 	PlayerState.State.BellySlide:$BellySlide,
+	PlayerState.State.BonkAir: $BonkAir,
 	
 #	PlayerState.State.Teleport: $Teleport,
 #	PlayerState.State.Die: $Die,
@@ -37,7 +38,6 @@ extends Node
 #	PlayerState.State.Swim: $Swim,
 #	PlayerState.State.SwimDash: $SwimDash,
 #	PlayerState.State.FallDamage: $FallDamage,
-#	PlayerState.State.Bonk: $Bonk,
 }
 
 var currentState: PlayerState

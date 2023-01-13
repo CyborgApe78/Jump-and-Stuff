@@ -20,10 +20,11 @@ func physics(delta) -> void:
 	if player.test_move(player.global_transform, Vector2(0, player.velocity.y * delta)):
 		player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
 	
-	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)):
+	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)): #FIXME: need to check if angled ceiling and cancel
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 		
 	gravity_logic(gravityJump, delta)
+	track_top_speed()
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)
@@ -57,6 +58,9 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if player.is_on_wall() and topSpeed > moveSpeed:
+		topSpeed = 0
+		return State.BonkAir
 	if player.velocity.y > -jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():

@@ -18,6 +18,7 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	gravity_logic(gravityApex, delta)
+	track_top_speed()
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)
@@ -41,6 +42,9 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if player.is_on_wall() and topSpeed > moveSpeed:
+		topSpeed = 0
+		return State.BonkAir
 	if player.velocity.y > jumpApexHeight:
 		return State.Fall
 	if player.is_on_floor():

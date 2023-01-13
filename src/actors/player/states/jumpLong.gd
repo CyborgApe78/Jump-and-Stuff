@@ -9,6 +9,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	topSpeed = 0
 	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = jumpModifier
 	player.sounds.jump.play()
@@ -29,6 +30,8 @@ func physics(delta) -> void:
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	gravity_logic(gravityJump, delta)
+	track_top_speed()
+	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)
 	else:
@@ -56,8 +59,9 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_ceiling():
-		return State.JumpApex
+	if player.is_on_wall() and topSpeed > moveSpeed:
+		topSpeed = 0
+		return State.BonkAir
 	if player.velocity.y > -jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
