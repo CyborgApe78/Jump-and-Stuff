@@ -1,7 +1,5 @@
 extends PlayerInfo
 
-#todo: add edge push
-#TODO: bring in proper stats and functions
 
 func enter() -> void:
 	player.particles.jump.restart()

@@ -1,8 +1,8 @@
 extends PlayerInfo
 
+
 var gravity = 100
-#TODO: get friction from enviroment
-#TODO: momentum logic, ledge stop, coyote timers
+
 
 func enter() -> void:
 	player.animPlayer.play("walk")
@@ -19,10 +19,6 @@ func physics(delta) -> void:
 			player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, stats.accelerationGround) * player.moveDirection.x
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, stats.frictionGround)
-	#TODO: skid, jump reverse
-#	if player.is_on_wall():
-#		player.velocity.x = 0
-	#TODO: move to PSpeed state with
 	player.velocity.y += gravity * delta
 	player.set_up_direction(-player.transform.y)
 	player.velocity = player.velocity.rotated(player.rotation)

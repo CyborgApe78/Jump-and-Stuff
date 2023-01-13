@@ -1,7 +1,6 @@
 extends PlayerState
 class_name PlayerInfo
 
-#TODO: update stats when upgraded found
 
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
@@ -82,7 +81,6 @@ func air_velocity_logic(speed: float, acceleration: float, friction: float) -> v
 		elif player.moveDirection.x == 0:
 			apply_friction(friction)
 		elif abs(player.velocity.x) >= speed:
-			#TODO: look at not needing moveDirection
 			momentum_logic(speed, true)
 
 

@@ -1,8 +1,7 @@
 extends PlayerInfo
 
-#TODO: better reaction to going to a slope that is too steep
 #TODO: get friction from enviroment
-#TODO: ledge stop
+
 @export var skidPercent: float = 0.8
 var skidding: bool = false
 
