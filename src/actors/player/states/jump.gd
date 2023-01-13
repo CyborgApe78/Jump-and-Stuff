@@ -2,6 +2,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	neutral_move_direction_logic()
 	player.particles.jump.restart()
 	player.sounds.jump.play()
 	player.velocity.y = jumpVelocity
@@ -21,9 +22,14 @@ func physics(delta) -> void:
 	
 	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)):
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
-	
-	air_velocity_logic(moveSpeed, accelerationAir, frictionAir) #TODO neutral movement
+		
 	gravity_logic(gravityJump, delta)
+	
+	if player.neutralMoveDirection:
+		neutral_air_momentum_logic(moveSpeed)
+	else:
+		air_velocity_logic(moveSpeed, accelerationAir, frictionAir)
+		
 	player.set_up_direction(-player.transform.y)
 	player.velocity = player.velocity.rotated(player.rotation)
 	player.move_and_slide()

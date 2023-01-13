@@ -9,7 +9,7 @@ extends PlayerInfo
 #LOOKAT: crouch stores consec jumps
 
 func enter() -> void:
-	pass
+	neutral_move_direction_logic()
 
 
 func exit() -> void:
@@ -19,7 +19,8 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	apply_friction(frictionCrouch)
+	if !player.neutralMoveDirection:
+		apply_friction(frictionCrouch)
 
 
 func visual(delta) -> void:

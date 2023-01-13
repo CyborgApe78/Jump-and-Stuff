@@ -2,7 +2,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	pass
+	neutral_move_direction_logic()
 
 
 func exit() -> void:
@@ -17,8 +17,12 @@ func physics(delta) -> void:
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
-	air_velocity_logic(moveSpeed, accelerationAir, frictionAir) #TODO neutral movement
 	gravity_logic(gravityApex, delta)
+	
+	if player.neutralMoveDirection:
+		neutral_air_momentum_logic(moveSpeed)
+	else:
+		air_velocity_logic(moveSpeed, accelerationAir, frictionAir)
 
 
 func visual(delta) -> void:

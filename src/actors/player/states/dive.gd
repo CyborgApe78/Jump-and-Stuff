@@ -9,6 +9,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	neutral_move_direction_logic()
 #	rollTimer = rollTime
 	player.velocity.x = max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)) * player.facing  ## dive at dive speed or current velocity, whichever's high
 	player.velocity.y = 10

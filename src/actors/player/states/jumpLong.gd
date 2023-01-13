@@ -9,6 +9,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = jumpModifier
 	player.sounds.jump.play()
 	player.particles.jumpTriple.restart()
@@ -28,7 +29,11 @@ func physics(delta) -> void:
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	gravity_logic(gravityJump, delta)
-	air_velocity_logic(moveSpeed, accelerationAir, frictionAir) #TODO add control lockout or deminished air turn
+	if player.neutralMoveDirection:
+		neutral_air_momentum_logic(moveSpeed)
+	else:
+		air_velocity_logic(moveSpeed, accelerationAir, frictionAir)
+	#TODO add control lockout or deminished air turn
 	player.set_up_direction(-player.transform.y)
 	player.velocity = player.velocity.rotated(player.rotation)
 	player.move_and_slide()

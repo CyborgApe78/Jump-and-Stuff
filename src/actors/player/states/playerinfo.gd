@@ -128,3 +128,17 @@ func align_to_ground()-> void:
 		player.move_and_slide()
 		player.velocity = player.velocity.rotated(-player.rotation)
 		player.rotation = player.groundAngle
+
+
+func neutral_move_direction_logic() -> void:
+	if player.moveDirection == Vector2.ZERO:
+		player.neutralMoveDirection = true
+	else:
+		player.neutralMoveDirection = false
+
+
+func neutral_air_momentum_logic(speed) -> void:
+	
+	if player.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
+		#TODO: variable to keep speed and timer 
+		player.neutralMoveDirection = false

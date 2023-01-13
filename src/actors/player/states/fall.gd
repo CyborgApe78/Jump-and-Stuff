@@ -1,9 +1,12 @@
 extends PlayerInfo
 #TODO: falling to long and bonk
-#TODO: slow fall while jump held
+#TODO: slow fall while jump held, slightly faster when pressing down
 
 @export var transTime: float = 0.1
+
+
 func enter() -> void:
+	neutral_move_direction_logic()
 	player.set_up_direction(Vector2.UP)
 	if player.rotation != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -21,8 +24,13 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	gravity_logic(gravityFall, delta)
-	air_velocity_logic(moveSpeed, accelerationAir, frictionAir) #TODO neutral movement
 	fall_speed_logic(terminalVelocity)
+	
+	if player.neutralMoveDirection:
+		neutral_air_momentum_logic(moveSpeed)
+	else:
+		air_velocity_logic(moveSpeed, accelerationAir, frictionAir)
+	
 	align_to_ground()
 
 
@@ -52,10 +60,14 @@ func state_check(delta: float) -> int:
 	if player.is_on_floor():
 		player.sounds.land.play()
 		player.particles.land.restart()
-		player.rotation = player.get_floor_normal().angle() + PI/2 #TODO: better ground detection
 		player.timers.consecutiveJump.start()
 		player.landed()
-		if player.velocity.x != 0:
+		if Input.is_action_pressed("crouch"):
+			return State.Crouch
+		elif player.velocity.x != 0: 
+#			if player.neutralMoveDirection:
+#				return State.NeutralGround #TODO: keep momentum if jumping
+#			else:
 			return State.Walk
 		else:
 			return State.Idle
