@@ -19,7 +19,8 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	var tween = create_tween()
+	tween.tween_property(player.characterRig, "scale", Vector2(1, 1), .2)
 
 
 func physics(delta) -> void:
