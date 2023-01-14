@@ -22,6 +22,7 @@ var jumpCornerCorrectionVertical: int = 10
 var jumpCornerCorrectionHorizontal: int = 15
 var percentMinJumpVelocity: float = 0.8
 var percentKeepJumpConsecutive: float = 0.9
+var airTurnModifier: float = 4.0
 
 var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need to be state by state, from leftover variable
 
@@ -77,7 +78,7 @@ func air_velocity_logic(speed: float, acceleration: float, friction: float) -> v
 		airTurn = true
 	#FIXME: air turn should stop other direction and timer till move other way
 	if airTurn:
-		player.velocity.x = move_toward(player.velocity.x, speed * player.moveDirection.x, acceleration) 
+		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * player.moveDirection.x, acceleration) 
 	elif !airTurn:
 		if player.moveDirection.x != 0 and abs(player.velocity.x) < speed:
 			apply_acceleration(acceleration)
