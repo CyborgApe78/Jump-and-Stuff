@@ -1,9 +1,9 @@
 extends PlayerInfo
-#TODO: falling to long and bonk
 #TODO: slow fall while jump held, slightly faster when pressing down
 
 @onready var fallTimer: Timer = $FallTimeMax
 
+@export var jumpHeldSlowModifier: float = 2.0
 @export var transTime: float = 0.1
 @export var fallTimeTillBonk: float = 0.9
 
@@ -50,6 +50,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	if Input.is_action_pressed("jump"):
+		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
 	if Input.is_action_just_pressed("jump"):
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
