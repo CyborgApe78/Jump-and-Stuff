@@ -76,9 +76,9 @@ func air_velocity_logic(speed: float, acceleration: float, friction: float) -> v
 	var airTurn: bool
 	if player.velocity.x != 0  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		airTurn = true
-	#FIXME: air turn should stop other direction and timer till move other way
 	if airTurn:
-		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * player.moveDirection.x, acceleration) 
+		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * player.moveDirection.x, acceleration)
+		#TODO: add min(player.velocity.x / airTurnModifier, maxTurnSpeed) to velocity to keep from scaling to large
 	elif !airTurn:
 		if player.moveDirection.x != 0 and abs(player.velocity.x) < speed:
 			apply_acceleration(acceleration)
