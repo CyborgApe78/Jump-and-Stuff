@@ -7,6 +7,8 @@ extends PlayerInfo
 @export var transTime: float = 0.1
 @export var fallTimeTillBonk: float = 0.9
 
+var jumpHeld: bool
+
 
 func enter() -> void:
 	fallTimer.wait_time = fallTimeTillBonk
@@ -29,8 +31,14 @@ func physics(delta) -> void:
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
-	gravity_logic(gravityFall, delta)
-	fall_speed_logic(terminalVelocity)
+	
+	if jumpHeld:
+		gravity_logic(gravityFall / jumpHeldSlowModifier, delta)
+		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
+	else:
+		gravity_logic(gravityFall, delta)
+		fall_speed_logic(terminalVelocity)
+	
 	track_top_speed(player.velocity.x)
 	
 	if player.neutralMoveDirection:
@@ -51,7 +59,9 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_pressed("jump"):
-		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
+		jumpHeld = true
+	else: 
+		jumpHeld = false
 	if Input.is_action_just_pressed("jump"):
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
