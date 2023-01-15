@@ -10,7 +10,6 @@ func enter() -> void:
 	if player.characterRig.skew != 0:
 		var tween = create_tween() #LOOKAT: move to player info
 		tween.tween_property(player.characterRig, "skew", 0, transformTime).from_current()
-		tween.tween_property(player, "rotation", player.get_floor_normal().angle() + PI/2, transformTime).from_current()
 
 
 func exit() -> void:
@@ -23,12 +22,13 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
+	align_to_ground()
 
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_pressed("crouch"): 
 		return State.Crouch
-	if Input.is_action_just_pressed("jump"): #LOOKAT: can consec jump from idle, watch if that causes problems
+	if Input.is_action_just_pressed("jump"): #LOOKAT: can't consec jump from idle, watch if that causes problems
 		return State.Jump
 
 	return State.Null

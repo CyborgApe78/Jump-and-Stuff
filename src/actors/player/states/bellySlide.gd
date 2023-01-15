@@ -32,12 +32,10 @@ func physics(delta) -> void:
 			apply_friction(frictionGround * upHillFrictionModifier)
 	else:
 		apply_friction(frictionGround * 1.5)
-	
-	player.rotation = player.get_floor_normal().angle() + PI/2
 
 
 func visual(delta) -> void:
-	pass
+	align_to_ground()
 
 
 func sound(delta: float) -> void:

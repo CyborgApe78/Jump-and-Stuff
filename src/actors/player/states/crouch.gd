@@ -26,6 +26,8 @@ func physics(delta) -> void:
 func visual(delta) -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRig, "scale", Vector2(player.scale.x, 0.5), transformTime).from_current()
+	
+	align_to_ground()
 
 
 func sound(delta: float) -> void:

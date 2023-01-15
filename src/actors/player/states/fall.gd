@@ -45,12 +45,11 @@ func physics(delta) -> void:
 		neutral_air_momentum_logic(moveSpeed)
 	else:
 		air_velocity_logic(moveSpeed, accelerationAir, frictionAir)
-	
-	align_to_ground()
 
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
+	align_to_ground()
 
 
 func sound(delta: float) -> void:

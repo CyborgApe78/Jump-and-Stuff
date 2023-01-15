@@ -111,6 +111,7 @@ func squash_and_stretch(delta):
 
 
 func consecutive_jump_logic() -> int:
+	#TODO: cancel if change direction, boost jump flip if third
 	if player.jumped:
 		return State.JumpDouble
 	elif player.jumpedDouble:
@@ -127,10 +128,6 @@ func consecutive_jump_cancel() -> void:
 
 func align_to_ground()-> void:
 	if player.groundAngle != 0:
-		player.set_up_direction(-player.transform.y)
-		player.velocity = player.velocity.rotated(player.rotation)
-		player.move_and_slide()
-		player.velocity = player.velocity.rotated(-player.rotation)
 		player.rotation = player.groundAngle
 
 
