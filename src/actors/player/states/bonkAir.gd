@@ -10,6 +10,7 @@ var landed: bool
 
 
 func enter() -> void:
+	consecutive_jump_cancel()
 	landed = false
 	player.sounds.bonk.play()
 	currentBonkTime = bonkTime
