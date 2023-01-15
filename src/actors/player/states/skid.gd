@@ -5,8 +5,9 @@ extends PlayerInfo
 var frictionSkid: float = .8 * Util.tileSize
 @export var transformTime: float = 0.2
 var skidTime: float
-@export var skidLockDuration: float = 0.2
-var skidLockTime: float
+@export var skidLockDuration: float = 0.2 
+var skidLockTime: float #TODO: make timer
+
 
 func enter() -> void:
 	player.sounds.skid.play()
@@ -43,8 +44,11 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump") and (sign(player.velocity.x) != player.moveDirection.x) and skidLockTime > 0:
-		#LOOKAT: make a timing window
-		return State.JumpFlip
+		if player.jumpedDouble:
+			consecutive_jump_cancel()
+			return State.JumpTriple #TODO: create special jump
+		else:
+			return State.JumpFlip
 
 	return State.Null
 

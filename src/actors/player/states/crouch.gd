@@ -43,7 +43,10 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			return State.Idle
 	if Input.is_action_just_pressed("jump"):
-		if abs(player.velocity.x) > minLongJumpVelocity:
+		if player.jumpedDouble:
+			consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
+			return State.JumpLong #TODO: special jump, timer to get a boosted jump
+		elif abs(player.velocity.x) > minLongJumpVelocity:
 			return State.JumpLong
 		else:
 			return State.JumpCrouch
@@ -61,7 +64,5 @@ func state_check(delta: float) -> int:
 		player.timers.bufferJump.stop()
 		EventBus.emit_signal("helperUsed", Util.helper.bufferJump)
 		return State.Jump
-#	if player.is_on_slope: #TODO: slope detection into slide
-#		return State.Slide
 
 	return State.Null

@@ -515,6 +515,9 @@ one_shot = true
 [node name="BellySlide" type="Node" parent="StateMachine"]
 script = ExtResource("20_134m1")
 
+[node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
+one_shot = true
+
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")
 

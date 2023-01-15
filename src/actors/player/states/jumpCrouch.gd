@@ -1,5 +1,5 @@
 extends PlayerInfo
-
+#LOOKAT: maybe a charge jump
 
 @export var jumpModifier: float = 1.4
 
