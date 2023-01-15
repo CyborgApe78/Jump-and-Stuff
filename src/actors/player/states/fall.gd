@@ -23,7 +23,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	jumpHeld = false
 
 
 func physics(delta) -> void:
