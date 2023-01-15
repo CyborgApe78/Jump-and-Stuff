@@ -64,6 +64,9 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if player.is_on_ceiling():
+		consecutive_jump_cancel()
+		return State.Fall
 	if player.is_on_wall() and topSpeed > moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
@@ -74,8 +77,5 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
-	if player.is_on_ceiling():
-		consecutive_jump_cancel()
-		return State.Fall
 
 	return State.Null
