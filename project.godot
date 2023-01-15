@@ -208,3 +208,7 @@ roll={
 2d_physics/layer_1="Don't Use"
 2d_physics/layer_2="Ground"
 2d_physics/layer_7="Player"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.145098, 0.145098, 0.145098, 1)
