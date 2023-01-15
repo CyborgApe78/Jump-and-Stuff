@@ -44,7 +44,6 @@ func update_stats() -> void:
 	gravityFall = 2 * jumpHeight / pow(jumpTimeToDescent, 2)
 	gravityApex = 2 * jumpHeight / pow(jumpTimeAtApex, 2)
 	jumpVelocity = -sqrt(2 * gravityJump * jumpHeight)
-	#FIXME: called for every state
 
 
 func gravity_logic(amount: float, delta) -> void:

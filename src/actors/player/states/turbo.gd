@@ -25,11 +25,11 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	player.velocity = player.velocity.rotated(-player.rotation)
 	
-	player.rotation = player.get_floor_normal().angle() + PI/2 #FIXME: turn off if on ledge
 
 
 func visual(delta) -> void:
-	player.characterRig.skew = remap(player.velocity.x, 0, abs(moveSpeed), 0.0, 0.1)
+	speed_bend(false)
+	align_to_ground()
 
 
 func sound(delta: float) -> void:
