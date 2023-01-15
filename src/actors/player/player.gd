@@ -1,6 +1,6 @@
 extends Actor
 class_name  Player
-#FIXME: can use capsule on test project and not this one
+
 #TODO: joystick vs dpad/keyboard input
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 @onready var animPlayer: AnimationPlayer = $AnimationPlayer
@@ -149,4 +149,7 @@ func get_slope_angle() -> void:
 		else:
 			groundAngle = (leftAngle + rightAngle)/2
 	else:
+		groundAngle = 0
+	
+	if rad_to_deg(abs(groundAngle)) > 45:
 		groundAngle = 0
