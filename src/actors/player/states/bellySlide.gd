@@ -11,6 +11,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	player.sounds.bodySlide.play()
 	diveJumpTimer.wait_time = diveJumpTime
 	diveJumpTimer.start()
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -18,6 +19,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.sounds.bodySlide.stop()
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player.characterRig, "rotation", 0 , transformTime).from_current()
 
