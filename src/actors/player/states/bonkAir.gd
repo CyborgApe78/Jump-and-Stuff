@@ -38,8 +38,7 @@ func physics(delta) -> void:
 			player.landed()
 			landed = true
 	
-	if !player.is_on_floor(): #breaks on slops
-		align_to_ground()
+	align_to_ground()
 
 
 func visual(delta) -> void:
