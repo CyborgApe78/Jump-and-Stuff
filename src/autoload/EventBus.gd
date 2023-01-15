@@ -3,6 +3,7 @@ extends Node
 signal playerHealthChanged
 signal playerStatsUpdate
 signal playerConsecutiveJump
+signal actionAnnounce
 
 signal debugState(info)
 signal debugVelocity(info)
