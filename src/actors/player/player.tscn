@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cnkunmvsp7jes"]
+[gd_scene load_steps=55 format=3 uid="uid://cnkunmvsp7jes"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="20_134m1"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="21_43u8a"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="22_prnk2"]
+[ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="28_yy5ux"]
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="29_7k1ht"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
@@ -503,6 +504,9 @@ script = ExtResource("14_gdhgo")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("9_hid0t")
+jumpHeldSlowModifier = null
+transTime = null
+fallTimeTillBonk = null
 
 [node name="FallTimeMax" type="Timer" parent="StateMachine/Fall"]
 one_shot = true
@@ -515,6 +519,10 @@ one_shot = true
 
 [node name="FallTimeMax" type="Timer" parent="StateMachine/Dive"]
 one_shot = true
+
+[node name="GroundPound" type="Node" parent="StateMachine"]
+script = ExtResource("23_likm5")
+groundPoundModifier = null
 
 [node name="BellySlide" type="Node" parent="StateMachine"]
 script = ExtResource("20_134m1")

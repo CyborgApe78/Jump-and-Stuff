@@ -55,6 +55,8 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dive"):
 		return State.Dive
+	if Input.is_action_just_pressed("ground pound"):
+		return State.GroundPound
 
 	return State.Null
 

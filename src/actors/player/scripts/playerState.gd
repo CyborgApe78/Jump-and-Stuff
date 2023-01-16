@@ -20,6 +20,8 @@ enum State {
 	JumpApex,
 	Fall,
 	Dive,
+	GroundPound,
+	GroundPoundBounce,
 	BellySlide,
 	BonkAir,
 	BonkGround,

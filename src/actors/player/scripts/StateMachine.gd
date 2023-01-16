@@ -16,6 +16,8 @@ extends Node
 	PlayerState.State.JumpApex: $JumpApex,
 	PlayerState.State.Fall: $Fall,
 	PlayerState.State.Dive: $Dive,
+	PlayerState.State.GroundPound: $GroundPound,
+	PlayerState.State.GroundPoundBounce: $GroundPoundBounce,
 	PlayerState.State.BellySlide:$BellySlide,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,

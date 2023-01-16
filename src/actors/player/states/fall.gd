@@ -70,6 +70,8 @@ func handle_input(event: InputEvent) -> int:
 			player.timers.bufferJump.start()
 	if Input.is_action_just_pressed("dive"):
 		return State.Dive
+	if Input.is_action_just_pressed("ground pound"):
+		return State.GroundPound
 
 	return State.Null
 
