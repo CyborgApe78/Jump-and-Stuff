@@ -5,7 +5,6 @@ extends PlayerInfo
 @export var minLongJumpVelocity: int = 30
 @export var transformTime: float = 0.2
 
-#TODO: make anim to move colision shape
 #LOOKAT: crouch stores consec jumps
 
 func enter() -> void:

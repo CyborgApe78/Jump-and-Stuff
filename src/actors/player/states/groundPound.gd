@@ -1,5 +1,6 @@
 extends PlayerInfo
-#TODO: different states depending on if ground pound is held when touching ground. 
+
+
 @export var groundPoundModifier: float = 2.0
 
 
