@@ -8,7 +8,7 @@ func enter() -> void:
 	player.velocity = Vector2(0, 10)
 	player.set_up_direction(Vector2.UP)
 	if player.characterRig.skew != 0:
-		var tween = create_tween() #LOOKAT: move to player info
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT) #LOOKAT: move to player info
 		tween.tween_property(player.characterRig, "skew", 0, transformTime).from_current()
 
 

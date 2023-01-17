@@ -14,14 +14,14 @@ func enter() -> void:
 	player.particles.skid.restart()
 	skidTime = skidDuration
 	skidLockTime = skidLockDuration
-	var tween = create_tween() #TODO: make based on speed as well
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT) #TODO: make based on speed as well
 	tween.tween_property(player.characterRig, "skew", player.facing * 0.3, transformTime).from_current()
 	#TODO: look at speed bend to make dynamic
 
 
 func exit() -> void:
 	player.sounds.skid.stop()
-	var tween = create_tween()
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player.characterRig, "skew", 0, transformTime).from_current()
 
 

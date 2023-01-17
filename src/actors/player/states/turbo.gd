@@ -14,7 +14,7 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	if player.moveDirection.x != 0: #TODO: remove
+	if player.moveDirection.x != 0:
 		if abs(player.velocity.x) < moveSpeed:
 			player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, stats.accelerationGround) * player.moveDirection.x
 	else:
