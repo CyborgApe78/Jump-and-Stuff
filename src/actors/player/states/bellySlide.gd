@@ -14,14 +14,16 @@ func enter() -> void:
 	player.sounds.bodySlide.play()
 	diveJumpTimer.wait_time = diveJumpTime
 	diveJumpTimer.start()
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.tween_property(player.characterRig, "rotation", 45 * player.facing, transformTime).from(0)
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+	tween.tween_property(player.characterRotate, "rotation_degrees", 90 * player.facing, transformTime).from_current()
+	tween.tween_property(player.characterCollision, "rotation_degrees", 90 * player.facing, transformTime).from_current()
 
 
 func exit() -> void:
 	player.sounds.bodySlide.stop()
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.tween_property(player.characterRig, "rotation", 0 , transformTime).from_current()
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+	tween.tween_property(player.characterRotate, "rotation_degrees", 0 , transformTime).from_current()
+	tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
 
 
 func physics(delta) -> void:

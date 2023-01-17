@@ -2,6 +2,7 @@ extends PlayerInfo
 
 
 @export var jumpModifier: float = 1.35
+@export var transTime: float = 0.5
 
 
 func enter() -> void:
@@ -13,13 +14,15 @@ func enter() -> void:
 	player.particles.jumpTriple.restart()
 	player.velocity.x = -player.velocity.x
 	player.velocity.y = jumpVelocity * jumpModifier
-	var tween = create_tween()
-	tween.tween_property(player.characterRig,"rotation", player.facing * 4 * PI, 0.5) ## flip, #TODO: find way to rotate around center
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+	tween.tween_property(player.characterRotate,"rotation", player.facing * 4 * PI, transTime) ## flip,
+	tween.tween_property(player.characterCollision,"rotation", player.facing * 4 * PI, transTime)
 
 
 func exit() -> void:
 	player.sounds.jump.pitch_scale = 1
-	player.characterRig.rotation = 0 * PI
+	player.characterRotate.rotation_degrees = 0  #LOOKAT: maybe make a timer tp set back to zero
+	player.characterCollision.rotation_degrees = 0 
 
 
 func physics(delta) -> void:

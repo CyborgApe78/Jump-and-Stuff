@@ -15,13 +15,14 @@ func enter() -> void:
 	player.timers.coyoteJump.stop()
 	player.timers.consecutiveJump.stop()
 	player.jumpedDouble = false
-	var tween = create_tween()
-	tween.tween_property(player.characterRig,"rotation", -player.facing * 2 * PI, 0.5) ## flip, #TODO: find way to rotate around center
-
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+	tween.tween_property(player.characterRotate,"rotation", player.facing * 2 * PI, 0.5) ## flip,
+	tween.tween_property(player.characterCollision,"rotation", player.facing * 2 * PI, 0.5)
 
 func exit() -> void:
 	player.sounds.jump.pitch_scale = 1
-	player.characterRig.rotation = 0 * PI
+	player.characterRotate.rotation_degrees = 0 
+	player.characterCollision.rotation_degrees = 0 
 
 
 func physics(delta) -> void:

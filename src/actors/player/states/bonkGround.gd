@@ -23,7 +23,7 @@ func enter() -> void:
 func exit() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRig, "scale", Vector2(1, 1), .2)
-	tween.tween_property(player.characterRig, "rotation", 0, .2)
+	tween.tween_property(player.characterRotate, "rotation", 0, .2)
 
 
 func physics(delta) -> void:

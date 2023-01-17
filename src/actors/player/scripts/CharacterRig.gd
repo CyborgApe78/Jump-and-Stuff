@@ -1,5 +1,6 @@
 extends Node2D
 
+#FIXME: make another node, one for rotation and one for animation, differ offset points
 var transformTime: float = 0.2
 
 func to_walk() -> void:

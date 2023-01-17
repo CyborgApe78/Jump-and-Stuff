@@ -1,12 +1,11 @@
 extends PlayerInfo
-#FIXME: rotation is borked
 #TODO: Roll state
 #TODO: further dive if coming from ground pound
 @onready var rollTimer: Timer = $RollPressed
 @onready var fallTimer: Timer = $FallTimeMax
 
 @export var rollTime: float = 0.5
-@export var diveSpeedMultiplier: float = 1
+@export var diveSpeedMultiplier: float = 1.6
 @export var transformTime: float = 0.05
 @export var fallTimeTillBonk: float = 1.2
 
@@ -16,10 +15,12 @@ func enter() -> void:
 	fallTimer.wait_time = fallTimeTillBonk
 	neutral_move_direction_logic()
 	fallTimer.start()
+	print(max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)))
 	player.velocity.x = max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)) * player.facing  ## dive at dive speed or current velocity, whichever's high
-	player.velocity.y = 10
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.tween_property(player.characterRig, "rotation", 90 * player.facing, transformTime).from(0)
+	player.velocity.y = -100
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+	tween.tween_property(player.characterRotate, "rotation_degrees", 45 * player.facing, transformTime).from(0)
+	tween.tween_property(player.characterCollision, "rotation_degrees", 45 * player.facing, transformTime).from(0)
 
 
 func exit() -> void:
@@ -65,8 +66,9 @@ func state_check(delta: float) -> int:
 		if fallTimer.is_stopped():
 			return State.BonkGround
 		else:
-			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-			tween.tween_property(player.characterRig, "rotation", 45 * player.facing, transformTime).from(0)
+			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+			tween.tween_property(player.characterRotate, "rotation_degrees", 0, transformTime).from_current()
+			tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
 			return State.BellySlide
 
 	return State.Null

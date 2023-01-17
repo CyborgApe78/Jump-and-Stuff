@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="2_slpti"]
 [ext_resource type="Script" path="res://src/levels/Ground.gd" id="3_7mvmu"]
-[ext_resource type="PackedScene" uid="uid://cnkunmvsp7jes" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
+[ext_resource type="PackedScene" uid="uid://btna76jih8atc" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/levels/controllervisual.gd" id="6_8b6rd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]

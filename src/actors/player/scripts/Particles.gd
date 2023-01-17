@@ -11,7 +11,7 @@ extends Node2D
 @onready var dashUp: GPUParticles2D = $ParticlesDashUp
 @onready var dashDown: GPUParticles2D = $ParticlesDashDown
 
-@onready var player = get_parent().get_parent()
+@onready var player = get_parent().get_parent().get_parent()
 
 func _ready() -> void:
 	dashSide.process_material.color = AbilityColor.dashSideColor
