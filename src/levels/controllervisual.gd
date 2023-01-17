@@ -1,6 +1,8 @@
 @tool
 extends Control
 
+## CREDIT: https://gist.github.com/anthonyec/5342fce79b2b7b22ada748df0ad7f7c0
+
 @export var device: int = 0
 
 func _process(delta: float) -> void:
