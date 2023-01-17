@@ -50,11 +50,15 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpLong
 		else:
 			return State.JumpCrouch
+	#TODO:
+#		if Input.is_action_just_pressed("roll"):
+#			return State.Roll
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
+#TODO:
 #	if player.groundAngle > 1:
 #		return State.BackSlide
 	if !player.is_on_floor():

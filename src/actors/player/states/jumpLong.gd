@@ -57,6 +57,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.Dive
 	if Input.is_action_just_pressed("ground pound"):
 		return State.GroundPound
+	#TODO: long jump into roll. if crouch is pressed and roll is just pressed
 
 	return State.Null
 

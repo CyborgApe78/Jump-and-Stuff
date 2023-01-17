@@ -36,12 +36,13 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.is_on_floor():
 		player.landed()
-		if !Input.is_action_pressed("ground pound"):
-			return State.GroundPoundBounce
+#		if !Input.is_action_pressed("ground pound"):
+#			return State.GroundPoundBounce
+#		else:
+			#TODO: if groundpound pressed and 
+		if player.moveDirection.x != 0:
+			return State.BellySlide #TODO: change to back slide
 		else:
-			if player.moveDirection.x != 0:
-				return State.Walk
-			else:
-				return State.Idle
+			return State.Idle #TODO: groundpound land state, jump out of that
 
 	return State.Null

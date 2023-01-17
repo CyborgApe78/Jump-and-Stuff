@@ -21,11 +21,11 @@ enum State {
 	Fall,
 	Dive,
 	GroundPound,
-	GroundPoundBounce,
 	BellySlide,
 	BonkAir,
 	BonkGround,
 	
+	GroundPoundBounce,
 	Teleport,
 	Die,
 	JumpAir,

@@ -52,6 +52,9 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	#TODO: 
+#	if Input.is_action_just_pressed("dive"):
+#		return State.BellyHop
 	if Input.is_action_just_pressed("jump"):
 		if !diveJumpTimer.is_stopped():
 			return State.JumpLong #TODO: special jump, timer to get a boosted jump
