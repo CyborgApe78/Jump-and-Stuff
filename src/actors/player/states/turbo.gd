@@ -20,10 +20,7 @@ func physics(delta) -> void:
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, stats.frictionGround)
 	player.velocity.y += gravity * delta
-	player.set_up_direction(-player.transform.y)
-	player.velocity = player.velocity.rotated(player.rotation)
-	player.move_and_slide()
-	player.velocity = player.velocity.rotated(-player.rotation)
+	player.move_and_slide_rotation()
 	
 
 

@@ -67,6 +67,14 @@ func _process(delta: float) -> void:
 	sm.visual(delta)
 	sm.sound(delta)
 
+
+func move_and_slide_rotation() -> void:
+	set_up_direction(-transform.y)
+	velocity = velocity.rotated(rotation)
+	move_and_slide()
+	velocity = velocity.rotated(-rotation)
+
+
 func get_move_input() -> void:
 	var deadzoneRadius: float = 0.2
 	#TODO: make deadzone radius in settings

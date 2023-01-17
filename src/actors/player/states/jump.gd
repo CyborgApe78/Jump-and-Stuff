@@ -24,10 +24,7 @@ func physics(delta) -> void:
 	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)): #FIXME: need to check if angled ceiling and cancel
 		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
-	player.set_up_direction(-player.transform.y) #LOOKAT: turn into function
-	player.velocity = player.velocity.rotated(player.rotation)
-	player.move_and_slide()
-	player.velocity = player.velocity.rotated(-player.rotation)
+	player.move_and_slide_rotation()
 	
 	gravity_logic(gravityJump, delta)
 	

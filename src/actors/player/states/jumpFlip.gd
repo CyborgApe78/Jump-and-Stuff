@@ -39,10 +39,8 @@ func physics(delta) -> void:
 	else:
 		air_velocity_logic(moveSpeed, accelerationAir, frictionAir)
 	
-	player.set_up_direction(-player.transform.y)
-	player.velocity = player.velocity.rotated(player.rotation)
-	player.move_and_slide()
-	player.velocity = player.velocity.rotated(-player.rotation)
+	player.move_and_slide_rotation()
+	
 	track_top_speed(player.velocity.x)
 
 
