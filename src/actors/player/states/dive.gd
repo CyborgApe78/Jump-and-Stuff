@@ -35,11 +35,11 @@ func physics(delta: float) -> void:
 	gravity_logic(gravityFall, delta)
 	fall_speed_logic(terminalVelocity)
 	track_top_speed(player.velocity.x)
-	align_to_ground()
 
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
+	align_to_ground()
 
 
 func sound(delta: float) -> void:
@@ -60,6 +60,8 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
+		player.sounds.land.play()
+		#TODO: sound
 		player.landed()
 #		if !rollTimer.is_stopped():
 #			return State.Roll

@@ -1,5 +1,5 @@
 extends PlayerInfo
-
+#TODO: sound
 
 @export var groundPoundModifier: float = 2.0
 
@@ -49,6 +49,7 @@ func state_check(delta: float) -> int:
 		if player.moveDirection.x != 0:
 			return State.BellySlide #TODO: change to back slide
 		else:
+			player.sounds.land.play()
 			return State.Idle #TODO: groundpound land state, jump out of that
 
 	return State.Null
