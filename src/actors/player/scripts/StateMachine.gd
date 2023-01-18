@@ -50,6 +50,7 @@ var previousStateName: String
 
 @onready var player: Player = owner
 
+
 #func _ready() -> void:
 #	EventBus.connect("playerDied", self, "player_died")
 #	EventBus.connect("playerBounced", self, "bounce")
@@ -60,6 +61,7 @@ func change_state(newState: int) -> void:
 		currentState.exit()
 		previousState = currentState
 		previousStateName = previousState.name
+#		PlayerState.statePrevious = previousState #FIXME: set states in PlayerState
 #		player.previousState = currentState
 	
 	currentState = states[newState]

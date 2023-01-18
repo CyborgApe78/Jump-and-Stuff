@@ -6,10 +6,15 @@ extends PlayerInfo
 
 func enter() -> void:
 	player.velocity.y = max(moveSpeed * groundPoundModifier, abs(player.velocity.y))
+	
+#	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+#	tween.tween_property(player.characterRotate,"rotation_degrees", player.facing * 360, 0.2) ## flip,
+#	tween.tween_property(player.characterCollision,"rotation_degrees", player.facing * 360, 0.2)
 
 
 func exit() -> void:
-	pass
+	player.characterRotate.rotation_degrees = 0 
+	player.characterCollision.rotation_degrees = 0 
 
 
 func physics(delta) -> void:

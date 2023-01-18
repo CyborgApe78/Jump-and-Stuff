@@ -45,7 +45,8 @@ enum State {
 	FallDamage,
 }
 
-
+var stateBlacklist: Array = [] #TODO: is this needed
+var statePrevious: int #TODO: find way to set
 var player: Player
 
 func enter() -> void:

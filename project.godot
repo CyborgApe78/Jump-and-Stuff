@@ -8,106 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "RefCounted",
-"class": &"AbilityColor",
-"language": &"GDScript",
-"path": "res://src/resources/AbilityColor.gd"
-}, {
-"base": "CharacterBody2D",
-"class": &"Actor",
-"language": &"GDScript",
-"path": "res://src/actors/scripts/actor.gd"
-}, {
-"base": "RefCounted",
-"class": &"CollisionLayers",
-"language": &"GDScript",
-"path": "res://src/resources/collisionLayers.gd"
-}, {
-"base": "Button",
-"class": &"ControllerButton",
-"language": &"GDScript",
-"path": "res://addons/controller_icons/objects/Button.gd"
-}, {
-"base": "Node",
-"class": &"ControllerMapper",
-"language": &"GDScript",
-"path": "res://addons/controller_icons/Mapper.gd"
-}, {
-"base": "Resource",
-"class": &"ControllerSettings",
-"language": &"GDScript",
-"path": "res://addons/controller_icons/Settings.gd"
-}, {
-"base": "Sprite2D",
-"class": &"ControllerSprite2D",
-"language": &"GDScript",
-"path": "res://addons/controller_icons/objects/Sprite.gd"
-}, {
-"base": "Sprite3D",
-"class": &"ControllerSprite3D",
-"language": &"GDScript",
-"path": "res://addons/controller_icons/objects/Sprite3D.gd"
-}, {
-"base": "TextureRect",
-"class": &"ControllerTextureRect",
-"language": &"GDScript",
-"path": "res://addons/controller_icons/objects/TextureRect.gd"
-}, {
-"base": "Actor",
-"class": &"Player",
-"language": &"GDScript",
-"path": "res://src/actors/player/player.gd"
-}, {
-"base": "Resource",
-"class": &"PlayerAbilities",
-"language": &"GDScript",
-"path": "res://src/actors/player/scripts/playerAbilities.gd"
-}, {
-"base": "PlayerState",
-"class": &"PlayerInfo",
-"language": &"GDScript",
-"path": "res://src/actors/player/states/playerinfo.gd"
-}, {
-"base": "Node",
-"class": &"PlayerState",
-"language": &"GDScript",
-"path": "res://src/actors/player/scripts/playerState.gd"
-}, {
-"base": "Resource",
-"class": &"PlayerStats",
-"language": &"GDScript",
-"path": "res://src/actors/player/scripts/playerStats.gd"
-}, {
-"base": "RefCounted",
-"class": &"Util",
-"language": &"GDScript",
-"path": "res://src/resources/Util.gd"
-}, {
-"base": "CollisionShape2D",
-"class": &"VisibleCollisionShape2D",
-"language": &"GDScript",
-"path": "res://src/object/prefab/scripts/DrawCollisionShape2D.gd"
-}]
-_global_script_class_icons={
-"AbilityColor": "",
-"Actor": "",
-"CollisionLayers": "",
-"ControllerButton": "",
-"ControllerMapper": "",
-"ControllerSettings": "",
-"ControllerSprite2D": "",
-"ControllerSprite3D": "",
-"ControllerTextureRect": "",
-"Player": "",
-"PlayerAbilities": "",
-"PlayerInfo": "",
-"PlayerState": "",
-"PlayerStats": "",
-"Util": "",
-"VisibleCollisionShape2D": ""
-}
-
 [application]
 
 config/name="Jump And Stuff"
@@ -137,6 +37,10 @@ window/size/viewport_height=800
 window/size/window_width_override=1024
 window/size/window_height_override=640
 window/stretch/mode="viewport"
+
+[editor]
+
+export/convert_text_resources_to_binary=true
 
 [editor_plugins]
 

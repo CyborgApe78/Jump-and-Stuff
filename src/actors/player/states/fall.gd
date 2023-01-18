@@ -70,8 +70,11 @@ func handle_input(event: InputEvent) -> int:
 			player.timers.bufferJump.start()
 	if Input.is_action_just_pressed("dive"):
 		return State.Dive
-	if Input.is_action_just_pressed("ground pound"):
-		return State.GroundPound
+	if Input.is_action_just_pressed("ground pound"): ## if close to ground don't ground pound 
+		if player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding():
+			return State.Null #LOOKAT: could cause frustration if trying to quickly ground pound
+		else:
+			return State.GroundPound
 
 	return State.Null
 
