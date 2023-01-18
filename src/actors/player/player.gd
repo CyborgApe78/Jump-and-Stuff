@@ -117,23 +117,26 @@ func ledge_detection() -> void:
 		ledgeRight = false
 
 func attempt_vertical_corner_correction(amount: int, delta) -> void:
-	for i in range(1, amount*2+1):
-		for j in [-1.0, 1.0]:
-			if !test_move(global_transform.translated(Vector2(0, i * j / 2)), Vector2(velocity.x * delta, 0)):
-				translate(Vector2(0, i * j / 2))
-				if velocity.y * j < 0: velocity.y = 0
-				EventBus.emit_signal("helperUsed", Util.helper.cornerCorrectionVertical)
-				return
+	if test_move(global_transform, Vector2(velocity.x * delta, 0)): 
+		#FIXME: need to check if angled ceiling and cancel
+		for i in range(1, amount*2+1):
+			for j in [-1.0, 1.0]:
+				if !test_move(global_transform.translated(Vector2(0, i * j / 2)), Vector2(velocity.x * delta, 0)):
+					translate(Vector2(0, i * j / 2))
+					if velocity.y * j < 0: velocity.y = 0
+					EventBus.emit_signal("helperUsed", Util.helper.cornerCorrectionVertical)
+					return
 
 
 func attempt_horizontal_corner_correction(amount: int, delta) -> void:
-	for i in range(1, amount*2+1):
-		for j in [-1.0, 1.0]:
-			if !test_move(global_transform.translated(Vector2(i * j / 2, 0)), Vector2(0, velocity.y * delta)):
-				translate(Vector2(i * j / 2, 0))
-				if velocity.x * j < 0: velocity.x = 0
-				EventBus.emit_signal("helperUsed", Util.helper.cornerCorrectionHorizontal)
-				return
+	if test_move(global_transform, Vector2(0, velocity.y * delta)):
+		for i in range(1, amount*2+1):
+			for j in [-1.0, 1.0]:
+				if !test_move(global_transform.translated(Vector2(i * j / 2, 0)), Vector2(0, velocity.y * delta)):
+					translate(Vector2(i * j / 2, 0))
+					if velocity.x * j < 0: velocity.x = 0
+					EventBus.emit_signal("helperUsed", Util.helper.cornerCorrectionHorizontal)
+					return
 
 
 func consecutive_jump_cancel() -> void: 

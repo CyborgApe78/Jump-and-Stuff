@@ -18,6 +18,8 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
+	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta) #TODO: make downward version
+	
 	player.move_and_slide()
 	player.velocity.x = 0
 

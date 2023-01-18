@@ -11,11 +11,8 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	if player.test_move(player.global_transform, Vector2(0, player.velocity.y * delta)):
-		player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	
-	if player.test_move(player.global_transform, Vector2(player.velocity.x * delta, 0)):
-		player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	gravity_logic(gravityApex, delta)
