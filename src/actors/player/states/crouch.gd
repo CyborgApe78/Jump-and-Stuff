@@ -9,11 +9,19 @@ extends PlayerInfo
 
 func enter() -> void:
 	neutral_move_direction_logic()
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(player.characterRig, "scale", Vector2(player.scale.x, 0.5), transformTime).from_current()
+	player.characterCollision.shape.height = 24
+	player.characterCollision.shape.radius = 16
+	player.characterCollision.position.y = -12
 
 
 func exit() -> void:
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player.characterRig, "scale", Vector2(player.scale.x, 1), transformTime).from_current()
+	player.characterCollision.shape.height = 48
+	player.characterCollision.shape.radius = 16
+	player.characterCollision.position.y = -24
 
 
 func physics(delta) -> void:
@@ -23,9 +31,6 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
-	tween.tween_property(player.characterRig, "scale", Vector2(player.scale.x, 0.5), transformTime).from_current()
-	
 	align_to_ground()
 
 
