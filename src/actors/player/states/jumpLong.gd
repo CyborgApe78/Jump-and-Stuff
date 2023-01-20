@@ -49,8 +49,10 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dive"):
 		return State.Dive
-	if Input.is_action_just_pressed("ground pound"):
-		return State.GroundPound
+#	if !Input.is_action_pressed("crouch"):
+		#TODO: change velocity based on whether crouch is held
+#	if Input.is_action_just_pressed("ground pound"):
+#		return State.GroundPound
 	#TODO: long jump into roll. if crouch is pressed and roll is just pressed
 
 	return State.Null
@@ -60,8 +62,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall() and topSpeed > moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
-	if player.velocity.y > -jumpApexHeight:
-		return State.JumpApex
+#	if player.velocity.y > -jumpApexHeight:
+#		return State.JumpApex #TODO: change to fall state if over certian velocity or time 
 	if player.is_on_floor():
 		if player.velocity.x != 0:
 			return State.Walk
