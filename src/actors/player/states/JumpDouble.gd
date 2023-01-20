@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 #LOOKAT: have to be at top speed?
+#TODO: lock out of wall jump, until landed
 @export var jumpModifier: float = 1.25
 
 
@@ -56,6 +57,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Dive
 	if Input.is_action_just_pressed("ground pound"):
 		return State.GroundPound
+	if Input.is_action_just_pressed("dash"):
+		return State.Dash
 
 	return State.Null
 

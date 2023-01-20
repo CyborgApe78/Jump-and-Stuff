@@ -60,6 +60,8 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpLong #TODO: special jump, timer to get a boosted jump
 		else:
 			return State.Jump
+	if Input.is_action_just_pressed("dash"):
+		return State.Dash
 
 	return State.Null
 

@@ -74,6 +74,8 @@ func handle_input(event: InputEvent) -> int:
 			return State.Null #LOOKAT: could cause frustration if trying to quickly ground pound
 		else:
 			return State.GroundPound
+	if Input.is_action_just_pressed("dash"):
+		return State.Dash
 
 	return State.Null
 

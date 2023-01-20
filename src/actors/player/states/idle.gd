@@ -30,6 +30,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Crouch
 	if Input.is_action_just_pressed("jump"): #LOOKAT: can't consec jump from idle, watch if that causes problems
 		return State.Jump
+	if Input.is_action_just_pressed("dash"):
+		return State.Dash
 
 	return State.Null
 

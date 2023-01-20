@@ -50,6 +50,8 @@ func handle_input(event: InputEvent) -> int:
 		rollTimer.start()
 	if Input.is_action_just_pressed("ground pound"):
 		return State.GroundPound
+	if Input.is_action_just_pressed("dash"):
+		return State.Dash
 
 	return State.Null
 

@@ -22,6 +22,7 @@ enum State {
 	Dive,
 	GroundPound,
 	BellySlide,
+	Dash,
 	BonkAir,
 	BonkGround,
 	

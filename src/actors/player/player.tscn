@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://btna76jih8atc"]
+[gd_scene load_steps=57 format=3 uid="uid://btna76jih8atc"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="19_52i1t"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="20_134m1"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="21_43u8a"]
+[ext_resource type="Script" path="res://src/actors/player/states/dash.gd" id="22_eyb0b"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="22_prnk2"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="28_yy5ux"]
@@ -343,6 +344,7 @@ points = PackedVector2Array(0, -8, 0, 0)
 width = 4.0
 
 [node name="AbilityTracker" type="Node2D" parent="CharacterRig/CharacterRotate"]
+visible = false
 position = Vector2(0, 24)
 
 [node name="DashUp" type="Line2D" parent="CharacterRig/CharacterRotate/AbilityTracker"]
@@ -417,7 +419,7 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 0.7
 
-[node name="ParticlesDashSide" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="ParticlesDash" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(-15, -32)
 emitting = false
 amount = 300
@@ -531,6 +533,9 @@ script = ExtResource("20_134m1")
 
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
 one_shot = true
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("22_eyb0b")
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")

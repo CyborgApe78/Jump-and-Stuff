@@ -7,14 +7,14 @@ extends Node2D
 @onready var jump: GPUParticles2D = $ParticlesJump
 @onready var jumpDouble: GPUParticles2D = $ParticlesJumpDouble
 @onready var jumpTriple: GPUParticles2D = $ParticlesJumpTriple
-@onready var dashSide: GPUParticles2D = $ParticlesDashSide
+@onready var dash: GPUParticles2D = $ParticlesDash
 @onready var dashUp: GPUParticles2D = $ParticlesDashUp
 @onready var dashDown: GPUParticles2D = $ParticlesDashDown
 
 @onready var player = get_parent().get_parent().get_parent()
 
 func _ready() -> void:
-	dashSide.process_material.color = AbilityColor.dashSideColor
+	dash.process_material.color = AbilityColor.dashSideColor
 	dashUp.process_material.color = AbilityColor.dashUpColor
 	dashDown.process_material.color = AbilityColor.dashDownColor
 

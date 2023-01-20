@@ -6,7 +6,6 @@ extends PlayerInfo
 var skidding: bool = false
 
 func enter() -> void:
-	player.animPlayer.play("walk")
 	player.particles.walk.emitting = true
 	skidding = false
 
@@ -49,6 +48,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Crouch
 	if Input.is_action_just_pressed("jump"):
 		return consecutive_jump_logic()
+	if Input.is_action_just_pressed("dash"):
+		return State.Dash
 
 	return State.Null
 

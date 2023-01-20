@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 @export var transformTime: float = 0.4
+#TODO: make a no control state, for teleport and such
 
 
 func enter() -> void:
@@ -35,6 +36,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Crouch
 	if Input.is_action_just_pressed("jump"):
 		return State.Jump
+	if Input.is_action_just_pressed("dash"):
+		return State.Dash
 
 	return State.Null
 
