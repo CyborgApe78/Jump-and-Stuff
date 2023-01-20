@@ -15,7 +15,7 @@ var accelerationGround: float
 var frictionGround: float
 var accelerationAir: float
 var frictionAir: float
-var terminalVelocity: int = 30 * Util.tileSize
+var terminalVelocity: int
 
 var jumpApexHeight: float = 40
 var jumpCornerCorrectionVertical: int = 10
@@ -48,6 +48,8 @@ func update_stats() -> void:
 	gravityFall = 2 * jumpHeight / pow(jumpTimeToDescent, 2)
 	gravityApex = 2 * jumpHeight / pow(jumpTimeAtApex, 2)
 	jumpVelocity = -sqrt(2 * gravityJump * jumpHeight)
+	
+	terminalVelocity = -jumpVelocity * stats.terminalVelocityModifier
 
 
 func gravity_logic(amount: float, delta) -> void:
@@ -55,12 +57,10 @@ func gravity_logic(amount: float, delta) -> void:
 
 
 func apply_acceleration(amount: float, delta) -> void:
-	#FIXME: need to multiply times delta/ (1/FRAMERATE)
 	player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, amount * delta) * player.moveStrength.x
 
 
 func apply_friction(amount: float, delta) -> void:
-	#FIXME: need to multiply times delta/ (1/FRAMERATE)
 	player.velocity.x = move_toward(player.velocity.x, 0, amount * delta)
 
 
