@@ -34,7 +34,7 @@ func physics(delta) -> void:
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(moveSpeed)
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir)
+		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
 	
 	player.move_and_slide_rotation()
 	track_top_speed(player.velocity.x)

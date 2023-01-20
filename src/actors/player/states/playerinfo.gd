@@ -11,10 +11,10 @@ var gravityJump: float
 var gravityFall: float
 var gravityApex: float
 
-var accelerationGround: float = 0.25 * Util.tileSize
-var frictionGround: float = 0.4 * Util.tileSize
-var accelerationAir: float = 0.2 * Util.tileSize
-var frictionAir: float = 0.35 * Util.tileSize
+var accelerationGround: float
+var frictionGround: float
+var accelerationAir: float
+var frictionAir: float
 var terminalVelocity: int = 30 * Util.tileSize
 
 var jumpApexHeight: float = 40
@@ -38,6 +38,10 @@ func update_stats() -> void:
 	var jumpTimeAtApex: float = 0.8
 	
 	moveSpeed = stats.baseSpeed * Util.tileSize
+	accelerationGround = moveSpeed / stats.baseAcceleration
+	frictionGround = moveSpeed / stats.baseFriction
+	accelerationAir = moveSpeed / (stats.baseAcceleration * stats.airModifier)
+	frictionAir = moveSpeed / (stats.baseFriction * stats.airModifier)
 	
 	jumpHeight = stats.baseJumpHeight * Util.tileSize
 	gravityJump = 2 * jumpHeight / pow(jumpTimeToPeak, 2)
@@ -50,14 +54,14 @@ func gravity_logic(amount: float, delta) -> void:
 	player.velocity.y += amount * delta
 
 
-func apply_acceleration(amount: float) -> void:
+func apply_acceleration(amount: float, delta) -> void:
 	#FIXME: need to multiply times delta/ (1/FRAMERATE)
-	player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, amount) * player.moveStrength.x
+	player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, amount * delta) * player.moveStrength.x
 
 
-func apply_friction(amount: float) -> void:
+func apply_friction(amount: float, delta) -> void:
 	#FIXME: need to multiply times delta/ (1/FRAMERATE)
-	player.velocity.x = move_toward(player.velocity.x, 0, amount)
+	player.velocity.x = move_toward(player.velocity.x, 0, amount * delta)
 
 
 func momentum_logic(speed: float, useMoveDirection: bool) -> void:
@@ -71,7 +75,7 @@ func momentum_logic(speed: float, useMoveDirection: bool) -> void:
 			player.velocity.x =  max(abs(speed), abs(player.velocity.x)) * player.facing
 
 
-func air_velocity_logic(speed: float, acceleration: float, friction: float) -> void:
+func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
 	var airTurn: bool
 	if player.velocity.x != 0  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		airTurn = true
@@ -80,9 +84,9 @@ func air_velocity_logic(speed: float, acceleration: float, friction: float) -> v
 		#TODO: add min(player.velocity.x / airTurnModifier, maxTurnSpeed) to velocity to keep from scaling to large
 	elif !airTurn:
 		if player.moveDirection.x != 0 and abs(player.velocity.x) < speed:
-			apply_acceleration(acceleration)
+			apply_acceleration(acceleration, delta)
 		elif player.moveDirection.x == 0:
-			apply_friction(friction)
+			apply_friction(friction, delta)
 		elif abs(player.velocity.x) >= speed:
 			momentum_logic(speed, true)
 

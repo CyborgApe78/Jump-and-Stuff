@@ -27,7 +27,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	if !player.neutralMoveDirection: #TODO: skates upgrade, no ground friction
-		apply_friction(frictionCrouch)
+		apply_friction(frictionCrouch, delta)
 
 
 func visual(delta) -> void:

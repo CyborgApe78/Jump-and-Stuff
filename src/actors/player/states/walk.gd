@@ -21,9 +21,9 @@ func physics(delta) -> void:
 	if abs(player.velocity.x) > moveSpeed * skidPercent  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
 	elif player.moveDirection.x != 0 and player.velocity.x < moveSpeed:
-		apply_acceleration(accelerationGround)
+		apply_acceleration(accelerationGround, delta)
 	elif player.moveDirection.x == 0:
-		apply_friction(frictionGround)
+		apply_friction(frictionGround, delta)
 	elif player.velocity.x >= moveSpeed:
 		momentum_logic(moveSpeed, true)
 	
