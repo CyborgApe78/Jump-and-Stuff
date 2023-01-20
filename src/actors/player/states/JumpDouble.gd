@@ -73,6 +73,7 @@ func state_check(delta: float) -> int:
 	if player.velocity.y > -jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
+		player.landed()
 		if player.velocity.x != 0:
 			return State.Walk
 		else:
