@@ -10,3 +10,6 @@ signal debugVelocity(info)
 signal debug(info)
 
 signal helperUsed(info)
+
+signal menuChanged
+signal returnToGame
