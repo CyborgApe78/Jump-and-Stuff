@@ -620,6 +620,7 @@ script = ExtResource("33_7u4fs")
 
 [node name="ActionText" type="RichTextLabel" parent="ActionAnnouncer"]
 process_mode = 4
+layout_mode = 0
 offset_left = -40.0
 offset_top = -96.0
 offset_right = 40.0

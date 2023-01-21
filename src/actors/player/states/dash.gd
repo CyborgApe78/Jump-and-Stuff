@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: set up dash amount/duration check
 #export (float, 0 , 0.3, 0.05) var dashJumpTime: float = .17
 #onready var dashJumpTimer: Timer = $DashJumpTimer
 #export (float, 0 , 0.3, 0.05) var dashJumpRefreshTime: float = .22
