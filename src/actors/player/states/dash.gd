@@ -52,6 +52,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	dashTimer -= delta
 	player.timers.consecutiveJump.start()
+	track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -77,6 +78,9 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if player.is_on_wall() and topSpeed > moveSpeed:
+		topSpeed = 0
+		return State.BonkAir
 	if dashTimer < 0:
 		if player.is_on_floor():
 			return State.Walk
