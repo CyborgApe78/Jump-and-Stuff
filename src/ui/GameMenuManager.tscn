@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpn0y7ftimcj5" path="res://src/ui/PauseMenu.tscn" id="1"]
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="4"]
-[ext_resource type="Script" path="res://src/ui/scripts/FastTravel.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://b3ponvqrsksxa" path="res://src/ui/FastTravel.tscn" id="5_dflhs"]
 [ext_resource type="Script" path="res://src/ui/scripts/MenuManager.gd" id="6"]
 [ext_resource type="Script" path="res://src/ui/scripts/UnpausedMenu.gd" id="7"]
 
@@ -32,43 +32,4 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
 
-[node name="FastTravel" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5")
-
-[node name="Panel" type="Panel" parent="FastTravel"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="MarginContainer" type="MarginContainer" parent="FastTravel"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-
-[node name="Panel" type="Panel" parent="FastTravel/MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="FastTravel/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="FastTravel/MarginContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Up" type="Button" parent="FastTravel/MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Up"
-
-[node name="Down" type="Button" parent="FastTravel/MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Down"
+[node name="FastTravel" parent="." instance=ExtResource("5_dflhs")]
