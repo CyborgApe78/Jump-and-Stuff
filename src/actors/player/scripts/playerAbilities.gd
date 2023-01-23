@@ -80,6 +80,7 @@ func unlock_ability(ability: int) -> void:
 		unlockedDashDown = true
 		unlockedDashSide = true
 		unlockedDashUp = true
+		EventBus.emit_signal("playerAbilityTrackerCheck")
 	elif ability == list.JumpAir:
 		if unlockedJumpAir == true:
 			maxJumpAir = +1
@@ -90,15 +91,19 @@ func unlock_ability(ability: int) -> void:
 		unlockedDashSide = true
 		unlockedDashUp = true
 		unlockedDashDown = true
+		EventBus.emit_signal("playerAbilityTrackerCheck")
 	elif ability == list.DashSide:
 		if unlockedDashSide == true:
 			maxDash += 1
 		else:
 			unlockedDashSide = true
+			EventBus.emit_signal("playerAbilityTrackerCheck")
 	elif ability ==  list.DashUp:
 		unlockedDashUp = true
+		EventBus.emit_signal("playerAbilityTrackerCheck")
 	elif ability == list.DashDown:
 		unlockedDashDown = true
+		EventBus.emit_signal("playerAbilityTrackerCheck")
 	else:
 		print("Null Ability Unlocked")
 
