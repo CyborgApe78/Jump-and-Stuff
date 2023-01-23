@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/ActionAnnouncer.gd" id="33_7u4fs"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/actionText.gd" id="34_h1yjw"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/PlayerInfo.gd" id="36_k22sp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
 radius = 16.0
@@ -625,3 +626,26 @@ size_flags_horizontal = 6
 bbcode_enabled = true
 fit_content_height = true
 script = ExtResource("34_h1yjw")
+
+[node name="PlayerInfo" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -96.0
+offset_right = 45.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+bbcode_enabled = true
+fit_content_height = true
+autowrap_mode = 0
+script = ExtResource("36_k22sp")
+
+[node name="AnnounceClear" type="Timer" parent="PlayerInfo"]
+one_shot = true
