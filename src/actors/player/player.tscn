@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://btna76jih8atc"]
+[gd_scene load_steps=58 format=3 uid="uid://btna76jih8atc"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -537,6 +537,15 @@ one_shot = true
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("22_eyb0b")
+
+[node name="DashJump" type="Timer" parent="StateMachine/Dash"]
+one_shot = true
+
+[node name="DashJumpRefresh" type="Timer" parent="StateMachine/Dash"]
+one_shot = true
+
+[node name="Duration" type="Timer" parent="StateMachine/Dash"]
+one_shot = true
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")
