@@ -4,6 +4,7 @@ class_name  Player
 #TODO: center character
 #TODO: joystick vs dpad/keyboard input
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
+
 @onready var animPlayer: AnimationPlayer = $AnimationPlayer
 @onready var sm: Node = $StateMachine
 @onready var characterRig: Node2D = $CharacterRig
@@ -41,6 +42,7 @@ var ledgeRight: bool
 var currentStateName
 
 var groundColor: Color = Color.BLACK
+
 
 func _ready() -> void:
 	sm.init()
