@@ -2,12 +2,6 @@ extends BaseMenu
 
 
 @onready var resumeButton: Button = $"%Resume"
-@onready var settingsButton: Button = $"%Settings"
-
-
-func _ready() -> void:
-	resumeButton.connect("pressed", resume_button_pressed)
-	settingsButton.connect("pressed", settings_button_pressed)
 
 
 func enter() -> void:
@@ -33,7 +27,13 @@ func state_check() -> int:
 
 func settings_button_pressed() -> void:
 	EventBus.emit_signal("menuChanged", State.Settings)
+	#TODO: change to built in signal
 
 
-func resume_button_pressed() -> void:
+func _on_reset_pressed() -> void:
+	EventBus.emit_signal("menuChanged", State.Unpaused)
+	get_tree().reload_current_scene()
+
+
+func _on_resume_pressed() -> void:
 	EventBus.emit_signal("menuChanged", State.Unpaused)
