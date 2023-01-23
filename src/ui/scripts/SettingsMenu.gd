@@ -22,6 +22,7 @@ func _ready() -> void:
 	audioButton.connect("pressed", self, "show_audio")
 	keybindingsButton.connect("pressed", self, "show_keybindings")
 
+
 func enter() -> void:
 	set_paused(true)
 	self.visible = true
@@ -29,9 +30,11 @@ func enter() -> void:
 	gameplayMenu.visible = true
 	gameplayButton.grab_focus()
 
+
 func exit() -> void:
 	EventBus.emit_signal("settingsUpdate")
 	self.visible = false
+
 
 func handle_input(event: InputEvent) -> BaseMenu:
 	if Input.is_action_just_pressed("ui_pause") or Input.is_action_just_pressed("ui_back"):
@@ -39,8 +42,10 @@ func handle_input(event: InputEvent) -> BaseMenu:
 	
 	return State.Null
 
+
 func state_check() -> BaseMenu:
 	return State.Null
+
 
 func back_button_pressed() -> void:
 	EventBus.emit_signal("menuChanged", State.Paused)
@@ -50,23 +55,27 @@ func menu_hid() -> void:
 	for child in settingsContainer.get_children():
 		child.visible = false 
 
+
 func show_gameplay() -> void:
 	menu_hid()
 	gameplayMenu.visible = true
+
 
 func show_accessibility() -> void:
 	menu_hid()
 	accessibilityMenu.visible = true
 
+
 func show_video() -> void:
 	menu_hid()
 	videoMenu.visible = true
+
 
 func show_audio() -> void:
 	menu_hid()
 	audioMenu.visible = true
 
+
 func show_keybindings() -> void:
 	menu_hid()
 	keybindingMenu.visible = true
-

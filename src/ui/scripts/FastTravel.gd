@@ -13,6 +13,7 @@ func _ready() -> void:
 	waypointUpButton.connect("pressed", waypoint_up_pressed)
 	waypointDownButton.connect("pressed", waypoint_down_pressed)
 
+
 func enter() -> void:
 	print("enter fast trave")
 	set_paused(true)
@@ -35,15 +36,18 @@ func handle_input(event: InputEvent) -> int:
 	
 	return State.Null
 
+
 func state_check() -> int:
 	if teleportPlayer:
 		return State.Unpaused
 	
 	return State.Null
 
+
 func waypoint_up_pressed() -> void:
 #	teleportLocation =  CheckpointSystem.waypointsName.Up
 	teleportPlayer = true
+
 
 func waypoint_down_pressed() -> void:
 #	teleportLocation =  CheckpointSystem.waypointsName.Down

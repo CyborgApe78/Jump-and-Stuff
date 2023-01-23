@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx1wwhx0jra68"]
+
+[ext_resource type="Script" path="res://src/ui/scripts/DebugMenu.gd" id="1_bmkcu"]
+
+[node name="DebugMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bmkcu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ability Unlocks"
+
+[node name="All" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "All"
+
+[node name="Reset" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ResetAblities"
+
+[node name="JumpAir" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Air Jump"
+
+[node name="DashAll" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "All Dashes"
+
+[node name="DashSide" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dash Side"
+
+[node name="DashUp" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dash Up"
+
+[node name="DashDown" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dash Down"
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/All" to="." method="_on_all_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/JumpAir" to="." method="_on_jump_air_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashAll" to="." method="_on_dash_all_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashSide" to="." method="_on_dash_side_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashUp" to="." method="_on_dash_up_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashDown" to="." method="_on_dash_down_pressed"]

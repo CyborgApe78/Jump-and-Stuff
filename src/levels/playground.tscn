@@ -36,6 +36,7 @@ script = ExtResource("1_fgo7i")
 [node name="Debug" type="CanvasLayer" parent="."]
 
 [node name="Info" type="MarginContainer" parent="Debug"]
+process_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

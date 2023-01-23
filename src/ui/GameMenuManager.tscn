@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d18m3p57xnhjl"]
+[gd_scene load_steps=7 format=3 uid="uid://d18m3p57xnhjl"]
 
 [ext_resource type="PackedScene" uid="uid://dpn0y7ftimcj5" path="res://src/ui/PauseMenu.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cx1wwhx0jra68" path="res://src/ui/DebugMenu.tscn" id="2_qav4m"]
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b3ponvqrsksxa" path="res://src/ui/FastTravel.tscn" id="5_dflhs"]
 [ext_resource type="Script" path="res://src/ui/scripts/MenuManager.gd" id="6"]
@@ -13,8 +14,6 @@ script = ExtResource("6")
 
 [node name="PauseMenu" parent="." instance=ExtResource("1")]
 visible = false
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Unpaused" type="Control" parent="."]
 visible = false
@@ -33,3 +32,7 @@ grow_vertical = 2
 script = ExtResource("4")
 
 [node name="FastTravel" parent="." instance=ExtResource("5_dflhs")]
+visible = false
+
+[node name="DebugMenu" parent="." instance=ExtResource("2_qav4m")]
+visible = false

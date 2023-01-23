@@ -7,6 +7,7 @@ class_name MenuManager
 	BaseMenu.State.Paused: $PauseMenu,
 	BaseMenu.State.Settings: $SettingsMenu,
 	BaseMenu.State.FastTravel: $FastTravel,
+	BaseMenu.State.Debug: $DebugMenu,
 }
 
 var currentMenu: BaseMenu
