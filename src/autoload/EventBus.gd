@@ -1,7 +1,8 @@
 extends Node
 
 signal playerHealthChanged
-signal playerStatsUpdate
+signal playerStatsCheck
+signal playerAbilitiesCheck
 signal playerAbilityTrackerCheck
 signal playerConsecutiveJump
 signal playerInfo
