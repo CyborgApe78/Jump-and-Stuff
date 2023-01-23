@@ -28,7 +28,7 @@ var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need
 
 
 func _ready() -> void:
-	EventBus.connect("playerStatsUpdate", update_stats)
+	EventBus.connect("playerStatsCheck", update_stats)
 
 func update_stats() -> void:
 	#TODO: create setget
@@ -50,6 +50,8 @@ func update_stats() -> void:
 	jumpVelocity = -sqrt(2 * gravityJump * jumpHeight)
 	
 	terminalVelocity = -jumpVelocity * stats.terminalVelocityModifier
+	
+	abilities.update_stats()
 
 
 func gravity_logic(amount: float, delta) -> void:
