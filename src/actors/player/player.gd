@@ -25,6 +25,7 @@ var aimDirection: Vector2 = Vector2.ZERO
 var lastAimDirection: Vector2 = Vector2.ZERO
 var aimStrength: Vector2 = Vector2.ZERO
 var groundAngle: float
+var velocityPrevious: Vector2 = Vector2.ZERO
 var velocityRotated: Vector2 = Vector2.ZERO
 
 var neutralMoveDirection: bool = false
