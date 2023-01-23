@@ -51,7 +51,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 		return consecutive_jump_logic()
 	if Input.is_action_just_pressed("dash"):
-		return State.Dash
+		return State.DashGround
 
 	return State.Null
 

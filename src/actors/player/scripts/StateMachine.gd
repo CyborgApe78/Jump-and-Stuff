@@ -18,7 +18,8 @@ extends Node
 	PlayerState.State.Dive: $Dive,
 	PlayerState.State.GroundPound: $GroundPound,
 	PlayerState.State.BellySlide: $BellySlide,
-	PlayerState.State.Dash: $Dash,
+	PlayerState.State.DashGround: $DashGround,
+	PlayerState.State.DashAir: $DashAir,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	

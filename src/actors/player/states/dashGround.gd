@@ -5,11 +5,10 @@ extends PlayerInfo
 @onready var dashJumpTimer: Timer = $DashJump
 @export var dashJumpRefreshTime: float = 0.22
 @onready var dashJumpRefreshTimer: Timer = $DashJumpRefresh
-@export var duration: float = 0.3
+@export var duration: float = 0.3 #TODO: add to player stats to pull from
 @onready var durationTimer: Timer = $Duration
 
 var isJumping: bool = false
-var ultraJump: bool = false
 var saveTriple: bool
 
 @export var distance: float = 4.0
@@ -35,15 +34,10 @@ func enter() -> void:
 func exit() -> void:
 	player.particles.dash.emitting = false #TODO: use signals to call
 	
-	if !player.is_on_floor():
-#		player.consume_ability(PlayerAbilities.list.DashAir, 1)  #TODO
-		if player.moveDirection.x != 0:
-			player.velocity.x = player.velocityPrevious.x
 	if !isJumping:
 		player.velocity.x = player.velocityPrevious.x
 #
 #	player.animPlayer.stop()
-	ultraJump = false
 	isJumping = false
 
 

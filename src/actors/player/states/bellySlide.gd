@@ -61,7 +61,7 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			return State.Jump
 	if Input.is_action_just_pressed("dash"):
-		return State.Dash
+		return State.DashGround
 
 	return State.Null
 

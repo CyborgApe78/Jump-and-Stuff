@@ -38,7 +38,7 @@ func handle_input(event: InputEvent) -> int:
 		#TODO: special further dive
 		return State.Dive
 	if Input.is_action_just_pressed("dash"):
-		return State.Dash
+		return State.DashAir
 
 	return State.Null
 

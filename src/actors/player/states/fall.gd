@@ -75,7 +75,7 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
-		return State.Dash
+		return State.DashAir
 
 	return State.Null
 
