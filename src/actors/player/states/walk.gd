@@ -50,7 +50,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.Crouch
 	if Input.is_action_just_pressed("jump"):
 		return consecutive_jump_logic()
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
 		return State.DashGround
 
 	return State.Null

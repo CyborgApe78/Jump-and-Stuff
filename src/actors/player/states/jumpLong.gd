@@ -49,7 +49,7 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dive"):
 		return State.Dive
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
 		return State.DashAir
 #	if !Input.is_action_pressed("crouch"):
 		#TODO: change velocity based on whether crouch is held

@@ -52,7 +52,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.Dive
 	if Input.is_action_just_pressed("ground pound"):
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
 		return State.DashAir
 
 	return State.Null

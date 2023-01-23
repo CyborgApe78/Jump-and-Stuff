@@ -49,7 +49,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpTriple #TODO: create special jump
 		else:
 			return State.JumpFlip
-#	if Input.is_action_just_pressed("dash"):
+#	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
 #		return State.Dash $TODO: make special interaction
 
 	return State.Null

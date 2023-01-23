@@ -37,7 +37,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dive"):
 		#TODO: special further dive
 		return State.Dive
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
 		return State.DashAir
 
 	return State.Null
