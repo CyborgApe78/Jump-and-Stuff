@@ -611,19 +611,17 @@ stream = ExtResource("29_7k1ht")
 stream = ExtResource("31_srj50")
 volume_db = -11.555
 
-[node name="ActionAnnouncer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ActionAnnouncer" type="Node2D" parent="."]
 script = ExtResource("33_7u4fs")
 
 [node name="ActionText" type="RichTextLabel" parent="ActionAnnouncer"]
 process_mode = 4
-layout_mode = 0
+layout_direction = 1
 offset_left = -40.0
 offset_top = -96.0
 offset_right = 40.0
 offset_bottom = -64.0
+size_flags_horizontal = 6
 bbcode_enabled = true
+fit_content_height = true
 script = ExtResource("34_h1yjw")
