@@ -8,7 +8,6 @@ enum State {
 	Spawn,
 	Idle,
 	Walk,
-	Turbo,
 	Skid,
 	Crouch,
 	Jump,

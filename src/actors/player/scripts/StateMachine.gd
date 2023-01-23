@@ -4,7 +4,6 @@ extends Node
 	PlayerState.State.Spawn: $Spawn,
 	PlayerState.State.Idle: $Idle,
 	PlayerState.State.Walk: $Walk,
-	PlayerState.State.Turbo: $Turbo,
 	PlayerState.State.Skid: $Skid,
 	PlayerState.State.Crouch: $Crouch,
 	PlayerState.State.Jump: $Jump,
