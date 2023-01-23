@@ -5,7 +5,7 @@ class_name AbilityColor
 const dashSideColor: Color = Color.BLUE
 const dashUpColor: Color = Color.RED
 const dashDownColor: Color = Color.GREEN
-const dashUsedColor: Color = Color.SLATE_GRAY #TODO: change to abilty used
+const abilityUsedColor: Color = Color.DARK_GRAY #TODO: change to abilty used
 const grappleColor: Color = Color.PURPLE
 const jumpColor: Color = Color.SADDLE_BROWN
 const swimDashColor: Color = Color.PURPLE
