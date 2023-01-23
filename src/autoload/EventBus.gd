@@ -2,6 +2,7 @@ extends Node
 
 signal playerHealthChanged
 signal playerStatsUpdate
+signal playerAbilityTrackerCheck
 signal playerConsecutiveJump
 signal playerInfo
 signal actionAnnounce

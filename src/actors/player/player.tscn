@@ -1,8 +1,9 @@
-[gd_scene load_steps=58 format=3 uid="uid://c3wtcnvfuge8s"]
+[gd_scene load_steps=59 format=3 uid="uid://c3wtcnvfuge8s"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/AbilityTracker.gd" id="3_voilt"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/StateMachine.gd" id="4_tcit3"]
 [ext_resource type="Script" path="res://src/actors/player/states/spawn.gd" id="5_86xj5"]
 [ext_resource type="Script" path="res://src/actors/player/states/walk.gd" id="6_w0a7b"]
@@ -345,8 +346,8 @@ points = PackedVector2Array(0, -8, 0, 0)
 width = 4.0
 
 [node name="AbilityTracker" type="Node2D" parent="CharacterRig/CharacterRotate"]
-visible = false
 position = Vector2(0, 24)
+script = ExtResource("3_voilt")
 
 [node name="DashUp" type="Line2D" parent="CharacterRig/CharacterRotate/AbilityTracker"]
 position = Vector2(-3, -12)
