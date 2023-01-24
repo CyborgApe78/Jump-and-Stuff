@@ -50,7 +50,8 @@ func handle_input(event: InputEvent) -> int:
 		rollTimer.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use_ability(PlayerAbilities.list.Glide):
 		return State.Glide
-		return State.GroundPound
+	if Input.is_action_just_pressed("ground pound") and abilities.can_use_ability(PlayerAbilities.list.GroundPound):
+			return State.GroundPound
 	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
 		return State.DashAir
 

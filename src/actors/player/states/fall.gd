@@ -71,7 +71,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use_ability(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground pound"): ## if close to ground don't ground pound 
+	if Input.is_action_just_pressed("ground pound") and abilities.can_use_ability(PlayerAbilities.list.GroundPound): ## if close to ground don't ground pound 
 		if player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding():
 			return State.Null #LOOKAT: could cause frustration if trying to quickly ground pound
 		else:

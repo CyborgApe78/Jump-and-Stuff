@@ -49,6 +49,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use_ability(PlayerAbilities.list.Dive):
 		return State.Dive
+	if Input.is_action_just_pressed("ground pound") and abilities.can_use_ability(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
 
 	return State.Null
 

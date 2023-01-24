@@ -12,6 +12,7 @@ var unlockedDashUp: bool = false
 var unlockedDashDown: bool = false
 var unlockedGlide: bool = false
 var unlockedDive: bool = false
+var unlockedGroundPound: bool = false
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
 #var unlockedDashClimb: bool = false
@@ -59,6 +60,7 @@ enum list {
 	DashJump,
 	Glide,
 	Dive,
+	GroundPound,
 	HookShot,
 	Climb,
 	Grab,
@@ -85,6 +87,7 @@ func unlock_ability(ability: int) -> void:
 		unlockedDashUp = true
 		unlockedGlide = true
 		unlockedDive = true
+		unlockedGroundPound = true
 		EventBus.emit_signal("playerAbilityTrackerCheck")
 	elif ability == list.JumpAir:
 		if unlockedJumpAir == true:
@@ -113,6 +116,8 @@ func unlock_ability(ability: int) -> void:
 		unlockedGlide = true
 	if ability == list.Dive:
 		unlockedDive = true
+	if ability == list.GroundPound:
+		unlockedGroundPound = true
 	else:
 		print("Null Ability Unlocked")
 
@@ -126,6 +131,8 @@ func can_use_ability(ability: int) -> bool:
 		return true
 	elif ability == list.DashUp and remainingDashUp > 0 and unlockedDashUp:
 	if ability == list.Glide and unlockedGlide:
+		return true
+	if ability == list.GroundPound and unlockedGroundPound:
 		return true
 	
 	return false
