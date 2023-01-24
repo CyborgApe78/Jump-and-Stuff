@@ -28,7 +28,7 @@ func state_check() -> int:
 
 
 func _on_all_pressed() -> void:
-	abilities.unlock_ability(abilities.list.All)
+	abilities.unlock_ability(PlayerAbilities.list.All)
 
 
 func _on_reset_pressed() -> void:
@@ -37,20 +37,32 @@ func _on_reset_pressed() -> void:
 
 
 func _on_jump_air_pressed() -> void:
-	abilities.unlock_ability(abilities.list.JumpAir)
+	abilities.unlock_ability(PlayerAbilities.list.JumpAir)
 
 
 func _on_dash_all_pressed() -> void:
-	abilities.unlock_ability(abilities.list.DashAll)
+	abilities.unlock_ability(PlayerAbilities.list.DashAll)
 
 
 func _on_dash_side_pressed() -> void:
-	abilities.unlock_ability(abilities.list.DashSide)
+	abilities.unlock_ability(PlayerAbilities.list.DashSide)
 
 
 func _on_dash_up_pressed() -> void:
-	abilities.unlock_ability(abilities.list.DashUp)
+	abilities.unlock_ability(PlayerAbilities.list.DashUp)
 
 
 func _on_dash_down_pressed() -> void:
-	abilities.unlock_ability(abilities.list.DashDown)
+	abilities.unlock_ability(PlayerAbilities.list.DashDown)
+
+
+func _on_ground_pound_pressed() -> void:
+	abilities.unlock_ability(PlayerAbilities.list.GroundPound)
+
+
+func _on_glide_pressed() -> void:
+	abilities.unlock_ability(PlayerAbilities.list.Glide)
+
+
+func _on_dive_pressed() -> void:
+	abilities.unlock_ability(PlayerAbilities.list.Dive)
