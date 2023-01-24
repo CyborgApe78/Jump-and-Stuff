@@ -2,14 +2,16 @@ extends PlayerInfo
 #TODO: sound
 
 @export var groundPoundModifier: float = 2.0
+@export var transTime: float = 0.1
 
 
 func enter() -> void:
 	player.velocity.y = max(moveSpeed * groundPoundModifier, abs(player.velocity.y))
 	
-#	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
-#	tween.tween_property(player.characterRotate,"rotation_degrees", player.facing * 360, 0.2) ## flip,
-#	tween.tween_property(player.characterCollision,"rotation_degrees", player.facing * 360, 0.2)
+	if player.characterRotate.rotation_degrees != 0:
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.tween_property(player.characterRotate, "rotation_degrees", 0, transTime).from(0)
+		tween.tween_property(player.characterCollision, "rotation_degrees", 0, transTime).from(0)
 
 
 func exit() -> void:

@@ -16,9 +16,10 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.set_up_direction(Vector2.UP)
-	if player.rotation != 0:
+	if player.characterRotate.rotation_degrees != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(player, "rotation", 0, transTime).from_current()
+		tween.tween_property(player.characterRotate, "rotation_degrees", 0, transTime).from(0)
+		tween.tween_property(player.characterCollision, "rotation_degrees", 0, transTime).from(0)
 	player.velocity = player.velocity.rotated(0)
 
 
