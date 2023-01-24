@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
-[ext_resource type="PackedScene" uid="uid://d18m3p57xnhjl" path="res://src/ui/GameMenuManager.tscn" id="2_7tm57"]
+[ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_7tm57"]
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="2_slpti"]
 [ext_resource type="Script" path="res://src/levels/Ground.gd" id="3_7mvmu"]
 [ext_resource type="PackedScene" uid="uid://c3wtcnvfuge8s" path="res://src/actors/player/player.tscn" id="3_m0pk1"]

@@ -37,3 +37,7 @@ func _on_reset_pressed() -> void:
 
 func _on_resume_pressed() -> void:
 	EventBus.emit_signal("menuChanged", State.Unpaused)
+
+
+func _on_controls_pressed() -> void:
+	EventBus.emit_signal("menuChanged", State.Controls)

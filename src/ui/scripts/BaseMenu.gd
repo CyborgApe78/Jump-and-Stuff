@@ -9,6 +9,7 @@ enum State{
 	Settings,
 	FastTravel,
 	Debug,
+	Controls,
 	}
 
 

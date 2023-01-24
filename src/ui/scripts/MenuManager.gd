@@ -8,6 +8,7 @@ class_name MenuManager
 	BaseMenu.State.Settings: $SettingsMenu,
 	BaseMenu.State.FastTravel: $FastTravel,
 	BaseMenu.State.Debug: $DebugMenu,
+	BaseMenu.State.Controls: $Controls
 }
 
 var currentMenu: BaseMenu

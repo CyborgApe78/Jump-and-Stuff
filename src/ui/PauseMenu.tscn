@@ -44,6 +44,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Reset"
 
+[node name="Controls" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Controls"
+
 [node name="Settings" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
@@ -63,5 +68,6 @@ script = ExtResource("4_q2n8j")
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Quit" to="MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_pressed"]
