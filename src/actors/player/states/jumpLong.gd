@@ -49,6 +49,7 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("glide")  and abilities.can_use_ability(PlayerAbilities.list.Glide):
 		return State.Glide
+	if Input.is_action_just_pressed("dive")  and abilities.can_use_ability(PlayerAbilities.list.Dive):
 		return State.Dive
 	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
 		return State.DashAir
