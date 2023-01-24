@@ -13,6 +13,7 @@ var unlockedDashDown: bool = false
 var unlockedGlide: bool = false
 var unlockedDive: bool = false
 var unlockedGroundPound: bool = false
+var unlocked: bool = false
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
 #var unlockedDashClimb: bool = false
@@ -45,7 +46,7 @@ var remainingDashDown: int = 0:
 		remainingDashDown = clamp(v, 0, maxDash)
 		EventBus.emit_signal("playerAbilityTrackerCheck")
 
-enum list {
+enum list { #TODO: consec jump, jump flip, etc
 	Null,
 	All,
 	JumpAir,
@@ -88,27 +89,27 @@ func unlock_ability(ability: int) -> void:
 		unlockedDive = true
 		unlockedGroundPound = true
 		EventBus.emit_signal("playerAbilityTrackerCheck")
-	elif ability == list.JumpAir:
+	if ability == list.JumpAir:
 		if unlockedJumpAir == true:
 			maxJumpAir = +1
 		else:
 			unlockedJumpAir = true
-	elif ability == list.DashAll:
+	if ability == list.DashAll:
 		#TODO: logic for increased dashes
 		unlockedDashSide = true
 		unlockedDashUp = true
 		unlockedDashDown = true
 		EventBus.emit_signal("playerAbilityTrackerCheck")
-	elif ability == list.DashSide:
+	if ability == list.DashSide:
 		if unlockedDashSide == true:
 			maxDash += 1
 		else:
 			unlockedDashSide = true
 			EventBus.emit_signal("playerAbilityTrackerCheck")
-	elif ability ==  list.DashUp:
+	if ability ==  list.DashUp:
 		unlockedDashUp = true
 		EventBus.emit_signal("playerAbilityTrackerCheck")
-	elif ability == list.DashDown:
+	if ability == list.DashDown:
 		unlockedDashDown = true
 		EventBus.emit_signal("playerAbilityTrackerCheck")
 	if ability == list.Glide:
@@ -126,10 +127,13 @@ func can_use_ability(ability: int) -> bool:
 		return true
 	if ability == list.DashSide and remainingDashSide > 0 and unlockedDashSide:
 		return true
-	elif ability == list.DashDown and remainingDashDown > 0 and unlockedDashDown:
+	if ability == list.DashDown and remainingDashDown > 0 and unlockedDashDown:
 		return true
-	elif ability == list.DashUp and remainingDashUp > 0 and unlockedDashUp:
+	if ability == list.DashUp and remainingDashUp > 0 and unlockedDashUp:
+		return true
 	if ability == list.Glide and unlockedGlide:
+		return true
+	if ability == list.Dive and unlockedDive:
 		return true
 	if ability == list.GroundPound and unlockedGroundPound:
 		return true

@@ -11,6 +11,7 @@ var jumpHeld: bool
 
 
 func enter() -> void:
+	player.velocityPrevious = player.velocity
 	fallTimer.wait_time = fallTimeTillBonk
 	fallTimer.start()
 	topSpeed = 0
@@ -81,8 +82,9 @@ func handle_input(event: InputEvent) -> int:
 			return State.Null #LOOKAT: could cause frustration if trying to quickly ground pound
 		else:
 			return State.GroundPound
-	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
+	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(PlayerAbilities.list.DashSide):
 		return State.DashAir
+	
 
 	return State.Null
 
