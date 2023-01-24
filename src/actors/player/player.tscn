@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c3wtcnvfuge8s"]
+[gd_scene load_steps=60 format=3 uid="uid://c3wtcnvfuge8s"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/jumpLong.gd" id="16_ekg3a"]
 [ext_resource type="AudioStream" uid="uid://c7muk6odu85aw" path="res://asset/sounds/player/skid.wav" id="18_sqfay"]
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="19_52i1t"]
+[ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="19_f0jmg"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="20_134m1"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="21_43u8a"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="22_pfhk2"]
@@ -514,6 +515,9 @@ script = ExtResource("9_hid0t")
 
 [node name="FallTimeMax" type="Timer" parent="StateMachine/Fall"]
 one_shot = true
+
+[node name="Glide" type="Node" parent="StateMachine"]
+script = ExtResource("19_f0jmg")
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource("19_52i1t")

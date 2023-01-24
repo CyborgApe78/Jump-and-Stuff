@@ -45,6 +45,8 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 		#TODO: air jump check
 		return State.Fall
+	if Input.is_action_just_pressed("glide")  and abilities.can_use_ability(PlayerAbilities.list.Glide):
+		return State.Glide
 
 	return State.Null
 

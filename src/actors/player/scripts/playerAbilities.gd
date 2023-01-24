@@ -10,6 +10,7 @@ var unlockedJumpWall: bool = false
 var unlockedDashSide: bool = false
 var unlockedDashUp: bool = false
 var unlockedDashDown: bool = false
+var unlockedGlide: bool = false
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
 #var unlockedDashClimb: bool = false
@@ -80,6 +81,7 @@ func unlock_ability(ability: int) -> void:
 		unlockedDashDown = true
 		unlockedDashSide = true
 		unlockedDashUp = true
+		unlockedGlide = true
 		EventBus.emit_signal("playerAbilityTrackerCheck")
 	elif ability == list.JumpAir:
 		if unlockedJumpAir == true:
@@ -104,6 +106,8 @@ func unlock_ability(ability: int) -> void:
 	elif ability == list.DashDown:
 		unlockedDashDown = true
 		EventBus.emit_signal("playerAbilityTrackerCheck")
+	if ability == list.Glide:
+		unlockedGlide = true
 	else:
 		print("Null Ability Unlocked")
 
@@ -116,6 +120,7 @@ func can_use_ability(ability: int) -> bool:
 	elif ability == list.DashDown and remainingDashDown > 0 and unlockedDashDown:
 		return true
 	elif ability == list.DashUp and remainingDashUp > 0 and unlockedDashUp:
+	if ability == list.Glide and unlockedGlide:
 		return true
 	
 	return false

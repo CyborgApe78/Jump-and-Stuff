@@ -52,7 +52,8 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_released("jump"):
 		player.velocity.y = max( player.velocity.y, (jumpVelocity * jumpModifier) * percentMinJumpVelocity)
 		return State.Fall
-	if Input.is_action_just_pressed("dive"):
+	if Input.is_action_just_pressed("glide")  and abilities.can_use_ability(PlayerAbilities.list.Glide):
+		return State.Glide
 		return State.Dive
 	if Input.is_action_just_pressed("ground pound"):
 		return State.GroundPound
