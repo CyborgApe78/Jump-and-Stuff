@@ -44,69 +44,80 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Ability Unlocks"
+horizontal_alignment = 1
 
-[node name="All" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="All" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="All" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "All"
 
-[node name="Reset" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Reset" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "ResetAblities"
 
-[node name="JumpAir" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Jumps" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="JumpAir" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Jumps"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Air Jump"
 
-[node name="DashAll" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Dashes" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DashAll" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "All Dashes"
 
-[node name="DashSide" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="DashSide" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Dash Side"
 
-[node name="DashUp" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="DashUp" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Dash Up"
 
-[node name="DashDown" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="DashDown" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Dash Down"
 
-[node name="GroundPound" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Other" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GroundPound" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Ground Pound"
 
-[node name="Glide" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Glide" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Glide"
 
-[node name="Dive" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Dive" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Dive"
 
-[node name="Dive2" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Dive"
-
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/All" to="." method="_on_all_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/JumpAir" to="." method="_on_jump_air_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashAll" to="." method="_on_dash_all_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashSide" to="." method="_on_dash_side_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashUp" to="." method="_on_dash_up_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/DashDown" to="." method="_on_dash_down_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/GroundPound" to="." method="_on_ground_pound_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Glide" to="." method="_on_glide_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Dive" to="." method="_on_dive_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All/All" to="." method="_on_all_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Jumps/JumpAir" to="." method="_on_jump_air_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashAll" to="." method="_on_dash_all_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashSide" to="." method="_on_dash_side_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashUp" to="." method="_on_dash_up_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashDown" to="." method="_on_dash_down_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/Glide" to="." method="_on_glide_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/Dive" to="." method="_on_dive_pressed"]
