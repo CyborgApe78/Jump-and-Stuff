@@ -32,7 +32,6 @@ enum State {
 	Die,
 	JumpAir,
 	JumpWall,
-	DashSide,
 	DashUp,
 	DashDown,
 	DashWall,

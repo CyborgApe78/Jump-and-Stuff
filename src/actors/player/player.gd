@@ -1,7 +1,7 @@
 extends Actor
 class_name  Player
 
-#TODO: center character
+
 #TODO: joystick vs dpad/keyboard input
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 
