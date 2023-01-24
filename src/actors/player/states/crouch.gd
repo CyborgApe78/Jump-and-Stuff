@@ -73,6 +73,6 @@ func state_check(delta: float) -> int:
 	if !player.timers.bufferJump.is_stopped():
 		player.timers.bufferJump.stop()
 		EventBus.emit_signal("helperUsed", Util.helper.bufferJump)
-		return State.Jump
+		return State.JumpCrouch
 
 	return State.Null
