@@ -16,7 +16,6 @@ var unlockedGroundPound: bool = false
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
 #var unlockedDashClimb: bool = false
-#var unlockedGlide: bool = false
 #var unlockedHookShot: bool = false
 #var unlockedSwim: bool = false
 #var unlockedSwimDash: bool = false
