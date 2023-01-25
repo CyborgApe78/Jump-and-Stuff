@@ -161,8 +161,10 @@ func track_top_speed(speed:int) -> void:
 func dash_pressed_buffer() -> void:
 #	var initial_direction = player.aimDirection.round()
 	#FIXME: need to clear if not used
-	await get_tree().create_timer(0.1).timeout #FIXME: does await still crash if not completed
+	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
 	dash_pressed_logic()
+	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
+	dashBufferState = State.Null
 
 func dash_pressed_logic() -> void: #TODO: change to aimdirection 
 	if Input.is_action_pressed("move_up"):
