@@ -59,8 +59,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Dive
 	if Input.is_action_just_pressed("ground pound") and abilities.can_use(PlayerAbilities.list.GroundPound):
 			return State.GroundPound
-	if Input.is_action_just_pressed("dash") and abilities.can_use(abilities.list.DashSide):
-		return State.DashAir
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -79,5 +79,15 @@ func state_check(delta: float) -> int:
 			return State.Idle
 	if player.is_on_ceiling():
 		return State.Fall
+	if dashBufferState != State.Null:
+		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
+			dashBufferState = State.Null
+			return State.DashAir
+		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			dashBufferState = State.Null
+			return State.DashUp
+		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+			dashBufferState = State.Null
+			return State.DashDown
 
 	return State.Null

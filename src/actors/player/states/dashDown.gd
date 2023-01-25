@@ -3,6 +3,8 @@ extends PlayerInfo
 
 @export var duration: float = 0.3
 @onready var durationTimer: Timer = $Duration
+@export var floorTime: float = 0.1
+
 
 
 func enter() -> void:
@@ -10,13 +12,13 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	durationTimer.wait_time = duration
 	durationTimer.start()
-	player.particles.dashUp.emitting = true #TODO: use signals to call
+	player.particles.dashDown.emitting = true #TODO: use signals to call
 	player.velocity.x = 0
-	player.velocity.y = -moveSpeed / duration #FIXME: to much fast
+	player.velocity.y = moveSpeed / duration #FIXME: to much fast
 
 
 func exit() -> void:
-	player.particles.dashUp.emitting = false #TODO: use signals to call
+	player.particles.dashDown.emitting = false #TODO: use signals to call
 	player.velocity.y = player.velocity.y/4
 
 
@@ -49,8 +51,14 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	var floorTimer: float
+	floorTimer = floorTime
 	if player.is_on_ceiling(): #TODO: bonk ceiling
 		return State.Fall
+	if player.is_on_floor():
+		floorTimer -= delta
+		if floorTimer < 0 or durationTimer.is_stopped():
+			return State.Idle
 	if durationTimer.is_stopped():
 		return State.Fall
 	if dashBufferState != State.Null:
@@ -60,8 +68,5 @@ func state_check(delta: float) -> int:
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
 			dashBufferState = State.Null
 			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			dashBufferState = State.Null
-			return State.DashDown
 
 	return State.Null

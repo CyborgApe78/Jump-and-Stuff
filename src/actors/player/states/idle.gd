@@ -46,17 +46,14 @@ func state_check(delta: float) -> int:
 		EventBus.emit_signal("helperUsed", Util.helper.bufferJump)
 		return State.Jump
 	if dashBufferState != State.Null:
-#		if abilities.can_use(PlayerAbilities.list.DashJump) and dashBufferState == State.DashJump:
-#			dashBufferState = State.Null
-#			return State.DashJump
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:
 			dashBufferState = State.Null
 			return State.DashGround
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
 			dashBufferState = State.Null
 			return State.DashUp
-#		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-#			dashBufferState = State.Null
-#			return State.DashDown
+		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+			dashBufferState = State.Null
+			return State.DashDown
 
 	return State.Null

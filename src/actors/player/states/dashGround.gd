@@ -29,7 +29,7 @@ func enter() -> void:
 	durationTimer.start()
 	player.particles.dash.emitting = true #TODO: use signals to call
 	player.velocity.y = 0
-	player.velocity.x = player.facing * ((moveSpeed) / duration)
+	player.velocity.x = player.facing * ((moveSpeed) / duration) #FIXME: to much fast
 
 
 func exit() -> void:
@@ -95,5 +95,8 @@ func state_check(delta: float) -> int:
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
 			dashBufferState = State.Null
 			return State.DashUp
+		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+			dashBufferState = State.Null
+			return State.DashDown
 
 	return State.Null

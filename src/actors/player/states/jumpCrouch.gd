@@ -76,5 +76,8 @@ func state_check(delta: float) -> int:
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
 			dashBufferState = State.Null
 			return State.DashUp
+		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+			dashBufferState = State.Null
+			return State.DashDown
 
 	return State.Null

@@ -68,7 +68,7 @@ func handle_input(event: InputEvent) -> int:
 			player.timers.coyoteJump.stop()
 			EventBus.emit_signal("helperUsed", Util.helper.coyoteJump)
 			return consecutive_jump_logic()
-		#TODO: seperate air jump state
+		#TODO: seperate air jump state and add to other jumps
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.Jump
 		else:
@@ -116,5 +116,8 @@ func state_check(delta: float) -> int:
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
 			dashBufferState = State.Null
 			return State.DashUp
+		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+			dashBufferState = State.Null
+			return State.DashDown
 
 	return State.Null
