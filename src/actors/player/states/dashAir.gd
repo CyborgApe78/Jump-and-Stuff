@@ -1,11 +1,12 @@
 extends PlayerInfo
-
+#TODO: change to jetpack
 #TODO: set up dash amount/duration check
-@export var duration: float = 0.3 #TODO: add to player stats to pull from
+#TODO: upgrade to become like bullet from mario
+@export var duration: float = 0.3
 @onready var durationTimer: Timer = $Duration
 @export var distance: float = 4.0
 @onready var dashSpeed: float = distance / duration #TODO: based off movespeed
-#TODO: upgrade to become like bullet from mario, 3 quick, multi way
+
 #TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump
 
 

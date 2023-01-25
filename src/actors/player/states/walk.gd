@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #TODO: break left and right apart
 #TODO: get friction from enviroment
+#FIXME: pressing up sends to skid
 
 @export var skidPercent: float = 0.8
 var skidding: bool = false

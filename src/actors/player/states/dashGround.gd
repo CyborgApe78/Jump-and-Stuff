@@ -1,11 +1,11 @@
 extends PlayerInfo
-
+#LOOKAT: maybe remove
 #TODO: set up dash amount/duration check
 @export var dashJumpTime: float = 0.17
 @onready var dashJumpTimer: Timer = $DashJump
 @export var dashJumpRefreshTime: float = 0.22
 @onready var dashJumpRefreshTimer: Timer = $DashJumpRefresh
-@export var duration: float = 0.3 #TODO: add to player stats to pull from
+@export var duration: float = 0.3
 @onready var durationTimer: Timer = $Duration
 
 var isJumping: bool = false
@@ -81,7 +81,8 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if durationTimer.is_stopped():
-		if player.is_on_floor():
+		if player.is_on_floor(): #TODO: if keeping make cd timer
+			abilities.reset(PlayerAbilities.list.Dash)
 			return State.Walk
 		else:
 			return State.Fall

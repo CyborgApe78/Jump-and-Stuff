@@ -52,7 +52,7 @@ enum list { #TODO: consec jump, jump flip, etc
 	Glide,
 	Dive,
 	GroundPound,
-	HookShot,
+	GrappleHook,
 	Climb,
 	Grab,
 	Swim,
