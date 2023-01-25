@@ -11,7 +11,7 @@ func enter() -> void:
 	player.velocity.y = jumpVelocity
 	player.timers.coyoteJump.stop()
 	player.timers.consecutiveJump.stop()
-	player.jumped = true
+	consecutive_jump_cancel()
 
 
 func exit() -> void:
@@ -45,9 +45,6 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_released("jump"):
-		player.velocity.y = max( player.velocity.y, jumpVelocity * percentMinJumpVelocity)
-		if player.velocity.y > jumpVelocity * percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
-			consecutive_jump_cancel()
 		return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
