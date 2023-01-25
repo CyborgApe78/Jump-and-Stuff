@@ -54,11 +54,11 @@ func handle_input(event: InputEvent) -> int:
 			player.timers.coyoteJump.stop()
 			EventBus.emit_signal("helperUsed", Util.helper.coyoteJump)
 			return consecutive_jump_logic()
-		#TODO: seperate air jump state
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
-			return State.Jump
+			return State.JumpAir
 		else:
 			player.timers.bufferJump.start()
+			return State.Fall
 	if Input.is_action_just_pressed("dive"):
 		return State.Dive
 	if Input.is_action_just_pressed("ground pound") and abilities.can_use(PlayerAbilities.list.GroundPound):
