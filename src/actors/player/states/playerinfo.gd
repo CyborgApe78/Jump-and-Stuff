@@ -25,7 +25,7 @@ var percentKeepJumpConsecutive: float = 0.9
 var airTurnModifier: float = 4.0
 
 var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need to be state by state, from leftover variable
-
+var dashBufferState: int
 
 func _ready() -> void:
 	EventBus.connect("playerStatsCheck", update_stats)
@@ -156,3 +156,23 @@ func track_top_speed(speed:int) -> void:
 	#LOOKAT: might break if char is rotated
 	if abs(player.velocity.x) > topSpeed:
 		topSpeed = abs(speed)
+
+
+func dash_pressed_buffer() -> void:
+#	var initial_direction = player.aimDirection.round()
+	#FIXME: need to clear if not used
+	await get_tree().create_timer(0.1).timeout #LOOKAT: does await still crash if not completed
+	dash_pressed_logic()
+
+func dash_pressed_logic() -> void: #TODO: change to aimdirection 
+	if Input.is_action_pressed("move_up"):
+		dashBufferState = State.DashUp
+	elif Input.is_action_pressed("move_down"):
+		dashBufferState = State.DashDown
+	elif player.is_on_floor(): #TODO: moveDirection left or right
+		dashBufferState = State.DashGround
+	elif !player.is_on_floor(): #TODO: maybe combine into DashSide
+		dashBufferState = State.DashAir
+	else:
+		dashBufferState = State.Null
+		EventBus.emit_signal("error", "null dash pressed logic")

@@ -52,8 +52,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 	if Input.is_action_just_pressed("ground pound") and abilities.can_use(PlayerAbilities.list.GroundPound):
 			return State.GroundPound
-	if Input.is_action_just_pressed("dash") and abilities.can_use(abilities.list.DashSide):
-		return State.DashAir
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -75,5 +75,12 @@ func state_check(delta: float) -> int:
 			tween.tween_property(player.characterRotate, "rotation_degrees", 0, transformTime).from_current()
 			tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
 			return State.BellySlide
+	if dashBufferState != State.Null:
+		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
+			dashBufferState = State.Null
+			return State.DashAir
+		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			dashBufferState = State.Null
+			return State.DashUp
 
 	return State.Null

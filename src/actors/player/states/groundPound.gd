@@ -41,8 +41,8 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		#TODO: special further dive
 		return State.Dive
-	if Input.is_action_just_pressed("dash") and abilities.can_use(abilities.list.DashSide):
-		return State.DashAir
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -59,5 +59,12 @@ func state_check(delta: float) -> int:
 		else:
 			player.sounds.land.play()
 			return State.Idle #TODO: groundpound land state, jump out of that
+	if dashBufferState != State.Null:
+		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
+			dashBufferState = State.Null
+			return State.DashAir
+		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			dashBufferState = State.Null
+			return State.DashUp
 
 	return State.Null

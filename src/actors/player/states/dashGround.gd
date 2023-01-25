@@ -72,6 +72,8 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.emit_signal("playerInfo", "Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -86,5 +88,12 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Fall
+	if dashBufferState != State.Null:
+		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
+			dashBufferState = State.Null
+			return State.DashAir
+		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			dashBufferState = State.Null
+			return State.DashUp
 
 	return State.Null
