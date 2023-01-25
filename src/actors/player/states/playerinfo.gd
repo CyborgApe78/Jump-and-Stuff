@@ -118,19 +118,16 @@ func squash_and_stretch(delta):
 
 
 func consecutive_jump_logic() -> int:
-	#TODO: cancel if change direction, boost jump flip if third
-	if player.jumped:
-		return State.JumpDouble
-	elif player.jumpedDouble:
-		return State.JumpTriple
+	if abilities.can_use(PlayerAbilities.list.JumpConsec) and player.jumped:
+		return State.JumpConsec
 	else:
 		return State.Jump
 
 
 func consecutive_jump_cancel() -> void: 
 	player.jumped = false
-	player.jumpedDouble = false
 	player.timers.consecutiveJump.stop()
+	abilities.reset(PlayerAbilities.list.JumpConsec)
 
 
 func align_to_ground()-> void:
@@ -146,7 +143,6 @@ func neutral_move_direction_logic() -> void:
 
 
 func neutral_air_momentum_logic(speed) -> void:
-	
 	if player.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
 		#TODO: variable to keep speed and timer 
 		player.neutralMoveDirection = false

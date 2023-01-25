@@ -44,11 +44,8 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump") and (sign(player.velocity.x) != player.moveDirection.x) and skidLockTime > 0:
-		if player.jumpedDouble:
-			consecutive_jump_cancel()
-			return State.JumpTriple #TODO: create special jump
-		else:
-			return State.JumpFlip
+		consecutive_jump_cancel()
+		return State.JumpFlip
 #	if Input.is_action_just_pressed("dash") and abilities.can_use(abilities.list.DashSide):
 #		return State.Dash $TODO: make special interaction
 

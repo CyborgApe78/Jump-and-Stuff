@@ -6,6 +6,7 @@ class_name PlayerAbilities
 
 
 var unlockedJumpAir: bool = false
+var unlockedJumpConsec: bool = false
 var unlockedJumpWall: bool = false
 var unlockedDashSide: bool = false
 var unlockedDashUp: bool = false
@@ -13,7 +14,6 @@ var unlockedDashDown: bool = false
 var unlockedGlide: bool = false
 var unlockedDive: bool = false
 var unlockedGroundPound: bool = false
-var unlocked: bool = false
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
 #var unlockedDashClimb: bool = false
@@ -26,6 +26,11 @@ var unlocked: bool = false
 
 var maxJumpAir: int = 1
 var maxDash: int = 1
+var maxJumpConsec: int = 1
+
+var currentJumpConsec: int = 0:
+	set(v):
+		currentJumpConsec = clamp(v, 0, maxJumpConsec)
 
 var remainingJumpAir: int = 0:
 	set(v):
@@ -36,10 +41,12 @@ var remainingDash: int = 0:
 		remainingDash = clamp(v, 0, maxDash)
 
 
-enum list { #TODO: consec jump, jump flip, etc
+enum list { #TODO: jump flip, etc
 	Null,
 	All,
+	JumpAll,
 	JumpAir,
+	JumpConsec,
 	JumpWall,
 	Dash,
 	DashSide,
@@ -65,32 +72,38 @@ enum abilityTargetType {Null, grappleHook, burrow}
 func unlock_ability(ability: int, BOOL:bool) -> void:
 	if ability == list.All:
 		unlockedJumpAir = BOOL
+		unlockedJumpConsec = BOOL
 		unlockedDashDown = BOOL
 		unlockedDashSide = BOOL
 		unlockedDashUp = BOOL
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
 		unlockedGroundPound = BOOL
-	if ability == list.JumpAir:
+	elif ability == list.JumpAll:
 		unlockedJumpAir = BOOL
-	if ability == list.Dash:
+		unlockedJumpConsec = BOOL
+	elif ability == list.JumpAir:
+		unlockedJumpAir = BOOL
+	elif ability == list.JumpConsec:
+		unlockedJumpConsec = BOOL
+	elif ability == list.Dash:
 		unlockedDashSide = BOOL
 		unlockedDashUp = BOOL
 		unlockedDashDown = BOOL
-	if ability == list.DashSide:
+	elif ability == list.DashSide:
 		unlockedDashSide = BOOL
-	if ability ==  list.DashUp:
+	elif ability ==  list.DashUp:
 		unlockedDashUp = BOOL
-	if ability == list.DashDown:
+	elif ability == list.DashDown:
 		unlockedDashDown = BOOL
-	if ability == list.Glide:
+	elif ability == list.Glide:
 		unlockedGlide = BOOL
-	if ability == list.Dive:
+	elif ability == list.Dive:
 		unlockedDive = BOOL
-	if ability == list.GroundPound:
+	elif ability == list.GroundPound:
 		unlockedGroundPound = BOOL
 	else:
-		print("Null Ability Unlocked")
+		print("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
 	
 	EventBus.emit_signal("playerAbilitiesUnlock", ability, BOOL)
 
@@ -98,17 +111,19 @@ func unlock_ability(ability: int, BOOL:bool) -> void:
 func can_use(ability: int) -> bool:
 	if ability == list.JumpAir and remainingJumpAir > 0 and unlockedJumpAir:
 		return true
-	if ability == list.DashSide and remainingDash > 0 and unlockedDashSide:
+	elif ability == list.JumpConsec and currentJumpConsec < maxJumpConsec and unlockedJumpConsec:
 		return true
-	if ability == list.DashDown and remainingDash > 0 and unlockedDashDown:
+	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide:
 		return true
-	if ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
+	elif ability == list.DashDown and remainingDash > 0 and unlockedDashDown:
 		return true
-	if ability == list.Glide and unlockedGlide:
+	elif ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
 		return true
-	if ability == list.Dive and unlockedDive:
+	elif ability == list.Glide and unlockedGlide:
 		return true
-	if ability == list.GroundPound and unlockedGroundPound:
+	elif ability == list.Dive and unlockedDive:
+		return true
+	elif ability == list.GroundPound and unlockedGroundPound:
 		return true
 	
 	return false
@@ -117,28 +132,28 @@ func can_use(ability: int) -> bool:
 func reset(ability: int) -> void:
 	if ability == list.All:
 		remainingJumpAir = maxJumpAir
+		currentJumpConsec = 0
 		remainingDash = maxDash
 	elif ability == list.JumpAir:
 		remainingJumpAir = maxJumpAir
+	elif ability == list.JumpConsec:
+		currentJumpConsec = 0
 	elif ability == list.Dash:
 		remainingDash = maxDash
-	elif ability == list.DashSide:
-		print("Use Dash Reset")
-	elif ability ==  list.DashUp:
-		print("Use Dash Reset")
-	elif ability == list.DashDown:
-		print("Use Dash Reset")
 	else:
-		print("Null Ability Reset")
+		print("Null Ability Reset " + str(ability))
 
 
 func consume(ability: int, amount: int) -> void:
 	if ability == list.All:
 		remainingJumpAir -= amount
+		currentJumpConsec += amount
 		remainingDash -= amount
 	elif ability == list.JumpAir:
 		remainingJumpAir -= amount
+	elif ability == list.JumpConsec:
+		currentJumpConsec += amount
 	elif ability == list.Dash:
 		remainingDash -= amount
 	else:
-		print("Null Ability Consume") #TODO: create error log
+		print("Null Ability Consume " + str(ability)) #TODO: create error log

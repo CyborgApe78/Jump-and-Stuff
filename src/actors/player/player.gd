@@ -35,8 +35,6 @@ var neutralMoveDirection: bool = false
 var facing: int = 1 #FIXME: better facing logic
 
 var jumped: bool
-var jumpedDouble: bool
-
 var ledgeLeft: bool
 var ledgeRight: bool
 
@@ -145,8 +143,8 @@ func attempt_horizontal_corner_correction(amount: int, delta) -> void:
 
 func consecutive_jump_cancel() -> void: 
 	jumped = false
-	jumpedDouble = false
 	timers.consecutiveJump.stop()
+	abilities.reset(PlayerAbilities.list.JumpConsec)
 
 
 func landed() -> void:

@@ -1,27 +1,34 @@
 extends PlayerInfo
 
-#LOOKAT: have to be at top speed?
-#TODO: lock out of wall jump, until landed
-@export var jumpModifier: float = 1.25
+
+@export var jumpModifier: float = 0.25
 
 
 func enter() -> void:
+	abilities.consume(PlayerAbilities.list.JumpConsec, 1)
 	EventBus.emit_signal("actionAnnounce", "Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
-	player.sounds.jump.pitch_scale = jumpModifier
+	player.sounds.jump.pitch_scale = 0.25 * abilities.currentJumpConsec + 1
 	player.sounds.jump.play()
 	player.particles.jumpDouble.restart()
-	player.velocity.y = jumpVelocity * jumpModifier
+	player.velocity.y = jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)
 	player.timers.coyoteJump.stop()
 	player.timers.consecutiveJump.stop()
-	player.jumpedDouble = true
-	player.jumped = false
+	
+	if abilities.currentJumpConsec > 1:
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+		tween.tween_property(player.characterRotate,"rotation", player.facing * abilities.currentJumpConsec * PI, 0.5) ## flip,
+		tween.tween_property(player.characterCollision,"rotation", player.facing * abilities.currentJumpConsec * PI, 0.5) #FIXME: leaves upside down on odd numbers
 
 
 func exit() -> void:
 	player.sounds.jump.pitch_scale = 1
-	
+	player.characterRotate.rotation_degrees = 0 
+	player.characterCollision.rotation_degrees = 0
+	if abilities.currentJumpConsec == abilities.maxJumpConsec:
+		abilities.reset(PlayerAbilities.list.JumpConsec)
+		player.jumped = false
 
 
 func physics(delta) -> void:
@@ -50,7 +57,7 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_released("jump"):
 		player.velocity.y = max( player.velocity.y, jumpVelocity * percentMinJumpVelocity)
-		if player.velocity.y > (jumpVelocity * jumpModifier) * percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
+		if player.velocity.y > (jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)) * percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
 			consecutive_jump_cancel()
 		return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):

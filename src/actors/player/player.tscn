@@ -11,9 +11,8 @@
 [ext_resource type="Script" path="res://src/actors/player/states/skid.gd" id="8_p04nj"]
 [ext_resource type="Script" path="res://src/actors/player/states/fall.gd" id="9_hid0t"]
 [ext_resource type="Script" path="res://src/actors/player/states/crouch.gd" id="10_tmkpe"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpConsec.gd" id="11_fwped"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpAir.gd" id="11_vusvg"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpDouble.gd" id="12_3ob7e"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpTriple.gd" id="13_6hfo3"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpFlip.gd" id="14_eoakl"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpApex.gd" id="14_gdhgo"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="14_gr7r5"]
@@ -478,11 +477,8 @@ script = ExtResource("8_8a3ob")
 [node name="JumpAir" type="Node" parent="StateMachine"]
 script = ExtResource("11_vusvg")
 
-[node name="JumpDouble" type="Node" parent="StateMachine"]
-script = ExtResource("12_3ob7e")
-
-[node name="JumpTriple" type="Node" parent="StateMachine"]
-script = ExtResource("13_6hfo3")
+[node name="JumpConsec" type="Node" parent="StateMachine"]
+script = ExtResource("11_fwped")
 
 [node name="JumpFlip" type="Node" parent="StateMachine"]
 script = ExtResource("14_eoakl")
