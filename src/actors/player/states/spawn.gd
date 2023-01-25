@@ -2,9 +2,11 @@ extends PlayerInfo
 
 @export var transformTime: float = 0.4
 #TODO: make a no control state, for teleport and such
+var landed: bool
 
 
 func enter() -> void:
+	landed = false
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player.characterRig, "scale", Vector2(1,1), transformTime).from(Vector2(0,0))
 	EventBus.emit_signal("playerStatsCheck")
@@ -13,15 +15,19 @@ func enter() -> void:
 
 func exit() -> void:
 	player.characterRig.scale = Vector2(1,1) ## Makes sure character is full size ##
-	player.landed()
 
 
 func physics(delta) -> void:
 	if !player.is_on_floor():
 		player.move_and_slide()
 		player.velocity.y = 2000
-	else:
+	elif  player.is_on_floor():
 		player.velocity = Vector2.ZERO
+		
+		
+		if !landed:
+			player.landed()
+			landed = true
 
 
 func visual(delta) -> void:

@@ -64,6 +64,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if durationTimer.is_stopped():
 		if player.is_on_floor():
+			player.landed()
 			return State.Walk
 		else:
 			return State.Fall

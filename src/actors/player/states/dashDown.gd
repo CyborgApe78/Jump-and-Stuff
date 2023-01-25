@@ -56,6 +56,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling(): #TODO: bonk ceiling
 		return State.Fall
 	if player.is_on_floor():
+		player.landed()
 		floorTimer -= delta
 		if floorTimer < 0 or durationTimer.is_stopped():
 			return State.Idle
