@@ -38,8 +38,8 @@ func handle_input(event: InputEvent) -> int:
 			return State.Crouch
 		if Input.is_action_just_pressed("jump"):
 			return State.Jump
-		if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
-			return State.DashGround
+		if Input.is_action_just_pressed("dash"):
+			dash_pressed_buffer()
 
 	return State.Null
 
@@ -47,5 +47,12 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.moveDirection != Vector2.ZERO:
 		return State.Walk
+	if dashBufferState != State.Null:
+		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:
+			dashBufferState = State.Null
+			return State.DashGround
+		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			dashBufferState = State.Null
+			return State.DashUp
 
 	return State.Null

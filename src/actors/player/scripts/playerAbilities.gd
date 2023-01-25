@@ -101,7 +101,7 @@ func unlock_ability(ability: int) -> void:
 		print("Null Ability Unlocked")
 
 
-func can_use_ability(ability: int) -> bool:
+func can_use(ability: int) -> bool:
 	if ability == list.JumpAir and remainingJumpAir > 0 and unlockedJumpAir:
 		return true
 	if ability == list.DashSide and remainingDash > 0 and unlockedDashSide:

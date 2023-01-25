@@ -69,20 +69,20 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.emit_signal("helperUsed", Util.helper.coyoteJump)
 			return consecutive_jump_logic()
 		#TODO: seperate air jump state
-		elif abilities.can_use_ability(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.Jump
 		else:
 			player.timers.bufferJump.start()
-	if Input.is_action_just_pressed("glide")  and abilities.can_use_ability(PlayerAbilities.list.Glide):
+	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive")  and abilities.can_use_ability(PlayerAbilities.list.Dive):
+	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground pound") and abilities.can_use_ability(PlayerAbilities.list.GroundPound): ## if close to ground don't ground pound 
+	if Input.is_action_just_pressed("ground pound") and abilities.can_use(PlayerAbilities.list.GroundPound): ## if close to ground don't ground pound 
 		if player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding():
 			return State.Null #LOOKAT: could cause frustration if trying to quickly ground pound
 		else:
 			return State.GroundPound
-	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(PlayerAbilities.list.DashSide):
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		return State.DashAir
 	
 

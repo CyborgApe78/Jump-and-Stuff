@@ -30,8 +30,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Crouch
 	if Input.is_action_just_pressed("jump"): #LOOKAT: can't consec jump from idle, watch if that causes problems
 		return State.Jump
-	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
-		return State.DashAir
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -45,5 +45,18 @@ func state_check(delta: float) -> int:
 		player.timers.bufferJump.stop()
 		EventBus.emit_signal("helperUsed", Util.helper.bufferJump)
 		return State.Jump
+	if dashBufferState != State.Null:
+#		if abilities.can_use(PlayerAbilities.list.DashJump) and dashBufferState == State.DashJump:
+#			dashBufferState = State.Null
+#			return State.DashJump
+		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:
+			dashBufferState = State.Null
+			return State.DashGround
+		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			dashBufferState = State.Null
+			return State.DashUp
+#		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+#			dashBufferState = State.Null
+#			return State.DashDown
 
 	return State.Null

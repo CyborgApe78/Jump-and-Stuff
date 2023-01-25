@@ -48,11 +48,11 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 #	if Input.is_action_just_pressed("roll"):
 #		rollTimer.start()
-	if Input.is_action_just_pressed("glide")  and abilities.can_use_ability(PlayerAbilities.list.Glide):
+	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("ground pound") and abilities.can_use_ability(PlayerAbilities.list.GroundPound):
+	if Input.is_action_just_pressed("ground pound") and abilities.can_use(PlayerAbilities.list.GroundPound):
 			return State.GroundPound
-	if Input.is_action_just_pressed("dash") and abilities.can_use_ability(abilities.list.DashSide):
+	if Input.is_action_just_pressed("dash") and abilities.can_use(abilities.list.DashSide):
 		return State.DashAir
 
 	return State.Null
