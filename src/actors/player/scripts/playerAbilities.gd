@@ -60,14 +60,7 @@ enum list { #TODO: consec jump, jump flip, etc
 	Burrow,
 	}
 
-enum abilityTargetType {Null, hookShot, grappleHook, burrow}
-
-
-func update_stats() -> void:
-	remainingJumpAir = maxJumpAir
-	remainingDashSide = maxDash
-	remainingDashUp = maxDash
-	remainingDashDown = maxDash
+enum abilityTargetType {Null, grappleHook, burrow}
 
 
 func unlock_ability(ability: int) -> void:

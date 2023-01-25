@@ -51,7 +51,7 @@ func update_stats() -> void:
 	
 	terminalVelocity = -jumpVelocity * stats.terminalVelocityModifier
 	
-	abilities.update_stats()
+	abilities.reset(PlayerAbilities.list.All)
 
 
 func gravity_logic(amount: float, delta) -> void:
