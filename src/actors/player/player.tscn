@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="22_prnk2"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="23_47ykn"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
+[ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="25_tbkdj"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="28_yy5ux"]
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="29_7k1ht"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
@@ -533,6 +534,12 @@ one_shot = true
 script = ExtResource("23_47ykn")
 
 [node name="Duration" type="Timer" parent="StateMachine/DashAir"]
+one_shot = true
+
+[node name="DashUp" type="Node" parent="StateMachine"]
+script = ExtResource("25_tbkdj")
+
+[node name="Duration" type="Timer" parent="StateMachine/DashUp"]
 one_shot = true
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
