@@ -20,6 +20,7 @@ extends Node
 	PlayerState.State.BellySlide: $BellySlide,
 	PlayerState.State.DashGround: $DashGround,
 	PlayerState.State.DashAir: $DashAir,
+	PlayerState.State.DashUp: $DashUp,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	
@@ -29,8 +30,6 @@ extends Node
 #	PlayerState.State.JumpAir: $JumpAir,
 #	PlayerState.State.JumpWall: $JumpWall,
 #	PlayerState.State.DashGround: $DashGround,
-#	PlayerState.State.DashAir: $DashAir,
-#	PlayerState.State.DashUp: $DashUp,
 #	PlayerState.State.DashDown: $DashDown,
 #	PlayerState.State.DashJump: $DashJump,
 #	PlayerState.State.DashWall: $DashWall,
