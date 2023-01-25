@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c3wtcnvfuge8s"]
+[gd_scene load_steps=61 format=3 uid="uid://crp65gnyrsvh"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -38,7 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/ActionAnnouncer.gd" id="33_7u4fs"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/actionText.gd" id="34_h1yjw"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/PlayerInfo.gd" id="36_k22sp"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/PlayerText.gd" id="39_snr3n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
 radius = 16.0
@@ -638,7 +638,7 @@ bbcode_enabled = true
 fit_content_height = true
 script = ExtResource("34_h1yjw")
 
-[node name="PlayerInfo" type="RichTextLabel" parent="."]
+[node name="PlayerText" type="RichTextLabel" parent="."]
 clip_contents = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -656,7 +656,7 @@ size_flags_vertical = 4
 bbcode_enabled = true
 fit_content_height = true
 autowrap_mode = 0
-script = ExtResource("36_k22sp")
+script = ExtResource("39_snr3n")
 
-[node name="AnnounceClear" type="Timer" parent="PlayerInfo"]
+[node name="AnnounceClear" type="Timer" parent="PlayerText"]
 one_shot = true
