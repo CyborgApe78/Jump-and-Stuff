@@ -139,3 +139,21 @@ func can_use_ability(ability: int) -> bool:
 		return true
 	
 	return false
+
+
+func reset(ability: int) -> void:
+	if ability == list.All:
+		remainingJumpAir = maxJumpAir
+		remainingDash = maxDash
+	elif ability == list.JumpAir:
+		remainingJumpAir = maxJumpAir
+	elif ability == list.Dash:
+		remainingDash = maxDash
+	elif ability == list.DashSide:
+		print("Use Dash Reset")
+	elif ability ==  list.DashUp:
+		print("Use Dash Reset")
+	elif ability == list.DashDown:
+		print("Use Dash Reset")
+	else:
+		print("Null Ability Reset")

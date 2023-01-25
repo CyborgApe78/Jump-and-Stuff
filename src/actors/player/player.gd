@@ -4,6 +4,7 @@ class_name  Player
 
 #TODO: joystick vs dpad/keyboard input
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
+var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 
 @onready var animPlayer: AnimationPlayer = $AnimationPlayer
 @onready var sm: Node = $StateMachine
@@ -149,6 +150,8 @@ func consecutive_jump_cancel() -> void:
 
 
 func landed() -> void:
+	abilities.reset(PlayerAbilities.list.Dash)
+	abilities.reset(PlayerAbilities.list.JumpAir)
 	if get_last_slide_collision() != null:
 			groundColor = get_last_slide_collision().get_collider().color
 	particles.land.restart()
