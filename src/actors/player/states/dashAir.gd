@@ -10,7 +10,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	abilities.remainingDashSide -= 1
+	abilities.consume(PlayerAbilities.list.Dash, 1)
 	player.velocityPrevious = player.velocity
 	durationTimer.wait_time = duration
 	durationTimer.start()

@@ -18,7 +18,7 @@ var saveTriple: bool
 
 
 func enter() -> void:
-	abilities.remainingDashSide -= 1
+	abilities.consume(PlayerAbilities.list.Dash, 1)
 	player.velocityPrevious = player.velocity
 	saveTriple = true if player.jumpedDouble else false
 	dashJumpTimer.wait_time = dashJumpTime

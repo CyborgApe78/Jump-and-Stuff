@@ -136,3 +136,15 @@ func reset(ability: int) -> void:
 		print("Use Dash Reset")
 	else:
 		print("Null Ability Reset")
+
+
+func consume(ability: int, amount: int) -> void:
+	if ability == list.All:
+		remainingJumpAir -= amount
+		remainingDash -= amount
+	elif ability == list.JumpAir:
+		remainingJumpAir -= amount
+	elif ability == list.Dash:
+		remainingDash -= amount
+	else:
+		print("Null Ability Consume") #TODO: create error log
