@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx1wwhx0jra68"]
+[gd_scene load_steps=3 format=3 uid="uid://cx1wwhx0jra68"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/DebugMenu.gd" id="1_bmkcu"]
+[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_jxtko"]
 
 [node name="DebugMenu" type="Control"]
 layout_mode = 3
@@ -55,12 +56,9 @@ layout_mode = 2
 [node name="All" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "All"
-
-[node name="Reset" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "ResetAblities"
 
 [node name="Jumps" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -68,6 +66,8 @@ layout_mode = 2
 [node name="JumpAir" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Jumps"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "Air Jump"
 
 [node name="Dashes" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -76,21 +76,29 @@ layout_mode = 2
 [node name="DashAll" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "All Dashes"
 
 [node name="DashSide" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "Dash Side"
 
 [node name="DashUp" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "Dash Up"
 
 [node name="DashDown" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "Dash Down"
 
 [node name="Other" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -99,25 +107,30 @@ layout_mode = 2
 [node name="GroundPound" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "Ground Pound"
 
 [node name="Glide" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "Glide"
 
 [node name="Dive" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_jxtko")
+toggle_mode = true
 text = "Dive"
 
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All/All" to="." method="_on_all_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All/Reset" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Jumps/JumpAir" to="." method="_on_jump_air_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashAll" to="." method="_on_dash_all_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashSide" to="." method="_on_dash_side_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashUp" to="." method="_on_dash_up_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashDown" to="." method="_on_dash_down_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/Glide" to="." method="_on_glide_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/Dive" to="." method="_on_dive_pressed"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/All/All" to="." method="_on_all_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Jumps/JumpAir" to="." method="_on_jump_air_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashAll" to="." method="_on_dash_all_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashSide" to="." method="_on_dash_side_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashUp" to="." method="_on_dash_up_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Dashes/DashDown" to="." method="_on_dash_down_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
+[connection signal="toggled" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]

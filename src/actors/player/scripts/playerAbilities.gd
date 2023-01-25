@@ -34,7 +34,6 @@ var remainingJumpAir: int = 0:
 var remainingDash: int = 0:
 	set(v):
 		remainingDash = clamp(v, 0, maxDash)
-		EventBus.emit_signal("playerAbilityTrackerCheck")
 
 
 enum list { #TODO: consec jump, jump flip, etc
@@ -63,35 +62,37 @@ enum list { #TODO: consec jump, jump flip, etc
 enum abilityTargetType {Null, grappleHook, burrow}
 
 
-func unlock_ability(ability: int) -> void:
+func unlock_ability(ability: int, BOOL:bool) -> void:
 	if ability == list.All:
-		unlockedJumpAir = true
-		unlockedDashDown = true
-		unlockedDashSide = true
-		unlockedDashUp = true
-		unlockedGlide = true
-		unlockedDive = true
-		unlockedGroundPound = true
+		unlockedJumpAir = BOOL
+		unlockedDashDown = BOOL
+		unlockedDashSide = BOOL
+		unlockedDashUp = BOOL
+		unlockedGlide = BOOL
+		unlockedDive = BOOL
+		unlockedGroundPound = BOOL
 	if ability == list.JumpAir:
-		unlockedJumpAir = true
+		unlockedJumpAir = BOOL
 	if ability == list.Dash:
-		unlockedDashSide = true
-		unlockedDashUp = true
-		unlockedDashDown = true
+		unlockedDashSide = BOOL
+		unlockedDashUp = BOOL
+		unlockedDashDown = BOOL
 	if ability == list.DashSide:
-		unlockedDashSide = true
+		unlockedDashSide = BOOL
 	if ability ==  list.DashUp:
-		unlockedDashUp = true
+		unlockedDashUp = BOOL
 	if ability == list.DashDown:
-		unlockedDashDown = true
+		unlockedDashDown = BOOL
 	if ability == list.Glide:
-		unlockedGlide = true
+		unlockedGlide = BOOL
 	if ability == list.Dive:
-		unlockedDive = true
+		unlockedDive = BOOL
 	if ability == list.GroundPound:
-		unlockedGroundPound = true
+		unlockedGroundPound = BOOL
 	else:
 		print("Null Ability Unlocked")
+	
+	EventBus.emit_signal("playerAbilitiesUnlock", ability, BOOL)
 
 
 func can_use(ability: int) -> bool:
