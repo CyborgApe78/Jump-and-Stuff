@@ -2,7 +2,9 @@ extends BaseMenu
 #TODO: set number of abilities
 #FIXME: need to call update to ability tracker after exiting. not working with EventBus.emit_signal("playerStatsCheck")
 @onready var buttonAbilityAll: Button = $%All
+@onready var buttonJumpAll: Button = $%JumpAll
 @onready var buttonJumpAir: Button = $%JumpAir
+@onready var buttonJumpConsec: Button = $%JumpConsec
 @onready var buttonDashAll: Button = $%DashAll
 @onready var buttonDashSide: Button = $%DashSide
 @onready var buttonDashUp: Button = $%DashUp
@@ -38,7 +40,7 @@ func state_check() -> int:
 
 
 func _on_all_toggled(button_pressed: bool) -> void:
-	buttonJumpAir.button_pressed = button_pressed
+	buttonJumpAll.button_pressed = button_pressed
 	buttonDashAll.button_pressed = button_pressed
 	buttonGroundPound.button_pressed = button_pressed
 	buttonGlide.button_pressed = button_pressed
@@ -77,3 +79,31 @@ func _on_glide_toggled(button_pressed: bool) -> void:
 
 func _on_dive_toggled(button_pressed: bool) -> void:
 	abilities.unlock_ability(PlayerAbilities.list.Dive, button_pressed)
+
+
+func _on_collision_toggled(button_pressed: bool) -> void:
+	EventBus.emit_signal("debug", "Placeholder") #TODO
+
+
+func _on_jump_number_item_selected(index: int) -> void:
+	if index != -1:
+		abilities.maxJumpAir = index + 1
+
+
+func _on_dash_number_item_selected(index: int) -> void:
+	if index != -1:
+		abilities.maxDash = index + 1
+
+
+func _on_jump_consec_toggled(button_pressed: bool) -> void:
+	abilities.unlock_ability(PlayerAbilities.list.JumpConsec, button_pressed)
+
+
+func _on_jump_number_2_item_selected(index: int) -> void:
+	if index != -1:
+		abilities.maxJumpConsec = index + 1
+
+
+func _on_jump_all_toggled(button_pressed: bool) -> void:
+	buttonJumpAir.button_pressed = button_pressed
+	buttonJumpConsec.button_pressed = button_pressed
