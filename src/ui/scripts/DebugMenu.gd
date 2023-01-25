@@ -41,7 +41,7 @@ func _on_jump_air_pressed() -> void:
 
 
 func _on_dash_all_pressed() -> void:
-	abilities.unlock_ability(PlayerAbilities.list.DashAll)
+	abilities.unlock_ability(PlayerAbilities.list.Dash)
 
 
 func _on_dash_side_pressed() -> void:
