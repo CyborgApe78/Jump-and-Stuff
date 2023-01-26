@@ -105,7 +105,7 @@ func unlock_ability(ability: int, BOOL:bool) -> void:
 	else:
 		print("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
 	
-	EventBus.emit_signal("playerAbilitiesUnlock", ability, BOOL)
+	EventBus.playerAbilitiesUnlock.emit(ability, BOOL)
 
 
 func can_use(ability: int) -> bool:

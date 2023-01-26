@@ -32,7 +32,7 @@ func physics(delta) -> void:
 	
 	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
 		player.velocity.x = move_toward(player.velocity.x, 0, frictionGround)
-		EventBus.emit_signal("helperUsed", Util.helper.stopOnLedge)
+		EventBus.helperUsed.emit(Util.helper.stopOnLedge)
 
 
 func visual(delta) -> void:
@@ -70,7 +70,7 @@ func state_check(delta: float) -> int:
 		return State.Idle
 	if !player.timers.bufferJump.is_stopped():
 		player.timers.bufferJump.stop()
-		EventBus.emit_signal("helperUsed", Util.helper.bufferJump)
+		EventBus.helperUsed.emit(Util.helper.bufferJump)
 		return consecutive_jump_logic()
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:

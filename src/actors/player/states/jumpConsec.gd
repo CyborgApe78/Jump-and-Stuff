@@ -6,7 +6,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	abilities.consume(PlayerAbilities.list.JumpConsec, 1)
-	EventBus.emit_signal("actionAnnounce", "Boing")
+	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = 0.25 * abilities.currentJumpConsec + 1

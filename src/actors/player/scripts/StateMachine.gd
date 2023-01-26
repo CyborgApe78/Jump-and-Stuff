@@ -52,9 +52,9 @@ var previousStateName: String
 
 
 #func _ready() -> void:
-#	EventBus.connect("playerDied", self, "player_died")
-#	EventBus.connect("playerBounced", self, "bounce")
-#	EventBus.connect("playerTeleported", self, "player_teleported")
+#	EventBus.playerDied.connect(player_died)
+#	EventBus.playerBounced.connect(bounce)
+#	EventBus.playerTeleported.connect(player_teleported)
 
 func change_state(newState: int) -> void:
 	if currentState:
@@ -68,10 +68,8 @@ func change_state(newState: int) -> void:
 	currentState.enter()
 	currentStateName = currentState.name
 	player.currentStateName = currentState.name
-
-	EventBus.emit_signal("debugState", currentStateName + " from " + previousStateName)
-#	EventBus.emit_signal("error", currentStateName)
-	#TODO: create log instead of error
+	
+	EventBus.debugState.emit(currentStateName + " from " + previousStateName)
 
 
 func init() -> void:

@@ -5,9 +5,9 @@ extends MarginContainer
 @onready var debugLabel: Label = $MarginContainer/VBoxContainer/Debug
 
 func _ready():
-	EventBus.connect("debugState", set_state_label)
-	EventBus.connect("debugVelocity", set_velocity_label)
-	EventBus.connect("debug", set_debug_label)
+	EventBus.debugState.connect(set_state_label)
+	EventBus.debugVelocity.connect(set_velocity_label)
+	EventBus.debug.connect(set_debug_label)
 
 func set_state_label(info) -> void:
 	stateLabel.text = "State: " + str(info)

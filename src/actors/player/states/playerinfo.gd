@@ -28,7 +28,7 @@ var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need
 var dashBufferState: int
 
 func _ready() -> void:
-	EventBus.connect("playerStatsCheck", update_stats)
+	EventBus.playerStatsCheck.connect(update_stats)
 
 func update_stats() -> void:
 	#TODO: create setget
@@ -173,4 +173,4 @@ func dash_pressed_logic() -> void: #TODO: change to aimdirection
 		dashBufferState = State.DashAir
 	else:
 		dashBufferState = State.Null
-		EventBus.emit_signal("error", "null dash pressed logic")
+		EventBus.error.emit("null dash pressed logic")

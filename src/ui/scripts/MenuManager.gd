@@ -19,7 +19,7 @@ func _ready() -> void:
 	visible = true
 	menu_hid()
 	change_menu(BaseMenu.State.Unpaused)
-	EventBus.connect("menuChanged", button_pressed)
+	EventBus.menuChanged.connect(button_pressed)
 	#LOOKAT: why does this have to be on ready instead of init. like player state machine
 
 

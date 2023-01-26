@@ -10,8 +10,8 @@ var teleportLocation: int
 #TODO: need resource file to contain names
 
 func _ready() -> void:
-	waypointUpButton.connect("pressed", waypoint_up_pressed)
-	waypointDownButton.connect("pressed", waypoint_down_pressed)
+	waypointUpButton.pressed.connect(waypoint_up_pressed)
+	waypointDownButton.pressed.connect(waypoint_down_pressed)
 
 
 func enter() -> void:

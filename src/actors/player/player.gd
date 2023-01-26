@@ -45,7 +45,7 @@ var groundColor: Color = Color.BLACK
 
 func _ready() -> void:
 	sm.init()
-	EventBus.connect("playerConsecutiveJump", consecutive_jump_cancel)
+	EventBus.playerConsecutiveJump.connect(consecutive_jump_cancel)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -126,7 +126,7 @@ func attempt_vertical_corner_correction(amount: int, delta) -> void:
 				if !test_move(global_transform.translated(Vector2(0, i * j / 2)), Vector2(velocity.x * delta, 0)):
 					translate(Vector2(0, i * j / 2))
 					if velocity.y * j < 0: velocity.y = 0
-					EventBus.emit_signal("helperUsed", Util.helper.cornerCorrectionVertical)
+					EventBus.helperUsed.emit(Util.helper.cornerCorrectionVertical)
 					return
 
 
@@ -137,7 +137,7 @@ func attempt_horizontal_corner_correction(amount: int, delta) -> void:
 				if !test_move(global_transform.translated(Vector2(i * j / 2, 0)), Vector2(0, velocity.y * delta)):
 					translate(Vector2(i * j / 2, 0))
 					if velocity.x * j < 0: velocity.x = 0
-					EventBus.emit_signal("helperUsed", Util.helper.cornerCorrectionHorizontal)
+					EventBus.helperUsed.emit(Util.helper.cornerCorrectionHorizontal)
 					return
 
 

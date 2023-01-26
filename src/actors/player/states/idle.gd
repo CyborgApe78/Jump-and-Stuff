@@ -43,7 +43,7 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if !player.timers.bufferJump.is_stopped():
 		player.timers.bufferJump.stop()
-		EventBus.emit_signal("helperUsed", Util.helper.bufferJump)
+		EventBus.helperUsed.emit(Util.helper.bufferJump)
 		return State.Jump
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:

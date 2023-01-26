@@ -14,4 +14,4 @@ func _ready() -> void:
 	consecutiveJump.timeout.connect(consecutive_jump_timeout)
 
 func consecutive_jump_timeout() -> void:
-	EventBus.emit_signal("playerConsecutiveJump")
+	EventBus.playerConsecutiveJump.emit()

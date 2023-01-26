@@ -20,7 +20,7 @@ var saveTriple: bool
 func enter() -> void:
 	abilities.consume(PlayerAbilities.list.Dash, 1)
 	player.velocityPrevious = player.velocity
-	saveTriple = true if player.jumpedDouble else false
+	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	dashJumpTimer.wait_time = dashJumpTime
 	dashJumpRefreshTimer.wait_time = dashJumpRefreshTime
 	durationTimer.wait_time = duration
@@ -62,14 +62,14 @@ func handle_input(event: InputEvent) -> int:
 		if dashJumpRefreshTimer.is_stopped(): ## dash jump with dash count reset
 			abilities.reset(PlayerAbilities.list.Dash)
 #			player.dashCDTimer.stop()  #TODO
-			EventBus.emit_signal("playerInfo", "Ultra Jump")
+			EventBus.playerInfo.emit("Ultra Jump")
 			return consecutive_jump_logic()
 		else: ## dash jump 
 			if dashJumpTimer.is_stopped(): 
-				EventBus.emit_signal("playerInfo", "Super Jump")
+				EventBus.playerInfo.emit("Super Jump")
 				return consecutive_jump_logic()
 			else:
-				EventBus.emit_signal("playerInfo", "Early Jump")
+				EventBus.playerInfo.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
 	if Input.is_action_just_pressed("dash"):

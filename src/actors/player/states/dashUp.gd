@@ -36,7 +36,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
-			EventBus.emit_signal("helperUsed", Util.helper.coyoteJump)
+			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir

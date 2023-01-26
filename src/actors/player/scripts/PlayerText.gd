@@ -12,9 +12,9 @@ signal announcementFinished
 func _ready() -> void:
 	announcementClearTimer.wait_time = announcementDuration 
 	hide()
-	connect("announcementFinished", check_announcement_que)
-	EventBus.connect("playerInfo", announce_action)
-	announcementClearTimer.connect("timeout", announce_finished)
+	announcementFinished.connect(check_announcement_que)
+	EventBus.playerInfo.connect(announce_action)
+	announcementClearTimer.timeout.connect(announce_finished)
 
 
 func announce_finished() -> void:

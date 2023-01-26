@@ -2,7 +2,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	EventBus.emit_signal("actionAnnounce", "Boing")
+	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.particles.jump.restart()

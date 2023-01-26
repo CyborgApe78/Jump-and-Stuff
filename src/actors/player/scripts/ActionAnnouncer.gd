@@ -3,7 +3,7 @@ extends Node2D
 @onready var actionText: RichTextLabel = $ActionText
 
 func _ready() -> void:
-	EventBus.connect("actionAnnounce", announce_action)
+	EventBus.actionAnnounce.connect(announce_action)
 
 
 func announce_action(action: String) -> void:
