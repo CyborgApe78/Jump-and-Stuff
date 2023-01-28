@@ -303,11 +303,23 @@ _data = {
 "walk": SubResource("Animation_xkfx1")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "sm", "characterRig", "characterRotate", "characterCollision", "eyes", "body", "particles", "timers", "sounds", "detectorGroundLeft", "detectorGroundRight")]
 collision_layer = 64
 collision_mask = 2
 floor_snap_length = 10.1
 script = ExtResource("1_a3yhc")
+animPlayer = NodePath("AnimationPlayer")
+sm = NodePath("StateMachine")
+characterRig = NodePath("CharacterRig")
+characterRotate = NodePath("CharacterRig/CharacterRotate")
+characterCollision = NodePath("BodyCollision")
+eyes = NodePath("CharacterRig/CharacterRotate/Eyes")
+body = NodePath("CharacterRig/CharacterRotate/Body")
+particles = NodePath("CharacterRig/CharacterRotate/Particles")
+timers = NodePath("Timers")
+sounds = NodePath("Sounds")
+detectorGroundLeft = NodePath("Raycasts/Ground/Left")
+detectorGroundRight = NodePath("Raycasts/Ground/Right")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)

@@ -3,21 +3,21 @@ class_name  Player
 
 
 #TODO: joystick vs dpad/keyboard input
-var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
-var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
+@export var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
+@export var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 
-@onready var animPlayer: AnimationPlayer = $AnimationPlayer
-@onready var sm: Node = $StateMachine
-@onready var characterRig: Node2D = $CharacterRig
-@onready var characterRotate: Node2D = $CharacterRig/CharacterRotate
-@onready var characterCollision: CollisionShape2D = $BodyCollision
-@onready var eyes: Node2D = $CharacterRig/CharacterRotate/Eyes
-@onready var body: Node2D = $CharacterRig/CharacterRotate/Body
-@onready var particles: Node2D = $CharacterRig/CharacterRotate/Particles
-@onready var timers: Node = $Timers
-@onready var sounds: Node = $Sounds
-@onready var detectorGroundLeft: RayCast2D = $Raycasts/Ground/Left
-@onready var detectorGroundRight: RayCast2D = $Raycasts/Ground/Right
+@export var animPlayer: AnimationPlayer
+@export var sm: Node
+@export var characterRig: Node2D
+@export var characterRotate: Node2D
+@export var characterCollision: CollisionShape2D
+@export var eyes: Node2D
+@export var body: Node2D
+@export var particles: Node2D
+@export var timers: Node
+@export var sounds: Node
+@export var detectorGroundLeft: RayCast2D
+@export var detectorGroundRight: RayCast2D
 
 var eyeDirection: int = 1 #TODO: randomizer on spawn
 var moveDirection: Vector2 = Vector2.ZERO
