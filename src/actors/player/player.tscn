@@ -636,18 +636,19 @@ stream = ExtResource("31_srj50")
 volume_db = -11.555
 
 [node name="ActionAnnouncer" type="Node2D" parent="."]
+position = Vector2(-40, -40)
 script = ExtResource("33_7u4fs")
 
 [node name="ActionText" type="RichTextLabel" parent="ActionAnnouncer"]
 process_mode = 4
 layout_direction = 1
-offset_left = -40.0
-offset_top = -96.0
-offset_right = 40.0
-offset_bottom = -64.0
-size_flags_horizontal = 6
+offset_right = 80.0
+offset_bottom = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 bbcode_enabled = true
-fit_content_height = true
+fit_content = true
+scroll_active = false
 script = ExtResource("34_h1yjw")
 
 [node name="PlayerText" type="RichTextLabel" parent="."]
@@ -666,7 +667,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 bbcode_enabled = true
-fit_content_height = true
+fit_content = true
 autowrap_mode = 0
 script = ExtResource("39_snr3n")
 
