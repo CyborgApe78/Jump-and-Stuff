@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://crp65gnyrsvh"]
+[gd_scene load_steps=63 format=3 uid="uid://crp65gnyrsvh"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -64,9 +64,11 @@ initial_velocity_max = 40.0
 angular_velocity_min = -80.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_max = 7.0
+scale_max = 10.0
 scale_curve = SubResource("CurveTexture_vjq7j")
 color = Color(0, 0, 0, 1)
+hue_variation_min = -0.2
+hue_variation_max = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n1xfx"]
 lifetime_randomness = 0.3
@@ -84,8 +86,8 @@ orbit_velocity_max = 0.0
 scale_max = 10.0
 scale_curve = SubResource("CurveTexture_vjq7j")
 color = Color(0.270588, 0.270588, 0.270588, 1)
-hue_variation_min = -0.01
-hue_variation_max = 0.03
+hue_variation_min = -0.2
+hue_variation_max = 0.2
 
 [sub_resource type="Curve" id="Curve_pgpbg"]
 _data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -111,6 +113,8 @@ scale_min = 0.0
 scale_max = 15.0
 scale_curve = SubResource("CurveTexture_cr2jt")
 color = Color(0.462745, 0.447059, 0.454902, 1)
+hue_variation_min = -0.2
+hue_variation_max = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w0buo"]
 lifetime_randomness = 1.0
@@ -200,7 +204,8 @@ scale_min = 2.0
 scale_max = 5.0
 scale_curve = SubResource("CurveTexture_sfigj")
 color = Color(0, 0.0352941, 1, 1)
-hue_variation_max = 0.02
+hue_variation_min = -0.05
+hue_variation_max = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8c07u"]
 emission_shape = 3
@@ -220,7 +225,8 @@ scale_min = 2.0
 scale_max = 5.0
 scale_curve = SubResource("CurveTexture_sfigj")
 color = Color(0, 0.0352941, 1, 1)
-hue_variation_max = 0.02
+hue_variation_min = -0.05
+hue_variation_max = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_atob2"]
 emission_shape = 3
@@ -240,7 +246,8 @@ scale_min = 2.0
 scale_max = 5.0
 scale_curve = SubResource("CurveTexture_sfigj")
 color = Color(0, 0.0352941, 1, 1)
-hue_variation_max = 0.02
+hue_variation_min = -0.05
+hue_variation_max = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6t6x"]
 lifetime_randomness = 0.08
@@ -296,6 +303,9 @@ color = Color(0, 0, 0, 1)
 hue_variation_min = -0.12
 hue_variation_max = 0.2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
+size = Vector2(5, 64)
+
 [sub_resource type="Animation" id="Animation_xkfx1"]
 resource_name = "walk"
 
@@ -304,7 +314,7 @@ _data = {
 "walk": SubResource("Animation_xkfx1")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "sm", "characterRig", "characterRotate", "characterCollision", "eyes", "body", "particles", "timers", "sounds", "detectorGroundLeft", "detectorGroundRight")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "sm", "characterRig", "characterRotate", "characterCollision", "eyes", "body", "particles", "timers", "sounds", "detectorGroundLeft", "detectorGroundRight", "wallRaycastLeft", "wallRaycastRight")]
 collision_layer = 64
 collision_mask = 2
 floor_snap_length = 10.1
@@ -321,6 +331,8 @@ timers = NodePath("Timers")
 sounds = NodePath("Sounds")
 detectorGroundLeft = NodePath("Raycasts/Ground/Left")
 detectorGroundRight = NodePath("Raycasts/Ground/Right")
+wallRaycastLeft = NodePath("Raycasts/Wall/Left")
+wallRaycastRight = NodePath("Raycasts/Wall/Right")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
@@ -452,7 +464,7 @@ lifetime = 0.5
 randomness = 0.13
 
 [node name="ParticlesWallSlide" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(-16, -32)
+position = Vector2(16, -32)
 emitting = false
 amount = 80
 process_material = SubResource("ParticleProcessMaterial_n6t6x")
@@ -543,6 +555,9 @@ script = ExtResource("20_134m1")
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
 one_shot = true
 
+[node name="WallSlide" type="Node" parent="StateMachine"]
+script = ExtResource("22_jx1yk")
+
 [node name="DashGround" type="Node" parent="StateMachine"]
 script = ExtResource("22_pfhk2")
 
@@ -580,7 +595,6 @@ script = ExtResource("21_43u8a")
 script = ExtResource("22_prnk2")
 
 [node name="Raycasts" type="Node2D" parent="."]
-visible = false
 
 [node name="Ground" type="Node2D" parent="Raycasts"]
 
@@ -592,6 +606,20 @@ collision_mask = 2
 [node name="Right" type="RayCast2D" parent="Raycasts/Ground"]
 position = Vector2(16, -16)
 target_position = Vector2(0, 26)
+collision_mask = 2
+
+[node name="Wall" type="Node2D" parent="Raycasts"]
+
+[node name="Left" type="ShapeCast2D" parent="Raycasts/Wall"]
+position = Vector2(-16, -32)
+shape = SubResource("RectangleShape2D_2220v")
+target_position = Vector2(-5, 0)
+collision_mask = 2
+
+[node name="Right" type="ShapeCast2D" parent="Raycasts/Wall"]
+position = Vector2(16, -32)
+shape = SubResource("RectangleShape2D_2220v")
+target_position = Vector2(5, 0)
 collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -607,6 +635,10 @@ consecutiveJump = NodePath("ConsecutiveJump")
 bufferJump = NodePath("BufferJump")
 
 [node name="CoyoteJump" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="CoyoteJumpWall" type="Timer" parent="Timers"]
 wait_time = 0.1
 one_shot = true
 
