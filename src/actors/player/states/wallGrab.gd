@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+@export var coyoteJumpWallTimer: Timer
 #TODO: redirect previous velocity bassed on aim direction
 
 func enter() -> void:
@@ -27,11 +28,11 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("move_left") and player.lastWallDirection == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
-		player.timers.coyoteJumpWall.start()
+		coyoteJumpWallTimer.start()
 		return State.Fall
 	if Input.is_action_just_pressed("move_right") and player.lastWallDirection == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
-		player.timers.coyoteJumpWall.start()
+		coyoteJumpWallTimer.start()
 		return State.Fall
 	if Input.is_action_just_released("grab"):
 		return State.WallSlide
@@ -43,7 +44,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if !player.is_on_wall():
-		player.timers.coyoteJumpWall.start()
+		coyoteJumpWallTimer.start()
 		return State.Fall
 	if player.is_on_floor():
 		player.landed()

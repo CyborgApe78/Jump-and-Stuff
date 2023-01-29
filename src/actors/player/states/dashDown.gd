@@ -2,7 +2,7 @@ extends PlayerInfo
 
 
 @export var duration: float = 0.3
-@onready var durationTimer: Timer = $Duration
+@export var durationTimer: Timer
 @export var floorTime: float = 0.1
 
 

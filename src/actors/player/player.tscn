@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://crp65gnyrsvh"]
+[gd_scene load_steps=66 format=3 uid="uid://crp65gnyrsvh"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -36,6 +36,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="25_pbxll"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="25_tbkdj"]
+[ext_resource type="Script" path="res://src/actors/player/WallLand.gd" id="25_tlijb"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="28_yy5ux"]
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="29_7k1ht"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
@@ -532,7 +533,12 @@ script = ExtResource("14_gdhgo")
 
 [node name="JumpWall" type="Node" parent="StateMachine"]
 script = ExtResource("17_lunng")
+
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallTimer", "jumpWallSaveTimer", "consecutiveJumpTimer")]
 script = ExtResource("9_hid0t")
+fallTimer = NodePath("FallTimeMax")
+jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
+consecutiveJumpTimer = NodePath("../../Timers/ConsecutiveJump")
 
 [node name="FallTimeMax" type="Timer" parent="StateMachine/Fall"]
 one_shot = true
@@ -558,14 +564,21 @@ script = ExtResource("20_134m1")
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
 one_shot = true
 
-[node name="WallSlide" type="Node" parent="StateMachine"]
+[node name="WallLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
+script = ExtResource("25_tlijb")
+coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
+
+[node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
 script = ExtResource("22_jx1yk")
+coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
-[node name="WallGrab" type="Node" parent="StateMachine"]
+[node name="WallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
 script = ExtResource("23_fbyj1")
+coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
-[node name="DashGround" type="Node" parent="StateMachine"]
+[node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
 script = ExtResource("22_pfhk2")
+durationTimer = NodePath("../../Timers/DashDuration")
 
 [node name="DashJump" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
@@ -573,26 +586,18 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="Duration" type="Timer" parent="StateMachine/DashGround"]
-one_shot = true
-
-[node name="DashAir" type="Node" parent="StateMachine"]
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "jumpWallSaveTimer")]
 script = ExtResource("23_47ykn")
+durationTimer = NodePath("../../Timers/DashDuration")
+jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 
-[node name="Duration" type="Timer" parent="StateMachine/DashAir"]
-one_shot = true
-
-[node name="DashUp" type="Node" parent="StateMachine"]
+[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
 script = ExtResource("25_tbkdj")
+durationTimer = NodePath("../../Timers/DashDuration")
 
-[node name="Duration" type="Timer" parent="StateMachine/DashUp"]
-one_shot = true
-
-[node name="DashDown" type="Node" parent="StateMachine"]
+[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
 script = ExtResource("25_pbxll")
-
-[node name="Duration" type="Timer" parent="StateMachine/DashDown"]
-one_shot = true
+durationTimer = NodePath("../../Timers/DashDuration")
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")
@@ -640,6 +645,10 @@ coyoteJumpWall = NodePath("CoyoteJumpWall")
 consecutiveJump = NodePath("ConsecutiveJump")
 bufferJump = NodePath("BufferJump")
 
+[node name="JumpWallSaver" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
 [node name="CoyoteJump" type="Timer" parent="Timers"]
 wait_time = 0.1
 one_shot = true
@@ -654,6 +663,10 @@ one_shot = true
 
 [node name="BufferJump" type="Timer" parent="Timers"]
 wait_time = 0.1
+one_shot = true
+
+[node name="DashDuration" type="Timer" parent="Timers"]
+wait_time = 0.3
 one_shot = true
 
 [node name="Sounds" type="Node" parent="."]

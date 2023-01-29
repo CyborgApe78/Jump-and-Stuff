@@ -2,14 +2,13 @@ extends PlayerInfo
 
 
 @export var duration: float = 0.3
-@onready var durationTimer: Timer = $Duration
+@export var durationTimer: Timer
 
 
 func enter() -> void:
 	abilities.consume(PlayerAbilities.list.Dash, 1)
 	player.velocityPrevious = player.velocity
-	durationTimer.wait_time = duration
-	durationTimer.start()
+	timers()
 	player.particles.dashUp.emitting = true #TODO: use signals to call
 	player.velocity.x = 0
 	player.velocity.y = -moveSpeed / duration #FIXME: to much fast
@@ -72,3 +71,8 @@ func state_check(delta: float) -> int:
 			return State.DashDown
 
 	return State.Null
+
+
+func timers() -> void:
+	durationTimer.wait_time = duration
+	durationTimer.start()

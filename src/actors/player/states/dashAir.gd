@@ -2,10 +2,11 @@ extends PlayerInfo
 #TODO: change to jetpack
 #TODO: set up dash amount/duration check
 #TODO: upgrade to become like bullet from mario
-@export var duration: float = 0.3
-@onready var durationTimer: Timer = $Duration
+var duration: float = 0.3
+@export var durationTimer: Timer
 @export var distance: float = 4.0
-@onready var dashSpeed: float = distance / duration #TODO: based off movespeed
+@onready var dashSpeed: float = moveSpeed / duration #TODO: based off movespeed
+@export var jumpWallSaveTimer: Timer
 
 #TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump
 
@@ -13,11 +14,10 @@ extends PlayerInfo
 func enter() -> void:
 	abilities.consume(PlayerAbilities.list.Dash, 1)
 	player.velocityPrevious = player.velocity
-	durationTimer.wait_time = duration
-	durationTimer.start()
+	timers()
 	player.particles.dash.emitting = true #TODO: use signals to call
 	player.velocity.y = 0
-	player.velocity.x = player.facing * ((moveSpeed) / duration) #FIXME: to much fast
+	player.velocity.x = player.facing * (moveSpeed / duration) #FIXME: to much fast
 
 
 func exit() -> void:
@@ -53,7 +53,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			player.timers.bufferJump.start()
-			return State.Fall
+#			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
@@ -91,3 +91,8 @@ func state_check(delta: float) -> int:
 			return State.DashDown
 
 	return State.Null
+
+
+func timers() -> void:
+	durationTimer.wait_time = duration
+	durationTimer.start()

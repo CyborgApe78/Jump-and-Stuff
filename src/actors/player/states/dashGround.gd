@@ -6,7 +6,7 @@ extends PlayerInfo
 @export var dashJumpRefreshTime: float = 0.22
 @onready var dashJumpRefreshTimer: Timer = $DashJumpRefresh
 @export var duration: float = 0.3
-@onready var durationTimer: Timer = $Duration
+@export var durationTimer: Timer
 
 var isJumping: bool = false
 var saveTriple: bool

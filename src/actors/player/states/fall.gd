@@ -1,19 +1,19 @@
 extends PlayerInfo
 #TODO: slow fall while jump held, slightly faster when pressing down
 
-@onready var fallTimer: Timer = $FallTimeMax
+@export var fallTimer: Timer
+@export var jumpWallSaveTimer: Timer
+@export var consecutiveJumpTimer: Timer
 
 @export var jumpHeldSlowModifier: float = 2.0
 @export var transTime: float = 0.1
 @export var fallTimeTillBonk: float = 0.9
-
 var jumpHeld: bool
 
 
 func enter() -> void:
 	player.velocityPrevious = player.velocity
-	fallTimer.wait_time = fallTimeTillBonk
-	fallTimer.start()
+	timers()
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.set_up_direction(Vector2.UP)
@@ -64,13 +64,16 @@ func handle_input(event: InputEvent) -> int:
 	else: 
 		jumpHeld = false
 	if Input.is_action_just_pressed("jump"):
+		jumpWallSaveTimer.start()
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
-		if !player.timers.coyoteJumpWall.is_stopped(): #leave wall, but stil can jump
+		elif !player.timers.coyoteJumpWall.is_stopped(): #leave wall, but stil can jump
 			player.timers.coyoteJumpWall.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
+			return State.JumpWall
+		elif player.wall_detection(30) != 0:
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
@@ -94,6 +97,8 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
+		if !jumpWallSaveTimer.is_stopped():
+			return State.JumpWall
 		if topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
@@ -105,10 +110,10 @@ func state_check(delta: float) -> int:
 			return State.BonkGround
 		else:
 			player.sounds.land.play() #Lookat: moving sound to landed
-			player.timers.consecutiveJump.start()
+			consecutiveJumpTimer.start()
 			if Input.is_action_pressed("crouch"):
 				return State.Crouch
-			elif player.velocity.x != 0: 
+			elif player.velocity.x != 0:
 	#			if player.neutralMoveDirection:
 	#				return State.NeutralGround #TODO: keep momentum if jumping
 	#			else:
@@ -127,3 +132,8 @@ func state_check(delta: float) -> int:
 			return State.DashDown
 
 	return State.Null
+
+
+func timers() -> void:
+	fallTimer.wait_time = fallTimeTillBonk
+	fallTimer.start()
