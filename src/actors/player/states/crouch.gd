@@ -47,7 +47,7 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			return State.Idle
 	if Input.is_action_just_pressed("jump"):
-		if player.jumpedDouble:
+		if player.jumped:
 			consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
 			return State.JumpLong #TODO: special jump, timer to get a boosted jump
 		elif abs(player.velocity.x) > minLongJumpVelocity:
