@@ -42,6 +42,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Fall
 	if Input.is_action_just_pressed("grab"):
 		return State.WallGrab
+	if Input.is_action_just_pressed("jump"):
+		return State.JumpWall
 
 	return State.Null
 

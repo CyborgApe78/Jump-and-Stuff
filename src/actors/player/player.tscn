@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/jumpCrouch.gd" id="16_4vuh4"]
 [ext_resource type="AudioStream" uid="uid://btfvrwbgkgyal" path="res://asset/sounds/player/jump.wav" id="16_51c2n"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpLong.gd" id="16_ekg3a"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpWall.gd" id="17_lunng"]
 [ext_resource type="AudioStream" uid="uid://c7muk6odu85aw" path="res://asset/sounds/player/skid.wav" id="18_sqfay"]
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="19_52i1t"]
 [ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="19_f0jmg"]
@@ -529,7 +530,8 @@ script = ExtResource("16_4vuh4")
 [node name="JumpApex" type="Node" parent="StateMachine"]
 script = ExtResource("14_gdhgo")
 
-[node name="Fall" type="Node" parent="StateMachine"]
+[node name="JumpWall" type="Node" parent="StateMachine"]
+script = ExtResource("17_lunng")
 script = ExtResource("9_hid0t")
 
 [node name="FallTimeMax" type="Timer" parent="StateMachine/Fall"]

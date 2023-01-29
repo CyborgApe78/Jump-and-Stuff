@@ -44,6 +44,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
+		jumpWallSaveTimer.start()
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -66,9 +67,12 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
-		topSpeed = 0
-		return State.BonkAir
+	if player.is_on_wall(): 
+		if !jumpWallSaveTimer.is_stopped():
+			return State.JumpWall #TODO: create JumpReflect
+		elif topSpeed > moveSpeed:
+			topSpeed = 0
+			return State.BonkAir
 	if durationTimer.is_stopped():
 		if player.is_on_floor():
 			player.landed()
