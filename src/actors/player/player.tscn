@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="19_f0jmg"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="20_134m1"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="21_43u8a"]
+[ext_resource type="Script" path="res://src/actors/player/states/wallSlide.gd" id="22_jx1yk"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="22_pfhk2"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="22_prnk2"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="23_47ykn"]

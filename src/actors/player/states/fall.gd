@@ -37,7 +37,7 @@ func physics(delta) -> void:
 	if jumpHeld:
 		gravity_logic(gravityFall / jumpHeldSlowModifier, delta)
 		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
-	else:
+	else: #TODO: fall aster with down pressed
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
 	
@@ -68,6 +68,10 @@ func handle_input(event: InputEvent) -> int:
 			player.timers.coyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
+		if !player.timers.coyoteJumpWall.is_stopped(): #leave wall, but stil can jump
+			player.timers.coyoteJumpWall.stop()
+			EventBus.helperUsed.emit(Util.helper.coyoteJump)
+			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
@@ -89,15 +93,18 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
-		topSpeed = 0
-		return State.BonkAir
+	if player.is_on_wall():
+		if topSpeed > moveSpeed:
+			topSpeed = 0
+			return State.BonkAir
+		else:
+			return State.WallSlide
 	if player.is_on_floor():
 		player.landed()
 		if fallTimer.is_stopped():
 			return State.BonkGround
 		else:
-			player.sounds.land.play()
+			player.sounds.land.play() #Lookat: moving sound to landed
 			player.timers.consecutiveJump.start()
 			if Input.is_action_pressed("crouch"):
 				return State.Crouch

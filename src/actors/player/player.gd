@@ -18,6 +18,8 @@ class_name  Player
 @export var sounds: Node
 @export var detectorGroundLeft: RayCast2D
 @export var detectorGroundRight: RayCast2D
+@export var wallRaycastLeft: ShapeCast2D
+@export var wallRaycastRight: ShapeCast2D
 
 var eyeDirection: int = 1 #TODO: randomizer on spawn
 var moveDirection: Vector2 = Vector2.ZERO
@@ -32,6 +34,7 @@ var velocityRotated: Vector2 = Vector2.ZERO
 
 var neutralMoveDirection: bool = false
 
+var lastWallDirection: int = 0
 var facing: int = 1 #FIXME: better facing logic
 
 var jumped: bool
@@ -59,6 +62,7 @@ func _physics_process(delta: float) -> void:
 	get_move_input()
 	facing_logic()
 	get_slope_angle()
+	wall_detection()
 	if is_on_floor(): #TODo: create is grounded using floor raycasts
 		ledge_detection()
 	
@@ -171,3 +175,17 @@ func get_slope_angle() -> void:
 	
 	if rad_to_deg(abs(groundAngle)) > 45:
 		groundAngle = 0
+
+
+func wall_detection(length: int = 5) -> int:
+#	wallRaycastLeft.cast_to.x = -length
+#	wallRaycastRight.cast_to.x = length
+	
+	if wallRaycastLeft.is_colliding():
+		lastWallDirection = -1
+		return lastWallDirection
+	elif wallRaycastRight.is_colliding():
+		lastWallDirection = 1
+		return lastWallDirection
+	
+	return 0
