@@ -1,25 +1,18 @@
 extends PlayerInfo
 
+#TODO: redirect previous velocity bassed on aim direction
 
 func enter() -> void:
 	player.velocityPrevious = player.velocity
-	player.velocity.y = 0
-	player.particles.wallSlide.emitting = true #TODO: use signals to call
+	player.velocity = Vector2.ZERO
 
 
 func exit() -> void:
-	player.particles.wallSlide.emitting = false #TODO: use signals to call
+	pass
 
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	
-	if player.moveDirection.y == Vector2.DOWN.y:
-		gravity_logic(gravityFall, delta)
-		fall_speed_logic(terminalVelocity)
-	else:
-		gravity_logic(gravityFall/4, delta)
-		fall_speed_logic(terminalVelocity/4)
 
 
 func visual(delta) -> void:
@@ -40,8 +33,10 @@ func handle_input(event: InputEvent) -> int:
 		player.velocity = Vector2(20, -10)
 		player.timers.coyoteJumpWall.start()
 		return State.Fall
-	if Input.is_action_just_pressed("grab"):
-		return State.WallGrab
+	if Input.is_action_just_released("grab"):
+		return State.WallSlide
+	if Input.is_action_just_pressed("jump"):
+		return State.JumpWall
 
 	return State.Null
 

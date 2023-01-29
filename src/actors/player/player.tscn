@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://crp65gnyrsvh"]
+[gd_scene load_steps=65 format=3 uid="uid://crp65gnyrsvh"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="22_pfhk2"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="22_prnk2"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="23_47ykn"]
+[ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="23_fbyj1"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="25_pbxll"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="25_tbkdj"]
@@ -557,6 +558,9 @@ one_shot = true
 
 [node name="WallSlide" type="Node" parent="StateMachine"]
 script = ExtResource("22_jx1yk")
+
+[node name="WallGrab" type="Node" parent="StateMachine"]
+script = ExtResource("23_fbyj1")
 
 [node name="DashGround" type="Node" parent="StateMachine"]
 script = ExtResource("22_pfhk2")
