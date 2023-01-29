@@ -178,10 +178,14 @@ func get_slope_angle() -> void:
 
 
 func wall_detection(length: int = 5) -> int:
-#	wallRaycastLeft.cast_to.x = -length
-#	wallRaycastRight.cast_to.x = length
+	if wallRaycastLeft.target_position.x != -length:
+		wallRaycastLeft.target_position.x = -length
+	if wallRaycastRight.target_position.x != length:
+		wallRaycastRight.target_position.x = length
 	
-	if wallRaycastLeft.is_colliding():
+	if  wallRaycastLeft.is_colliding() and wallRaycastRight.is_colliding():
+		return 0
+	elif wallRaycastLeft.is_colliding():
 		lastWallDirection = -1
 		return lastWallDirection
 	elif wallRaycastRight.is_colliding():
