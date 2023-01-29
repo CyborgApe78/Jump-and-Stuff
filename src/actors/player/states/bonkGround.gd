@@ -29,7 +29,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	currentBonkTime -= delta
+	currentBonkTime -= delta #TODO: make timer
 	if abs(player.groundAngle) > 1: ## slide if on slope
 		player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, accelerationGround) * sin(player.groundAngle)
 	else: #lookat: letting enviroment effects move
