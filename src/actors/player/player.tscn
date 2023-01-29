@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://crp65gnyrsvh"]
+[gd_scene load_steps=62 format=3 uid="uid://crp65gnyrsvh"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -359,9 +359,20 @@ position = Vector2(8, -10)
 points = PackedVector2Array(0, -8, 0, 0)
 width = 4.0
 
-[node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate"]
+[node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "dashUp", "dashDown", "wallSlide", "jumpWall")]
 position = Vector2(0, 24)
 script = ExtResource("3_0fvjs")
+walk = NodePath("ParticlesWalking")
+skid = NodePath("ParticlesSkid")
+land = NodePath("ParticlesLand")
+jump = NodePath("ParticlesJump")
+jumpDouble = NodePath("ParticlesJumpDouble")
+jumpTriple = NodePath("ParticlesJumpTriple")
+dash = NodePath("ParticlesDash")
+dashUp = NodePath("ParticlesDashUp")
+dashDown = NodePath("ParticlesDashDown")
+wallSlide = NodePath("ParticlesWallSlide")
+jumpWall = NodePath("ParticlesJumpWall")
 
 [node name="ParticlesWalking" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(-16, 0)
@@ -587,8 +598,12 @@ libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
 
-[node name="Timers" type="Node" parent="."]
+[node name="Timers" type="Node" parent="." node_paths=PackedStringArray("coyoteJump", "coyoteJumpWall", "consecutiveJump", "bufferJump")]
 script = ExtResource("14_gr7r5")
+coyoteJump = NodePath("CoyoteJump")
+coyoteJumpWall = NodePath("CoyoteJumpWall")
+consecutiveJump = NodePath("ConsecutiveJump")
+bufferJump = NodePath("BufferJump")
 
 [node name="CoyoteJump" type="Timer" parent="Timers"]
 wait_time = 0.1

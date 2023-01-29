@@ -1,15 +1,18 @@
 extends Node2D
 #TODO: landed particles need to be based on velocity
 
-@onready var walk: GPUParticles2D = $ParticlesWalking
-@onready var skid: GPUParticles2D = $ParticlesSkid
-@onready var land: GPUParticles2D = $ParticlesLand
-@onready var jump: GPUParticles2D = $ParticlesJump
-@onready var jumpDouble: GPUParticles2D = $ParticlesJumpDouble
-@onready var jumpTriple: GPUParticles2D = $ParticlesJumpTriple
-@onready var dash: GPUParticles2D = $ParticlesDash
-@onready var dashUp: GPUParticles2D = $ParticlesDashUp
-@onready var dashDown: GPUParticles2D = $ParticlesDashDown
+@export var walk: GPUParticles2D
+@export var skid: GPUParticles2D
+@export var land: GPUParticles2D
+@export var jump: GPUParticles2D
+@export var jumpDouble: GPUParticles2D
+@export var jumpTriple: GPUParticles2D
+@export var dash: GPUParticles2D
+@export var dashUp: GPUParticles2D
+@export var dashDown: GPUParticles2D
+@export var wallSlide: GPUParticles2D
+@export var WallClime: GPUParticles2D
+@export var jumpWall: GPUParticles2D
 
 @onready var player = get_parent().get_parent().get_parent()
 

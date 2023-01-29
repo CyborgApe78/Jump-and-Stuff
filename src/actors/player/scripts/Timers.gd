@@ -1,9 +1,10 @@
 extends Node
 
 
-@onready var coyoteJump: Timer = $CoyoteJump
-@onready var consecutiveJump: Timer = $ConsecutiveJump
-@onready var bufferJump: Timer = $BufferJump
+@export var coyoteJump: Timer
+@export var coyoteJumpWall: Timer
+@export var consecutiveJump: Timer
+@export var bufferJump: Timer
 
 
 func _ready() -> void:
