@@ -564,9 +564,13 @@ script = ExtResource("20_134m1")
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
 one_shot = true
 
-[node name="WallLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
+[node name="WallLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "holdTimer")]
 script = ExtResource("25_tlijb")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
+holdTimer = NodePath("Hold")
+
+[node name="Hold" type="Timer" parent="StateMachine/WallLand"]
+one_shot = true
 
 [node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
 script = ExtResource("22_jx1yk")
@@ -740,3 +744,5 @@ script = ExtResource("39_snr3n")
 
 [node name="AnnounceClear" type="Timer" parent="PlayerText"]
 one_shot = true
+
+[connection signal="timeout" from="StateMachine/WallLand/Hold" to="StateMachine/WallLand" method="_on_hold_timeout"]

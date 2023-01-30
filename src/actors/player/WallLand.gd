@@ -3,7 +3,9 @@ extends PlayerInfo
 @export var coyoteJumpWallTimer: Timer
 @export var holdTimer: Timer
 
-var holdTime: float = 0.4
+var runUpTile: int = 3
+var holdTime: float = 0.5
+var noHold: bool
 #TODO: redirect previous velocity bassed on aim direction
 #TODO: can all wall entraces to this
 #TODO: 
@@ -12,8 +14,10 @@ var holdTime: float = 0.4
 ## holding into wall goes to wall slide
 
 func enter() -> void:
+	noHold = false
 	player.velocityPrevious = player.velocity
 	player.velocity.x = 0
+	holdTimer.wait_time = holdTime
 
 
 func exit() -> void:
@@ -22,13 +26,15 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
+	EventBus.debug.emit(holdTimer.time_left)
 	
-	gravity_logic(gravityFall/4, delta)
+	if !noHold:
+		gravity_logic(gravityFall/4, delta)
 	
-	if player.velocity.y >= 0:
+	if player.velocity.y > 0 and !noHold:
 		player.velocity.y = 0
-#		holdTimer.start()
-
+		holdTimer.start()
+		noHold = true
 
 func visual(delta) -> void:
 	pass 
@@ -43,6 +49,8 @@ func handle_input(event: InputEvent) -> int:
 #	if Input.is_action_just_pressed("grab"):
 #		return State.JumpReflect
 	#TODO: create jump check befor leaving wall
+	if Input.is_action_pressed("move_up") and player.velocity.y < 0: ## run up the wall at start
+		player.velocity.y -= Util.tileSize * runUpTile
 	if Input.is_action_just_pressed("jump"):
 		return State.JumpWall
 		#JumpWallUp
@@ -67,6 +75,12 @@ func state_check(delta: float) -> int:
 #	if topSpeed > moveSpeed: #TODO: tweak this 
 #			topSpeed = 0
 #			return State.BonkAir
+	if noHold and holdTimer.is_stopped(): ## in not holding against the wall, fall
+		if player.moveDirection.x == player.lastWallDirection:
+			return State.WallSlide
+		else:
+			player.velocity = Vector2(20 * -player.facing, -10)
+			return State.Fall
 	if !player.is_on_wall():
 		coyoteJumpWallTimer.start()
 		return State.Fall
@@ -81,3 +95,7 @@ func state_check(delta: float) -> int:
 			return State.Idle
 
 	return State.Null
+
+
+func _on_hold_timeout() -> void:
+	pass # Replace with function body.
