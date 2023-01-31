@@ -1,5 +1,6 @@
 extends PlayerInfo
 #TODO: change input to trigger, use input strenght to control fall speed
+#TODO: animation
 
 @export var transTime: float = 0.1
 @export var velocityModifier: float = 0.6
