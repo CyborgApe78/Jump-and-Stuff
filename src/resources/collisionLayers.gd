@@ -7,8 +7,9 @@ const Semisolid: int = 2
 #const PLATFORM: int = 3
 const Interactable: int = 4
 const Collectables: int = 5
-const Player: int = 6
-const Hazard: int = 7
+const Player: int = 7
+
+const Hazard: int = 9
 #const Water: int =  
 #const LAVA: int = 
 #const SAND: int = 
@@ -22,3 +23,4 @@ const HookShot: int = 17
 const Burrow: int = 18
 const SwimDash: int = 19
 const Pogo: int = 20
+const Spin: int = 21
