@@ -7,33 +7,37 @@ class_name AbilityBlockBase
 var blockColor: Color
 
 
+func _ready() -> void:
+	block_color() #LOOKAT: move to each block or call super
+
+
 func block_color() -> void:
-	if ability == Abilities.abiliyList.All:
-		blockColor = AbilityColor.allColor
-	elif ability == Abilities.abiliyList.DashSide:
-		blockColor = AbilityColor.dashSideColor
-	elif ability == Abilities.abiliyList.DashUp:
-		blockColor = AbilityColor.dashUpColor
-	elif ability == Abilities.abiliyList.DashDown:
-		blockColor = AbilityColor.dashDownColor
-	elif ability == Abilities.abiliyList.Grapple:
-		blockColor = AbilityColor.grappleColor
-	elif ability == Abilities.abiliyList.Jump:
-		blockColor = AbilityColor.jumpColor
-	elif ability == Abilities.abiliyList.SwimDash:
-		blockColor = AbilityColor.swimDashColor
-	elif ability == Abilities.abiliyList.Burrow:
-		blockColor = AbilityColor.burrowColor
-	elif ability == Abilities.abiliyList.Pogo:
-		blockColor = AbilityColor.pogoColor
-	elif ability == Abilities.abiliyList.Spin:
-		blockColor = AbilityColor.spinColor
-	elif ability == Abilities.abiliyList.Bash:
-		blockColor = AbilityColor.bashColor
+	if ability == PlayerAbilities.list.All:
+		modulate = AbilityColor.allColor
+	elif ability == PlayerAbilities.list.DashSide:
+		modulate = AbilityColor.dashSideColor
+	elif ability == PlayerAbilities.list.DashUp:
+		modulate = AbilityColor.dashUpColor
+	elif ability == PlayerAbilities.list.DashDown:
+		modulate = AbilityColor.dashDownColor
+#	elif ability == PlayerAbilities.list.Grapple:
+#		blockColor = AbilityColor.grappleColor
+	elif ability == PlayerAbilities.list.JumpAll:
+		modulate = AbilityColor.jumpColor
+	elif ability == PlayerAbilities.list.SwimDash:
+		modulate = AbilityColor.swimDashColor
+	elif ability == PlayerAbilities.list.Burrow:
+		modulate = AbilityColor.burrowColor
+#	elif ability == PlayerAbilities.list.Pogo:
+#		blockColor = AbilityColor.pogoColor
+#	elif ability == PlayerAbilities.list.Spin:
+#		blockColor = AbilityColor.spinColor
+#	elif ability == PlayerAbilities.list.Bash:
+#		blockColor = AbilityColor.bashColor
 	else:
 		print("null " + str(self.name) + " " + str(global_position))
 #TODO: see if we can get this to work
 func valid_block(block, location) -> void:
-	if ability == Abilities.abiliyList.Null:
+	if ability == PlayerAbilities.list.Null:
 		print("null " + str(block) + " " + str(location))
 		set_deferred("monitoring", false)
