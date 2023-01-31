@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://f53exxejh5co"]
+[gd_scene load_steps=17 format=3 uid="uid://f53exxejh5co"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://crp65gnyrsvh" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/levels/controllervisual.gd" id="6_8b6rd"]
 [ext_resource type="PackedScene" uid="uid://brpgf30v0sgdj" path="res://src/object/prefab/AbilityBlocks/boost.tscn" id="7_luu1j"]
+[ext_resource type="PackedScene" uid="uid://by1jy0hgxqoud" path="res://src/object/prefab/AbilityBlocks/wall.tscn" id="7_m4or1"]
 [ext_resource type="PackedScene" uid="uid://2erja1icwyql" path="res://src/object/prefab/AbilityBlocks/reset.tscn" id="7_rw1hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
@@ -152,14 +153,20 @@ script = ExtResource("1_isl6d")
 
 [node name="Interactables" type="Node" parent="."]
 
+[node name="Wall" parent="Interactables" instance=ExtResource("7_m4or1")]
+position = Vector2(-224, -40)
+ability = 7
+oneUse = true
+
 [node name="Boost" parent="Interactables" instance=ExtResource("7_luu1j")]
 position = Vector2(-128, -56)
 rotateBlock = true
 ability = 1
+oneUse = true
 
 [node name="Reset" parent="Interactables" instance=ExtResource("7_rw1hu")]
 position = Vector2(0, -128)
-ability = 3
+ability = 7
 oneUse = true
 
 [node name="Player" parent="." instance=ExtResource("3_m0pk1")]

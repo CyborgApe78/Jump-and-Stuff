@@ -318,8 +318,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "sm", "characterRig", "characterRotate", "characterCollision", "eyes", "body", "particles", "timers", "sounds", "detectorGroundLeft", "detectorGroundRight", "wallRaycastLeft", "wallRaycastRight")]
-collision_layer = 64
-collision_mask = 2
+collision_layer = 8256
+collision_mask = 8194
 floor_snap_length = 10.1
 script = ExtResource("1_a3yhc")
 animPlayer = NodePath("AnimationPlayer")
