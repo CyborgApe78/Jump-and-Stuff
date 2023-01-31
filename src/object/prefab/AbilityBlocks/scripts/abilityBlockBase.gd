@@ -8,6 +8,7 @@ var blockColor: Color
 
 
 func _ready() -> void:
+	super._ready()
 	block_color() #LOOKAT: move to each block or call super
 
 

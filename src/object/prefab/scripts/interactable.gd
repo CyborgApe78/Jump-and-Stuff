@@ -9,7 +9,7 @@ class_name Interactable
 
 #TODO: Magnetize pickups to player
 
-func init() -> void: #FIXME: not working when inheritated calls ready
+func _ready() -> void:
 	lockoutTimer.wait_time = lockOutTime
 	body_entered.connect(_on_Interactable_entered)
 	if oneUse and lockOut:

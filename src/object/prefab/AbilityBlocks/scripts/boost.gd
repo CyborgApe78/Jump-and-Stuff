@@ -8,6 +8,7 @@ var boostDirection: Vector2
 
 
 func _ready() -> void:
+	super._ready()
 	body_entered.connect(boost)
 	if ability == PlayerAbilities.list.All:
 		set_collision_mask_value(CollisionLayers.Player, true)

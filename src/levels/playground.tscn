@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_7tm57"]
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="2_slpti"]
 [ext_resource type="Script" path="res://src/levels/Ground.gd" id="3_7mvmu"]
-[ext_resource type="PackedScene" uid="uid://crp65gnyrsvh" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
+[ext_resource type="PackedScene" uid="uid://c6sp0iiop2sqw" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/levels/controllervisual.gd" id="6_8b6rd"]
 [ext_resource type="PackedScene" uid="uid://brpgf30v0sgdj" path="res://src/object/prefab/AbilityBlocks/boost.tscn" id="7_luu1j"]
 [ext_resource type="PackedScene" uid="uid://by1jy0hgxqoud" path="res://src/object/prefab/AbilityBlocks/wall.tscn" id="7_m4or1"]
@@ -154,18 +154,18 @@ script = ExtResource("1_isl6d")
 [node name="Interactables" type="Node" parent="."]
 
 [node name="Wall" parent="Interactables" instance=ExtResource("7_m4or1")]
-position = Vector2(-224, -40)
+position = Vector2(-32, -32)
 ability = 7
 oneUse = true
 
 [node name="Boost" parent="Interactables" instance=ExtResource("7_luu1j")]
-position = Vector2(-128, -56)
+position = Vector2(-56, 120)
 rotateBlock = true
 ability = 1
 oneUse = true
 
 [node name="Reset" parent="Interactables" instance=ExtResource("7_rw1hu")]
-position = Vector2(0, -128)
+position = Vector2(80, 136)
 ability = 7
 oneUse = true
 

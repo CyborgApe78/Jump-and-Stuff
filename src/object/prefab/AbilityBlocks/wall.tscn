@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://by1jy0hgxqoud"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://src/object/prefab/AbilityBlocks/wall.gd" id="1_1g7h3"]
+[ext_resource type="Script" path="res://src/object/prefab/AbilityBlocks/scripts/wall.gd" id="1_1g7h3"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_bhxai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahdsj"]
@@ -8,14 +8,12 @@ size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmexp"]
 
-[node name="Wall" type="Area2D"]
+[node name="Wall" type="Area2D" node_paths=PackedStringArray("lockoutTimer")]
 position = Vector2(0, -32)
 collision_layer = 0
-collision_mask = 0
+collision_mask = 64
 script = ExtResource("1_1g7h3")
-oneUse = null
-lockOut = null
-lockOutTime = null
+lockoutTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
 

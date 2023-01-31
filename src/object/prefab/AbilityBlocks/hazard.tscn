@@ -8,7 +8,7 @@ size = Vector2(64, 64)
 
 [node name="Hazard" type="Area2D" node_paths=PackedStringArray("lockoutTimer")]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 64
 script = ExtResource("1_uokhi")
 lockoutTimer = NodePath("Timer")
 

@@ -7,8 +7,8 @@ extends AbilityBlockBase
 
 
 func _ready() -> void:
+	super._ready()
 	#FIXME: can't call ready from
-	block_color()
 	staticBodyCollision.shape = collisionShape.shape
 	staticBodyCollision.shape.extents.x = collisionShape.shape.extents.x
 	staticBodyCollision.shape.extents.y = collisionShape.shape.extents.y
@@ -27,3 +27,5 @@ func _ready() -> void:
 		staticBody.set_collision_layer_value(CollisionLayers.SwimDash, true)
 	else:
 		EventBus.emit_signal("error", "Ability Wall error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
+
+
