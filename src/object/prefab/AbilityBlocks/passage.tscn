@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4vo3bsqpphbg"]
+
+[ext_resource type="Script" path="res://src/object/prefab/AbilityBlocks/scripts/reset.gd" id="1_qjxke"]
+[ext_resource type="PackedScene" path="res://src/object/prefab/Outline.tscn" id="2_gcosh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahdsj"]
+size = Vector2(64, 64)
+
+[node name="Passage" type="Area2D" node_paths=PackedStringArray("lockoutTimer")]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_qjxke")
+lockoutTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Outline" parent="." instance=ExtResource("2_gcosh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_ahdsj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 25.0
+offset_bottom = -4.0
+text = "Passage"
+horizontal_alignment = 1

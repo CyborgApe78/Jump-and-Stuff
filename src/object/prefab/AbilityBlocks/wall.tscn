@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://by1jy0hgxqoud"]
+
+[ext_resource type="Script" path="res://src/object/prefab/AbilityBlocks/scripts/boost.gd" id="1_miebv"]
+[ext_resource type="PackedScene" path="res://src/object/prefab/Outline.tscn" id="2_bhxai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahdsj"]
+size = Vector2(64, 64)
+
+[node name="Wall" type="Area2D"]
+position = Vector2(0, -32)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_miebv")
+boostAmount = 50
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Outline" parent="." instance=ExtResource("2_bhxai")]
+position = Vector2(0, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ahdsj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 25.0
+offset_bottom = 28.0
+text = "Wall"
+horizontal_alignment = 1

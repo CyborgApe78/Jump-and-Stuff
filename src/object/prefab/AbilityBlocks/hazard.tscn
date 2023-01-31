@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk0bylv3kxf5f"]
+
+[ext_resource type="Script" path="res://src/object/prefab/AbilityBlocks/scripts/hazard.gd" id="1_uokhi"]
+[ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_kx0nb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahdsj"]
+size = Vector2(64, 64)
+
+[node name="Hazard" type="Area2D" node_paths=PackedStringArray("lockoutTimer")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_uokhi")
+lockoutTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Outline" parent="." instance=ExtResource("2_kx0nb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_ahdsj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -22.0
+text = "Hazard"
+horizontal_alignment = 1
