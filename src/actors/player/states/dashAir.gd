@@ -18,6 +18,8 @@ func enter() -> void:
 	player.particles.dash.emitting = true #TODO: use signals to call
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (moveSpeed / duration) #FIXME: to much fast
+	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
+	player.set_collision_mask_value(CollisionLayers.DashSide, false)
 
 
 func exit() -> void:
@@ -26,7 +28,9 @@ func exit() -> void:
 #		player.consume_ability(PlayerAbilities.list.DashAir, 1)  #TODO
 	if player.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x
-
+	#TODO: add to other classes
+	player.set_collision_layer_value(CollisionLayers.DashSide, false) #TODO: make function to turn off raycasts
+	player.set_collision_mask_value(CollisionLayers.DashSide, true)
 
 func physics(delta) -> void:
 	player.move_and_slide()

@@ -30,6 +30,8 @@ func enter() -> void:
 	player.particles.dash.emitting = true #TODO: use signals to call
 	player.velocity.y = 0
 	player.velocity.x = player.facing * ((moveSpeed) / duration) #FIXME: to much fast
+	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
+	player.set_collision_mask_value(CollisionLayers.DashSide, false)
 
 
 func exit() -> void:
@@ -40,6 +42,9 @@ func exit() -> void:
 #
 #	player.animPlayer.stop()
 	isJumping = false
+	
+	player.set_collision_layer_value(CollisionLayers.DashSide, false)
+	player.set_collision_mask_value(CollisionLayers.DashSide, true)
 
 
 func physics(delta) -> void:
