@@ -1,14 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://f53exxejh5co"]
+[gd_scene load_steps=18 format=3 uid="uid://f53exxejh5co"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_7tm57"]
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="2_slpti"]
 [ext_resource type="Script" path="res://src/levels/Ground.gd" id="3_7mvmu"]
+[ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_lg7tx"]
 [ext_resource type="PackedScene" uid="uid://c6sp0iiop2sqw" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/levels/controllervisual.gd" id="6_8b6rd"]
 [ext_resource type="PackedScene" uid="uid://brpgf30v0sgdj" path="res://src/object/prefab/AbilityBlocks/boost.tscn" id="7_luu1j"]
-[ext_resource type="PackedScene" uid="uid://by1jy0hgxqoud" path="res://src/object/prefab/AbilityBlocks/wall.tscn" id="7_m4or1"]
+[ext_resource type="PackedScene" path="res://src/object/prefab/AbilityBlocks/wall.tscn" id="7_m4or1"]
 [ext_resource type="PackedScene" uid="uid://2erja1icwyql" path="res://src/object/prefab/AbilityBlocks/reset.tscn" id="7_rw1hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
@@ -34,7 +35,7 @@ script = ExtResource("1_fgo7i")
 
 [node name="Menu" parent="." instance=ExtResource("2_7tm57")]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="HUD" parent="." instance=ExtResource("3_lg7tx")]
 
 [node name="Debug" type="CanvasLayer" parent="."]
 
@@ -160,7 +161,6 @@ oneUse = true
 
 [node name="Boost" parent="Interactables" instance=ExtResource("7_luu1j")]
 position = Vector2(-56, 120)
-rotateBlock = true
 ability = 1
 oneUse = true
 

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo8y4w3rri0k2"]
+
+[ext_resource type="Script" path="res://src/ui/HUD/scripts/GameTime.gd" id="1_i244g"]
+[ext_resource type="Resource" uid="uid://dh7bumi2i8i83" path="res://src/resources/gameStats.tres" id="2_we6w6"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="GameTime" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.0
+offset_bottom = 43.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_i244g")
+gameStats = ExtResource("2_we6w6")
+
+[node name="Panel" type="Panel" parent="GameTime"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameTime"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TimeLabel" type="RichTextLabel" parent="GameTime/MarginContainer"]
+layout_mode = 2
+text = "000:00:00.000"
+fit_content = true
+autowrap_mode = 0
