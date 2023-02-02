@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dp7gojgw0jv72"]
+[gd_scene load_steps=21 format=3 uid="uid://dp7gojgw0jv72"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://2erja1icwyql" path="res://src/object/prefab/AbilityBlocks/reset.tscn" id="7_rw1hu"]
 [ext_resource type="PackedScene" uid="uid://bwm1ib74j86u3" path="res://src/object/prefab/AbilityBlocks/AbilityUnlock.tscn" id="8_ii1f2"]
 [ext_resource type="PackedScene" uid="uid://4hwd2pmlc4lc" path="res://src/object/prefab/AbilityBlocks/StatChanger.tscn" id="13_tnjdy"]
+[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="14_scku3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
 size = Vector2(6160, 64)
@@ -158,6 +159,7 @@ script = ExtResource("1_isl6d")
 
 [node name="AbilityUnlock" parent="Interactables" instance=ExtResource("8_ii1f2")]
 position = Vector2(-320, 136)
+ability = 3
 
 [node name="Wall" parent="Interactables" instance=ExtResource("7_m4or1")]
 position = Vector2(-144, 112)
@@ -182,5 +184,8 @@ stat = 0
 position = Vector2(-629, -256)
 floor_snap_length = 9.0
 
-[node name="Player@Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("14_scku3")
+
+[connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
