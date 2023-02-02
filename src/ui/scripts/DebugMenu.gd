@@ -1,5 +1,5 @@
 extends BaseMenu
-#TODO: set number of abilities
+#TODO: check what is unlocked when opening
 #FIXME: need to call update to ability tracker after exiting. not working with EventBus.emit_signal("playerStatsCheck")
 @onready var buttonAbilityAll: Button = $%All
 @onready var buttonJumpAll: Button = $%JumpAll
@@ -48,7 +48,7 @@ func _on_all_toggled(button_pressed: bool) -> void:
 
 
 func _on_jump_air_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.JumpAir, button_pressed)
+	abilities.unlock(PlayerAbilities.list.JumpAir, button_pressed)
 
 
 func _on_dash_all_toggled(button_pressed: bool) -> void:
@@ -58,27 +58,27 @@ func _on_dash_all_toggled(button_pressed: bool) -> void:
 
 
 func _on_dash_side_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.DashSide, button_pressed)
+	abilities.unlock(PlayerAbilities.list.DashSide, button_pressed)
 
 
 func _on_dash_up_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.DashUp, button_pressed)
+	abilities.unlock(PlayerAbilities.list.DashUp, button_pressed)
 
 
 func _on_dash_down_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.DashDown, button_pressed)
+	abilities.unlock(PlayerAbilities.list.DashDown, button_pressed)
 
 
 func _on_ground_pound_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.GroundPound, button_pressed)
+	abilities.unlock(PlayerAbilities.list.GroundPound, button_pressed)
 
 
 func _on_glide_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.Glide, button_pressed)
+	abilities.unlock(PlayerAbilities.list.Glide, button_pressed)
 
 
 func _on_dive_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.Dive, button_pressed)
+	abilities.unlock(PlayerAbilities.list.Dive, button_pressed)
 
 
 func _on_collision_toggled(button_pressed: bool) -> void:
@@ -96,7 +96,7 @@ func _on_dash_number_item_selected(index: int) -> void:
 
 
 func _on_jump_consec_toggled(button_pressed: bool) -> void:
-	abilities.unlock_ability(PlayerAbilities.list.JumpConsec, button_pressed)
+	abilities.unlock(PlayerAbilities.list.JumpConsec, button_pressed)
 
 
 func _on_jump_number_2_item_selected(index: int) -> void:

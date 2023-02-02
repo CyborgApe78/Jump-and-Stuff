@@ -40,7 +40,7 @@ var remainingDash: int = 0:
 	set(v):
 		remainingDash = clamp(v, 0, maxDash)
 
-
+#FIXME: look at making specific lists for specific funcs
 enum list { #TODO: jump flip, etc
 	Null,
 	All,
@@ -69,7 +69,7 @@ enum list { #TODO: jump flip, etc
 enum abilityTargetType {Null, grappleHook, burrow}
 
 
-func unlock_ability(ability: int, BOOL:bool) -> void:
+func unlock(ability: int, BOOL:bool) -> void:
 	if ability == list.All:
 		unlockedJumpAir = BOOL
 		unlockedJumpConsec = BOOL
