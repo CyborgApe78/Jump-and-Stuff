@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://f53exxejh5co"]
+[gd_scene load_steps=19 format=3 uid="uid://dp7gojgw0jv72"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://brpgf30v0sgdj" path="res://src/object/prefab/AbilityBlocks/boost.tscn" id="7_luu1j"]
 [ext_resource type="PackedScene" path="res://src/object/prefab/AbilityBlocks/wall.tscn" id="7_m4or1"]
 [ext_resource type="PackedScene" uid="uid://2erja1icwyql" path="res://src/object/prefab/AbilityBlocks/reset.tscn" id="7_rw1hu"]
-[ext_resource type="PackedScene" uid="uid://b6bev4ura283a" path="res://src/object/prefab/AbilityBlocks/Unlock.tscn" id="11_wqeg2"]
+[ext_resource type="PackedScene" uid="uid://bwm1ib74j86u3" path="res://src/object/prefab/AbilityBlocks/AbilityUnlock.tscn" id="8_ii1f2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
 size = Vector2(6160, 64)
@@ -37,7 +37,6 @@ script = ExtResource("1_fgo7i")
 [node name="Menu" parent="." instance=ExtResource("2_7tm57")]
 
 [node name="HUD" parent="." instance=ExtResource("3_lg7tx")]
-visible = true
 
 [node name="Debug" type="CanvasLayer" parent="."]
 
@@ -156,6 +155,9 @@ script = ExtResource("1_isl6d")
 
 [node name="Interactables" type="Node" parent="."]
 
+[node name="AbilityUnlock" parent="Interactables" instance=ExtResource("8_ii1f2")]
+position = Vector2(-320, 136)
+
 [node name="Wall" parent="Interactables" instance=ExtResource("7_m4or1")]
 position = Vector2(-144, 112)
 ability = 7
@@ -170,11 +172,6 @@ oneUse = true
 position = Vector2(-232, 144)
 ability = 6
 lockOut = true
-
-[node name="Unlock" parent="Interactables" instance=ExtResource("11_wqeg2")]
-position = Vector2(-120, -56)
-ability = 3
-oneUse = true
 
 [node name="Player" parent="." instance=ExtResource("3_m0pk1")]
 position = Vector2(-629, -256)

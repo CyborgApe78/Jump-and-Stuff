@@ -1,5 +1,7 @@
 extends MarginContainer
 
+#TODO: setting to disable hud
+
 @onready var announceLabel: RichTextLabel = $MarginContainer/Label
 @onready var announceTimer: Timer = $Timer
 @export var annoucmentLength: float = 2.0

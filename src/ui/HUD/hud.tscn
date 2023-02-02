@@ -41,6 +41,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Announcer" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
