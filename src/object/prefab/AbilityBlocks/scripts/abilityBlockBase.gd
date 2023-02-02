@@ -2,14 +2,14 @@ extends Interactable
 class_name AbilityBlockBase
 #TODO: add collision layers for abilities
 
-@export var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
+@onready var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 @export var ability: PlayerAbilities.list
 var blockColor: Color
 
 
 func _ready() -> void:
 	super._ready()
-	block_color() #LOOKAT: move to each block or call super
+	block_color()
 
 
 func block_color() -> void:

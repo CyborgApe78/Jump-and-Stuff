@@ -58,6 +58,7 @@ var unlockedGroundPound: bool = false:
 		unlockedGroundPound = v
 		if unlockedGroundPound:
 			EventBus.playerAbilityUnlocked.emit(list.GroundPound)
+
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
 #var unlockedDashClimb: bool = false
@@ -67,7 +68,7 @@ var unlockedGroundPound: bool = false:
 #var unlockedBurrow: bool = false
 
 #TODO: add things like jump, move left, move right for cursed rando
-
+#TODO: change to energy
 var maxJumpAir: int = 1
 var maxDash: int = 1
 var maxJumpConsec: int = 1

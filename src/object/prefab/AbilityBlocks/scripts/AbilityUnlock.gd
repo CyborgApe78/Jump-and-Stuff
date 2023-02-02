@@ -9,7 +9,6 @@ func _ready() -> void:
 
 
 func _on_unlock_entered(body: Player) -> void:
-	print("unlcok")
 	if ability == PlayerAbilities.list.All:
 		Abilities.unlock(PlayerAbilities.list.All, unlock)
 	elif ability == PlayerAbilities.list.DashSide:
