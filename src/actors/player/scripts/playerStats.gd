@@ -12,3 +12,9 @@ var airModifier: float = 1.2
 
 var baseJumpHeight: float = 4.25
 var terminalVelocityModifier: float = 2
+
+enum list{
+	HealthMax,
+	MoveSpeed,
+	JumpHeight,
+}
