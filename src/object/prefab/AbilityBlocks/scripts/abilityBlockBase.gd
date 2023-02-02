@@ -15,6 +15,10 @@ func _ready() -> void:
 func block_color() -> void:
 	if ability == PlayerAbilities.list.All:
 		modulate = AbilityColor.allColor
+	elif ability == PlayerAbilities.list.JumpAll:
+		modulate = AbilityColor.jumpColor
+	elif ability == PlayerAbilities.list.JumpAir:
+		modulate = AbilityColor.jumpColor
 	elif ability == PlayerAbilities.list.DashSide:
 		modulate = AbilityColor.dashSideColor
 	elif ability == PlayerAbilities.list.DashUp:
@@ -23,8 +27,6 @@ func block_color() -> void:
 		modulate = AbilityColor.dashDownColor
 #	elif ability == PlayerAbilities.list.Grapple:
 #		blockColor = AbilityColor.grappleColor
-	elif ability == PlayerAbilities.list.JumpAll:
-		modulate = AbilityColor.jumpColor
 	elif ability == PlayerAbilities.list.SwimDash:
 		modulate = AbilityColor.swimDashColor
 	elif ability == PlayerAbilities.list.Burrow:
@@ -36,9 +38,9 @@ func block_color() -> void:
 #	elif ability == PlayerAbilities.list.Bash:
 #		blockColor = AbilityColor.bashColor
 	else:
-		print("null " + str(self.name) + " " + str(global_position))
+		print("null color " + str(self.name) + " " + str(global_position))
 #TODO: see if we can get this to work
 func valid_block(block, location) -> void:
 	if ability == PlayerAbilities.list.Null:
-		print("null " + str(block) + " " + str(location))
+		print("invalid " + str(block) + " " + str(location))
 		set_deferred("monitoring", false)
