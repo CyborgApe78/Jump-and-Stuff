@@ -41,11 +41,25 @@ func check_announcement_que() -> void:
 
 func announce_stat_change(stat: int, amount: int) -> void:
 	if stat == PlayerStats.list.MoveSpeed:
-		announce(str("Move speed inscreased by ", amount))
+		if amount > 0:
+			announce("Move speed inscreased")
+		else:
+			announce("Move speed decreased")
 	elif stat == PlayerStats.list.JumpHeight:
-		announce(str("Jump height inscreased by ", amount))
+		if amount > 0:
+			announce("Jump Height inscreased")
+		else:
+			announce("Jump Height decreased")
 	elif stat == PlayerStats.list.HealthMax:
-		announce(str("Max health inscreased by ", amount))
+		if amount > 0:
+			announce("Health inscreased")
+		else:
+			announce("Health decreased")
+	elif stat == PlayerStats.list.EnergyMax:
+		if amount > 0:
+			announce("Energy inscreased")
+		else:
+			announce("Energy decreased")
 	else:
 		EventBus.emit_signal("error", str("stat change error: ", stat))
 
@@ -53,7 +67,7 @@ func announce_stat_change(stat: int, amount: int) -> void:
 func announce_ability_unlocked(ability: int) -> void:
 	if ability == PlayerAbilities.list.All:
 		announce(str("The whole enchilada unlocked"))
-	elif ability == PlayerAbilities.list.JumpAir:
+	elif ability == PlayerAbilities.list.JumpAir: #TODO: change to air jump
 		announce(str("Double Jump Unlocked "))
 	elif ability == PlayerAbilities.list.JumpConsec:
 		announce(str("Consec Jump Unlocked "))
