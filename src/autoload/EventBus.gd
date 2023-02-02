@@ -3,7 +3,7 @@ extends Node
 signal playerHealthChanged
 signal playerStatsCheck
 signal playerAbilitiesUnlock(ability, bool)
-signal playerAbilityTrackerCheck
+signal playerStatChange
 signal playerAbilityUnlocked
 signal playerConsecutiveJump
 signal playerInfo
