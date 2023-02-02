@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo8y4w3rri0k2"]
+[gd_scene load_steps=5 format=3 uid="uid://bo8y4w3rri0k2"]
 
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/GameTime.gd" id="1_i244g"]
-[ext_resource type="Resource" uid="uid://dh7bumi2i8i83" path="res://src/resources/gameStats.tres" id="2_we6w6"]
+[ext_resource type="Script" path="res://src/resources/gameStats.gd" id="2_ogjtu"]
+[ext_resource type="Script" path="res://src/ui/HUD/scripts/Announcer.gd" id="3_chdqa"]
+
+[sub_resource type="Resource" id="Resource_c6pfc"]
+script = ExtResource("2_ogjtu")
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -17,7 +21,8 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_i244g")
-gameStats = ExtResource("2_we6w6")
+gameStats = SubResource("Resource_c6pfc")
+metadata/_edit_group_ = true
 
 [node name="Panel" type="Panel" parent="GameTime"]
 layout_mode = 2
@@ -34,3 +39,36 @@ layout_mode = 2
 text = "000:00:00.000"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Announcer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.5
+offset_right = 77.5
+offset_bottom = 63.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("3_chdqa")
+
+[node name="Panel" type="Panel" parent="Announcer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Announcer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="RichTextLabel" parent="Announcer/MarginContainer"]
+layout_mode = 2
+text = "Test Announce"
+fit_content = true
+autowrap_mode = 0
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="Announcer"]

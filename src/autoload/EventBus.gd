@@ -4,6 +4,7 @@ signal playerHealthChanged
 signal playerStatsCheck
 signal playerAbilitiesUnlock(ability, bool)
 signal playerAbilityTrackerCheck
+signal playerAbilityUnlocked
 signal playerConsecutiveJump
 signal playerInfo
 signal actionAnnounce
