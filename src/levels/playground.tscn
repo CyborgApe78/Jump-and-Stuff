@@ -42,7 +42,7 @@ script = ExtResource("1_fgo7i")
 
 [node name="Debug" type="CanvasLayer" parent="."]
 
-[node name="Info" type="MarginContainer" parent="Debug"]
+[node name="Info" type="MarginContainer" parent="Debug" node_paths=PackedStringArray("stateLabel", "velocityLabel", "debugLabel", "debug2Label", "debug3Label")]
 process_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -53,6 +53,11 @@ grow_vertical = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("2_slpti")
+stateLabel = NodePath("MarginContainer/VBoxContainer/State")
+velocityLabel = NodePath("MarginContainer/VBoxContainer/Velocity")
+debugLabel = NodePath("MarginContainer/VBoxContainer/Debug")
+debug2Label = NodePath("MarginContainer/VBoxContainer/Debug2")
+debug3Label = NodePath("MarginContainer/VBoxContainer/Debug3")
 
 [node name="Panel" type="Panel" parent="Debug/Info"]
 modulate = Color(1, 1, 1, 0.576471)
@@ -75,6 +80,12 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Debug" type="Label" parent="Debug/Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Debug2" type="Label" parent="Debug/Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Debug3" type="Label" parent="Debug/Info/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="ControlVisuals" type="Control" parent="Debug"]

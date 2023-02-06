@@ -34,7 +34,6 @@ func _process(delta: float) -> void:
 		change_menu(newMenu)
 
 func button_pressed(menu) -> void:
-	print(menu)
 	change_menu(menu)
 
 

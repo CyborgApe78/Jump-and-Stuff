@@ -12,8 +12,10 @@ signal actionAnnounce
 signal debugState(info)
 signal debugVelocity(info)
 signal debug(info)
+signal debug2(info)
+signal debug3(info)
 
 signal helperUsed(info)
 
 signal menuChanged
-signal returnToGame
+
