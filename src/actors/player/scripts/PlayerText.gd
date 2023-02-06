@@ -20,7 +20,7 @@ func _ready() -> void:
 func announce_finished() -> void:
 	text = ""
 	hide()
-	emit_signal("announcementFinished")
+	announcementFinished.emit()
 
 
 func announce(announcment: String) -> void:

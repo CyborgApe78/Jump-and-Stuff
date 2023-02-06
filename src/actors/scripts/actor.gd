@@ -6,4 +6,4 @@ class_name Actor
 var health: int :
 	set(v):
 		health = clamp(v, 0, healthMax)
-		EventBus.emit_signal("playerHea")
+#		EventBus.emit_signal("playerHea")

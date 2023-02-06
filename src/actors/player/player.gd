@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor(): #TODo: create is grounded using floor raycasts
 		ledge_detection()
 	
-	EventBus.emit_signal("debugVelocity", velocity.round())
+	EventBus.debugVelocity.emit(velocity.round())
 
 
 func _process(delta: float) -> void:

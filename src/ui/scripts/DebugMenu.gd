@@ -82,7 +82,7 @@ func _on_dive_toggled(button_pressed: bool) -> void:
 
 
 func _on_collision_toggled(button_pressed: bool) -> void:
-	EventBus.emit_signal("debug", "Placeholder") #TODO
+	EventBus.debug.emit("Placeholder") #TODO
 
 
 func _on_jump_number_item_selected(index: int) -> void:

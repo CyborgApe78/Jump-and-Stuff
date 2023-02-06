@@ -26,18 +26,18 @@ func state_check() -> int:
 
 
 func settings_button_pressed() -> void:
-	EventBus.emit_signal("menuChanged", State.Settings)
+	EventBus.menuChanged.emit(State.Settings)
 	#TODO: change to built in signal
 
 
 func _on_reset_pressed() -> void:
-	EventBus.emit_signal("menuChanged", State.Unpaused)
+	EventBus.menuChanged.emit(State.Unpaused)
 	get_tree().reload_current_scene()
 
 
 func _on_resume_pressed() -> void:
-	EventBus.emit_signal("menuChanged", State.Unpaused)
+	EventBus.menuChanged.emit(State.Unpaused)
 
 
 func _on_controls_pressed() -> void:
-	EventBus.emit_signal("menuChanged", State.Controls)
+	EventBus.menuChanged.emit(State.Controls)
