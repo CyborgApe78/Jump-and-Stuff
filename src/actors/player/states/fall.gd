@@ -68,6 +68,7 @@ func handle_input(event: InputEvent) -> int:
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
+			EventBus.playerInfo.emit("Coyote Jump")
 			return consecutive_jump_logic()
 		elif !player.timers.coyoteJumpWall.is_stopped(): #leave wall, but stil can jump
 			player.timers.coyoteJumpWall.stop()

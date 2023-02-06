@@ -1,5 +1,5 @@
 extends PlayerInfo
-
+#FIXME: very broken
 
 var wallHop: bool
 
@@ -17,14 +17,12 @@ func enter() -> void:
 		#TODO: make no directiom jump different
 #	if player.moveDirection.x == player.lastWallDirection:
 		#TODO: make same directiom jump different
-	if player.moveDirection.x == -player.lastWallDirection:
-		player.velocity = Vector2(50 * player.lastWallDirection, jumpVelocity)
+	if player.moveDirection.x == -player.wallDirection:
+		player.velocity = Vector2(50 * player.wallDirection, jumpVelocity)
 		wallHop = true
-		EventBus.debug.emit("opposite wall")
 	else:
-		EventBus.debug.emit("other wall")
 		player.velocity.y = jumpVelocity
-		player.velocity.x = moveSpeed * -player.lastWallDirection
+		player.velocity.x = moveSpeed * -player.wallDirection
 	player.particles.jumpWall.restart()
 
 func exit() -> void:
@@ -77,7 +75,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		consecutive_jump_cancel()
 		return State.Fall
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > moveSpeed: #TODO: wallland if going up
 		topSpeed = 0
 		return State.BonkAir
 	if player.velocity.y > -jumpApexHeight:
