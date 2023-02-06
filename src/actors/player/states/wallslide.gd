@@ -3,6 +3,7 @@ extends PlayerInfo
 @export var coyoteJumpWallTimer: Timer
 
 func enter() -> void:
+	player.wall_detection()
 	player.velocityPrevious = player.velocity
 	player.velocity.y = 0
 	player.particles.wallSlide.emitting = true #TODO: use signals to call

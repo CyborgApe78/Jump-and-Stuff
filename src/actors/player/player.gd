@@ -34,6 +34,7 @@ var velocityRotated: Vector2 = Vector2.ZERO
 
 var neutralMoveDirection: bool = false
 
+var wallDirection: int = 0 
 var lastWallDirection: int = 0
 var facing: int = 1 #FIXME: better facing logic
 
@@ -62,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	get_move_input()
 	facing_logic()
 	get_slope_angle()
-	wall_detection()
+	
 	if is_on_floor(): #TODo: create is grounded using floor raycasts
 		ledge_detection()
 	
@@ -183,13 +184,20 @@ func wall_detection(length: int = 5) -> int:
 	if wallRaycastRight.target_position.x != length:
 		wallRaycastRight.target_position.x = length
 	
+	wallRaycastLeft.force_shapecast_update()
+	wallRaycastRight.force_shapecast_update()
+	
 	if  wallRaycastLeft.is_colliding() and wallRaycastRight.is_colliding():
+		wallDirection = 0
 		return 0
 	elif wallRaycastLeft.is_colliding():
-		lastWallDirection = -1
-		return lastWallDirection
+		wallDirection = -1
+		return -1
 	elif wallRaycastRight.is_colliding():
-		lastWallDirection = 1
-		return lastWallDirection
+		wallDirection = 1
+		return 1
+	
+	if wallDirection != 0:
+		lastWallDirection = wallDirection
 	
 	return 0

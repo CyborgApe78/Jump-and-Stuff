@@ -14,6 +14,7 @@ var noHold: bool
 ## holding into wall goes to wall slide
 
 func enter() -> void:
+	player.wall_detection()
 	noHold = false
 	player.velocityPrevious = player.velocity
 	player.velocity.x = 0
@@ -26,7 +27,6 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	EventBus.debug.emit(holdTimer.time_left)
 	
 	if !noHold:
 		gravity_logic(gravityFall/4, delta)

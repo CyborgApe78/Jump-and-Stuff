@@ -4,6 +4,7 @@ extends PlayerInfo
 #TODO: redirect previous velocity bassed on aim direction
 
 func enter() -> void:
+	player.wall_detection()
 	player.velocityPrevious = player.velocity
 	player.velocity = Vector2.ZERO
 

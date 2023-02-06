@@ -72,8 +72,10 @@ func handle_input(event: InputEvent) -> int:
 		elif !player.timers.coyoteJumpWall.is_stopped(): #leave wall, but stil can jump
 			player.timers.coyoteJumpWall.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
+			EventBus.playerInfo.emit("Wall Coyote Jump")
 			return State.JumpWall
 		elif player.wall_detection(30) != 0:
+			EventBus.playerInfo.emit("Near Wall Jump")
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir

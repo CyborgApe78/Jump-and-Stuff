@@ -5,6 +5,7 @@ var wallHop: bool
 
 
 func enter() -> void:
+	player.wall_detection()
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
@@ -19,7 +20,9 @@ func enter() -> void:
 	if player.moveDirection.x == -player.lastWallDirection:
 		player.velocity = Vector2(50 * player.lastWallDirection, jumpVelocity)
 		wallHop = true
+		EventBus.debug.emit("opposite wall")
 	else:
+		EventBus.debug.emit("other wall")
 		player.velocity.y = jumpVelocity
 		player.velocity.x = moveSpeed * -player.lastWallDirection
 	player.particles.jumpWall.restart()
