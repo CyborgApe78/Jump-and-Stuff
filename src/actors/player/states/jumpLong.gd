@@ -63,9 +63,14 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
-		topSpeed = 0
-		return State.BonkAir
+	if player.is_on_wall():
+		if topSpeed > moveSpeed:
+			topSpeed = 0
+			return State.BonkAir
+		elif player.velocity.y < 0: ## player is going up go to wallland else slide
+			return State.WallLand
+		else:
+			return State.WallSlide
 #	if player.velocity.y > -jumpApexHeight:
 #		return State.JumpApex #FixMe: change to fall state if over certian velocity or time 
 	if player.is_on_floor():

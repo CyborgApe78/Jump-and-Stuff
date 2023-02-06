@@ -76,9 +76,12 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		consecutive_jump_cancel()
 		return State.Fall
-	if player.is_on_wall() and topSpeed > moveSpeed:
-		topSpeed = 0
-		return State.BonkAir
+	if player.is_on_wall():
+		if topSpeed > moveSpeed:
+			topSpeed = 0
+			return State.BonkAir
+		else:
+			return State.WallLand
 	if player.velocity.y > -jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
