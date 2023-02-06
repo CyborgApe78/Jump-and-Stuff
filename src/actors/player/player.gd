@@ -91,10 +91,11 @@ func get_move_input() -> void:
 	)
 	moveStrength =  inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
 	
-	moveDirection =  moveStrength.normalized()
+	moveDirection =  moveStrength.normalized().round()
 	
 	if moveDirection != Vector2.ZERO:
 		lastMoveDirection = moveDirection
+
 
 func facing_logic():
 	#TODO: need to be able to send variables
