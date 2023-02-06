@@ -27,11 +27,11 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("move_left") and player.lastWallDirection == Vector2.RIGHT.x:
+	if Input.is_action_just_pressed("move_left") and player.wall_detection() == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if Input.is_action_just_pressed("move_right") and player.lastWallDirection == Vector2.LEFT.x:
+	if Input.is_action_just_pressed("move_right") and player.wall_detection() == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall

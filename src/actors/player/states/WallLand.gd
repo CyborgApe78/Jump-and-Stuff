@@ -57,11 +57,11 @@ func handle_input(event: InputEvent) -> int:
 		#JumpWallDown
 		#JumpWallAway
 		#JumpWallNuetral
-	elif Input.is_action_just_pressed("move_left") and player.lastWallDirection == Vector2.RIGHT.x:
+	elif Input.is_action_just_pressed("move_left") and player.wall_detection() == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	elif Input.is_action_just_pressed("move_right") and player.lastWallDirection == Vector2.LEFT.x:
+	elif Input.is_action_just_pressed("move_right") and player.wall_detection() == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
@@ -75,8 +75,8 @@ func state_check(delta: float) -> int:
 #	if topSpeed > moveSpeed: #TODO: tweak this 
 #			topSpeed = 0
 #			return State.BonkAir
-	if noHold and holdTimer.is_stopped(): ## in not holding against the wall, fall
-		if player.moveDirection.x == player.lastWallDirection:
+	if noHold and holdTimer.is_stopped(): ## if not holding against the wall, fall
+		if player.moveDirection.x == player.wallDirection:
 			return State.WallSlide
 		else:
 			player.velocity = Vector2(20 * -player.facing, -10)
