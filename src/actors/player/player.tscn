@@ -658,11 +658,11 @@ wait_time = 0.5
 one_shot = true
 
 [node name="CoyoteJump" type="Timer" parent="Timers"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="CoyoteJumpWall" type="Timer" parent="Timers"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="ConsecutiveJump" type="Timer" parent="Timers"]
