@@ -1,5 +1,6 @@
 extends Node
 
+#TODO: make enum to call timers and signal to start
 
 @export var coyoteJump: Timer
 @export var coyoteJumpWall: Timer

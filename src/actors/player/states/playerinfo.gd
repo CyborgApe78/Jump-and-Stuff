@@ -67,17 +67,21 @@ func apply_friction(amount: float, delta) -> void:
 
 
 func momentum_logic(speed: float, useMoveDirection: bool) -> void:
-	#TODO: need to get accel and deccel, lerp function
+	#TODO: better logic
 	if useMoveDirection:
-		player.velocity.x = player.moveDirection.x * max(abs(speed), abs(player.velocity.x))
+		if abs(player.velocity.x) < moveSpeed:
+			player.velocity.x = player.velocity.x
+		else:
+			player.velocity.x = player.moveDirection.x * max(abs(speed), abs(player.velocity.x))
 	if !useMoveDirection:
-		if player.velocity.x == 0:
+		if abs(player.velocity.x) < moveSpeed:
 			player.velocity.x = player.velocity.x
 		else:
 			player.velocity.x =  max(abs(speed), abs(player.velocity.x)) * player.facing
 
 
 func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
+	#FIXME: gut this and start over or make for each state
 	#TODO: if movedirection != 0 and abs(player.velocity.x) > moveSpeed:
 	#	player.velocity.x = moveSpeed * sign(player.velocity.x)
 	if player.velocity.x != 0  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
@@ -91,7 +95,7 @@ func air_velocity_logic(speed: float, acceleration: float, friction: float, delt
 			apply_acceleration(acceleration, delta)
 		elif player.moveDirection.x == 0:
 			apply_friction(friction, delta)
-		elif abs(player.velocity.x) >= speed:
+		elif abs(player.velocity.x) >= speed: #LOOKAT: remove
 			momentum_logic(speed, true)
 
 
