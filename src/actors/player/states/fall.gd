@@ -34,14 +34,13 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	
+	if player.timers.coyoteJump.is_stopped():
+		gravity_logic(gravityFall, delta)
 	if jumpHeld:
-		gravity_logic(gravityFall / jumpHeldSlowModifier, delta)
 		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
 	elif  player.moveDirection.y == 1:
-		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity * 1.5)
-	else: #TODO: fall aster with down pressed
-		gravity_logic(gravityFall, delta)
+	else:
 		fall_speed_logic(terminalVelocity)
 	
 	track_top_speed(player.velocity.x)
