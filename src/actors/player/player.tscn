@@ -308,7 +308,7 @@ hue_variation_min = -0.12
 hue_variation_max = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
-size = Vector2(5, 64)
+size = Vector2(5, 48)
 
 [sub_resource type="Animation" id="Animation_xkfx1"]
 resource_name = "walk"
