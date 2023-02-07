@@ -535,8 +535,13 @@ script = ExtResource("16_4vuh4")
 [node name="JumpApex" type="Node" parent="StateMachine"]
 script = ExtResource("14_gdhgo")
 
-[node name="JumpWall" type="Node" parent="StateMachine"]
+[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerLock")]
 script = ExtResource("17_lunng")
+timerLock = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/JumpWall"]
+wait_time = 0.1
+one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallTimer", "jumpWallSaveTimer", "consecutiveJumpTimer")]
 script = ExtResource("9_hid0t")
