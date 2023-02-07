@@ -1,5 +1,5 @@
 extends PlayerInfo
-#FIXME: very broken
+
 
 var wallHop: bool
 
@@ -17,12 +17,12 @@ func enter() -> void:
 		#TODO: make no directiom jump different
 #	if player.moveDirection.x == player.lastWallDirection:
 		#TODO: make same directiom jump different
-	if player.moveDirection.x == -player.wallDirection:
+	if player.moveDirection.x == player.wallDirection:
 		player.velocity = Vector2(50 * player.wallDirection, jumpVelocity)
 		wallHop = true
 	else:
 		player.velocity.y = jumpVelocity
-		player.velocity.x = moveSpeed * -player.wallDirection
+		player.velocity.x = (moveSpeed/2) * -player.wallDirection
 	player.particles.jumpWall.restart()
 
 func exit() -> void:
