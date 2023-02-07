@@ -1,5 +1,5 @@
 extends PlayerInfo
-#TODO: slow fall while jump held, slightly faster when pressing down
+#TODO: air crouch
 
 @export var fallTimer: Timer
 @export var jumpWallSaveTimer: Timer
@@ -37,6 +37,9 @@ func physics(delta) -> void:
 	if jumpHeld:
 		gravity_logic(gravityFall / jumpHeldSlowModifier, delta)
 		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
+	elif  player.moveDirection.y == 1:
+		gravity_logic(gravityFall, delta)
+		fall_speed_logic(terminalVelocity * 1.5)
 	else: #TODO: fall aster with down pressed
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
