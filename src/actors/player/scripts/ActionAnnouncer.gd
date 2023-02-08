@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func announce_action(action: String) -> void:
 	var floatingText: RichTextLabel = actionText.duplicate()
-	floatingText.process_mode = true
+	floatingText.set_process_mode(PROCESS_MODE_INHERIT)
 	floatingText.text = "[center][rainbow][wave]" + action
 	floatingText.position = global_position
 	

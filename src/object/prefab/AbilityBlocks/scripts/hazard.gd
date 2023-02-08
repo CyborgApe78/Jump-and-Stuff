@@ -2,9 +2,9 @@ extends AbilityBlockBase
 
 #TODO: make it work
 #TODO can hurt player after respawn, need invincability timer
-@export var detectorCollision: CollisionShape2D = $Area2D/CollisionShape2D
-@export var collisionShape: CollisionShape2D = $CollisionShape2D
-@export var  abilityDetector: Area2D = $Area2D
+@export var detectorCollision: CollisionShape2D
+@export var collisionShape: CollisionShape2D
+@export var  abilityDetector: Area2D
 
 var playerInHazard: bool = false
 var correctAbility: bool = false
