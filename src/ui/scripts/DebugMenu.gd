@@ -1,20 +1,28 @@
 extends BaseMenu
 #TODO: check what is unlocked when opening
 #FIXME: need to call update to ability tracker after exiting. not working with EventBus.emit_signal("playerStatsCheck")
-@onready var buttonAbilityAll: Button = $%All
-@onready var buttonJumpAll: Button = $%JumpAll
-@onready var buttonJumpAir: Button = $%JumpAir
-@onready var buttonJumpConsec: Button = $%JumpConsec
-@onready var buttonDashAll: Button = $%DashAll
-@onready var buttonDashSide: Button = $%DashSide
-@onready var buttonDashUp: Button = $%DashUp
-@onready var buttonDashDown: Button = $%DashDown
-@onready var buttonGroundPound: Button = $%GroundPound
-@onready var buttonGlide: Button = $%Glide
-@onready var buttonDive: Button = $%Dive
+@export var buttonAbilityAll: Button
+@export var buttonJumpAll: Button
+@export var buttonJumpAir: Button
+@export var buttonJumpConsec: Button
+@export var buttonDashAll: Button
+@export var buttonDashSide: Button
+@export var buttonDashUp: Button
+@export var buttonDashDown: Button
+@export var buttonGroundPound: Button
+@export var buttonGlide: Button
+@export var buttonDive: Button
+@export var buttonUpgradeAll: Button
+@export var buttonProtectionAll: Button
+@export var buttonProtectionHeat: Button
+@export var buttonProtectionCold: Button
+@export var buttonProtectionWater: Button
+@export var buttonProtectionAcid: Button
+@export var buttonProtectionLava: Button
 
 
-var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
+var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
+var Upgrades: Resource = preload("res://src/actors/player/resources/playerUpgrades.tres")
 
 
 func enter() -> void:
@@ -48,7 +56,7 @@ func _on_all_toggled(button_pressed: bool) -> void:
 
 
 func _on_jump_air_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.JumpAir, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.JumpAir, button_pressed)
 
 
 func _on_dash_all_toggled(button_pressed: bool) -> void:
@@ -58,27 +66,27 @@ func _on_dash_all_toggled(button_pressed: bool) -> void:
 
 
 func _on_dash_side_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.DashSide, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.DashSide, button_pressed)
 
 
 func _on_dash_up_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.DashUp, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.DashUp, button_pressed)
 
 
 func _on_dash_down_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.DashDown, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.DashDown, button_pressed)
 
 
 func _on_ground_pound_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.GroundPound, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.GroundPound, button_pressed)
 
 
 func _on_glide_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.Glide, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.Glide, button_pressed)
 
 
 func _on_dive_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.Dive, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.Dive, button_pressed)
 
 
 func _on_collision_toggled(button_pressed: bool) -> void:
@@ -87,23 +95,55 @@ func _on_collision_toggled(button_pressed: bool) -> void:
 
 func _on_jump_number_item_selected(index: int) -> void:
 	if index != -1:
-		abilities.maxJumpAir = index + 1
+		Abilities.maxJumpAir = index + 1
 
 
 func _on_dash_number_item_selected(index: int) -> void:
 	if index != -1:
-		abilities.maxDash = index + 1
+		Abilities.maxDash = index + 1
 
 
 func _on_jump_consec_toggled(button_pressed: bool) -> void:
-	abilities.unlock(PlayerAbilities.list.JumpConsec, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.JumpConsec, button_pressed)
 
 
 func _on_jump_number_2_item_selected(index: int) -> void:
 	if index != -1:
-		abilities.maxJumpConsec = index + 1
+		Abilities.maxJumpConsec = index + 1
 
 
 func _on_jump_all_toggled(button_pressed: bool) -> void:
 	buttonJumpAir.button_pressed = button_pressed
 	buttonJumpConsec.button_pressed = button_pressed
+
+
+func _on_upgrades_all_toggled(button_pressed: bool) -> void:
+	buttonProtectionAll.button_pressed = button_pressed
+
+
+func _on_protection_all_toggled(button_pressed: bool) -> void:
+	buttonProtectionHeat.button_pressed = button_pressed
+	buttonProtectionCold.button_pressed = button_pressed
+	buttonProtectionWater.button_pressed = button_pressed
+	buttonProtectionAcid.button_pressed = button_pressed
+	buttonProtectionLava.button_pressed = button_pressed
+
+
+func _on_protection_heat_toggled(button_pressed: bool) -> void:
+	Upgrades.unlock(PlayerUpgrades.list.protectionHeat, button_pressed)
+
+
+func _on_protection_cold_toggled(button_pressed: bool) -> void:
+	Upgrades.unlock(PlayerUpgrades.list.protectionCold, button_pressed)
+
+
+func _on_protection_water_toggled(button_pressed: bool) -> void:
+	Upgrades.unlock(PlayerUpgrades.list.protectionWater, button_pressed)
+
+
+func _on_protection_acid_toggled(button_pressed: bool) -> void:
+	Upgrades.unlock(PlayerUpgrades.list.protectionAcid, button_pressed)
+
+
+func _on_protection_lava_toggled(button_pressed: bool) -> void:
+	Upgrades.unlock(PlayerUpgrades.list.protectionLava, button_pressed)
