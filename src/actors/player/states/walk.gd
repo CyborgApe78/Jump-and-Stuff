@@ -4,7 +4,7 @@ extends PlayerInfo
 #TODO: get friction from enviroment
 #FIXME: pressing up sends to skid
 
-@export var skidPercent: float = 0.8
+@export var skidPercent: float = 1.2
 var skidding: bool = false
 
 func enter() -> void:
