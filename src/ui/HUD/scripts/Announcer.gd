@@ -1,6 +1,7 @@
 extends MarginContainer
 
 #TODO: setting to disable hud
+#TODO: don't announce from debug
 
 @onready var announceLabel: RichTextLabel = $MarginContainer/Label
 @onready var announceTimer: Timer = $Timer
@@ -65,28 +66,27 @@ func announce_stat_change(stat: int, amount: int) -> void:
 		EventBus.emit_signal("error", str("stat change error: ", stat))
 
 
-func announce_ability_unlocked(ability: int) -> void:
+func announce_ability_unlock(ability: int) -> void:
 	if ability == PlayerAbilities.list.All:
 		announce(str("The whole enchilada unlocked"))
-	elif ability == PlayerAbilities.list.JumpAir: #TODO: change to air jump
-		announce(str("Double Jump Unlocked "))
+	elif ability == PlayerAbilities.list.JumpAir:
+		announce(str("Air Jump Unlocked"))
 	elif ability == PlayerAbilities.list.JumpConsec:
-		announce(str("Consec Jump Unlocked "))
+		announce(str("Consec Jump Unlocked"))
 	elif ability == PlayerAbilities.list.JumpWall:
-		announce(str("Wall Jump Unlocked "))
+		announce(str("Wall Jump Unlocked"))
 	elif ability == PlayerAbilities.list.DashSide:
 		announce(str("Dash Unlocked"))
 	elif ability == PlayerAbilities.list.DashUp:
-		announce(str("Dash Up Unlocked "))
+		announce(str("Dash Up Unlocked"))
 	elif ability == PlayerAbilities.list.DashDown:
-		announce(str("Dash Down Unlocked "))
+		announce(str("Dash Down Unlocked"))
 	elif ability == PlayerAbilities.list.Glide:
-		announce(str("Dash Up Unlocked "))
+		announce(str("Glide Unlocked"))
 	elif ability == PlayerAbilities.list.Dive:
-		announce(str("Dash Up Unlocked "))
+		announce(str("Dive Unlocked"))
 	elif ability == PlayerAbilities.list.GroundPound:
-		announce(str("Dash Up Unlocked "))
-		#TODO: ability unlocked. have max jump count announced (double,triple, etc)
+		announce(str("Ground Unlocked"))
 	else:
 		EventBus.emit_signal("debug", str("ability unlock error: ", ability)) #TODO: make debug log
 
