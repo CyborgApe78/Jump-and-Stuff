@@ -1,6 +1,7 @@
 extends Resource
 class_name PlayerAbilities
 
+
 #TODO: all abilities should get an upgrade and shards/modifires/charms
 #TODO: add unlockable skills enum
 
@@ -9,55 +10,55 @@ var unlockedJumpAir: bool = false:
 	set(v):
 		unlockedJumpAir = v
 		if unlockedJumpAir:
-			EventBus.playerAbilityUnlocked.emit(list.JumpAir)
+			EventBus.playerAbilityUnlock.emit(list.JumpAir)
 
 var unlockedJumpConsec: bool = false:
 	set(v):
 		unlockedJumpConsec = v
 		if unlockedJumpConsec:
-			EventBus.playerAbilityUnlocked.emit(list.JumpConsec)
+			EventBus.playerAbilityUnlock.emit(list.JumpConsec)
 
 var unlockedJumpWall: bool = false:
 	set(v):
 		unlockedJumpWall = v
 		if unlockedJumpWall:
-			EventBus.playerAbilityUnlocked.emit(list.JumpWall)
+			EventBus.playerAbilityUnlock.emit(list.JumpWall)
 
 var unlockedDashSide: bool = false:
 	set(v):
 		unlockedDashSide = v
 		if unlockedDashSide:
-			EventBus.playerAbilityUnlocked.emit(list.DashSide)
+			EventBus.playerAbilityUnlock.emit(list.DashSide)
 
 var unlockedDashUp: bool = false:
 	set(v):
 		unlockedDashUp = v
 		if unlockedDashUp:
-			EventBus.playerAbilityUnlocked.emit(list.DashUp)
+			EventBus.playerAbilityUnlock.emit(list.DashUp)
 
 var unlockedDashDown: bool = false:
 	set(v):
 		unlockedDashDown = v
 		if unlockedDashDown:
-			EventBus.playerAbilityUnlocked.emit(list.DashDown)
+			EventBus.playerAbilityUnlock.emit(list.DashDown)
 
 var unlockedGlide: bool = false:
 	set(v):
 		unlockedGlide = v
 		if unlockedGlide:
-			EventBus.playerAbilityUnlocked.emit(list.Glide)
+			EventBus.playerAbilityUnlock.emit(list.Glide)
 
 var unlockedDive: bool = false:
 	set(v):
 		unlockedDive = v
 		if unlockedDive:
-			EventBus.playerAbilityUnlocked.emit(list.Dive)
+			EventBus.playerAbilityUnlock.emit(list.Dive)
 
 var unlockedGroundPound: bool = false:
 	set(v):
 		unlockedGroundPound = v
 		if unlockedGroundPound:
-			EventBus.playerAbilityUnlocked.emit(list.GroundPound)
+			EventBus.playerAbilityUnlock.emit(list.GroundPound)
 
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
@@ -149,8 +150,6 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedGroundPound = BOOL
 	else:
 		print("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
-	
-	EventBus.playerAbilitiesUnlock.emit(ability, BOOL)
 
 
 func can_use(ability: int) -> bool:

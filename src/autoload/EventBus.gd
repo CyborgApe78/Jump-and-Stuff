@@ -2,9 +2,8 @@ extends Node
 
 signal playerHealthChanged
 signal playerStatsCheck
-signal playerAbilitiesUnlock(ability, bool)
+signal playerAbilityUnlock(ability)
 signal playerStatChange(stat, amount)
-signal playerAbilityUnlocked
 signal playerConsecutiveJump
 signal playerInfo
 signal actionAnnounce

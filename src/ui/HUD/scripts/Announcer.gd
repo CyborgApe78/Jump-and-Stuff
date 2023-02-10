@@ -13,7 +13,7 @@ func _ready() -> void:
 	announceTimer.wait_time = annoucmentLength
 	hide()
 	EventBus.playerStatChange.connect(announce_stat_change)
-	EventBus.playerAbilityUnlocked.connect(announce_ability_unlocked)
+	EventBus.playerAbilityUnlock.connect(announce_ability_unlock)
 	announceTimer.timeout.connect(announce_finished)
 	announcementFinished.connect(check_announcement_que)
 
