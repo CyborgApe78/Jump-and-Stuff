@@ -12,7 +12,7 @@ var duration: float = 0.3
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1)
+	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to energy
 	player.velocityPrevious = player.velocity
 	timers()
 	player.particles.dash.emitting = true #TODO: use signals to call

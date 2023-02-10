@@ -6,7 +6,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1)
+	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to engergy
 	player.velocityPrevious = player.velocity
 	timers()
 	player.particles.dashUp.emitting = true #TODO: use signals to call

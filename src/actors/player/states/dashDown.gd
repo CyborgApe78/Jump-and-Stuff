@@ -8,7 +8,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1)
+	abilities.consume(PlayerAbilities.list.Dash, 1)  #TODO: Change to energy
 	player.velocityPrevious = player.velocity
 	durationTimer.wait_time = duration
 	durationTimer.start()

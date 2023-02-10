@@ -9,56 +9,38 @@ class_name PlayerAbilities
 var unlockedJumpAir: bool = false:
 	set(v):
 		unlockedJumpAir = v
-		if unlockedJumpAir:
-			EventBus.playerAbilityUnlock.emit(list.JumpAir)
 
 var unlockedJumpConsec: bool = false:
 	set(v):
 		unlockedJumpConsec = v
-		if unlockedJumpConsec:
-			EventBus.playerAbilityUnlock.emit(list.JumpConsec)
 
 var unlockedJumpWall: bool = false:
 	set(v):
 		unlockedJumpWall = v
-		if unlockedJumpWall:
-			EventBus.playerAbilityUnlock.emit(list.JumpWall)
 
 var unlockedDashSide: bool = false:
 	set(v):
 		unlockedDashSide = v
-		if unlockedDashSide:
-			EventBus.playerAbilityUnlock.emit(list.DashSide)
 
 var unlockedDashUp: bool = false:
 	set(v):
 		unlockedDashUp = v
-		if unlockedDashUp:
-			EventBus.playerAbilityUnlock.emit(list.DashUp)
 
 var unlockedDashDown: bool = false:
 	set(v):
 		unlockedDashDown = v
-		if unlockedDashDown:
-			EventBus.playerAbilityUnlock.emit(list.DashDown)
 
 var unlockedGlide: bool = false:
 	set(v):
 		unlockedGlide = v
-		if unlockedGlide:
-			EventBus.playerAbilityUnlock.emit(list.Glide)
 
 var unlockedDive: bool = false:
 	set(v):
 		unlockedDive = v
-		if unlockedDive:
-			EventBus.playerAbilityUnlock.emit(list.Dive)
 
 var unlockedGroundPound: bool = false:
 	set(v):
 		unlockedGroundPound = v
-		if unlockedGroundPound:
-			EventBus.playerAbilityUnlock.emit(list.GroundPound)
 
 #var unlockedDashWall: bool = false
 #var unlockedDashJump: bool = false
