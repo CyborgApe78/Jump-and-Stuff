@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx1wwhx0jra68"]
+[gd_scene load_steps=6 format=3 uid="uid://cx1wwhx0jra68"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/DebugMenu.gd" id="1_bmkcu"]
-[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_jxtko"]
+[ext_resource type="PackedScene" uid="uid://ceh0xj0pcr8eo" path="res://src/ui/Debug/debugAbilities.tscn" id="2_sg1lf"]
+[ext_resource type="PackedScene" uid="uid://qol8uary160l" path="res://src/ui/Debug/debugUpgrades.tscn" id="3_3pnmx"]
+[ext_resource type="PackedScene" uid="uid://bktou303171ov" path="res://src/ui/Debug/debugStats.tscn" id="4_xan25"]
+[ext_resource type="PackedScene" uid="uid://b4427exks6flt" path="res://src/ui/Debug/debugOther.tscn" id="5_m7ku1"]
 
-[node name="DebugMenu" type="Control" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonGroundPound", "buttonGlide", "buttonDive", "buttonUpgradeAll", "buttonProtectionAll", "buttonProtectionHeat", "buttonProtectionCold", "buttonProtectionWater", "buttonProtectionAcid", "buttonProtectionLava")]
+[node name="DebugMenu" type="Control" node_paths=PackedStringArray("ability")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,24 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bmkcu")
-buttonAbilityAll = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/All/All")
-buttonJumpAll = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/All")
-buttonJumpAir = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Air/Air")
-buttonJumpConsec = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Consec/Consec")
-buttonDashAll = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/All")
-buttonDashSide = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/Side")
-buttonDashUp = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/Up")
-buttonDashDown = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/Down")
-buttonGroundPound = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other/GroundPound")
-buttonGlide = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other/Glide")
-buttonDive = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other/Dive")
-buttonUpgradeAll = NodePath("MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/All/All")
-buttonProtectionAll = NodePath("MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/All")
-buttonProtectionHeat = NodePath("MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Heat")
-buttonProtectionCold = NodePath("MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Cold")
-buttonProtectionWater = NodePath("MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Water")
-buttonProtectionAcid = NodePath("MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Acid")
-buttonProtectionLava = NodePath("MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Lava")
+ability = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -65,298 +51,14 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Abilities" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+[node name="Abilities" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_sg1lf")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities"]
-layout_mode = 2
-text = "Ability Unlocks"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="All" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer"]
+[node name="Upgrades" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_3pnmx")]
 layout_mode = 2
 
-[node name="All" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/All"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "All"
-
-[node name="Energy" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer"]
+[node name="Stats" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("4_xan25")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Energy"]
+[node name="Other" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("5_m7ku1")]
 layout_mode = 2
-text = "Energy"
-horizontal_alignment = 1
-
-[node name="Amount" type="OptionButton" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Energy"]
-layout_mode = 2
-alignment = 1
-item_count = 4
-popup/item_0/text = "1"
-popup/item_0/id = 0
-popup/item_1/text = "2"
-popup/item_1/id = 1
-popup/item_2/text = "3"
-popup/item_2/id = 2
-popup/item_3/text = "4"
-popup/item_3/id = 3
-
-[node name="Jumps" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer"]
-layout_mode = 2
-
-[node name="Category" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps"]
-layout_mode = 2
-text = "Jumps"
-horizontal_alignment = 1
-
-[node name="All" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "All
-"
-
-[node name="Air" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps"]
-layout_mode = 2
-
-[node name="Air" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Air"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Air"
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Air"]
-layout_mode = 2
-text = "Amount"
-horizontal_alignment = 1
-
-[node name="JumpNumber" type="OptionButton" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Air"]
-layout_mode = 2
-alignment = 1
-item_count = 4
-popup/item_0/text = "1"
-popup/item_0/id = 0
-popup/item_1/text = "2"
-popup/item_1/id = 1
-popup/item_2/text = "3"
-popup/item_2/id = 2
-popup/item_3/text = "4"
-popup/item_3/id = 3
-
-[node name="Consec" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps"]
-layout_mode = 2
-
-[node name="Consec" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Consec"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Consec"
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Consec"]
-layout_mode = 2
-text = "Amount"
-horizontal_alignment = 1
-
-[node name="JumpNumber2" type="OptionButton" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Consec"]
-layout_mode = 2
-alignment = 1
-item_count = 4
-popup/item_0/text = "1"
-popup/item_0/id = 0
-popup/item_1/text = "2"
-popup/item_1/id = 1
-popup/item_2/text = "3"
-popup/item_2/id = 2
-popup/item_3/text = "4"
-popup/item_3/id = 3
-
-[node name="Dashes" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer"]
-layout_mode = 2
-
-[node name="Category" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes"]
-layout_mode = 2
-text = "Dashes"
-horizontal_alignment = 1
-
-[node name="All" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "All"
-
-[node name="Side" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Side"
-
-[node name="Up" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Up"
-
-[node name="Down" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Down"
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes"]
-layout_mode = 2
-text = "Amount"
-horizontal_alignment = 1
-
-[node name="DashNumber" type="OptionButton" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes"]
-layout_mode = 2
-alignment = 1
-item_count = 4
-popup/item_0/text = "1"
-popup/item_0/id = 0
-popup/item_1/text = "2"
-popup/item_1/id = 1
-popup/item_2/text = "3"
-popup/item_2/id = 2
-popup/item_3/text = "4"
-popup/item_3/id = 3
-
-[node name="Other" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer"]
-layout_mode = 2
-
-[node name="Category" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other"]
-layout_mode = 2
-text = "Other"
-horizontal_alignment = 1
-
-[node name="GroundPound" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Ground Pound"
-
-[node name="Glide" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Glide"
-
-[node name="Dive" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Dive"
-
-[node name="Upgrades" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades"]
-layout_mode = 2
-text = "Upgrade Unlocks"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="All" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer"]
-layout_mode = 2
-
-[node name="All" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/All"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "All"
-
-[node name="Protection" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer"]
-layout_mode = 2
-
-[node name="Category" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection"]
-layout_mode = 2
-text = "Protection"
-horizontal_alignment = 1
-
-[node name="All" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "All"
-
-[node name="Heat" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Heat"
-
-[node name="Cold" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Cold"
-
-[node name="Water" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Water"
-
-[node name="Acid" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Acid"
-
-[node name="Lava" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Lava"
-
-[node name="Other" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/Other"]
-layout_mode = 2
-text = "Other"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Other"]
-layout_mode = 2
-
-[node name="All" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/Other/HBoxContainer"]
-layout_mode = 2
-
-[node name="Collision" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/Other/HBoxContainer/All"]
-layout_mode = 2
-theme = ExtResource("2_jxtko")
-toggle_mode = true
-text = "Show Collision"
-
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/All/All" to="." method="_on_all_toggled"]
-[connection signal="item_selected" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Energy/Amount" to="." method="_on_dash_number_item_selected"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/All" to="." method="_on_jump_all_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Air/Air" to="." method="_on_jump_air_toggled"]
-[connection signal="item_selected" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Air/JumpNumber" to="." method="_on_jump_number_item_selected"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Consec/Consec" to="." method="_on_jump_consec_toggled"]
-[connection signal="item_selected" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Jumps/Consec/JumpNumber2" to="." method="_on_jump_number_2_item_selected"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/All" to="." method="_on_dash_all_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/Side" to="." method="_on_dash_side_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/Up" to="." method="_on_dash_up_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/Down" to="." method="_on_dash_down_toggled"]
-[connection signal="item_selected" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Dashes/DashNumber" to="." method="_on_dash_number_item_selected"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Abilities/HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/All/All" to="." method="_on_upgrades_all_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/All" to="." method="_on_protection_all_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Heat" to="." method="_on_protection_heat_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Cold" to="." method="_on_protection_cold_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Water" to="." method="_on_protection_water_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Acid" to="." method="_on_protection_acid_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Upgrades/HBoxContainer/Protection/Lava" to="." method="_on_protection_lava_toggled"]
-[connection signal="toggled" from="MarginContainer/MarginContainer/HBoxContainer/Other/HBoxContainer/All/Collision" to="." method="_on_collision_toggled"]

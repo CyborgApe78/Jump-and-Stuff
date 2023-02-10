@@ -1,0 +1,155 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceh0xj0pcr8eo"]
+
+[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_0vhhb"]
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_yobqs"]
+
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonGroundPound", "buttonGlide", "buttonDive", "consecAmount")]
+script = ExtResource("1_yobqs")
+buttonAbilityAll = NodePath("All")
+buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
+buttonJumpAir = NodePath("HBoxContainer/Jumps/Air")
+buttonJumpConsec = NodePath("HBoxContainer/Jumps/Consec/Consec")
+buttonDashAll = NodePath("HBoxContainer/Dashes/All")
+buttonDashSide = NodePath("HBoxContainer/Dashes/Side")
+buttonDashUp = NodePath("HBoxContainer/Dashes/Up")
+buttonDashDown = NodePath("HBoxContainer/Dashes/Down")
+buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
+buttonGlide = NodePath("HBoxContainer/Other/Glide")
+buttonDive = NodePath("HBoxContainer/Other/Dive")
+consecAmount = NodePath("HBoxContainer/Jumps/Consec/Amount")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Ability Unlocks"
+horizontal_alignment = 1
+
+[node name="All" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "All"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Jumps" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Category" type="Label" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme_override_constants/line_spacing = 1
+text = "Jumps"
+horizontal_alignment = 1
+
+[node name="All" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "All
+"
+
+[node name="Air" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Air"
+
+[node name="Consec" type="VBoxContainer" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+
+[node name="Consec" type="Button" parent="HBoxContainer/Jumps/Consec"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Consec"
+
+[node name="Label" type="Label" parent="HBoxContainer/Jumps/Consec"]
+layout_mode = 2
+text = "Amount"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="HBoxContainer/Jumps/Consec"]
+layout_mode = 2
+alignment = 1
+item_count = 4
+selected = 0
+popup/item_0/text = "1"
+popup/item_0/id = 1
+popup/item_1/text = "2"
+popup/item_1/id = 2
+popup/item_2/text = "3"
+popup/item_2/id = 3
+popup/item_3/text = "4"
+popup/item_3/id = 4
+
+[node name="Dashes" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Category" type="Label" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+text = "Dashes"
+horizontal_alignment = 1
+
+[node name="All" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "All"
+
+[node name="Side" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Side"
+
+[node name="Up" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Up"
+
+[node name="Down" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Down"
+
+[node name="Other" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Category" type="Label" parent="HBoxContainer/Other"]
+layout_mode = 2
+text = "Other"
+horizontal_alignment = 1
+
+[node name="GroundPound" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Ground Pound"
+
+[node name="Glide" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Glide"
+
+[node name="Dive" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Dive"
+
+[connection signal="toggled" from="All" to="." method="_on_all_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/All" to="." method="_on_jump_all_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Air" to="." method="_on_jump_air_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Consec/Consec" to="." method="_on_jump_consec_toggled"]
+[connection signal="item_selected" from="HBoxContainer/Jumps/Consec/Amount" to="." method="_on_jump_consec_amount_item_selected"]
+[connection signal="toggled" from="HBoxContainer/Dashes/All" to="." method="_on_dash_all_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Side" to="." method="_on_dash_side_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Up" to="." method="_on_dash_up_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Down" to="." method="_on_dash_down_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]

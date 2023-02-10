@@ -7,6 +7,7 @@ extends MarginContainer
 @onready var announceTimer: Timer = $Timer
 @export var annoucmentLength: float = 2.0
 
+var inDebug: bool = false
 var queue: Array = []
 signal announcementFinished
 
@@ -16,16 +17,23 @@ func _ready() -> void:
 	EventBus.playerStatChange.connect(announce_stat_change)
 	EventBus.playerAbilityUnlock.connect(announce_ability_unlock)
 	EventBus.playerUpgradeUnlock.connect(announce_upgrade_unlock)
+	EventBus.debugMenuOpened.connect(debug_check)
 	announceTimer.timeout.connect(announce_finished)
 	announcementFinished.connect(check_announcement_que)
 
+
+func debug_check(BOOL) -> void:
+	inDebug = BOOL
+
+
 func announce(announcment: String) -> void:
-	if announceTimer.is_stopped():
-		show()
-		announceLabel.text = announcment
-		announceTimer.start()
-	else:
-		store_announce(announcment)
+	if !inDebug:
+		if announceTimer.is_stopped():
+			show()
+			announceLabel.text = announcment
+			announceTimer.start()
+		else:
+			store_announce(announcment)
 
 func store_announce(announcment: String) -> void:
 	queue.append(announcment)

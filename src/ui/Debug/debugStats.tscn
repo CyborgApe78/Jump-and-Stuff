@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=3 uid="uid://bktou303171ov"]
+
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugStats.gd" id="1_mmdkw"]
+
+[node name="Stats" type="VBoxContainer" node_paths=PackedStringArray("amountHealth", "amountEnergy", "amountMoveSpeed", "amountJumpHeight")]
+script = ExtResource("1_mmdkw")
+amountHealth = NodePath("Health/Amount")
+amountEnergy = NodePath("Energy/Amount")
+amountMoveSpeed = NodePath("MoveSpeed/Amount")
+amountJumpHeight = NodePath("JumpHeight/Amount")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="Health" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Health"]
+layout_mode = 2
+text = "Health"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="Health"]
+layout_mode = 2
+alignment = 1
+item_count = 10
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+popup/item_5/text = "6"
+popup/item_5/id = 5
+popup/item_6/text = "7"
+popup/item_6/id = 6
+popup/item_7/text = "8"
+popup/item_7/id = 7
+popup/item_8/text = "9"
+popup/item_8/id = 8
+popup/item_9/text = "10"
+popup/item_9/id = 9
+
+[node name="Energy" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Energy"]
+layout_mode = 2
+text = "Energy"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="Energy"]
+layout_mode = 2
+alignment = 1
+item_count = 10
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+popup/item_5/text = "6"
+popup/item_5/id = 5
+popup/item_6/text = "7"
+popup/item_6/id = 6
+popup/item_7/text = "8"
+popup/item_7/id = 7
+popup/item_8/text = "9"
+popup/item_8/id = 8
+popup/item_9/text = "10"
+popup/item_9/id = 9
+
+[node name="MoveSpeed" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MoveSpeed"]
+layout_mode = 2
+text = "Move Speed"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="MoveSpeed"]
+layout_mode = 2
+alignment = 1
+item_count = 4
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+
+[node name="JumpHeight" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="JumpHeight"]
+layout_mode = 2
+text = "Jump Height"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="JumpHeight"]
+layout_mode = 2
+alignment = 1
+item_count = 8
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+popup/item_5/text = "6"
+popup/item_5/id = 5
+popup/item_6/text = "7"
+popup/item_6/id = 6
+popup/item_7/text = "8"
+popup/item_7/id = 7
+
+[connection signal="item_selected" from="Health/Amount" to="." method="_on_health_amount_selected"]
+[connection signal="item_selected" from="Energy/Amount" to="." method="_on_energy_amount_selected"]
+[connection signal="item_selected" from="MoveSpeed/Amount" to="." method="_on_moveSpeed_amount_selected"]
+[connection signal="item_selected" from="JumpHeight/Amount" to="." method="_on_jumpHeight_amount_selected"]
