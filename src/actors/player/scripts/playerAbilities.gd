@@ -89,15 +89,15 @@ enum list { #TODO: jump flip, etc
 	GrappleHook,
 	Climb,
 	Grab,
-	Swim,
 	SwimDash,
 	Burrow,
 	}
 
+
 enum abilityTargetType {Null, grappleHook, burrow}
 
 
-func unlock(ability: int, BOOL:bool) -> void:
+func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 	if ability == list.All:
 		unlockedJumpAir = BOOL
 		unlockedJumpConsec = BOOL
@@ -107,17 +107,10 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
 		unlockedGroundPound = BOOL
-	elif ability == list.JumpAll:
-		unlockedJumpAir = BOOL
-		unlockedJumpConsec = BOOL
 	elif ability == list.JumpAir:
 		unlockedJumpAir = BOOL
 	elif ability == list.JumpConsec:
 		unlockedJumpConsec = BOOL
-	elif ability == list.Dash:
-		unlockedDashSide = BOOL
-		unlockedDashUp = BOOL
-		unlockedDashDown = BOOL
 	elif ability == list.DashSide:
 		unlockedDashSide = BOOL
 	elif ability ==  list.DashUp:
