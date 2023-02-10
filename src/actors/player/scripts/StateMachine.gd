@@ -36,7 +36,6 @@ extends Node
 #	PlayerState.State.DashJump: $DashJump,
 #	PlayerState.State.DashWall: $DashWall,
 #	PlayerState.State.DashClimb: $DashClimb,
-#	PlayerState.State.Glide: $Glide,
 #	PlayerState.State.WallClimb: $WallClimb,
 #	PlayerState.State.HookShot: $HookShot,
 #	PlayerState.State.Swim: $Swim,

@@ -1,6 +1,7 @@
 extends Node
 class_name PlayerState
 
+#TODO: States: Slide, Roll, Swim, Swim Dash, Grapple, DashWall, DashJump, DashClimb
 
 
 enum State {
