@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dp7gojgw0jv72"]
+[gd_scene load_steps=24 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -11,9 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://brpgf30v0sgdj" path="res://src/object/prefab/AbilityBlocks/boost.tscn" id="7_luu1j"]
 [ext_resource type="PackedScene" path="res://src/object/prefab/AbilityBlocks/wall.tscn" id="7_m4or1"]
 [ext_resource type="PackedScene" uid="uid://2erja1icwyql" path="res://src/object/prefab/AbilityBlocks/reset.tscn" id="7_rw1hu"]
-[ext_resource type="PackedScene" uid="uid://bwm1ib74j86u3" path="res://src/object/prefab/AbilityBlocks/AbilityUnlock.tscn" id="8_ii1f2"]
-[ext_resource type="PackedScene" uid="uid://4hwd2pmlc4lc" path="res://src/object/prefab/AbilityBlocks/StatChanger.tscn" id="13_tnjdy"]
+[ext_resource type="PackedScene" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="8_kpj5x"]
+[ext_resource type="PackedScene" uid="uid://dk0bylv3kxf5f" path="res://src/object/prefab/AbilityBlocks/hazard.tscn" id="12_2xi02"]
+[ext_resource type="PackedScene" uid="uid://c4vo3bsqpphbg" path="res://src/object/prefab/AbilityBlocks/passage.tscn" id="13_d414b"]
+[ext_resource type="PackedScene" path="res://src/object/prefab/unlockables/StatChanger.tscn" id="13_tnjdy"]
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="14_scku3"]
+[ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="15_wvbmw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
 size = Vector2(6160, 64)
@@ -166,30 +169,31 @@ rotation = -0.449796
 shape = SubResource("RectangleShape2D_yqbas")
 script = ExtResource("1_isl6d")
 
-[node name="Interactables" type="Node" parent="."]
+[node name="Interactables" type="Node2D" parent="."]
 
-[node name="AbilityUnlock" parent="Interactables" instance=ExtResource("8_ii1f2")]
-position = Vector2(-320, 136)
-ability = 3
-
-[node name="Wall" parent="Interactables" instance=ExtResource("7_m4or1")]
-position = Vector2(-144, 112)
-ability = 7
-oneUse = true
-
-[node name="Boost" parent="Interactables" instance=ExtResource("7_luu1j")]
-position = Vector2(-56, 120)
-ability = 1
-oneUse = true
-
-[node name="Reset" parent="Interactables" instance=ExtResource("7_rw1hu")]
-position = Vector2(-232, 144)
-ability = 6
-lockOut = true
+[node name="AbilityUnlock" parent="Interactables" instance=ExtResource("8_kpj5x")]
+position = Vector2(-64, 128)
 
 [node name="StatChanger" parent="Interactables" instance=ExtResource("13_tnjdy")]
-position = Vector2(-416, 136)
-stat = 0
+position = Vector2(-168, 136)
+
+[node name="UpgradeUnlocker" parent="Interactables" instance=ExtResource("15_wvbmw")]
+position = Vector2(-296, 136)
+
+[node name="Boost" parent="Interactables" instance=ExtResource("7_luu1j")]
+position = Vector2(88, 168)
+
+[node name="Hazard" parent="Interactables" instance=ExtResource("12_2xi02")]
+position = Vector2(-16, 216)
+
+[node name="Passage" parent="Interactables" instance=ExtResource("13_d414b")]
+position = Vector2(-112, 216)
+
+[node name="Reset" parent="Interactables" instance=ExtResource("7_rw1hu")]
+position = Vector2(-208, 216)
+
+[node name="Wall" parent="Interactables" instance=ExtResource("7_m4or1")]
+position = Vector2(-320, 184)
 
 [node name="Player" parent="." instance=ExtResource("3_m0pk1")]
 position = Vector2(-629, -256)

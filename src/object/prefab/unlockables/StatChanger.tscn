@@ -1,20 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://4hwd2pmlc4lc"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://src/object/prefab/AbilityBlocks/scripts/StatChanger.gd" id="1_p38qp"]
+[ext_resource type="Script" path="res://src/object/prefab/unlockables/scripts/StatChanger.gd" id="1_p38qp"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_ekudg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahdsj"]
 size = Vector2(64, 64)
 
-[node name="StatChanger" type="Area2D" node_paths=PackedStringArray("lockoutTimer")]
+[node name="StatChanger" type="Area2D"]
 collision_layer = 0
 collision_mask = 64
 script = ExtResource("1_p38qp")
-oneUse = true
-lockoutTimer = NodePath("Timer")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
 
 [node name="Outline" parent="." instance=ExtResource("2_ekudg")]
 

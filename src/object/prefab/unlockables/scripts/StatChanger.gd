@@ -1,4 +1,6 @@
-extends Interactable
+extends UnlockableBase
+
+#LOOKAT: negative stat change
 
 @onready var Stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 @export var stat: PlayerStats.list
@@ -13,12 +15,17 @@ func _ready() -> void:
 
 func _on_state_changer_entered(body: Player) -> void:
 	if stat == PlayerStats.list.HealthMax:
-		Stats.healthMax += amount
+		stat_change(PlayerStats.list.HealthMax)
 	elif stat == PlayerStats.list.MoveSpeed:
-		Stats.baseSpeed += amount
+		stat_change(PlayerStats.list.MoveSpeed)
 	elif stat == PlayerStats.list.JumpHeight:
-		Stats.jumpHeight += amount
+		stat_change(PlayerStats.list.JumpHeight)
 	elif stat == PlayerStats.list.EnergyMax:
-		Stats.energyMax += amount
+		stat_change(PlayerStats.list.EnergyMax)
 	else:
 		EventBus.debug.emit("Stat Changer error for " + str(stat) +" at: "  + str(name) + " at " + str(global_position))
+
+
+func stat_change(pStat) -> void:
+	Stats.change(pStat, amount)
+	EventBus.playerStatChange.emit(pStat, amount)
