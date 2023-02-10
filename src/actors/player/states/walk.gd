@@ -39,6 +39,7 @@ func visual(delta) -> void:
 	squash_and_stretch(delta)
 	speed_bend(false)
 	align_to_ground()
+	#TODO: create own bend function
 
 
 func sound(delta: float) -> void:

@@ -15,7 +15,6 @@ func _ready() -> void:
 
 
 func enter() -> void:
-	print("enter fast trave")
 	set_paused(true)
 	visible = true
 	waypointUpButton.grab_focus()
