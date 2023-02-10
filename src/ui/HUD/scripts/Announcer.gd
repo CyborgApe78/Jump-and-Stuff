@@ -94,7 +94,7 @@ func announce_ability_unlock(ability: int) -> void:
 	elif ability == PlayerAbilities.list.Dive:
 		announce(str("Dive Unlocked"))
 	elif ability == PlayerAbilities.list.GroundPound:
-		announce(str("Ground Unlocked"))
+		announce(str("Ground Pound Unlocked"))
 	else:
 		EventBus.emit_signal("debug", str("ability unlock error: ", ability)) #TODO: make debug log
 
