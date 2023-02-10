@@ -14,6 +14,7 @@ func _ready() -> void:
 	hide()
 	EventBus.playerStatChange.connect(announce_stat_change)
 	EventBus.playerAbilityUnlock.connect(announce_ability_unlock)
+	EventBus.playerUpgradeUnlock.connect(announce_upgrade_unlock)
 	announceTimer.timeout.connect(announce_finished)
 	announcementFinished.connect(check_announcement_que)
 
@@ -88,3 +89,22 @@ func announce_ability_unlocked(ability: int) -> void:
 		#TODO: ability unlocked. have max jump count announced (double,triple, etc)
 	else:
 		EventBus.emit_signal("debug", str("ability unlock error: ", ability)) #TODO: make debug log
+
+
+func announce_upgrade_unlock(upgrade: int) -> void:
+	if upgrade == PlayerUpgrades.list.All:
+		announce(str("The whole enchilada unlocked"))
+	elif upgrade == PlayerUpgrades.list.protectionAll:
+		announce(str("All Protections Unlocked"))
+	elif upgrade == PlayerUpgrades.list.protectionHeat:
+		announce(str("Heat Protection Unlocked"))
+	elif upgrade == PlayerUpgrades.list.protectionCold:
+		announce(str("Cold Protection Unlocked"))
+	elif upgrade == PlayerUpgrades.list.protectionWater:
+		announce(str("Water Protection Unlocked"))
+	elif upgrade == PlayerUpgrades.list.protectionAcid:
+		announce(str("Acid Protection Unlocked"))
+	elif upgrade == PlayerUpgrades.list.protectionLava:
+		announce(str("Lava Protection Unlocked"))
+	else:
+		EventBus.emit_signal("debug", str("ability unlock error: ", upgrade)) #TODO: make debug log
