@@ -73,3 +73,4 @@ autowrap_mode = 0
 metadata/_edit_group_ = true
 
 [node name="Timer" type="Timer" parent="Announcer"]
+one_shot = true
