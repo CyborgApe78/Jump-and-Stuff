@@ -23,7 +23,7 @@ func _on_state_changer_entered(body: Player) -> void:
 	elif stat == PlayerStats.list.EnergyMax:
 		stat_change(PlayerStats.list.EnergyMax)
 	else:
-		EventBus.debug.emit("Stat Changer error for " + str(stat) +" at: "  + str(name) + " at " + str(global_position))
+		EventBus.error.emit("Stat Changer error for " + str(stat) +" at: "  + str(name) + " at " + str(global_position))
 
 
 func stat_change(pStat) -> void:

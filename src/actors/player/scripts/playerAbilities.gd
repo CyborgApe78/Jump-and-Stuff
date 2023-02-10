@@ -124,9 +124,9 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 	elif ability == list.GroundPound:
 		unlockedGroundPound = BOOL
 	else:
-		print("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
+		EventBus.error.emit("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
 
-
+#TODO: move to PlayerInfo create health and energy variables
 func can_use(ability: int) -> bool:
 	if ability == list.JumpAir and remainingJumpAir > 0 and unlockedJumpAir:
 		return true
@@ -160,7 +160,7 @@ func reset(ability: int) -> void:
 	elif ability == list.Dash:
 		remainingDash = maxDash
 	else:
-		print("Null Ability Reset " + str(ability))
+		EventBus.error.emit("Null Ability Reset " + str(ability))
 
 
 func consume(ability: int, amount: int) -> void:
@@ -175,4 +175,4 @@ func consume(ability: int, amount: int) -> void:
 	elif ability == list.Dash:
 		remainingDash -= amount
 	else:
-		print("Null Ability Consume " + str(ability)) #TODO: create error log
+		EventBus.error.emit("Null Ability Consume " + str(ability)) #TODO: create error log

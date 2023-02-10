@@ -6,7 +6,6 @@ var unlockedProtectionHeat: bool = false:
 	set(v):
 		unlockedProtectionHeat = v
 		if unlockedProtectionHeat:
-			print("heat ulock")
 			EventBus.playerUpgradeUnlock.emit(list.protectionHeat)
 
 var unlockedProtectionCold: bool = false:
@@ -70,4 +69,4 @@ func unlock(upgrade: int, BOOL:bool) -> void:
 	elif upgrade == list.protectionLava:
 		unlockedProtectionLava = BOOL
 	else:
-		print("Null Upgrade Unlocked " + str(upgrade) + " " + str(BOOL))
+		EventBus.error.emit("Null Upgrade Unlocked " + str(upgrade) + " " + str(BOOL))

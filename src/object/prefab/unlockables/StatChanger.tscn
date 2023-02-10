@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://dgsl3q5vqs5uu"]
 
 [ext_resource type="Script" path="res://src/object/prefab/unlockables/scripts/StatChanger.gd" id="1_p38qp"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_ekudg"]

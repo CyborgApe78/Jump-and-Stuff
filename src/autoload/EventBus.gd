@@ -15,6 +15,7 @@ signal debug(info)
 signal debug2(info)
 signal debug3(info)
 signal debugMenuOpened(bool)
+signal error(info)
 
 signal helperUsed(info)
 

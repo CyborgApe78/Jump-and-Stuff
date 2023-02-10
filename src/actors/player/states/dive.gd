@@ -15,7 +15,6 @@ func enter() -> void:
 	fallTimer.wait_time = fallTimeTillBonk
 	neutral_move_direction_logic()
 	fallTimer.start()
-	print(max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)))
 	player.velocity.x = max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)) * player.facing  ## dive at dive speed or current velocity, whichever's high
 	player.velocity.y = -100
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)

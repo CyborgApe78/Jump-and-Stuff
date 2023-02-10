@@ -23,7 +23,7 @@ func _on_upgrade_unlocker_entered(body: Player) -> void:
 	elif upgrade == PlayerUpgrades.list.protectionLava:
 		upgrade_unlock(PlayerUpgrades.list.protectionLava)
 	else:
-		EventBus.debug.emit("Upgrade Unlocker error for " + str(upgrade) +" at: "  + str(name) + " at " + str(global_position))
+		EventBus.error.emit("Upgrade Unlocker error for " + str(upgrade) +" at: "  + str(name) + " at " + str(global_position))
 
 
 func upgrade_unlock(pUpgrade) -> void:

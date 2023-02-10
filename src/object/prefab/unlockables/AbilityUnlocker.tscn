@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://dl2umkgqo1h7m"]
 
 [ext_resource type="Script" path="res://src/object/prefab/unlockables/scripts/AbilityUnlock.gd" id="1_unbp8"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_xo4ch"]

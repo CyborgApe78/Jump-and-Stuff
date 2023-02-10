@@ -17,4 +17,4 @@ func _on_reset_entered(body: Player) -> void: #TODO: Change to energy
 	elif ability == PlayerAbilities.list.JumpAir:
 		Abilities.reset(PlayerAbilities.list.JumpAir)
 	else:
-		EventBus.debug.emit("Ability Reset error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
+		EventBus.error.emit("Ability Reset error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))

@@ -36,4 +36,4 @@ func block_color() -> void:
 #	elif ability == PlayerAbilities.list.Bash:
 #		blockColor = AbilityColor.bashColor
 	else:
-		print("null color " + str(self.name) + " " + str(global_position))
+		EventBus.error.emit("null color " + str(self.name) + " " + str(global_position))

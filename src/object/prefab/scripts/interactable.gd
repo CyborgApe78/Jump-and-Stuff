@@ -13,7 +13,7 @@ func _ready() -> void:
 	lockoutTimer.wait_time = lockOutTime
 	body_entered.connect(_on_Interactable_entered)
 	if oneUse and lockOut:
-		EventBus.debug.emit(str("Interactable block oneUse and lockOut selected: " + str(name) + " at " + str(global_position)))
+		EventBus.error.emit(str("Interactable block oneUse and lockOut selected: " + str(name) + " at " + str(global_position)))
 
 
 func lock_out() -> void:

@@ -26,6 +26,5 @@ func _ready() -> void:
 	elif ability == PlayerAbilities.list.SwimDash:
 		staticBody.set_collision_layer_value(CollisionLayers.SwimDash, true)
 	else:
-		EventBus.emit_signal("error", "Ability Wall error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
-
+		EventBus.error.emit("Ability Wall error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
 

@@ -36,7 +36,7 @@ func block_color() -> void:
 #	elif ability == PlayerAbilities.list.Bash:
 #		blockColor = AbilityColor.bashColor
 	else:
-		print("null color " + str(self.name) + " " + str(global_position))
+		EventBus.error.emit("null color " + str(self.name) + " " + str(global_position))
 
 
 func _on_unlock_entered(body: Player) -> void:
@@ -75,7 +75,7 @@ func _on_unlock_entered(body: Player) -> void:
 	elif ability == PlayerAbilities.list.Burrow:
 		ability_unlock(PlayerAbilities.list.Burrow)
 	else:
-		EventBus.debug.emit("Ability Unlock error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
+		EventBus.error.emit("Ability Unlock error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
 
 func ability_unlock(pAbility) -> void:
 	Abilities.unlock(pAbility, unlock)

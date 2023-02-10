@@ -25,7 +25,7 @@ func _ready() -> void:
 	elif ability == PlayerAbilities.list.SwimDash:
 		set_collision_mask_value(CollisionLayers.SwimDash, true)
 	else:
-		EventBus.debug.emit("Ability Reset error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
+		EventBus.error.emit("Ability Reset error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
 
 
 
