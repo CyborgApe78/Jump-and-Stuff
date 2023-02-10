@@ -84,11 +84,16 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			player.timers.bufferJump.start()
-	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
+	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
-		return State.Dive
-	if Input.is_action_just_pressed("ground pound") and abilities.can_use(PlayerAbilities.list.GroundPound): ## if close to ground don't ground pound 
+	if Input.is_action_just_pressed("dive"):
+#		if abilities.can_use(PlayerAbilities.list.Roll) and player.check_ground():
+#		#TODO: create ground check to see if close to ground and roll instead of dive
+#			return State.Roll
+		if abilities.can_use(PlayerAbilities.list.Dive):
+		#TODO: if note close to ground
+			return State.Dive
+	if Input.is_action_just_pressed("crouch") and abilities.can_use(PlayerAbilities.list.GroundPound): ## if close to ground don't ground pound 
 		if player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding():
 			return State.Null #LOOKAT: could cause frustration if trying to quickly ground pound
 		else:

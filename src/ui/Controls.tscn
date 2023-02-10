@@ -61,9 +61,17 @@ text = "Dash"
 layout_mode = 0
 offset_left = 848.0
 offset_top = 120.0
-offset_right = 1025.0
+offset_right = 912.0
 offset_bottom = 146.0
-text = "Crouch, Ground Pound"
+text = "Crouch"
+
+[node name="GroundPound" type="Label" parent="."]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 120.0
+offset_right = 1008.0
+offset_bottom = 146.0
+text = "Ground Pound"
 
 [node name="Dive" type="Label" parent="."]
 layout_mode = 0
@@ -75,43 +83,67 @@ text = "Dive"
 
 [node name="Burrow" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1112.0
-offset_top = 176.0
-offset_right = 1170.0
-offset_bottom = 202.0
+offset_left = 840.0
+offset_top = 200.0
+offset_right = 898.0
+offset_bottom = 226.0
 text = "Burrow"
 
 [node name="Grapple" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1112.0
-offset_top = 208.0
-offset_right = 1174.0
-offset_bottom = 234.0
+offset_left = 184.0
+offset_top = 120.0
+offset_right = 246.0
+offset_bottom = 146.0
 text = "Grapple"
 
 [node name="Roll" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1112.0
-offset_top = 240.0
-offset_right = 1174.0
-offset_bottom = 266.0
+offset_left = 960.0
+offset_top = 336.0
+offset_right = 1022.0
+offset_bottom = 362.0
 text = "Roll"
 
 [node name="Spin" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1120.0
-offset_top = 272.0
-offset_right = 1182.0
-offset_bottom = 298.0
+offset_left = 928.0
+offset_top = 392.0
+offset_right = 990.0
+offset_bottom = 418.0
 text = "Spin"
 
 [node name="Bash" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1120.0
-offset_top = 304.0
-offset_right = 1182.0
-offset_bottom = 330.0
+offset_left = 224.0
+offset_top = 192.0
+offset_right = 286.0
+offset_bottom = 218.0
 text = "Bash"
+
+[node name="Slide" type="Label" parent="."]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 200.0
+offset_right = 1054.0
+offset_bottom = 226.0
+text = "Slide"
+
+[node name="SpeedBoost" type="Label" parent="."]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 264.0
+offset_right = 270.0
+offset_bottom = 290.0
+text = "Speed Boost"
+
+[node name="Aim" type="Label" parent="."]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 536.0
+offset_right = 1008.0
+offset_bottom = 562.0
+text = "Aim"
 
 [node name="Xboxone" type="Sprite2D" parent="."]
 position = Vector2(608, 416)

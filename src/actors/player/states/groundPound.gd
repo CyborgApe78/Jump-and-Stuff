@@ -59,7 +59,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.is_on_floor():
 		player.landed()
-#		if !Input.is_action_pressed("ground pound"):
+#		if !Input.is_action_pressed("crouch"):
 #			return State.GroundPoundBounce
 #		else:
 			#TODO: if groundpound pressed and 
