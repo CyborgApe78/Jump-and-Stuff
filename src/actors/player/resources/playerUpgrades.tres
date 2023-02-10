@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="PlayerUpgrades" load_steps=2 format=3 uid="uid://ejptgue0ndq8"]
+
+[ext_resource type="Script" path="res://src/actors/player/scripts/playerUpgrades.gd" id="1_mw264"]
+
+[resource]
+script = ExtResource("1_mw264")
