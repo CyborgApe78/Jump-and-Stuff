@@ -2,11 +2,6 @@
 
 Abilitie
 	Dash
-		Up
-		Down
-			short timer when on the floor
-		Side
-			shrink to one block
 		Jump
 			Ori charge jump
 			Metroid shinespark
@@ -25,13 +20,11 @@ Abilitie
 	Burrow
 		Sand
 		Snow
-	Glide
 	Slide/roll/spin
 		combine with spin from lone fungus, skill press to bounce of spikes
 		shrink to one block
 		Can jump off things to keep slide
 		https://youtu.be/CTpflm_pFgs Around 5 minutes 
-	Crouch
 	Ori bash
 		Bounce off projectiles
 	pogo/spin
