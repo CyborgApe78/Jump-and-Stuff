@@ -1,7 +1,7 @@
 extends Resource
 class_name PlayerUpgrades
 
-#TODO: PSpeed/Speedboost, light
+#TODO: PSpeed/Speedboost, light, velocity redirect from wall grab
 
 var unlockedProtectionHeat: bool = false:
 	set(v):

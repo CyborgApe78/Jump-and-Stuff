@@ -112,7 +112,7 @@ func facing_logic():
 		facing = eyeDirection
 	if moveDirection.x == -1  and eyeDirection == 1:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(eyes, "position", Vector2(-8, eyes.position.y), 0.2).from_current()
+		tween.tween_property(eyes, "position", Vector2(-8, eyes.position.y), 0.2).from_current() #TODO: eyes should be own functiun
 		eyeDirection = -1
 		particles.scale.x = -1
 		facing = eyeDirection
