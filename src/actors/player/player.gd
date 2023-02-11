@@ -85,13 +85,18 @@ func move_and_slide_rotation() -> void:
 func get_move_input() -> void:
 	var deadzoneRadius: float = 0.2
 	#TODO: make deadzone radius in settings
-	var inputStrength: = Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	)
-	moveStrength =  inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
+	var inputStrength: = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	aimStrength = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+		
+	moveStrength = inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
+	moveDirection = moveStrength.normalized().round()
 	
-	moveDirection =  moveStrength.normalized().round()
+	if aimStrength.length() > deadzoneRadius:
+		aimDirection = aimStrength
+	elif inputStrength.length() > deadzoneRadius:
+		aimDirection = moveStrength
+	else:
+		aimDirection = Vector2.ZERO
 	
 	if moveDirection != Vector2.ZERO:
 		lastMoveDirection = moveDirection
