@@ -53,7 +53,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	pass
+	align_to_ground()
 
 
 func sound(delta: float) -> void:
