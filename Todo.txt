@@ -35,13 +35,9 @@ Abilitie
 		water run
 		run on curved walls
 
-
+create save states for practice
 
 Coyote/Buffer timers
-	buffer jump
-		pressing jump early and saving it
-	coyote jump ground and wall
-		jump after leaving ground and wall
 	coyote dash
 		dash after leaving wall
 
@@ -52,8 +48,6 @@ Ability Combos
 		Crouch jump
 	dash+jump
 		dash up and jump from wall give big boost
-		ground dash -> jump -> side dash
-			timing for refresh dash and speed boost
 		Jump dash jump for height 
 		Jump jump dash for distance
 	games to look at
@@ -74,10 +68,6 @@ Ability Combos
 		https://n.fandom.com/wiki/Tricks
 		https://warframe.fandom.com/wiki/Maneuvers
 		https://the-messenger.fandom.com/wiki/Cloudstep 
-
-Ability charms
-	Flutter like yoshi
-	Slow fall when holding
 
 
 bonk/fall damage savers

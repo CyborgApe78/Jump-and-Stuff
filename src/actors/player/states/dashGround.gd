@@ -13,6 +13,7 @@ var saveTriple: bool
 
 #TODO: reverse ultra jump
 #TODO: save triple or more for super/ultra
+#TODO: extend snap to keep on ground
 
 
 func enter() -> void:
