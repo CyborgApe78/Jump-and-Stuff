@@ -13,7 +13,6 @@ var saveTriple: bool
 
 #TODO: reverse ultra jump
 #TODO: save triple or more for super/ultra
-#TODO: extend snap to keep on ground
 
 
 func enter() -> void:
@@ -47,7 +46,7 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.move_and_slide()
+	player.move_and_slide_rotation()
 	player.timers.consecutiveJump.start()
 	track_top_speed(player.velocity.x)
 
