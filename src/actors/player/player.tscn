@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://c6sp0iiop2sqw"]
+[gd_scene load_steps=73 format=3 uid="uid://c6sp0iiop2sqw"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -40,7 +40,11 @@
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="25_tbkdj"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="28_yy5ux"]
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="29_7k1ht"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="31_7ryi3"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
+[ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="31_wvx7d"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashClimb.gd" id="32_7x4nx"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="33_2q3ab"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/ActionAnnouncer.gd" id="33_7u4fs"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/actionText.gd" id="34_h1yjw"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/PlayerText.gd" id="39_snr3n"]
@@ -647,6 +651,20 @@ durationTimer = NodePath("../../Timers/DashDuration")
 [node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
 script = ExtResource("25_pbxll")
 durationTimer = NodePath("../../Timers/DashDuration")
+
+[node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer")]
+script = ExtResource("31_7ryi3")
+jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
+
+[node name="DashClimb" type="Node" parent="StateMachine"]
+script = ExtResource("32_7x4nx")
+
+[node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
+script = ExtResource("33_2q3ab")
+durationTimer = NodePath("../../Timers/DashDuration")
+
+[node name="Slide" type="Node" parent="StateMachine"]
+script = ExtResource("31_wvx7d")
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")
