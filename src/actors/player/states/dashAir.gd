@@ -1,7 +1,6 @@
 extends PlayerInfo
 
 
-#TODO: upgrade to become like bullet from mario
 var duration: float = 0.3
 @export var durationTimer: Timer
 @export var jumpWallSaveTimer: Timer
@@ -32,7 +31,6 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	player.timers.consecutiveJump.start()
 	track_top_speed(player.velocity.x)
 
 
@@ -55,7 +53,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			player.timers.bufferJump.start()
-#			return State.Fall
+			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
