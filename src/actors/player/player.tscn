@@ -663,8 +663,9 @@ script = ExtResource("32_7x4nx")
 script = ExtResource("33_2q3ab")
 durationTimer = NodePath("../../Timers/DashDuration")
 
-[node name="Slide" type="Node" parent="StateMachine"]
+[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
 script = ExtResource("31_wvx7d")
+durationTimer = NodePath("../../Timers/DashDuration")
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")

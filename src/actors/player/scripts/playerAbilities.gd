@@ -54,6 +54,10 @@ var unlockedGroundPound: bool = false:
 	set(v):
 		unlockedGroundPound = v
 
+var unlockedSlide: bool = false:
+	set(v):
+		unlockedSlide = v
+
 #var unlockedHookShot: bool = false
 #var unlockedSwim: bool = false
 #var unlockedSwimDash: bool = false
@@ -92,6 +96,7 @@ enum list { #TODO: jump flip, etc
 	DashWall,
 	DashClimb,
 	DashJump,
+	Slide,
 	Glide,
 	Dive,
 	GroundPound,
@@ -119,6 +124,7 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
 		unlockedGroundPound = BOOL
+		unlockedSlide = BOOL
 	elif ability == list.JumpAir:
 		unlockedJumpAir = BOOL
 	elif ability == list.JumpConsec:
@@ -135,6 +141,8 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedDashClimb = BOOL
 	elif ability == list.DashJump:
 		unlockedDashJump = BOOL
+	elif ability == list.Slide:
+		unlockedSlide = BOOL
 	elif ability == list.Glide:
 		unlockedGlide = BOOL
 	elif ability == list.Dive:
@@ -161,6 +169,8 @@ func can_use(ability: int) -> bool:
 	elif ability == list.DashClimb and remainingDash > 0 and unlockedDashClimb:
 		return true
 	elif ability == list.DashJump and remainingDash > 0 and unlockedDashJump:
+		return true
+	elif ability == list.Slide and unlockedSlide:
 		return true
 	elif ability == list.Glide and unlockedGlide:
 		return true

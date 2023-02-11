@@ -29,6 +29,7 @@ extends Node
 	PlayerState.State.DashWall: $DashWall,
 	PlayerState.State.DashClimb: $DashClimb,
 	PlayerState.State.DashJump: $DashJump,
+	PlayerState.State.Slide: $Slide,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	

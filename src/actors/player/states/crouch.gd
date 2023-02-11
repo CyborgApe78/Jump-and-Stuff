@@ -52,6 +52,8 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpLong
 		else:
 			return State.JumpCrouch
+	if Input.is_action_just_pressed("spin") and abilities.can_use(PlayerAbilities.list.Slide):
+		return State.Slide
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump):
 		return State.DashJump ## shinespark
 	#TODO:

@@ -34,6 +34,7 @@ enum State {
 	DashWall,
 	DashClimb,
 	DashJump,
+	Slide,
 	BonkAir,
 	BonkGround,
 	

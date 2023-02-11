@@ -123,10 +123,10 @@ text = "Bash"
 
 [node name="Slide" type="Label" parent="."]
 layout_mode = 0
-offset_left = 992.0
-offset_top = 200.0
-offset_right = 1054.0
-offset_bottom = 226.0
+offset_left = 976.0
+offset_top = 400.0
+offset_right = 1038.0
+offset_bottom = 426.0
 text = "Slide"
 
 [node name="SpeedBoost" type="Label" parent="."]
