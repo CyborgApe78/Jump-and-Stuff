@@ -46,6 +46,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.WallGrab
 	if Input.is_action_just_pressed("jump"):
 		return State.JumpWall
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -63,5 +65,10 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
+	if dashBufferState != State.Null:
+		if abilities.can_use(PlayerAbilities.list.DashWall) and dashBufferState == State.DashWall:
+			dashBufferState = State.Null
+			return State.DashWall
+		#Lookat: need other dash states
 
 	return State.Null

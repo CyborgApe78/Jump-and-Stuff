@@ -26,6 +26,7 @@ extends Node
 	PlayerState.State.DashAir: $DashAir,
 	PlayerState.State.DashUp: $DashUp,
 	PlayerState.State.DashDown: $DashDown,
+	PlayerState.State.DashWall: $DashWall,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	
@@ -34,7 +35,6 @@ extends Node
 #	PlayerState.State.Die: $Die,
 #	PlayerState.State.JumpAir: $JumpAir,
 #	PlayerState.State.DashJump: $DashJump,
-#	PlayerState.State.DashWall: $DashWall,
 #	PlayerState.State.DashClimb: $DashClimb,
 #	PlayerState.State.WallClimb: $WallClimb,
 #	PlayerState.State.HookShot: $HookShot,

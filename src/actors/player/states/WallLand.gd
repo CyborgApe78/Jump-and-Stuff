@@ -57,14 +57,16 @@ func handle_input(event: InputEvent) -> int:
 		#JumpWallDown
 		#JumpWallAway
 		#JumpWallNuetral
-	elif Input.is_action_just_pressed("move_left") and player.wall_detection() == Vector2.RIGHT.x:
+	if Input.is_action_just_pressed("move_left") and player.wall_detection() == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	elif Input.is_action_just_pressed("move_right") and player.wall_detection() == Vector2.LEFT.x:
+	if Input.is_action_just_pressed("move_right") and player.wall_detection() == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 #	if player.moveDirection.x == player.lastWallDirection:
 #		return State.WallSlide
 
@@ -93,6 +95,11 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
+	if dashBufferState != State.Null:
+		if abilities.can_use(PlayerAbilities.list.DashWall) and dashBufferState == State.DashAir:
+			dashBufferState = State.Null
+			return State.DashWall
+		#Lookat: need other dash states
 
 	return State.Null
 

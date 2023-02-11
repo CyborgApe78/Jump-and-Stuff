@@ -172,6 +172,8 @@ func dash_pressed_logic() -> void: #TODO: change to aimdirection
 		dashBufferState = State.DashUp
 	elif Input.is_action_pressed("move_down"):
 		dashBufferState = State.DashDown
+	elif player.is_on_wall():
+		dashBufferState = State.DashWall
 	elif player.is_on_floor(): #TODO: moveDirection left or right
 		dashBufferState = State.DashGround
 	elif !player.is_on_floor(): #TODO: maybe combine into DashSide
