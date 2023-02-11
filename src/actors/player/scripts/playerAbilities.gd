@@ -40,7 +40,7 @@ var unlockedDashClimb: bool = false:
 
 var unlockedDashJump: bool = false:
 	set(v):
-		unlockedDashClimb = v
+		unlockedDashJump = v
 
 var unlockedGlide: bool = false:
 	set(v):
