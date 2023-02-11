@@ -30,6 +30,18 @@ var unlockedDashDown: bool = false:
 	set(v):
 		unlockedDashDown = v
 
+var unlockedDashWall: bool = false:
+	set(v):
+		unlockedDashWall = v
+
+var unlockedDashClimb: bool = false:
+	set(v):
+		unlockedDashClimb = v
+
+var unlockedDashJump: bool = false:
+	set(v):
+		unlockedDashClimb = v
+
 var unlockedGlide: bool = false:
 	set(v):
 		unlockedGlide = v
@@ -42,9 +54,6 @@ var unlockedGroundPound: bool = false:
 	set(v):
 		unlockedGroundPound = v
 
-#var unlockedDashWall: bool = false
-#var unlockedDashJump: bool = false
-#var unlockedDashClimb: bool = false
 #var unlockedHookShot: bool = false
 #var unlockedSwim: bool = false
 #var unlockedSwimDash: bool = false
@@ -101,9 +110,12 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 	if ability == list.All:
 		unlockedJumpAir = BOOL
 		unlockedJumpConsec = BOOL
-		unlockedDashDown = BOOL
 		unlockedDashSide = BOOL
 		unlockedDashUp = BOOL
+		unlockedDashDown = BOOL
+		unlockedDashWall = BOOL
+		unlockedDashClimb = BOOL
+		unlockedDashJump = BOOL
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
 		unlockedGroundPound = BOOL
@@ -117,6 +129,12 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedDashUp = BOOL
 	elif ability == list.DashDown:
 		unlockedDashDown = BOOL
+	elif ability == list.DashWall:
+		unlockedDashWall = BOOL
+	elif ability == list.DashClimb:
+		unlockedDashClimb = BOOL
+	elif ability == list.DashJump:
+		unlockedDashJump = BOOL
 	elif ability == list.Glide:
 		unlockedGlide = BOOL
 	elif ability == list.Dive:
@@ -134,9 +152,15 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide:
 		return true
+	elif ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
+		return true
 	elif ability == list.DashDown and remainingDash > 0 and unlockedDashDown:
 		return true
-	elif ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
+	elif ability == list.DashWall and remainingDash > 0 and unlockedDashWall:
+		return true
+	elif ability == list.DashClimb and remainingDash > 0 and unlockedDashClimb:
+		return true
+	elif ability == list.DashJump and remainingDash > 0 and unlockedDashJump:
 		return true
 	elif ability == list.Glide and unlockedGlide:
 		return true

@@ -9,10 +9,12 @@ extends Control
 @export var buttonDashSide: Button
 @export var buttonDashUp: Button
 @export var buttonDashDown: Button
+@export var buttonDashWall: Button
+@export var buttonDashClimb: Button
+@export var buttonDashJump: Button
 @export var buttonGroundPound: Button
 @export var buttonGlide: Button
 @export var buttonDive: Button
-
 @export var consecAmount: OptionButton
 
 var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
@@ -29,6 +31,9 @@ func check(BOOL) -> void:
 	buttonDashSide.button_pressed = Abilities.unlockedDashSide
 	buttonDashUp.button_pressed = Abilities.unlockedDashUp
 	buttonDashDown.button_pressed = Abilities.unlockedDashDown
+	buttonDashWall.button_pressed = Abilities.unlockedDashWall
+	buttonDashClimb.button_pressed = Abilities.unlockedDashClimb
+	buttonDashJump.button_pressed = Abilities.unlockedDashJump
 	buttonGroundPound.button_pressed = Abilities.unlockedGroundPound
 	buttonGlide.button_pressed = Abilities.unlockedGlide
 	buttonDive.button_pressed = Abilities.unlockedDive
@@ -63,6 +68,9 @@ func _on_dash_all_toggled(button_pressed: bool) -> void:
 	buttonDashSide.button_pressed = button_pressed
 	buttonDashUp.button_pressed = button_pressed
 	buttonDashDown.button_pressed = button_pressed
+	buttonDashWall.button_pressed = button_pressed
+	buttonDashClimb.button_pressed = button_pressed
+	buttonDashJump.button_pressed = button_pressed
 
 
 func _on_dash_side_toggled(button_pressed: bool) -> void:
@@ -75,6 +83,18 @@ func _on_dash_up_toggled(button_pressed: bool) -> void:
 
 func _on_dash_down_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.DashDown, button_pressed)
+
+
+func _on_dash_wall_toggled(button_pressed: bool) -> void:
+	Abilities.unlock(PlayerAbilities.list.DashWall, button_pressed)
+
+
+func _on_dash_climb_toggled(button_pressed: bool) -> void:
+	Abilities.unlock(PlayerAbilities.list.DashClimb, button_pressed)
+
+
+func _on_dash_jump_toggled(button_pressed: bool) -> void:
+	Abilities.unlock(PlayerAbilities.list.DashJump, button_pressed)
 
 
 func _on_ground_pound_toggled(button_pressed: bool) -> void:

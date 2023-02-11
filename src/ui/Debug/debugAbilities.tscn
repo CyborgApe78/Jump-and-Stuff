@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_0vhhb"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_yobqs"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonGroundPound", "buttonGlide", "buttonDive", "consecAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonGroundPound", "buttonGlide", "buttonDive", "consecAmount")]
 script = ExtResource("1_yobqs")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -13,6 +13,9 @@ buttonDashAll = NodePath("HBoxContainer/Dashes/All")
 buttonDashSide = NodePath("HBoxContainer/Dashes/Side")
 buttonDashUp = NodePath("HBoxContainer/Dashes/Up")
 buttonDashDown = NodePath("HBoxContainer/Dashes/Down")
+buttonDashWall = NodePath("HBoxContainer/Dashes/Wall")
+buttonDashClimb = NodePath("HBoxContainer/Dashes/Climb")
+buttonDashJump = NodePath("HBoxContainer/Dashes/Jump")
 buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
 buttonGlide = NodePath("HBoxContainer/Other/Glide")
 buttonDive = NodePath("HBoxContainer/Other/Dive")
@@ -115,6 +118,24 @@ theme = ExtResource("1_0vhhb")
 toggle_mode = true
 text = "Down"
 
+[node name="Wall" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Wall"
+
+[node name="Climb" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Climb"
+
+[node name="Jump" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Jump"
+
 [node name="Other" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
@@ -150,6 +171,9 @@ text = "Dive"
 [connection signal="toggled" from="HBoxContainer/Dashes/Side" to="." method="_on_dash_side_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Up" to="." method="_on_dash_up_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Down" to="." method="_on_dash_down_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Wall" to="." method="_on_dash_wall_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Climb" to="." method="_on_dash_climb_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Jump" to="." method="_on_dash_jump_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
