@@ -59,12 +59,12 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-#	if player.is_on_wall(): 
-#		if !jumpWallSaveTimer.is_stopped():
-#			return State.JumpWall #TODO: create JumpReflect
-#		elif topSpeed > moveSpeed:
-#			topSpeed = 0
-#			return State.BonkAir
+	if player.is_on_wall(): 
+		if !jumpWallSaveTimer.is_stopped():
+			return State.JumpWall #TODO: create JumpReflect
+		elif topSpeed > moveSpeed:
+			topSpeed = 0
+			return State.BonkAir
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
 			dashBufferState = State.Null
