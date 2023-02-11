@@ -313,8 +313,44 @@ size = Vector2(5, 48)
 [sub_resource type="Animation" id="Animation_xkfx1"]
 resource_name = "walk"
 
+[sub_resource type="Animation" id="Animation_ms661"]
+resource_name = "crouchEnter"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRig")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_crouch"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ho66q"]
+resource_name = "crouchExit"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRig")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_crouch"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
 _data = {
+"crouchEnter": SubResource("Animation_ms661"),
+"crouchExit": SubResource("Animation_ho66q"),
 "walk": SubResource("Animation_xkfx1")
 }
 
