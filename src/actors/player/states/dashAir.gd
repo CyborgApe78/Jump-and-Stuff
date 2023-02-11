@@ -4,8 +4,6 @@ extends PlayerInfo
 #TODO: upgrade to become like bullet from mario
 var duration: float = 0.3
 @export var durationTimer: Timer
-@export var distance: float = 4.0
-@onready var dashSpeed: float = moveSpeed / duration #TODO: based off movespeed
 @export var jumpWallSaveTimer: Timer
 
 #TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump

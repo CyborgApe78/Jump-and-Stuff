@@ -6,7 +6,6 @@ extends PlayerInfo
 @export var floorTime: float = 0.1
 
 
-
 func enter() -> void:
 	abilities.consume(PlayerAbilities.list.Dash, 1)  #TODO: Change to energy
 	player.velocityPrevious = player.velocity

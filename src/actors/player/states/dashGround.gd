@@ -11,10 +11,8 @@ extends PlayerInfo
 var isJumping: bool = false
 var saveTriple: bool
 
-@export var distance: float = 4.0
-@onready var dashSpeed: float = distance / duration #TODO: based off movespeed
-#TODO: upgrade to become like bullet from mario, 3 quick, multi way
-#TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump
+#TODO: reverse ultra jump
+#TODO: save triple or more for super/ultra
 
 
 func enter() -> void:
