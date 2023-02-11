@@ -1,6 +1,6 @@
 extends PlayerInfo
-#TODO: change to jetpack
-#TODO: set up dash amount/duration check
+
+
 #TODO: upgrade to become like bullet from mario
 var duration: float = 0.3
 @export var durationTimer: Timer
@@ -17,7 +17,7 @@ func enter() -> void:
 	timers()
 	player.particles.dash.emitting = true #TODO: use signals to call
 	player.velocity.y = 0
-	player.velocity.x = player.facing * (moveSpeed / duration) #FIXME: to much fast
+	player.velocity.x = player.facing * (dashVelocity / duration)
 	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
 	player.set_collision_mask_value(CollisionLayers.DashSide, false)
 

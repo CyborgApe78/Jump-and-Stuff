@@ -1,6 +1,6 @@
 extends PlayerInfo
-#LOOKAT: maybe remove
-#TODO: set up dash amount/duration check
+
+
 @export var dashJumpTime: float = 0.17
 @onready var dashJumpTimer: Timer = $DashJump
 @export var dashJumpRefreshTime: float = 0.22
@@ -29,7 +29,7 @@ func enter() -> void:
 	durationTimer.start()
 	player.particles.dash.emitting = true #TODO: use signals to call
 	player.velocity.y = 0
-	player.velocity.x = player.facing * ((moveSpeed) / duration) #FIXME: to much fast
+	player.velocity.x = player.facing * (dashVelocity / duration)
 	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
 	player.set_collision_mask_value(CollisionLayers.DashSide, false)
 

@@ -14,7 +14,7 @@ func enter() -> void:
 	durationTimer.start()
 	player.particles.dashDown.emitting = true #TODO: use signals to call
 	player.velocity.x = 0
-	player.velocity.y = moveSpeed / duration #FIXME: to much fast
+	player.velocity.y = dashVelocity / duration
 
 
 func exit() -> void:
