@@ -33,7 +33,7 @@ func enter() -> void:
 		player.velocity = Vector2(moveSpeed * -jumpDirection, jumpVelocity)
 	elif player.moveDirection.x == jumpDirection:
 		EventBus.playerInfo.emit("Wall Towards")
-		player.velocity = Vector2(50 * jumpDirection, jumpVelocity * 0.8)
+		player.velocity = Vector2(50 * jumpDirection, jumpVelocity)
 		wallHop = true
 	
 	player.particles.jumpWall.restart() #TODO: get direction from wall direction
@@ -48,7 +48,11 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide_rotation()
-	
+	#FIXME: create full velocity logic, currently can back to wall sometimes
+	if player.moveDirection.x != 0:
+		apply_acceleration(accelerationAir, delta)
+	elif player.moveDirection.x == 0:
+		apply_friction(frictionAir, delta)
 	gravity_logic(gravityJump, delta)
 	
 	#TODO: air velocity func
