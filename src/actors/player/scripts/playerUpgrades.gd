@@ -1,7 +1,7 @@
 extends Resource
 class_name PlayerUpgrades
 
-#TODO: PSpeed/Speedboost
+#TODO: PSpeed/Speedboost, light
 
 var unlockedProtectionHeat: bool = false:
 	set(v):

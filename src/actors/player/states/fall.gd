@@ -130,7 +130,7 @@ func state_check(delta: float) -> int:
 				return State.Walk
 			else:
 				return State.Idle
-	if dashBufferState != State.Null:
+	if dashBufferState != State.Null: #TOOD: if !coyoteWallTimer.is_stopped() return WallDash, else Side Dash
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
 			dashBufferState = State.Null
 			return State.DashAir
