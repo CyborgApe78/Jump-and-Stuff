@@ -3,15 +3,17 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugUpgrades.gd" id="1_8865c"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_k8gox"]
 
-[node name="Upgrades" type="VBoxContainer" node_paths=PackedStringArray("buttonUpgradeAll", "buttonProtectionAll", "buttonProtectionHeat", "buttonProtectionCold", "buttonProtectionWater", "buttonProtectionAcid", "buttonProtectionLava")]
+[node name="Upgrades" type="VBoxContainer" node_paths=PackedStringArray("buttonUpgradeAll", "buttonProtectionHeat", "buttonProtectionCold", "buttonProtectionWater", "buttonProtectionAcid", "buttonProtectionLava", "buttonDashChain", "buttonLight", "dashChainAmount")]
 script = ExtResource("1_8865c")
 buttonUpgradeAll = NodePath("All")
-buttonProtectionAll = NodePath("HBoxContainer/Protection/All")
 buttonProtectionHeat = NodePath("HBoxContainer/Protection/Heat")
 buttonProtectionCold = NodePath("HBoxContainer/Protection/Cold")
 buttonProtectionWater = NodePath("HBoxContainer/Protection/Water")
 buttonProtectionAcid = NodePath("HBoxContainer/Protection/Acid")
 buttonProtectionLava = NodePath("HBoxContainer/Protection/Lava")
+buttonDashChain = NodePath("HBoxContainer/PlaceHolder/DashChain/DashChain")
+buttonLight = NodePath("HBoxContainer/PlaceHolder/Light")
+dashChainAmount = NodePath("HBoxContainer/PlaceHolder/DashChain/Amount")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -35,12 +37,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Protection"
 horizontal_alignment = 1
-
-[node name="All" type="Button" parent="HBoxContainer/Protection"]
-layout_mode = 2
-theme = ExtResource("1_k8gox")
-toggle_mode = true
-text = "All"
 
 [node name="Heat" type="Button" parent="HBoxContainer/Protection"]
 layout_mode = 2
@@ -77,19 +73,49 @@ layout_mode = 2
 
 [node name="Category" type="Label" parent="HBoxContainer/PlaceHolder"]
 layout_mode = 2
-text = "PlaceHolder"
+text = "Other"
 horizontal_alignment = 1
 
-[node name="All" type="Button" parent="HBoxContainer/PlaceHolder"]
+[node name="Light" type="Button" parent="HBoxContainer/PlaceHolder"]
 layout_mode = 2
 theme = ExtResource("1_k8gox")
 toggle_mode = true
-text = "All"
+text = "Light"
+
+[node name="DashChain" type="VBoxContainer" parent="HBoxContainer/PlaceHolder"]
+layout_mode = 2
+
+[node name="DashChain" type="Button" parent="HBoxContainer/PlaceHolder/DashChain"]
+layout_mode = 2
+theme = ExtResource("1_k8gox")
+toggle_mode = true
+text = "Dash Chain"
+
+[node name="Label" type="Label" parent="HBoxContainer/PlaceHolder/DashChain"]
+layout_mode = 2
+text = "Amount"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="HBoxContainer/PlaceHolder/DashChain"]
+layout_mode = 2
+alignment = 1
+item_count = 4
+selected = 0
+popup/item_0/text = "1"
+popup/item_0/id = 1
+popup/item_1/text = "2"
+popup/item_1/id = 2
+popup/item_2/text = "3"
+popup/item_2/id = 3
+popup/item_3/text = "4"
+popup/item_3/id = 4
 
 [connection signal="toggled" from="All" to="." method="_on_upgrades_all_toggled"]
-[connection signal="toggled" from="HBoxContainer/Protection/All" to="." method="_on_protection_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Protection/Heat" to="." method="_on_protection_heat_toggled"]
 [connection signal="toggled" from="HBoxContainer/Protection/Cold" to="." method="_on_protection_cold_toggled"]
 [connection signal="toggled" from="HBoxContainer/Protection/Water" to="." method="_on_protection_water_toggled"]
 [connection signal="toggled" from="HBoxContainer/Protection/Acid" to="." method="_on_protection_acid_toggled"]
 [connection signal="toggled" from="HBoxContainer/Protection/Lava" to="." method="_on_protection_lava_toggled"]
+[connection signal="toggled" from="HBoxContainer/PlaceHolder/Light" to="." method="_on_light_toggled"]
+[connection signal="toggled" from="HBoxContainer/PlaceHolder/DashChain/DashChain" to="." method="_on_dash_chain_toggled"]
+[connection signal="item_selected" from="HBoxContainer/PlaceHolder/DashChain/Amount" to="." method="_on_dash_chain_amount_item_selected"]

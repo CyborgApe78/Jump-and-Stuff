@@ -83,6 +83,18 @@ from fancy pants
 	snow board (burrow), free movement, vs dash passage that locks controls
 
 
+Upgrades:
+	protection:
+		protection from hazards
+		heat, cold, water, acid, lava
+	dash chain:
+		chain dashes without using energy
+		like:
+			metroid dread 3 dash
+	light:
+		illuminate around character
+
+
 Checkpoints
 	You can save the last position the player was on the ground as last safe position to teleport back to after death. 
 		Saving the previous one lets you keep a back up location if the player dies instantly

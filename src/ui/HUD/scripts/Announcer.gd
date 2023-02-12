@@ -102,8 +102,6 @@ func announce_ability_unlock(ability: int) -> void:
 func announce_upgrade_unlock(upgrade: int) -> void:
 	if upgrade == PlayerUpgrades.list.All:
 		announce(str("The whole enchilada unlocked"))
-	elif upgrade == PlayerUpgrades.list.protectionAll:
-		announce(str("All Protections Unlocked"))
 	elif upgrade == PlayerUpgrades.list.protectionHeat:
 		announce(str("Heat Protection Unlocked"))
 	elif upgrade == PlayerUpgrades.list.protectionCold:

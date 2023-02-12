@@ -7,7 +7,7 @@ var unlockedProtectionHeat: bool = false:
 	set(v):
 		unlockedProtectionHeat = v
 		if unlockedProtectionHeat:
-			EventBus.playerUpgradeUnlock.emit(list.protectionHeat)
+			EventBus.playerUpgradeUnlock.emit(list.protectionHeat) #TODO: move to unlocker
 
 var unlockedProtectionCold: bool = false:
 	set(v):
@@ -33,27 +33,39 @@ var unlockedProtectionLava: bool = false:
 		if unlockedProtectionLava:
 			EventBus.playerUpgradeUnlock.emit(list.protectionLava)
 
+var unlockedDashChain: bool = false:
+	set(v):
+		unlockedDashChain = v
+		if unlockedDashChain:
+			EventBus.playerUpgradeUnlock.emit(list.dashChain)
+
+var unlockedLight: bool = false:
+	set(v):
+		unlockedLight = v
+		if unlockedLight:
+			EventBus.playerUpgradeUnlock.emit(list.light)
+
+var maxDashChain: int = 1
+
+var currentDashChain: int = 0:
+	set(v):
+		currentDashChain = clamp(v, 0, maxDashChain)
 
 enum list {
 	Null,
-	All,
-	protectionAll,
+	All, #LOOKAT: Remove
 	protectionHeat,
 	protectionCold,
 	protectionWater,
 	protectionAcid,
 	protectionLava,
+	dashChain, 
+	light,
 	}
 
 
 func unlock(upgrade: int, BOOL:bool) -> void:
 	if upgrade == list.All:
-		unlockedProtectionHeat = BOOL
-		unlockedProtectionCold = BOOL
-		unlockedProtectionWater = BOOL
-		unlockedProtectionAcid = BOOL
-		unlockedProtectionLava = BOOL
-	elif upgrade == list.protectionAll:
 		unlockedProtectionHeat = BOOL
 		unlockedProtectionCold = BOOL
 		unlockedProtectionWater = BOOL
@@ -69,5 +81,9 @@ func unlock(upgrade: int, BOOL:bool) -> void:
 		unlockedProtectionAcid = BOOL
 	elif upgrade == list.protectionLava:
 		unlockedProtectionLava = BOOL
+	elif upgrade == list.dashChain:
+		unlockedDashChain = BOOL
+	elif upgrade == list.light:
+		unlockedLight = BOOL
 	else:
-		EventBus.error.emit("Null Upgrade Unlocked " + str(upgrade) + " " + str(BOOL))
+		EventBus.error.emit("Null Upgrade Unlocked " + str(upgrade) + " " + str(BOOL)) #TODO get name
