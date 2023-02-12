@@ -314,9 +314,6 @@ hue_variation_max = 0.2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
 size = Vector2(5, 48)
 
-[sub_resource type="Animation" id="Animation_xkfx1"]
-resource_name = "walk"
-
 [sub_resource type="Animation" id="Animation_ms661"]
 resource_name = "crouchEnter"
 tracks/0/type = "method"
@@ -350,6 +347,9 @@ tracks/0/keys = {
 "method": &"to_crouch"
 }]
 }
+
+[sub_resource type="Animation" id="Animation_xkfx1"]
+resource_name = "walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
 _data = {

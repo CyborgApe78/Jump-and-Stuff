@@ -19,6 +19,7 @@ extends Control
 @export var consecAmount: OptionButton
 
 var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
+var Stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 
 
 func _ready() -> void:
@@ -26,7 +27,6 @@ func _ready() -> void:
 
 
 func check(BOOL) -> void:
-	consecAmount.selected = Abilities.maxJumpConsec -1
 	buttonJumpAir.button_pressed = Abilities.unlockedJumpAir
 	buttonJumpConsec.button_pressed = Abilities.unlockedJumpConsec
 	buttonDashSide.button_pressed = Abilities.unlockedDashSide
@@ -39,6 +39,8 @@ func check(BOOL) -> void:
 	buttonGroundPound.button_pressed = Abilities.unlockedGroundPound
 	buttonGlide.button_pressed = Abilities.unlockedGlide
 	buttonDive.button_pressed = Abilities.unlockedDive
+	
+	consecAmount.selected = Abilities.maxJumpConsec -1
 
 
 func _on_all_toggled(button_pressed: bool) -> void:

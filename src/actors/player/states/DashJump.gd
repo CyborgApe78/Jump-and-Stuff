@@ -1,7 +1,7 @@
 extends PlayerInfo
+#INGGAME: Rocket Jump, Shinespark inspired
 
-#INGGAME: Rocket Jump
-#TODO: needs to be charged from PSpeed
+#TODO: needs to be charged from SpeedBoost, 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 
@@ -11,7 +11,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	timers()
 	player.particles.dashUp.emitting = true #TODO: use signals to call
-	player.velocity = player.aimDirection * (dashVelocity * 1.6 / duration)
+	player.velocity = player.aimDirection * (dashVelocity * 1.6 / duration) #TODO: delay for aiming
 	player.set_collision_layer_value(CollisionLayers.DashUp, true) #TODO: change to function
 	player.set_collision_mask_value(CollisionLayers.DashUp, false)
 

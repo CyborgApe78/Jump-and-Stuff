@@ -1,5 +1,7 @@
 #TODO 
 
+save states for testing 
+
 Abilitie
 	Dash
 		Jump
@@ -13,6 +15,7 @@ Abilitie
 		Pull to target
 		Ori like, some targets stop, other pass through
 		Some targets you can swing off
+		able to shoot off screen
 	Swimming
 		upgrades to go through different types
 		water, lava, poison
