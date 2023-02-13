@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: if moveDirection.x != 0, spin jump, metroid like
 
 func enter() -> void:
 	EventBus.actionAnnounce.emit("Boing")

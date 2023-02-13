@@ -1,6 +1,6 @@
 extends PlayerInfo
 #INGGAME: Rocket Jump, Shinespark inspired
-
+#TODO: remove duration
 #TODO: needs to be charged from SpeedBoost, 
 #TODO: delay for aiming
 @export var duration: float = 0.3
@@ -36,6 +36,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	#TODO: less states to go into
 	if Input.is_action_just_pressed("jump"):
 		if abilities.can_use(PlayerAbilities.list.JumpAir): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
@@ -50,12 +51,14 @@ func handle_input(event: InputEvent) -> int:
 		return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
+#	if Input.is_action_just_pressed("grapple hook"): #TODO
+#		return State.GrappleHook
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_ceiling(): #TODO: bonk ceiling
+	if player.is_on_ceiling() or player.is_on_wall(): #TODO: autograb walls? or make player save from bonk
 		return State.Fall
 	if durationTimer.is_stopped():
 		return State.Fall
