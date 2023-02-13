@@ -100,6 +100,8 @@ func get_move_input() -> void:
 	
 	if moveDirection != Vector2.ZERO:
 		lastMoveDirection = moveDirection
+	
+	aimDirection = aimDirection.round()
 
 
 func facing_logic():
