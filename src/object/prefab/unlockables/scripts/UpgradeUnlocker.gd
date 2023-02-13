@@ -1,5 +1,7 @@
 extends UnlockableBase
 
+#TODO: make one for each. stop exporting
+
 @onready var Upgrades: Resource = preload("res://src/actors/player/resources/playerUpgrades.tres")
 @export var upgrade: PlayerUpgrades.list
 @export var unlock: bool = true

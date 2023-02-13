@@ -89,7 +89,7 @@ func get_move_input() -> void:
 	aimStrength = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 		
 	moveStrength = inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
-	moveDirection = moveStrength.normalized().round()
+	moveDirection = moveStrength.round()
 	
 	if aimStrength.length() > deadzoneRadius:
 		aimDirection = aimStrength

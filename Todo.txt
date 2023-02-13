@@ -1,12 +1,24 @@
 #TODO 
 
 save states for testing 
+3x1 sprite
+	3 for most
+	2 for dash
+	1 for slide and roll
+
+ledge grab, but needs to auto move when holding direction
+step over 1 tall ground
 
 Abilitie
 	Dash
-		Jump
-			Ori charge jump
-			Metroid shinespark
+		Jump "Rocket Junmp"
+			Ori charge jump / Metroid shinespark
+			needs speed boost to charge
+			crouched/ball and air version
+			grapple and bash redirect in air
+			holding grab into wall can redirect
+			button combo for instant
+			slope reset 
 		Wall Climb
 			gaucamelee donkey 
 		Wall dash
