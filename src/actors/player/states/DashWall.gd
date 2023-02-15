@@ -4,13 +4,14 @@ extends PlayerInfo
 var duration: float = 0.3
 @export var jumpWallSaveTimer: Timer
 var dashDirection: int
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
 	dashDirection = -player.wall_detection(30)
 	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to energy
 	player.velocityPrevious = player.velocity
-	player.particles.dash.emitting = true #TODO: use signals to call
+	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = dashDirection * (dashVelocity / duration)
 	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
@@ -18,7 +19,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	player.particles.dash.emitting = false 
+	particles.emitting = false 
 	if player.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x
 	#TODO: add to other classes

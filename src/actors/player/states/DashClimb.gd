@@ -2,12 +2,13 @@ extends PlayerInfo
 
 #FIXME: use wall direction to control particles
 var duration: float = 0.3
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
 	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to energy
 	player.velocityPrevious = player.velocity
-	player.particles.dashUp.emitting = true #TODO: use signals to call
+	particles.emitting = true
 	player.velocity.y = -dashVelocity / duration
 	player.velocity.x = 0
 	player.set_collision_layer_value(CollisionLayers.DashUp, true) #TODO: change to function
@@ -15,7 +16,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	player.particles.dashUp.emitting = false 
+	particles.emitting = false 
 	#TODO: add to other classes
 	player.set_collision_layer_value(CollisionLayers.DashUp, false) #TODO: make function to turn off raycasts
 	player.set_collision_mask_value(CollisionLayers.DashUp, true)

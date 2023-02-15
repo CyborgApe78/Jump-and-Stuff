@@ -419,19 +419,19 @@ width = 4.0
 [node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "dashUp", "dashDown", "wallSlide", "jumpWall")]
 position = Vector2(0, 24)
 script = ExtResource("3_0fvjs")
-walk = NodePath("ParticlesWalking")
-skid = NodePath("ParticlesSkid")
+walk = NodePath("Walking")
+skid = NodePath("Skid")
 land = NodePath("ParticlesLand")
-jump = NodePath("ParticlesJump")
-jumpDouble = NodePath("ParticlesJumpDouble")
-jumpTriple = NodePath("ParticlesJumpTriple")
-dash = NodePath("ParticlesDash")
-dashUp = NodePath("ParticlesDashUp")
-dashDown = NodePath("ParticlesDashDown")
-wallSlide = NodePath("ParticlesWallSlide")
-jumpWall = NodePath("ParticlesJumpWall")
+jump = NodePath("Jump")
+jumpDouble = NodePath("JumpDouble")
+jumpTriple = NodePath("JumpTriple")
+dash = NodePath("Dash")
+dashUp = NodePath("DashUp")
+dashDown = NodePath("DashDown")
+wallSlide = NodePath("WallSlide")
+jumpWall = NodePath("JumpWall")
 
-[node name="ParticlesWalking" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="Walking" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(-16, 0)
 emitting = false
 amount = 30
@@ -439,7 +439,7 @@ process_material = SubResource("ParticleProcessMaterial_salwb")
 speed_scale = 2.0
 explosiveness = 0.17
 
-[node name="ParticlesSkid" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="Skid" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(-16, 0)
 emitting = false
 amount = 15
@@ -458,7 +458,7 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 
-[node name="ParticlesJump" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="Jump" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 emitting = false
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_w0buo")
@@ -467,7 +467,7 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 
-[node name="ParticlesJumpDouble" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="JumpDouble" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_3sxjf")
@@ -476,7 +476,7 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 0.9
 
-[node name="ParticlesJumpTriple" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="JumpTriple" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_j1mxi")
@@ -484,7 +484,7 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 0.7
 
-[node name="ParticlesDash" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="Dash" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(-15, -32)
 emitting = false
 amount = 300
@@ -492,14 +492,14 @@ process_material = SubResource("ParticleProcessMaterial_fn840")
 lifetime = 0.5
 randomness = 0.13
 
-[node name="ParticlesDashUp" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="DashUp" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 emitting = false
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_8c07u")
 lifetime = 0.5
 randomness = 0.13
 
-[node name="ParticlesDashDown" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="DashDown" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(1, -63)
 emitting = false
 amount = 300
@@ -507,7 +507,7 @@ process_material = SubResource("ParticleProcessMaterial_atob2")
 lifetime = 0.5
 randomness = 0.13
 
-[node name="ParticlesWallSlide" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="WallSlide" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(16, -32)
 emitting = false
 amount = 80
@@ -515,7 +515,7 @@ process_material = SubResource("ParticleProcessMaterial_n6t6x")
 speed_scale = 2.0
 explosiveness = 0.17
 
-[node name="ParticlesWallClimb" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="WallClimb" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(15, -32)
 emitting = false
 amount = 80
@@ -523,7 +523,7 @@ process_material = SubResource("ParticleProcessMaterial_xa8qa")
 speed_scale = 2.0
 explosiveness = 0.55
 
-[node name="ParticlesJumpWall" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+[node name="JumpWall" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(-16, -16)
 emitting = false
 amount = 80
@@ -542,11 +542,13 @@ script = ExtResource("5_86xj5")
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("6_uc50q")
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("6_w0a7b")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Walking")
 
-[node name="Skid" type="Node" parent="StateMachine"]
+[node name="Skid" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("8_p04nj")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Skid")
 
 [node name="Crouch" type="Node" parent="StateMachine"]
 script = ExtResource("10_tmkpe")
@@ -554,30 +556,36 @@ script = ExtResource("10_tmkpe")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("7_rx8in")
 
-[node name="Jump" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("8_8a3ob")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
 
 [node name="JumpAir" type="Node" parent="StateMachine"]
 script = ExtResource("11_vusvg")
 
-[node name="JumpConsec" type="Node" parent="StateMachine"]
+[node name="JumpConsec" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("11_fwped")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpDouble")
 
-[node name="JumpFlip" type="Node" parent="StateMachine"]
+[node name="JumpFlip" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("14_eoakl")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
-[node name="JumpLong" type="Node" parent="StateMachine"]
+[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("16_ekg3a")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
-[node name="JumpCrouch" type="Node" parent="StateMachine"]
+[node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("16_4vuh4")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
 [node name="JumpApex" type="Node" parent="StateMachine"]
 script = ExtResource("14_gdhgo")
 
-[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerLock")]
+[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerLock", "particles")]
 script = ExtResource("17_lunng")
 timerLock = NodePath("Timer")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpWall")
 
 [node name="Timer" type="Timer" parent="StateMachine/JumpWall"]
 wait_time = 0.1
@@ -621,17 +629,19 @@ holdTimer = NodePath("Hold")
 [node name="Hold" type="Timer" parent="StateMachine/WallLand"]
 one_shot = true
 
-[node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
+[node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "particles")]
 script = ExtResource("22_jx1yk")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
 [node name="WallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
 script = ExtResource("23_fbyj1")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
-[node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
+[node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
 script = ExtResource("22_pfhk2")
 durationTimer = NodePath("../../Timers/DashDuration")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 
 [node name="DashJump" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
@@ -644,30 +654,36 @@ script = ExtResource("23_47ykn")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/ParticlesDash")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 
-[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
+[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
 script = ExtResource("25_tbkdj")
 durationTimer = NodePath("../../Timers/DashDuration")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
 
-[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
+[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
 script = ExtResource("25_pbxll")
 durationTimer = NodePath("../../Timers/DashDuration")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashDown")
 
-[node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer")]
+[node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer", "particles")]
 script = ExtResource("31_7ryi3")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 
-[node name="DashClimb" type="Node" parent="StateMachine"]
+[node name="DashClimb" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("32_7x4nx")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
 
-[node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
+[node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
 script = ExtResource("33_2q3ab")
 durationTimer = NodePath("../../Timers/DashDuration")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
 
-[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
+[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
 script = ExtResource("31_wvx7d")
 durationTimer = NodePath("../../Timers/DashDuration")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")

@@ -1,6 +1,6 @@
 extends Node2D
 #TODO: landed particles need to be based on velocity
-#TODO: export all particles for states
+#TODO: turn particles into scenes and color is set when called, us func emit_particles(particle, color) 
 
 @export var walk: GPUParticles2D
 @export var skid: GPUParticles2D

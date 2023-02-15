@@ -2,6 +2,7 @@ extends PlayerInfo
 
 
 @export var jumpModifier: float = 0.25
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
@@ -11,7 +12,7 @@ func enter() -> void:
 	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = 0.25 * abilities.currentJumpConsec + 1
 	player.sounds.jump.play()
-	player.particles.jumpDouble.restart()
+	particles.restart() #TODO: adjust based on consec number
 	player.velocity.y = jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)
 	player.timers.coyoteJump.stop()
 	player.timers.consecutiveJump.stop()

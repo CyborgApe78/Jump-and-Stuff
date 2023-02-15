@@ -1,16 +1,17 @@
 extends PlayerInfo
 
 @export var coyoteJumpWallTimer: Timer
+@export var particles: GPUParticles2D
 
 func enter() -> void:
 	player.wall_detection()
 	player.velocityPrevious = player.velocity
 	player.velocity.y = 0
-	player.particles.wallSlide.emitting = true #TODO: use signals to call
+	particles.emitting = true
 
 
 func exit() -> void:
-	player.particles.wallSlide.emitting = false #TODO: use signals to call
+	player.particles.wallSlide.emitting = false
 
 
 func physics(delta) -> void:

@@ -2,6 +2,7 @@ extends PlayerInfo
 #LOOKAT: maybe a charge jump
 
 @export var jumpModifier: float = 1.4
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
@@ -10,7 +11,7 @@ func enter() -> void:
 	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = jumpModifier
 	player.sounds.jump.play()
-	player.particles.jumpTriple.restart()
+	particles.restart()
 	player.velocity.y = jumpVelocity * jumpModifier
 
 

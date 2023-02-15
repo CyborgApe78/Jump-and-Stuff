@@ -5,20 +5,21 @@ extends PlayerInfo
 #TODO: delay for aiming
 @export var duration: float = 0.3
 @export var durationTimer: Timer
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
 	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to energy
 	player.velocityPrevious = player.velocity
 	timers()
-	player.particles.dashUp.emitting = true #TODO: use signals to call
+	particles.emitting = true
 	player.velocity = player.aimDirection * (dashVelocity * 1.6 / duration) #TODO: find a more forgiving way to get 8 directions
 	player.set_collision_layer_value(CollisionLayers.DashUp, true) #TODO: change to function
 	player.set_collision_mask_value(CollisionLayers.DashUp, false)
 
 
 func exit() -> void:
-	player.particles.dashUp.emitting = false #TODO: use signals to call
+	particles.emitting = false
 	player.set_collision_layer_value(CollisionLayers.DashUp, false) #TODO: make function to turn off raycasts
 	player.set_collision_mask_value(CollisionLayers.DashUp, true)
 

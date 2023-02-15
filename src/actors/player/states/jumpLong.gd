@@ -6,6 +6,7 @@ extends PlayerInfo
 
 @export var jumpModifier: float = 0.9
 @export var velocityModifier: float = 1.35
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
@@ -14,7 +15,7 @@ func enter() -> void:
 	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = jumpModifier
 	player.sounds.jump.play()
-	player.particles.jumpTriple.restart()
+	particles.restart()
 	player.velocity.y = jumpVelocity * jumpModifier
 	player.velocity.x = moveSpeed * velocityModifier * player.facing
 

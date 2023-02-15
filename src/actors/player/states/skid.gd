@@ -7,11 +7,12 @@ var frictionSkid: float = .8 * Util.tileSize
 var skidTime: float
 @export var skidLockDuration: float = 0.2 
 var skidLockTime: float #TODO: make timer
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
 	player.sounds.skid.play()
-	player.particles.skid.restart()
+	particles.restart()
 	skidTime = skidDuration
 	skidLockTime = skidLockDuration
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT) #TODO: make based on speed as well

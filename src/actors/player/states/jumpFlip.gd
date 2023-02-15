@@ -3,6 +3,7 @@ extends PlayerInfo
 
 @export var jumpModifier: float = 1.35
 @export var transTime: float = 0.5
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
@@ -11,7 +12,7 @@ func enter() -> void:
 	neutral_move_direction_logic()
 	player.sounds.jump.pitch_scale = jumpModifier
 	player.sounds.jump.play()
-	player.particles.jumpTriple.restart()
+	particles.restart()
 	player.velocity.x = -player.velocity.x
 	player.velocity.y = jumpVelocity * jumpModifier
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)

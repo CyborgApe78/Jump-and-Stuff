@@ -4,6 +4,7 @@ extends PlayerInfo
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
+@export var particles: GPUParticles2D
 
 var saveTriple: bool
 
@@ -13,7 +14,7 @@ func enter() -> void:
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	durationTimer.wait_time = duration
 	durationTimer.start()
-	player.particles.dash.emitting = true #TODO: use signals to call
+	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
 	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
@@ -21,7 +22,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	player.particles.dash.emitting = false #TODO: use signals to call
+	particles.emitting = false
 	
 	player.set_collision_layer_value(CollisionLayers.DashSide, false)
 	player.set_collision_mask_value(CollisionLayers.DashSide, true)

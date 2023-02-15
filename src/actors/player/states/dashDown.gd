@@ -4,6 +4,7 @@ extends PlayerInfo
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var floorTime: float = 0.1
+@export var particles: GPUParticles2D
 
 
 func enter() -> void:
@@ -11,7 +12,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	durationTimer.wait_time = duration
 	durationTimer.start()
-	player.particles.dashDown.emitting = true #TODO: use signals to call
+	particles.emitting = true
 	player.velocity.x = 0
 	player.velocity.y = dashVelocity / duration
 	player.set_collision_layer_value(CollisionLayers.DashDown, true) #TODO: change to function
@@ -19,7 +20,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	player.particles.dashDown.emitting = false #TODO: use signals to call
+	particles.emitting = false
 	player.velocity.y = player.velocity.y/4
 	player.set_collision_layer_value(CollisionLayers.DashDown, false)
 	player.set_collision_mask_value(CollisionLayers.DashDown, true)

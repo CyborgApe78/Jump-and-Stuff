@@ -5,6 +5,7 @@ extends PlayerInfo
 var currentBonkTime: float
 @export var bonkTime: float = 1.5
 @export var bounceBack: int = 400
+@export var particles: GPUParticles2D
 var landed: bool
 #TODO:variables for amimation
 

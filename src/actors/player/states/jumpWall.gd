@@ -2,6 +2,7 @@ extends PlayerInfo
 #TODO: create place to test jumps
 
 @export var timerLock: Timer
+@export var particles: GPUParticles2D
 
 var wallHop: bool
 var jumpDirection: int #TODO: change to jumpDirection 
@@ -36,7 +37,7 @@ func enter() -> void:
 		player.velocity = Vector2(50 * jumpDirection, jumpVelocity)
 		wallHop = true
 	
-	player.particles.jumpWall.restart() #TODO: get direction from wall direction
+	particles.restart() #TODO: get direction from wall direction
 
 
 func exit() -> void:

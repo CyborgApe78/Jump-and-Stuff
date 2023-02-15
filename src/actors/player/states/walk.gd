@@ -4,16 +4,17 @@ extends PlayerInfo
 #TODO: get friction from enviroment
 #FIXME: pressing up sends to skid
 
+@export var particles: GPUParticles2D
 @export var skidPercent: float = 1.2
 var skidding: bool = false
 
 func enter() -> void:
-	player.particles.walk.emitting = true
+	particles.emitting = true
 	skidding = false
 
 
 func exit() -> void:
-	player.particles.walk.emitting = false
+	particles.emitting = false
 	player.sounds.walk.stop()
 
 

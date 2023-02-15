@@ -1,12 +1,13 @@
 extends PlayerInfo
 
 #TODO: if moveDirection.x != 0, spin jump, metroid like
+@export var particles: GPUParticles2D
 
 func enter() -> void:
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
-	player.particles.jump.restart()
+	particles.restart()
 	player.sounds.jump.play()
 	player.velocity.y = jumpVelocity
 	player.timers.coyoteJump.stop()

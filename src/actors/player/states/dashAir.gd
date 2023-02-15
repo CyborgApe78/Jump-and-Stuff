@@ -96,7 +96,7 @@ func state_check(delta: float) -> int:
 				return State.DashUp
 		if dashBufferState == State.DashDown:
 			if chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
-				abilities.remainingChain
+#				#TODO: abilities.remainingChain -= 1
 				return State.DashDown
 			elif abilities.can_use(PlayerAbilities.list.DashDown):
 				return State.DashDown
