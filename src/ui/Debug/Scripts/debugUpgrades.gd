@@ -12,6 +12,7 @@ extends Control
 @export var dashChainAmount: OptionButton
 
 var Upgrades: Resource = preload("res://src/actors/player/resources/playerUpgrades.tres")
+var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var Stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 
 
@@ -28,7 +29,7 @@ func check(BOOL) -> void:
 	buttonDashChain.button_pressed = Upgrades.unlockedDashChain
 	buttonLight.button_pressed = Upgrades.unlockedLight
 	
-	dashChainAmount.selected = Upgrades.maxDashChain -1 #TODO: move to stats
+	dashChainAmount.selected = Abilities.maxDashChain -1 #TODO: move to stats
 
 
 func _on_upgrades_all_toggled(button_pressed: bool) -> void:

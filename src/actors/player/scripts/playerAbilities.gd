@@ -67,6 +67,7 @@ var unlockedSlide: bool = false:
 #TODO: change to energy
 var maxJumpAir: int = 1
 var maxDash: int = 1
+var maxDashChain: int = 2
 var maxJumpConsec: int = 1
 
 var currentJumpConsec: int = 0:
@@ -80,6 +81,10 @@ var remainingJumpAir: int = 0:
 var remainingDash: int = 0:
 	set(v):
 		remainingDash = clamp(v, 0, maxDash)
+
+var currentDashChain: int = 0:
+	set(v):
+		currentDashChain = clamp(v, 0, maxDashChain)
 
 #FIXME: look at making specific lists for specific funcs
 enum list { #TODO: jump flip, etc
@@ -158,7 +163,7 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.JumpConsec and currentJumpConsec < maxJumpConsec and unlockedJumpConsec:
 		return true
-	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide:
+	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide: #TODO: make eif for remainingDash > 0
 		return true
 	elif ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
 		return true
@@ -181,6 +186,16 @@ func can_use(ability: int) -> bool:
 	
 	return false
 
+func chain_check(ability: int) -> bool: #TODO: need to remove and reset currentChain
+	if currentDashChain < maxDashChain:
+		if ability == list.DashSide and unlockedDashSide:
+			return true
+		elif ability == list.DashUp and unlockedDashUp:
+			return true
+		elif ability == list.DashDown and unlockedDashDown:
+			return true
+	
+	return false
 
 func reset(ability: int) -> void:
 	if ability == list.All:

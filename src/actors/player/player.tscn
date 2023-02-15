@@ -639,9 +639,10 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "jumpWallSaveTimer", "particles")]
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "jumpWallSaveTimer", "particles")]
 script = ExtResource("23_47ykn")
 durationTimer = NodePath("../../Timers/DashDuration")
+chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/ParticlesDash")
 
@@ -737,6 +738,14 @@ one_shot = true
 
 [node name="DashDuration" type="Timer" parent="Timers"]
 wait_time = 0.3
+one_shot = true
+
+[node name="DashChain" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="Timers"]
+wait_time = 0.2
 one_shot = true
 
 [node name="Sounds" type="Node" parent="."]

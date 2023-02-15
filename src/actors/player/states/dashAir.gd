@@ -3,6 +3,7 @@ extends PlayerInfo
 
 var duration: float = 0.3
 @export var durationTimer: Timer
+@export var chainTimer: Timer #TODO: visual feedback when chain can be used
 @export var jumpWallSaveTimer: Timer
 @export var particles: GPUParticles2D #TODO: make rest of particles for states like this
 
@@ -10,7 +11,7 @@ var duration: float = 0.3
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to energy
+	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: move to state calling the change
 	player.velocityPrevious = player.velocity
 	timers()
 	particles.emitting = true 
@@ -61,7 +62,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.Dive
 	if Input.is_action_just_pressed("crouch") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash"): #TODO: cd from normal dash, but can still chain them
 		dash_pressed_buffer()
 
 	return State.Null
@@ -81,12 +82,24 @@ func state_check(delta: float) -> int:
 		else:
 			return State.Fall
 	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			return State.DashDown
+		if dashBufferState == State.DashAir:
+			if chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
+				#TODO: currentChain +1
+				return State.DashAir
+			elif abilities.can_use(PlayerAbilities.list.DashSide):
+				#TODO: abilities.consume(PlayerAbilities.list.Dash, 1)
+				return State.DashAir
+		if dashBufferState == State.DashUp:
+			if chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
+				return State.DashUp
+			elif abilities.can_use(PlayerAbilities.list.DashUp):
+				return State.DashUp
+		if dashBufferState == State.DashDown:
+			if chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
+				abilities.remainingChain
+				return State.DashDown
+			elif abilities.can_use(PlayerAbilities.list.DashDown):
+				return State.DashDown
 
 	return State.Null
 
@@ -94,3 +107,5 @@ func state_check(delta: float) -> int:
 func timers() -> void:
 	durationTimer.wait_time = duration
 	durationTimer.start()
+	chainTimer.start()
+	

@@ -45,11 +45,11 @@ var unlockedLight: bool = false:
 		if unlockedLight:
 			EventBus.playerUpgradeUnlock.emit(list.light)
 
-var maxDashChain: int = 1
 
-var currentDashChain: int = 0:
-	set(v):
-		currentDashChain = clamp(v, 0, maxDashChain)
+#var maxJumpAir: int = 1 #TODO: move to here
+#var maxDash: int = 1
+#var maxDashChain: int = 2
+#var maxJumpConsec: int = 1 #TODO: move to here
 
 enum list {
 	Null,
