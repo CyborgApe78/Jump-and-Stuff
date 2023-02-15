@@ -639,10 +639,11 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "jumpWallSaveTimer")]
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "jumpWallSaveTimer", "particles")]
 script = ExtResource("23_47ykn")
 durationTimer = NodePath("../../Timers/DashDuration")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/ParticlesDash")
 
 [node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer")]
 script = ExtResource("25_tbkdj")

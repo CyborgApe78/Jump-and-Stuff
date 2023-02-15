@@ -4,6 +4,7 @@ extends PlayerInfo
 var duration: float = 0.3
 @export var durationTimer: Timer
 @export var jumpWallSaveTimer: Timer
+@export var particles: GPUParticles2D #TODO: make rest of particles for states like this
 
 #TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump
 
@@ -12,7 +13,7 @@ func enter() -> void:
 	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to energy
 	player.velocityPrevious = player.velocity
 	timers()
-	player.particles.dash.emitting = true #TODO: use signals to call
+	particles.emitting = true 
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
 	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
@@ -20,7 +21,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	player.particles.dash.emitting = false #TODO: use signals to call
+	particles.emitting = false
 	
 #		player.consume_ability(PlayerAbilities.list.DashAir, 1)  #TODO
 	if player.moveDirection.x != 0:
