@@ -39,6 +39,7 @@ script = ExtResource("1_fgo7i")
 
 [node name="Info" type="MarginContainer" parent="Debug" node_paths=PackedStringArray("stateLabel", "velocityLabel", "debugLabel", "debug2Label", "debug3Label")]
 process_mode = 3
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -84,6 +85,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ErrorLog" type="MarginContainer" parent="Debug"]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
