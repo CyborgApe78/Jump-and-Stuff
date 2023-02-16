@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo8y4w3rri0k2"]
+[gd_scene load_steps=6 format=3 uid="uid://bo8y4w3rri0k2"]
 
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/GameTime.gd" id="1_i244g"]
 [ext_resource type="Script" path="res://src/resources/gameStats.gd" id="2_ogjtu"]
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/Announcer.gd" id="3_chdqa"]
+[ext_resource type="Script" path="res://src/levels/controllervisual.gd" id="4_xuka8"]
 
 [sub_resource type="Resource" id="Resource_c6pfc"]
 script = ExtResource("2_ogjtu")
@@ -74,3 +75,21 @@ metadata/_edit_group_ = true
 
 [node name="Timer" type="Timer" parent="Announcer"]
 one_shot = true
+
+[node name="ControlVisuals" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = -152.0
+offset_right = -95.0
+offset_bottom = -83.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("4_xuka8")

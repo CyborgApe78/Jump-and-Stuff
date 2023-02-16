@@ -1,9 +1,9 @@
 extends MarginContainer
 
-#TODO: setting to disable
-#TODO: dungeon time
 
-@export var gameStats: Resource
+#TODO: dungeon time
+var SettingsFile: Resource = preload("res://src/resources/SettingsConfig.tres")
+@export var gameStats: Resource #TODO: create
 @onready var labelTime: RichTextLabel = $MarginContainer/TimeLabel
 var timePlayed: float
 var strTimeElapsed: String
@@ -11,8 +11,8 @@ var strTimeElapsed: String
 
 func _ready() -> void:
 	timePlayed = gameStats.timePlayed
-#	show_timer()
-#	EventBus.connect("settingsUpdate", self, "show_timer")
+	show_timer()
+	EventBus.settingsUpdate.connect(show_timer)
 
 func _process(delta) -> void:
 	timePlayed += delta
@@ -24,5 +24,5 @@ func _process(delta) -> void:
 	
 	labelTime.text = strTimeElapsed
 
-#func show_timer() -> void:
-#	visible = SettingsFile.showTimer
+func show_timer() -> void:
+	visible = SettingsFile.showTimer

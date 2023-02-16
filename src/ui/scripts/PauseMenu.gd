@@ -25,9 +25,8 @@ func state_check() -> int:
 	return State.Null
 
 
-func settings_button_pressed() -> void:
+func _on_settings_pressed() -> void:
 	EventBus.menuChanged.emit(State.Settings)
-	#TODO: change to built in signal
 
 
 func _on_reset_pressed() -> void:
@@ -41,3 +40,5 @@ func _on_resume_pressed() -> void:
 
 func _on_controls_pressed() -> void:
 	EventBus.menuChanged.emit(State.Controls)
+
+

@@ -1,0 +1,219 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgr00u8sgd2q3"]
+
+[ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="1_sbdkq"]
+[ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="2_4npie"]
+[ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu/scripts/HUD.gd" id="3_oufns"]
+
+[node name="SettingsMenu" type="CenterContainer" node_paths=PackedStringArray("optionsContainer", "gameplayMenu", "hudMenu", "videoMenu", "audioMenu", "controlsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -136.0
+offset_right = 183.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sbdkq")
+optionsContainer = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer")
+gameplayMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay")
+hudMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/HUD")
+videoMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Video")
+audioMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Audio")
+controlsMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Controls")
+backButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back")
+gameplayButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay")
+hudButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD")
+videoButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video")
+audioButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio")
+controlsButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Gameplay" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gameplay"
+
+[node name="HUD" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "HUD"
+
+[node name="Video" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Video"
+
+[node name="Audio" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+
+[node name="Controls" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("2_4npie")
+
+[node name="Options" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Options"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Options"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay"]
+layout_mode = 2
+text = "Gameplay"
+horizontal_alignment = 1
+
+[node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("timerCheck", "buttonController")]
+visible = false
+layout_mode = 2
+script = ExtResource("3_oufns")
+timerCheck = NodePath("VBoxContainer/Timer")
+buttonController = NodePath("VBoxContainer/Controller")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD"]
+layout_mode = 2
+text = "HUD"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD"]
+layout_mode = 2
+
+[node name="Timer" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+layout_mode = 2
+text = "Show Ingame Timer"
+
+[node name="Controller" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+layout_mode = 2
+text = "Show Controller Overlay"
+
+[node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video"]
+layout_mode = 2
+text = "Video"
+horizontal_alignment = 1
+
+[node name="Audio" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Audio"]
+layout_mode = 2
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="Controls" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Controls"]
+layout_mode = 2
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Controls"]
+layout_mode = 2
+text = "Spoilers"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" to="." method="show_gameplay"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" to="." method="show_hud"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video" to="." method="show_video"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio" to="." method="show_audio"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="show_controls"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="." method="back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_pressed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Timer" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_timer"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Controller" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_controller"]

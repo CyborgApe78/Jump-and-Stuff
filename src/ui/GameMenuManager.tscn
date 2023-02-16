@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dpn0y7ftimcj5" path="res://src/ui/PauseMenu.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cx1wwhx0jra68" path="res://src/ui/DebugMenu.tscn" id="2_qav4m"]
-[ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b3ponvqrsksxa" path="res://src/ui/FastTravel.tscn" id="5_dflhs"]
+[ext_resource type="PackedScene" uid="uid://cgr00u8sgd2q3" path="res://src/ui/SettingsMenu.tscn" id="5_i5h4r"]
 [ext_resource type="Script" path="res://src/ui/scripts/MenuManager.gd" id="6"]
 [ext_resource type="Script" path="res://src/ui/scripts/UnpausedMenu.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://dkwdgnuq5g2ev" path="res://src/ui/Controls.tscn" id="7_ok87j"]
@@ -22,17 +22,10 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("7")
 
-[node name="SettingsMenu" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4")
-
 [node name="FastTravel" parent="." instance=ExtResource("5_dflhs")]
+visible = false
+
+[node name="SettingsMenu" parent="." instance=ExtResource("5_i5h4r")]
 visible = false
 
 [node name="DebugMenu" parent="." instance=ExtResource("2_qav4m")]

@@ -20,4 +20,4 @@ signal error(info)
 signal helperUsed(info)
 
 signal menuChanged
-
+signal settingsUpdate

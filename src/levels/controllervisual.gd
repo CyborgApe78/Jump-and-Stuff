@@ -4,9 +4,21 @@ extends Control
 ## CREDIT: https://gist.github.com/anthonyec/5342fce79b2b7b22ada748df0ad7f7c0
 
 @export var device: int = 0
+var SettingsFile: Resource = preload("res://src/resources/SettingsConfig.tres")
+
+
+func _ready() -> void:
+	show_controller()
+	EventBus.settingsUpdate.connect(show_controller)
+
+
+func show_controller() -> void:
+	visible = SettingsFile.showController
+
 
 func _process(delta: float) -> void:
 	queue_redraw()
+
 
 func _draw() -> void:
 	# Set the size, the layout isn't dynamic and based on something I sketched!
@@ -43,6 +55,7 @@ func _draw() -> void:
 	draw_option_button(Vector2(33, 27), Input.is_joy_button_pressed(device, JOY_BUTTON_BACK))
 	draw_option_button(Vector2(42, 27), Input.is_joy_button_pressed(device, JOY_BUTTON_START))
 
+
 func draw_option_button(position: Vector2, is_pressed: bool) -> void:
 	var width = 6
 	var height = 5
@@ -50,6 +63,7 @@ func draw_option_button(position: Vector2, is_pressed: bool) -> void:
 	
 	draw_rect(Rect2(position.x, position.y, width, height), Color.BLACK)
 	draw_rect(Rect2(position.x + 1, position.y + 1, width - 2, height - 2), color)
+
 
 func draw_dpad_arrow(position: Vector2, angle: float, is_pressed: bool) -> void:
 	var width = 9
