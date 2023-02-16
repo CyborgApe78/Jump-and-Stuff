@@ -24,4 +24,11 @@ theme = ExtResource("1_s7da5")
 toggle_mode = true
 text = "Show Collision"
 
+[node name="DebugInfo" type="Button" parent="HBoxContainer/All"]
+layout_mode = 2
+theme = ExtResource("1_s7da5")
+toggle_mode = true
+text = "Show Debug Info"
+
 [connection signal="toggled" from="HBoxContainer/All/Collision" to="." method="_on_collision_toggled"]
+[connection signal="toggled" from="HBoxContainer/All/DebugInfo" to="." method="_on_debug_info_toggled"]

@@ -21,3 +21,4 @@ signal helperUsed(info)
 
 signal menuChanged
 signal settingsUpdate
+signal showDebug(bool)
