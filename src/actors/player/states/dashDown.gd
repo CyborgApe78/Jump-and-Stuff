@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 
+#TODO: difference between this and ground pound
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var floorTime: float = 0.1

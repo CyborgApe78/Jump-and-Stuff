@@ -1,5 +1,5 @@
 extends Node2D
-
+#TODO: add setting to turn on
 @onready var actionText: RichTextLabel = $ActionText
 
 func _ready() -> void:

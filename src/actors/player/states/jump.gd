@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 #TODO: if moveDirection.x != 0, spin jump, metroid like
+#TODO: look into combine jump and jumpConsec
 @export var particles: GPUParticles2D
 
 func enter() -> void:

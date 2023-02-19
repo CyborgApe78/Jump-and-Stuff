@@ -1,8 +1,7 @@
 extends RichTextLabel
-
+#TODO: add setting to turn on
 
 @onready var announcementClearTimer: Timer = $AnnounceClear
-
 @export var announcementDuration: float = 0.7
 
 var queue: Array = []
