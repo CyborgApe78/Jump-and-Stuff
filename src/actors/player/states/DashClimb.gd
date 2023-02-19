@@ -6,7 +6,6 @@ var duration: float = 0.3
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: Change to energy
 	player.velocityPrevious = player.velocity
 	particles.emitting = true
 	player.velocity.y = -dashVelocity / duration
@@ -59,10 +58,13 @@ func state_check(delta: float) -> int:
 		return State.WallSlide
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
+			abilities.consume(PlayerAbilities.list.Dash, 1)
 			return State.DashAir
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			abilities.consume(PlayerAbilities.list.Dash, 1)
 			return State.DashUp
 		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+			abilities.consume(PlayerAbilities.list.Dash, 1)
 			return State.DashDown
 
 	return State.Null

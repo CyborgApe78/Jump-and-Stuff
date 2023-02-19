@@ -11,7 +11,6 @@ var duration: float = 0.3
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1) #TODO: move to state calling the change
 	player.velocityPrevious = player.velocity
 	timers()
 	particles.emitting = true 
@@ -102,4 +101,3 @@ func timers() -> void:
 	durationTimer.wait_time = duration
 	durationTimer.start()
 	chainTimer.start()
-	

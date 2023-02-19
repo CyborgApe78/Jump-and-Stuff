@@ -69,11 +69,14 @@ func state_check(delta: float) -> int:
 			player.sounds.land.play()
 			return State.Idle #TODO: groundpound land state, jump out of that
 	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
+		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir: #TODO: groundDash
+			abilities.consume(PlayerAbilities.list.Dash, 1)
 			return State.DashAir
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
+			abilities.consume(PlayerAbilities.list.Dash, 1)
 			return State.DashUp
 		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
+			abilities.consume(PlayerAbilities.list.Dash, 1)
 			return State.DashDown
 
 	return State.Null

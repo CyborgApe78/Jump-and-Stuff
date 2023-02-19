@@ -17,7 +17,6 @@ var saveTriple: bool
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1)  #TODO: Change to energy
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	dashJumpTimer.wait_time = dashJumpTime
@@ -91,15 +90,5 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Fall
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			dashBufferState = State.Null
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			dashBufferState = State.Null
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			dashBufferState = State.Null
-			return State.DashDown
 
 	return State.Null
