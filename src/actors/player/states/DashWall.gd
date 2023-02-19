@@ -13,17 +13,14 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = dashDirection * (dashVelocity / duration)
-	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
-	player.set_collision_mask_value(CollisionLayers.DashSide, false)
+	player.ability_layer(CollisionLayers.DashSide, true)
 
 
 func exit() -> void:
 	particles.emitting = false 
 	if player.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x
-	#TODO: add to other classes
-	player.set_collision_layer_value(CollisionLayers.DashSide, false) #TODO: make function to turn off raycasts
-	player.set_collision_mask_value(CollisionLayers.DashSide, true)
+	player.ability_layer(CollisionLayers.DashSide, false)
 
 func physics(delta) -> void:
 	player.move_and_slide()

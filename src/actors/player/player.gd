@@ -213,3 +213,8 @@ func wall_detection(length: int = 5) -> int:
 func _on_dash_chain_timeout() -> void:
 	particles.jumpTriple.restart()
 	#TODO: create own particles
+
+
+func ability_layer(layer: int, BOOL: bool) -> void:
+	set_collision_layer_value(layer, BOOL)
+	set_collision_mask_value(layer, !BOOL)

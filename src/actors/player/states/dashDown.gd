@@ -15,15 +15,13 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.x = 0
 	player.velocity.y = dashVelocity / duration
-	player.set_collision_layer_value(CollisionLayers.DashDown, true) #TODO: change to function
-	player.set_collision_mask_value(CollisionLayers.DashDown, false)
+	player.ability_layer(CollisionLayers.DashDown, true)
 
 
 func exit() -> void:
 	particles.emitting = false
 	player.velocity.y = player.velocity.y/4
-	player.set_collision_layer_value(CollisionLayers.DashDown, false)
-	player.set_collision_mask_value(CollisionLayers.DashDown, true)
+	player.ability_layer(CollisionLayers.DashDown, false)
 
 
 func physics(delta) -> void:

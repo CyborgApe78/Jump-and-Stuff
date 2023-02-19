@@ -23,21 +23,15 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
-	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
-	player.set_collision_mask_value(CollisionLayers.DashSide, false)
+	player.ability_layer(CollisionLayers.DashSide, true)
 
 
 func exit() -> void:
 	particles.emitting = false
-	
 	if !isJumping:
 		player.velocity.x = player.velocityPrevious.x
-#
-#	player.animPlayer.stop()
 	isJumping = false
-	
-	player.set_collision_layer_value(CollisionLayers.DashSide, false)
-	player.set_collision_mask_value(CollisionLayers.DashSide, true)
+	player.ability_layer(CollisionLayers.DashSide, false)
 
 
 func physics(delta) -> void:

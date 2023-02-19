@@ -13,14 +13,12 @@ func enter() -> void:
 	timers()
 	particles.emitting = true
 	player.velocity = player.aimDirection * (dashVelocity * 1.6 / duration) #TODO: find a more forgiving way to get 8 directions
-	player.set_collision_layer_value(CollisionLayers.DashUp, true) #TODO: change to function
-	player.set_collision_mask_value(CollisionLayers.DashUp, false)
+	player.ability_layer(CollisionLayers.DashJump, true)
 
 
 func exit() -> void:
 	particles.emitting = false
-	player.set_collision_layer_value(CollisionLayers.DashUp, false) #TODO: make function to turn off raycasts
-	player.set_collision_mask_value(CollisionLayers.DashUp, true)
+	player.ability_layer(CollisionLayers.DashJump, false)
 
 
 func physics(delta) -> void:
