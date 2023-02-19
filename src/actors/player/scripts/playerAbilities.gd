@@ -67,7 +67,7 @@ var unlockedSlide: bool = false:
 #TODO: change to energy
 var maxJumpAir: int = 1
 var maxDash: int = 1
-var maxDashChain: int = 2
+var maxDashChain: int = 1
 var maxJumpConsec: int = 1
 
 var currentJumpConsec: int = 0:
@@ -202,6 +202,7 @@ func reset(ability: int) -> void:
 		remainingJumpAir = maxJumpAir
 		currentJumpConsec = 0
 		remainingDash = maxDash
+		currentDashChain = 0
 	elif ability == list.JumpAir:
 		remainingJumpAir = maxJumpAir
 	elif ability == list.JumpConsec:

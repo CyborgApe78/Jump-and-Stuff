@@ -208,3 +208,8 @@ func wall_detection(length: int = 5) -> int:
 		lastWallDirection = wallDirection
 	
 	return 0
+
+
+func _on_dash_chain_timeout() -> void:
+	particles.jumpTriple.restart()
+	#TODO: create own particles

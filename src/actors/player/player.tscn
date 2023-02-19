@@ -656,14 +656,16 @@ chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 
-[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
+[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles")]
 script = ExtResource("25_tbkdj")
 durationTimer = NodePath("../../Timers/DashDuration")
+chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
 
-[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
+[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles")]
 script = ExtResource("25_pbxll")
 durationTimer = NodePath("../../Timers/DashDuration")
+chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashDown")
 
 [node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer", "particles")]
@@ -808,6 +810,7 @@ offset_right = 80.0
 offset_bottom = 32.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
@@ -852,3 +855,4 @@ width = 5.0
 default_color = Color(0, 1, 0, 1)
 
 [connection signal="timeout" from="StateMachine/WallLand/Hold" to="StateMachine/WallLand" method="_on_hold_timeout"]
+[connection signal="timeout" from="Timers/DashChain" to="." method="_on_dash_chain_timeout"]

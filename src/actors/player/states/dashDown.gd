@@ -4,15 +4,14 @@ extends PlayerInfo
 #TODO: difference between this and ground pound
 @export var duration: float = 0.3
 @export var durationTimer: Timer
+@export var chainTimer: Timer #TODO: visual feedback when chain can be used
 @export var floorTime: float = 0.1
 @export var particles: GPUParticles2D
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1)  #TODO: Change to energy
 	player.velocityPrevious = player.velocity
-	durationTimer.wait_time = duration
-	durationTimer.start()
+	timers()
 	particles.emitting = true
 	player.velocity.x = 0
 	player.velocity.y = dashVelocity / duration
@@ -75,9 +74,23 @@ func state_check(delta: float) -> int:
 	if durationTimer.is_stopped():
 		return State.Fall
 	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			return State.DashUp
+		if dashBufferState == State.DashAir and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashAir
+		elif dashBufferState == State.DashUp and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashUp
+		elif dashBufferState == State.DashDown and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashDown
 
 	return State.Null
+
+
+func timers() -> void:
+	durationTimer.wait_time = duration
+	durationTimer.start()
+	chainTimer.start()

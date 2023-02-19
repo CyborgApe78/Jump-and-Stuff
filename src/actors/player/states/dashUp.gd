@@ -3,6 +3,7 @@ extends PlayerInfo
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
+@export var chainTimer: Timer #TODO: visual feedback when chain can be used
 @export var particles: GPUParticles2D
 
 
@@ -65,12 +66,18 @@ func state_check(delta: float) -> int:
 	if durationTimer.is_stopped():
 		return State.Fall
 	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			return State.DashDown
+		if dashBufferState == State.DashAir and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashAir
+		elif dashBufferState == State.DashUp and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashUp
+		elif dashBufferState == State.DashDown and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashDown
 
 	return State.Null
 
@@ -78,3 +85,4 @@ func state_check(delta: float) -> int:
 func timers() -> void:
 	durationTimer.wait_time = duration
 	durationTimer.start()
+	chainTimer.start()

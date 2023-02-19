@@ -75,31 +75,25 @@ func state_check(delta: float) -> int:
 		elif topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashAir and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashAir
+		elif dashBufferState == State.DashUp and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashUp
+		elif dashBufferState == State.DashDown and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashDown
 	if durationTimer.is_stopped():
 		if player.is_on_floor():
 			player.landed()
 			return State.Walk
 		else:
 			return State.Fall
-	if dashBufferState != State.Null:
-		if dashBufferState == State.DashAir:
-			if chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
-				#TODO: currentChain +1
-				return State.DashAir
-			elif abilities.can_use(PlayerAbilities.list.DashSide):
-				#TODO: abilities.consume(PlayerAbilities.list.Dash, 1)
-				return State.DashAir
-		if dashBufferState == State.DashUp:
-			if chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
-				return State.DashUp
-			elif abilities.can_use(PlayerAbilities.list.DashUp):
-				return State.DashUp
-		if dashBufferState == State.DashDown:
-			if chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
-#				#TODO: abilities.remainingChain -= 1
-				return State.DashDown
-			elif abilities.can_use(PlayerAbilities.list.DashDown):
-				return State.DashDown
 
 	return State.Null
 

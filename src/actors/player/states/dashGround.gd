@@ -76,8 +76,7 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerInfo.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+		#TODO: add chain dash
 
 	return State.Null
 
