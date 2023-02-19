@@ -163,17 +163,17 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.JumpConsec and currentJumpConsec < maxJumpConsec and unlockedJumpConsec:
 		return true
-	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide: #TODO: make eif for remainingDash > 0
+	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide:
 		return true
 	elif ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
 		return true
 	elif ability == list.DashDown and remainingDash > 0 and unlockedDashDown:
 		return true
-	elif ability == list.DashWall and remainingDash > 0 and unlockedDashWall:
+	elif ability == list.DashWall and unlockedDashWall:
 		return true
-	elif ability == list.DashClimb and remainingDash > 0 and unlockedDashClimb:
+	elif ability == list.DashClimb and unlockedDashClimb:
 		return true
-	elif ability == list.DashJump and remainingDash > 0 and unlockedDashJump:
+	elif ability == list.DashJump and unlockedDashJump:
 		return true
 	elif ability == list.Slide and unlockedSlide:
 		return true
