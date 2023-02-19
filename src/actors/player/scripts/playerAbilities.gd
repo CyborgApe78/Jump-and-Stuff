@@ -112,8 +112,22 @@ enum list { #TODO: jump flip, etc
 	Burrow,
 	}
 
+enum listAbilityBlock { #TODO: convert blocks to this
+	Null,
+	All,
+	DashSide,
+	DashUp,
+	DashDown,
+	DashJump,
+	Slide,
+	Dive,
+	GroundPound,
+	GrappleHook,
+	SwimDash,
+	Burrow,
+}
 
-enum abilityTargetType {Null, grappleHook, burrow}
+enum listAbilityTarget {Null, grappleHook, burrow}
 
 
 func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest

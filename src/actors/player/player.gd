@@ -163,7 +163,7 @@ func consecutive_jump_cancel() -> void:
 func landed() -> void:
 	abilities.reset(PlayerAbilities.list.All)
 	if get_last_slide_collision() != null:
-			groundColor = get_last_slide_collision().get_collider().color
+			groundColor = get_last_slide_collision().get_collider().color #TODO: crash if doesn't have color
 	particles.land.restart()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://c80pcth3hfn54"]
 
 [ext_resource type="Script" path="res://src/object/prefab/AbilityBlocks/scripts/wall.gd" id="1_1g7h3"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_bhxai"]

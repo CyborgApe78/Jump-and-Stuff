@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=17 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_lg7tx"]
 [ext_resource type="PackedScene" uid="uid://c6sp0iiop2sqw" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="6_3il5s"]
+[ext_resource type="PackedScene" path="res://src/object/prefab/AbilityBlocks/wall.tscn" id="10_rxfco"]
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="14_scku3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
@@ -188,5 +189,10 @@ floor_snap_length = 9.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 script = ExtResource("14_scku3")
+
+[node name="Wall" parent="." instance=ExtResource("10_rxfco")]
+position = Vector2(-416, -64)
+ability = 7
+oneUse = true
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
