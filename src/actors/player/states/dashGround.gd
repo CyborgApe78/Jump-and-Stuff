@@ -19,12 +19,7 @@ var saveTriple: bool
 func enter() -> void:
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
-	dashJumpTimer.wait_time = dashJumpTime
-	dashJumpRefreshTimer.wait_time = dashJumpRefreshTime
-	durationTimer.wait_time = duration
-	dashJumpTimer.start()
-	dashJumpRefreshTimer.start()
-	durationTimer.start()
+	timers()
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
@@ -92,3 +87,12 @@ func state_check(delta: float) -> int:
 			return State.Fall
 
 	return State.Null
+
+
+func  timers() -> void:
+	dashJumpTimer.wait_time = dashJumpTime
+	dashJumpRefreshTimer.wait_time = dashJumpRefreshTime
+	durationTimer.wait_time = duration
+	dashJumpTimer.start()
+	dashJumpRefreshTimer.start()
+	durationTimer.start()
