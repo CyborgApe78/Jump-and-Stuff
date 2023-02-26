@@ -3,8 +3,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	pass
-#	GameStats.die += 1
+	GameStats.deaths += 1
 
 
 func exit() -> void:

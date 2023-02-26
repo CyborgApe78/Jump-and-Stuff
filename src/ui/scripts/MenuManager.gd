@@ -6,7 +6,7 @@ class_name MenuManager
 	BaseMenu.State.Unpaused: $Unpaused,
 	BaseMenu.State.Paused: $PauseMenu,
 	BaseMenu.State.Settings: $SettingsMenu,
-	BaseMenu.State.FastTravel: $FastTravel,
+	BaseMenu.State.GameInfo: $GameInfo,
 	BaseMenu.State.Debug: $DebugMenu,
 	BaseMenu.State.Controls: $Controls
 }

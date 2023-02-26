@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpn0y7ftimcj5" path="res://src/ui/PauseMenu.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cx1wwhx0jra68" path="res://src/ui/DebugMenu.tscn" id="2_qav4m"]
-[ext_resource type="PackedScene" uid="uid://b3ponvqrsksxa" path="res://src/ui/FastTravel.tscn" id="5_dflhs"]
+[ext_resource type="PackedScene" uid="uid://bdf1tqwnqch8c" path="res://src/ui/GameInfo.tscn" id="4_n7kjk"]
 [ext_resource type="PackedScene" uid="uid://cgr00u8sgd2q3" path="res://src/ui/SettingsMenu.tscn" id="5_i5h4r"]
 [ext_resource type="Script" path="res://src/ui/scripts/MenuManager.gd" id="6"]
 [ext_resource type="Script" path="res://src/ui/scripts/UnpausedMenu.gd" id="7"]
@@ -22,8 +22,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("7")
 
-[node name="FastTravel" parent="." instance=ExtResource("5_dflhs")]
-visible = false
+[node name="GameInfo" parent="." instance=ExtResource("4_n7kjk")]
 
 [node name="SettingsMenu" parent="." instance=ExtResource("5_i5h4r")]
 visible = false

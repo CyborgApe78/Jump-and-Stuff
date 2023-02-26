@@ -14,9 +14,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Paused
 	if Input.is_action_just_pressed("debug_menu"):
 		return State.Debug
-#	if Input.is_action_just_pressed("ui_info"):
-#		#TODO: change to map or something else later
-#		return State.FastTravel
+	if Input.is_action_just_pressed("ui_info"):
+		return State.GameInfo
 	
 	return State.Null
 

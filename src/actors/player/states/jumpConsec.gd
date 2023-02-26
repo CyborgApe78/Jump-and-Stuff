@@ -6,6 +6,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	GameStats.jumps += 1
 	abilities.consume(PlayerAbilities.list.JumpConsec, 1)
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0

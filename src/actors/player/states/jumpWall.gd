@@ -9,6 +9,7 @@ var jumpDirection: int #TODO: change to jumpDirection
 
 
 func enter() -> void:
+	GameStats.jumps += 1
 	timerLock.start()
 	jumpDirection = player.wall_detection(30)
 	EventBus.actionAnnounce.emit("Boing")

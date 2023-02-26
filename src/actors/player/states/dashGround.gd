@@ -17,6 +17,7 @@ var saveTriple: bool
 
 
 func enter() -> void:
+	GameStats.dashSide += 1
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	timers()

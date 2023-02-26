@@ -8,6 +8,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	GameStats.dashUp += 1
 	player.velocityPrevious = player.velocity
 	timers()
 	particles.emitting = true

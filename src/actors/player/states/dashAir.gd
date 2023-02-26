@@ -11,6 +11,7 @@ var duration: float = 0.3
 
 
 func enter() -> void:
+	GameStats.dashSide += 1
 	player.velocityPrevious = player.velocity
 	timers()
 	particles.emitting = true 

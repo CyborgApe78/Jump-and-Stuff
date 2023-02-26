@@ -1,0 +1,171 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdf1tqwnqch8c"]
+
+[ext_resource type="Script" path="res://src/ui/scripts/GameInfo.gd" id="1_eigog"]
+[ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Stats.gd" id="2_37txa"]
+
+[node name="GameInfo" type="Control" node_paths=PackedStringArray("menuStats")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eigog")
+menuStats = NodePath("CenterContainer/Stats")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabLeft" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="TabLeft"]
+layout_mode = 2
+text = "_left_game_info_tab"
+
+[node name="TabCurrent" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.0
+offset_right = 86.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="TabCurrent"]
+layout_mode = 2
+text = "_current_game_info_tab"
+
+[node name="TabRight" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -172.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="TabRight"]
+layout_mode = 2
+text = "_right_game_info_tab"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -13.0
+offset_right = 67.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Stats" type="GridContainer" parent="CenterContainer" node_paths=PackedStringArray("labelPlayTime", "labelDeath", "labelJump", "labelDashSide", "labelDashUp", "labelDashDown")]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+script = ExtResource("2_37txa")
+labelPlayTime = NodePath("PlayTime/Amount")
+labelDeath = NodePath("Death/Amount")
+labelJump = NodePath("Jump/Amount")
+labelDashSide = NodePath("DashSide/Amount")
+labelDashUp = NodePath("DashUp/Amount")
+labelDashDown = NodePath("DashDown/Amount")
+
+[node name="PlayTime" type="VBoxContainer" parent="CenterContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Stats/PlayTime"]
+layout_mode = 2
+text = "Time Played"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CenterContainer/Stats/PlayTime"]
+layout_mode = 2
+text = "00:00:00"
+horizontal_alignment = 1
+
+[node name="Death" type="VBoxContainer" parent="CenterContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Stats/Death"]
+layout_mode = 2
+text = "Deaths"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CenterContainer/Stats/Death"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Jump" type="VBoxContainer" parent="CenterContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Stats/Jump"]
+layout_mode = 2
+text = "Jumps"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CenterContainer/Stats/Jump"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DashSide" type="VBoxContainer" parent="CenterContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Stats/DashSide"]
+layout_mode = 2
+text = "Side Dashes"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CenterContainer/Stats/DashSide"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DashUp" type="VBoxContainer" parent="CenterContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Stats/DashUp"]
+layout_mode = 2
+text = "Up Dashes"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CenterContainer/Stats/DashUp"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DashDown" type="VBoxContainer" parent="CenterContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Stats/DashDown"]
+layout_mode = 2
+text = "Down Dashes"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CenterContainer/Stats/DashDown"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1

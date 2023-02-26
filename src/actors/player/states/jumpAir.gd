@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #LOOKAT: make like space jump
 func enter() -> void:
+	GameStats.jumps += 1
 	abilities.consume(PlayerAbilities.list.JumpAir, 1)
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0

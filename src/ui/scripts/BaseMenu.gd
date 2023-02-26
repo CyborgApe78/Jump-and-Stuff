@@ -7,7 +7,7 @@ enum State{
 	Unpaused,
 	Paused,
 	Settings,
-	FastTravel,
+	GameInfo,
 	Debug,
 	Controls,
 	}
