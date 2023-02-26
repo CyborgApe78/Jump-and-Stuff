@@ -1,8 +1,12 @@
 extends Button
 
+
+@export var changeScene: PackedScene
+
+
 func _ready() -> void:
 	grab_focus()
-	pressed.connect(_on_Play_pressed)
 
-func _on_Play_pressed() -> void:
-	get_tree().change_scene("res://Levels/Playground/Playground.tscn")
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_packed(changeScene)
