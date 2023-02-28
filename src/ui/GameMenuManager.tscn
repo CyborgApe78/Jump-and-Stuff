@@ -23,6 +23,7 @@ anchors_preset = 0
 script = ExtResource("7")
 
 [node name="GameInfo" parent="." instance=ExtResource("4_n7kjk")]
+visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("5_i5h4r")]
 visible = false
