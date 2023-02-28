@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c6sp0iiop2sqw"]
+[gd_scene load_steps=76 format=3 uid="uid://c6sp0iiop2sqw"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -49,6 +49,7 @@
 [ext_resource type="Script" path="res://src/actors/player/scripts/actionText.gd" id="34_h1yjw"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/PlayerText.gd" id="39_snr3n"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="50_wm14u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
 radius = 16.0
@@ -359,9 +360,12 @@ _data = {
 "walk": SubResource("Animation_xkfx1")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oudvw"]
+size = Vector2(47, 82)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "sm", "characterRig", "characterRotate", "characterCollision", "eyes", "body", "particles", "timers", "sounds", "detectorGroundLeft", "detectorGroundRight", "wallRaycastLeft", "wallRaycastRight")]
-collision_layer = 8256
-collision_mask = 8194
+collision_layer = 64
+collision_mask = 65538
 floor_snap_length = 10.1
 script = ExtResource("1_a3yhc")
 animPlayer = NodePath("AnimationPlayer")
@@ -853,6 +857,16 @@ collision_mask = 0
 points = PackedVector2Array(40, -8, 48, 0, 40, 8)
 width = 5.0
 default_color = Color(0, 1, 0, 1)
+
+[node name="AbilityCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("50_wm14u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityCollider"]
+visible = false
+position = Vector2(-0.5, -32)
+shape = SubResource("RectangleShape2D_oudvw")
 
 [connection signal="timeout" from="StateMachine/WallLand/Hold" to="StateMachine/WallLand" method="_on_hold_timeout"]
 [connection signal="timeout" from="Timers/DashChain" to="." method="_on_dash_chain_timeout"]
