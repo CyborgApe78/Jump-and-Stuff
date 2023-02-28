@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: shrink to crouch size
+#TODO: change shape to 1x2
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
