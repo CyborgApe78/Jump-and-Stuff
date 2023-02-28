@@ -13,12 +13,12 @@ func enter() -> void:
 	timers()
 	particles.emitting = true
 	player.velocity = player.aimDirection * (dashVelocity * 1.6 / duration) #TODO: find a more forgiving way to get 8 directions
-	player.ability_layer(CollisionLayers.DashJump, true)
+	player.ability_mask(CollisionLayers.DashJump, false)
 
 
 func exit() -> void:
 	particles.emitting = false
-	player.ability_layer(CollisionLayers.DashJump, false)
+	player.ability_mask(CollisionLayers.DashJump, true)
 
 
 func physics(delta) -> void:

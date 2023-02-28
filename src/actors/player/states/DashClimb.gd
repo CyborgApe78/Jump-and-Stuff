@@ -10,12 +10,12 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.y = -dashVelocity / duration
 	player.velocity.x = 0
-	player.ability_layer(CollisionLayers.DashUp, true)
+	player.ability_mask(CollisionLayers.DashUp, false)
 
 
 func exit() -> void:
 	particles.emitting = false 
-	player.ability_layer(CollisionLayers.DashUp, false)
+	player.ability_mask(CollisionLayers.DashUp, true)
 
 func physics(delta) -> void:
 	player.move_and_slide()

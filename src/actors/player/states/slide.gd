@@ -17,15 +17,12 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
-	player.set_collision_layer_value(CollisionLayers.DashSide, true) #TODO: change to function
-	player.set_collision_mask_value(CollisionLayers.DashSide, false) #LOOKAT: different layer
+	player.ability_mask(CollisionLayers.DashSide, false)
 
 
 func exit() -> void:
 	particles.emitting = false
-	
-	player.set_collision_layer_value(CollisionLayers.DashSide, false)
-	player.set_collision_mask_value(CollisionLayers.DashSide, true)
+	player.ability_mask(CollisionLayers.DashSide, true)
 
 
 func physics(delta) -> void:

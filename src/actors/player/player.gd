@@ -49,6 +49,7 @@ var groundColor: Color = Color.BLACK
 
 func _ready() -> void:
 	sm.init()
+	default_ability_mask()
 	EventBus.playerConsecutiveJump.connect(consecutive_jump_cancel)
 
 
@@ -215,6 +216,12 @@ func _on_dash_chain_timeout() -> void:
 	#TODO: create own particles
 
 
-func ability_layer(layer: int, BOOL: bool) -> void:
-	set_collision_layer_value(layer, BOOL)
-	set_collision_mask_value(layer, !BOOL)
+func ability_mask(layer: int, BOOL: bool) -> void:
+	set_collision_mask_value(layer, BOOL)
+
+
+func default_ability_mask() -> void:
+	ability_mask(CollisionLayers.DashSide, true)
+	ability_mask(CollisionLayers.DashUp, true)
+	ability_mask(CollisionLayers.DashDown, true)
+	ability_mask(CollisionLayers.DashJump, true)
