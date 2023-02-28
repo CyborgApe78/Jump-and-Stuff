@@ -1,17 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://do4my7cc022xx"]
 
-[ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/GodotVersion.gd" id="1_1kswn"]
+[ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MainMenu.gd" id="1_02i6j"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/PlayButton.gd" id="2_efogn"]
 [ext_resource type="PackedScene" uid="uid://bcsfwmvuqgd7b" path="res://src/levels/playground.tscn" id="3_7lbtb"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_q2i1o"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("labelTitle", "labelVersion", "labelGodot", "labelCreator")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_02i6j")
+labelTitle = NodePath("Title/Label")
+labelVersion = NodePath("Info/VBoxContainer/Version")
+labelGodot = NodePath("Info/VBoxContainer/Godot")
+labelCreator = NodePath("Creator/VBoxContainer/Author")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -32,13 +37,11 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 50
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Title"]
+[node name="Label" type="Label" parent="Title"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 45
-bbcode_enabled = true
-text = "[center]Jump and Stuff"
-fit_content = true
-autowrap_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "_game_name"
+horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -84,11 +87,11 @@ layout_mode = 2
 
 [node name="Version" type="Label" parent="Info/VBoxContainer"]
 layout_mode = 2
-text = "0.0.0"
+text = "_version"
 
 [node name="Godot" type="Label" parent="Info/VBoxContainer"]
 layout_mode = 2
-script = ExtResource("1_1kswn")
+text = "_godot_version"
 
 [node name="Creator" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -114,7 +117,7 @@ horizontal_alignment = 2
 
 [node name="Author" type="Label" parent="Creator/VBoxContainer"]
 layout_mode = 2
-text = "Matt"
+text = "_creator"
 horizontal_alignment = 2
 
 [connection signal="pressed" from="Buttons/Play" to="Buttons/Play" method="_on_pressed"]

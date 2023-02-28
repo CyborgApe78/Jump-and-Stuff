@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GameInformation" load_steps=2 format=3 uid="uid://cl3oc8ykddg77"]
+
+[ext_resource type="Script" path="res://src/resources/GameInformation.gd" id="1_datvw"]
+
+[resource]
+script = ExtResource("1_datvw")
