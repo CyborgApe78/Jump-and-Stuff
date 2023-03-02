@@ -27,7 +27,7 @@ func lock_out() -> void:
 	modulate = currentColor
 
 
-func _on_Interactable_entered(body: Player) -> void:
+func _on_Interactable_entered(body: Player) -> void: #TODO: change to area
 	if oneUse:
 		queue_free()
 	elif lockOut:

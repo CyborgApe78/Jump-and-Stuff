@@ -1,5 +1,5 @@
 extends AbilityBlockBase
-
+#TODO: connected destruction, probaly own block
 
 @onready var staticBodyCollision: CollisionShape2D = $StaticBody2D/CollisionShape2D
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
