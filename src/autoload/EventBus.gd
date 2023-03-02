@@ -9,6 +9,8 @@ signal playerConsecutiveJump
 signal playerInfo
 signal actionAnnounce
 
+signal checkpointEntered
+
 signal debugState(info)
 signal debugVelocity(info)
 signal debug(info)
