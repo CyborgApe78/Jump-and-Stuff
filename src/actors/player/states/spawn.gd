@@ -6,6 +6,8 @@ var landed: bool
 
 
 func enter() -> void:
+	if CheckpointSystem.get_respawn() != Vector2.ZERO:
+		player.global_position = CheckpointSystem.get_respawn()
 	landed = false
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player.characterRig, "scale", Vector2(1,1), transformTime).from(Vector2(0,0))

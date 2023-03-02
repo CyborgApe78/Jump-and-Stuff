@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=17 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -8,19 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_lg7tx"]
 [ext_resource type="PackedScene" uid="uid://c6sp0iiop2sqw" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="6_3il5s"]
+[ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="10_50o25"]
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="14_scku3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
 size = Vector2(6160, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpv6n"]
-size = Vector2(418, 51)
+size = Vector2(448, 65.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pybkr"]
-size = Vector2(48, 509.5)
+size = Vector2(64, 512)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epngd"]
-size = Vector2(618, 20)
+size = Vector2(640, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxdpf"]
 size = Vector2(992, 23.5)
@@ -142,17 +143,17 @@ script = ExtResource("3_7mvmu")
 color = Color(1, 0, 0, 1)
 
 [node name="VisibleCollisionShape2D2" type="CollisionShape2D" parent="ground/StaticBody2D"]
-position = Vector2(387, -104)
+position = Vector2(416, -96.75)
 shape = SubResource("RectangleShape2D_qpv6n")
 script = ExtResource("1_isl6d")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D"]
-position = Vector2(584, -336)
+position = Vector2(608, -320)
 shape = SubResource("RectangleShape2D_pybkr")
 script = ExtResource("1_isl6d")
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="ground/StaticBody2D"]
-position = Vector2(1016, -136)
+position = Vector2(1024, -160)
 shape = SubResource("RectangleShape2D_epngd")
 script = ExtResource("1_isl6d")
 
@@ -180,10 +181,13 @@ rotation = -0.449796
 shape = SubResource("RectangleShape2D_yqbas")
 script = ExtResource("1_isl6d")
 
-[node name="Interactables" type="Node2D" parent="."]
+[node name="Interactables" type="Node" parent="."]
+
+[node name="StartingLocation" parent="Interactables" instance=ExtResource("10_50o25")]
+position = Vector2(224, -128)
 
 [node name="Player" parent="." instance=ExtResource("3_m0pk1")]
-position = Vector2(-629, -256)
+position = Vector2(-617, -37)
 floor_snap_length = 9.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

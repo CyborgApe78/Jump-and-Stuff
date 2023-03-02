@@ -5,6 +5,7 @@ class_name PlayerInfo
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var GameStats: Resource = preload("res://src/resources/gameStats.tres")
+var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
 var moveSpeed: int
 var jumpVelocity: float

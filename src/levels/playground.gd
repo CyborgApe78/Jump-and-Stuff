@@ -1,6 +1,10 @@
 extends Node
+#TODO: conver player to 128 x 64 or everything else to 32 x 32
+
+var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("reset"): #TODO: move elsewhere
+		CheckpointSystem.reset_checkpoint()
 		get_tree().reload_current_scene()

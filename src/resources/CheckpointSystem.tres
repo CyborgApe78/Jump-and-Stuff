@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="WaypointSystem" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/CheckpointSystem.gd" id="1_fus28"]
+
+[resource]
+script = ExtResource("1_fus28")
