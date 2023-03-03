@@ -41,6 +41,7 @@ layout_mode = 2
 [node name="Resume" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
 text = "Resume"
 
 [node name="Reset" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
@@ -66,6 +67,7 @@ script = ExtResource("3_i0or6")
 
 [node name="Quit" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Resume")
 text = "Quit"
 script = ExtResource("4_q2n8j")
 
