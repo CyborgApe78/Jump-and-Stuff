@@ -58,16 +58,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Play" type="Button" parent="Buttons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+text = "_play"
+
+[node name="New" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+text = "New"
+
+[node name="Playground" type="Button" parent="Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
-text = "Play"
+text = "Playground"
 script = ExtResource("2_efogn")
 changeScene = ExtResource("3_7lbtb")
 
 [node name="Quit" type="Button" parent="Buttons"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Playground")
 text = "Quit"
 script = ExtResource("4_q2i1o")
 
@@ -120,5 +131,5 @@ layout_mode = 2
 text = "_creator"
 horizontal_alignment = 2
 
-[connection signal="pressed" from="Buttons/Play" to="Buttons/Play" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/Playground" to="Buttons/Playground" method="_on_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="Buttons/Quit" method="_on_pressed"]

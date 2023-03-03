@@ -1,5 +1,7 @@
 extends Control
 
+#TODO: play and new game button, change name and show based on saved data
+
 @export var labelTitle: Label
 @export var labelVersion: Label
 @export var labelGodot: Label
