@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdf1tqwnqch8c"]
+[gd_scene load_steps=4 format=3 uid="uid://bdf1tqwnqch8c"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/GameInfo.gd" id="1_eigog"]
 [ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Stats.gd" id="2_37txa"]
+[ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Waypoints.gd" id="2_tm0nr"]
 
 [node name="GameInfo" type="Control" node_paths=PackedStringArray("menuStats", "menuWaypoints", "menuSkills", "menuCharms", "infoContainter", "labelCurrent")]
 layout_mode = 3
@@ -96,9 +97,11 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Waypoints" type="MarginContainer" parent="InfoContainer"]
-visible = false
+[node name="Waypoints" type="MarginContainer" parent="InfoContainer" node_paths=PackedStringArray("buttonUp", "buttonDown")]
 layout_mode = 2
+script = ExtResource("2_tm0nr")
+buttonUp = NodePath("MarginContainer/VBoxContainer/Up")
+buttonDown = NodePath("MarginContainer/VBoxContainer/Down")
 
 [node name="Panel" type="Panel" parent="InfoContainer/Waypoints"]
 modulate = Color(0, 0, 0, 1)
@@ -114,13 +117,13 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="InfoContainer/Waypoints/MarginContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="InfoContainer/Waypoints/MarginContainer/VBoxContainer"]
+[node name="Up" type="Button" parent="InfoContainer/Waypoints/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Top"
+text = "Up"
 
-[node name="Button2" type="Button" parent="InfoContainer/Waypoints/MarginContainer/VBoxContainer"]
+[node name="Down" type="Button" parent="InfoContainer/Waypoints/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Bottom"
+text = "Down"
 
 [node name="Skills" type="MarginContainer" parent="InfoContainer"]
 visible = false
@@ -262,3 +265,5 @@ horizontal_alignment = 1
 [connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Skills" to="." method="show_skills"]
 [connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Charms" to="." method="show_charms"]
 [connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Stats" to="." method="show_game_stats"]
+[connection signal="pressed" from="InfoContainer/Waypoints/MarginContainer/VBoxContainer/Up" to="InfoContainer/Waypoints" method="_on_up_pressed"]
+[connection signal="pressed" from="InfoContainer/Waypoints/MarginContainer/VBoxContainer/Down" to="InfoContainer/Waypoints" method="_on_down_pressed"]

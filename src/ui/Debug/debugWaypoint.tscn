@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://eswmaewaub7t"]
+
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugWaypoint.gd" id="1_o3auo"]
+
+[node name="Waypoint" type="VBoxContainer"]
+script = ExtResource("1_o3auo")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Waypoints"
+horizontal_alignment = 1
+
+[node name="Up" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+text = "Up"
+
+[node name="Down" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+text = "Down"
+
+[connection signal="pressed" from="Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="Down" to="." method="_on_down_pressed"]

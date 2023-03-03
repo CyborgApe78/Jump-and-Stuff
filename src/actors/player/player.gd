@@ -51,6 +51,7 @@ func _ready() -> void:
 	sm.init()
 	default_ability_mask()
 	EventBus.playerConsecutiveJump.connect(consecutive_jump_cancel)
+	EventBus.teleportPlayer.connect(teleport_player)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -225,3 +226,9 @@ func default_ability_mask() -> void:
 	ability_mask(CollisionLayers.DashUp, true)
 	ability_mask(CollisionLayers.DashDown, true)
 	ability_mask(CollisionLayers.DashJump, true)
+
+
+func teleport_player(location: Vector2) -> void:
+	global_position = location
+	velocity = Vector2.ZERO
+	#TODO: dificulty setting for healing on teleport

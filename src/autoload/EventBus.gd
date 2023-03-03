@@ -8,6 +8,7 @@ signal playerStatChange(stat, amount)
 signal playerConsecutiveJump
 signal playerInfo
 signal actionAnnounce
+signal teleportPlayer(location)
 
 signal checkpointEntered
 
