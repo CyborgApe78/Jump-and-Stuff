@@ -1,4 +1,4 @@
-extends GridContainer
+extends MarginContainer
 
 
 @export var labelPlayTime: Label

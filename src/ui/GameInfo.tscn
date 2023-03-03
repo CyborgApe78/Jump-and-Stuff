@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/scripts/GameInfo.gd" id="1_eigog"]
 [ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Stats.gd" id="2_37txa"]
 
-[node name="GameInfo" type="Control" node_paths=PackedStringArray("menuStats")]
+[node name="GameInfo" type="Control" node_paths=PackedStringArray("menuStats", "menuWaypoints", "menuSkills", "menuCharms", "infoContainter", "labelCurrent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eigog")
-menuStats = NodePath("CenterContainer/Stats")
+menuStats = NodePath("InfoContainer/Stats")
+menuWaypoints = NodePath("InfoContainer/Waypoints")
+menuSkills = NodePath("InfoContainer/Skills")
+menuCharms = NodePath("InfoContainer/Charms")
+infoContainter = NodePath("InfoContainer")
+labelCurrent = NodePath("Top/MarginContainer/VBoxContainer/Current")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -21,18 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabLeft" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-
-[node name="Label" type="Label" parent="TabLeft"]
-layout_mode = 2
-text = "_left_game_info_tab"
-
-[node name="TabCurrent" type="MarginContainer" parent="."]
+[node name="Top" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -41,29 +35,52 @@ offset_left = -86.0
 offset_right = 86.0
 offset_bottom = 46.0
 grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="Panel" type="Panel" parent="Top"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Top"]
+layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Label" type="Label" parent="TabCurrent"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Top/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Buttons" type="HBoxContainer" parent="Top/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Waypoints" type="Button" parent="Top/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Stats")
+text = "Waypoints"
+
+[node name="Skills" type="Button" parent="Top/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Skills"
+
+[node name="Charms" type="Button" parent="Top/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Charms"
+
+[node name="Stats" type="Button" parent="Top/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Waypoints")
+text = "Stats"
+
+[node name="Current" type="Label" parent="Top/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "_current_game_info_tab"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TabRight" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -172.0
-offset_bottom = 46.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-
-[node name="Label" type="Label" parent="TabRight"]
-layout_mode = 2
-text = "_right_game_info_tab"
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="InfoContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,93 +96,169 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Stats" type="GridContainer" parent="CenterContainer" node_paths=PackedStringArray("labelPlayTime", "labelDeath", "labelJump", "labelDashSide", "labelDashUp", "labelDashDown")]
+[node name="Waypoints" type="MarginContainer" parent="InfoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="InfoContainer/Waypoints"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoContainer/Waypoints"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoContainer/Waypoints/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="InfoContainer/Waypoints/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Top"
+
+[node name="Button2" type="Button" parent="InfoContainer/Waypoints/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Bottom"
+
+[node name="Skills" type="MarginContainer" parent="InfoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="InfoContainer/Skills"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoContainer/Skills"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Charms" type="MarginContainer" parent="InfoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="InfoContainer/Charms"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoContainer/Charms"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Stats" type="MarginContainer" parent="InfoContainer" node_paths=PackedStringArray("labelPlayTime", "labelDeath", "labelJump", "labelDashSide", "labelDashUp", "labelDashDown")]
+visible = false
+layout_mode = 2
+script = ExtResource("2_37txa")
+labelPlayTime = NodePath("MarginContainer/GridContainer/PlayTime/Amount")
+labelDeath = NodePath("MarginContainer/GridContainer/Death/Amount")
+labelJump = NodePath("MarginContainer/GridContainer/Jump/Amount")
+labelDashSide = NodePath("MarginContainer/GridContainer/DashSide/Amount")
+labelDashUp = NodePath("MarginContainer/GridContainer/DashUp/Amount")
+labelDashDown = NodePath("MarginContainer/GridContainer/DashDown/Amount")
+
+[node name="Panel" type="Panel" parent="InfoContainer/Stats"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoContainer/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="InfoContainer/Stats/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
-script = ExtResource("2_37txa")
-labelPlayTime = NodePath("PlayTime/Amount")
-labelDeath = NodePath("Death/Amount")
-labelJump = NodePath("Jump/Amount")
-labelDashSide = NodePath("DashSide/Amount")
-labelDashUp = NodePath("DashUp/Amount")
-labelDashDown = NodePath("DashDown/Amount")
 
-[node name="PlayTime" type="VBoxContainer" parent="CenterContainer/Stats"]
+[node name="PlayTime" type="VBoxContainer" parent="InfoContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Stats/PlayTime"]
+[node name="Label" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/PlayTime"]
 layout_mode = 2
 text = "Time Played"
 horizontal_alignment = 1
 
-[node name="Amount" type="Label" parent="CenterContainer/Stats/PlayTime"]
+[node name="Amount" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/PlayTime"]
 layout_mode = 2
 text = "00:00:00"
 horizontal_alignment = 1
 
-[node name="Death" type="VBoxContainer" parent="CenterContainer/Stats"]
+[node name="Death" type="VBoxContainer" parent="InfoContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Stats/Death"]
+[node name="Label" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/Death"]
 layout_mode = 2
 text = "Deaths"
 horizontal_alignment = 1
 
-[node name="Amount" type="Label" parent="CenterContainer/Stats/Death"]
+[node name="Amount" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/Death"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="Jump" type="VBoxContainer" parent="CenterContainer/Stats"]
+[node name="Jump" type="VBoxContainer" parent="InfoContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Stats/Jump"]
+[node name="Label" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/Jump"]
 layout_mode = 2
 text = "Jumps"
 horizontal_alignment = 1
 
-[node name="Amount" type="Label" parent="CenterContainer/Stats/Jump"]
+[node name="Amount" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/Jump"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="DashSide" type="VBoxContainer" parent="CenterContainer/Stats"]
+[node name="DashSide" type="VBoxContainer" parent="InfoContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Stats/DashSide"]
+[node name="Label" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/DashSide"]
 layout_mode = 2
 text = "Side Dashes"
 horizontal_alignment = 1
 
-[node name="Amount" type="Label" parent="CenterContainer/Stats/DashSide"]
+[node name="Amount" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/DashSide"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="DashUp" type="VBoxContainer" parent="CenterContainer/Stats"]
+[node name="DashUp" type="VBoxContainer" parent="InfoContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Stats/DashUp"]
+[node name="Label" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/DashUp"]
 layout_mode = 2
 text = "Up Dashes"
 horizontal_alignment = 1
 
-[node name="Amount" type="Label" parent="CenterContainer/Stats/DashUp"]
+[node name="Amount" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/DashUp"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="DashDown" type="VBoxContainer" parent="CenterContainer/Stats"]
+[node name="DashDown" type="VBoxContainer" parent="InfoContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Stats/DashDown"]
+[node name="Label" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/DashDown"]
 layout_mode = 2
 text = "Down Dashes"
 horizontal_alignment = 1
 
-[node name="Amount" type="Label" parent="CenterContainer/Stats/DashDown"]
+[node name="Amount" type="Label" parent="InfoContainer/Stats/MarginContainer/GridContainer/DashDown"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Waypoints" to="." method="show_waypoints"]
+[connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Skills" to="." method="show_skills"]
+[connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Charms" to="." method="show_charms"]
+[connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Stats" to="." method="show_game_stats"]
