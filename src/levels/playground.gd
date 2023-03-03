@@ -5,6 +5,6 @@ var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.t
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("reset"): #TODO: move elsewhere
-		CheckpointSystem.reset_checkpoint()
+	if Input.is_action_just_pressed("reset"):
+		CheckpointSystem.reset_checkpoint() 
 		get_tree().reload_current_scene()

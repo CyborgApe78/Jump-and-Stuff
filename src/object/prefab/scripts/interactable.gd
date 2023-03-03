@@ -1,7 +1,7 @@
 extends Area2D
 class_name Interactable
 
-
+#TODO: move these to inherts
 @export var oneUse: bool = false
 @export var lockOut: bool = false
 @export var lockOutTime: float = 4.0

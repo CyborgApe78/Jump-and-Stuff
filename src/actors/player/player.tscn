@@ -541,7 +541,6 @@ script = ExtResource("4_tcit3")
 
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource("5_86xj5")
-transformTime = null
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("6_uc50q")
