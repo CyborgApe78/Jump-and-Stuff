@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgr00u8sgd2q3"]
+[gd_scene load_steps=5 format=3 uid="uid://cgr00u8sgd2q3"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="1_sbdkq"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="2_4npie"]
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu/scripts/HUD.gd" id="3_oufns"]
+[ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu/scripts/Gameplay.gd" id="3_vxf3y"]
 
 [node name="SettingsMenu" type="CenterContainer" node_paths=PackedStringArray("optionsContainer", "gameplayMenu", "hudMenu", "videoMenu", "audioMenu", "controlsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton")]
 anchors_preset = 8
@@ -146,13 +147,22 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
+[node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonAimIndicator")]
 layout_mode = 2
+script = ExtResource("3_vxf3y")
+buttonAimIndicator = NodePath("VBoxContainer/Aim")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay"]
 layout_mode = 2
 text = "Gameplay"
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay"]
+layout_mode = 2
+
+[node name="Aim" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer"]
+layout_mode = 2
+text = "Show Aim Indicator"
 
 [node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("timerCheck", "buttonController")]
 visible = false
@@ -215,5 +225,6 @@ text = "Spoilers"
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="show_controls"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="." method="back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_pressed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer/Aim" to="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay" method="show_aim_indicator"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Timer" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_timer"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Controller" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_controller"]
