@@ -10,4 +10,4 @@ func _on_collision_toggled(button_pressed: bool) -> void:
 
 
 func _on_debug_info_toggled(button_pressed: bool) -> void:
-	EventBus.showDebug.emit(button_pressed) #TODO
+	EventBus.showDebug.emit(button_pressed)

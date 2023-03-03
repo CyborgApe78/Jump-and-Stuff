@@ -1,34 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4427exks6flt"]
+[gd_scene load_steps=3 format=3 uid="uid://dpjokv6cxhpbc"]
 
-[ext_resource type="Script" path="res://src/ui/Debug/debugOther.gd" id="1_1n83y"]
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugOther.gd" id="1_0rjqn"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_s7da5"]
 
 [node name="Other" type="VBoxContainer" node_paths=PackedStringArray("showCollision")]
-script = ExtResource("1_1n83y")
-showCollision = NodePath("HBoxContainer/All/Collision")
+script = ExtResource("1_0rjqn")
+showCollision = NodePath("Collision")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "Other"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="All" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Collision" type="Button" parent="HBoxContainer/All"]
+[node name="Collision" type="Button" parent="."]
 layout_mode = 2
 theme = ExtResource("1_s7da5")
 toggle_mode = true
 text = "Show Collision"
 
-[node name="DebugInfo" type="Button" parent="HBoxContainer/All"]
+[node name="DebugInfo" type="Button" parent="."]
 layout_mode = 2
 theme = ExtResource("1_s7da5")
 toggle_mode = true
 text = "Show Debug Info"
 
-[connection signal="toggled" from="HBoxContainer/All/Collision" to="." method="_on_collision_toggled"]
-[connection signal="toggled" from="HBoxContainer/All/DebugInfo" to="." method="_on_debug_info_toggled"]
+[connection signal="toggled" from="Collision" to="." method="_on_collision_toggled"]
+[connection signal="toggled" from="DebugInfo" to="." method="_on_debug_info_toggled"]
