@@ -13,7 +13,7 @@ var baseSpeed: int = 25:
 		baseSpeed += v
 		baseSpeed = max(0, baseSpeed)
 
-var baseJumpHeight: float = 4.25: #TODO: add .25 to any change
+var baseJumpHeight: float = 8:
 	set(v):
 		baseJumpHeight += v + 0.25
 		baseJumpHeight = max(0, baseJumpHeight)
