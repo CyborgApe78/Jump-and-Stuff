@@ -2,7 +2,7 @@ extends PlayerInfo
 
 #TODO: break left and right apart
 #TODO: get friction from enviroment
-#FIXME: pressing up sends to skid
+#FIXME: pressing up or down with no x input sends to idle
 
 @export var particles: GPUParticles2D
 @export var skidPercent: float = 1.2

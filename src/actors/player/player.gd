@@ -2,7 +2,6 @@ extends Actor
 class_name  Player
 
 
-#TODO: joystick vs dpad/keyboard input
 @export var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 @export var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 
@@ -70,6 +69,8 @@ func _physics_process(delta: float) -> void:
 		ledge_detection()
 	
 	EventBus.debugVelocity.emit(velocity.round())
+	EventBus.debug.emit(Input.get_vector("move_left", "move_right", "move_up", "move_down"))
+	EventBus.debug2.emit(Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")))
 
 
 func _process(delta: float) -> void:
@@ -87,18 +88,15 @@ func move_and_slide_rotation() -> void:
 func get_move_input() -> void:
 	var deadzoneRadius: float = 0.2
 	#TODO: make deadzone radius in settings
-	var inputStrength: = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	aimStrength = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
-		
-	moveStrength = inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
-	moveDirection = moveStrength.round()
+	var inputStrength: = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+	#TODO: need to add input get_vector
+	var aimInput = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	
-	if aimStrength.length() > deadzoneRadius:
-		aimDirection = aimStrength
-	elif inputStrength.length() > deadzoneRadius:
-		aimDirection = moveStrength
-	else:
-		aimDirection = Vector2.ZERO
+	moveStrength = inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
+	aimStrength = aimInput if aimInput.length() > deadzoneRadius else Vector2.ZERO
+	
+	moveDirection = moveStrength.round()
+	aimDirection = aimStrength.round()
 	
 	if moveDirection != Vector2.ZERO:
 		lastMoveDirection = moveDirection
