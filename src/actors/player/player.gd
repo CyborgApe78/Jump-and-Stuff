@@ -69,8 +69,6 @@ func _physics_process(delta: float) -> void:
 		ledge_detection()
 	
 	EventBus.debugVelocity.emit(velocity.round())
-	EventBus.debug.emit(Input.get_vector("move_left", "move_right", "move_up", "move_down"))
-	EventBus.debug2.emit(Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")))
 
 
 func _process(delta: float) -> void:
@@ -98,8 +96,10 @@ func get_move_input() -> void:
 	moveDirection = moveStrength.round()
 	aimDirection = aimStrength.round()
 	
-	if moveDirection != Vector2.ZERO:
-		lastMoveDirection = moveDirection
+	if moveDirection.x != 0:
+		lastMoveDirection.x = moveDirection.x
+	if moveDirection.y != 0:
+		lastMoveDirection.y = moveDirection.y
 
 
 func facing_logic():
