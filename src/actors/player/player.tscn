@@ -406,14 +406,13 @@ polygon = PackedVector2Array(-16, 40, -32, 24, -32, -72, -16, -88, 16, -88, 32, 
 position = Vector2(0, -32)
 
 [node name="LEye" type="Line2D" parent="CharacterRig/CharacterRotate/Eyes"]
-position = Vector2(8, 0)
 points = PackedVector2Array(0, -8, 0, 0)
 width = 8.0
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="REye" type="Line2D" parent="CharacterRig/CharacterRotate/Eyes"]
-position = Vector2(24, 0)
+position = Vector2(16, 0)
 points = PackedVector2Array(0, -8, 0, 0)
 width = 8.0
 begin_cap_mode = 2

@@ -106,13 +106,13 @@ func facing_logic():
 	#TODO: need to be able to send variables
 	if moveDirection.x == 1 and eyeDirection == -1:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(eyes, "position", Vector2(0, eyes.position.y), 0.2).from_current()
+		tween.tween_property(eyes, "position", Vector2(0, eyes.position.y), 0.4).from_current()
 		eyeDirection = 1
 		particles.scale.x = 1
 		facing = eyeDirection
 	if moveDirection.x == -1  and eyeDirection == 1:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(eyes, "position", Vector2(-8, eyes.position.y), 0.2).from_current() #TODO: eyes should be own functiun
+		tween.tween_property(eyes, "position", Vector2(-16, eyes.position.y), 0.4).from_current() #TODO: eyes should be own functiun
 		eyeDirection = -1
 		particles.scale.x = -1
 		facing = eyeDirection
@@ -128,6 +128,7 @@ func ledge_detection() -> void:
 		ledgeRight = true
 	else:
 		ledgeRight = false
+
 
 func attempt_vertical_corner_correction(amount: int, delta) -> void:
 	if test_move(global_transform, Vector2(velocity.x * delta, 0)): 
