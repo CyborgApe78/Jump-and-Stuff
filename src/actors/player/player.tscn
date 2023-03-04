@@ -51,10 +51,6 @@
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="50_wm14u"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
-radius = 16.0
-height = 48.0
-
 [sub_resource type="Curve" id="Curve_wyqxj"]
 _data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -313,6 +309,10 @@ color = Color(0, 0, 0, 1)
 hue_variation_min = -0.12
 hue_variation_max = 0.2
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
+radius = 32.0
+height = 96.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
 size = Vector2(5, 48)
 
@@ -383,44 +383,44 @@ detectorGroundRight = NodePath("Raycasts/Ground/Right")
 wallRaycastLeft = NodePath("Raycasts/Wall/Left")
 wallRaycastRight = NodePath("Raycasts/Wall/Right")
 
-[node name="BodyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -24)
-shape = SubResource("CapsuleShape2D_jx3rl")
-
 [node name="CharacterRig" type="Node2D" parent="."]
 script = ExtResource("2_i63he")
 
 [node name="CharacterRotate" type="Node2D" parent="CharacterRig"]
-position = Vector2(0, -24)
+position = Vector2(0, -64)
 
 [node name="Body" type="Node2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(0, 24)
 
 [node name="Line2D" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 position = Vector2(16, 0)
-points = PackedVector2Array(-24, -64, -32, -56, -32, -8, -24, 0, -8, 0, 0, -8, 0, -56, -8, -64, -24, -64, -32, -56, -24, -64)
-width = 2.0
+points = PackedVector2Array(-48, -72, -48, 24, -32, 40, 0, 40, 16, 32, 16, -72, 0, -88, -32, -88, -48, -72)
+width = 4.0
 joint_mode = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="CharacterRig/CharacterRotate/Body"]
 color = Color(0.643137, 0.180392, 1, 1)
-polygon = PackedVector2Array(-8, 0, -16, -8, -16, -56, -8, -64, 8, -64, 16, -56, 16, -8, 8, 0)
+polygon = PackedVector2Array(-16, 40, -32, 24, -32, -72, -16, -88, 16, -88, 32, -72, 32, 32, 16, 40)
 
 [node name="Eyes" type="Node2D" parent="CharacterRig/CharacterRotate"]
-position = Vector2(0, -14)
+position = Vector2(0, -32)
 
 [node name="LEye" type="Line2D" parent="CharacterRig/CharacterRotate/Eyes"]
-position = Vector2(0, -10)
+position = Vector2(8, 0)
 points = PackedVector2Array(0, -8, 0, 0)
-width = 4.0
+width = 8.0
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="REye" type="Line2D" parent="CharacterRig/CharacterRotate/Eyes"]
-position = Vector2(8, -10)
+position = Vector2(24, 0)
 points = PackedVector2Array(0, -8, 0, 0)
-width = 4.0
+width = 8.0
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "dashUp", "dashDown", "wallSlide", "jumpWall")]
-position = Vector2(0, 24)
+position = Vector2(0, 64)
 script = ExtResource("3_0fvjs")
 walk = NodePath("Walking")
 skid = NodePath("Skid")
@@ -488,7 +488,7 @@ speed_scale = 2.0
 explosiveness = 0.7
 
 [node name="Dash" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(-15, -32)
+position = Vector2(-32, -64)
 emitting = false
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_fn840")
@@ -503,7 +503,7 @@ lifetime = 0.5
 randomness = 0.13
 
 [node name="DashDown" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(1, -63)
+position = Vector2(0, -128)
 emitting = false
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_atob2")
@@ -511,7 +511,7 @@ lifetime = 0.5
 randomness = 0.13
 
 [node name="WallSlide" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(16, -32)
+position = Vector2(32, -32)
 emitting = false
 amount = 80
 process_material = SubResource("ParticleProcessMaterial_n6t6x")
@@ -519,7 +519,7 @@ speed_scale = 2.0
 explosiveness = 0.17
 
 [node name="WallClimb" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(15, -32)
+position = Vector2(32, -32)
 emitting = false
 amount = 80
 process_material = SubResource("ParticleProcessMaterial_xa8qa")
@@ -527,7 +527,7 @@ speed_scale = 2.0
 explosiveness = 0.55
 
 [node name="JumpWall" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(-16, -16)
+position = Vector2(-32, -16)
 emitting = false
 amount = 80
 process_material = SubResource("ParticleProcessMaterial_uu3sd")
@@ -535,6 +535,11 @@ lifetime = 0.5
 one_shot = true
 speed_scale = 2.0
 explosiveness = 0.7
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -48)
+shape = SubResource("CapsuleShape2D_jx3rl")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_tcit3")
@@ -702,25 +707,25 @@ visible = false
 [node name="Ground" type="Node2D" parent="Raycasts"]
 
 [node name="Left" type="RayCast2D" parent="Raycasts/Ground"]
-position = Vector2(-16, -16)
+position = Vector2(-32, -16)
 target_position = Vector2(0, 26)
 collision_mask = 2
 
 [node name="Right" type="RayCast2D" parent="Raycasts/Ground"]
-position = Vector2(16, -16)
+position = Vector2(32, -16)
 target_position = Vector2(0, 26)
 collision_mask = 2
 
 [node name="Wall" type="Node2D" parent="Raycasts"]
 
 [node name="Left" type="ShapeCast2D" parent="Raycasts/Wall"]
-position = Vector2(-16, -32)
+position = Vector2(-32, -32)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(-5, 0)
 collision_mask = 2
 
 [node name="Right" type="ShapeCast2D" parent="Raycasts/Wall"]
-position = Vector2(16, -32)
+position = Vector2(32, -32)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(5, 0)
 collision_mask = 2
@@ -827,9 +832,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -40.0
-offset_top = -96.0
+offset_top = -184.0
 offset_right = 45.0
-offset_bottom = -73.0
+offset_bottom = -161.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6

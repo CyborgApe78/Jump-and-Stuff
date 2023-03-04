@@ -9,16 +9,16 @@ extends PlayerInfo
 
 func enter() -> void:
 	neutral_move_direction_logic()
-	player.characterCollision.shape.height = 24
-	player.characterCollision.shape.radius = 16
-	player.characterCollision.position.y = -12
+	player.characterCollision.shape.height = 48
+	player.characterCollision.shape.radius = 32
+	player.characterCollision.position.y = -24
 	player.animPlayer.play("crouchEnter")
 
 
 func exit() -> void:
-	player.characterCollision.shape.height = 48
-	player.characterCollision.shape.radius = 16
-	player.characterCollision.position.y = -24
+	player.characterCollision.shape.height = 96
+	player.characterCollision.shape.radius = 32
+	player.characterCollision.position.y = -48
 	player.animPlayer.play("crouchExit")
 
 
