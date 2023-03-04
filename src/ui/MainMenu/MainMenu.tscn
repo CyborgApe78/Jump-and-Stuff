@@ -59,6 +59,7 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+visible = false
 layout_mode = 2
 
 [node name="Play" type="Button" parent="Buttons/HBoxContainer"]
