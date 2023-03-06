@@ -383,8 +383,9 @@ detectorGroundRight = NodePath("Raycasts/Ground/Right")
 wallRaycastLeft = NodePath("Raycasts/Wall/Left")
 wallRaycastRight = NodePath("Raycasts/Wall/Right")
 
-[node name="CharacterRig" type="Node2D" parent="."]
+[node name="CharacterRig" type="Node2D" parent="." node_paths=PackedStringArray("characterCollision")]
 script = ExtResource("2_i63he")
+characterCollision = NodePath("../BodyCollision")
 
 [node name="CharacterRotate" type="Node2D" parent="CharacterRig"]
 position = Vector2(0, -64)
