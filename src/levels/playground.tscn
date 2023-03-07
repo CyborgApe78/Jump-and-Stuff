@@ -154,7 +154,7 @@ shape = SubResource("RectangleShape2D_pybkr")
 script = ExtResource("1_isl6d")
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="ground/StaticBody2D"]
-position = Vector2(1024, -160)
+position = Vector2(1024, -96)
 shape = SubResource("RectangleShape2D_epngd")
 script = ExtResource("1_isl6d")
 
@@ -200,6 +200,7 @@ position = Vector2(-617, -37)
 floor_snap_length = 9.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(1, 93)
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("14_scku3")
 

@@ -1,25 +1,29 @@
 extends PlayerInfo
 
 @export var crouchSpeedMin: int = 20
-@export var frictionCrouch: float = 0.1 * Util.tileSize
 @export var minLongJumpVelocity: int = 30
 @export var transformTime: float = 0.2
+
+var crouchReleased: bool = false
 
 #LOOKAT: crouch stores consec jumps
 
 func enter() -> void:
+	crouchReleased = false
 	neutral_move_direction_logic()
 	player.animPlayer.play("crouchEnter")
+	#FIXME: if coming from fall breaks
 
 
 func exit() -> void:
-	player.animPlayer.play("crouchExit")
+	player.animPlayer.play("crouchExit") #LOOKAT: currently Charrig anim not need with squash_and_stretch(delta)
+	pass
 
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	if !player.neutralMoveDirection: #TODO: skates upgrade, no ground friction
-		apply_friction(frictionCrouch, delta)
+#	if !player.neutralMoveDirection: #TODO: skates upgrade, no ground friction
+	apply_friction(frictionGround * 0.5, delta)
 
 
 func visual(delta) -> void:
@@ -34,11 +38,14 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_released("crouch"):
-		if player.velocity.x != 0:
-			return State.Walk
+		if player.crouch_ceiling_detect():
+			crouchReleased = true
 		else:
-			return State.Idle
-	if Input.is_action_just_pressed("jump"):
+			if player.velocity.x != 0:
+				return State.Walk
+			else:
+				return State.Idle
+	if Input.is_action_just_pressed("jump") and !player.crouch_ceiling_detect():
 		if player.jumped:
 			consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
 			return State.JumpLong #TODO: special jump, timer to get a boosted jump
@@ -48,11 +55,15 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpCrouch
 	if Input.is_action_just_pressed("spin") and abilities.can_use(PlayerAbilities.list.Slide):
 		return State.Slide
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump):
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump) and !player.crouch_ceiling_detect():
 		return State.DashJump ## shinespark
 	#TODO:
 #		if Input.is_action_just_pressed("dive"):
 #			return State.Roll
+	if Input.is_action_just_pressed("crouch"):
+		crouchReleased = false
+	if Input.is_action_just_pressed("slide"):
+		return State.Slide #TODO: need to add, cam get stuck in crouch
 
 	return State.Null
 
@@ -61,6 +72,11 @@ func state_check(delta: float) -> int:
 #TODO:
 #	if player.groundAngle > 1:
 #		return State.BackSlide
+	if crouchReleased and !player.crouch_ceiling_detect():
+		if player.velocity.x != 0:
+			return State.Walk
+		else:
+			return State.Idle
 	if !player.is_on_floor():
 		player.timers.coyoteJump.start()
 		return State.Fall
