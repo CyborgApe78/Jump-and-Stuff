@@ -24,6 +24,7 @@ func to_slide() -> void:
 
 
 func from_slide() -> void:
+	#TODO: in animplayer, don't need to reset positions once all anims made
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(self, "scale", Vector2(1, 1), transformTime).from_current()
 #	tween.tween_property(charPoly, "position", Vector2(0,0), transformTime).from_current()
@@ -36,16 +37,9 @@ func from_slide() -> void:
 func to_crouch() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(self, "scale", Vector2(scale.x, 0.5), transformTime).from_current()
-	
-	characterCollision.shape.height = 48 #TODO: move to anim player
-	characterCollision.shape.radius = 24
-	characterCollision.position.y = -24
 
 
 func from_crouch() -> void:
 #	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 #	tween.tween_property(self, "scale", Vector2(scale.x, 1), transformTime).from_current()
-	
-	characterCollision.shape.height = 96 #TODO: move to anim player
-	characterCollision.shape.radius = 32
-	characterCollision.position.y = -48
+	pass
