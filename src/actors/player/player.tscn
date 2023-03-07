@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://c6sp0iiop2sqw"]
+[gd_scene load_steps=83 format=3 uid="uid://c6sp0iiop2sqw"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -314,7 +314,7 @@ radius = 32.0
 height = 96.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
-size = Vector2(5, 48)
+size = Vector2(5, 96)
 
 [sub_resource type="Animation" id="Animation_ms661"]
 resource_name = "crouchEnter"
@@ -346,24 +346,80 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"to_crouch"
+"method": &"from_crouch"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_xkfx1"]
 resource_name = "walk"
 
+[sub_resource type="Animation" id="Animation_7dglm"]
+resource_name = "Slide Exit"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRig")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"from_slide"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lmwi4"]
+resource_name = "Slide Enter"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRig")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_slide"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
 _data = {
+"Slide Enter": SubResource("Animation_lmwi4"),
+"Slide Exit": SubResource("Animation_7dglm"),
 "crouchEnter": SubResource("Animation_ms661"),
 "crouchExit": SubResource("Animation_ho66q"),
 "walk": SubResource("Animation_xkfx1")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dgo2q"]
+animation = &"Slide Enter"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v6nvu"]
+animation = &"Slide Exit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gq47c"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4s3su"]
+states/End/position = Vector2(953.333, 204.444)
+"states/Slide Enter/node" = SubResource("AnimationNodeAnimation_dgo2q")
+"states/Slide Enter/position" = Vector2(450.667, 68.6667)
+"states/Slide Exit/node" = SubResource("AnimationNodeAnimation_v6nvu")
+"states/Slide Exit/position" = Vector2(605.333, 67.7778)
+states/Start/position = Vector2(116, 205.333)
+transitions = ["Slide Enter", "Slide Exit", SubResource("AnimationNodeStateMachineTransition_gq47c")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2yxfa"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oudvw"]
 size = Vector2(47, 82)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "sm", "characterRig", "characterRotate", "characterCollision", "eyes", "body", "particles", "timers", "sounds", "detectorGroundLeft", "detectorGroundRight", "wallRaycastLeft", "wallRaycastRight")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "sm", "characterRig", "characterRotate", "characterCollision", "eyes", "body", "particles", "timers", "sounds", "detectorGroundLeft", "detectorGroundRight", "wallRaycastLeft", "wallRaycastRight", "detectorCrouchLeft", "detectorCrouchRight")]
 collision_layer = 64
 collision_mask = 65538
 floor_snap_length = 10.1
@@ -382,10 +438,15 @@ detectorGroundLeft = NodePath("Raycasts/Ground/Left")
 detectorGroundRight = NodePath("Raycasts/Ground/Right")
 wallRaycastLeft = NodePath("Raycasts/Wall/Left")
 wallRaycastRight = NodePath("Raycasts/Wall/Right")
+detectorCrouchLeft = NodePath("Raycasts/Crouch/Left")
+detectorCrouchRight = NodePath("Raycasts/Crouch/Right")
+metadata/_edit_vertical_guides_ = [-456.0]
 
-[node name="CharacterRig" type="Node2D" parent="." node_paths=PackedStringArray("characterCollision")]
+[node name="CharacterRig" type="Node2D" parent="." node_paths=PackedStringArray("characterCollision", "charPoly", "charLine")]
 script = ExtResource("2_i63he")
 characterCollision = NodePath("../BodyCollision")
+charPoly = NodePath("CharacterRotate/Body/Polygon2D")
+charLine = NodePath("CharacterRotate/Body/Line2D")
 
 [node name="CharacterRotate" type="Node2D" parent="CharacterRig"]
 position = Vector2(0, -64)
@@ -393,15 +454,15 @@ position = Vector2(0, -64)
 [node name="Body" type="Node2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(0, 24)
 
+[node name="Polygon2D" type="Polygon2D" parent="CharacterRig/CharacterRotate/Body"]
+color = Color(0.643137, 0.180392, 1, 1)
+polygon = PackedVector2Array(-16, 40, -32, 24, -32, -72, -16, -88, 16, -88, 32, -72, 32, 32, 16, 40)
+
 [node name="Line2D" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 position = Vector2(16, 0)
 points = PackedVector2Array(-32, -88, -48, -72, -48, 24, -32, 40, 0, 40, 16, 32, 16, -72, 0, -88, -32, -88, -48, -72)
 width = 4.0
 joint_mode = 1
-
-[node name="Polygon2D" type="Polygon2D" parent="CharacterRig/CharacterRotate/Body"]
-color = Color(0.643137, 0.180392, 1, 1)
-polygon = PackedVector2Array(-16, 40, -32, 24, -32, -72, -16, -88, 16, -88, 32, -72, 32, 32, 16, 40)
 
 [node name="Eyes" type="Node2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(0, -32)
@@ -537,7 +598,6 @@ speed_scale = 2.0
 explosiveness = 0.7
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
@@ -702,7 +762,6 @@ script = ExtResource("21_43u8a")
 script = ExtResource("22_prnk2")
 
 [node name="Raycasts" type="Node2D" parent="."]
-visible = false
 
 [node name="Ground" type="Node2D" parent="Raycasts"]
 
@@ -719,21 +778,38 @@ collision_mask = 2
 [node name="Wall" type="Node2D" parent="Raycasts"]
 
 [node name="Left" type="ShapeCast2D" parent="Raycasts/Wall"]
-position = Vector2(-32, -32)
+position = Vector2(-32, -56)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(-5, 0)
 collision_mask = 2
 
 [node name="Right" type="ShapeCast2D" parent="Raycasts/Wall"]
-position = Vector2(32, -32)
+position = Vector2(32, -56)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(5, 0)
+collision_mask = 2
+
+[node name="Crouch" type="Node2D" parent="Raycasts"]
+
+[node name="Left" type="RayCast2D" parent="Raycasts/Crouch"]
+position = Vector2(-32, -56)
+target_position = Vector2(0, -72)
+collision_mask = 2
+
+[node name="Right" type="RayCast2D" parent="Raycasts/Crouch"]
+position = Vector2(32, -56)
+target_position = Vector2(0, -72)
 collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_4s3su")
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2yxfa")
 
 [node name="Timers" type="Node" parent="." node_paths=PackedStringArray("coyoteJump", "coyoteJumpWall", "consecutiveJump", "bufferJump")]
 script = ExtResource("14_gr7r5")
@@ -873,4 +949,5 @@ position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_oudvw")
 
 [connection signal="timeout" from="StateMachine/WallLand/Hold" to="StateMachine/WallLand" method="_on_hold_timeout"]
+[connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
 [connection signal="timeout" from="Timers/DashChain" to="." method="_on_dash_chain_timeout"]

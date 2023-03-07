@@ -19,6 +19,8 @@ class_name  Player
 @export var detectorGroundRight: RayCast2D
 @export var wallRaycastLeft: ShapeCast2D
 @export var wallRaycastRight: ShapeCast2D
+@export var detectorCrouchLeft: RayCast2D
+@export var detectorCrouchRight: RayCast2D
 
 var eyeDirection: int = 1 #TODO: randomizer on spawn
 var moveDirection: Vector2 = Vector2.ZERO
@@ -191,9 +193,6 @@ func wall_detection(length: int = 5) -> int:
 	if wallRaycastRight.target_position.x != length:
 		wallRaycastRight.target_position.x = length
 	
-	wallRaycastLeft.force_shapecast_update()
-	wallRaycastRight.force_shapecast_update()
-	
 	if  wallRaycastLeft.is_colliding() and wallRaycastRight.is_colliding():
 		wallDirection = 0
 		return 0
@@ -209,6 +208,12 @@ func wall_detection(length: int = 5) -> int:
 	
 	return 0
 
+
+func crouch_ceiling_detect() -> bool:
+	if detectorCrouchLeft.is_colliding() or detectorCrouchRight.is_colliding():
+		return true
+	
+	return false
 
 func _on_dash_chain_timeout() -> void:
 	particles.jumpTriple.restart()
