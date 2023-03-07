@@ -21,7 +21,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	squash_and_stretch(delta)
+	squash_and_stretch(delta) #TODO: each state needs own animation
 	align_to_ground()
 
 

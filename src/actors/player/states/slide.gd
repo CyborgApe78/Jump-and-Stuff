@@ -10,6 +10,7 @@ var saveTriple: bool
 
 
 func enter() -> void:
+	player.animPlayer.play("Slide Enter")
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	durationTimer.wait_time = duration
@@ -21,6 +22,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.animPlayer.play("Slide Exit")
 	particles.emitting = false
 	player.ability_mask(CollisionLayers.DashSide, true)
 

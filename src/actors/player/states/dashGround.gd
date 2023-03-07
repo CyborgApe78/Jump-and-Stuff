@@ -91,3 +91,8 @@ func  timers() -> void:
 	dashJumpTimer.start()
 	dashJumpRefreshTimer.start()
 	durationTimer.start()
+
+
+func _on_dash_jump_refresh_timeout() -> void:
+	pass
+	#TODO: indicator for Ultra Jump
