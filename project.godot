@@ -205,3 +205,7 @@ slide={
 2d_physics/layer_1="Don't Use"
 2d_physics/layer_2="Ground"
 2d_physics/layer_7="Player"
+
+[rendering]
+
+anti_aliasing/quality/msaa_2d=3
