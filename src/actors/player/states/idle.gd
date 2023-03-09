@@ -7,10 +7,13 @@ func enter() -> void:
 	#TODO: check rotation to move off wall
 	player.velocity = Vector2(0, 10)
 	player.set_up_direction(Vector2.UP)
-	player.animPlayer.play("RESET") #TODO: idle animatins that trans pos to proper place
+	player.animPlayer.play("Idle")
 	if player.characterRig.skew != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT) #LOOKAT: move to player info
 		tween.tween_property(player.characterRig, "skew", 0, transformTime).from_current()
+	if player.characterRig.scale.y != 1: #FIXME: not always getting back to regular scale after jump
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.tween_property(player.characterRig, "scale", Vector2(player.scale.x, 1), 0.1).from_current()
 
 
 func exit() -> void:
@@ -22,7 +25,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	squash_and_stretch(delta) #TODO: each state needs own animation
+	player.facing_logic()
 	align_to_ground()
 
 
