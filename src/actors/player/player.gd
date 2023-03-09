@@ -105,20 +105,10 @@ func get_move_input() -> void:
 
 
 func facing_logic():
-	#TODO: need to be able to send variables
-	if moveDirection.x == 1 and eyeDirection == -1:
-		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(eyes, "position", Vector2(0, eyes.position.y), 0.4).from_current()
-		eyeDirection = 1
-		particles.scale.x = 1
-		facing = eyeDirection
-	if moveDirection.x == -1  and eyeDirection == 1:
-		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(eyes, "position", Vector2(-16, eyes.position.y), 0.4).from_current() #TODO: eyes should be own functiun
-		eyeDirection = -1
-		particles.scale.x = -1
-		facing = eyeDirection
-
+	if characterRig.scale.x != lastMoveDirection.x:
+		characterRig.scale.x = lastMoveDirection.x
+		facing = lastMoveDirection.x
+		#TODO: look into finding another way to do
 
 func ledge_detection() -> void:
 	if is_on_floor() and !detectorGroundLeft.is_colliding():

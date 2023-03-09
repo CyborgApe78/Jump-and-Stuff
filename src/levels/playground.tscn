@@ -154,7 +154,7 @@ shape = SubResource("RectangleShape2D_pybkr")
 script = ExtResource("1_isl6d")
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="ground/StaticBody2D"]
-position = Vector2(1024, -96)
+position = Vector2(1024, -160)
 shape = SubResource("RectangleShape2D_epngd")
 script = ExtResource("1_isl6d")
 
