@@ -7,13 +7,14 @@ func enter() -> void:
 	#TODO: check rotation to move off wall
 	player.velocity = Vector2(0, 10)
 	player.set_up_direction(Vector2.UP)
+	player.animPlayer.play("RESET") #TODO: idle animatins that trans pos to proper place
 	if player.characterRig.skew != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT) #LOOKAT: move to player info
 		tween.tween_property(player.characterRig, "skew", 0, transformTime).from_current()
 
 
 func exit() -> void:
-	pass
+	player.animPlayer.stop()
 
 
 func physics(delta) -> void:
