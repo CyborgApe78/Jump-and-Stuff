@@ -2,14 +2,6 @@
 extends Node2D
 
 
-@export var characterCollision: CollisionShape2D
-@export var charPoly: Polygon2D
-@export var charLine: Line2D
-
-
-var transformTime: float = 0.2
-
-
 @onready var head: Node2D = $CharacterRotate/Head
 @onready var eye: Node2D = $CharacterRotate/Eye
 
@@ -17,16 +9,10 @@ var transformTime: float = 0.2
 @export var eyeRadius: int = 2
 @export var eyeOffset: int = 2
 
-
-func _process(delta) -> void:
-	queue_redraw()
+var transformTime: float = 0.2
 
 
-func _draw() -> void:
-	draw_circle(head.position, headRadius * 1.1, Color.BLACK)
-	draw_circle(head.position, headRadius, Color.PURPLE)
-	draw_circle(eye.position, eyeRadius * 3, Color.BLACK)
-	draw_circle(eye.position + Vector2(eyeOffset,-eyeOffset), eyeRadius, Color.WHITE)
+
 
 func to_walk() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
