@@ -62,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	sm.state_check(delta)
 
 	get_move_input()
-	facing_logic()
 	get_slope_angle()
 	
 	if is_on_floor(): #TODo: create is grounded using floor raycasts
@@ -104,7 +103,8 @@ func get_move_input() -> void:
 
 func facing_logic():
 	if characterRig.scale.x != lastMoveDirection.x:
-		characterRig.scale.x = lastMoveDirection.x
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.tween_property(characterRig, "scale", Vector2(lastMoveDirection.x, characterRig.scale.y), 0.4).from_current()
 		facing = lastMoveDirection.x
 		#TODO: look into finding another way to do
 
