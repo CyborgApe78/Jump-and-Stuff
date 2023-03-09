@@ -7,12 +7,12 @@ extends PlayerInfo
 func enter() -> void:
 	if CheckpointSystem.get_respawn() != Vector2.ZERO:
 		player.global_position = CheckpointSystem.get_respawn()
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.tween_property(player.characterRig, "scale", Vector2(1,1), transformTime).from(Vector2(0,0))
+	player.animPlayer.play("Spawn")
 	EventBus.playerStatsCheck.emit()
 
 
 func exit() -> void:
+	player.animPlayer.stop()
 	player.characterRig.scale = Vector2(1,1) ## Makes sure character is full size ##
 
 

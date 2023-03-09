@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://c6sp0iiop2sqw"]
+[gd_scene load_steps=87 format=3 uid="uid://c6sp0iiop2sqw"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/CharacterRig.gd" id="2_i63he"]
@@ -501,6 +501,18 @@ tracks/14/keys = {
 "update": 0,
 "values": [Vector2(24, -40)]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("CharacterRig:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
 
 [sub_resource type="Animation" id="Animation_lmwi4"]
 resource_name = "Slide Enter"
@@ -940,11 +952,28 @@ tracks/15/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_devon"]
+resource_name = "Spawn"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRig:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
 _data = {
 "RESET": SubResource("Animation_g6quy"),
 "Slide Enter": SubResource("Animation_lmwi4"),
 "Slide Exit": SubResource("Animation_7dglm"),
+"Spawn": SubResource("Animation_devon"),
 "Walk": SubResource("Animation_xkfx1"),
 "crouchEnter": SubResource("Animation_ms661"),
 "crouchExit": SubResource("Animation_ho66q")
@@ -981,6 +1010,7 @@ script = ExtResource("1_a3yhc")
 metadata/_edit_vertical_guides_ = [-456.0]
 
 [node name="CharacterRig" type="Node2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
 script = ExtResource("2_i63he")
 
 [node name="CharacterRotate" type="Node2D" parent="CharacterRig"]
@@ -1129,7 +1159,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, -8, 0, 9, 4, 13)
+points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -1153,7 +1183,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline4" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 42, 24, 50, 32, 46)
+points = PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -1176,7 +1206,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -16, 48, -32, 56, -32, 64)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -1199,7 +1229,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, -6, 0, 9, 4, 13)
+points = PackedVector2Array(0, 0, 16, 10, 32, 2)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -1211,7 +1241,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 16, 0, 32)
+points = PackedVector2Array(0, 24, 0, 40)
 width = 50.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
