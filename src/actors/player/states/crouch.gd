@@ -11,12 +11,11 @@ var crouchReleased: bool = false
 func enter() -> void:
 	crouchReleased = false
 	neutral_move_direction_logic()
-	player.animPlayer.play("crouchEnter")
-	#FIXME: if coming from fall breaks
+	player.animPlayer.play("Crouch")
 
 
 func exit() -> void:
-	player.animPlayer.play("crouchExit") #LOOKAT: currently Charrig anim not need with squash_and_stretch(delta)
+	player.animPlayer.stop()
 	pass
 
 
@@ -27,6 +26,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
+	player.facing_logic()
 	align_to_ground()
 
 
