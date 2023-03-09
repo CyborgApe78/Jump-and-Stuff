@@ -223,3 +223,7 @@ func teleport_player(location: Vector2) -> void:
 	global_position = location
 	velocity = Vector2.ZERO
 	#TODO: dificulty setting for healing on teleport
+
+
+func animation_speed() -> void:
+	animPlayer.speed_scale = abs(velocity.x) * .004 #TODO: turn to var
