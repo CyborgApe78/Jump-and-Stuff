@@ -8,6 +8,9 @@ extends PlayerInfo
 var skidding: bool = false
 
 func enter() -> void:
+	if player.characterRig.scale.y != 1:
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.tween_property(player.characterRig, "scale", Vector2(player.scale.x, 1), 0.1).from_current()
 	player.animPlayer.play("Walk")
 	skidding = false
 
@@ -36,13 +39,15 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	squash_and_stretch(delta)
-	speed_bend(false)
+	player.animation_speed()
+	if player.characterRig.scale.y == 1:
+		player.facing_logic()
+	speed_bend(false) #TODO: create own bend function
 	align_to_ground()
-	#TODO: create own bend function
+	
 
 
-func sound(delta: float) -> void:
+func sound(delta: float) -> void: #TODO: move to animPlayer
 	if !player.sounds.walk.playing:
 		player.sounds.walk.pitch_scale = randf_range(0.8, 1.2)
 		player.sounds.walk.play()
