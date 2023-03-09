@@ -8,7 +8,7 @@ extends PlayerInfo
 var skidding: bool = false
 
 func enter() -> void:
-	if player.characterRig.scale.y != 1:
+	if player.characterRig.scale.y != 1: #FIXME: not always getting back to regular scale after jump
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(player.characterRig, "scale", Vector2(player.scale.x, 1), 0.1).from_current()
 	player.animPlayer.play("Walk")
@@ -18,6 +18,7 @@ func enter() -> void:
 func exit() -> void:
 	player.animPlayer.stop()
 	player.sounds.walk.stop()
+	player.animPlayer.speed_scale = 1
 
 
 func physics(delta) -> void:
