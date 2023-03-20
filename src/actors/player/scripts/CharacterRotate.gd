@@ -8,7 +8,7 @@ extends Node2D
 var transformTime: float = 0.2
 
 
-func _process(delta) -> void:
+func _ready() -> void:
 	queue_redraw()
 
 
