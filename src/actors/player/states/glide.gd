@@ -10,6 +10,7 @@ extends PlayerInfo
 func enter() -> void:
 	player.velocityPrevious = player.velocity
 	neutral_move_direction_logic()
+	player.animPlayer.play("Glide")
 	player.set_up_direction(Vector2.UP)
 	if player.characterRotate.rotation_degrees != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -18,7 +19,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	player.animPlayer.stop()
 
 
 func physics(delta) -> void:
@@ -41,6 +42,7 @@ func physics(delta) -> void:
 func visual(delta) -> void:
 	squash_and_stretch(delta)
 	align_to_ground()
+	player.facing_logic()
 
 
 func sound(delta: float) -> void:

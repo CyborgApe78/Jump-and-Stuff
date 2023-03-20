@@ -14,6 +14,7 @@ func enter() -> void:
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
+	player.animPlayer.queue("Jump")
 	player.sounds.jump.pitch_scale = jumpModifier
 	player.sounds.jump.play()
 	particles.restart()
@@ -22,6 +23,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.animPlayer.stop()
 	player.sounds.jump.pitch_scale = 1
 
 

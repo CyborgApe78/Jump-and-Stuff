@@ -11,6 +11,7 @@ func enter() -> void:
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
+	player.animPlayer.queue("Jump")
 	player.sounds.jump.pitch_scale = 0.25 * abilities.currentJumpConsec + 1
 	player.sounds.jump.play()
 	particles.restart() #TODO: adjust based on consec number
@@ -18,13 +19,14 @@ func enter() -> void:
 	player.timers.coyoteJump.stop()
 	player.timers.consecutiveJump.stop()
 	
-	if abilities.currentJumpConsec > 1:
+	if abilities.currentJumpConsec > 1: #TODO: move to animation
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 		tween.tween_property(player.characterRotate,"rotation", player.facing * abilities.currentJumpConsec * PI, 0.5) ## flip,
 		tween.tween_property(player.characterCollision,"rotation", player.facing * abilities.currentJumpConsec * PI, 0.5) #FIXME: leaves upside down on odd numbers
 
 
 func exit() -> void:
+	player.animPlayer.stop()
 	player.sounds.jump.pitch_scale = 1
 	player.characterRotate.rotation_degrees = 0 
 	player.characterCollision.rotation_degrees = 0
@@ -50,6 +52,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
+	player.facing_logic()
 
 
 func sound(delta: float) -> void:

@@ -107,6 +107,7 @@ func fall_speed_logic(amount) -> void:
 
 
 func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float = 0.1) -> void:
+	#TODO: use animeation tree instead
 	if forwardLean:
 		player.characterRig.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
 	if !forwardLean:
@@ -114,14 +115,14 @@ func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float =
 
 
 func squash_and_stretch(delta):
-	#FIXME: infinite scaling when falling
-#	#TODO: not squishing the on the x
-	if !player.is_on_floor():
-		player.characterRig.scale.y = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 0.75, 1.25)
-		player.characterRig.scale.x = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 1.25, 0.75)
-
-	player.characterRig.scale.x = lerp(player.characterRig.scale.x, 1.0, 1.0 - pow(0.01, delta))
-	player.characterRig.scale.y = lerp(player.characterRig.scale.y, 1.0, 1.0 - pow(0.01, delta))
+	#TODO: use animeation tree instead
+#	if !player.is_on_floor():
+#		player.characterRig.scale.y = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 0.75, 1.25)
+#		player.characterRig.scale.x = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 1.25, 0.75)
+#
+#	player.characterRig.scale.x = lerp(player.characterRig.scale.x, 1.0, 1.0 - pow(0.01, delta))
+#	player.characterRig.scale.y = lerp(player.characterRig.scale.y, 1.0, 1.0 - pow(0.01, delta))
+	pass
 
 
 func consecutive_jump_logic() -> int:

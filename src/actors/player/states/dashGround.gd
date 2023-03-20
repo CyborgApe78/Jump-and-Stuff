@@ -21,6 +21,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	timers()
+	player.animPlayer.queue("Dash Side") #TODO: own animation if walking, use the animation tree
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
@@ -28,6 +29,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.animPlayer.stop()
 	particles.emitting = false
 	if !isJumping:
 		player.velocity.x = player.velocityPrevious.x

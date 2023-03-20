@@ -14,6 +14,7 @@ func enter() -> void:
 	GameStats.dashSide += 1
 	player.velocityPrevious = player.velocity
 	timers()
+	player.animPlayer.queue("Dash Side")
 	particles.emitting = true 
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
@@ -21,6 +22,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.animPlayer.stop()
 	particles.emitting = false
 	if player.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x

@@ -13,6 +13,7 @@ func enter() -> void:
 	GameStats.dashDown += 1
 	player.velocityPrevious = player.velocity
 	timers()
+	player.animPlayer.queue("Dash Down")
 	particles.emitting = true
 	player.velocity.x = 0
 	player.velocity.y = dashVelocity / duration
@@ -20,6 +21,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.animPlayer.stop()
 	particles.emitting = false
 	player.velocity.y = player.velocity.y/4
 	player.ability_mask(CollisionLayers.DashDown, true)

@@ -16,6 +16,7 @@ func enter() -> void:
 	timers()
 	topSpeed = 0
 	neutral_move_direction_logic()
+	player.animPlayer.queue("Fall")
 	player.set_up_direction(Vector2.UP)
 	if player.characterRotate.rotation_degrees != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -54,6 +55,7 @@ func physics(delta) -> void:
 func visual(delta) -> void:
 	squash_and_stretch(delta)
 	align_to_ground()
+	player.facing_logic()
 
 
 func sound(delta: float) -> void:
@@ -122,6 +124,7 @@ func state_check(delta: float) -> int:
 			player.sounds.land.play() #Lookat: moving sound to landed
 			consecutiveJumpTimer.start()
 			if Input.is_action_pressed("crouch"):
+				player.animPlayer.stop()
 				return State.Crouch
 			elif player.velocity.x != 0:
 	#			if player.neutralMoveDirection:

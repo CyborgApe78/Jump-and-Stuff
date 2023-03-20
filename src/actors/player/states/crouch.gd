@@ -7,22 +7,23 @@ extends PlayerInfo
 var crouchReleased: bool = false
 
 #LOOKAT: crouch stores consec jumps
+#TOSO: change control to down pressed
 
 func enter() -> void:
 	crouchReleased = false
 	neutral_move_direction_logic()
-	player.animPlayer.play("Crouch")
+	player.animPlayer.queue("Crouch")
 
 
 func exit() -> void:
 	player.animPlayer.stop()
-	pass
+
 
 
 func physics(delta) -> void:
 	player.move_and_slide()
 #	if !player.neutralMoveDirection: #TODO: skates upgrade, no ground friction
-	apply_friction(frictionGround * 0.5, delta)
+	apply_friction(frictionGround * 1.5, delta)
 
 
 func visual(delta) -> void:

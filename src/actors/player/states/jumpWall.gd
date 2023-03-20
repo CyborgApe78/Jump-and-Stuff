@@ -17,6 +17,7 @@ func enter() -> void:
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
+	player.animPlayer.queue("Jump")
 	player.sounds.jump.play()
 	
 	if !player.timers.coyoteJumpWall.is_stopped():
@@ -44,7 +45,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	player.animPlayer.stop()
 
 
 func physics(delta) -> void:

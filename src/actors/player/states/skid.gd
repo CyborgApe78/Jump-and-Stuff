@@ -12,6 +12,7 @@ var skidLockTime: float #TODO: make timer
 
 func enter() -> void:
 	player.sounds.skid.play()
+	#TODO: anim
 	particles.restart()
 	skidTime = skidDuration
 	skidLockTime = skidLockDuration

@@ -2,14 +2,13 @@ extends PlayerInfo
 
 #TODO: if moveDirection.x != 0, spin jump, metroid like
 #TODO: look into combine jump and jumpConsec
-@export var particles: GPUParticles2D
 
 func enter() -> void:
 	GameStats.jumps += 1
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
-	particles.restart()
+	player.animPlayer.queue("Jump")
 	player.sounds.jump.play()
 	player.velocity.y = jumpVelocity
 	player.timers.coyoteJump.stop()
@@ -18,7 +17,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	player.animPlayer.stop()
 
 
 func physics(delta) -> void:
@@ -40,6 +39,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
+	player.facing_logic()
 
 
 func sound(delta: float) -> void:
