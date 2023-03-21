@@ -64,7 +64,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("crouch"):
 		crouchReleased = false
 	if Input.is_action_just_pressed("slide"):
-		return State.Slide #TODO: need to add, cam get stuck in crouch
+		return State.Slide 
 
 	return State.Null
 
@@ -78,7 +78,7 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
-	if !player.is_on_floor():
+	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight: #TODO: better ground check for all states
 		player.timers.coyoteJump.start()
 		return State.Fall
 	if !player.timers.bufferJump.is_stopped():

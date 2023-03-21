@@ -33,6 +33,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Jump
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
+	if Input.is_action_just_pressed("slide"):
+		return State.Slide
 
 	return State.Null
 

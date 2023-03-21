@@ -34,6 +34,7 @@ func physics(delta) -> void:
 	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
 		player.velocity.x = move_toward(player.velocity.x, 0, frictionGround)
 		EventBus.helperUsed.emit(Util.helper.stopOnLedge)
+		#TODO: make callable function
 
 
 func visual(delta) -> void:
@@ -58,6 +59,8 @@ func handle_input(event: InputEvent) -> int:
 		return consecutive_jump_logic()
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
+	if Input.is_action_just_pressed("slide"):
+		return State.Slide
 
 	return State.Null
 

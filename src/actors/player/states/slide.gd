@@ -1,6 +1,7 @@
 extends PlayerInfo
 
-#TODO: change shape to 1x2
+#TODO: get closer to Dread slide
+#LOOKAT: sliding up hill
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
@@ -10,26 +11,28 @@ var saveTriple: bool
 
 
 func enter() -> void:
-	player.animPlayer.play("Slide Enter")
+	player.animPlayer.queue("Slide")
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	durationTimer.wait_time = duration
 	durationTimer.start()
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * (dashVelocity / duration)
-	player.ability_mask(CollisionLayers.DashSide, false)
+	player.velocity.x = player.facing * (dashVelocity / duration) #TODO: change to check if current speed is higher
 
 
 func exit() -> void:
-	player.animPlayer.play("Slide Exit")
+	player.animPlayer.stop()
 	particles.emitting = false
-	player.ability_mask(CollisionLayers.DashSide, true)
 
 
 func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	player.timers.consecutiveJump.start()
+	
+	if !player.is_on_floor():
+		gravity_logic(gravityFall, delta)
+		fall_speed_logic(terminalVelocity)
 
 
 func visual(delta) -> void:
@@ -55,11 +58,16 @@ func state_check(delta: float) -> int:
 		return State.Idle #LOOKAT: could mess things up
 	if durationTimer.is_stopped(): #TODO: upgrade that keeps sliding to
 		if player.is_on_floor(): #TODO: if keeping make cd timer
-			if Input.is_action_pressed("crouch"):
+			if player.crouch_ceiling_detect():
 				player.velocity.x = 0
 				return State.Crouch
+			elif Input.is_action_pressed("crouch"):
+				player.velocity.x = 0
+				return State.Crouch
+			elif player.moveDirection.x != 0:
+				return State.Walk #lookat: interaction with speedboost
 			else:
-				return State.Idle #TODO: or crouch if in small area
+				return State.Idle
 		else:
 			return State.Fall
 	if dashBufferState != State.Null:

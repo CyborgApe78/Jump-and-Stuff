@@ -70,6 +70,7 @@ func change_state(newState: int) -> void:
 	player.currentStateName = currentState.name
 	
 	EventBus.debugState.emit(currentStateName + " from " + previousStateName)
+#	EventBus.error.emit(currentStateName + " from " + previousStateName) #TODO: make tab for state changes
 
 
 func init() -> void:
