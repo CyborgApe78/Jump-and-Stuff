@@ -1,7 +1,7 @@
 extends Node
 class_name PlayerState
 
-#TODO: States: Slide, Roll, Swim, Swim Dash, Grapple, DashWall, DashJump, DashClimb
+#TODO: States: Roll, Swim, Swim Dash, Grapple/hookshot, Bash
 
 
 enum State {
@@ -47,7 +47,7 @@ enum State {
 	FallDamage,
 }
 
-var stateBlacklist: Array = [] #TODO: is this needed
+var stateBlacklist: Array = [] #TODO: figure way to block states during dungeons
 var statePrevious: int #TODO: find way to set
 var player: Player
 

@@ -1,6 +1,6 @@
 extends Node
 #TODO: audio manager with settings
-#TODO: like particles, extend off states
+#TODO: move to animations
 
 @onready var walk: AudioStreamPlayer = $walk
 @onready var land: AudioStreamPlayer = $land

@@ -150,7 +150,7 @@ func consecutive_jump_cancel() -> void:
 
 
 func landed() -> void:
-	animPlayer.play("Land")
+	animPlayer.play("Land") #TODO: create hard and soft land
 	abilities.reset(PlayerAbilities.list.JumpAir)
 	abilities.reset(PlayerAbilities.list.Dash)
 #	if get_last_slide_collision() != null:
