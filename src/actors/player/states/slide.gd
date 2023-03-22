@@ -45,8 +45,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump") and player.is_on_floor(): 
-			return consecutive_jump_logic()
-			
+			return consecutive_jump_logic() #TODO: special jump state
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
 

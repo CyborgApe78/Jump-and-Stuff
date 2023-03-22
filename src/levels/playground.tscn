@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="2_slpti"]
 [ext_resource type="Script" path="res://src/levels/Ground.gd" id="3_7mvmu"]
 [ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_lg7tx"]
-[ext_resource type="PackedScene" uid="uid://c6sp0iiop2sqw" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
+[ext_resource type="PackedScene" uid="uid://cb1by5o7nm7fj" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="6_3il5s"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="9_wxmb7"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="10_50o25"]
