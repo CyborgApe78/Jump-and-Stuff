@@ -153,6 +153,7 @@ func landed() -> void:
 	abilities.reset(PlayerAbilities.list.JumpAir)
 	abilities.reset(PlayerAbilities.list.Dash)
 	abilities.reset(PlayerAbilities.list.DashChain)
+	sounds.land.play()
 #	if get_last_slide_collision() != null:
 #			groundColor = get_last_slide_collision().get_collider().color #FIXME: crash if doesn't have color
 #	particles.land.restart()

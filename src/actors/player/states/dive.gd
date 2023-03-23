@@ -72,8 +72,6 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-		player.sounds.land.play()
-		#TODO: sound
 		player.landed()
 #		if !rollTimer.is_stopped():
 #			return State.Roll

@@ -121,7 +121,6 @@ func state_check(delta: float) -> int:
 		if fallTimer.is_stopped():
 			return State.BonkGround
 		else:
-			player.sounds.land.play() #todo: move to land animation
 			consecutiveJumpTimer.start()
 			if Input.is_action_pressed("crouch"):
 				player.animPlayer.stop()

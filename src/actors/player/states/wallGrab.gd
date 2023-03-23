@@ -51,7 +51,6 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if player.is_on_floor():
 		player.landed()
-		player.sounds.land.play() #Lookat: moving sound to landed
 		if Input.is_action_pressed("crouch"):
 			return State.Crouch
 		elif player.velocity.x != 0: 

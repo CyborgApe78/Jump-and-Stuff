@@ -78,7 +78,6 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if player.is_on_floor():
 		player.landed()
-		player.sounds.land.play()
 		player.timers.consecutiveJump.start()
 		if Input.is_action_pressed("crouch"):
 			return State.Crouch
