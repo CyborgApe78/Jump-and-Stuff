@@ -152,6 +152,7 @@ func landed() -> void:
 	animPlayer.play("Land") #TODO: create hard and soft land
 	abilities.reset(PlayerAbilities.list.JumpAir)
 	abilities.reset(PlayerAbilities.list.Dash)
+	abilities.reset(PlayerAbilities.list.DashChain)
 #	if get_last_slide_collision() != null:
 #			groundColor = get_last_slide_collision().get_collider().color #FIXME: crash if doesn't have color
 #	particles.land.restart()

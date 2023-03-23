@@ -67,7 +67,7 @@ func _on_dash_chain_toggled(button_pressed: bool) -> void:
 
 
 func _on_dash_chain_amount_item_selected(index: int) -> void: #TODO: move to stats
-	Upgrades.maxDashChain = index + 1
+	Abilities.maxDashChain = index + 1
 
 
 func _on_light_toggled(button_pressed: bool) -> void:

@@ -1,7 +1,7 @@
 extends Resource
 class_name PlayerAbilities
 
-
+#TODO:: dashchain and jumpchain. Change jump consec to jump chain
 #TODO: all abilities should get an upgrade and shards/modifires/charms
 #TODO: add unlockable skills enum
 
@@ -101,6 +101,7 @@ enum list { #TODO: jump flip, etc
 	DashWall,
 	DashClimb,
 	DashJump,
+	DashChain,
 	Slide,
 	Glide,
 	Dive,
@@ -223,6 +224,8 @@ func reset(ability: int) -> void:
 		currentJumpConsec = 0
 	elif ability == list.Dash:
 		remainingDash = maxDash
+	elif  ability == list.DashChain:
+		currentDashChain = 0
 	else:
 		EventBus.error.emit("Null Ability Reset " + str(ability))
 
