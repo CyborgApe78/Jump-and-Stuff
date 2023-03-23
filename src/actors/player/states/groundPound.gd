@@ -7,7 +7,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	player.velocity.y = max(moveSpeed * groundPoundModifier, abs(player.velocity.y))
-	
+	player.animPlayer.queue("Ground Pound") #TODO: use signals to send to animationtree
 	if player.characterRotate.rotation_degrees != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(player.characterRotate, "rotation_degrees", 0, transTime).from(0)
@@ -21,7 +21,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta) #TODO: make downward version
-	
+	#TODO: add gravity 
 	player.move_and_slide()
 	player.velocity.x = 0
 
@@ -61,12 +61,9 @@ func state_check(delta: float) -> int:
 		player.landed()
 #		if !Input.is_action_pressed("ground pound"): #TODO: redirect fall velocity
 #			return State.GroundPoundBounce
-#		else:
-			#TODO: if groundpound pressed and 
 		if player.moveDirection.x != 0:
 			return State.BellySlide #TODO: change to back slide
 		else:
-			player.sounds.land.play()
 			return State.Idle #TODO: groundpound land state, jump out of that
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir: #TODO: groundDash
