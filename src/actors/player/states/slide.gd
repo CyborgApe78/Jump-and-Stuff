@@ -18,12 +18,14 @@ func enter() -> void:
 	durationTimer.start()
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * (dashVelocity / duration) #TODO: change to check if current speed is higher
+	player.velocity.x = player.facing * max(dashVelocity / duration, abs(player.velocity.x)) #TPD don;t base off dashvelocity
 
 
 func exit() -> void:
 	player.animPlayer.stop()
 	particles.emitting = false
+	if player.velocityPrevious.x < player.velocity.x:
+		player.velocity.x = player.velocityPrevious.x
 
 
 func physics(delta) -> void:
