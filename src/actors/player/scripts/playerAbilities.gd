@@ -1,6 +1,6 @@
 extends Resource
 class_name PlayerAbilities
-
+#TODO: move to player scripts, to use signals
 #TODO:: dashchain and jumpchain. Change jump consec to jump chain
 #TODO: all abilities should get an upgrade and shards/modifires/charms
 #TODO: add unlockable skills enum
@@ -54,6 +54,10 @@ var unlockedGroundPound: bool = false:
 	set(v):
 		unlockedGroundPound = v
 
+var unlockedGroundPoundBounce: bool = false:
+	set(v):
+		unlockedGroundPoundBounce = v
+
 var unlockedSlide: bool = false:
 	set(v):
 		unlockedSlide = v
@@ -106,6 +110,7 @@ enum list { #TODO: jump flip, etc
 	Glide,
 	Dive,
 	GroundPound,
+	GroundPoundBounce,
 	GrappleHook,
 	Climb,
 	Grab,
@@ -144,6 +149,7 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
 		unlockedGroundPound = BOOL
+		unlockedGroundPoundBounce = BOOL
 		unlockedSlide = BOOL
 	elif ability == list.JumpAir:
 		unlockedJumpAir = BOOL
@@ -169,6 +175,8 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedDive = BOOL
 	elif ability == list.GroundPound:
 		unlockedGroundPound = BOOL
+	elif ability == list.GroundPoundBounce:
+		unlockedGroundPoundBounce = BOOL
 	else:
 		EventBus.error.emit("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
 
@@ -197,6 +205,8 @@ func can_use(ability: int) -> bool:
 	elif ability == list.Dive and unlockedDive:
 		return true
 	elif ability == list.GroundPound and unlockedGroundPound:
+		return true
+	elif ability == list.GroundPoundBounce and unlockedGroundPoundBounce:
 		return true
 	
 	return false

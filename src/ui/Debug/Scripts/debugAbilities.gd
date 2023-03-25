@@ -14,10 +14,11 @@ extends Control
 @export var buttonDashJump: Button
 @export var buttonSlide: Button
 @export var buttonGroundPound: Button
+@export var buttonGroundPoundBounce: Button
 @export var buttonGlide: Button
 @export var buttonDive: Button
 @export var consecAmount: OptionButton
-
+#TODO: change to signals once the player has all ability, stats, and upgrade checks
 var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var Stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 
@@ -37,6 +38,7 @@ func check(BOOL) -> void:
 	buttonDashJump.button_pressed = Abilities.unlockedDashJump
 	buttonSlide.button_pressed = Abilities.unlockedSlide
 	buttonGroundPound.button_pressed = Abilities.unlockedGroundPound
+	buttonGroundPoundBounce.button_pressed = Abilities.unlockedGroundPoundBounce
 	buttonGlide.button_pressed = Abilities.unlockedGlide
 	buttonDive.button_pressed = Abilities.unlockedDive
 	
@@ -48,6 +50,7 @@ func _on_all_toggled(button_pressed: bool) -> void:
 	buttonDashAll.button_pressed = button_pressed
 	buttonSlide.button_pressed = button_pressed
 	buttonGroundPound.button_pressed = button_pressed
+	buttonGroundPoundBounce.button_pressed = button_pressed
 	buttonGlide.button_pressed = button_pressed
 	buttonDive.button_pressed = button_pressed
 
@@ -108,6 +111,9 @@ func _on_slide_toggled(button_pressed: bool) -> void:
 
 func _on_ground_pound_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.GroundPound, button_pressed)
+
+func _on_ground_pound_bounce_toggled(button_pressed: bool) -> void:
+	Abilities.unlock(PlayerAbilities.list.GroundPoundBounce, button_pressed)
 
 
 func _on_glide_toggled(button_pressed: bool) -> void:

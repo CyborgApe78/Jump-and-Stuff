@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_0vhhb"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_yobqs"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGlide", "buttonDive", "consecAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "consecAmount")]
 script = ExtResource("1_yobqs")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -18,6 +18,7 @@ buttonDashClimb = NodePath("HBoxContainer/Dashes/Climb")
 buttonDashJump = NodePath("HBoxContainer/Dashes/Jump")
 buttonSlide = NodePath("HBoxContainer/Other/Slide")
 buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
+buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPoundBounce")
 buttonGlide = NodePath("HBoxContainer/Other/Glide")
 buttonDive = NodePath("HBoxContainer/Other/Dive")
 consecAmount = NodePath("HBoxContainer/Jumps/Consec/Amount")
@@ -157,6 +158,12 @@ theme = ExtResource("1_0vhhb")
 toggle_mode = true
 text = "Ground Pound"
 
+[node name="GroundPoundBounce" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Ground Pound Bounce"
+
 [node name="Glide" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
 theme = ExtResource("1_0vhhb")
@@ -195,5 +202,6 @@ text = "Shinespark"
 [connection signal="toggled" from="HBoxContainer/Dashes/Jump" to="." method="_on_dash_jump_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Slide" to="." method="_on_slide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/GroundPoundBounce" to="." method="_on_ground_pound_bounce_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
