@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cb1by5o7nm7fj"]
+[gd_scene load_steps=90 format=3 uid="uid://cb1by5o7nm7fj"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -36,6 +36,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="23_47ykn"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="23_fbyj1"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
+[ext_resource type="Script" path="res://src/actors/player/states/GroundPoundBounce.gd" id="24_blkch"]
 [ext_resource type="Script" path="res://src/actors/player/states/WallLand.gd" id="24_c8d67"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="25_pbxll"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="25_tbkdj"]
@@ -111,14 +112,15 @@ particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 108.04
 gravity = Vector3(0, 10, 0)
-initial_velocity_max = 50.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
 angular_velocity_min = -80.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 damping_min = 3.54
 damping_max = 14.16
-scale_min = 0.0
-scale_max = 15.0
+scale_min = 5.0
+scale_max = 25.0
 scale_curve = SubResource("CurveTexture_cr2jt")
 color = Color(0.462745, 0.447059, 0.454902, 1)
 hue_variation_min = -0.2
@@ -2870,6 +2872,15 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 
+[node name="GroundPound" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_k440f")
+lifetime = 0.7
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+
 [node name="Jump" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 emitting = false
 amount = 20
@@ -2969,7 +2980,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -16, 8, -24, 24)
+points = PackedVector2Array(0, 8, -8, 16, 8, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3016,7 +3027,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 56, 16, 56, 16, 64, 24, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3039,7 +3050,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 18, 8, 34, 32, 34)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3051,7 +3062,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 24, 0, 40)
+points = PackedVector2Array(0, 48, 0, 56)
 width = 50.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -3176,8 +3187,12 @@ one_shot = true
 [node name="FallTimeMax" type="Timer" parent="StateMachine/Dive"]
 one_shot = true
 
-[node name="GroundPound" type="Node" parent="StateMachine"]
+[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("23_likm5")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/GroundPound")
+
+[node name="GroundPoundBounce" type="Node" parent="StateMachine"]
+script = ExtResource("24_blkch")
 
 [node name="BellySlide" type="Node" parent="StateMachine"]
 script = ExtResource("20_134m1")
