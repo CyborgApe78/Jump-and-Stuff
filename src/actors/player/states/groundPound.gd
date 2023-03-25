@@ -1,7 +1,6 @@
 extends PlayerInfo
 #TODO: sound
 
-
 @export var transTime: float = 0.1
 @export var particles: GPUParticles2D
 

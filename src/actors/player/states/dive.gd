@@ -1,6 +1,7 @@
 extends PlayerInfo
 #TODO: Roll state
 #TODO: further dive if coming from ground pound
+#LOOKAT: change to down + jump?
 @onready var rollTimer: Timer = $RollPressed
 @onready var fallTimer: Timer = $FallTimeMax
 
@@ -73,7 +74,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if player.is_on_floor():
 		player.landed()
-#		if !rollTimer.is_stopped():
+#		if !rollTimer.is_stopped(): #TODO
 #			return State.Roll
 		if fallTimer.is_stopped():
 			return State.BonkGround
