@@ -59,10 +59,10 @@ text = "Dash"
 
 [node name="Crouch" type="Label" parent="."]
 layout_mode = 0
-offset_left = 848.0
-offset_top = 120.0
-offset_right = 912.0
-offset_bottom = 146.0
+offset_left = 484.0
+offset_top = 527.0
+offset_right = 548.0
+offset_bottom = 553.0
 text = "Crouch"
 
 [node name="GroundPound" type="Label" parent="."]

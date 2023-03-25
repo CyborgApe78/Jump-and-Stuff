@@ -4,25 +4,31 @@
 
 [node name="Stats" type="VBoxContainer" node_paths=PackedStringArray("amountHealth", "amountEnergy", "amountMoveSpeed", "amountJumpHeight")]
 script = ExtResource("1_mmdkw")
-amountHealth = NodePath("Health/Amount")
-amountEnergy = NodePath("Energy/Amount")
-amountMoveSpeed = NodePath("MoveSpeed/Amount")
-amountJumpHeight = NodePath("JumpHeight/Amount")
+amountHealth = NodePath("HBoxContainer/VBoxContainer/Health/Amount")
+amountEnergy = NodePath("HBoxContainer/VBoxContainer/Energy/Amount")
+amountMoveSpeed = NodePath("HBoxContainer/VBoxContainer/MoveSpeed/Amount")
+amountJumpHeight = NodePath("HBoxContainer/VBoxContainer/JumpHeight/Amount")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "Stats"
 horizontal_alignment = 1
 
-[node name="Health" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Health"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Health" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Health"]
 layout_mode = 2
 text = "Health"
 horizontal_alignment = 1
 
-[node name="Amount" type="OptionButton" parent="Health"]
+[node name="Amount" type="OptionButton" parent="HBoxContainer/VBoxContainer/Health"]
 layout_mode = 2
 alignment = 1
 item_count = 10
@@ -47,15 +53,15 @@ popup/item_8/id = 8
 popup/item_9/text = "10"
 popup/item_9/id = 9
 
-[node name="Energy" type="VBoxContainer" parent="."]
+[node name="Energy" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Energy"]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Energy"]
 layout_mode = 2
 text = "Energy"
 horizontal_alignment = 1
 
-[node name="Amount" type="OptionButton" parent="Energy"]
+[node name="Amount" type="OptionButton" parent="HBoxContainer/VBoxContainer/Energy"]
 layout_mode = 2
 alignment = 1
 item_count = 10
@@ -80,15 +86,15 @@ popup/item_8/id = 8
 popup/item_9/text = "10"
 popup/item_9/id = 9
 
-[node name="MoveSpeed" type="VBoxContainer" parent="."]
+[node name="MoveSpeed" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MoveSpeed"]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MoveSpeed"]
 layout_mode = 2
 text = "Move Speed"
 horizontal_alignment = 1
 
-[node name="Amount" type="OptionButton" parent="MoveSpeed"]
+[node name="Amount" type="OptionButton" parent="HBoxContainer/VBoxContainer/MoveSpeed"]
 layout_mode = 2
 alignment = 1
 item_count = 4
@@ -101,15 +107,15 @@ popup/item_2/id = 2
 popup/item_3/text = "4"
 popup/item_3/id = 3
 
-[node name="JumpHeight" type="VBoxContainer" parent="."]
+[node name="JumpHeight" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="JumpHeight"]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/JumpHeight"]
 layout_mode = 2
 text = "Jump Height"
 horizontal_alignment = 1
 
-[node name="Amount" type="OptionButton" parent="JumpHeight"]
+[node name="Amount" type="OptionButton" parent="HBoxContainer/VBoxContainer/JumpHeight"]
 layout_mode = 2
 alignment = 1
 item_count = 8
@@ -130,7 +136,59 @@ popup/item_6/id = 6
 popup/item_7/text = "8"
 popup/item_7/id = 7
 
-[connection signal="item_selected" from="Health/Amount" to="." method="_on_health_amount_selected"]
-[connection signal="item_selected" from="Energy/Amount" to="." method="_on_energy_amount_selected"]
-[connection signal="item_selected" from="MoveSpeed/Amount" to="." method="_on_moveSpeed_amount_selected"]
-[connection signal="item_selected" from="JumpHeight/Amount" to="." method="_on_jumpHeight_amount_selected"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Category" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Chain"
+horizontal_alignment = 1
+
+[node name="DashChain" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/DashChain"]
+layout_mode = 2
+text = "Dash"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="HBoxContainer/VBoxContainer2/DashChain"]
+layout_mode = 2
+alignment = 1
+item_count = 4
+selected = 0
+popup/item_0/text = "1"
+popup/item_0/id = 1
+popup/item_1/text = "2"
+popup/item_1/id = 2
+popup/item_2/text = "3"
+popup/item_2/id = 3
+popup/item_3/text = "4"
+popup/item_3/id = 4
+
+[node name="Consec" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/Consec"]
+layout_mode = 2
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="HBoxContainer/VBoxContainer2/Consec"]
+layout_mode = 2
+alignment = 1
+item_count = 4
+selected = 0
+popup/item_0/text = "1"
+popup/item_0/id = 1
+popup/item_1/text = "2"
+popup/item_1/id = 2
+popup/item_2/text = "3"
+popup/item_2/id = 3
+popup/item_3/text = "4"
+popup/item_3/id = 4
+
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/Health/Amount" to="." method="_on_health_amount_selected"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/Energy/Amount" to="." method="_on_energy_amount_selected"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/MoveSpeed/Amount" to="." method="_on_moveSpeed_amount_selected"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/JumpHeight/Amount" to="." method="_on_jumpHeight_amount_selected"]

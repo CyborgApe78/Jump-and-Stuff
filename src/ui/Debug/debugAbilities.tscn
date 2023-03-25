@@ -169,6 +169,18 @@ theme = ExtResource("1_0vhhb")
 toggle_mode = true
 text = "Dive"
 
+[node name="SpeedBoost" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Speed Boost"
+
+[node name="Shinespark" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "Shinespark"
+
 [connection signal="toggled" from="All" to="." method="_on_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/All" to="." method="_on_jump_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Air" to="." method="_on_jump_air_toggled"]
