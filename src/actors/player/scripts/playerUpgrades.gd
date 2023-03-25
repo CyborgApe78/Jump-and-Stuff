@@ -39,6 +39,12 @@ var unlockedDashChain: bool = false:
 		if unlockedDashChain:
 			EventBus.playerUpgradeUnlock.emit(list.dashChain)
 
+var unlockedDashTeleport: bool = false: #TODO:
+	set(v):
+		unlockedDashTeleport = v
+		if unlockedDashTeleport:
+			EventBus.playerUpgradeUnlock.emit(list.dashTeleport)
+
 var unlockedLight: bool = false:
 	set(v):
 		unlockedLight = v
@@ -60,6 +66,7 @@ enum list {
 	protectionAcid,
 	protectionLava,
 	dashChain, 
+	dashTeleport,
 	light,
 	}
 
