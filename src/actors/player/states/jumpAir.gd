@@ -7,7 +7,7 @@ func enter() -> void:
 	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
-	player.animPlayer.queue("Jump")
+	player.animPlayer.queue("Jump Air")
 	player.sounds.jump.play()
 	player.velocity.y = jumpVelocity
 	player.timers.coyoteJump.stop()
