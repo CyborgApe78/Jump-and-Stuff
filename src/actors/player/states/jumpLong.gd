@@ -59,7 +59,7 @@ func handle_input(event: InputEvent) -> int:
 		dash_pressed_buffer()
 #	if !Input.is_action_pressed("crouch"):
 		#TODO: change velocity based on whether crouch is held
-#	if Input.is_action_just_pressed("ground pound"):
+#	if Input.is_action_just_pressed("ground_pound"):
 #		return State.GroundPound
 	#TODO: long jump into roll. if crouch is pressed and roll is just pressed
 

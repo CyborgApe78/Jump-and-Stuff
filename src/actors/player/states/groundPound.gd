@@ -65,7 +65,7 @@ func state_check(delta: float) -> int:
 		abilities.reset(PlayerAbilities.list.Dash)
 		abilities.reset(PlayerAbilities.list.DashChain)
 		player.sounds.land.play()
-		if Input.is_action_pressed("ground pound") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to jump 
+		if Input.is_action_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to jump 
 			return State.GroundPoundBounce
 		elif player.moveDirection.x != 0:
 			return State.Slide 
