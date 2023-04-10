@@ -1,5 +1,6 @@
 extends PlayerInfo
 #TODO: sound
+#TODO: rotate back to zero
 
 @export var transTime: float = 0.1
 @export var particles: GPUParticles2D
@@ -59,18 +60,8 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.GPBounce = player.velocity
-	if player.is_on_floor(): #TODO: lock player for impact
-		particles.restart()
-		abilities.reset(PlayerAbilities.list.JumpAir)
-		abilities.reset(PlayerAbilities.list.Dash)
-		abilities.reset(PlayerAbilities.list.DashChain)
-		player.sounds.land.play()
-		if Input.is_action_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to jump 
-			return State.GroundPoundBounce
-		elif player.moveDirection.x != 0:
-			return State.Slide 
-		else:
-			return State.Idle #TODO: groundpound land state, jump out of that
+	if player.is_on_floor():
+		return State.GroundPoundLand
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir: #TODO: groundDash
 			abilities.consume(PlayerAbilities.list.Dash, 1)

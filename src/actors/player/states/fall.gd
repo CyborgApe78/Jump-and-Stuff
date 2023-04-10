@@ -37,6 +37,7 @@ func physics(delta) -> void:
 	
 	if player.timers.coyoteJump.is_stopped():
 		gravity_logic(gravityFall, delta)
+	
 	if jumpHeld:
 		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
 	elif  player.moveDirection.y == 1:

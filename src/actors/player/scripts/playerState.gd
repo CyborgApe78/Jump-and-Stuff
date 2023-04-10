@@ -23,6 +23,7 @@ enum State {
 	Glide,
 	Dive,
 	GroundPound,
+	GroundPoundLand,
 	GroundPoundBounce,
 	BellySlide,
 	WallLand,

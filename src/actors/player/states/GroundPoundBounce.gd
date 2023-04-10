@@ -1,10 +1,10 @@
 extends PlayerInfo
-
+#todo: rename to GPDash
 
 func enter() -> void:
 	player.animPlayer.queue("Jump") #TODO: own animation
 	player.sounds.jump.play()
-	player.velocity.y = -player.GPBounce.y/2
+	player.velocity.y = -player.GPBounce.y/2 #LOOKAT: might need a max speed
 
 
 func exit() -> void:
