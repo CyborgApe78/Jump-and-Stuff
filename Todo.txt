@@ -1,16 +1,44 @@
 #TODO 
 
 save states for testing 
-3x1 sprite
-	3 for most
-	2 for dash
-	1 for slide and roll
 
 ledge grab, but needs to auto move when holding direction
 step over 1 tall ground
 
+protection
+	types
+		water, fire, acid, Lightning, lava, cold
+	pass through enemies or hazrds
+		blue x parasite from fusion. 
+	
+
+elemental upgrades
+	Fire upgrade: 
+		melt blocks, light things
+		Maybe on spin
+	lightning
+		charge stuff
+	water
+		extinquish or grow
+	ice
+		water jump
+		water fall jumps
+		fountain ride up
+		Make platforms out of enemies. 
+			Freeze water enemies 
+
 Abilitie
+	jump
+		Different jump. Based off moving. Metroid spin jump
+		water jump
+			later combined with speedboost to run on water
+		Demon turf dribble -- need to research it again
+			release jump just after hitting ground for increased jump high, during a spin 
 	Dash
+		ground dash become slide?
+		teleport upgrade
+		break blocks upgrade for it
+		chain dash upgrade, dread
 		Jump "Rocket Junmp"
 			Ori charge jump / Metroid shinespark
 			needs speed boost to charge
@@ -39,7 +67,9 @@ Abilitie
 		combine with spin from lone fungus, skill press to bounce of spikes
 		shrink to one block
 		Can jump off things to keep slide
+		Downward slides are infinite, upward slide shortest 
 		https://youtu.be/CTpflm_pFgs Around 5 minutes 
+		Spin used as key to open/turn things on
 	Ori bash
 		Bounce off projectiles
 	pogo/spin
@@ -99,13 +129,6 @@ from fancy pants
 
 
 Upgrades:
-	protection:
-		protection from hazards
-		heat, cold, water, acid, lava
-	dash chain:
-		chain dashes without using energy
-		like:
-			metroid dread 3 dash
 	light:
 		illuminate around character
 
@@ -118,7 +141,7 @@ Checkpoints
 Dark/Light or Hot/Cold or on/off switch to have things with different actions, celeste core or gucamelee
 maybe future past
 
-
+Climb and sonic run on walls. Combine like blue walls in ori and dread, also can grapple
 
 Platforms
 	celeste like moving platform
@@ -167,6 +190,9 @@ enemies
 	Charging chuck
 
 Blocks to add
+	Environmental blocks that cause to use a ability they learn later
+		High jump plants before increase jump height, aimable barrels before bash
+		Help people that help you go fast over water and thru teach you water run
 	https://www.mariowiki.com/List_of_items
 	boost pads
 		increased speed and no stopping for duration
@@ -205,6 +231,9 @@ Blocks to add
 	Push and pull orbs, think super meat boy
 	Hold grab to freeze in place
 	Chains you jump on and pull you up
+	Break blocks 
+		Spelunky kaizo hacks has you break a block for a Ledge, but then there is a lava behind it to make you move quick
+		break specific block to break rest of blocks, islet, insect adventure
 	
 	
 On/Off Blocks
@@ -213,7 +242,13 @@ On/Off Blocks
 	platforms
 	hazard to platform switch
 	Has a certain number of switches to it disappears
-	
+
+Map ideas
+	dread shows lots of details about ability gates
+	user placable reminders
+		add notes
+	Have button for going to town, changes to last place after going to town
+
 Juice!
 	animations on most things
 	particles
@@ -225,6 +260,9 @@ decor
 	backgrounds
 	
 Dungeons
+	 Ori room destroy sand platforms to let bullet pass
+	Kill a snow ball to keep from ruining platforms 
+	trials, that limit what abilities you can use
 	Blocks to give temporay upgrades
 		inviceabbility 
 		phase through / ghost
@@ -249,6 +287,7 @@ Dungeons
 	Checkpoint regression 
 		Die go back a checkpoint 
 
+Teleport upgrades, able to teleport between all, portable teleporter
 
 	
 Accessability/game options
@@ -291,9 +330,6 @@ screen wrap https://kidscancode.org/godot_recipes/2d/screen_wrap/
 
 wall hooks:
 	grapple can pull to
-
-Break blocks 
-	Spelunky kaizo hacks has you break a block for a Ledge, but then there is a lava behind it to make you move quick
 
 
 Basic feel goods to add

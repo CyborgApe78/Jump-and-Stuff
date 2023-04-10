@@ -1,6 +1,7 @@
 extends PlayerInfo
 #TODO: sound
 #TODO: rotate back to zero
+#TODO: shouldn't be dedicated button
 
 @export var transTime: float = 0.1
 @export var particles: GPUParticles2D
