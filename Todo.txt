@@ -56,6 +56,7 @@ Abilitie
 		Ori like, some targets stop, other pass through
 		Some targets you can swing off
 		able to shoot off screen
+		pull towards enemies
 	Swimming
 		upgrades to go through different types
 		water, lava, poison
@@ -188,6 +189,7 @@ enemies
 	badoline like
 	Mario buzzy beetle
 	Charging chuck
+	Enemy like bombs or celeste monster. Two stage enemies that explosion that moves player or temp platform 
 
 Blocks to add
 	Environmental blocks that cause to use a ability they learn later
@@ -260,6 +262,7 @@ decor
 	backgrounds
 	
 Dungeons
+	Insect adventure, break blocks have to race before it closes off section 
 	 Ori room destroy sand platforms to let bullet pass
 	Kill a snow ball to keep from ruining platforms 
 	trials, that limit what abilities you can use

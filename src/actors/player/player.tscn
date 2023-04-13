@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://cb1by5o7nm7fj"]
+[gd_scene load_steps=93 format=3 uid="uid://cb1by5o7nm7fj"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -50,6 +50,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="33_2q3ab"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/ActionAnnouncer.gd" id="33_7u4fs"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/actionText.gd" id="34_h1yjw"]
+[ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="38_47j4e"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/PlayerText.gd" id="39_snr3n"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="50_wm14u"]
@@ -3118,7 +3119,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 8, -8, 16, 8, 24)
+points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3165,7 +3166,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 56, 16, 56, 16, 64, 24, 64)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3188,7 +3189,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 18, 8, 34, 32, 34)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3200,7 +3201,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 48, 0, 56)
+points = PackedVector2Array(0, 24, 0, 40)
 width = 50.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -3417,6 +3418,9 @@ script = ExtResource("31_wvx7d")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
+[node name="SpeedBoost" type="Node" parent="StateMachine"]
+script = ExtResource("38_47j4e")
+
 [node name="BonkAir" type="Node" parent="StateMachine"]
 script = ExtResource("21_43u8a")
 
@@ -3465,6 +3469,7 @@ target_position = Vector2(0, -64)
 collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }

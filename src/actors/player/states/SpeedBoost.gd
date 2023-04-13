@@ -1,18 +1,24 @@
 extends PlayerInfo
 
-#TODO: break left and right apart
-#TODO: get friction from enviroment
+#LOOKAT: need to mess around with wall jumps, need to jump off wall and keep speedboost
+#TODO: need a variable to return to speed boost player.speedBoostActive
 
 
 @export var skidPercent: float = 1.2
 var skidding: bool = false
+@export var speedModifier: float = 2.5
+var pMoveSpeed: float
+
 
 func enter() -> void:
+	pMoveSpeed = moveSpeed
+	moveSpeed = moveSpeed * speedModifier
 	player.animPlayer.queue("Walk")
 	skidding = false
 
 
 func exit() -> void:
+	moveSpeed = pMoveSpeed
 	player.animPlayer.stop()
 	player.sounds.walk.stop()
 	player.animPlayer.speed_scale = 1
@@ -22,12 +28,8 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	if abs(player.velocity.x) > moveSpeed * skidPercent  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
-	elif player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x: ## kill velocity when changing directions
-		player.velocity.x = player.lastMoveDirection.x * 1
 	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
 		apply_acceleration(accelerationGround, delta)
-	elif player.moveDirection.x == 0:
-		apply_friction(frictionGround, delta)
 	elif abs(player.velocity.x) >= moveSpeed:
 		momentum_logic(moveSpeed, true)
 	
@@ -40,29 +42,23 @@ func physics(delta) -> void:
 func visual(delta) -> void:
 	player.animation_speed()
 	player.facing_logic()
-	speed_bend(false) #TODO: create own bend function
+	speed_bend(false) #TODO: move to animation tree
 	align_to_ground()
-	
 
 
-func sound(delta: float) -> void: #TODO: move to animPlayer
+func sound(delta: float) -> void:
 		pass
-#	if !player.sounds.walk.playing:
-#		player.sounds.walk.pitch_scale = randf_range(0.8, 1.2)
-#		player.sounds.walk.play()
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("crouch"): 
-		return State.Crouch
+	if Input.is_action_pressed("store_boost"): 
+		pass #TODO: store energy
 	if Input.is_action_just_pressed("jump"):
 		return consecutive_jump_logic()
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
 	if Input.is_action_just_pressed("slide"):
 		return State.Slide
-	if Input.is_action_just_pressed("speed_boost"):
-		return State.SpeedBoost
 
 	return State.Null
 
@@ -73,9 +69,7 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.timers.coyoteJump.start()
 		return State.Fall
-#	if abs(player.velocity.x) > stats.moveSpeed:
-#		return State.Turbo
-	if player.velocity.x == 0:
+	if player.moveDirection.x == 0:
 		return State.Idle
 	if !player.timers.bufferJump.is_stopped():
 		player.timers.bufferJump.stop()
