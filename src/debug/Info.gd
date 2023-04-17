@@ -1,6 +1,6 @@
 extends MarginContainer
 
-#TODO: setting to show
+
 @export var stateLabel: Label
 @export var velocityLabel: Label
 @export var debugLabel: Label
@@ -9,7 +9,8 @@ extends MarginContainer
 
 
 func _ready():
-	visible = false
+	if OS.has_feature("editor"):
+		visible = true
 	EventBus.showDebug.connect(show_debug)
 	EventBus.debugState.connect(set_state_label)
 	EventBus.debugVelocity.connect(set_velocity_label)
