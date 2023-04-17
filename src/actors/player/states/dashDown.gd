@@ -72,8 +72,8 @@ func state_check(delta: float) -> int:
 		floorTimer -= delta
 		if floorTimer < 0 or durationTimer.is_stopped():
 			return State.Idle
-	if durationTimer.is_stopped():
-		return State.Fall
+#	if durationTimer.is_stopped():
+#		return State.Fall
 	if dashBufferState != State.Null:
 		if dashBufferState == State.DashAir and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
 				abilities.currentDashChain += 1
@@ -92,6 +92,6 @@ func state_check(delta: float) -> int:
 
 
 func timers() -> void:
-	durationTimer.wait_time = duration
-	durationTimer.start()
+#	durationTimer.wait_time = duration
+#	durationTimer.start()
 	chainTimer.start()
