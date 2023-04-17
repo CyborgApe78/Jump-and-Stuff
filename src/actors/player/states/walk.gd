@@ -2,7 +2,7 @@ extends PlayerInfo
 
 #TODO: break left and right apart
 #TODO: get friction from enviroment
-
+#TODO: add nuetral input
 
 @export var skidPercent: float = 1.2
 var skidding: bool = false

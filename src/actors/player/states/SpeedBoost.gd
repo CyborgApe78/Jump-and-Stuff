@@ -4,7 +4,6 @@ extends PlayerInfo
 #TODO: need a variable to return to speed boost player.speedBoostActive
 
 
-@export var skidPercent: float = 1.2
 var skidding: bool = false
 @export var speedModifier: float = 2.5
 var pMoveSpeed: float
@@ -26,10 +25,12 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	if abs(player.velocity.x) > moveSpeed * skidPercent  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if abs(player.velocity.x) > pMoveSpeed  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
 	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
 		apply_acceleration(accelerationGround, delta)
+	elif player.moveDirection.x == 0:
+		apply_friction(frictionGround, delta)
 	elif abs(player.velocity.x) >= moveSpeed:
 		momentum_logic(moveSpeed, true)
 	
@@ -66,10 +67,10 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if skidding:
 		return State.Skid
-	if !player.is_on_floor():
+	if !player.is_on_floor(): #FIXME: need to figure a way to come back to speed boost after leaving ground
 		player.timers.coyoteJump.start()
 		return State.Fall
-	if player.moveDirection.x == 0:
+	if player.velocity.x == 0:
 		return State.Idle
 	if !player.timers.bufferJump.is_stopped():
 		player.timers.bufferJump.stop()
