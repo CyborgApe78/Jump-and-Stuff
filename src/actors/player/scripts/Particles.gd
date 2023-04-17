@@ -12,7 +12,7 @@ extends Node2D
 @export var dashUp: GPUParticles2D
 @export var dashDown: GPUParticles2D
 @export var wallSlide: GPUParticles2D
-@export var WallClime: GPUParticles2D
+@export var WallClimb: GPUParticles2D
 @export var jumpWall: GPUParticles2D
 
 @onready var player = get_parent().get_parent().get_parent()
