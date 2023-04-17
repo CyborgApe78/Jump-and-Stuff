@@ -207,8 +207,8 @@ func crouch_ceiling_detect() -> bool:
 	return false
 
 func _on_dash_chain_timeout() -> void:
-	particles.jumpTriple.restart()
-	#TODO: create own particles
+	pass
+	#TODO: create particles
 
 
 func ability_mask(layer: int, BOOL: bool) -> void:
