@@ -50,13 +50,13 @@ func state_check(delta: float) -> int:
 		return State.Jump
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:
-			abilities.consume(PlayerAbilities.list.Dash, 1)
-			return State.DashGround
+			abilities.consume(PlayerAbilities.list.DashSide, 1)
+			return State.DashAir
 		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.Dash, 1)
+			abilities.consume(PlayerAbilities.list.DashUp, 1)
 			return State.DashUp
 		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.Dash, 1)
+			abilities.consume(PlayerAbilities.list.DashDown, 1)
 			return State.DashDown
 
 	return State.Null

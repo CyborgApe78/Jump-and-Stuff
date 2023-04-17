@@ -71,6 +71,9 @@ var unlockedSlide: bool = false:
 #TODO: change to energy
 var maxJumpAir: int = 1
 var maxDash: int = 1
+var maxDashSide: int = 1
+var maxDashUp: int = 1
+var maxDashDown: int = 1
 var maxDashChain: int = 1
 var maxJumpConsec: int = 1
 
@@ -85,6 +88,18 @@ var remainingJumpAir: int = 0:
 var remainingDash: int = 0:
 	set(v):
 		remainingDash = clamp(v, 0, maxDash)
+
+var remainingDashSide: int = 0:
+	set(v):
+		remainingDashSide = clamp(v, 0, maxDashSide)
+
+var remainingDashUp: int = 0:
+	set(v):
+		remainingDashUp = clamp(v, 0, maxDashUp)
+
+var remainingDashDown: int = 0:
+	set(v):
+		remainingDashDown = clamp(v, 0, maxDashDown)
 
 var currentDashChain: int = 0:
 	set(v):
@@ -186,11 +201,11 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.JumpConsec and currentJumpConsec < maxJumpConsec and unlockedJumpConsec:
 		return true
-	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide:
+	elif ability == list.DashSide and remainingDashSide > 0 and unlockedDashSide:
 		return true
-	elif ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
+	elif ability == list.DashUp and remainingDashUp > 0 and unlockedDashUp:
 		return true
-	elif ability == list.DashDown and remainingDash > 0 and unlockedDashDown:
+	elif ability == list.DashDown and unlockedDashDown:
 		return true
 	elif ability == list.DashWall and unlockedDashWall:
 		return true
@@ -227,6 +242,9 @@ func reset(ability: int) -> void:
 		remainingJumpAir = maxJumpAir
 		currentJumpConsec = 0
 		remainingDash = maxDash
+		remainingDashSide = maxDashSide
+		remainingDashUp = maxDashUp
+		remainingDashDown = maxDashDown
 		currentDashChain = 0
 	elif ability == list.JumpAir:
 		remainingJumpAir = maxJumpAir
@@ -234,6 +252,15 @@ func reset(ability: int) -> void:
 		currentJumpConsec = 0
 	elif ability == list.Dash:
 		remainingDash = maxDash
+		remainingDashSide = maxDashSide
+		remainingDashUp = maxDashUp
+		remainingDashDown = maxDashDown
+	elif ability == list.DashSide:
+		remainingDashSide = maxDashSide
+	elif ability == list.DashUp:
+		remainingDashUp = maxDashUp
+	elif ability == list.DashDown:
+		remainingDashDown = maxDashDown
 	elif  ability == list.DashChain:
 		currentDashChain = 0
 	else:
@@ -251,5 +278,15 @@ func consume(ability: int, amount: int) -> void:
 		currentJumpConsec += amount
 	elif ability == list.Dash:
 		remainingDash -= amount
+		remainingDashSide -= amount
+		remainingDashUp -= amount
+		remainingDashDown -= amount
+	elif ability == list.DashSide:
+		remainingDashSide -= amount
+	elif ability == list.DashUp:
+		remainingDashUp -= amount
+		remainingDashDown -= amount
+	elif ability == list.DashDown:
+		remainingDashDown -= amount
 	else:
 		EventBus.error.emit("Null Ability Consume " + str(ability)) #TODO: create error log
