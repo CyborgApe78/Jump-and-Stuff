@@ -199,7 +199,7 @@ curve = SubResource("Curve_1cp4i")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fn840"]
 emission_shape = 3
-emission_box_extents = Vector3(1, 30, 1)
+emission_box_extents = Vector3(1, 10, 1)
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 40.0
@@ -220,7 +220,7 @@ hue_variation_max = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8c07u"]
 emission_shape = 3
-emission_box_extents = Vector3(20, 0, 1)
+emission_box_extents = Vector3(10, 0, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 40.0
@@ -241,7 +241,7 @@ hue_variation_max = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_atob2"]
 emission_shape = 3
-emission_box_extents = Vector3(20, 0, 1)
+emission_box_extents = Vector3(10, 0, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 40.0
@@ -2968,7 +2968,7 @@ metadata/_edit_vertical_guides_ = [-456.0]
 [node name="CharacterRotate" type="Node2D" parent="CharacterRig"]
 position = Vector2(0, -64)
 
-[node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "dashUp", "dashDown", "wallSlide", "jumpWall")]
+[node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "dashUp", "dashDown", "wallSlide", "WallClimb", "jumpWall")]
 position = Vector2(0, 64)
 script = ExtResource("3_0fvjs")
 walk = NodePath("Walking")
@@ -2981,6 +2981,7 @@ dash = NodePath("Dash")
 dashUp = NodePath("DashUp")
 dashDown = NodePath("DashDown")
 wallSlide = NodePath("WallSlide")
+WallClimb = NodePath("WallClimb")
 jumpWall = NodePath("JumpWall")
 
 [node name="Walking" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
@@ -3055,6 +3056,7 @@ lifetime = 0.5
 randomness = 0.13
 
 [node name="DashUp" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+position = Vector2(-32, -48)
 emitting = false
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_8c07u")
@@ -3062,7 +3064,7 @@ lifetime = 0.5
 randomness = 0.13
 
 [node name="DashDown" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(0, -128)
+position = Vector2(-32, -80)
 emitting = false
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_atob2")
@@ -3119,7 +3121,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -16, 8, -24, 24)
+points = PackedVector2Array(0, 0, -16, 8, -32, 16)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3166,7 +3168,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3189,7 +3191,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 0, 16, 10, 32, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3237,6 +3239,23 @@ antialiased = true
 show_behind_parent = true
 points = PackedVector2Array(0, 0, 0, -1)
 width = 52.5
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("3_0j02r")
+thickness = 1.05
+
+[node name="Jetpack" type="Line2D" parent="CharacterRig/CharacterRotate"]
+points = PackedVector2Array(-32, -16, -32, 16)
+width = 25.0
+default_color = Color(0, 0.607843, 0, 1)
+
+[node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
+show_behind_parent = true
+points = PackedVector2Array(-32, -16, -32, 16)
+width = 26.25
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
