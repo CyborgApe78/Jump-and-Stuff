@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://cb1by5o7nm7fj"]
+[gd_scene load_steps=97 format=3 uid="uid://cb1by5o7nm7fj"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -314,6 +314,36 @@ color = Color(0, 0, 0, 1)
 hue_variation_min = -0.12
 hue_variation_max = 0.2
 
+[sub_resource type="Gradient" id="Gradient_ocoeo"]
+offsets = PackedFloat32Array(0.145161, 0.475806, 0.983871)
+colors = PackedColorArray(0.0352941, 0.619608, 0.0352941, 1, 0.627451, 0.12549, 0.941176, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_j1qi2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.33871, 0.782258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.607843, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_g4su6"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.607843, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_2okyx"]
+script/source = "@tool
+extends Line2D
+
+
+@onready var parent = get_parent()
+@export var thickness: float = 1.2
+
+func _ready():
+	width_curve = parent.width_curve
+	width = parent.width * thickness
+
+
+func _process(delta):
+	points = parent.points
+"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
 radius = 24.0
 height = 96.0
@@ -516,6 +546,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [Vector2(0, -64)]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, 16, -32, 48)]
+}
 
 [sub_resource type="Animation" id="Animation_fjp1m"]
 resource_name = "Dash Down"
@@ -675,6 +717,18 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_dcalq"]
@@ -836,6 +890,18 @@ tracks/12/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_glnu2"]
 resource_name = "Dash Up"
@@ -995,6 +1061,18 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_pvl08"]
@@ -1156,6 +1234,18 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector2(0, -40)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_4s0wx"]
 resource_name = "Glide"
@@ -1314,6 +1404,18 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -40)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_eclwc"]
@@ -1719,6 +1821,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_5bvri"]
 resource_name = "Jump"
@@ -1893,6 +2007,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_8shh4"]
 resource_name = "Jump Air"
@@ -2052,6 +2178,18 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_im7kq"]
@@ -2299,6 +2437,18 @@ tracks/19/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, 16, -32, 48)]
+}
 
 [sub_resource type="Animation" id="Animation_g6quy"]
 length = 0.001
@@ -2530,6 +2680,18 @@ tracks/18/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_lmwi4"]
 resource_name = "Slide"
@@ -2688,6 +2850,18 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [96.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_devon"]
@@ -2902,7 +3076,7 @@ tracks/15/path = NodePath("CharacterRig/CharacterRotate:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(1.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -64)]
@@ -2914,7 +3088,7 @@ tracks/16/path = NodePath("CharacterRig/CharacterRotate:rotation")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(1.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
@@ -2930,6 +3104,18 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(-32, -16, -32, 16), PackedVector2Array(-32, -24, -32, 8), PackedVector2Array(-32, -16, -32, 16), PackedVector2Array(-32, -24, -32, 8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
@@ -3103,6 +3289,7 @@ position = Vector2(0, -24)
 points = PackedVector2Array(0, 24, 0, 40)
 width = 48.0
 default_color = Color(0.627451, 0.12549, 0.941176, 1)
+gradient = SubResource("Gradient_ocoeo")
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
@@ -3113,6 +3300,7 @@ position = Vector2(0, 24)
 points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 14.0
 default_color = Color(0.627451, 0.12549, 0.941176, 1)
+gradient = SubResource("Gradient_j1qi2")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -3121,7 +3309,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -16, 8, -32, 16)
+points = PackedVector2Array(0, -4.00548, 5.31871, 9.33242, 13.3078, 9.3434)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3137,6 +3325,7 @@ position = Vector2(0, 16)
 points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 14.0
 default_color = Color(0.627451, 0.12549, 0.941176, 1)
+gradient = SubResource("Gradient_g4su6")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -3145,7 +3334,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline4" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+points = PackedVector2Array(0, 32, 1.98355, 48, -8.02193, 57.9836, -2.02741, 59.989)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3160,6 +3349,7 @@ position = Vector2(0, 16)
 points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 14.0
 default_color = Color(0.627451, 0.12549, 0.941176, 1)
+gradient = SubResource("Gradient_g4su6")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -3168,7 +3358,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 38.7466, 1.61316, 44.7956, 3.22632, 57.5912, 11.2263, 54.3868)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3183,6 +3373,7 @@ position = Vector2(0, 24)
 points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 14.0
 default_color = Color(0.627451, 0.12549, 0.941176, 1)
+gradient = SubResource("Gradient_j1qi2")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -3191,7 +3382,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, 10, 32, 18)
+points = PackedVector2Array(0, -3.00411, -5.31871, 8.66758, -5.30777, 16.6566)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3203,7 +3394,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 24, 0, 40)
+points = PackedVector2Array(0, 21.326, 0, 37.326)
 width = 50.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -3254,15 +3445,14 @@ default_color = Color(0, 0.607843, 0, 1)
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 16)
-width = 26.25
-default_color = Color(0, 0, 0, 1)
+points = PackedVector2Array(-32, -18.674, -32, 13.326)
+width = 30.0
+default_color = Color(0.639216, 0.156863, 0.941176, 1)
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
-thickness = 1.05
+script = SubResource("GDScript_2okyx")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 visible = false
