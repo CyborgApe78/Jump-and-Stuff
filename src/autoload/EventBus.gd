@@ -7,6 +7,7 @@ signal playerUpgradeUnlock(upgrade)
 signal playerStatChange(stat, amount)
 signal playerConsecutiveJump
 signal playerInfo
+signal playerStateChange(states)
 signal actionAnnounce
 signal teleportPlayer(location)
 
@@ -19,6 +20,7 @@ signal debug2(info)
 signal debug3(info)
 signal debugMenuOpened(bool)
 signal error(info)
+
 
 signal helperUsed(info)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=20 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_lg7tx"]
 [ext_resource type="PackedScene" uid="uid://cb1by5o7nm7fj" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="6_3il5s"]
+[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="6_frn5c"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="9_wxmb7"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="10_50o25"]
 [ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="12_sk08k"]
@@ -87,7 +88,7 @@ layout_mode = 2
 [node name="Debug3" type="Label" parent="Debug/Info/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ErrorLog" type="MarginContainer" parent="Debug"]
+[node name="ErrorLog" type="MarginContainer" parent="Debug" node_paths=PackedStringArray("errorText", "stateText")]
 visible = false
 anchors_preset = 3
 anchor_left = 1.0
@@ -104,6 +105,8 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("6_3il5s")
+errorText = NodePath("MarginContainer/TabContainer/Errors")
+stateText = NodePath("MarginContainer/TabContainer/States")
 
 [node name="Panel" type="Panel" parent="Debug/ErrorLog"]
 layout_mode = 2
@@ -115,10 +118,22 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TextEdit" type="TextEdit" parent="Debug/ErrorLog/MarginContainer"]
+[node name="TabContainer" type="TabContainer" parent="Debug/ErrorLog/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("6_frn5c")
+
+[node name="Errors" type="TextEdit" parent="Debug/ErrorLog/MarginContainer/TabContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 placeholder_text = "Errors"
+editable = false
+wrap_mode = 1
+
+[node name="States" type="TextEdit" parent="Debug/ErrorLog/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+placeholder_text = "State Changes"
 editable = false
 wrap_mode = 1
 

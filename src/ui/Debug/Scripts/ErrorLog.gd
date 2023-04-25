@@ -1,14 +1,16 @@
 extends MarginContainer
 
 #TODO: setting to show
-@onready var errorText: TextEdit = $MarginContainer/TextEdit
+@export var errorText: TextEdit
+@export var stateText: TextEdit
 
 
 func _ready() -> void:
 	visible = false
 	EventBus.showDebug.connect(show_debug)
 	hide()
-	EventBus.error.connect(enter_text)
+	EventBus.error.connect(enter_error_text)
+	EventBus.playerStateChange.connect(enter_state_text)
 	#TODO: also send to log when that is added
 
 
@@ -16,7 +18,13 @@ func show_debug(BOOL) -> void:
 	visible = BOOL
 
 
-func enter_text(info) -> void:
+func enter_error_text(info) -> void:
 	show()
 	errorText.text = str(errorText.text, "\n", info)
 	errorText.set_v_scroll(9999999)
+
+
+func enter_state_text(info) -> void:
+	show()
+	stateText.text = str(stateText.text, "\n", info)
+	stateText.set_v_scroll(9999999)
