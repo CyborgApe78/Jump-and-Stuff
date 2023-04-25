@@ -61,6 +61,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.GroundPound
 	if Input.is_action_just_pressed("dash"): #TODO: cd from normal dash, but can still chain them
 		dash_pressed_buffer()
+	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+		return State.GrappleHook
 
 	return State.Null
 

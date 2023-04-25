@@ -1,63 +1,26 @@
 extends PlayerInfo
-#TODO: air crouch
-#TODO: holding down makes you go through semisolids
 
-@export var fallTimer: Timer
-@export var jumpWallSaveTimer: Timer
-@export var consecutiveJumpTimer: Timer
 
-@export var jumpHeldSlowModifier: float = 2.0
-@export var transTime: float = 0.1
-@export var fallTimeTillBonk: float = 0.9
-var jumpHeld: bool
+const slowRadius: = 2 * Util.tileSize
 
 
 func enter() -> void:
-	player.velocityPrevious = player.velocity
-	timers()
-	topSpeed = 0
-	neutral_move_direction_logic()
-	player.animPlayer.queue("Fall")
-	player.set_up_direction(Vector2.UP)
-	if player.characterRotate.rotation_degrees != 0:
-		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(player.characterRotate, "rotation_degrees", 0, transTime).from(0)
-		tween.tween_property(player.characterCollision, "rotation_degrees", 0, transTime).from(0)
-	player.velocity = player.velocity.rotated(0)
+	player.velocity = grapple_velocity()
+	draw_grapple()
 
 
 func exit() -> void:
-	jumpHeld = false
+	player.targetGrapple = null
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
-	
 	player.move_and_slide()
-	
-	if player.timers.coyoteJump.is_stopped():
-		gravity_logic(gravityFall, delta)
-	
-	if jumpHeld:
-		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
-	elif  player.moveDirection.y == 1:
-		fall_speed_logic(terminalVelocity * 1.5)
-	else:
-		fall_speed_logic(terminalVelocity)
-	
+	gravity_logic(gravityFall, delta)
 	track_top_speed(player.velocity.x)
-	
-	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
-	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
 
 
 func visual(delta) -> void:
-	squash_and_stretch(delta)
-	align_to_ground()
-	player.facing_logic()
+	pass
 
 
 func sound(delta: float) -> void:
@@ -65,12 +28,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("jump"):
-		jumpHeld = true
-	else: 
-		jumpHeld = false
 	if Input.is_action_just_pressed("jump"):
-		jumpWallSaveTimer.start()
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -104,17 +62,14 @@ func handle_input(event: InputEvent) -> int:
 			return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
-		return State.GrappleHook
-	
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
+	if player.velocity.y > 0:
+		return State.Fall
 	if player.is_on_wall():
-		if !jumpWallSaveTimer.is_stopped():
-			return State.JumpWall
 		if topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
@@ -122,23 +77,19 @@ func state_check(delta: float) -> int:
 			return State.WallSlide
 	if player.is_on_floor():
 		player.landed()
-		if fallTimer.is_stopped():
-			return State.BonkGround
+		if Input.is_action_pressed("crouch"):
+			player.animPlayer.stop()
+			return State.Crouch
+		elif Input.is_action_pressed("slide"):
+			player.animPlayer.stop()
+			return State.Slide
+		elif player.velocity.x != 0:
+#			if player.neutralMoveDirection:
+#				return State.NeutralGround #TODO: keep momentum if jumping
+#			else:
+			return State.Walk
 		else:
-			consecutiveJumpTimer.start()
-			if Input.is_action_pressed("crouch"):
-				player.animPlayer.stop()
-				return State.Crouch
-			elif Input.is_action_pressed("slide"):
-				player.animPlayer.stop()
-				return State.Slide
-			elif player.velocity.x != 0:
-	#			if player.neutralMoveDirection:
-	#				return State.NeutralGround #TODO: keep momentum if jumping
-	#			else:
-				return State.Walk
-			else:
-				return State.Idle
+			return State.Idle
 	if dashBufferState != State.Null: #TOOD: if !coyoteWallTimer.is_stopped() return WallDash, else Side Dash
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
 			abilities.consume(PlayerAbilities.list.DashSide, 1)
@@ -153,6 +104,20 @@ func state_check(delta: float) -> int:
 	return State.Null
 
 
-func timers() -> void:
-	fallTimer.wait_time = fallTimeTillBonk
-	fallTimer.start()
+func grapple_velocity() -> Vector2:
+	var playerPosition: Vector2 = player.global_position
+	var destination: Vector2 = player.targetGrapple.global_position
+	
+	var distanceToTarget: float = playerPosition.distance_to(destination)
+	var desiredVelocity: Vector2 = playerPosition.direction_to(destination) * (dashVelocity / 0.3) * 2 #TODO: create own velocity
+	
+	if distanceToTarget < slowRadius:
+		desiredVelocity *= (distanceToTarget / slowRadius) * .75 + .25
+	
+	return desiredVelocity
+
+func draw_grapple() -> void:
+	player.grappleHookLine.add_point(Vector2.ZERO)
+	player.grappleHookLine.add_point(player.targetGrapple.global_position - player.grappleHookLine.global_position)
+	await get_tree().create_timer(0.02).timeout #FIXME: crash if not completed
+	player.grappleHookLine.clear_points()

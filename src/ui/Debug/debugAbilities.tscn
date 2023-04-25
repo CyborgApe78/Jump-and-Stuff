@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_0vhhb"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_yobqs"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "consecAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "consecAmount")]
 script = ExtResource("1_yobqs")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -21,6 +21,7 @@ buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
 buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPoundBounce")
 buttonGlide = NodePath("HBoxContainer/Other/Glide")
 buttonDive = NodePath("HBoxContainer/Other/Dive")
+buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
 consecAmount = NodePath("HBoxContainer/Jumps/Consec/Amount")
 
 [node name="Label" type="Label" parent="."]
@@ -188,6 +189,12 @@ theme = ExtResource("1_0vhhb")
 toggle_mode = true
 text = "Shinespark"
 
+[node name="GrappleHook" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("1_0vhhb")
+toggle_mode = true
+text = "GrappleHook"
+
 [connection signal="toggled" from="All" to="." method="_on_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/All" to="." method="_on_jump_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Air" to="." method="_on_jump_air_toggled"]
@@ -205,3 +212,4 @@ text = "Shinespark"
 [connection signal="toggled" from="HBoxContainer/Other/GroundPoundBounce" to="." method="_on_ground_pound_bounce_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/GrappleHook" to="." method="_on_grapple_hook_toggled"]

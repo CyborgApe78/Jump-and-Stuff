@@ -16,7 +16,7 @@ func enter() -> void:
 	player.animPlayer.queue("Dash Down")
 	particles.emitting = true
 	player.velocity.x = 0
-	player.velocity.y = dashVelocity / duration
+	player.velocity.y = dashVelocity / duration #FIXME: should not be based off duration
 	player.ability_mask(CollisionLayers.DashDown, false)
 
 
@@ -29,6 +29,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
+	#TODO: increase speed wall falling
 
 
 func visual(delta) -> void:
@@ -58,6 +59,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
+	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+		return State.GrappleHook
 
 	return State.Null
 

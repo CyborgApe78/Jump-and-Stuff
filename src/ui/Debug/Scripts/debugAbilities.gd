@@ -17,6 +17,7 @@ extends Control
 @export var buttonGroundPoundBounce: Button
 @export var buttonGlide: Button
 @export var buttonDive: Button
+@export var buttonGrappleHook: Button
 @export var consecAmount: OptionButton
 #TODO: change to signals once the player has all ability, stats, and upgrade checks
 var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
@@ -41,6 +42,7 @@ func check(BOOL) -> void:
 	buttonGroundPoundBounce.button_pressed = Abilities.unlockedGroundPoundBounce
 	buttonGlide.button_pressed = Abilities.unlockedGlide
 	buttonDive.button_pressed = Abilities.unlockedDive
+	buttonGrappleHook.button_pressed = Abilities.unlockedGrappleHook
 	
 	consecAmount.selected = Abilities.maxJumpConsec -1
 
@@ -53,6 +55,7 @@ func _on_all_toggled(button_pressed: bool) -> void:
 	buttonGroundPoundBounce.button_pressed = button_pressed
 	buttonGlide.button_pressed = button_pressed
 	buttonDive.button_pressed = button_pressed
+	buttonGrappleHook.button_pressed = button_pressed
 
 
 func _on_jump_all_toggled(button_pressed: bool) -> void:
@@ -122,3 +125,7 @@ func _on_glide_toggled(button_pressed: bool) -> void:
 
 func _on_dive_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.Dive, button_pressed)
+
+
+func _on_grapple_hook_toggled(button_pressed: bool) -> void:
+	Abilities.unlock(PlayerAbilities.list.GrappleHook, button_pressed)

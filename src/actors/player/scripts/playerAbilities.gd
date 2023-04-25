@@ -42,6 +42,10 @@ var unlockedDashJump: bool = false:
 	set(v):
 		unlockedDashJump = v
 
+var unlockedGrappleHook: bool = false:
+	set(v):
+		unlockedGrappleHook = v
+
 var unlockedGlide: bool = false:
 	set(v):
 		unlockedGlide = v
@@ -182,6 +186,8 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedDashClimb = BOOL
 	elif ability == list.DashJump:
 		unlockedDashJump = BOOL
+	elif ability == list.GrappleHook:
+		unlockedGrappleHook = BOOL
 	elif ability == list.Slide:
 		unlockedSlide = BOOL
 	elif ability == list.Glide:
@@ -212,6 +218,8 @@ func can_use(ability: int) -> bool:
 	elif ability == list.DashClimb and unlockedDashClimb:
 		return true
 	elif ability == list.DashJump and unlockedDashJump:
+		return true
+	elif ability == list.GrappleHook and unlockedGrappleHook:
 		return true
 	elif ability == list.Slide and unlockedSlide:
 		return true

@@ -65,6 +65,8 @@ func handle_input(event: InputEvent) -> int:
 		crouchReleased = false
 	if Input.is_action_just_pressed("slide"):
 		return State.Slide 
+	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+		return State.GrappleHook
 
 	return State.Null
 

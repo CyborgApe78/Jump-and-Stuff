@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://cb1by5o7nm7fj"]
+[gd_scene load_steps=99 format=3 uid="uid://cb1by5o7nm7fj"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -50,6 +50,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="33_2q3ab"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/ActionAnnouncer.gd" id="33_7u4fs"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/actionText.gd" id="34_h1yjw"]
+[ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="37_m47s2"]
 [ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="38_47j4e"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/PlayerText.gd" id="39_snr3n"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
@@ -3139,6 +3140,9 @@ _data = {
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0l6b0"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3meqx"]
+size = Vector2(15, 50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oudvw"]
 size = Vector2(47, 82)
 
@@ -3309,7 +3313,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, -4.00548, 5.31871, 9.33242, 13.3078, 9.3434)
+points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3334,7 +3338,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline4" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 1.98355, 48, -8.02193, 57.9836, -2.02741, 59.989)
+points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3358,7 +3362,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 38.7466, 1.61316, 44.7956, 3.22632, 57.5912, 11.2263, 54.3868)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3382,7 +3386,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, -3.00411, -5.31871, 8.66758, -5.30777, 16.6566)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3394,7 +3398,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 21.326, 0, 37.326)
+points = PackedVector2Array(0, 24, 0, 40)
 width = 50.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -3445,7 +3449,7 @@ default_color = Color(0, 0.607843, 0, 1)
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -18.674, -32, 13.326)
+points = PackedVector2Array(-32, -16, -32, 16)
 width = 30.0
 default_color = Color(0.639216, 0.156863, 0.941176, 1)
 joint_mode = 1
@@ -3622,6 +3626,9 @@ script = ExtResource("33_2q3ab")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
 
+[node name="GrappleHook" type="Node" parent="StateMachine"]
+script = ExtResource("37_m47s2")
+
 [node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
 script = ExtResource("31_wvx7d")
 durationTimer = NodePath("../../Timers/DashDuration")
@@ -3682,7 +3689,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -3804,20 +3811,35 @@ metadata/_edit_lock_ = true
 [node name="AnnounceClear" type="Timer" parent="PlayerText"]
 one_shot = true
 
-[node name="AimIndicator" type="Marker2D" parent="." node_paths=PackedStringArray("raycast")]
-visible = false
-position = Vector2(0, -32)
+[node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("raycast", "detector", "indicatorAim", "indicatorTarget")]
+position = Vector2(0, -64)
 script = ExtResource("49_iv4e8")
 raycast = NodePath("RayCast2D")
+detector = NodePath("Detector")
+indicatorAim = NodePath("Aim")
+indicatorTarget = NodePath("Target")
 
-[node name="RayCast2D" type="RayCast2D" parent="AimIndicator"]
+[node name="RayCast2D" type="RayCast2D" parent="Aim"]
 target_position = Vector2(50, 0)
 collision_mask = 0
 
-[node name="Line2D" type="Line2D" parent="AimIndicator"]
-points = PackedVector2Array(40, -8, 48, 0, 40, 8)
+[node name="Aim" type="Line2D" parent="Aim"]
+points = PackedVector2Array(64, -8, 72, 0, 64, 8)
 width = 5.0
 default_color = Color(0, 1, 0, 1)
+
+[node name="Detector" type="ShapeCast2D" parent="Aim"]
+visible = false
+shape = SubResource("RectangleShape2D_3meqx")
+target_position = Vector2(300, 0)
+collision_mask = 0
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Target" type="Line2D" parent="Aim"]
+visible = false
+points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -8)
+default_color = Color(0.862745, 0.709804, 0.0980392, 1)
 
 [node name="AbilityCollider" type="Area2D" parent="."]
 collision_layer = 0
@@ -3848,6 +3870,9 @@ collision_mask = 0
 visible = false
 position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_oudvw")
+
+[node name="GrappleHook" type="Line2D" parent="."]
+position = Vector2(-8, -64)
 
 [connection signal="timeout" from="StateMachine/WallLand/Hold" to="StateMachine/WallLand" method="_on_hold_timeout"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]

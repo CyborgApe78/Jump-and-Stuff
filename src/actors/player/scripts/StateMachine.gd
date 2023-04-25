@@ -31,19 +31,19 @@ extends Node
 	PlayerState.State.DashWall: $DashWall,
 	PlayerState.State.DashClimb: $DashClimb,
 	PlayerState.State.DashJump: $DashJump,
+	PlayerState.State.GrappleHook: $GrappleHook,
 	PlayerState.State.Slide: $Slide,
 	PlayerState.State.SpeedBoost: $SpeedBoost,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	
-#	PlayerState.State.GroundPoundBounce: $GroundPoundBounce,
 #	PlayerState.State.Teleport: $Teleport,
 #	PlayerState.State.Die: $Die,
 #	PlayerState.State.WallClimb: $WallClimb,
-#	PlayerState.State.HookShot: $HookShot,
+#	PlayerState.State.Bash: $Bash,
+#	PlayerState.State.Shinespark: $Shinespark,
 #	PlayerState.State.Swim: $Swim,
 #	PlayerState.State.SwimDash: $SwimDash,
-#	PlayerState.State.FallDamage: $FallDamage,
 }
 
 var currentState: PlayerState

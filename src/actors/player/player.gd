@@ -1,6 +1,7 @@
 extends Actor
 class_name  Player
 
+
 @onready var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 @onready var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 
@@ -18,6 +19,7 @@ class_name  Player
 @onready var wallRaycastRight: ShapeCast2D = $Raycasts/Wall/Right
 @onready var detectorCrouchLeft: RayCast2D = $Raycasts/Crouch/Left
 @onready var detectorCrouchRight: RayCast2D = $Raycasts/Crouch/Right
+@onready var grappleHookLine: Line2D = $GrappleHook
 
 var eyeDirection: int = 1 #TODO: randomizer on spawn
 var moveDirection: Vector2 = Vector2.ZERO
@@ -30,6 +32,8 @@ var groundAngle: float
 var velocityPrevious: Vector2 = Vector2.ZERO
 var velocityRotated: Vector2 = Vector2.ZERO
 var GPBounce: Vector2 = Vector2.ZERO
+
+var targetGrapple: TargetGrapple
 
 var neutralMoveDirection: bool = false
 
@@ -82,7 +86,7 @@ func move_and_slide_rotation() -> void:
 	velocity = velocity.rotated(-rotation)
 
 
-func get_move_input() -> void:
+func get_move_input() -> void: #FIXME: acts weird when x input is close to center
 	var deadzoneRadius: float = 0.2
 	#TODO: make deadzone radius in settings
 	var inputStrength: = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))

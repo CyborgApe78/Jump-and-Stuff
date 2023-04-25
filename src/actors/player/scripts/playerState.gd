@@ -36,6 +36,7 @@ enum State {
 	DashWall,
 	DashClimb,
 	DashJump,
+	GrappleHook,
 	Slide,
 	SpeedBoost,
 	BonkAir,
@@ -43,7 +44,6 @@ enum State {
 	
 	Teleport,
 	Die,
-	HookShot,
 	Swim,
 	SwimDash,
 	FallDamage,

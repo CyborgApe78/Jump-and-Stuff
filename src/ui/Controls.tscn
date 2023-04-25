@@ -83,10 +83,10 @@ text = "Dive"
 
 [node name="Burrow" type="Label" parent="."]
 layout_mode = 0
-offset_left = 840.0
-offset_top = 200.0
-offset_right = 898.0
-offset_bottom = 226.0
+offset_left = 1143.0
+offset_top = 126.0
+offset_right = 1201.0
+offset_bottom = 152.0
 text = "Burrow"
 
 [node name="Grapple" type="Label" parent="."]

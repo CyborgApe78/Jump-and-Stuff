@@ -13,7 +13,7 @@ func enter() -> void:
 	abilities.reset(PlayerAbilities.list.Dash)
 	abilities.reset(PlayerAbilities.list.DashChain)
 	player.sounds.land.play()
-	Input.start_joy_vibration(0, 0.5, 0.7, 0.5)
+	Input.start_joy_vibration(0, 0.5, 0.7, 0.5) #TODO: create signal
 	timerStun.wait_time = stunDuration
 	timerStun.start()
 	player.animPlayer.queue("Crouch")

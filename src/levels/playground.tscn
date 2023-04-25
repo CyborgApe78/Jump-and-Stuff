@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=19 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_fgo7i"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_isl6d"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="6_3il5s"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="9_wxmb7"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="10_50o25"]
+[ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="12_sk08k"]
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="14_scku3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
@@ -194,6 +195,9 @@ waypointName = 1
 [node name="Waypoint2" parent="Interactables" instance=ExtResource("9_wxmb7")]
 position = Vector2(-400, 264)
 waypointName = 2
+
+[node name="TargetGrapple" parent="Interactables" instance=ExtResource("12_sk08k")]
+position = Vector2(-122, -267)
 
 [node name="Player" parent="." instance=ExtResource("3_m0pk1")]
 position = Vector2(-617, -37)
