@@ -169,15 +169,17 @@ func dash_pressed_buffer() -> void:
 	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
 	dashBufferState = State.Null
 
-func dash_pressed_logic() -> void: #TODO: change to aimdirection 
+func dash_pressed_logic() -> void:
+	var dashInput: Vector2 = player.aimDirection if player.aimDirection != Vector2.ZERO else player.moveDirection
+	
 	if player.is_on_wall():
 		if player.moveDirection.y == -1:
 			dashBufferState = State.DashClimb
 		else:
 			dashBufferState = State.DashWall
-	elif Input.is_action_pressed("move_up"):
+	elif dashInput.y == -1:
 		dashBufferState = State.DashUp
-	elif Input.is_action_pressed("move_down"):
+	elif dashInput.y == 1:
 		dashBufferState = State.DashDown
 	elif player.is_on_floor(): #TODO: moveDirection left or right
 		dashBufferState = State.DashGround
