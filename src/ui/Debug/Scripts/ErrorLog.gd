@@ -1,6 +1,6 @@
 extends MarginContainer
 
-#TODO: setting to show
+
 @export var errorText: TextEdit
 @export var stateText: TextEdit
 
@@ -19,12 +19,12 @@ func show_debug(BOOL) -> void:
 
 
 func enter_error_text(info) -> void:
-	show()
+	if OS.has_feature("editor"):
+		show()
 	errorText.text = str(errorText.text, "\n", info)
 	errorText.set_v_scroll(9999999)
 
 
 func enter_state_text(info) -> void:
-	show()
 	stateText.text = str(stateText.text, "\n", info)
 	stateText.set_v_scroll(9999999)
