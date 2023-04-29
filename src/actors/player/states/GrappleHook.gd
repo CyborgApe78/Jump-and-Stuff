@@ -6,17 +6,20 @@ const slowRadius: = 2 * Util.tileSize
 
 func enter() -> void:
 	player.velocity = grapple_velocity()
-	draw_grapple()
+	player.grappleHookLine.visible = true
 
 
 func exit() -> void:
 	player.targetGrapple = null
+	player.grappleHookLine.visible = false #FIXME: needs to disappear when reached
 
 
 func physics(delta) -> void:
 	player.move_and_slide()
 	gravity_logic(gravityFall, delta)
 	track_top_speed(player.velocity.x)
+	if player.targetGrapple != null:
+		player.grappleHookLine.set_point_position(1, player.targetGrapple.global_position - player.grappleHookLine.global_position)
 
 
 func visual(delta) -> void:
@@ -116,8 +119,4 @@ func grapple_velocity() -> Vector2:
 	
 	return desiredVelocity
 
-func draw_grapple() -> void:
-	player.grappleHookLine.add_point(Vector2.ZERO)
-	player.grappleHookLine.add_point(player.targetGrapple.global_position - player.grappleHookLine.global_position)
-	await get_tree().create_timer(0.02).timeout #FIXME: crash if not completed
-	player.grappleHookLine.clear_points()
+
