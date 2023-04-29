@@ -1,9 +1,7 @@
 extends Marker2D
-#TODO: rename
-#TODO: draw line to target
+#TODO: fire without having target, change state if have one
 
 @export var color: Color = Color.FOREST_GREEN
-@export var raycast: RayCast2D
 @export var detector: ShapeCast2D
 @export var indicatorAim: Line2D
 @export var indicatorTarget: Line2D
@@ -35,10 +33,10 @@ func _physics_process(delta: float) -> void:
 
 
 func rotate_aim_indication() -> void: ## rotates raycast and indicator
-	var cast: Vector2 = aimInput * raycast.target_position.length()
+	var cast: Vector2 = aimInput * detector.target_position.length()
 	var angle: = cast.angle()
 	rotation = angle
-	raycast.force_raycast_update()
+	detector.force_shapecast_update()
 
 
 func find_target() -> void:
