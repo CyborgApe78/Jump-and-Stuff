@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: change from state to more PSpeed inspired. charging up coils
 #LOOKAT: need to mess around with wall jumps, need to jump off wall and keep speedboost
 #TODO: need a variable to return to speed boost player.speedBoostActive
 

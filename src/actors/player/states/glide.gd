@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: animation turned on side, think buzz lightyear
+#TODO: animation turned on side, think buzz lightyear mixed with mario cape
 
 @export var transTime: float = 0.1
 @export var velocityModifier: float = 0.6

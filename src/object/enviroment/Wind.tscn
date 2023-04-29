@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://mr3md4cpf1no"]
+
+[node name="Wind" type="Area2D"]
