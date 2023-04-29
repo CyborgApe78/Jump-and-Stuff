@@ -14,7 +14,7 @@ func enter() -> void:
 	GameStats.dashSide += 1
 	player.velocityPrevious = player.velocity
 	timers()
-	player.animPlayer.queue("Dash Side")
+	player.animPlayer.queue("Dash Side Air")
 	particles.emitting = true 
 	player.velocity.y = 0
 	player.velocity.x = player.facing * (dashVelocity / duration)
