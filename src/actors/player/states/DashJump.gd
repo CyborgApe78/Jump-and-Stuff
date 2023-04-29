@@ -1,8 +1,11 @@
 extends PlayerInfo
+
 #INGGAME: Rocket Jump, Shinespark inspired
 #TODO: remove duration
 #TODO: needs to be charged from SpeedBoost, 
 #TODO: delay for aiming
+#TODO: add block break indicator
+
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
@@ -12,7 +15,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	timers()
 	particles.emitting = true
-	player.velocity = player.aimDirection * (dashVelocity * 1.6 / duration) #TODO: find a more forgiving way to get 8 directions
+	player.velocity = player.aimDirection * dashVelocity * 1.6  #TODO: find a more forgiving way to get 8 directions
 	player.ability_mask(CollisionLayers.DashJump, false)
 
 

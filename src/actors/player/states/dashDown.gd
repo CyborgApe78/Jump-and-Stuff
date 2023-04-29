@@ -1,7 +1,8 @@
 extends PlayerInfo
 
-
+#TODO: add block break indicator
 #TODO: difference between this and ground pound
+
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var chainTimer: Timer #TODO: visual feedback when chain can be used
@@ -16,7 +17,7 @@ func enter() -> void:
 	player.animPlayer.queue("Dash Down")
 	particles.emitting = true
 	player.velocity.x = 0
-	player.velocity.y = dashVelocity / duration #FIXME: should not be based off duration
+	player.velocity.y = dashVelocity
 	player.ability_mask(CollisionLayers.DashDown, false)
 
 

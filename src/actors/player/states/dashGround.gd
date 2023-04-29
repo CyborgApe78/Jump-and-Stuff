@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: add block break indicator
 
 @export var dashJumpTime: float = 0.17
 @onready var dashJumpTimer: Timer = $DashJump
@@ -24,7 +25,7 @@ func enter() -> void:
 	player.animPlayer.queue("Dash Side") #TODO: own animation if walking, use the animation tree
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * (dashVelocity / duration)
+	player.velocity.x = player.facing * dashVelocity
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 

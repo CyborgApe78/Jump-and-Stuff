@@ -1,7 +1,8 @@
 extends PlayerInfo
 
+#TODO: add block break indicator
 
-var duration: float = 0.3
+var duration: float = 0.5
 @export var durationTimer: Timer
 @export var chainTimer: Timer #TODO: visual feedback when chain can be used
 @export var jumpWallSaveTimer: Timer
@@ -17,7 +18,7 @@ func enter() -> void:
 	player.animPlayer.queue("Dash Side Air")
 	particles.emitting = true 
 	player.velocity.y = 0
-	player.velocity.x = player.facing * (dashVelocity / duration)
+	player.velocity.x = player.facing * dashVelocity
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 

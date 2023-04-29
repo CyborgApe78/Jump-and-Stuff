@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: add block break indicator
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
@@ -14,7 +15,7 @@ func enter() -> void:
 	player.animPlayer.queue("Dash Up")
 	particles.emitting = true
 	player.velocity.x = 0
-	player.velocity.y = -dashVelocity / duration
+	player.velocity.y = -dashVelocity
 	player.ability_mask(CollisionLayers.DashUp, false)
 
 

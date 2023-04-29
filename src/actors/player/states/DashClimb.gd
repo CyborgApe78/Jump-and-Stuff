@@ -1,6 +1,8 @@
 extends PlayerInfo
 
+#TODO: add block break indicator
 #FIXME: use wall direction to control particles
+
 var duration: float = 0.3
 @export var particles: GPUParticles2D
 
@@ -8,7 +10,7 @@ var duration: float = 0.3
 func enter() -> void:
 	player.velocityPrevious = player.velocity
 	particles.emitting = true
-	player.velocity.y = -dashVelocity / duration
+	player.velocity.y = -dashVelocity
 	player.velocity.x = 0
 	player.ability_mask(CollisionLayers.DashUp, false)
 
