@@ -9,8 +9,6 @@ extends Node2D
 @export var jumpDouble: GPUParticles2D
 @export var jumpTriple: GPUParticles2D
 @export var dash: GPUParticles2D
-@export var dashUp: GPUParticles2D
-@export var dashDown: GPUParticles2D
 @export var wallSlide: GPUParticles2D
 @export var WallClimb: GPUParticles2D
 @export var jumpWall: GPUParticles2D
@@ -19,10 +17,9 @@ extends Node2D
 
 func _ready() -> void:
 	dash.process_material.color = AbilityColor.dashSideColor
-	dashUp.process_material.color = AbilityColor.dashUpColor
-	dashDown.process_material.color = AbilityColor.dashDownColor
+	check_ground_color()
 
-func _process(delta: float) -> void:
+func check_ground_color() -> void:
 	walk.process_material.color = player.groundColor
 	skid.process_material.color = player.groundColor
 	land.process_material.color = player.groundColor

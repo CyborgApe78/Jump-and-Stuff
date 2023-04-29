@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://cb1by5o7nm7fj"]
+[gd_scene load_steps=103 format=3 uid="uid://cb1by5o7nm7fj"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -220,48 +220,6 @@ color = Color(0, 0.0352941, 1, 1)
 hue_variation_min = -0.05
 hue_variation_max = 0.05
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8c07u"]
-emission_shape = 3
-emission_box_extents = Vector3(10, 0, 1)
-particle_flag_disable_z = true
-direction = Vector3(0, 1, 0)
-spread = 40.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 14.35
-initial_velocity_max = 148.28
-angular_velocity_max = 720.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_min = 7.14
-damping_max = 18.75
-scale_min = 2.0
-scale_max = 5.0
-scale_curve = SubResource("CurveTexture_sfigj")
-color = Color(0, 0.0352941, 1, 1)
-hue_variation_min = -0.05
-hue_variation_max = 0.05
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_atob2"]
-emission_shape = 3
-emission_box_extents = Vector3(10, 0, 1)
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 40.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 14.35
-initial_velocity_max = 148.28
-angular_velocity_max = 720.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_min = 7.14
-damping_max = 18.75
-scale_min = 2.0
-scale_max = 5.0
-scale_curve = SubResource("CurveTexture_sfigj")
-color = Color(0, 0.0352941, 1, 1)
-hue_variation_min = -0.05
-hue_variation_max = 0.05
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6t6x"]
 lifetime_randomness = 0.08
 emission_shape = 3
@@ -331,6 +289,34 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0.607843, 0, 1, 1, 1, 1, 1)
 [sub_resource type="Gradient" id="Gradient_g4su6"]
 interpolation_mode = 1
 colors = PackedColorArray(1, 1, 1, 1, 0, 0.607843, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_obg28"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.383929, 0.633929)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0.556245, 0.0360634, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j3xbn"]
+gradient = SubResource("Gradient_obg28")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8c07u"]
+emission_shape = 3
+emission_box_extents = Vector3(3, 0, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.5
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 165.79
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 7.14
+damping_max = 18.75
+scale_min = 2.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_sfigj")
+color_ramp = SubResource("GradientTexture1D_j3xbn")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
 
 [sub_resource type="GDScript" id="GDScript_2okyx"]
 script/source = "@tool
@@ -575,30 +561,6 @@ tracks/17/keys = {
 "update": 0,
 "values": [Vector2(-16, 40)]
 }
-tracks/18/type = "value"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_fjp1m"]
 resource_name = "Dash Down"
@@ -613,7 +575,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.523599]
+"values": [-0.349066]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -625,7 +587,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [PackedVector2Array(0, 0, -16, 8, -24, 24)]
+"values": [PackedVector2Array(0, 0, 8, -8, 8, -32)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -661,7 +623,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [PackedVector2Array(0, 0, 16, 10, 32, 18)]
+"values": [PackedVector2Array(0, 0, 24, -8, 24, -32)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -685,7 +647,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [3.14159]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -782,30 +744,6 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-16, 24)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_glnu2"]
@@ -991,30 +929,6 @@ tracks/14/keys = {
 "update": 0,
 "values": [Vector2(-16, 24)]
 }
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_pvl08"]
 resource_name = "Fall"
@@ -1199,30 +1113,6 @@ tracks/14/keys = {
 "update": 0,
 "values": [Vector2(-16, 24)]
 }
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_4s0wx"]
 resource_name = "Glide"
@@ -1405,30 +1295,6 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-16, 24)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_eclwc"]
@@ -1653,34 +1519,10 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
+tracks/18/path = NodePath("CharacterRig/CharacterRotate/Tail:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/20/type = "value"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("CharacterRig/CharacterRotate/Tail:position")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1906,30 +1748,6 @@ tracks/17/keys = {
 "update": 0,
 "values": [Vector2(-16, 24)]
 }
-tracks/18/type = "value"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_5bvri"]
 resource_name = "Jump"
@@ -2128,30 +1946,6 @@ tracks/15/keys = {
 "update": 0,
 "values": [Vector2(-16, 24)]
 }
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/17/type = "value"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_8shh4"]
 resource_name = "Jump Air"
@@ -2335,30 +2129,6 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-16, 24)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_im7kq"]
@@ -2630,30 +2400,6 @@ tracks/21/keys = {
 "update": 0,
 "values": [Vector2(-16, 40)]
 }
-tracks/22/type = "value"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/23/type = "value"
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_g6quy"]
 length = 0.001
@@ -2909,30 +2655,6 @@ tracks/20/keys = {
 "update": 0,
 "values": [Vector2(-16, 24)]
 }
-tracks/21/type = "value"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/22/type = "value"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
 
 [sub_resource type="Animation" id="Animation_lmwi4"]
 resource_name = "Slide"
@@ -3115,30 +2837,6 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-16, 24)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_devon"]
@@ -3406,30 +3104,6 @@ tracks/19/keys = {
 "update": 0,
 "values": [Vector2(-16, 24)]
 }
-tracks/20/type = "value"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/21/type = "value"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_dcalq"]
 resource_name = "Dash Side Air"
@@ -3593,46 +3267,22 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
+tracks/13/path = NodePath("BodyCollision:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [1.5708]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
+tracks/14/path = NodePath("BodyCollision:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("BodyCollision:rotation")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5708]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("BodyCollision:position")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -3822,30 +3472,6 @@ tracks/14/keys = {
 "update": 0,
 "values": [Vector2(-16, 24)]
 }
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:begin_cap_mode")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CharacterRig/CharacterRotate/Jetpack/Outline:end_cap_mode")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
 _data = {
@@ -3887,7 +3513,7 @@ metadata/_edit_vertical_guides_ = [-456.0]
 [node name="CharacterRotate" type="Node2D" parent="CharacterRig"]
 position = Vector2(0, -64)
 
-[node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "dashUp", "dashDown", "wallSlide", "WallClimb", "jumpWall")]
+[node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "wallSlide", "WallClimb", "jumpWall")]
 position = Vector2(0, 64)
 script = ExtResource("3_0fvjs")
 walk = NodePath("Walking")
@@ -3897,8 +3523,6 @@ jump = NodePath("Jump")
 jumpDouble = NodePath("JumpDouble")
 jumpTriple = NodePath("JumpTriple")
 dash = NodePath("Dash")
-dashUp = NodePath("DashUp")
-dashDown = NodePath("DashDown")
 wallSlide = NodePath("WallSlide")
 WallClimb = NodePath("WallClimb")
 jumpWall = NodePath("JumpWall")
@@ -3974,22 +3598,6 @@ process_material = SubResource("ParticleProcessMaterial_fn840")
 lifetime = 0.5
 randomness = 0.13
 
-[node name="DashUp" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(-32, -56)
-emitting = false
-amount = 300
-process_material = SubResource("ParticleProcessMaterial_8c07u")
-lifetime = 0.5
-randomness = 0.13
-
-[node name="DashDown" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
-position = Vector2(-32, -80)
-emitting = false
-amount = 300
-process_material = SubResource("ParticleProcessMaterial_atob2")
-lifetime = 0.5
-randomness = 0.13
-
 [node name="WallSlide" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
 position = Vector2(32, -32)
 emitting = false
@@ -4019,7 +3627,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3746, 6.42161, 42.9057, 12.7671, 56.0959, 19.77)
+points = PackedVector2Array(0, 0, 25.3746, 6.42145, 42.9058, 12.7668, 56.096, 19.7696)
 gradient = SubResource("Gradient_nvv4v")
 end_cap_mode = 2
 script = ExtResource("5_b5dru")
@@ -4031,7 +3639,7 @@ damping = 3.0
 show_behind_parent = true
 position = Vector2(0, -24)
 points = PackedVector2Array(0, 24, 0, 40)
-width = 48.0
+width = 40.0
 default_color = Color(0.627451, 0.12549, 0.941176, 1)
 gradient = SubResource("Gradient_ocoeo")
 begin_cap_mode = 2
@@ -4053,7 +3661,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, -6.99382e-07, 24, -24)
+points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -4078,7 +3686,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline4" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)
+points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -4102,7 +3710,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -4126,7 +3734,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 24, 8, 32, -16)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -4183,17 +3791,28 @@ script = ExtResource("3_0j02r")
 thickness = 1.05
 
 [node name="Jetpack" type="Line2D" parent="CharacterRig/CharacterRotate"]
+position = Vector2(8, 0)
 points = PackedVector2Array(-32, -16, -32, 16)
-width = 25.0
+width = 16.0
 default_color = Color(0, 0.607843, 0, 1)
+
+[node name="Jetpack" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Jetpack"]
+show_behind_parent = true
+position = Vector2(-32, 8)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_8c07u")
+lifetime = 0.5
+randomness = 0.13
+local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 8)
-width = 30.0
+points = PackedVector2Array(-32, -16, -32, 16)
+width = 18.0
 default_color = Color(0.639216, 0.156863, 0.941176, 1)
 begin_cap_mode = 2
-end_cap_mode = 2
+end_cap_mode = 1
 antialiased = true
 script = SubResource("GDScript_2okyx")
 
@@ -4336,33 +3955,33 @@ script = ExtResource("23_47ykn")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
+particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 
 [node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles")]
 script = ExtResource("25_tbkdj")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
+particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 
 [node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles")]
 script = ExtResource("25_pbxll")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashDown")
+particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 
 [node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer", "particles")]
 script = ExtResource("31_7ryi3")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
+particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 
 [node name="DashClimb" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("32_7x4nx")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
+particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 
 [node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
 script = ExtResource("33_2q3ab")
 durationTimer = NodePath("../../Timers/DashDuration")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/DashUp")
+particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 
 [node name="GrappleHook" type="Node" parent="StateMachine"]
 script = ExtResource("37_m47s2")
@@ -4549,17 +4168,12 @@ metadata/_edit_lock_ = true
 [node name="AnnounceClear" type="Timer" parent="PlayerText"]
 one_shot = true
 
-[node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("raycast", "detector", "indicatorAim", "indicatorTarget")]
+[node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("detector", "indicatorAim", "indicatorTarget")]
 position = Vector2(0, -64)
 script = ExtResource("49_iv4e8")
-raycast = NodePath("RayCast2D")
 detector = NodePath("Detector")
 indicatorAim = NodePath("Aim")
 indicatorTarget = NodePath("Target")
-
-[node name="RayCast2D" type="RayCast2D" parent="Aim"]
-target_position = Vector2(50, 0)
-collision_mask = 0
 
 [node name="Aim" type="Line2D" parent="Aim"]
 points = PackedVector2Array(64, -8, 72, 0, 64, 8)
