@@ -47,6 +47,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			player.timers.bufferJump.start()
+			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
