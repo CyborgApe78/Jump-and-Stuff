@@ -6,9 +6,11 @@ var duration: float = 0.3
 @export var jumpWallSaveTimer: Timer
 var dashDirection: int
 @export var particles: GPUParticles2D
+@export var soundJetpack: AudioStreamPlayer
 
 
 func enter() -> void:
+	soundJetpack.play()
 	player.animPlayer.queue("Dash Side Air")
 	dashDirection = -player.wall_detection(30)
 	player.velocityPrevious = player.velocity
@@ -20,6 +22,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	soundJetpack.stop()
 	player.animPlayer.stop()
 	particles.emitting = false 
 	if player.moveDirection.x != 0:
@@ -36,7 +39,8 @@ func visual(delta) -> void:
 
 
 func sound(delta: float) -> void:
-	pass
+	if !soundJetpack.playing:
+		soundJetpack.play()
 
 
 func handle_input(event: InputEvent) -> int:

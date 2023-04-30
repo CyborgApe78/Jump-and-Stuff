@@ -7,11 +7,13 @@ var duration: float = 0.5
 @export var chainTimer: Timer #TODO: visual feedback when chain can be used
 @export var jumpWallSaveTimer: Timer
 @export var particles: GPUParticles2D #TODO: make rest of particles for states like this
+@export var soundJetpack: AudioStreamPlayer
 
 #TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump
 
 
 func enter() -> void:
+	soundJetpack.play()
 	GameStats.dashSide += 1
 	player.velocityPrevious = player.velocity
 	timers()
@@ -23,6 +25,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	soundJetpack.stop()
 	player.animPlayer.stop()
 	particles.emitting = false
 	if player.moveDirection.x != 0:

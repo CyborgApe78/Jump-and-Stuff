@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://cb1by5o7nm7fj"]
+[gd_scene load_steps=104 format=3 uid="uid://cb1by5o7nm7fj"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -56,6 +56,7 @@
 [ext_resource type="Script" path="res://src/actors/player/scripts/PlayerText.gd" id="39_snr3n"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="50_wm14u"]
+[ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="52_wdrb5"]
 
 [sub_resource type="Curve" id="Curve_wyqxj"]
 _data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -3099,10 +3100,10 @@ tracks/19/path = NodePath("CharacterRig/CharacterRotate/Tail:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-16, 24)]
+"values": [Vector2(-16, 24), Vector2(-16, 16), Vector2(-16, 24), Vector2(-16, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_dcalq"]
@@ -3627,8 +3628,9 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3746, 6.42145, 42.9058, 12.7668, 56.096, 19.7696)
+points = PackedVector2Array(0, 0, 25.3746, 6.42146, 42.9057, 12.7671, 56.0957, 19.7702)
 gradient = SubResource("Gradient_nvv4v")
+begin_cap_mode = 1
 end_cap_mode = 2
 script = ExtResource("5_b5dru")
 segment_count = 2
@@ -3686,7 +3688,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline4" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+points = PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3710,7 +3712,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 40, 8, 48, 0, 64, 8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3734,7 +3736,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 0, 16, 10, 32, 2)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3747,7 +3749,7 @@ thickness = 1.1
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
 points = PackedVector2Array(0, 24, 0, 40)
-width = 50.4
+width = 42.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
@@ -3759,7 +3761,7 @@ thickness = 1.05
 [node name="Head" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(0, -40)
 points = PackedVector2Array(0, 0, 0, -1)
-width = 50.0
+width = 40.0
 default_color = Color(0.627451, 0.12549, 0.941176, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -3808,8 +3810,8 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 16)
-width = 18.0
+points = PackedVector2Array(-32, -16, -32, 8)
+width = 19.2
 default_color = Color(0.639216, 0.156863, 0.941176, 1)
 begin_cap_mode = 2
 end_cap_mode = 1
@@ -3817,6 +3819,7 @@ antialiased = true
 script = SubResource("GDScript_2okyx")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
@@ -3939,10 +3942,11 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 script = ExtResource("23_fbyj1")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
-[node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
+[node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles", "soundJetpack")]
 script = ExtResource("22_pfhk2")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashJump" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
@@ -3950,38 +3954,44 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "jumpWallSaveTimer", "particles")]
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "jumpWallSaveTimer", "particles", "soundJetpack")]
 script = ExtResource("23_47ykn")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles")]
+[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
 script = ExtResource("25_tbkdj")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles")]
+[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
 script = ExtResource("25_pbxll")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer", "particles")]
+[node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer", "particles", "soundJetpack")]
 script = ExtResource("31_7ryi3")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashClimb" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
+[node name="DashClimb" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles", "soundJetpack")]
 script = ExtResource("32_7x4nx")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
+[node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles", "soundJetpack")]
 script = ExtResource("33_2q3ab")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="GrappleHook" type="Node" parent="StateMachine"]
 script = ExtResource("37_m47s2")
@@ -4123,6 +4133,9 @@ stream = ExtResource("29_7k1ht")
 [node name="bodySlide" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("31_srj50")
 volume_db = -11.555
+
+[node name="Jetpack" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("52_wdrb5")
 
 [node name="ActionAnnouncer" type="Node2D" parent="."]
 visible = false

@@ -9,6 +9,7 @@ extends PlayerInfo
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
+@export var soundJetpack: AudioStreamPlayer
 
 var isJumping: bool = false
 var saveTriple: bool
@@ -18,6 +19,7 @@ var saveTriple: bool
 
 
 func enter() -> void:
+	soundJetpack.play()
 	GameStats.dashSide += 1
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
@@ -30,6 +32,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	soundJetpack.stop()
 	player.animPlayer.stop()
 	particles.emitting = false
 	if !isJumping:

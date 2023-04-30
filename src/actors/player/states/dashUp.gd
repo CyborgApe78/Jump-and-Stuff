@@ -6,9 +6,11 @@ extends PlayerInfo
 @export var durationTimer: Timer
 @export var chainTimer: Timer #TODO: visual feedback when chain can be used
 @export var particles: GPUParticles2D
+@export var soundJetpack: AudioStreamPlayer
 
 
 func enter() -> void:
+	soundJetpack.play()
 	GameStats.dashUp += 1
 	player.velocityPrevious = player.velocity
 	timers()
@@ -20,6 +22,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	soundJetpack.stop()
 	player.animPlayer.stop()
 	particles.emitting = false
 	player.velocity.y = player.velocity.y/4

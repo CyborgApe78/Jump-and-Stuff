@@ -5,9 +5,11 @@ extends PlayerInfo
 
 var duration: float = 0.3
 @export var particles: GPUParticles2D
+@export var soundJetpack: AudioStreamPlayer
 
 
 func enter() -> void:
+	soundJetpack.play()
 	player.velocityPrevious = player.velocity
 	particles.emitting = true
 	player.velocity.y = -dashVelocity
@@ -16,6 +18,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	soundJetpack.stop()
 	particles.emitting = false 
 	player.ability_mask(CollisionLayers.DashUp, true)
 
