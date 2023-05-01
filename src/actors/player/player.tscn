@@ -3626,7 +3626,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3745, 6.42194, 42.9054, 12.7678, 56.0954, 19.7712)
+points = PackedVector2Array(0, 0, 25.3748, 6.42055, 42.9061, 12.7656, 56.0962, 19.7685)
 gradient = SubResource("Gradient_nvv4v")
 begin_cap_mode = 1
 end_cap_mode = 2

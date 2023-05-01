@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://mr3md4cpf1no"]
+[gd_scene load_steps=4 format=3 uid="uid://mr3md4cpf1no"]
+
+[ext_resource type="Script" path="res://src/object/enviroment/scripts/Wind.gd" id="1_kdjwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxktd"]
+size = Vector2(131, 242)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fopgh"]
+emission_shape = 3
+emission_box_extents = Vector3(64, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 28.32
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 14.16
 
 [node name="Wind" type="Area2D"]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_kdjwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, -121)
+shape = SubResource("RectangleShape2D_mxktd")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_fopgh")
+lifetime = 8.6
+trail_enabled = true
+
+[connection signal="body_entered" from="." to="." method="enter_wind"]
+[connection signal="body_exited" from="." to="." method="exit_wind"]
