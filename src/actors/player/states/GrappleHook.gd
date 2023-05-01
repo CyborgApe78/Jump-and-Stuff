@@ -112,7 +112,7 @@ func grapple_velocity() -> Vector2:
 	var destination: Vector2 = player.targetGrapple.global_position
 	
 	var distanceToTarget: float = playerPosition.distance_to(destination)
-	var desiredVelocity: Vector2 = playerPosition.direction_to(destination) * (dashVelocity / 0.3) * 2 #TODO: create own velocity
+	var desiredVelocity: Vector2 = playerPosition.direction_to(destination) * dashVelocity #TODO: create own velocity
 	
 	if distanceToTarget < slowRadius:
 		desiredVelocity *= (distanceToTarget / slowRadius) * .75 + .25
