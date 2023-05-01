@@ -14,7 +14,6 @@ func enter() -> void:
 	GameStats.jumps += 1
 	timerLock.start()
 	jumpDirection = player.wall_detection(30)
-	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
@@ -26,18 +25,18 @@ func enter() -> void:
 	
 	if player.moveDirection.y == -1: ## up pressed
 		player.velocity = Vector2(500 * -jumpDirection, jumpVelocity * 1.3)
-		EventBus.playerInfo.emit("Wall Up")
+		EventBus.playerActionAnnounce.emit("Wall Up")
 	elif player.moveDirection.y == 1: ## down pressed
 		player.velocity = Vector2(300 * -jumpDirection, 100)
-		EventBus.playerInfo.emit("Wall Down")
+		EventBus.playerActionAnnounce.emit("Wall Down")
 	elif player.moveDirection.x == 0: ## no directional input
-		EventBus.playerInfo.emit("Wall Neutral")
+		EventBus.playerActionAnnounce.emit("Wall Neutral")
 		player.velocity = Vector2(moveSpeed / 1.5 * -jumpDirection, jumpVelocity * 1.1)
 	elif player.moveDirection.x == -jumpDirection: ## away from wall pressed
-		EventBus.playerInfo.emit("Wall Away")
+		EventBus.playerActionAnnounce.emit("Wall Away")
 		player.velocity = Vector2(moveSpeed * -jumpDirection, jumpVelocity)
 	elif player.moveDirection.x == jumpDirection: ## towards from wall pressed
-		EventBus.playerInfo.emit("Wall Towards") 
+		EventBus.playerActionAnnounce.emit("Wall Towards") 
 		player.velocity = Vector2(50 * jumpDirection, jumpVelocity)
 		wallHop = true
 	

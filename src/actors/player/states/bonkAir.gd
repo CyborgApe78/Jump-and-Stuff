@@ -11,7 +11,7 @@ var landed: bool
 
 
 func enter() -> void:
-	EventBus.actionAnnounce.emit("Bonk")
+	EventBus.playerActionAnnounce.emit("Bonk")
 	consecutive_jump_cancel()
 	landed = false
 	player.sounds.bonk.play()

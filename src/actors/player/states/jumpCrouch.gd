@@ -6,7 +6,6 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")

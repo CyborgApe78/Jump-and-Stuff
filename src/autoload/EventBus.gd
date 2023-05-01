@@ -6,9 +6,8 @@ signal playerAbilityUnlock(ability)
 signal playerUpgradeUnlock(upgrade)
 signal playerStatChange(stat, amount)
 signal playerConsecutiveJump
-signal playerInfo
 signal playerStateChange(states)
-signal actionAnnounce
+signal playerActionAnnounce
 signal teleportPlayer(location)
 
 signal checkpointEntered

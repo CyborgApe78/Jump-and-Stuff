@@ -81,15 +81,15 @@ func state_check(delta: float) -> int:
 	if dashBufferState != State.Null: #TODO: change to normal dash use if can't chain
 		if dashBufferState == State.DashAir and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
 				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+				EventBus.playerActionAnnounce.emit("Chain")
 				return State.DashAir
 		elif dashBufferState == State.DashUp and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
 				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+				EventBus.playerActionAnnounce.emit("Chain")
 				return State.DashUp
 		elif dashBufferState == State.DashDown and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
 				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+				EventBus.playerActionAnnounce.emit("Chain")
 				return State.DashDown
 	if durationTimer.is_stopped():
 		if player.is_on_floor():

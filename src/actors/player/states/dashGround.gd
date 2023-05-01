@@ -61,14 +61,14 @@ func handle_input(event: InputEvent) -> int:
 		if dashJumpRefreshTimer.is_stopped(): ## dash jump with dash count reset
 			abilities.reset(PlayerAbilities.list.Dash)  #TODO: Change to energy
 #			player.dashCDTimer.stop()  #TODO
-			EventBus.playerInfo.emit("Ultra Jump")
+			EventBus.playerActionAnnounce.emit("Ultra Jump")
 			return consecutive_jump_logic()
 		else: ## dash jump 
 			if dashJumpTimer.is_stopped(): 
-				EventBus.playerInfo.emit("Super Jump")
+				EventBus.playerActionAnnounce.emit("Super Jump")
 				return consecutive_jump_logic()
 			else:
-				EventBus.playerInfo.emit("Early Jump")
+				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
 		#TODO: add chain dash

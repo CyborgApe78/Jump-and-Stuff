@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://cb1by5o7nm7fj"]
+[gd_scene load_steps=101 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -32,28 +32,25 @@
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="20_134m1"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="21_43u8a"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallSlide.gd" id="22_jx1yk"]
-[ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="22_pfhk2"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="22_prnk2"]
-[ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="23_47ykn"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="23_fbyj1"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
 [ext_resource type="Script" path="res://src/actors/player/states/GroundPoundBounce.gd" id="24_blkch"]
 [ext_resource type="Script" path="res://src/actors/player/states/WallLand.gd" id="24_c8d67"]
 [ext_resource type="Script" path="res://src/actors/player/states/GroundPoundLand.gd" id="24_wk7fu"]
-[ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="25_pbxll"]
-[ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="25_tbkdj"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="28_yy5ux"]
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="29_7k1ht"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="31_7ryi3"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashGround.gd" id="31_lv2r8"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
 [ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="31_wvx7d"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashClimb.gd" id="32_7x4nx"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashAir.gd" id="32_rb7mn"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="33_2q3ab"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/ActionAnnouncer.gd" id="33_7u4fs"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/actionText.gd" id="34_h1yjw"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashUp.gd" id="33_k72hj"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashDown.gd" id="34_c50yb"]
 [ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="37_m47s2"]
 [ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="38_47j4e"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/PlayerText.gd" id="39_snr3n"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="50_wm14u"]
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="52_wdrb5"]
@@ -745,6 +742,374 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-16, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_0vwvt"]
+resource_name = "Dash Side"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRig/CharacterRotate/Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterRig/CharacterRotate/Body/ArmLeft:points")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 0, 8, 8, 40, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterRig/CharacterRotate/Body/LegLeft:points")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterRig/CharacterRotate/Body/LegRight:points")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 32, 16, 48, 0, 56, 8, 64)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CharacterRig/CharacterRotate/Body/ArmRight:points")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 0, 16, 10, 32, 10)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CharacterRig/CharacterRotate:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -64)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CharacterRig/CharacterRotate:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CharacterRig/CharacterRotate/Body:points")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 24, 0, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CharacterRig/CharacterRotate/Head:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -40)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BodyCollision:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -48)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BodyCollision:shape:radius")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [24.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BodyCollision:shape:height")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [96.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BodyCollision:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 8)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CharacterRig/CharacterRotate/Tail:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_dcalq"]
+resource_name = "Dash Side Air"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRig/CharacterRotate/Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.309]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterRig/CharacterRotate/Body/ArmLeft:points")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 0, 16, -6.99382e-07, 24, -24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterRig/CharacterRotate/Body/LegLeft:points")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterRig/CharacterRotate/Body/LegRight:points")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CharacterRig/CharacterRotate/Body/ArmRight:points")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 0, 24, 8, 32, -16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CharacterRig/CharacterRotate:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -24)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CharacterRig/CharacterRotate:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CharacterRig/CharacterRotate/Body:points")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 24, 0, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CharacterRig/CharacterRotate/Head:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -40)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BodyCollision:shape:radius")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [24.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BodyCollision:shape:height")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [96.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-32, -16, -32, 8)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CharacterRig/CharacterRotate/Tail:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 24)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BodyCollision:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BodyCollision:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -24)]
 }
 
 [sub_resource type="Animation" id="Animation_glnu2"]
@@ -3106,374 +3471,6 @@ tracks/19/keys = {
 "values": [Vector2(-16, 24), Vector2(-16, 16), Vector2(-16, 24), Vector2(-16, 16)]
 }
 
-[sub_resource type="Animation" id="Animation_dcalq"]
-resource_name = "Dash Side Air"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterRig/CharacterRotate/Head:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.309]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterRig/CharacterRotate/Body/ArmLeft:points")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 0, 16, -6.99382e-07, 24, -24)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterRig/CharacterRotate/Body/LegLeft:points")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CharacterRig/CharacterRotate/Body/LegRight:points")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CharacterRig/CharacterRotate/Body/ArmRight:points")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 0, 24, 8, 32, -16)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CharacterRig/CharacterRotate:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -24)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("CharacterRig/CharacterRotate:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5708]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("CharacterRig/CharacterRotate/Body:points")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 24, 0, 40)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("CharacterRig/CharacterRotate/Head:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -40)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("BodyCollision:shape:radius")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [24.0]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("BodyCollision:shape:height")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [96.0]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(-32, -16, -32, 8)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("CharacterRig/CharacterRotate/Tail:position")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-16, 24)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("BodyCollision:rotation")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5708]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("BodyCollision:position")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -24)]
-}
-
-[sub_resource type="Animation" id="Animation_0vwvt"]
-resource_name = "Dash Side"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterRig/CharacterRotate/Head:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterRig/CharacterRotate/Body/ArmLeft:points")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 0, 8, 8, 40, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterRig/CharacterRotate/Body/LegLeft:points")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CharacterRig/CharacterRotate/Body/LegRight:points")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 32, 16, 48, 0, 56, 8, 64)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CharacterRig/CharacterRotate/Body/ArmRight:points")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 0, 16, 10, 32, 10)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CharacterRig/CharacterRotate:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -64)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("CharacterRig/CharacterRotate:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("CharacterRig/CharacterRotate/Body:points")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(0, 24, 0, 40)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("CharacterRig/CharacterRotate/Head:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -40)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("BodyCollision:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -48)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("BodyCollision:shape:radius")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [24.0]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("BodyCollision:shape:height")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [96.0]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("BodyCollision:rotation")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("CharacterRig/CharacterRotate/Jetpack:points")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(-32, -16, -32, 8)]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("CharacterRig/CharacterRotate/Tail:position")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-16, 24)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
 _data = {
 "Crouch": SubResource("Animation_3611u"),
@@ -3506,6 +3503,7 @@ size = Vector2(47, 82)
 collision_layer = 64
 collision_mask = 65538
 floor_snap_length = 10.1
+platform_wall_layers = 2
 script = ExtResource("1_a3yhc")
 metadata/_edit_vertical_guides_ = [-456.0]
 
@@ -3628,7 +3626,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3746, 6.42146, 42.9057, 12.7671, 56.0957, 19.7702)
+points = PackedVector2Array(0, 0, 25.3745, 6.42194, 42.9054, 12.7678, 56.0954, 19.7712)
 gradient = SubResource("Gradient_nvv4v")
 begin_cap_mode = 1
 end_cap_mode = 2
@@ -3688,7 +3686,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline4" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)
+points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3712,7 +3710,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 40, 8, 48, 0, 64, 8, 64)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3736,7 +3734,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, 10, 32, 2)
+points = PackedVector2Array(0, 0, 16, 10, 32, 10)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3783,7 +3781,7 @@ antialiased = true
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Head"]
 show_behind_parent = true
 points = PackedVector2Array(0, 0, 0, -1)
-width = 52.5
+width = 42.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
@@ -3943,7 +3941,7 @@ script = ExtResource("23_fbyj1")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
 [node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles", "soundJetpack")]
-script = ExtResource("22_pfhk2")
+script = ExtResource("31_lv2r8")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 soundJetpack = NodePath("../../Sounds/Jetpack")
@@ -3955,7 +3953,7 @@ one_shot = true
 one_shot = true
 
 [node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "jumpWallSaveTimer", "particles", "soundJetpack")]
-script = ExtResource("23_47ykn")
+script = ExtResource("32_rb7mn")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
@@ -3963,14 +3961,15 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
-script = ExtResource("25_tbkdj")
+script = ExtResource("33_k72hj")
+duration = null
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
-script = ExtResource("25_pbxll")
+script = ExtResource("34_c50yb")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
@@ -4136,50 +4135,7 @@ volume_db = -11.555
 
 [node name="Jetpack" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("52_wdrb5")
-
-[node name="ActionAnnouncer" type="Node2D" parent="."]
-visible = false
-position = Vector2(-40, -40)
-script = ExtResource("33_7u4fs")
-metadata/_edit_lock_ = true
-
-[node name="ActionText" type="RichTextLabel" parent="ActionAnnouncer"]
-process_mode = 4
-layout_direction = 1
-offset_right = 80.0
-offset_bottom = 32.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-fit_content = true
-scroll_active = false
-script = ExtResource("34_h1yjw")
-
-[node name="PlayerText" type="RichTextLabel" parent="."]
-visible = false
-clip_contents = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -184.0
-offset_right = 45.0
-offset_bottom = -161.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-bbcode_enabled = true
-fit_content = true
-autowrap_mode = 0
-script = ExtResource("39_snr3n")
-metadata/_edit_lock_ = true
-
-[node name="AnnounceClear" type="Timer" parent="PlayerText"]
-one_shot = true
+volume_db = -10.636
 
 [node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("detector", "indicatorAim", "indicatorTarget")]
 position = Vector2(0, -64)
@@ -4199,7 +4155,6 @@ shape = SubResource("RectangleShape2D_3meqx")
 target_position = Vector2(300, 0)
 collision_mask = 0
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="Target" type="Line2D" parent="Aim"]
 visible = false

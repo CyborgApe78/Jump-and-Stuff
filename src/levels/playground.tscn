@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="2_slpti"]
 [ext_resource type="Script" path="res://src/levels/Ground.gd" id="3_7mvmu"]
 [ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_lg7tx"]
-[ext_resource type="PackedScene" uid="uid://cb1by5o7nm7fj" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
+[ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="3_m0pk1"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="6_3il5s"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="6_frn5c"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="9_wxmb7"]
@@ -88,7 +88,7 @@ layout_mode = 2
 [node name="Debug3" type="Label" parent="Debug/Info/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ErrorLog" type="MarginContainer" parent="Debug" node_paths=PackedStringArray("errorText", "stateText")]
+[node name="ErrorLog" type="MarginContainer" parent="Debug" node_paths=PackedStringArray("errorText", "stateText", "actionText")]
 visible = false
 anchors_preset = 3
 anchor_left = 1.0
@@ -107,6 +107,7 @@ theme_override_constants/margin_bottom = 20
 script = ExtResource("6_3il5s")
 errorText = NodePath("MarginContainer/TabContainer/Errors")
 stateText = NodePath("MarginContainer/TabContainer/States")
+actionText = NodePath("MarginContainer/TabContainer/Action")
 
 [node name="Panel" type="Panel" parent="Debug/ErrorLog"]
 layout_mode = 2
@@ -134,6 +135,14 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 placeholder_text = "State Changes"
+editable = false
+wrap_mode = 1
+
+[node name="Action" type="TextEdit" parent="Debug/ErrorLog/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Actions"
 editable = false
 wrap_mode = 1
 

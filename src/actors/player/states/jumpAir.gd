@@ -4,7 +4,6 @@ extends PlayerInfo
 func enter() -> void:
 	GameStats.jumps += 1
 	abilities.consume(PlayerAbilities.list.JumpAir, 1)
-	EventBus.actionAnnounce.emit("Boing")
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump Air")

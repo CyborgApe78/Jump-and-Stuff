@@ -74,15 +74,15 @@ func state_check(delta: float) -> int:
 	if dashBufferState != State.Null:
 		if dashBufferState == State.DashAir and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
 				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+				EventBus.playerActionAnnounce.emit("Chain")
 				return State.DashAir
 		elif dashBufferState == State.DashUp and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
 				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+				EventBus.playerActionAnnounce.emit("Chain")
 				return State.DashUp
 		elif dashBufferState == State.DashDown and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
 				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+				EventBus.playerActionAnnounce.emit("Chain")
 				return State.DashDown
 
 	return State.Null
