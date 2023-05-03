@@ -4,7 +4,8 @@ extends PlayerInfo
 #TODO: look into combine jump and jumpConsec
 
 func enter() -> void:
-	GameStats.jumps += 1
+	GameStats.jumps += 1 #TODO: remove and create stats recorder
+	EventBus.playerJumped
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")

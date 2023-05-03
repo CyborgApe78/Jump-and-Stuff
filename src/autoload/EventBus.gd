@@ -10,6 +10,9 @@ signal playerStateChange(states)
 signal playerActionAnnounce
 signal teleportPlayer(location)
 
+signal playerDashed
+signal playerJumped
+
 signal checkpointEntered
 
 signal debugState(info)

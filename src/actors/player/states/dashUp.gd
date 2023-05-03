@@ -12,6 +12,7 @@ extends PlayerInfo
 func enter() -> void:
 	soundJetpack.play()
 	GameStats.dashUp += 1
+	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	timers()
 	player.animPlayer.queue("Dash Up")

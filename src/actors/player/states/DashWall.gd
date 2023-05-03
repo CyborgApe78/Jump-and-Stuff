@@ -10,6 +10,8 @@ var dashDirection: int
 
 
 func enter() -> void:
+	GameStats.dashSide += 1 #TODO: own stat
+	EventBus.playerDashed.emit()
 	soundJetpack.play()
 	player.animPlayer.queue("Dash Side Air")
 	dashDirection = -player.wall_detection(30)

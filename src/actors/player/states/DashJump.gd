@@ -14,6 +14,8 @@ extends PlayerInfo
 
 func enter() -> void:
 	soundJetpack.play()
+	GameStats.dashSide += 1 #TODO: own stat
+	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	timers()
 	particles.emitting = true

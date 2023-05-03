@@ -9,6 +9,8 @@ var duration: float = 0.3
 
 
 func enter() -> void:
+	GameStats.dashSide += 1 #TODO: own stat
+	EventBus.playerDashed.emit()
 	soundJetpack.play()
 	player.velocityPrevious = player.velocity
 	particles.emitting = true

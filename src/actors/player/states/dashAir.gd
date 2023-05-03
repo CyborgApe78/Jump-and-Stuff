@@ -14,7 +14,8 @@ var duration: float = 0.5
 
 func enter() -> void:
 	soundJetpack.play()
-	GameStats.dashSide += 1
+	GameStats.dashSide += 1 #TODO: change to signal
+	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	timers()
 	player.animPlayer.queue("Dash Side Air")

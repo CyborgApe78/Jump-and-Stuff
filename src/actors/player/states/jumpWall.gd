@@ -11,7 +11,8 @@ var jumpDirection: int #TODO: change to jumpDirection
 
 
 func enter() -> void:
-	GameStats.jumps += 1
+	GameStats.jumps += 1 
+	EventBus.playerJumped.emit()
 	timerLock.start()
 	jumpDirection = player.wall_detection(30)
 	topSpeed = 0

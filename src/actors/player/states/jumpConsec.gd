@@ -7,6 +7,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	GameStats.jumps += 1
+	EventBus.playerJumped.emit()
 	abilities.consume(PlayerAbilities.list.JumpConsec, 1)
 	topSpeed = 0
 	neutral_move_direction_logic()

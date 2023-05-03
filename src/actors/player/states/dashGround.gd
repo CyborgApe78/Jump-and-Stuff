@@ -21,6 +21,7 @@ var saveTriple: bool
 func enter() -> void:
 	soundJetpack.play()
 	GameStats.dashSide += 1
+	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	timers()
