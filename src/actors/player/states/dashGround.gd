@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#FIXME: not liking this anymore, change to something else
 #TODO: add block break indicator
 
 @export var dashJumpTime: float = 0.17

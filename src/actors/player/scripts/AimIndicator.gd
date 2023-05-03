@@ -1,5 +1,6 @@
 extends Marker2D
 #TODO: fire without having target, change state if have one
+#TODO: this needs to move with animations, add nodes in tree
 
 @export var color: Color = Color.FOREST_GREEN
 @export var detector: ShapeCast2D
