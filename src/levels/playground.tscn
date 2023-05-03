@@ -225,7 +225,9 @@ waypointName = 2
 position = Vector2(-122, -267)
 
 [node name="Wind" parent="Interactables" instance=ExtResource("12_fr2wy")]
-position = Vector2(1019, -197)
+position = Vector2(1295, -610)
+scale = Vector2(10, 10)
+strength = 400
 
 [node name="Player" parent="." instance=ExtResource("3_m0pk1")]
 position = Vector2(-617, -37)

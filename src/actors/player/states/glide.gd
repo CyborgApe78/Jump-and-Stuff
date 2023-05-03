@@ -33,10 +33,15 @@ func physics(delta) -> void:
 	else:
 		air_velocity_logic(moveSpeed * velocityModifier, accelerationAir, frictionAir, delta)
 	
-	gravity_logic(gravityFall * velocityFallModifier, delta)
-	fall_speed_logic(terminalVelocity * velocityFallModifier)
+	if player.inWind:
+		player.velocity.y = player.windVelocity.y
+	else:
+		gravity_logic(gravityFall * velocityFallModifier, delta)
+		fall_speed_logic(terminalVelocity * velocityFallModifier)
 	
 	track_top_speed(player.velocity.x)
+	
+	
 
 
 func visual(delta) -> void:

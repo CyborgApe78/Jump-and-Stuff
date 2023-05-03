@@ -13,10 +13,8 @@ const DOWN = Vector2.DOWN
 const DOWNLEFT = Vector2(-1, 1)
 const DOWNRIGHT = Vector2(1, 1)
 
-
 @export var strength: int = 64
-#TODO: send to Actors
-@export var direction: directions
-#TODO: into strength
+#@export var direction: directions #FIXME: currently only vertical wind
+
 
 #TODD: water jets, water fountains
