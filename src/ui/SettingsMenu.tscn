@@ -148,6 +148,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonAimIndicator")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_vxf3y")
 buttonAimIndicator = NodePath("VBoxContainer/Aim")
@@ -188,13 +189,20 @@ layout_mode = 2
 text = "Show Controller Overlay"
 
 [node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video"]
 layout_mode = 2
 text = "Video"
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video"]
+layout_mode = 2
+
+[node name="VSync" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Enable VSync"
 
 [node name="Audio" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
 visible = false
