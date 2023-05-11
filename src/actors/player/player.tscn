@@ -3626,7 +3626,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3747, 6.4209, 42.9059, 12.7662, 56.0959, 19.7694)
+points = PackedVector2Array(0, 0, 25.3746, 6.4214, 42.9055, 12.7673, 56.0951, 19.7711)
 gradient = SubResource("Gradient_nvv4v")
 begin_cap_mode = 1
 end_cap_mode = 2
@@ -3661,7 +3661,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline2" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -16, 8, -24, 24)
+points = PackedVector2Array(0, 0, 16, -6.99382e-07, 24, -24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3686,7 +3686,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline4" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+points = PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3710,7 +3710,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline5" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3734,7 +3734,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline3" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 0, 24, 8, 32, -16)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
@@ -3798,7 +3798,7 @@ default_color = Color(0, 0.607843, 0, 1)
 
 [node name="Jetpack" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-position = Vector2(-32, 24)
+position = Vector2(-32, 16)
 emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_8c07u")
@@ -3809,7 +3809,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 16)
+points = PackedVector2Array(-32, -16, -32, 8)
 width = 19.2
 default_color = Color(0.639216, 0.156863, 0.941176, 1)
 begin_cap_mode = 2
@@ -4013,6 +4013,7 @@ script = ExtResource("21_43u8a")
 script = ExtResource("22_prnk2")
 
 [node name="Raycasts" type="Node2D" parent="."]
+visible = false
 
 [node name="Ground" type="Node2D" parent="Raycasts"]
 
