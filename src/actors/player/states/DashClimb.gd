@@ -13,6 +13,7 @@ func enter() -> void:
 	EventBus.playerDashed.emit()
 	soundJetpack.play()
 	player.velocityPrevious = player.velocity
+	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = -dashVelocity
 	player.velocity.x = 0
@@ -21,6 +22,7 @@ func enter() -> void:
 
 func exit() -> void:
 	soundJetpack.stop()
+	particles.local_coords = false
 	particles.emitting = false 
 	player.ability_mask(CollisionLayers.DashUp, true)
 

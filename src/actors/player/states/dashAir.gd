@@ -19,6 +19,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	timers()
 	player.animPlayer.queue("Dash Side Air")
+	particles.local_coords = true
 	particles.emitting = true 
 	player.velocity.y = 0
 	player.velocity.x = player.facing * dashVelocity
@@ -28,6 +29,7 @@ func enter() -> void:
 func exit() -> void:
 	soundJetpack.stop()
 	player.animPlayer.stop()
+	particles.local_coords = false
 	particles.emitting = false
 	if player.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x

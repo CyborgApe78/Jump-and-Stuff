@@ -16,6 +16,7 @@ func enter() -> void:
 	player.animPlayer.queue("Dash Side Air")
 	dashDirection = -player.wall_detection(30)
 	player.velocityPrevious = player.velocity
+	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = dashDirection * dashVelocity
@@ -26,7 +27,8 @@ func enter() -> void:
 func exit() -> void:
 	soundJetpack.stop()
 	player.animPlayer.stop()
-	particles.emitting = false 
+	particles.local_coords = false
+	particles.emitting = false
 	if player.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x
 	player.ability_mask(CollisionLayers.DashSide, true)

@@ -18,6 +18,7 @@ func enter() -> void:
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	timers()
+	particles.local_coords = true
 	particles.emitting = true
 	player.velocity = player.aimDirection * dashVelocity * 1.6  #TODO: find a more forgiving way to get 8 directions
 	player.ability_mask(CollisionLayers.DashJump, false)
@@ -25,6 +26,7 @@ func enter() -> void:
 
 func exit() -> void:
 	soundJetpack.stop()
+	particles.local_coords = false
 	particles.emitting = false
 	player.ability_mask(CollisionLayers.DashJump, true)
 

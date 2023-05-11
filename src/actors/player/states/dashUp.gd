@@ -16,6 +16,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	timers()
 	player.animPlayer.queue("Dash Up")
+	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.x = 0
 	player.velocity.y = -dashVelocity
@@ -25,6 +26,7 @@ func enter() -> void:
 func exit() -> void:
 	soundJetpack.stop()
 	player.animPlayer.stop()
+	particles.local_coords = false
 	particles.emitting = false
 	player.velocity.y = player.velocity.y/4
 	player.ability_mask(CollisionLayers.DashUp, true)

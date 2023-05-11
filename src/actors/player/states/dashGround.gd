@@ -27,6 +27,7 @@ func enter() -> void:
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	timers()
 	player.animPlayer.queue("Dash Side") #TODO: own animation if walking, use the animation tree
+	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = player.facing * dashVelocity
@@ -36,6 +37,7 @@ func enter() -> void:
 func exit() -> void:
 	soundJetpack.stop()
 	player.animPlayer.stop()
+	particles.local_coords = false
 	particles.emitting = false
 	if !isJumping:
 		player.velocity.x = player.velocityPrevious.x
