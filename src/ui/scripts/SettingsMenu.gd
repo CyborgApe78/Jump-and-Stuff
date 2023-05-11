@@ -19,6 +19,7 @@ extends BaseMenu
 func enter() -> void:
 	set_paused(true)
 	self.visible = true
+	menu_hid()
 	gameplayMenu.visible = true
 	gameplayButton.grab_focus()
 
