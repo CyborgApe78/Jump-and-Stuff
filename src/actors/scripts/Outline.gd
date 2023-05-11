@@ -10,5 +10,6 @@ func _ready():
 	width = parent.width * thickness
 
 
-func _process(delta):
-	points = parent.points
+func _process(delta): #TODO: find a way that this isn't running all the time
+	if points != parent.points:
+		points = parent.points
