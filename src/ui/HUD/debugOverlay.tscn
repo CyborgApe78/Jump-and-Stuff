@@ -1,0 +1,140 @@
+[gd_scene load_steps=5 format=3 uid="uid://ianrymnomtg8"]
+
+[ext_resource type="Script" path="res://src/debug/Info.gd" id="1_vw1db"]
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/FPS.gd" id="2_m14yc"]
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="3_kfc74"]
+[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="4_xl06e"]
+
+[node name="Debug" type="CanvasLayer"]
+
+[node name="Info" type="MarginContainer" parent="." node_paths=PackedStringArray("stateLabel", "velocityLabel", "debugLabel", "debug2Label", "debug3Label")]
+process_mode = 3
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_vw1db")
+stateLabel = NodePath("MarginContainer/VBoxContainer/State")
+velocityLabel = NodePath("MarginContainer/VBoxContainer/Velocity")
+debugLabel = NodePath("MarginContainer/VBoxContainer/Debug")
+debug2Label = NodePath("MarginContainer/VBoxContainer/Debug2")
+debug3Label = NodePath("MarginContainer/VBoxContainer/Debug3")
+
+[node name="Panel" type="Panel" parent="Info"]
+modulate = Color(1, 1, 1, 0.576471)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Info"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info/MarginContainer"]
+layout_mode = 2
+
+[node name="State" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Velocity" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Debug" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Debug2" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Debug3" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FPS" type="MarginContainer" parent="." node_paths=PackedStringArray("fpsLabel")]
+process_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 53.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("2_m14yc")
+fpsLabel = NodePath("MarginContainer/Label")
+
+[node name="Panel" type="Panel" parent="FPS"]
+modulate = Color(1, 1, 1, 0.576471)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FPS"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="FPS/MarginContainer"]
+layout_mode = 2
+
+[node name="ErrorLog" type="MarginContainer" parent="." node_paths=PackedStringArray("errorText", "stateText", "actionText")]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -200.0
+offset_right = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("3_kfc74")
+errorText = NodePath("MarginContainer/TabContainer/Errors")
+stateText = NodePath("MarginContainer/TabContainer/States")
+actionText = NodePath("MarginContainer/TabContainer/Action")
+
+[node name="Panel" type="Panel" parent="ErrorLog"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ErrorLog"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TabContainer" type="TabContainer" parent="ErrorLog/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("4_xl06e")
+
+[node name="Errors" type="TextEdit" parent="ErrorLog/MarginContainer/TabContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Errors"
+editable = false
+wrap_mode = 1
+
+[node name="States" type="TextEdit" parent="ErrorLog/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+placeholder_text = "State Changes"
+editable = false
+wrap_mode = 1
+
+[node name="Action" type="TextEdit" parent="ErrorLog/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Actions"
+editable = false
+wrap_mode = 1
