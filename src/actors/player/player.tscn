@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=103 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/spawn.gd" id="5_86xj5"]
 [ext_resource type="Script" path="res://addons/wiggly_appendage_2d/wiggly_appendage_2d.gd" id="5_b5dru"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Eye.gd" id="5_fkxlu"]
+[ext_resource type="Texture2D" uid="uid://pliaoxib3pmf" path="res://asset/particles/fire_01.png" id="6_8vjc6"]
 [ext_resource type="Script" path="res://src/actors/player/states/die.gd" id="6_uc50q"]
 [ext_resource type="Script" path="res://src/actors/player/states/walk.gd" id="6_w0a7b"]
 [ext_resource type="Script" path="res://src/actors/player/states/idle.gd" id="7_rx8in"]
@@ -51,6 +52,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/DashDown.gd" id="34_c50yb"]
 [ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="37_m47s2"]
 [ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="38_47j4e"]
+[ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="40_5d8t6"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="50_wm14u"]
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="52_wdrb5"]
@@ -297,20 +299,18 @@ colors = PackedColorArray(1, 1, 0, 1, 1, 0.556245, 0.0360634, 1, 1, 0, 0, 1)
 gradient = SubResource("Gradient_obg28")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8c07u"]
-emission_shape = 3
-emission_box_extents = Vector3(3, 0, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 0.5
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 70.0
-initial_velocity_max = 165.79
+flatness = 1.0
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 45.0
+initial_velocity_max = 100.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-damping_min = 7.14
 damping_max = 18.75
-scale_min = 2.0
-scale_max = 5.0
+scale_min = 0.01
+scale_max = 0.05
 scale_curve = SubResource("CurveTexture_sfigj")
 color_ramp = SubResource("GradientTexture1D_j3xbn")
 hue_variation_min = -0.1
@@ -3626,7 +3626,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3747, 6.4208, 42.9058, 12.7663, 56.0956, 19.7698)
+points = PackedVector2Array(0, 0, 25.3747, 6.4209, 42.9059, 12.7662, 56.0959, 19.7694)
 gradient = SubResource("Gradient_nvv4v")
 begin_cap_mode = 1
 end_cap_mode = 2
@@ -3798,11 +3798,12 @@ default_color = Color(0, 0.607843, 0, 1)
 
 [node name="Jetpack" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-position = Vector2(-32, 8)
+position = Vector2(-32, 24)
 emitting = false
-amount = 100
+amount = 30
 process_material = SubResource("ParticleProcessMaterial_8c07u")
-lifetime = 0.5
+texture = ExtResource("6_8vjc6")
+lifetime = 0.4
 randomness = 0.13
 local_coords = true
 
@@ -3999,6 +4000,9 @@ script = ExtResource("31_wvx7d")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
+[node name="Swim" type="Node" parent="StateMachine"]
+script = ExtResource("40_5d8t6")
+
 [node name="SpeedBoost" type="Node" parent="StateMachine"]
 script = ExtResource("38_47j4e")
 
@@ -4053,7 +4057,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

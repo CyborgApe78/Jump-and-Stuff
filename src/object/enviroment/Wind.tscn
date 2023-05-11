@@ -1,36 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://mr3md4cpf1no"]
+[gd_scene load_steps=7 format=3 uid="uid://mr3md4cpf1no"]
 
 [ext_resource type="Script" path="res://src/object/enviroment/scripts/Wind.gd" id="1_kdjwu"]
+[ext_resource type="Texture2D" uid="uid://04igxltpda2l" path="res://asset/particles/trace_05.png" id="2_lw7pv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxktd"]
-size = Vector2(131, 242)
+[sub_resource type="Gradient" id="Gradient_o7f3h"]
+offsets = PackedFloat32Array(0, 0.125, 0.928571, 1)
+colors = PackedColorArray(0, 0, 0, 0.00784314, 0.587751, 0.587751, 0.58775, 1, 0.837469, 0.837469, 0.837469, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fjc5x"]
+gradient = SubResource("Gradient_o7f3h")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fopgh"]
 emission_shape = 3
-emission_box_extents = Vector3(64, 1, 1)
+emission_box_extents = Vector3(62, 1, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_max = 28.32
+initial_velocity_min = 230.0
+initial_velocity_max = 240.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_max = 14.16
+scale_min = 0.2
+scale_max = 0.3
+color_ramp = SubResource("GradientTexture1D_fjc5x")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxktd"]
+size = Vector2(128, 242)
 
 [node name="Wind" type="Area2D"]
 collision_layer = 0
 collision_mask = 64
 script = ExtResource("1_kdjwu")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_fopgh")
+texture = ExtResource("2_lw7pv")
+lifetime = 0.8
+
 [node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.439216)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -72.0
+offset_left = -64.0
 offset_top = -242.0
-offset_right = 61.0
+offset_right = 64.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -40,14 +58,8 @@ color = Color(0.231373, 0.231373, 0.231373, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-5.5, -121)
+position = Vector2(0, -121)
 shape = SubResource("RectangleShape2D_mxktd")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_fopgh")
-lifetime = 8.6
-trail_enabled = true
 
 [connection signal="body_entered" from="." to="." method="enter_wind"]
 [connection signal="body_exited" from="." to="." method="exit_wind"]

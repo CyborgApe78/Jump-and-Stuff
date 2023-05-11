@@ -38,13 +38,13 @@ enum State {
 	DashJump,
 	GrappleHook,
 	Slide,
+	Swim,
 	SpeedBoost,
 	BonkAir,
 	BonkGround,
 	
 	Teleport,
 	Die,
-	Swim,
 	SwimDash,
 	FallDamage,
 }
