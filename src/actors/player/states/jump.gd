@@ -5,7 +5,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	GameStats.jumps += 1 #TODO: remove and create stats recorder
-	EventBus.playerJumped
+	EventBus.playerJumped.emit()
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
