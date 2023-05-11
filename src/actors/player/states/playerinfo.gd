@@ -1,6 +1,8 @@
 extends PlayerState
 class_name PlayerInfo
 
+#TODO: look into making ability groups (dash, air, ground, swim) they control sending to particular states
+
 
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
