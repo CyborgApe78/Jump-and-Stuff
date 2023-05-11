@@ -1,7 +1,6 @@
 extends PlayerInfo
-#TODO: create place to test jumps
-#TODO: after lock out player should fall without in
-#TODO: recent wall jump timer to make jump between walls quick
+
+#FIXME: coyote wall jump flips sprite away from wall, but returns to face wall without input. adjust facing to match on exit
 
 @export var timerLock: Timer
 @export var particles: GPUParticles2D
