@@ -1,64 +1,63 @@
-[gd_scene load_steps=101 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=100 format=3 uid="uid://drd1sce7py66q"]
 
-[ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_a3yhc"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="3_0fvjs"]
-[ext_resource type="Script" path="res://src/actors/scripts/Outline.gd" id="3_0j02r"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/StateMachine.gd" id="4_tcit3"]
-[ext_resource type="Script" path="res://src/actors/player/states/spawn.gd" id="5_86xj5"]
-[ext_resource type="Script" path="res://addons/wiggly_appendage_2d/wiggly_appendage_2d.gd" id="5_b5dru"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/Eye.gd" id="5_fkxlu"]
-[ext_resource type="Texture2D" uid="uid://hls77kstgpen" path="res://asset/player/leg.png" id="5_u08kx"]
-[ext_resource type="Texture2D" uid="uid://rkcjhldyjckw" path="res://asset/player/body.png" id="5_uyttp"]
-[ext_resource type="Texture2D" uid="uid://pliaoxib3pmf" path="res://asset/particles/fire_01.png" id="6_8vjc6"]
-[ext_resource type="Script" path="res://src/actors/player/states/die.gd" id="6_uc50q"]
-[ext_resource type="Script" path="res://src/actors/player/states/walk.gd" id="6_w0a7b"]
-[ext_resource type="Script" path="res://src/actors/player/states/idle.gd" id="7_rx8in"]
-[ext_resource type="Texture2D" uid="uid://bcvdpolvieau3" path="res://asset/player/jetpack.png" id="7_w707v"]
-[ext_resource type="Script" path="res://src/actors/player/states/jump.gd" id="8_8a3ob"]
-[ext_resource type="Script" path="res://src/actors/player/states/skid.gd" id="8_p04nj"]
-[ext_resource type="Script" path="res://src/actors/player/states/fall.gd" id="9_hid0t"]
-[ext_resource type="Script" path="res://src/actors/player/states/crouch.gd" id="10_tmkpe"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpConsec.gd" id="11_fwped"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpAir.gd" id="11_vusvg"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpFlip.gd" id="14_eoakl"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpApex.gd" id="14_gdhgo"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="14_gr7r5"]
-[ext_resource type="AudioStream" uid="uid://c655mcgbweid5" path="res://asset/sounds/player/footstep.wav" id="14_jye2v"]
-[ext_resource type="AudioStream" uid="uid://bnbv8tr478gqg" path="res://asset/sounds/player/land.wav" id="15_7oeww"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/sounds.gd" id="15_dp65x"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpCrouch.gd" id="16_4vuh4"]
-[ext_resource type="AudioStream" uid="uid://btfvrwbgkgyal" path="res://asset/sounds/player/jump.wav" id="16_51c2n"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpLong.gd" id="16_ekg3a"]
-[ext_resource type="Script" path="res://src/actors/player/states/jumpWall.gd" id="17_lunng"]
-[ext_resource type="AudioStream" uid="uid://c7muk6odu85aw" path="res://asset/sounds/player/skid.wav" id="18_sqfay"]
-[ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="19_52i1t"]
-[ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="19_f0jmg"]
-[ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="20_134m1"]
-[ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="21_43u8a"]
-[ext_resource type="Script" path="res://src/actors/player/states/wallSlide.gd" id="22_jx1yk"]
-[ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="22_prnk2"]
-[ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="23_fbyj1"]
-[ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="23_likm5"]
-[ext_resource type="Script" path="res://src/actors/player/states/GroundPoundBounce.gd" id="24_blkch"]
-[ext_resource type="Script" path="res://src/actors/player/states/WallLand.gd" id="24_c8d67"]
-[ext_resource type="Script" path="res://src/actors/player/states/GroundPoundLand.gd" id="24_wk7fu"]
-[ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="28_yy5ux"]
-[ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="29_7k1ht"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="31_7ryi3"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashGround.gd" id="31_lv2r8"]
-[ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="31_srj50"]
-[ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="31_wvx7d"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashClimb.gd" id="32_7x4nx"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashAir.gd" id="32_rb7mn"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="33_2q3ab"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashUp.gd" id="33_k72hj"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashDown.gd" id="34_c50yb"]
-[ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="37_m47s2"]
-[ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="38_47j4e"]
-[ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="40_5d8t6"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="49_iv4e8"]
-[ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="50_wm14u"]
-[ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="52_wdrb5"]
+[ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_g07dg"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_fokwe"]
+[ext_resource type="Texture2D" uid="uid://hls77kstgpen" path="res://asset/player/leg.png" id="3_cf7nm"]
+[ext_resource type="Script" path="res://addons/wiggly_appendage_2d/wiggly_appendage_2d.gd" id="4_g7x2q"]
+[ext_resource type="Texture2D" uid="uid://rkcjhldyjckw" path="res://asset/player/body.png" id="5_kp26j"]
+[ext_resource type="Script" path="res://src/actors/scripts/Outline.gd" id="6_2bhbt"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/Eye.gd" id="7_e8i1y"]
+[ext_resource type="Texture2D" uid="uid://bcvdpolvieau3" path="res://asset/player/jetpack.png" id="8_khufu"]
+[ext_resource type="Texture2D" uid="uid://pliaoxib3pmf" path="res://asset/particles/fire_01.png" id="9_edty2"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/StateMachine.gd" id="10_t5ysy"]
+[ext_resource type="Script" path="res://src/actors/player/states/spawn.gd" id="11_100ok"]
+[ext_resource type="Script" path="res://src/actors/player/states/die.gd" id="12_6otu6"]
+[ext_resource type="Script" path="res://src/actors/player/states/walk.gd" id="13_86x6k"]
+[ext_resource type="Script" path="res://src/actors/player/states/skid.gd" id="14_3mnw0"]
+[ext_resource type="Script" path="res://src/actors/player/states/crouch.gd" id="15_h1qxp"]
+[ext_resource type="Script" path="res://src/actors/player/states/idle.gd" id="16_8qioa"]
+[ext_resource type="Script" path="res://src/actors/player/states/jump.gd" id="17_ctqww"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpAir.gd" id="18_myrs7"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpConsec.gd" id="19_lvkix"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpFlip.gd" id="20_oilgg"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpLong.gd" id="21_5yfjn"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpCrouch.gd" id="22_byrf7"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpApex.gd" id="23_lelao"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpWall.gd" id="24_5q3ww"]
+[ext_resource type="Script" path="res://src/actors/player/states/fall.gd" id="25_rm4rt"]
+[ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="26_hsihr"]
+[ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="27_82lx5"]
+[ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_difl8"]
+[ext_resource type="Script" path="res://src/actors/player/states/WallLand.gd" id="29_2wf2c"]
+[ext_resource type="Script" path="res://src/actors/player/states/wallSlide.gd" id="30_7n81c"]
+[ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_vjlqu"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashGround.gd" id="32_o6jrb"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashAir.gd" id="33_wcyad"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashUp.gd" id="34_3pkjb"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashDown.gd" id="35_7fy60"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="36_eyfnd"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashClimb.gd" id="37_eiej4"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="38_m41js"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashDownLand.gd" id="39_hsmu0"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashDownBounce.gd" id="40_53y06"]
+[ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="41_y1hjp"]
+[ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="42_52b6o"]
+[ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="43_lfnej"]
+[ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="44_k7g2n"]
+[ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="45_8toi7"]
+[ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="46_jbrux"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="47_0vvtw"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/sounds.gd" id="48_c3ooo"]
+[ext_resource type="AudioStream" uid="uid://c655mcgbweid5" path="res://asset/sounds/player/footstep.wav" id="49_vunm7"]
+[ext_resource type="AudioStream" uid="uid://bnbv8tr478gqg" path="res://asset/sounds/player/land.wav" id="50_tta0x"]
+[ext_resource type="AudioStream" uid="uid://btfvrwbgkgyal" path="res://asset/sounds/player/jump.wav" id="51_jwuj8"]
+[ext_resource type="AudioStream" uid="uid://c7muk6odu85aw" path="res://asset/sounds/player/skid.wav" id="52_usp3x"]
+[ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="53_hv05o"]
+[ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="54_8q03n"]
+[ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="55_xnksu"]
+[ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="56_1kuwb"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_53bcx"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_n6wur"]
 
 [sub_resource type="Curve" id="Curve_wyqxj"]
 _data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -3474,7 +3473,7 @@ collision_layer = 64
 collision_mask = 65538
 floor_snap_length = 10.1
 platform_wall_layers = 2
-script = ExtResource("1_a3yhc")
+script = ExtResource("1_g07dg")
 metadata/_edit_vertical_guides_ = [-456.0]
 
 [node name="CharacterRig" type="Node2D" parent="."]
@@ -3484,7 +3483,7 @@ position = Vector2(0, -64)
 
 [node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "wallSlide", "WallClimb", "jumpWall")]
 position = Vector2(0, 64)
-script = ExtResource("3_0fvjs")
+script = ExtResource("2_fokwe")
 walk = NodePath("Walking")
 skid = NodePath("Skid")
 land = NodePath("Land")
@@ -3596,12 +3595,12 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3747, 6.42093, 42.9061, 12.7659, 56.0965, 19.7684)
-texture = ExtResource("5_u08kx")
+points = PackedVector2Array(0, 0, 25.3748, 6.42042, 42.9061, 12.7655, 56.0962, 19.7685)
+texture = ExtResource("3_cf7nm")
 texture_mode = 2
 begin_cap_mode = 1
 end_cap_mode = 2
-script = ExtResource("5_b5dru")
+script = ExtResource("4_g7x2q")
 segment_count = 2
 curvature = 0.217
 damping = 3.0
@@ -3611,7 +3610,7 @@ show_behind_parent = true
 position = Vector2(0, -24)
 points = PackedVector2Array(0, 24, 0, 40)
 width = 40.0
-texture = ExtResource("5_uyttp")
+texture = ExtResource("5_kp26j")
 texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -3622,7 +3621,7 @@ show_behind_parent = true
 position = Vector2(0, 24)
 points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 14.0
-texture = ExtResource("5_u08kx")
+texture = ExtResource("3_cf7nm")
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -3633,13 +3632,13 @@ metadata/_edit_group_ = true
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
 points = PackedVector2Array(0, 0, -16, 8, -24, 24)
-width = 14.7
+width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
+script = ExtResource("6_2bhbt")
 thickness = 1.1
 
 [node name="LegLeft" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
@@ -3647,7 +3646,7 @@ show_behind_parent = true
 position = Vector2(0, 16)
 points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 14.0
-texture = ExtResource("5_u08kx")
+texture = ExtResource("3_cf7nm")
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -3658,20 +3657,20 @@ metadata/_edit_group_ = true
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
 points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
-width = 14.7
+width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
+script = ExtResource("6_2bhbt")
 thickness = 1.1
 
 [node name="LegRight" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 position = Vector2(0, 16)
 points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 14.0
-texture = ExtResource("5_u08kx")
+texture = ExtResource("3_cf7nm")
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -3682,20 +3681,20 @@ metadata/_edit_group_ = true
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
 points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
-width = 14.7
+width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
+script = ExtResource("6_2bhbt")
 thickness = 1.1
 
 [node name="ArmRight" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 position = Vector2(0, 24)
 points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 14.0
-texture = ExtResource("5_u08kx")
+texture = ExtResource("3_cf7nm")
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -3706,13 +3705,13 @@ metadata/_edit_group_ = true
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
 points = PackedVector2Array(0, 0, 8, 10, 24, 18)
-width = 14.7
+width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
+script = ExtResource("6_2bhbt")
 thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
@@ -3724,7 +3723,7 @@ joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
+script = ExtResource("6_2bhbt")
 thickness = 1.1
 
 [node name="Head" type="Line2D" parent="CharacterRig/CharacterRotate"]
@@ -3738,7 +3737,7 @@ end_cap_mode = 2
 [node name="Eye" type="Marker2D" parent="CharacterRig/CharacterRotate/Head"]
 position = Vector2(8, -8)
 gizmo_extents = 8.0
-script = ExtResource("5_fkxlu")
+script = ExtResource("7_e8i1y")
 
 [node name="Mouth" type="Line2D" parent="CharacterRig/CharacterRotate/Head"]
 position = Vector2(24, 8)
@@ -3752,20 +3751,20 @@ antialiased = true
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Head"]
 show_behind_parent = true
 points = PackedVector2Array(0, 0, 0, -1)
-width = 42.0
+width = 44.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
+script = ExtResource("6_2bhbt")
 thickness = 1.1
 
 [node name="Jetpack" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(8, 0)
 points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.0
-texture = ExtResource("7_w707v")
+texture = ExtResource("8_khufu")
 texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -3776,7 +3775,7 @@ position = Vector2(-32, 16)
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_8c07u")
-texture = ExtResource("6_8vjc6")
+texture = ExtResource("9_edty2")
 lifetime = 0.4
 randomness = 0.13
 local_coords = true
@@ -3790,7 +3789,7 @@ joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_0j02r")
+script = ExtResource("6_2bhbt")
 thickness = 1.05
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
@@ -3799,54 +3798,54 @@ position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("4_tcit3")
+script = ExtResource("10_t5ysy")
 
 [node name="Spawn" type="Node" parent="StateMachine"]
-script = ExtResource("5_86xj5")
+script = ExtResource("11_100ok")
 
 [node name="Die" type="Node" parent="StateMachine"]
-script = ExtResource("6_uc50q")
+script = ExtResource("12_6otu6")
 
 [node name="Walk" type="Node" parent="StateMachine"]
-script = ExtResource("6_w0a7b")
+script = ExtResource("13_86x6k")
 
 [node name="Skid" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
-script = ExtResource("8_p04nj")
+script = ExtResource("14_3mnw0")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Skid")
 
 [node name="Crouch" type="Node" parent="StateMachine"]
-script = ExtResource("10_tmkpe")
+script = ExtResource("15_h1qxp")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("7_rx8in")
+script = ExtResource("16_8qioa")
 
 [node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource("8_8a3ob")
+script = ExtResource("17_ctqww")
 
 [node name="JumpAir" type="Node" parent="StateMachine"]
-script = ExtResource("11_vusvg")
+script = ExtResource("18_myrs7")
 
 [node name="JumpConsec" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
-script = ExtResource("11_fwped")
+script = ExtResource("19_lvkix")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpDouble")
 
 [node name="JumpFlip" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
-script = ExtResource("14_eoakl")
+script = ExtResource("20_oilgg")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
 [node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
-script = ExtResource("16_ekg3a")
+script = ExtResource("21_5yfjn")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
 [node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
-script = ExtResource("16_4vuh4")
+script = ExtResource("22_byrf7")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
 [node name="JumpApex" type="Node" parent="StateMachine"]
-script = ExtResource("14_gdhgo")
+script = ExtResource("23_lelao")
 
 [node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerLock", "particles")]
-script = ExtResource("17_lunng")
+script = ExtResource("24_5q3ww")
 timerLock = NodePath("Timer")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpWall")
 
@@ -3855,7 +3854,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallTimer", "jumpWallSaveTimer", "consecutiveJumpTimer")]
-script = ExtResource("9_hid0t")
+script = ExtResource("25_rm4rt")
 fallTimer = NodePath("FallTimeMax")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 consecutiveJumpTimer = NodePath("../../Timers/ConsecutiveJump")
@@ -3864,10 +3863,10 @@ consecutiveJumpTimer = NodePath("../../Timers/ConsecutiveJump")
 one_shot = true
 
 [node name="Glide" type="Node" parent="StateMachine"]
-script = ExtResource("19_f0jmg")
+script = ExtResource("26_hsihr")
 
 [node name="Dive" type="Node" parent="StateMachine"]
-script = ExtResource("19_52i1t")
+script = ExtResource("27_82lx5")
 
 [node name="RollPressed" type="Timer" parent="StateMachine/Dive"]
 one_shot = true
@@ -3875,33 +3874,14 @@ one_shot = true
 [node name="FallTimeMax" type="Timer" parent="StateMachine/Dive"]
 one_shot = true
 
-[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
-script = ExtResource("23_likm5")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/GroundPound")
-
-[node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge")]
-script = ExtResource("24_wk7fu")
-timerStun = NodePath("Stun")
-timerCharge = NodePath("Charge")
-
-[node name="Stun" type="Timer" parent="StateMachine/GroundPoundLand"]
-one_shot = true
-
-[node name="Charge" type="Timer" parent="StateMachine/GroundPoundLand"]
-wait_time = 0.5
-one_shot = true
-
-[node name="GroundPoundBounce" type="Node" parent="StateMachine"]
-script = ExtResource("24_blkch")
-
 [node name="BellySlide" type="Node" parent="StateMachine"]
-script = ExtResource("20_134m1")
+script = ExtResource("28_difl8")
 
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
 one_shot = true
 
 [node name="WallLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "holdTimer")]
-script = ExtResource("24_c8d67")
+script = ExtResource("29_2wf2c")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 holdTimer = NodePath("Hold")
 
@@ -3909,16 +3889,16 @@ holdTimer = NodePath("Hold")
 one_shot = true
 
 [node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "particles")]
-script = ExtResource("22_jx1yk")
+script = ExtResource("30_7n81c")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
 [node name="WallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
-script = ExtResource("23_fbyj1")
+script = ExtResource("31_vjlqu")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
 [node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles", "soundJetpack")]
-script = ExtResource("31_lv2r8")
+script = ExtResource("32_o6jrb")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 soundJetpack = NodePath("../../Sounds/Jetpack")
@@ -3930,7 +3910,7 @@ one_shot = true
 one_shot = true
 
 [node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "jumpWallSaveTimer", "particles", "soundJetpack")]
-script = ExtResource("32_rb7mn")
+script = ExtResource("33_wcyad")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
@@ -3938,55 +3918,70 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
-script = ExtResource("33_k72hj")
+script = ExtResource("34_3pkjb")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
-script = ExtResource("34_c50yb")
+script = ExtResource("35_7fy60")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer", "particles", "soundJetpack")]
-script = ExtResource("31_7ryi3")
+script = ExtResource("36_eyfnd")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashClimb" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles", "soundJetpack")]
-script = ExtResource("32_7x4nx")
+script = ExtResource("37_eiej4")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles", "soundJetpack")]
-script = ExtResource("33_2q3ab")
+script = ExtResource("38_m41js")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
+[node name="DashDownLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge")]
+script = ExtResource("39_hsmu0")
+timerStun = NodePath("Stun")
+timerCharge = NodePath("Charge")
+
+[node name="Stun" type="Timer" parent="StateMachine/DashDownLand"]
+one_shot = true
+
+[node name="Charge" type="Timer" parent="StateMachine/DashDownLand"]
+wait_time = 0.5
+one_shot = true
+
+[node name="DashDownBounce" type="Node" parent="StateMachine"]
+script = ExtResource("40_53y06")
+
 [node name="GrappleHook" type="Node" parent="StateMachine"]
-script = ExtResource("37_m47s2")
+script = ExtResource("41_y1hjp")
 
 [node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
-script = ExtResource("31_wvx7d")
+script = ExtResource("42_52b6o")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
 [node name="Swim" type="Node" parent="StateMachine"]
-script = ExtResource("40_5d8t6")
+script = ExtResource("43_lfnej")
 
 [node name="SpeedBoost" type="Node" parent="StateMachine"]
-script = ExtResource("38_47j4e")
+script = ExtResource("44_k7g2n")
 
 [node name="BonkAir" type="Node" parent="StateMachine"]
-script = ExtResource("21_43u8a")
+script = ExtResource("45_8toi7")
 
 [node name="BonkGround" type="Node" parent="StateMachine"]
-script = ExtResource("22_prnk2")
+script = ExtResource("46_jbrux")
 
 [node name="Raycasts" type="Node2D" parent="."]
 visible = false
@@ -4034,14 +4029,14 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Timers" type="Node" parent="." node_paths=PackedStringArray("coyoteJump", "coyoteJumpWall", "consecutiveJump", "bufferJump")]
-script = ExtResource("14_gr7r5")
+script = ExtResource("47_0vvtw")
 coyoteJump = NodePath("CoyoteJump")
 coyoteJumpWall = NodePath("CoyoteJumpWall")
 consecutiveJump = NodePath("ConsecutiveJump")
@@ -4080,45 +4075,45 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Sounds" type="Node" parent="."]
-script = ExtResource("15_dp65x")
+script = ExtResource("48_c3ooo")
 
 [node name="walk" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("14_jye2v")
+stream = ExtResource("49_vunm7")
 volume_db = -20.8
 bus = &"Player"
 
 [node name="land" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("15_7oeww")
+stream = ExtResource("50_tta0x")
 volume_db = -1.3
 bus = &"Player"
 
 [node name="jump" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("16_51c2n")
+stream = ExtResource("51_jwuj8")
 volume_db = -1.3
 bus = &"Player"
 
 [node name="skid" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("18_sqfay")
+stream = ExtResource("52_usp3x")
 volume_db = -1.3
 bus = &"Player"
 
 [node name="bonk" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("28_yy5ux")
+stream = ExtResource("53_hv05o")
 
 [node name="splat" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("29_7k1ht")
+stream = ExtResource("54_8q03n")
 
 [node name="bodySlide" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("31_srj50")
+stream = ExtResource("55_xnksu")
 volume_db = -11.555
 
 [node name="Jetpack" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("52_wdrb5")
+stream = ExtResource("56_1kuwb")
 volume_db = -10.636
 
 [node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("detector", "indicatorAim", "indicatorTarget")]
 position = Vector2(0, -64)
-script = ExtResource("49_iv4e8")
+script = ExtResource("57_53bcx")
 detector = NodePath("Detector")
 indicatorAim = NodePath("Aim")
 indicatorTarget = NodePath("Target")
@@ -4144,7 +4139,7 @@ default_color = Color(0.862745, 0.709804, 0.0980392, 1)
 visible = false
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("50_wm14u")
+script = ExtResource("58_n6wur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityCollider"]
 position = Vector2(-0.5, -32)

@@ -4,7 +4,7 @@ extends PlayerInfo
 func enter() -> void:
 	player.animPlayer.queue("Jump") #TODO: own animation
 	player.sounds.jump.play()
-	player.velocity.y = -player.GPBounce.y/2 #LOOKAT: might need a max speed
+	player.velocity.y = -player.GPBounce.y/3 #LOOKAT: might need a max speed
 
 
 func exit() -> void:
@@ -42,8 +42,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound):
-			return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:

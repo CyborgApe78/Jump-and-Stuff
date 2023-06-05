@@ -36,7 +36,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	#TODO: increase speed wall falling
+	gravity_logic(gravityFall, delta) #LOOKAT: need a fall speed cap?
 
 
 func visual(delta) -> void:
@@ -57,13 +57,12 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			player.timers.bufferJump.start()
+			player.velocity.y = 0 #Gives more air control when canceling 
 			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
-		return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
@@ -73,15 +72,16 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if !player.is_on_floor():
+		player.GPBounce = player.velocity
 	var floorTimer: float
 	floorTimer = floorTime
 	if player.is_on_ceiling(): #TODO: bonk ceiling
 		return State.Fall
 	if player.is_on_floor():
-		player.landed()
 		floorTimer -= delta
 		if floorTimer < 0 or durationTimer.is_stopped():
-			return State.Idle
+			return State.DashDownLand
 #	if durationTimer.is_stopped():
 #		return State.Fall
 	if dashBufferState != State.Null:

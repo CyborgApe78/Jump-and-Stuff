@@ -1,7 +1,5 @@
 extends PlayerInfo
-#TODO: sound
-#TODO: rotate back to zero
-#TODO: shouldn't be dedicated button
+## REMOVED state, script kept for reference ##
 
 @export var transTime: float = 0.1
 @export var particles: GPUParticles2D
@@ -65,7 +63,7 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.GPBounce = player.velocity
 	if player.is_on_floor():
-		return State.GroundPoundLand
+		return State.DashDownLand
 	if dashBufferState != State.Null:
 		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
 			abilities.consume(PlayerAbilities.list.DashSide, 1)

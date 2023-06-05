@@ -62,8 +62,7 @@ func _on_unlock_entered(body: Player) -> void:
 		ability_unlock(PlayerAbilities.list.Glide)
 	elif ability == PlayerAbilities.list.Dive:
 		ability_unlock(PlayerAbilities.list.Dive)
-	elif ability == PlayerAbilities.list.GroundPound:
-		ability_unlock(PlayerAbilities.list.GroundPound)
+		#TODO: DashDownBounce
 	elif ability == PlayerAbilities.list.GrappleHook:
 		ability_unlock(PlayerAbilities.list.GrappleHook)
 	elif ability == PlayerAbilities.list.Climb:

@@ -54,13 +54,9 @@ var unlockedDive: bool = false:
 	set(v):
 		unlockedDive = v
 
-var unlockedGroundPound: bool = false:
+var unlockedDashDownBounce: bool = false:
 	set(v):
-		unlockedGroundPound = v
-
-var unlockedGroundPoundBounce: bool = false:
-	set(v):
-		unlockedGroundPoundBounce = v
+		unlockedDashDownBounce = v
 
 var unlockedSlide: bool = false:
 	set(v):
@@ -128,8 +124,7 @@ enum list { #TODO: jump flip, etc
 	Slide,
 	Glide,
 	Dive,
-	GroundPound,
-	GroundPoundBounce,
+	DashDownBounce,
 	GrappleHook,
 	Climb,
 	Grab,
@@ -146,7 +141,6 @@ enum listAbilityBlock { #TODO: convert blocks to this
 	DashJump,
 	Slide,
 	Dive,
-	GroundPound,
 	GrappleHook,
 	SwimDash,
 	Burrow,
@@ -167,8 +161,7 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedDashJump = BOOL
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
-		unlockedGroundPound = BOOL
-		unlockedGroundPoundBounce = BOOL
+		unlockedDashDownBounce = BOOL
 		unlockedSlide = BOOL
 	elif ability == list.JumpAir:
 		unlockedJumpAir = BOOL
@@ -194,10 +187,8 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedGlide = BOOL
 	elif ability == list.Dive:
 		unlockedDive = BOOL
-	elif ability == list.GroundPound:
-		unlockedGroundPound = BOOL
-	elif ability == list.GroundPoundBounce:
-		unlockedGroundPoundBounce = BOOL
+	elif ability == list.DashDownBounce:
+		unlockedDashDownBounce = BOOL
 	else:
 		EventBus.error.emit("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
 
@@ -227,9 +218,7 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.Dive and unlockedDive:
 		return true
-	elif ability == list.GroundPound and unlockedGroundPound:
-		return true
-	elif ability == list.GroundPoundBounce and unlockedGroundPoundBounce:
+	elif ability == list.DashDownBounce and unlockedDashDownBounce:
 		return true
 	
 	return false

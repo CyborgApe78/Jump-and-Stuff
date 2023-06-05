@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkwdgnuq5g2ev"]
 
-[ext_resource type="Script" path="res://src/ui/scripts/Controls.gd" id="1_55c84"]
-[ext_resource type="Texture2D" uid="uid://c2vhbatni277l" path="res://asset/xboxone.svg" id="2_rr66y"]
+[ext_resource type="Script" path="res://src/ui/scripts/Controls.gd" id="1_hn2ku"]
+[ext_resource type="Texture2D" uid="uid://c2vhbatni277l" path="res://asset/xboxone.svg" id="2_xp0dc"]
 
 [node name="Controlls" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_55c84")
+script = ExtResource("1_hn2ku")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -65,14 +65,6 @@ offset_right = 548.0
 offset_bottom = 553.0
 text = "Crouch"
 
-[node name="GroundPound" type="Label" parent="."]
-layout_mode = 0
-offset_left = 944.0
-offset_top = 120.0
-offset_right = 1008.0
-offset_bottom = 146.0
-text = "Ground Pound"
-
 [node name="Dive" type="Label" parent="."]
 layout_mode = 0
 offset_left = 912.0
@@ -83,10 +75,10 @@ text = "Dive"
 
 [node name="Burrow" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1143.0
-offset_top = 126.0
-offset_right = 1201.0
-offset_bottom = 152.0
+offset_left = 917.0
+offset_top = 119.0
+offset_right = 975.0
+offset_bottom = 145.0
 text = "Burrow"
 
 [node name="Grapple" type="Label" parent="."]
@@ -147,4 +139,4 @@ text = "Aim"
 
 [node name="Xboxone" type="Sprite2D" parent="."]
 position = Vector2(608, 416)
-texture = ExtResource("2_rr66y")
+texture = ExtResource("2_xp0dc")

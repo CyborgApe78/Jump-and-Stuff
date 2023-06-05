@@ -36,10 +36,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"): #TODO: make own state
-		return State.JumpCrouch
-	if Input.is_action_pressed("dash") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to charge
-		return State.GroundPoundBounce
+	if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.DashDownBounce): #TODO: change to charge
+		return State.DashDownBounce
 
 	return State.Null
 

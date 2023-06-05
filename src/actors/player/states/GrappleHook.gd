@@ -56,13 +56,7 @@ func handle_input(event: InputEvent) -> int:
 #		#TODO: create ground check to see if close to ground and roll instead of dive
 #			return State.Roll
 		if abilities.can_use(PlayerAbilities.list.Dive):
-		#TODO: if note close to ground
-			return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): ## if close to ground don't ground pound 
-		if player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding():
-			return State.Null #LOOKAT: could cause frustration if trying to quickly ground pound
-		else:
-			return State.GroundPound
+			return State.Dive 
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
 

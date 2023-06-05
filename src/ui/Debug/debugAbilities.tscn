@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ceh0xj0pcr8eo"]
 
-[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_0vhhb"]
-[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_yobqs"]
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_g6bm5"]
+[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_scu7a"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "consecAmount")]
-script = ExtResource("1_yobqs")
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonDashDownBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "consecAmount")]
+script = ExtResource("1_g6bm5")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
 buttonJumpAir = NodePath("HBoxContainer/Jumps/Air")
@@ -17,8 +17,7 @@ buttonDashWall = NodePath("HBoxContainer/Dashes/Wall")
 buttonDashClimb = NodePath("HBoxContainer/Dashes/Climb")
 buttonDashJump = NodePath("HBoxContainer/Dashes/Jump")
 buttonSlide = NodePath("HBoxContainer/Other/Slide")
-buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
-buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPoundBounce")
+buttonDashDownBounce = NodePath("HBoxContainer/Other/DashDownBounce")
 buttonGlide = NodePath("HBoxContainer/Other/Glide")
 buttonDive = NodePath("HBoxContainer/Other/Dive")
 buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
@@ -31,7 +30,7 @@ horizontal_alignment = 1
 
 [node name="All" type="Button" parent="."]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "All"
 
@@ -50,14 +49,14 @@ horizontal_alignment = 1
 
 [node name="All" type="Button" parent="HBoxContainer/Jumps"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "All
 "
 
 [node name="Air" type="Button" parent="HBoxContainer/Jumps"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Air"
 
@@ -66,7 +65,7 @@ layout_mode = 2
 
 [node name="Consec" type="Button" parent="HBoxContainer/Jumps/Consec"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Consec"
 
@@ -99,43 +98,43 @@ horizontal_alignment = 1
 
 [node name="All" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "All"
 
 [node name="Side" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Side"
 
 [node name="Up" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Up"
 
 [node name="Down" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Down"
 
 [node name="Wall" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Wall"
 
 [node name="Climb" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Climb"
 
 [node name="Jump" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Jump"
 
@@ -149,49 +148,43 @@ horizontal_alignment = 1
 
 [node name="Slide" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Slide"
 
-[node name="GroundPound" type="Button" parent="HBoxContainer/Other"]
+[node name="DashDownBounce" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
-text = "Ground Pound"
-
-[node name="GroundPoundBounce" type="Button" parent="HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("1_0vhhb")
-toggle_mode = true
-text = "Ground Pound Bounce"
+text = "Dash Down Bounce"
 
 [node name="Glide" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Glide"
 
 [node name="Dive" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Dive"
 
 [node name="SpeedBoost" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Speed Boost"
 
 [node name="Shinespark" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "Shinespark"
 
 [node name="GrappleHook" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("1_0vhhb")
+theme = ExtResource("2_scu7a")
 toggle_mode = true
 text = "GrappleHook"
 
@@ -208,8 +201,7 @@ text = "GrappleHook"
 [connection signal="toggled" from="HBoxContainer/Dashes/Climb" to="." method="_on_dash_climb_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Jump" to="." method="_on_dash_jump_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Slide" to="." method="_on_slide_toggled"]
-[connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
-[connection signal="toggled" from="HBoxContainer/Other/GroundPoundBounce" to="." method="_on_ground_pound_bounce_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/DashDownBounce" to="." method="_on_ground_pound_bounce_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GrappleHook" to="." method="_on_grapple_hook_toggled"]

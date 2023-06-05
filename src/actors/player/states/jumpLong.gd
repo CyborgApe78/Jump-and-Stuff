@@ -61,8 +61,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 #	if !Input.is_action_pressed("crouch"):
 		#TODO: change velocity based on whether crouch is held
-#	if Input.is_action_just_pressed("ground_pound"):
-#		return State.GroundPound
 	#TODO: long jump into roll. if crouch is pressed and roll is just pressed
 
 	return State.Null

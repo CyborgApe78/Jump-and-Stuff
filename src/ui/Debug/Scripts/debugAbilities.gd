@@ -13,8 +13,7 @@ extends Control
 @export var buttonDashClimb: Button
 @export var buttonDashJump: Button
 @export var buttonSlide: Button
-@export var buttonGroundPound: Button
-@export var buttonGroundPoundBounce: Button
+@export var buttonDashDownBounce: Button
 @export var buttonGlide: Button
 @export var buttonDive: Button
 @export var buttonGrappleHook: Button
@@ -38,8 +37,7 @@ func check(BOOL) -> void:
 	buttonDashClimb.button_pressed = Abilities.unlockedDashClimb
 	buttonDashJump.button_pressed = Abilities.unlockedDashJump
 	buttonSlide.button_pressed = Abilities.unlockedSlide
-	buttonGroundPound.button_pressed = Abilities.unlockedGroundPound
-	buttonGroundPoundBounce.button_pressed = Abilities.unlockedGroundPoundBounce
+	buttonDashDownBounce.button_pressed = Abilities.unlockedDashDownBounce
 	buttonGlide.button_pressed = Abilities.unlockedGlide
 	buttonDive.button_pressed = Abilities.unlockedDive
 	buttonGrappleHook.button_pressed = Abilities.unlockedGrappleHook
@@ -51,8 +49,7 @@ func _on_all_toggled(button_pressed: bool) -> void:
 	buttonJumpAll.button_pressed = button_pressed
 	buttonDashAll.button_pressed = button_pressed
 	buttonSlide.button_pressed = button_pressed
-	buttonGroundPound.button_pressed = button_pressed
-	buttonGroundPoundBounce.button_pressed = button_pressed
+	buttonDashDownBounce.button_pressed = button_pressed
 	buttonGlide.button_pressed = button_pressed
 	buttonDive.button_pressed = button_pressed
 	buttonGrappleHook.button_pressed = button_pressed
@@ -112,11 +109,8 @@ func _on_slide_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.Slide, button_pressed)
 
 
-func _on_ground_pound_toggled(button_pressed: bool) -> void:
-	Abilities.unlock(PlayerAbilities.list.GroundPound, button_pressed)
-
 func _on_ground_pound_bounce_toggled(button_pressed: bool) -> void:
-	Abilities.unlock(PlayerAbilities.list.GroundPoundBounce, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.DashDownBounce, button_pressed)
 
 
 func _on_glide_toggled(button_pressed: bool) -> void:
