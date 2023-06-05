@@ -19,7 +19,10 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.x = 0
-	player.velocity.y = -dashVelocity
+	if player.is_on_floor():
+		player.velocity.y = -dashVelocity * 1.5
+	else:
+		player.velocity.y = -dashVelocity
 	player.ability_mask(CollisionLayers.DashUp, false)
 
 
