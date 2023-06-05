@@ -155,6 +155,8 @@ func consecutive_jump_cancel() -> void:
 
 func landed() -> void:
 	animPlayer.play("Land") #TODO: create hard and soft land
+#	if moveDirection.x != 0: #TODO: animation to rotate on landing
+#		characterRotate.rotate(360)
 	abilities.reset(PlayerAbilities.list.JumpAir)
 	abilities.reset(PlayerAbilities.list.Dash)
 	abilities.reset(PlayerAbilities.list.DashChain)
