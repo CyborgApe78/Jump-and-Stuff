@@ -20,7 +20,7 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.x = 0
 	if player.is_on_floor():
-		player.velocity.y = -dashVelocity * 1.5
+		player.velocity.y = -dashVelocity * 1.25
 	else:
 		player.velocity.y = -dashVelocity
 	player.ability_mask(CollisionLayers.DashUp, false)
