@@ -1,5 +1,7 @@
 extends PlayerInfo
 
+#FIXME: breaks if no movement before leaving state
+
 @export var transformTime: float = 0.4
 #TODO: make a no control state, for teleport and such
 

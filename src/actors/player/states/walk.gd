@@ -26,7 +26,7 @@ func physics(delta) -> void:
 		player.velocity.x = player.lastMoveDirection.x * 1
 	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
 		apply_acceleration(accelerationGround, delta)
-	elif player.moveDirection.x == 0:
+	elif player.moveDirection.x == 0: #FIXME: friction is too low if retaining speed over movespeed
 		apply_friction(frictionGround, delta)
 	elif abs(player.velocity.x) >= moveSpeed:
 		momentum_logic(moveSpeed, true)

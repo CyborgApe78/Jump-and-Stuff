@@ -1,7 +1,7 @@
 extends PlayerInfo
 
 #TODO: add block break indicator
-#TODO: difference between this and ground pound
+#TODO: move this back to ground pound
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer

@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#FIXME: not liking this anymore, change to something else
+#FIXME: merge with slide
 #TODO: add block break indicator
 
 @export var dashJumpTime: float = 0.17
@@ -60,7 +60,11 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and player.is_on_floor(): 
+	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !player.timers.coyoteJump.is_stopped()): #leave ground, but stil can jump
+		if !player.timers.coyoteJump.is_stopped():
+			player.timers.coyoteJump.stop()
+			EventBus.helperUsed.emit(Util.helper.coyoteJump)
+			EventBus.playerActionAnnounce.emit("Coyote Jump")
 		isJumping = true
 		if dashJumpRefreshTimer.is_stopped(): ## dash jump with dash count reset
 			abilities.reset(PlayerAbilities.list.Dash)  #TODO: Change to energy
@@ -75,7 +79,7 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-		#TODO: add chain dash
+		#TODO: add chain dash and dash cooldown
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 
@@ -92,6 +96,8 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Fall
+#	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
+#		player.timers.coyoteJump.stop()
 
 	return State.Null
 
