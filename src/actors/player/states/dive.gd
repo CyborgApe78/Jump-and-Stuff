@@ -73,7 +73,6 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-		player.landed()
 #		if !rollTimer.is_stopped(): #TODO
 #			return State.Roll
 		if fallTimer.is_stopped():
