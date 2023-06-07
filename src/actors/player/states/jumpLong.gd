@@ -19,8 +19,7 @@ func enter() -> void:
 	player.sounds.jump.play()
 	particles.restart()
 	player.velocity.y = jumpVelocity * jumpModifier
-	player.velocity.x = moveSpeed * velocityModifier * player.facing
-
+	player.velocity.x = max(moveSpeed * velocityModifier, abs(player.velocity.x)) * player.facing
 
 func exit() -> void:
 	player.animPlayer.stop()
