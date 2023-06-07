@@ -14,16 +14,12 @@ func enter() -> void:
 	player.sounds.bodySlide.play()
 	diveJumpTimer.wait_time = diveJumpTime
 	diveJumpTimer.start()
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
-	tween.tween_property(player.characterRotate, "rotation_degrees", 90 * player.facing, transformTime).from_current()
-	tween.tween_property(player.characterCollision, "rotation_degrees", 90 * player.facing, transformTime).from_current()
+	player.animPlayer.queue("Belly Slide")
 
 
 func exit() -> void:
 	player.sounds.bodySlide.stop()
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
-	tween.tween_property(player.characterRotate, "rotation_degrees", 0 , transformTime).from_current()
-	tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
+	player.animPlayer.stop()
 
 
 func physics(delta) -> void:
@@ -56,9 +52,10 @@ func handle_input(event: InputEvent) -> int:
 #	if Input.is_action_just_pressed("dive"):
 #		return State.BellyHop
 	if Input.is_action_just_pressed("jump"):
-		if !diveJumpTimer.is_stopped():
-			return State.JumpLong #TODO: special jump, timer to get a boosted jump
+		if !diveJumpTimer.is_stopped(): # timer to get a special jump
+			return State.JumpLong #TODO: special jump
 		else:
+			player.velocity.x = 0
 			return State.Jump
 
 	return State.Null
