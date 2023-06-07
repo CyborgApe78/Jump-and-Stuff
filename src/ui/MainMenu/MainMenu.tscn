@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://do4my7cc022xx"]
 
-[ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MainMenu.gd" id="1_hxtwa"]
-[ext_resource type="Script" path="res://src/ui/scripts/buttons/PlayButton.gd" id="2_831i2"]
-[ext_resource type="PackedScene" uid="uid://bcsfwmvuqgd7b" path="res://src/levels/playground.tscn" id="3_csi2m"]
-[ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_qktl2"]
+[ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MainMenu.gd" id="1_r3yfy"]
+[ext_resource type="Script" path="res://src/ui/scripts/buttons/PlayButton.gd" id="2_5t864"]
+[ext_resource type="PackedScene" uid="uid://bcsfwmvuqgd7b" path="res://src/levels/playground.tscn" id="3_c8fpr"]
+[ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_amagm"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("labelTitle", "labelVersion", "labelGodot", "labelCreator")]
 layout_mode = 3
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hxtwa")
+script = ExtResource("1_r3yfy")
 labelTitle = NodePath("Title/Label")
 labelVersion = NodePath("Info/VBoxContainer/Version")
 labelGodot = NodePath("Info/VBoxContainer/Godot")
@@ -74,14 +74,14 @@ text = "New"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 text = "Playground"
-script = ExtResource("2_831i2")
-changeScene = ExtResource("3_csi2m")
+script = ExtResource("2_5t864")
+changeScene = ExtResource("3_c8fpr")
 
 [node name="Quit" type="Button" parent="Buttons"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Playground")
 text = "Quit"
-script = ExtResource("4_qktl2")
+script = ExtResource("4_amagm")
 
 [node name="Info" type="MarginContainer" parent="."]
 layout_mode = 1

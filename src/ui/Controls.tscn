@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkwdgnuq5g2ev"]
 
-[ext_resource type="Script" path="res://src/ui/scripts/Controls.gd" id="1_hn2ku"]
-[ext_resource type="Texture2D" uid="uid://c2vhbatni277l" path="res://asset/xboxone.svg" id="2_xp0dc"]
+[ext_resource type="Script" path="res://src/ui/scripts/Controls.gd" id="1_64nhq"]
+[ext_resource type="Texture2D" uid="uid://c2vhbatni277l" path="res://asset/xboxone.svg" id="2_pd3ac"]
 
 [node name="Controlls" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hn2ku")
+script = ExtResource("1_64nhq")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -115,10 +115,10 @@ text = "Bash"
 
 [node name="Slide" type="Label" parent="."]
 layout_mode = 0
-offset_left = 976.0
-offset_top = 400.0
-offset_right = 1038.0
-offset_bottom = 426.0
+offset_left = 1033.0
+offset_top = 331.0
+offset_right = 1095.0
+offset_bottom = 357.0
 text = "Slide"
 
 [node name="SpeedBoost" type="Label" parent="."]
@@ -139,4 +139,4 @@ text = "Aim"
 
 [node name="Xboxone" type="Sprite2D" parent="."]
 position = Vector2(608, 416)
-texture = ExtResource("2_xp0dc")
+texture = ExtResource("2_pd3ac")

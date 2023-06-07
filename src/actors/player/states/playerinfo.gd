@@ -181,7 +181,7 @@ func dash_pressed_logic() -> void:
 			dashBufferState = State.DashWall
 	elif dashInput.y == -1:
 		dashBufferState = State.DashUp
-	elif dashInput.y == 1:
+	elif dashInput.y == 1: #TOOD: change to ground pound
 		dashBufferState = State.DashDown
 	elif player.is_on_floor(): #TODO: moveDirection left or right
 		dashBufferState = State.DashGround

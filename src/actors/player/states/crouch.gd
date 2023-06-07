@@ -19,7 +19,6 @@ func exit() -> void:
 	player.animPlayer.stop()
 
 
-
 func physics(delta) -> void:
 	player.move_and_slide()
 #	if !player.neutralMoveDirection: #TODO: skates upgrade, no ground friction
@@ -63,7 +62,7 @@ func handle_input(event: InputEvent) -> int:
 #			return State.Roll
 	if Input.is_action_just_pressed("crouch"):
 		crouchReleased = false
-	if Input.is_action_just_pressed("slide"):
+	if Input.is_action_just_pressed("slide"): #TODO change to roll 
 		return State.Slide 
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
