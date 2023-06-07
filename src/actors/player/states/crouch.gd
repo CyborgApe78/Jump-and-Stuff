@@ -21,7 +21,6 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-#	if !player.neutralMoveDirection: #TODO: skates upgrade, no ground friction
 	apply_friction(frictionGround * 1.5, delta)
 
 
@@ -53,16 +52,15 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpLong
 		else:
 			return State.JumpCrouch
-	if Input.is_action_just_pressed("spin") and abilities.can_use(PlayerAbilities.list.Slide):
+	if Input.is_action_just_pressed("slide") and abilities.can_use(PlayerAbilities.list.Slide):
 		return State.Slide
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump) and !player.crouch_ceiling_detect():
 		return State.DashJump ## shinespark
-	#TODO:
-#		if Input.is_action_just_pressed("dive"):
-#			return State.Roll
+	if Input.is_action_just_pressed("roll"):
+		return State.Roll
 	if Input.is_action_just_pressed("crouch"):
 		crouchReleased = false
-	if Input.is_action_just_pressed("slide"): #TODO change to roll 
+	if Input.is_action_just_pressed("slide"):
 		return State.Slide 
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook

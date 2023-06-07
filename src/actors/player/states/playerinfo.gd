@@ -27,6 +27,9 @@ var jumpCornerCorrectionHorizontal: int = 15
 var percentMinJumpVelocity: float = 0.8
 var percentKeepJumpConsecutive: float = 0.9
 var airTurnModifier: float = 4.0
+var upHillFrictionModifier: float = 2.0
+var flatGroundFrictionModifier: float = 1.75
+var downHillAccel: float = 50
 
 var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need to be state by state, from leftover variable
 var dashBufferState: int
@@ -63,7 +66,7 @@ func gravity_logic(amount: float, delta) -> void:
 	player.velocity.y += amount * delta
 
 
-func apply_acceleration(amount: float, delta) -> void:
+func apply_acceleration(amount: float, delta) -> void: #TODO: add bool for user input use
 	player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, amount * delta) * player.moveStrength.x
 
 

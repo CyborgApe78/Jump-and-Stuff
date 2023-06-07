@@ -1,11 +1,10 @@
 extends PlayerInfo
-#TODO: Roll state
 #TODO: further dive if coming from ground pound
-#LOOKAT: change to down + jump?
+
 @onready var rollTimer: Timer = $RollPressed
 @onready var fallTimer: Timer = $FallTimeMax
 
-@export var rollTime: float = 0.5
+@export var rollTime: float = 0.2
 @export var diveSpeedMultiplier: float = 1.6
 @export var transformTime: float = 0.05
 @export var fallTimeTillBonk: float = 1.2
@@ -56,8 +55,8 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			player.timers.bufferJump.start()
 			return State.Fall
-#	if Input.is_action_just_pressed("dive"):
-#		rollTimer.start()
+	if Input.is_action_just_pressed("roll"):
+		rollTimer.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dash"):
@@ -73,8 +72,8 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-#		if !rollTimer.is_stopped(): #TODO
-#			return State.Roll
+		if !rollTimer.is_stopped(): #TODO
+			return State.Roll
 		if fallTimer.is_stopped():
 			return State.BonkGround
 		else:

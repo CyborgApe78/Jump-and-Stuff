@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ceh0xj0pcr8eo"]
 
-[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_g6bm5"]
-[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_scu7a"]
+[ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_r3h2n"]
+[ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_3r0j1"]
 
 [node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonDashDownBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "consecAmount")]
-script = ExtResource("1_g6bm5")
+script = ExtResource("1_r3h2n")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
 buttonJumpAir = NodePath("HBoxContainer/Jumps/Air")
@@ -30,7 +30,7 @@ horizontal_alignment = 1
 
 [node name="All" type="Button" parent="."]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "All"
 
@@ -49,14 +49,14 @@ horizontal_alignment = 1
 
 [node name="All" type="Button" parent="HBoxContainer/Jumps"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "All
 "
 
 [node name="Air" type="Button" parent="HBoxContainer/Jumps"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Air"
 
@@ -65,7 +65,7 @@ layout_mode = 2
 
 [node name="Consec" type="Button" parent="HBoxContainer/Jumps/Consec"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Consec"
 
@@ -98,43 +98,43 @@ horizontal_alignment = 1
 
 [node name="All" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "All"
 
 [node name="Side" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Side"
 
 [node name="Up" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Up"
 
 [node name="Down" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Down"
 
 [node name="Wall" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Wall"
 
 [node name="Climb" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Climb"
 
 [node name="Jump" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Jump"
 
@@ -148,43 +148,43 @@ horizontal_alignment = 1
 
 [node name="Slide" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Slide"
 
 [node name="DashDownBounce" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Dash Down Bounce"
 
 [node name="Glide" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Glide"
 
 [node name="Dive" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
-text = "Dive"
+text = "Dive "
 
 [node name="SpeedBoost" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Speed Boost"
 
 [node name="Shinespark" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Shinespark"
 
 [node name="GrappleHook" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
-theme = ExtResource("2_scu7a")
+theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "GrappleHook"
 

@@ -37,6 +37,7 @@ enum State {
 	DashJump,
 	GrappleHook,
 	Slide,
+	Roll,
 	Swim,
 	SpeedBoost,
 	BonkAir,

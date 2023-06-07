@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cx1wwhx0jra68"]
 
-[ext_resource type="Script" path="res://src/ui/scripts/DebugMenu.gd" id="1_bmkcu"]
-[ext_resource type="PackedScene" uid="uid://ceh0xj0pcr8eo" path="res://src/ui/Debug/debugAbilities.tscn" id="2_sg1lf"]
-[ext_resource type="PackedScene" uid="uid://qol8uary160l" path="res://src/ui/Debug/debugUpgrades.tscn" id="3_3pnmx"]
-[ext_resource type="PackedScene" uid="uid://bktou303171ov" path="res://src/ui/Debug/debugStats.tscn" id="4_xan25"]
-[ext_resource type="PackedScene" uid="uid://dpjokv6cxhpbc" path="res://src/ui/Debug/debugOther.tscn" id="5_m7ku1"]
-[ext_resource type="PackedScene" uid="uid://eswmaewaub7t" path="res://src/ui/Debug/debugWaypoint.tscn" id="5_tfw68"]
+[ext_resource type="Script" path="res://src/ui/scripts/DebugMenu.gd" id="1_4wb14"]
+[ext_resource type="PackedScene" uid="uid://ceh0xj0pcr8eo" path="res://src/ui/Debug/debugAbilities.tscn" id="2_jd6ng"]
+[ext_resource type="PackedScene" uid="uid://qol8uary160l" path="res://src/ui/Debug/debugUpgrades.tscn" id="3_xr8wn"]
+[ext_resource type="PackedScene" uid="uid://bktou303171ov" path="res://src/ui/Debug/debugStats.tscn" id="4_4c2vn"]
+[ext_resource type="PackedScene" uid="uid://eswmaewaub7t" path="res://src/ui/Debug/debugWaypoint.tscn" id="5_f038n"]
+[ext_resource type="PackedScene" uid="uid://dpjokv6cxhpbc" path="res://src/ui/Debug/debugOther.tscn" id="6_fxl71"]
 
 [node name="DebugMenu" type="Control" node_paths=PackedStringArray("ability")]
 layout_mode = 3
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bmkcu")
+script = ExtResource("1_4wb14")
 ability = NodePath("MarginContainer/MarginContainer/HBoxContainer/Abilities")
 
 [node name="Panel" type="Panel" parent="."]
@@ -52,17 +52,17 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Abilities" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_sg1lf")]
+[node name="Abilities" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_jd6ng")]
 layout_mode = 2
 
-[node name="Upgrades" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_3pnmx")]
+[node name="Upgrades" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_xr8wn")]
 layout_mode = 2
 
-[node name="Stats" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("4_xan25")]
+[node name="Stats" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("4_4c2vn")]
 layout_mode = 2
 
-[node name="Waypoint" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("5_tfw68")]
+[node name="Waypoint" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("5_f038n")]
 layout_mode = 2
 
-[node name="Other" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("5_m7ku1")]
+[node name="Other" parent="MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("6_fxl71")]
 layout_mode = 2

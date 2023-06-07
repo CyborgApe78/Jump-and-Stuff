@@ -1,37 +1,38 @@
 [gd_scene load_steps=8 format=3 uid="uid://blsfi16bt1nf6"]
 
-[ext_resource type="Script" path="res://src/ui/scripts/MenuManager.gd" id="1_pjsam"]
-[ext_resource type="PackedScene" uid="uid://dpn0y7ftimcj5" path="res://src/ui/PauseMenu.tscn" id="2_5fsmh"]
-[ext_resource type="Script" path="res://src/ui/scripts/UnpausedMenu.gd" id="3_2annd"]
-[ext_resource type="PackedScene" uid="uid://bdf1tqwnqch8c" path="res://src/ui/GameInfo.tscn" id="4_e47aj"]
-[ext_resource type="PackedScene" uid="uid://cgr00u8sgd2q3" path="res://src/ui/SettingsMenu.tscn" id="5_ti4t0"]
-[ext_resource type="PackedScene" uid="uid://cx1wwhx0jra68" path="res://src/ui/DebugMenu.tscn" id="6_4hl8m"]
-[ext_resource type="PackedScene" uid="uid://dkwdgnuq5g2ev" path="res://src/ui/Controls.tscn" id="7_3qupv"]
+[ext_resource type="Script" path="res://src/ui/scripts/MenuManager.gd" id="1_he17h"]
+[ext_resource type="PackedScene" uid="uid://dpn0y7ftimcj5" path="res://src/ui/PauseMenu.tscn" id="2_gipf7"]
+[ext_resource type="Script" path="res://src/ui/scripts/UnpausedMenu.gd" id="3_50c7g"]
+[ext_resource type="PackedScene" uid="uid://bdf1tqwnqch8c" path="res://src/ui/GameInfo.tscn" id="4_0l6t7"]
+[ext_resource type="PackedScene" uid="uid://cgr00u8sgd2q3" path="res://src/ui/SettingsMenu.tscn" id="5_0ais5"]
+[ext_resource type="PackedScene" uid="uid://cx1wwhx0jra68" path="res://src/ui/DebugMenu.tscn" id="6_7dmgk"]
+[ext_resource type="PackedScene" uid="uid://dkwdgnuq5g2ev" path="res://src/ui/Controls.tscn" id="7_1j81a"]
 
 [node name="Menu" type="CanvasLayer"]
 process_mode = 3
 layer = 90
-script = ExtResource("1_pjsam")
+script = ExtResource("1_he17h")
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_5fsmh")]
+[node name="PauseMenu" parent="." instance=ExtResource("2_gipf7")]
 visible = false
 
 [node name="Unpaused" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("3_2annd")
+script = ExtResource("3_50c7g")
 
-[node name="GameInfo" parent="." instance=ExtResource("4_e47aj")]
+[node name="GameInfo" parent="." instance=ExtResource("4_0l6t7")]
 visible = false
 
-[node name="SettingsMenu" parent="." instance=ExtResource("5_ti4t0")]
+[node name="SettingsMenu" parent="." instance=ExtResource("5_0ais5")]
 visible = false
 
-[node name="DebugMenu" parent="." instance=ExtResource("6_4hl8m")]
+[node name="DebugMenu" parent="." instance=ExtResource("6_7dmgk")]
 visible = false
 
-[node name="Controls" parent="." instance=ExtResource("7_3qupv")]
+[node name="Controls" parent="." instance=ExtResource("7_1j81a")]
+visible = false
 
 [node name="AbilityGuide" type="Control" parent="."]
 layout_mode = 3

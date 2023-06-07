@@ -1,16 +1,19 @@
 extends PlayerInfo
 
-#TODO: get closer to Dread slide
+#TODO: merge with dash ground
 #LOOKAT: sliding up hill
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
+@export var velocityModifier: float = 1.25
 
 var saveTriple: bool
+var slideVelocity: float
 
 
 func enter() -> void:
+	slideVelocity = moveSpeed * velocityModifier
 	player.animPlayer.queue("Slide")
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
@@ -18,14 +21,14 @@ func enter() -> void:
 	durationTimer.start()
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * max(dashVelocity, abs(player.velocity.x)) #TPD don;t base off dashvelocity
+	player.velocity.x = player.facing * max(slideVelocity, abs(player.velocity.x))
 
 
 func exit() -> void:
 	player.animPlayer.stop()
 	particles.emitting = false
-	if player.velocityPrevious.x < player.velocity.x:
-		player.velocity.x = player.velocityPrevious.x
+#	if abs(player.velocityPrevious.x) < abs(player.velocity.x):
+#		player.velocity.x = player.velocityPrevious.x
 
 
 func physics(delta) -> void:
@@ -35,6 +38,24 @@ func physics(delta) -> void:
 	if !player.is_on_floor():
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
+	
+#	if  abs(player.velocity.x) < slideVelocity: 
+#		player.velocity.x = move_toward(abs(player.velocity.x), slideVelocity, (moveSpeed * 6) * delta) * player.facing
+#	elif abs(player.velocity.x) >= slideVelocity:
+#		momentum_logic(slideVelocity, false)
+	
+	if rad_to_deg(player.groundAngle) < -1:
+		if sign(player.velocity.x) == -1:
+			player.velocity.x -= downHillAccel ## Speed up on down hill
+		else:
+			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
+	elif rad_to_deg(player.groundAngle) > 1:
+		if sign(player.velocity.x) == 1:
+			player.velocity.x += downHillAccel #TODO: make like friction func, need a top speed or make this function
+		else:
+			apply_friction(frictionGround * upHillFrictionModifier, delta)
+	else:
+		momentum_logic(slideVelocity, false)
 
 
 func visual(delta) -> void:
@@ -46,12 +67,19 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and player.is_on_floor(): 
+	if Input.is_action_just_pressed("jump"): #TODO: grab jump code from roll state
+		if player.is_on_floor() or !player.timers.coyoteJump.is_stopped():  
 			return consecutive_jump_logic() #TODO: special jump state
+		if !player.is_on_floor() and player.wallDirection != 0: #FIXME: this needs to check wall and velocity direction are correct
+			return State.JumpLong #TODO: own jump state
+		else:
+			player.timers.bufferJump.start()
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
+#	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll): #LOOKAT: should you be able to go to slide
+#		return State.Roll
 
 	return State.Null
 
@@ -83,5 +111,7 @@ func state_check(delta: float) -> int:
 		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
 			abilities.consume(PlayerAbilities.list.DashDown, 1)
 			return State.DashDown
+#	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
+#		player.timers.coyoteJump.stop()
 
 	return State.Null

@@ -32,6 +32,7 @@ extends Node
 	PlayerState.State.DashJump: $DashJump,
 	PlayerState.State.GrappleHook: $GrappleHook,
 	PlayerState.State.Slide: $Slide,
+	PlayerState.State.Roll: $Roll,
 	PlayerState.State.Swim: $Swim,
 	PlayerState.State.SpeedBoost: $SpeedBoost,
 	PlayerState.State.BonkAir: $BonkAir,

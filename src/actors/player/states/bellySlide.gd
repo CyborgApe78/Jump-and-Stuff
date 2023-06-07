@@ -2,11 +2,6 @@ extends PlayerInfo
 
 
 @onready var diveJumpTimer: Timer = $DiveJump
-
-@export var upHillFrictionModifier: float = 2.0
-@export var flatGroundFrictionModifier: float = 1.75
-@export var downHillAccel: float = 50
-@export var transformTime: float = 0.05
 @export var diveJumpTime: float = 0.2
 
 
@@ -23,8 +18,8 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.move_and_slide()
-	player.velocity.y = 1000 #TODO: find better way to snap character
+	player.move_and_slide_rotation()
+	
 	if rad_to_deg(player.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= downHillAccel ## Speed up on down hill
@@ -48,15 +43,17 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	#TODO: 
-#	if Input.is_action_just_pressed("dive"):
-#		return State.BellyHop
+	#TODO: add check for returning to two block height
+	#TODO: add entering other states
 	if Input.is_action_just_pressed("jump"):
 		if !diveJumpTimer.is_stopped(): # timer to get a special jump
-			return State.JumpLong #TODO: special jump
+			return State.JumpLong 
+#			return State.BellyHop #TODO: special jump
 		else:
 			player.velocity.x = 0
 			return State.Jump
+#	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll): #LOOKAT: should you be able to go to slide
+#		return State.Roll
 
 	return State.Null
 
