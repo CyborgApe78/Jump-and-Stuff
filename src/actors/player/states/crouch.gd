@@ -44,7 +44,7 @@ func handle_input(event: InputEvent) -> int:
 				return State.Walk
 			else:
 				return State.Idle
-	if Input.is_action_just_pressed("jump") and !player.crouch_ceiling_detect():
+	if Input.is_action_just_pressed("jump") and !player.crouch_ceiling_detect():  #TODO: add charge time
 		if player.jumped:
 			consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
 			return State.JumpLong #TODO: special jump, timer to get a boosted jump
@@ -54,8 +54,8 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpCrouch
 	if Input.is_action_just_pressed("slide") and abilities.can_use(PlayerAbilities.list.Slide):
 		return State.Slide
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump) and !player.crouch_ceiling_detect():
-		return State.DashJump ## shinespark
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump) and !player.crouch_ceiling_detect(): #TODO: add charge time
+		return State.DashJump
 	if Input.is_action_just_pressed("roll"):
 		return State.Roll
 	if Input.is_action_just_pressed("crouch"):

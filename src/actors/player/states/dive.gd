@@ -59,8 +59,11 @@ func handle_input(event: InputEvent) -> int:
 		rollTimer.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		return State.DashAir
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 
@@ -81,15 +84,5 @@ func state_check(delta: float) -> int:
 			tween.tween_property(player.characterRotate, "rotation_degrees", 0, transformTime).from_current()
 			tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
 			return State.BellySlide
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.DashUp, 1)
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.DashDown, 1)
-			return State.DashDown
 
 	return State.Null

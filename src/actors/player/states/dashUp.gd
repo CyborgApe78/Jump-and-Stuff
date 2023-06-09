@@ -62,8 +62,11 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		return State.DashAir
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 
@@ -75,19 +78,6 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if durationTimer.is_stopped():
 		return State.Fall
-	if dashBufferState != State.Null:
-		if dashBufferState == State.DashAir and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
-				abilities.currentDashChain += 1
-				EventBus.playerActionAnnounce.emit("Chain")
-				return State.DashAir
-		elif dashBufferState == State.DashUp and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
-				abilities.currentDashChain += 1
-				EventBus.playerActionAnnounce.emit("Chain")
-				return State.DashUp
-		elif dashBufferState == State.DashDown and chainTimer.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
-				abilities.currentDashChain += 1
-				EventBus.playerActionAnnounce.emit("Chain")
-				return State.DashDown
 
 	return State.Null
 

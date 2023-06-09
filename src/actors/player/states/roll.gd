@@ -84,13 +84,17 @@ func handle_input(event: InputEvent) -> int:
 			return State.Jump
 	if Input.is_action_just_pressed("slide") and abilities.can_use(PlayerAbilities.list.Slide): #LOOKAT: should you be able to go to slide
 		return State.Slide
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		if player.is_on_floor():
+			return State.DashGround
+		else:
+			return State.DashAir
 	if Input.is_action_just_pressed("crouch"):
 		crouchReleased = false
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_pressed("crouch") and Input.is_action_pressed("roll"): #TODO: add timer that is just shorter than duration
+	if Input.is_action_pressed("crouch") and Input.is_action_pressed("roll"):
 		if refreshTimer.is_stopped():
 			return State.Roll
 		else:

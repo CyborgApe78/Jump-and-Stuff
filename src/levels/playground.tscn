@@ -1,17 +1,17 @@
 [gd_scene load_steps=19 format=3 uid="uid://bcsfwmvuqgd7b"]
 
-[ext_resource type="Script" path="res://src/levels/playground.gd" id="1_jkq3v"]
-[ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_ivpuf"]
-[ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_ht41f"]
-[ext_resource type="PackedScene" uid="uid://ianrymnomtg8" path="res://src/ui/HUD/debugOverlay.tscn" id="4_3cvnn"]
-[ext_resource type="Script" path="res://src/levels/Ground.gd" id="5_to2sy"]
-[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="6_m7un7"]
-[ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="7_3hpab"]
-[ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="8_p3c46"]
-[ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="9_0va8o"]
-[ext_resource type="PackedScene" uid="uid://mr3md4cpf1no" path="res://src/object/enviroment/Wind.tscn" id="10_ualf1"]
-[ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="11_0jo73"]
-[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="12_h5bca"]
+[ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
+[ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
+[ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_f6u44"]
+[ext_resource type="PackedScene" uid="uid://ianrymnomtg8" path="res://src/ui/HUD/debugOverlay.tscn" id="4_e4k32"]
+[ext_resource type="Script" path="res://src/levels/Ground.gd" id="5_bcp3o"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="6_d2d83"]
+[ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="7_p7o1h"]
+[ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="8_1jksd"]
+[ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="9_bdqtp"]
+[ext_resource type="PackedScene" uid="uid://mr3md4cpf1no" path="res://src/object/enviroment/Wind.tscn" id="10_lf0t8"]
+[ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="11_d4pbc"]
+[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="12_gn10c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1c3o"]
 size = Vector2(9760, 64)
@@ -32,13 +32,13 @@ size = Vector2(992, 23.5)
 size = Vector2(416.164, 22)
 
 [node name="Playground" type="Node"]
-script = ExtResource("1_jkq3v")
+script = ExtResource("1_t3d88")
 
-[node name="Menu" parent="." instance=ExtResource("2_ivpuf")]
+[node name="Menu" parent="." instance=ExtResource("2_b7rj6")]
 
-[node name="HUD" parent="." instance=ExtResource("3_ht41f")]
+[node name="HUD" parent="." instance=ExtResource("3_f6u44")]
 
-[node name="Debug" parent="." instance=ExtResource("4_3cvnn")]
+[node name="Debug" parent="." instance=ExtResource("4_e4k32")]
 
 [node name="ground" type="Node" parent="."]
 
@@ -47,88 +47,88 @@ light_mask = 2
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("5_to2sy")
+script = ExtResource("5_bcp3o")
 color = Color(0, 0.517647, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="intro" type="CollisionShape2D" parent="ground/Ground"]
 position = Vector2(1272, 32)
 shape = SubResource("RectangleShape2D_l1c3o")
-script = ExtResource("6_m7un7")
+script = ExtResource("6_d2d83")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ground"]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("5_to2sy")
+script = ExtResource("5_bcp3o")
 color = Color(1, 0, 0, 1)
 
 [node name="VisibleCollisionShape2D2" type="CollisionShape2D" parent="ground/StaticBody2D"]
 position = Vector2(352, -160.75)
 shape = SubResource("RectangleShape2D_qpv6n")
-script = ExtResource("6_m7un7")
+script = ExtResource("6_d2d83")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D"]
 position = Vector2(544, -384)
 shape = SubResource("RectangleShape2D_pybkr")
-script = ExtResource("6_m7un7")
+script = ExtResource("6_d2d83")
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="ground/StaticBody2D"]
 position = Vector2(1024, -160)
 shape = SubResource("RectangleShape2D_epngd")
-script = ExtResource("6_m7un7")
+script = ExtResource("6_d2d83")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="ground"]
 position = Vector2(2792, -56)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("5_to2sy")
+script = ExtResource("5_bcp3o")
 color = Color(0, 0, 1, 1)
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D2"]
 position = Vector2(-494, -126.25)
 shape = SubResource("RectangleShape2D_uxdpf")
-script = ExtResource("6_m7un7")
+script = ExtResource("6_d2d83")
 
 [node name="VisibleCollisionShape2D2" type="CollisionShape2D" parent="ground/StaticBody2D2"]
 position = Vector2(-1155, -233)
 rotation = 0.574334
 shape = SubResource("RectangleShape2D_yqbas")
-script = ExtResource("6_m7un7")
+script = ExtResource("6_d2d83")
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="ground/StaticBody2D2"]
 position = Vector2(155.582, -212.819)
 rotation = -0.449796
 shape = SubResource("RectangleShape2D_yqbas")
-script = ExtResource("6_m7un7")
+script = ExtResource("6_d2d83")
 
 [node name="Interactables" type="Node" parent="."]
 
-[node name="StartingLocation" parent="Interactables" instance=ExtResource("7_3hpab")]
+[node name="StartingLocation" parent="Interactables" instance=ExtResource("7_p7o1h")]
 position = Vector2(160, -192)
 
-[node name="Waypoint" parent="Interactables" instance=ExtResource("8_p3c46")]
+[node name="Waypoint" parent="Interactables" instance=ExtResource("8_1jksd")]
 position = Vector2(408, 136)
 waypointName = 1
 
-[node name="Waypoint2" parent="Interactables" instance=ExtResource("8_p3c46")]
+[node name="Waypoint2" parent="Interactables" instance=ExtResource("8_1jksd")]
 position = Vector2(-400, 264)
 waypointName = 2
 
-[node name="TargetGrapple" parent="Interactables" instance=ExtResource("9_0va8o")]
-position = Vector2(-122, -267)
+[node name="TargetGrapple" parent="Interactables" instance=ExtResource("9_bdqtp")]
+position = Vector2(-52, 183)
 
-[node name="Wind" parent="Interactables" instance=ExtResource("10_ualf1")]
+[node name="Wind" parent="Interactables" instance=ExtResource("10_lf0t8")]
 position = Vector2(1295, -610)
 scale = Vector2(10, 10)
 strength = 400
 
-[node name="Player" parent="." instance=ExtResource("11_0jo73")]
+[node name="Player" parent="." instance=ExtResource("11_d4pbc")]
 position = Vector2(-617, -37)
 floor_snap_length = 9.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, 93)
 zoom = Vector2(0.5, 0.5)
-script = ExtResource("12_h5bca")
+script = ExtResource("12_gn10c")
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

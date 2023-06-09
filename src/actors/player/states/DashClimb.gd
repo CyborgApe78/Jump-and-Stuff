@@ -49,8 +49,12 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 #	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 #		return State.Dive TODO: maybe keep but need to go away from wall
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	#TODO: add dive
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		return State.DashAir
 
 	return State.Null
 
@@ -60,15 +64,5 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if player.is_on_ceiling():
 		return State.WallSlide
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.DashUp, 1)
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.DashDown, 1)
-			return State.DashDown
 
 	return State.Null

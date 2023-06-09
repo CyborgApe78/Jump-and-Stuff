@@ -59,18 +59,18 @@ text = "Dash"
 
 [node name="Crouch" type="Label" parent="."]
 layout_mode = 0
-offset_left = 882.0
-offset_top = 125.0
-offset_right = 946.0
-offset_bottom = 151.0
+offset_left = 931.0
+offset_top = 117.0
+offset_right = 995.0
+offset_bottom = 143.0
 text = "Crouch"
 
 [node name="StoreSpeed" type="Label" parent="."]
 layout_mode = 0
-offset_left = 962.0
-offset_top = 114.0
-offset_right = 1103.0
-offset_bottom = 140.0
+offset_left = 938.0
+offset_top = 82.0
+offset_right = 1079.0
+offset_bottom = 108.0
 text = "Store Speed Boost"
 
 [node name="Dive" type="Label" parent="."]
@@ -91,10 +91,10 @@ text = "Burrow"
 
 [node name="GroundPound" type="Label" parent="."]
 layout_mode = 0
-offset_left = 746.0
-offset_top = 123.0
-offset_right = 859.0
-offset_bottom = 149.0
+offset_left = 806.0
+offset_top = 108.0
+offset_right = 919.0
+offset_bottom = 134.0
 text = "Ground Pound"
 
 [node name="Grapple" type="Label" parent="."]

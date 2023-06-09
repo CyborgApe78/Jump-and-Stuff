@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_r3h2n"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_3r0j1"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonDashDownBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "consecAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "consecAmount")]
 script = ExtResource("1_r3h2n")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -17,7 +17,8 @@ buttonDashWall = NodePath("HBoxContainer/Dashes/Wall")
 buttonDashClimb = NodePath("HBoxContainer/Dashes/Climb")
 buttonDashJump = NodePath("HBoxContainer/Dashes/Jump")
 buttonSlide = NodePath("HBoxContainer/Other/Slide")
-buttonDashDownBounce = NodePath("HBoxContainer/Other/DashDownBounce")
+buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
+buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPundBounce")
 buttonGlide = NodePath("HBoxContainer/Other/Glide")
 buttonDive = NodePath("HBoxContainer/Other/Dive")
 buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
@@ -152,11 +153,17 @@ theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Slide"
 
-[node name="DashDownBounce" type="Button" parent="HBoxContainer/Other"]
+[node name="GroundPound" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
-text = "Dash Down Bounce"
+text = "Ground Pound"
+
+[node name="GroundPundBounce" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Ground Pound Bounce"
 
 [node name="Glide" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
@@ -201,7 +208,8 @@ text = "GrappleHook"
 [connection signal="toggled" from="HBoxContainer/Dashes/Climb" to="." method="_on_dash_climb_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Jump" to="." method="_on_dash_jump_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Slide" to="." method="_on_slide_toggled"]
-[connection signal="toggled" from="HBoxContainer/Other/DashDownBounce" to="." method="_on_ground_pound_bounce_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/GroundPundBounce" to="." method="_on_ground_pound_bounce_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GrappleHook" to="." method="_on_grapple_hook_toggled"]

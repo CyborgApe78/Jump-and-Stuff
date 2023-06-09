@@ -57,8 +57,11 @@ func handle_input(event: InputEvent) -> int:
 #			return State.Roll
 		if abilities.can_use(PlayerAbilities.list.Dive):
 			return State.Dive 
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		return State.DashAir
 
 	return State.Null
 
@@ -87,16 +90,6 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
-	if dashBufferState != State.Null: #TOOD: if !coyoteWallTimer.is_stopped() return WallDash, else Side Dash
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.DashUp, 1)
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.DashDown, 1)
-			return State.DashDown
 
 	return State.Null
 

@@ -50,13 +50,17 @@ var unlockedGlide: bool = false:
 	set(v):
 		unlockedGlide = v
 
-var unlockedDive: bool = false:
+var unlockedDive: bool = true:
 	set(v):
 		unlockedDive = v
 
-var unlockedDashDownBounce: bool = false:
+var unlockedGroundPound: bool = true: #TODO: create default unlocked abilities
 	set(v):
-		unlockedDashDownBounce = v
+		unlockedGroundPound = v
+
+var unlockedGroundPoundBounce: bool = false:
+	set(v):
+		unlockedGroundPoundBounce = v
 
 var unlockedSlide: bool = false:
 	set(v):
@@ -124,7 +128,8 @@ enum list { #TODO: jump flip, etc
 	Slide,
 	Glide,
 	Dive,
-	DashDownBounce,
+	GroundPound,
+	GroundPoundBounce,
 	GrappleHook,
 	Climb,
 	Grab,
@@ -161,7 +166,8 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedDashJump = BOOL
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
-		unlockedDashDownBounce = BOOL
+		unlockedGroundPound = BOOL
+		unlockedGroundPoundBounce = BOOL
 		unlockedSlide = BOOL
 	elif ability == list.JumpAir:
 		unlockedJumpAir = BOOL
@@ -187,8 +193,10 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 		unlockedGlide = BOOL
 	elif ability == list.Dive:
 		unlockedDive = BOOL
-	elif ability == list.DashDownBounce:
-		unlockedDashDownBounce = BOOL
+	elif ability == list.GroundPound:
+		unlockedGroundPound = BOOL
+	elif ability == list.GroundPoundBounce:
+		unlockedGroundPoundBounce = BOOL
 	else:
 		EventBus.error.emit("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
 
@@ -218,7 +226,9 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.Dive and unlockedDive:
 		return true
-	elif ability == list.DashDownBounce and unlockedDashDownBounce:
+	elif ability == list.GroundPound and unlockedGroundPound:
+		return true
+	elif ability == list.GroundPoundBounce and unlockedGroundPoundBounce:
 		return true
 	
 	return false

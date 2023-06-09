@@ -74,8 +74,12 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpLong #TODO: own jump state
 		else:
 			player.timers.bufferJump.start()
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		if player.is_on_floor():
+			return State.DashGround
+		else:
+			return State.DashAir
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 #	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll): #LOOKAT: should you be able to go to slide
@@ -101,16 +105,6 @@ func state_check(delta: float) -> int:
 				return State.Idle
 		else:
 			return State.Fall
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.DashUp, 1)
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.DashDown, 1)
-			return State.DashDown
 #	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
 #		player.timers.coyoteJump.stop()
 

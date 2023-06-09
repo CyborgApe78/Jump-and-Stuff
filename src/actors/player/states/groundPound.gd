@@ -1,5 +1,7 @@
 extends PlayerInfo
-## REMOVED state, script kept for reference ##
+
+#TODO: add dash down upgrade
+#TODO: add states for landing and converting down dash to side
 
 @export var transTime: float = 0.1
 @export var particles: GPUParticles2D
@@ -51,8 +53,12 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		#TODO: special further dive
 		return State.Dive
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		if player.is_on_floor():
+			return State.DashGround
+		else:
+			return State.DashAir
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 
@@ -63,16 +69,6 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.GPBounce = player.velocity
 	if player.is_on_floor():
-		return State.DashDownLand
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashAir:
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.DashUp, 1)
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.DashDown, 1)
-			return State.DashDown
+		return State.GroundPoundLand
 
 	return State.Null

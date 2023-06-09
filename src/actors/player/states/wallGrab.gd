@@ -39,8 +39,15 @@ func handle_input(event: InputEvent) -> int:
 		return State.WallSlide
 	if Input.is_action_just_pressed("jump"):
 		return State.JumpWall
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	#TODO: add dive
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
+	if Input.is_action_just_pressed("dash"): #TODO:dash wall
+		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
+			return State.DashClimb
+		elif abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.DashSide, 1)
+			return State.DashAir
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 
@@ -59,11 +66,5 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashWall) and dashBufferState == State.DashAir:
-			return State.DashWall
-		if abilities.can_use(PlayerAbilities.list.DashClimb) and dashBufferState == State.DashClimb:
-			return State.DashClimb
-		#Lookat: need other dash states
 
 	return State.Null

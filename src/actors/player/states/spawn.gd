@@ -41,8 +41,9 @@ func handle_input(event: InputEvent) -> int:
 			return State.Crouch
 		if Input.is_action_just_pressed("jump"):
 			return State.Jump
-		if Input.is_action_just_pressed("dash"):
-			dash_pressed_buffer()
+		if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.DashSide, 1)
+			return State.DashAir
 		if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 			return State.GrappleHook
 
@@ -52,15 +53,5 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.moveDirection != Vector2.ZERO:
 		return State.Walk
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.DashUp, 1)
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.DashDown, 1)
-			return State.DashDown
 
 	return State.Null

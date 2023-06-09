@@ -36,8 +36,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.DashDownBounce): #TODO: change to charge
-		return State.DashDownBounce
+	if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to charge
+		return State.GroundPoundBounce
 
 	return State.Null
 
@@ -45,7 +45,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if timerStun.is_stopped():
 		if player.moveDirection.x != 0:
-			return State.Slide 
+			return State.Slide #TODO: special state for redirecting block break
 		else:
 			return State.Idle
 

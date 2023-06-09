@@ -57,8 +57,9 @@ func handle_input(event: InputEvent) -> int:
 		return State.Crouch
 	if Input.is_action_just_pressed("jump"):
 		return consecutive_jump_logic()
-	if Input.is_action_just_pressed("dash"):
-		dash_pressed_buffer()
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+		abilities.consume(PlayerAbilities.list.DashSide, 1)
+		return State.DashGround
 	if Input.is_action_just_pressed("slide"):
 		return State.Slide
 	if Input.is_action_just_pressed("speed_boost"): #TODO: add unlock
@@ -85,16 +86,6 @@ func state_check(delta: float) -> int:
 		player.timers.bufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
 		return consecutive_jump_logic()
-	if dashBufferState != State.Null:
-		if abilities.can_use(PlayerAbilities.list.DashSide) and dashBufferState == State.DashGround:
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashGround
-		if abilities.can_use(PlayerAbilities.list.DashUp) and dashBufferState == State.DashUp:
-			abilities.consume(PlayerAbilities.list.DashUp, 1)
-			return State.DashUp
-		if abilities.can_use(PlayerAbilities.list.DashDown) and dashBufferState == State.DashDown:
-			abilities.consume(PlayerAbilities.list.DashDown, 1)
-			return State.DashDown
 
 	return State.Null
 

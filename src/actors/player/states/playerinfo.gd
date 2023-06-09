@@ -32,7 +32,6 @@ var flatGroundFrictionModifier: float = 1.75
 var downHillAccel: float = 50
 
 var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need to be state by state, from leftover variable
-var dashBufferState: int
 
 func _ready() -> void:
 	EventBus.playerStatsCheck.connect(update_stats)
@@ -165,31 +164,3 @@ func track_top_speed(speed:int) -> void:
 	#LOOKAT: might break if char is rotated
 	if abs(player.velocity.x) > topSpeed:
 		topSpeed = abs(speed)
-
-
-func dash_pressed_buffer() -> void:
-#	var initial_direction = player.aimDirection.round()
-	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
-	dash_pressed_logic()
-	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
-	dashBufferState = State.Null
-
-func dash_pressed_logic() -> void:
-	var dashInput: Vector2 = player.aimDirection if player.aimDirection != Vector2.ZERO else player.moveDirection
-	
-	if player.is_on_wall():
-		if player.moveDirection.y == -1:
-			dashBufferState = State.DashClimb
-		else:
-			dashBufferState = State.DashWall
-	elif dashInput.y == -1:
-		dashBufferState = State.DashUp
-	elif dashInput.y == 1: #TOOD: change to ground pound
-		dashBufferState = State.DashDown
-	elif player.is_on_floor(): #TODO: moveDirection left or right
-		dashBufferState = State.DashGround
-	elif !player.is_on_floor(): #TODO: maybe combine into DashSide
-		dashBufferState = State.DashAir
-	else:
-		dashBufferState = State.Null
-		EventBus.error.emit("null dash pressed logic")
