@@ -165,10 +165,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Show Aim Indicator"
 
-[node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("timerCheck", "buttonController")]
-visible = false
+[node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("hideHUD", "timerCheck", "buttonController")]
 layout_mode = 2
 script = ExtResource("3_oufns")
+hideHUD = NodePath("VBoxContainer/HideHUD")
 timerCheck = NodePath("VBoxContainer/Timer")
 buttonController = NodePath("VBoxContainer/Controller")
 
@@ -180,6 +180,10 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD"]
 layout_mode = 2
 
+[node name="HideHUD" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+layout_mode = 2
+text = "Hide HUD"
+
 [node name="Timer" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
 layout_mode = 2
 text = "Show Ingame Timer"
@@ -189,6 +193,7 @@ layout_mode = 2
 text = "Show Controller Overlay"
 
 [node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video"]
@@ -234,5 +239,6 @@ text = "Spoilers"
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="." method="back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_pressed"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer/Aim" to="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay" method="show_aim_indicator"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/HideHUD" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="hide_hud"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Timer" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_timer"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Controller" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_controller"]

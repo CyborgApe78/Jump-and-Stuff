@@ -1,5 +1,7 @@
 extends BaseMenu
 
+#TODO: add visiblity toggles to keyboard controls
+
 
 func _ready() -> void:
 	pass

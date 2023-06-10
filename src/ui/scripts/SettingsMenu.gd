@@ -61,6 +61,7 @@ func show_accessibility() -> void:
 
 func show_hud() -> void:
 	menu_hid()
+	hudMenu.update_menu()
 	hudMenu.visible = true
 
 
