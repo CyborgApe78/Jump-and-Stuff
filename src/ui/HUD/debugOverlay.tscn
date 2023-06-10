@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ianrymnomtg8"]
+[gd_scene load_steps=6 format=3 uid="uid://ianrymnomtg8"]
 
+[ext_resource type="Script" path="res://src/ui/HUD/scripts/debugOverlay.gd" id="1_lmh3d"]
 [ext_resource type="Script" path="res://src/debug/Info.gd" id="1_vw1db"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/FPS.gd" id="2_m14yc"]
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/ErrorLog.gd" id="3_kfc74"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="4_xl06e"]
 
 [node name="Debug" type="CanvasLayer"]
+script = ExtResource("1_lmh3d")
 
 [node name="Info" type="MarginContainer" parent="." node_paths=PackedStringArray("stateLabel", "velocityLabel", "debugLabel", "debug2Label", "debug3Label")]
 process_mode = 3
