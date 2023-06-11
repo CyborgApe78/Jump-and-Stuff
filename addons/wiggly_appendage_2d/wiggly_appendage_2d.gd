@@ -1,10 +1,7 @@
 @tool
 extends Line2D
 class_name WigglyAppendage2D
-## https://github.com/Tameno-01/GodotWigglyAppendage2D
 
-#TODO: idle movement
-#TODO: use this for grapple
 
 enum {
 	PREVIOUS_POINT = 0,
