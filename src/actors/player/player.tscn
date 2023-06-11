@@ -1,13 +1,10 @@
-[gd_scene load_steps=103 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=100 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
-[ext_resource type="Texture2D" uid="uid://hls77kstgpen" path="res://asset/player/leg.png" id="3_wiba5"]
 [ext_resource type="Script" path="res://addons/wiggly_appendage_2d/wiggly_appendage_2d.gd" id="4_2ysc6"]
-[ext_resource type="Texture2D" uid="uid://rkcjhldyjckw" path="res://asset/player/body.png" id="5_i3fmy"]
 [ext_resource type="Script" path="res://src/actors/scripts/Outline.gd" id="6_ab4rp"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Eye.gd" id="7_j337g"]
-[ext_resource type="Texture2D" uid="uid://bcvdpolvieau3" path="res://asset/player/jetpack.png" id="8_oqc31"]
 [ext_resource type="Texture2D" uid="uid://pliaoxib3pmf" path="res://asset/particles/fire_01.png" id="9_4edcb"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/StateMachine.gd" id="10_mvngt"]
 [ext_resource type="Script" path="res://src/actors/player/states/spawn.gd" id="11_i4f5l"]
@@ -4041,22 +4038,22 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 25.3746, 6.42133, 42.9058, 12.7668, 56.0959, 19.7697)
-texture = ExtResource("3_wiba5")
+points = PackedVector2Array(0, 0, 24.0029, 6.81729, 36.749, 17.8922, 40.5409, 31.2113)
+default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
 end_cap_mode = 2
 script = ExtResource("4_2ysc6")
 segment_count = 2
-curvature = 0.217
-damping = 3.0
+curvature = 0.157
+curvature_exponent = 2.55
 
 [node name="Body" type="Line2D" parent="CharacterRig/CharacterRotate"]
 show_behind_parent = true
 position = Vector2(0, -24)
 points = PackedVector2Array(0, 24, 0, 40)
 width = 40.0
-texture = ExtResource("5_i3fmy")
+default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -4067,7 +4064,7 @@ show_behind_parent = true
 position = Vector2(0, 24)
 points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 14.0
-texture = ExtResource("3_wiba5")
+default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -4092,7 +4089,7 @@ show_behind_parent = true
 position = Vector2(0, 16)
 points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 14.0
-texture = ExtResource("3_wiba5")
+default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -4116,7 +4113,7 @@ thickness = 1.1
 position = Vector2(0, 16)
 points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 14.0
-texture = ExtResource("3_wiba5")
+default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -4140,7 +4137,7 @@ thickness = 1.1
 position = Vector2(0, 24)
 points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 14.0
-texture = ExtResource("3_wiba5")
+default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -4176,7 +4173,7 @@ thickness = 1.1
 position = Vector2(0, -40)
 points = PackedVector2Array(0, 0, 0, -1)
 width = 40.0
-default_color = Color(0.627451, 0.12549, 0.941176, 1)
+default_color = Color(0.709804, 0.12549, 0.941176, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
@@ -4210,10 +4207,10 @@ thickness = 1.1
 position = Vector2(8, 0)
 points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.0
-texture = ExtResource("8_oqc31")
+default_color = Color(0.380392, 0.380392, 0.380392, 1)
 texture_mode = 2
 begin_cap_mode = 2
-end_cap_mode = 2
+end_cap_mode = 1
 
 [node name="Jetpack" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
@@ -4233,7 +4230,7 @@ width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
 begin_cap_mode = 2
-end_cap_mode = 2
+end_cap_mode = 1
 antialiased = true
 script = ExtResource("6_ab4rp")
 thickness = 1.05
@@ -4484,7 +4481,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
