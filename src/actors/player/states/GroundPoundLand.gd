@@ -4,7 +4,7 @@ extends PlayerInfo
 @export var timerStun: Timer
 @export var timerCharge: Timer
 
-@export var stunDuration: float = 0.6
+@export var stunDuration: float = 0.3
 
 
 func enter() -> void:
@@ -13,7 +13,7 @@ func enter() -> void:
 	abilities.reset(PlayerAbilities.list.Dash)
 	abilities.reset(PlayerAbilities.list.DashChain)
 	player.sounds.land.play()
-	Input.start_joy_vibration(0, 0.5, 0.7, 0.5) #TODO: create signal
+	Input.start_joy_vibration(0, 0.3, 0.5, 0.3) #TODO: create signal
 	timerStun.wait_time = stunDuration
 	timerStun.start()
 	player.animPlayer.queue("Crouch")
@@ -45,7 +45,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if timerStun.is_stopped():
 		if player.moveDirection.x != 0:
-			return State.Slide #TODO: special state for redirecting block break
+			return State.Walk
 		else:
 			return State.Idle
 
