@@ -28,11 +28,11 @@ func  _ready() -> void:
 	healthCurrent = healthMax #LOOKAT: might heal unexpectedly
 
 
-func damage(amount: int) -> void:
+func damage(attack: Attack) -> void:
 	if invicibleTimer.is_stopped():
 		invicibleTimer.start()
-		healthCurrent -= amount
+		healthCurrent -= attack.damage
 
 
-func heal(amount:int) -> void:
-	pass
+func heal(amount: Heal) -> void:
+	healthCurrent += amount.amount

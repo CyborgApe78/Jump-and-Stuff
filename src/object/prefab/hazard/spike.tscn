@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://unpqk8bbdcf2"]
+
+[ext_resource type="Texture2D" uid="uid://b8vfu0d8jq3ed" path="res://asset/hazard/spikesBottom.png" id="1_8oayp"]
+[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="2_tfmny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ildk4"]
+size = Vector2(48, 24)
+
+[node name="Spike" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.15256e-07, -32)
+scale = Vector2(0.914286, 0.914286)
+texture = ExtResource("1_8oayp")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_tfmny")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_ildk4")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcvdpolvieau3"
-path="res://.godot/imported/jetpack.png-454eba51ff5240f50a4fc06afd2abcf1.ctex"
+uid="uid://ixu1unnrkjre"
+path="res://.godot/imported/platformPack_item017.png-aa82ec7db8fd6b1f3dd83ba095c3f010.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/player/jetpack.png"
-dest_files=["res://.godot/imported/jetpack.png-454eba51ff5240f50a4fc06afd2abcf1.ctex"]
+source_file="res://asset/hud/platformPack_item017.png"
+dest_files=["res://.godot/imported/platformPack_item017.png-aa82ec7db8fd6b1f3dd83ba095c3f010.ctex"]
 
 [params]
 

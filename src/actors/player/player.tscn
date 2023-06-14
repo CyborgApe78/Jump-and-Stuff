@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=104 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -47,6 +47,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="46_uutlu"]
 [ext_resource type="Resource" uid="uid://i6ja7hqkkxh8" path="res://src/actors/player/resources/playerStats.tres" id="46_vm2yr"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="47_crc7s"]
+[ext_resource type="PackedScene" uid="uid://2ji8t713xoqn" path="res://src/object/components/hitbox_component.tscn" id="47_w6udr"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/sounds.gd" id="48_atp3b"]
 [ext_resource type="AudioStream" uid="uid://c655mcgbweid5" path="res://asset/sounds/player/footstep.wav" id="49_jhmpx"]
 [ext_resource type="AudioStream" uid="uid://bnbv8tr478gqg" path="res://asset/sounds/player/land.wav" id="50_04vva"]
@@ -305,6 +306,9 @@ hue_variation_max = 0.1
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
 radius = 24.0
 height = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvx04"]
+size = Vector2(32, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
 size = Vector2(5, 96)
@@ -4040,7 +4044,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.003, 6.81725, 36.7494, 17.892, 40.5418, 31.2111)
+points = PackedVector2Array(0, 0, 23.2493, 7.3804, 33.853, 19.4247, 34.3145, 32.7572)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -4440,6 +4444,13 @@ script = ExtResource("46_uutlu")
 [node name="HealthComponent" parent="." instance=ExtResource("45_an6xy")]
 stats = ExtResource("46_vm2yr")
 
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("47_w6udr")]
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -56)
+shape = SubResource("RectangleShape2D_gvx04")
+
 [node name="Raycasts" type="Node2D" parent="."]
 visible = false
 
@@ -4609,16 +4620,6 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupCollider"]
-visible = false
-position = Vector2(-0.5, -32)
-shape = SubResource("RectangleShape2D_oudvw")
-
-[node name="hitbox" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 visible = false
 position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_oudvw")
