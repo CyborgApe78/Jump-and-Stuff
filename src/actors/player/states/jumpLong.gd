@@ -50,12 +50,17 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	if Input.is_action_just_pressed("jump"):
+		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+			return State.JumpAir
+		else:
+			player.timers.bufferJump.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
-		return State.GroundPound
+#	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+#		return State.GroundPound ## turned off so long jump chaining is easier
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		return State.DashAir
@@ -81,6 +86,11 @@ func state_check(delta: float) -> int:
 #		return State.JumpApex #FixMe: change to fall state if over certian velocity or time 
 	if player.is_on_floor():
 		player.landed()
+		if !player.timers.bufferJump.is_stopped():
+			if Input.is_action_pressed("crouch"):
+				return State.JumpLong
+			else: 
+				return State.Jump
 		if player.velocity.x != 0:
 			return State.Walk
 		else:
