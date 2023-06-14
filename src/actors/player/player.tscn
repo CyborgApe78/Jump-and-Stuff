@@ -4044,7 +4044,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 23.2493, 7.3804, 33.853, 19.4247, 34.3145, 32.7572)
+points = PackedVector2Array(0, 0, 24.0028, 6.81804, 36.7488, 17.8932, 40.5408, 31.2124)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -4299,7 +4299,7 @@ timerLock = NodePath("Timer")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpWall")
 
 [node name="Timer" type="Timer" parent="StateMachine/JumpWall"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallTimer", "jumpWallSaveTimer", "consecutiveJumpTimer")]
@@ -4445,6 +4445,7 @@ script = ExtResource("46_uutlu")
 stats = ExtResource("46_vm2yr")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("47_w6udr")]
+visible = false
 health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]

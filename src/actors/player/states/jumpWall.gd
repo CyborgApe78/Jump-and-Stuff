@@ -25,7 +25,7 @@ func enter() -> void:
 	
 	if player.moveDirection.y == -1: ## up pressed
 		player.characterRig.scale.x = player.wallDirection #TODO: make a function
-		player.velocity = Vector2(500 * -jumpDirection, jumpVelocity * 1.3)
+		player.velocity = Vector2(500 * -jumpDirection, jumpVelocity * 1.2)
 		EventBus.playerActionAnnounce.emit("Wall Up")
 	elif player.moveDirection.y == 1: ## down pressed
 		player.characterRig.scale.x = player.wallDirection
@@ -38,11 +38,11 @@ func enter() -> void:
 	elif player.moveDirection.x == -jumpDirection: ## away from wall pressed
 		player.characterRig.scale.x = -player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Away")
-		player.velocity = Vector2(moveSpeed * -jumpDirection, jumpVelocity)
+		player.velocity = Vector2(moveSpeed * -jumpDirection, jumpVelocity * 0.7)
 	elif player.moveDirection.x == jumpDirection: ## towards from wall pressed
 		player.characterRig.scale.x = player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Towards") 
-		player.velocity = Vector2(50 * jumpDirection, jumpVelocity)
+		player.velocity = Vector2(200 * -jumpDirection, jumpVelocity * 0.8)
 		wallHop = true
 	
 	particles.restart() #TODO: get direction from wall direction
@@ -58,10 +58,11 @@ func physics(delta) -> void:
 	
 	player.move_and_slide_rotation()
 	#FIXME: create full velocity logic, currently can back to wall sometimes
-	if player.moveDirection.x != 0:
-		apply_acceleration(accelerationAir, delta)
-	elif player.moveDirection.x == 0:
-		apply_friction(frictionAir, delta)
+	if timerLock.is_stopped():
+		if player.moveDirection.x != 0:
+			apply_acceleration(accelerationAir, delta)
+		elif player.moveDirection.x == 0:
+			apply_friction(frictionAir, delta)
 	gravity_logic(gravityJump, delta)
 	
 	#TODO: air velocity func
