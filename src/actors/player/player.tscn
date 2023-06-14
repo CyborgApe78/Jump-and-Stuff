@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=102 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -42,8 +42,10 @@
 [ext_resource type="Script" path="res://src/actors/player/states/Roll.gd" id="43_3drow"]
 [ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="43_ft5ho"]
 [ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="44_7bwnv"]
+[ext_resource type="PackedScene" uid="uid://bxio7mtc2sse1" path="res://src/object/components/health_component.tscn" id="45_an6xy"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="45_puitl"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="46_uutlu"]
+[ext_resource type="Resource" uid="uid://i6ja7hqkkxh8" path="res://src/actors/player/resources/playerStats.tres" id="46_vm2yr"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="47_crc7s"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/sounds.gd" id="48_atp3b"]
 [ext_resource type="AudioStream" uid="uid://c655mcgbweid5" path="res://asset/sounds/player/footstep.wav" id="49_jhmpx"]
@@ -4038,7 +4040,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0029, 6.81729, 36.749, 17.8922, 40.5409, 31.2113)
+points = PackedVector2Array(0, 0, 24.003, 6.81725, 36.7494, 17.892, 40.5418, 31.2111)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -4435,6 +4437,9 @@ script = ExtResource("45_puitl")
 [node name="BonkGround" type="Node" parent="StateMachine"]
 script = ExtResource("46_uutlu")
 
+[node name="HealthComponent" parent="." instance=ExtResource("45_an6xy")]
+stats = ExtResource("46_vm2yr")
+
 [node name="Raycasts" type="Node2D" parent="."]
 visible = false
 
@@ -4625,4 +4630,5 @@ points = PackedVector2Array(8, 0, 24, 0)
 
 [connection signal="timeout" from="StateMachine/WallLand/Hold" to="StateMachine/WallLand" method="_on_hold_timeout"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
+[connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="timeout" from="Timers/DashChain" to="." method="_on_dash_chain_timeout"]

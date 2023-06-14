@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo8y4w3rri0k2"]
+[gd_scene load_steps=8 format=3 uid="uid://bo8y4w3rri0k2"]
 
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/HUDOverlay.gd" id="1_hsdcn"]
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/GameTime.gd" id="1_i244g"]
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/Announcer.gd" id="3_chdqa"]
 [ext_resource type="Script" path="res://src/levels/controllervisual.gd" id="4_xuka8"]
+[ext_resource type="Script" path="res://src/ui/HUD/scripts/HealthBar.gd" id="5_7v3vy"]
+[ext_resource type="Texture2D" uid="uid://bgs6ul44ovm7k" path="res://asset/hud/platformPack_item005.png" id="5_mtduu"]
+[ext_resource type="Texture2D" uid="uid://ixu1unnrkjre" path="res://asset/hud/platformPack_item017.png" id="6_c1fvb"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hsdcn")
@@ -91,3 +94,30 @@ scale = Vector2(2, 2)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("4_xuka8")
+
+[node name="HealthBar" type="MarginContainer" parent="." node_paths=PackedStringArray("healthEmpty", "healthFull")]
+visible = false
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("5_7v3vy")
+healthEmpty = NodePath("Control/HeartEmpty")
+healthFull = NodePath("Control/HeartFull")
+textureSize = 64
+
+[node name="Control" type="Control" parent="HealthBar"]
+layout_mode = 2
+
+[node name="HeartEmpty" type="TextureRect" parent="HealthBar/Control"]
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("5_mtduu")
+stretch_mode = 1
+
+[node name="HeartFull" type="TextureRect" parent="HealthBar/Control"]
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("6_c1fvb")
+expand_mode = 1
+stretch_mode = 1
