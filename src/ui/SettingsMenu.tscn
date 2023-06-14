@@ -148,7 +148,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonAimIndicator")]
-visible = false
 layout_mode = 2
 script = ExtResource("3_vxf3y")
 buttonAimIndicator = NodePath("VBoxContainer/Aim")
@@ -165,7 +164,12 @@ layout_mode = 2
 layout_mode = 2
 text = "Show Aim Indicator"
 
+[node name="Rumble" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer"]
+layout_mode = 2
+text = "Turn of rumble #TODO"
+
 [node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("hideHUD", "timerCheck", "buttonController")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_oufns")
 hideHUD = NodePath("VBoxContainer/HideHUD")
