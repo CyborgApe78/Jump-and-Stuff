@@ -115,10 +115,10 @@ text = "Roll"
 
 [node name="Spin" type="Label" parent="."]
 layout_mode = 0
-offset_left = 928.0
-offset_top = 392.0
-offset_right = 990.0
-offset_bottom = 418.0
+offset_left = 1140.0
+offset_top = 635.0
+offset_right = 1202.0
+offset_bottom = 661.0
 text = "Spin"
 
 [node name="Bash" type="Label" parent="."]
@@ -131,10 +131,10 @@ text = "Bash"
 
 [node name="Slide" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1087.0
-offset_top = 268.0
-offset_right = 1149.0
-offset_bottom = 294.0
+offset_left = 933.0
+offset_top = 398.0
+offset_right = 995.0
+offset_bottom = 424.0
 text = "Slide"
 
 [node name="SpeedBoost" type="Label" parent="."]
