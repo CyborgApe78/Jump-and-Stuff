@@ -4,10 +4,10 @@ extends PlayerInfo
 @onready var rollTimer: Timer = $RollPressed
 @onready var fallTimer: Timer = $FallTimeMax
 
-@export var rollTime: float = 0.2
+@export var rollTime: float = 0.3
 @export var diveSpeedMultiplier: float = 1.6
 @export var transformTime: float = 0.05
-@export var fallTimeTillBonk: float = 1.2
+@export var fallTimeTillBonk: float = .7
 
 
 func enter() -> void:
@@ -80,9 +80,9 @@ func state_check(delta: float) -> int:
 		if fallTimer.is_stopped():
 			return State.BonkGround
 		else:
-			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
-			tween.tween_property(player.characterRotate, "rotation_degrees", 0, transformTime).from_current()
-			tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
+#			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
+#			tween.tween_property(player.characterRotate, "rotation_degrees", 0, transformTime).from_current()
+#			tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
 			return State.BellySlide
 
 	return State.Null
