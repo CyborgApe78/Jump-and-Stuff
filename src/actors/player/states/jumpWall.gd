@@ -14,7 +14,7 @@ func enter() -> void:
 	EventBus.playerJumped.emit()
 	timerLock.start()
 	jumpDirection = player.wall_detection(30)
-	topSpeed = 0
+	
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	player.sounds.jump.play()
@@ -34,7 +34,8 @@ func enter() -> void:
 	elif player.moveDirection.x == 0: ## no directional input
 		player.characterRig.scale.x = -player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Neutral")
-		player.velocity = Vector2(moveSpeed / 1.5 * -jumpDirection, jumpVelocity * 1.1)
+		player.velocity = Vector2(max(moveSpeed / 1.5 , player.velocityPrevious.x) * -jumpDirection, jumpVelocity * 1.1)
+			#FIXME: cutting speed in half from long jump
 	elif player.moveDirection.x == -jumpDirection: ## away from wall pressed
 		player.characterRig.scale.x = -player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Away")
@@ -46,6 +47,7 @@ func enter() -> void:
 		wallHop = true
 	
 	particles.restart() #TODO: get direction from wall direction
+	topSpeed = 0
 
 
 func exit() -> void:
@@ -59,10 +61,13 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	#FIXME: create full velocity logic, currently can back to wall sometimes
 	if timerLock.is_stopped():
-		if player.moveDirection.x != 0:
-			apply_acceleration(accelerationAir, delta)
-		elif player.moveDirection.x == 0:
-			apply_friction(frictionAir, delta)
+		if player.neutralMoveDirection:
+			neutral_air_momentum_logic(moveSpeed)
+		else:
+			if player.moveDirection.x != 0:
+				apply_acceleration(accelerationAir, delta)
+			elif player.moveDirection.x == 0:
+				apply_friction(frictionAir, delta)
 	gravity_logic(gravityJump, delta)
 	
 	#TODO: air velocity func

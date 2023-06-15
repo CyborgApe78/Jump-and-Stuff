@@ -30,6 +30,8 @@ func physics(delta) -> void:
 	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
 	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
+	player.move_and_slide()
+	
 	gravity_logic(gravityJump, delta)
 	
 	if player.neutralMoveDirection:
@@ -37,7 +39,7 @@ func physics(delta) -> void:
 	else:
 		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
 	#TODO add control lockout or deminished air turn
-	player.move_and_slide_rotation()
+	
 	track_top_speed(player.velocity.x)
 
 
@@ -51,6 +53,8 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
+#		if player.wall_detection(15) != 0:
+#			return State.JumpWall
 		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
