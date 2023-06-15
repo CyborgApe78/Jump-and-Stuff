@@ -46,7 +46,7 @@ func physics(delta) -> void:
 		fall_speed_logic(terminalVelocity)
 	
 	if  abs(player.velocity.x) < rollVelocity: 
-		player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 6) * delta) * player.facing
+		player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
 	elif abs(player.velocity.x) >= rollVelocity:
 		momentum_logic(rollVelocity, false)
 	
@@ -94,7 +94,7 @@ func handle_input(event: InputEvent) -> int:
 		crouchReleased = false
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_pressed("crouch") and Input.is_action_pressed("roll"):
+	if Input.is_action_pressed("crouch") and Input.is_action_just_pressed("roll"):
 		if refreshTimer.is_stopped():
 			return State.Roll
 		else:
@@ -114,7 +114,8 @@ func state_check(delta: float) -> int:
 				player.velocity.x = 0
 				return State.Crouch
 			elif player.moveDirection.x != 0:
-				return State.Walk #lookat: interaction with speedboost
+				player.velocity.x = 0
+				return State.Walk
 			else:
 				return State.Idle
 		else: #LOOKAT: is this needed  !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight:
