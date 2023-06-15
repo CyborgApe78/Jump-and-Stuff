@@ -70,7 +70,7 @@ func handle_input(event: InputEvent) -> int:
 	else: 
 		jumpHeld = false
 	if Input.is_action_just_pressed("jump"):
-		jumpWallSaveTimer.start()
+		player.timers.bufferJump.start()
 		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
 			player.timers.coyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -81,7 +81,7 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Wall Coyote Jump")
 			return State.JumpWall
-		elif player.wall_detection(30) != 0:
+		elif player.wall_detection(20) != 0:
 			EventBus.playerActionAnnounce.emit("Near Wall Jump")
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
@@ -110,7 +110,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
-		if !jumpWallSaveTimer.is_stopped():
+		if !player.timers.bufferJump.is_stopped(): #TODO: remove from plater script and use @export
 			return State.JumpWall
 		if topSpeed > moveSpeed:
 			topSpeed = 0

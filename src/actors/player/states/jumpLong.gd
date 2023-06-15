@@ -79,7 +79,9 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
-		if topSpeed > moveSpeed:
+		if !player.timers.bufferJump.is_stopped():
+			return State.JumpWall #TODO: add to other states
+		elif topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 		elif player.velocity.y < 0: ## player is going up go to wallland else slide
