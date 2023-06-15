@@ -20,6 +20,9 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
+	if !player.is_on_floor():
+		gravity_logic(gravityFall, delta)
+	
 	if rad_to_deg(player.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= downHillAccel ## Speed up on down hill
