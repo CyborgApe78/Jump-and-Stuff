@@ -24,25 +24,29 @@ func enter() -> void:
 	if !timerCoyoteJumpWall.is_stopped():
 		jumpDirection = player.lastWallDirection
 		timerCoyoteJumpWall.stop()
-	
-	if player.moveDirection.y == -1: ## up pressed
+		
+	## up pressed
+	if player.moveDirection.y == -1:
 		player.characterRig.scale.x = player.wallDirection #TODO: make a function
-		player.velocity = Vector2(500 * -jumpDirection, jumpVelocity * 1.2)
+		player.velocity = Vector2(100 * -jumpDirection, jumpVelocity * 1.0)
 		EventBus.playerActionAnnounce.emit("Wall Up")
-	elif player.moveDirection.y == 1: ## down pressed
+	## down pressed
+	elif player.moveDirection.y == 1:
 		player.characterRig.scale.x = player.wallDirection
 		player.velocity = Vector2(300 * -jumpDirection, 100)
 		EventBus.playerActionAnnounce.emit("Wall Down")
-	elif player.moveDirection.x == 0: ## no directional input
+	## no directional input
+	elif player.moveDirection.x == 0:
 		player.characterRig.scale.x = -player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Neutral")
-		player.velocity = Vector2(max(moveSpeed / 1.5 , player.velocityPrevious.x) * -jumpDirection, jumpVelocity * 1.1)
-			#FIXME: cutting speed in half from long jump
-	elif player.moveDirection.x == -jumpDirection: ## away from wall pressed
+		player.velocity = Vector2(max(moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, jumpVelocity * 0.9)
+	## away from wall pressed
+	elif player.moveDirection.x == -jumpDirection:
 		player.characterRig.scale.x = -player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Away")
 		player.velocity = Vector2(moveSpeed * -jumpDirection, jumpVelocity * 0.7)
-	elif player.moveDirection.x == jumpDirection: ## towards from wall pressed
+	## towards from wall pressed
+	elif player.moveDirection.x == jumpDirection: 
 		player.characterRig.scale.x = player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Towards") 
 		player.velocity = Vector2(200 * -jumpDirection, jumpVelocity * 0.8)
