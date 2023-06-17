@@ -4,9 +4,12 @@ extends PlayerInfo
 #TODO: get friction from enviroment
 #TODO: add nuetral input
 
-@export var skidPercent: float = 1.2
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
+@export var soundeffect: AudioStreamPlayer
+
+@export var skidPercent: float = 1.2
+
 var skidding: bool = false
 
 func enter() -> void:
@@ -16,7 +19,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop()
-	player.sounds.walk.stop()
+	soundeffect.stop()
 	player.animPlayer.speed_scale = 1
 
 
@@ -49,9 +52,9 @@ func visual(delta) -> void:
 
 func sound(delta: float) -> void: #TODO: move to animPlayer
 		pass
-#	if !player.sounds.walk.playing:
-#		player.sounds.walk.pitch_scale = randf_range(0.8, 1.2)
-#		player.sounds.walk.play()
+#	if !soundeffect.playing:
+#		soundeffect.pitch_scale = randf_range(0.8, 1.2)
+#		soundeffect.play()
 
 
 func handle_input(event: InputEvent) -> int:

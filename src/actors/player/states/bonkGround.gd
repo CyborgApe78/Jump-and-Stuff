@@ -1,6 +1,8 @@
 extends PlayerInfo
 #TODO: turn off bonk in settings
 
+@export var soundBonk: AudioStreamPlayer
+@export var soundSplat: AudioStreamPlayer
 
 var currentBonkTime: float
 @export var bonkTime: float = 1.5
@@ -12,8 +14,8 @@ func enter() -> void:
 	EventBus.playerActionAnnounce.emit("Splat")
 	consecutive_jump_cancel()
 	player.landed()
-	player.sounds.bonk.play()
-	player.sounds.splat.play()
+	soundBonk.play()
+	soundSplat.play()
 	currentBonkTime = bonkTime
 	player.velocity.x = bounceBack * -player.facing #TODO: get wall detection
 	var tween = create_tween()

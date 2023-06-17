@@ -1,6 +1,8 @@
 extends PlayerInfo
 #LOOKAT: maybe a charge jump
 
+@export var soundeffect: AudioStreamPlayer
+
 @export var jumpModifier: float = 1.4
 @export var particles: GPUParticles2D
 
@@ -11,15 +13,15 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	player.sounds.jump.pitch_scale = jumpModifier
-	player.sounds.jump.play()
+	soundeffect.pitch_scale = jumpModifier
+	soundeffect.play()
 	particles.restart()
 	player.velocity.y = jumpVelocity * jumpModifier
 
 
 func exit() -> void:
 	player.animPlayer.stop()
-	player.sounds.jump.pitch_scale = 1
+	soundeffect.pitch_scale = 1
 
 
 func physics(delta) -> void:

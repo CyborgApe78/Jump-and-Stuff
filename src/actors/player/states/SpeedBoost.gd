@@ -6,6 +6,7 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
+@export var soundeffect: AudioStreamPlayer
 
 var skidding: bool = false
 @export var speedModifier: float = 2.5
@@ -22,7 +23,7 @@ func enter() -> void:
 func exit() -> void:
 	moveSpeed = pMoveSpeed
 	player.animPlayer.stop()
-	player.sounds.walk.stop()
+	soundeffect.stop()
 	player.animPlayer.speed_scale = 1
 
 

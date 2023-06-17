@@ -2,6 +2,7 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
+@export var soundeffect: AudioStreamPlayer
 
 #TODO: if moveDirection.x != 0, spin jump, metroid like
 #TODO: look into combine jump and jumpConsec
@@ -12,7 +13,7 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	player.sounds.jump.play()
+	soundeffect.play()
 	player.velocity.y = jumpVelocity
 	timerCoyoteJump.stop()
 	timerConsecutiveJump.stop()

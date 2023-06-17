@@ -5,6 +5,7 @@ extends PlayerInfo
 @export var timerCoyoteJumpWall: Timer
 @export var timerLock: Timer
 @export var particles: GPUParticles2D
+@export var soundeffect: AudioStreamPlayer
 
 var wallHop: bool
 var jumpDirection: int #TODO: change to jumpDirection 
@@ -18,7 +19,7 @@ func enter() -> void:
 	
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	player.sounds.jump.play()
+	soundeffect.play()
 	
 	if !timerCoyoteJumpWall.is_stopped():
 		jumpDirection = player.lastWallDirection

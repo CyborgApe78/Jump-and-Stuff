@@ -4907,7 +4907,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0024, 6.81955, 36.7476, 17.8956, 40.5385, 31.215)
+points = PackedVector2Array(0, 0, 24.003, 6.81808, 36.7497, 17.8929, 40.5429, 31.212)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -4942,6 +4942,7 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
+visible = false
 show_behind_parent = true
 points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
@@ -4967,8 +4968,9 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
+visible = false
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)
+points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -4991,8 +4993,9 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
+visible = false
 show_behind_parent = true
-points = PackedVector2Array(0, 40, 8, 48, 0, 64, 8, 64)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5015,8 +5018,9 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
+visible = false
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, 10, 32, 2)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5027,6 +5031,7 @@ script = ExtResource("6_ab4rp")
 thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
+visible = false
 show_behind_parent = true
 points = PackedVector2Array(0, 24, 0, 40)
 width = 44.0
@@ -5061,6 +5066,7 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Head"]
+visible = false
 show_behind_parent = true
 points = PackedVector2Array(0, 0, 0, -1)
 width = 44.0
@@ -5093,8 +5099,9 @@ randomness = 0.13
 local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
+visible = false
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 8)
+points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5117,13 +5124,15 @@ script = ExtResource("11_i4f5l")
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("12_ue11e")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "soundeffect")]
 script = ExtResource("13_wqbus")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
+soundeffect = NodePath("../../Sounds/walk")
 
-[node name="Skid" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
+[node name="Skid" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
 script = ExtResource("14_bvej5")
+soundeffect = NodePath("../../Sounds/skid")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Skid")
 
 [node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump")]
@@ -5135,43 +5144,50 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 script = ExtResource("16_7w1oc")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "soundeffect")]
 script = ExtResource("17_8xtx5")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
+soundeffect = NodePath("../../Sounds/jump")
 
-[node name="JumpAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump")]
+[node name="JumpAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "soundeffect")]
 script = ExtResource("18_hter0")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
+soundeffect = NodePath("../../Sounds/jump")
 
-[node name="JumpConsec" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "particles")]
+[node name="JumpConsec" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "soundeffect", "particles")]
 script = ExtResource("19_00wlk")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
+soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpDouble")
 
-[node name="JumpFlip" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
+[node name="JumpFlip" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
 script = ExtResource("20_crsmm")
+soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
-[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "particles")]
+[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "soundeffect", "particles")]
 script = ExtResource("21_mo3ie")
 timerBufferJump = NodePath("../../Timers/BufferJump")
+soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
-[node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
+[node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
 script = ExtResource("22_e2i38")
+soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
 [node name="JumpApex" type="Node" parent="StateMachine"]
 script = ExtResource("23_w0epw")
 
-[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpWall", "timerLock", "particles")]
+[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpWall", "timerLock", "particles", "soundeffect")]
 script = ExtResource("24_rjpry")
 timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
 timerLock = NodePath("Timer")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpWall")
+soundeffect = NodePath("../../Sounds/jump")
 
 [node name="Timer" type="Timer" parent="StateMachine/JumpWall"]
 wait_time = 0.2
@@ -5201,8 +5217,9 @@ rollTimer = NodePath("RollPressed")
 [node name="RollPressed" type="Timer" parent="StateMachine/Dive"]
 one_shot = true
 
-[node name="BellySlide" type="Node" parent="StateMachine"]
+[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundSlide")]
 script = ExtResource("28_w0ybt")
+soundSlide = NodePath("../../Sounds/bodySlide")
 
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
 one_shot = true
@@ -5275,10 +5292,12 @@ script = ExtResource("38_i65yo")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 
-[node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge")]
+[node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge", "particles", "soundeffect")]
 script = ExtResource("39_q31hf")
 timerStun = NodePath("Stun")
 timerCharge = NodePath("Charge")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/GroundPound")
+soundeffect = NodePath("../../Sounds/land")
 
 [node name="Stun" type="Timer" parent="StateMachine/GroundPoundLand"]
 one_shot = true
@@ -5287,9 +5306,10 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="GroundPoundBounce" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
+[node name="GroundPoundBounce" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "soundeffect")]
 script = ExtResource("40_yon7f")
 timerBufferJump = NodePath("../../Timers/BufferJump")
+soundeffect = NodePath("../../Sounds/jump")
 
 [node name="GrappleHook" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpWall", "timerBufferJump")]
 script = ExtResource("41_5rahm")
@@ -5336,11 +5356,14 @@ script = ExtResource("43_ft5ho")
 [node name="SpeedBoost" type="Node" parent="StateMachine"]
 script = ExtResource("44_7bwnv")
 
-[node name="BonkAir" type="Node" parent="StateMachine"]
+[node name="BonkAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundBonk")]
 script = ExtResource("45_puitl")
+soundBonk = NodePath("../../Sounds/bonk")
 
-[node name="BonkGround" type="Node" parent="StateMachine"]
+[node name="BonkGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundBonk", "soundSplat")]
 script = ExtResource("46_uutlu")
+soundBonk = NodePath("../../Sounds/bonk")
+soundSplat = NodePath("../../Sounds/splat")
 
 [node name="HealthComponent" parent="." instance=ExtResource("45_an6xy")]
 stats = ExtResource("46_vm2yr")
@@ -5397,7 +5420,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

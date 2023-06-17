@@ -2,10 +2,11 @@ extends PlayerInfo
 #todo: rename to GPDash
 
 @export var timerBufferJump: Timer
+@export var soundeffect: AudioStreamPlayer
 
 func enter() -> void:
 	player.animPlayer.queue("Jump") #TODO: own animation
-	player.sounds.jump.play()
+	soundeffect.play()
 	player.velocity.y = -player.GPBounce.y/3 #LOOKAT: might need a max speed
 
 

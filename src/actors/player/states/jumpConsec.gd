@@ -3,6 +3,7 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
+@export var soundeffect: AudioStreamPlayer
 
 @export var jumpModifier: float = 0.25
 @export var particles: GPUParticles2D
@@ -15,8 +16,8 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	player.sounds.jump.pitch_scale = 0.25 * abilities.currentJumpConsec + 1
-	player.sounds.jump.play()
+	soundeffect.pitch_scale = 0.25 * abilities.currentJumpConsec + 1
+	soundeffect.play()
 	particles.restart() #TODO: adjust based on consec number
 	player.velocity.y = jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)
 	timerCoyoteJump.stop()
@@ -30,7 +31,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop()
-	player.sounds.jump.pitch_scale = 1
+	soundeffect.pitch_scale = 1
 	player.characterRotate.rotation_degrees = 0 
 	player.characterCollision.rotation_degrees = 0
 	if abilities.currentJumpConsec == abilities.maxJumpConsec:

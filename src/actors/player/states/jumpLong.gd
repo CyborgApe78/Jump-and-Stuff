@@ -5,6 +5,7 @@ extends PlayerInfo
 #TODO: spin combo, ref https://www.mariowiki.com/Double_kick
 
 @export var timerBufferJump: Timer
+@export var soundeffect: AudioStreamPlayer
 
 @export var jumpModifier: float = 0.9
 @export var velocityModifier: float = 1.35
@@ -17,15 +18,15 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	player.sounds.jump.pitch_scale = jumpModifier
-	player.sounds.jump.play()
+	soundeffect.pitch_scale = jumpModifier
+	soundeffect.play()
 	particles.restart()
 	player.velocity.y = jumpVelocity * jumpModifier
 	player.velocity.x = max(moveSpeed * velocityModifier, abs(player.velocity.x)) * player.facing
 
 func exit() -> void:
 	player.animPlayer.stop()
-	player.sounds.jump.pitch_scale = 1
+	soundeffect.pitch_scale = 1
 
 
 func physics(delta) -> void:

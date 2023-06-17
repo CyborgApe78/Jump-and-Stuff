@@ -1,17 +1,20 @@
 extends PlayerInfo
 
 
+@export var soundeffect: AudioStreamPlayer
+@export var particles: GPUParticles2D
+
 @export var skidDuration: float = 1 #TODO: make speed relavent to skid
 var frictionSkid: float = .8 * Util.tileSize
 @export var transformTime: float = 0.2
 var skidTime: float
 @export var skidLockDuration: float = 0.2 
 var skidLockTime: float #TODO: make timer
-@export var particles: GPUParticles2D
+
 
 
 func enter() -> void:
-	player.sounds.skid.play()
+	soundeffect.play()
 	#TODO: anim
 	particles.restart()
 	skidTime = skidDuration
@@ -22,7 +25,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	player.sounds.skid.stop()
+	soundeffect.stop()
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player.characterRig, "skew", 0, transformTime).from_current()
 

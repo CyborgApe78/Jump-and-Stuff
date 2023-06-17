@@ -3,6 +3,7 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
+@export var soundeffect: AudioStreamPlayer
 
 #LOOKAT: make like space jump
 func enter() -> void:
@@ -12,7 +13,7 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump Air")
-	player.sounds.jump.play()
+	soundeffect.play()
 	player.velocity.y = jumpVelocity
 	timerCoyoteJump.stop()
 	timerConsecutiveJump.stop()

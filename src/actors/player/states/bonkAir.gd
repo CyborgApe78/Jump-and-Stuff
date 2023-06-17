@@ -1,11 +1,12 @@
 extends PlayerInfo
 #TODO: turn off bonk in settings
 
+@export var soundBonk: AudioStreamPlayer
+@export var particles: GPUParticles2D
 
 var currentBonkTime: float
 @export var bonkTime: float = 1.5
 @export var bounceBack: int = 400
-@export var particles: GPUParticles2D
 var landed: bool
 #TODO:variables for amimation
 
@@ -14,7 +15,7 @@ func enter() -> void:
 	EventBus.playerActionAnnounce.emit("Bonk")
 	consecutive_jump_cancel()
 	landed = false
-	player.sounds.bonk.play()
+	soundBonk.play()
 	currentBonkTime = bonkTime
 	player.velocity.x = bounceBack * -player.facing #TODO: get wall detection
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)

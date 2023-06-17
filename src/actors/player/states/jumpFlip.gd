@@ -1,6 +1,8 @@
 extends PlayerInfo
 
 
+@export var soundeffect: AudioStreamPlayer
+
 @export var jumpModifier: float = 1.35
 @export var transTime: float = 0.5
 @export var particles: GPUParticles2D
@@ -12,8 +14,8 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	player.sounds.jump.pitch_scale = jumpModifier
-	player.sounds.jump.play()
+	soundeffect.pitch_scale = jumpModifier
+	soundeffect.play()
 	particles.restart()
 	player.velocity.x = -player.velocity.x
 	player.velocity.y = jumpVelocity * jumpModifier
@@ -24,7 +26,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop()
-	player.sounds.jump.pitch_scale = 1
+	soundeffect.pitch_scale = 1
 	player.characterRotate.rotation_degrees = 0  #LOOKAT: maybe make a timer tp set back to zero
 	player.characterCollision.rotation_degrees = 0 
 

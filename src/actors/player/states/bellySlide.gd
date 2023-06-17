@@ -1,19 +1,21 @@
 extends PlayerInfo
 
 
-@onready var diveJumpTimer: Timer = $DiveJump
+@export var timerDiveJump: Timer
+@export var soundSlide: AudioStreamPlayer
+
 @export var diveJumpTime: float = 0.2
 
 
 func enter() -> void:
-	player.sounds.bodySlide.play()
-	diveJumpTimer.wait_time = diveJumpTime
-	diveJumpTimer.start()
+	soundSlide.play()
+	timerDiveJump.wait_time = diveJumpTime
+	timerDiveJump.start()
 	player.animPlayer.queue("Belly Slide")
 
 
 func exit() -> void:
-	player.sounds.bodySlide.stop()
+	soundSlide.stop()
 	player.animPlayer.stop()
 
 
@@ -49,7 +51,7 @@ func handle_input(event: InputEvent) -> int:
 	#TODO: add check for returning to two block height
 	#TODO: add entering other states
 	if Input.is_action_just_pressed("jump"):
-		if !diveJumpTimer.is_stopped(): # timer to get a special jump
+		if !timerDiveJump.is_stopped(): # timer to get a special jump
 			return State.JumpLong 
 #			return State.BellyHop #TODO: special jump
 		else:

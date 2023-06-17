@@ -3,6 +3,8 @@ extends PlayerInfo
 
 @export var timerStun: Timer
 @export var timerCharge: Timer
+@export var particles: GPUParticles2D
+@export var soundeffect: AudioStreamPlayer
 
 @export var stunDuration: float = 0.3
 
@@ -12,7 +14,8 @@ func enter() -> void:
 	abilities.reset(PlayerAbilities.list.JumpAir)
 	abilities.reset(PlayerAbilities.list.Dash)
 	abilities.reset(PlayerAbilities.list.DashChain)
-	player.sounds.land.play()
+	soundeffect.play()
+	particles.restart()
 	Input.start_joy_vibration(0, 0.3, 0.5, 0.3) #TODO: create signal
 	timerStun.wait_time = stunDuration
 	timerStun.start()
