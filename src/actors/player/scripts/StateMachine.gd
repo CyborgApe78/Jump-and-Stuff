@@ -78,7 +78,8 @@ func change_state(newState: int) -> void:
 
 func init() -> void:
 	for child in get_children():
-		child.player = player
+		if child is PlayerState:
+			child.player = player
 
 	change_state(PlayerState.State.Spawn)
 
