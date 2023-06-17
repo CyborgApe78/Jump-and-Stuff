@@ -6,15 +6,18 @@ extends PlayerInfo
 
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer
+@export var particles: GPUParticles2D
 
 @export var jumpModifier: float = 0.9
 @export var velocityModifier: float = 1.35
-@export var particles: GPUParticles2D
+
+var startingHeight: int
 
 
 func enter() -> void:
 	GameStats.jumps += 1
 	EventBus.playerJumped.emit()
+	startingHeight = player.global_position.y
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
@@ -81,6 +84,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if player.global_position.y > startingHeight: ## leave state when passing starting height
+		return State.Fall
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped():
 			return State.JumpWall #TODO: add to other states
