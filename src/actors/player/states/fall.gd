@@ -83,7 +83,7 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Wall Coyote Jump")
 			return State.JumpWall
-		elif player.wall_detection(20) != 0:
+		elif player.wall_detection(10) != 0:
 			EventBus.playerActionAnnounce.emit("Near Wall Jump")
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
