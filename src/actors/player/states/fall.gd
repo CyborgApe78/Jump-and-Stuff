@@ -2,9 +2,11 @@ extends PlayerInfo
 #TODO: air crouch
 #TODO: holding down makes you go through semisolids
 
-@export var fallTimer: Timer
-@export var jumpWallSaveTimer: Timer
-@export var consecutiveJumpTimer: Timer
+@export var timerCoyoteJump: Timer
+@export var timerCoyoteJumpWall: Timer
+@export var timerBufferJump: Timer
+@export var timerFall: Timer
+@export var timerConsecutiveJump: Timer
 
 @export var jumpHeldSlowModifier: float = 2.0
 @export var transTime: float = 0.1
@@ -36,7 +38,7 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	
-	if player.timers.coyoteJump.is_stopped():
+	if timerCoyoteJump.is_stopped():
 		gravity_logic(gravityFall, delta)
 	
 	if jumpHeld:
@@ -70,14 +72,14 @@ func handle_input(event: InputEvent) -> int:
 	else: 
 		jumpHeld = false
 	if Input.is_action_just_pressed("jump"):
-		player.timers.bufferJump.start()
-		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
-			player.timers.coyoteJump.stop()
+		timerBufferJump.start()
+		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
+			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Coyote Jump")
 			return consecutive_jump_logic()
-		elif !player.timers.coyoteJumpWall.is_stopped(): #leave wall, but stil can jump
-			player.timers.coyoteJumpWall.stop()
+		elif !timerCoyoteJumpWall.is_stopped(): #leave wall, but stil can jump
+			timerCoyoteJumpWall.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Wall Coyote Jump")
 			return State.JumpWall
@@ -87,7 +89,7 @@ func handle_input(event: InputEvent) -> int:
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive"):
@@ -110,7 +112,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
-		if !player.timers.bufferJump.is_stopped(): #TODO: remove from plater script and use @export
+		if !timerBufferJump.is_stopped(): #TODO: remove from plater script and use @export
 			return State.JumpWall
 		if topSpeed > moveSpeed:
 			topSpeed = 0
@@ -119,10 +121,10 @@ func state_check(delta: float) -> int:
 			return State.WallSlide
 	if player.is_on_floor():
 		player.landed()
-		if fallTimer.is_stopped():
+		if timerFall.is_stopped():
 			return State.BonkGround
 		else:
-			consecutiveJumpTimer.start()
+			timerConsecutiveJump.start()
 			if Input.is_action_pressed("crouch"):
 				player.animPlayer.stop()
 				return State.Crouch
@@ -141,5 +143,5 @@ func state_check(delta: float) -> int:
 
 
 func timers() -> void:
-	fallTimer.wait_time = fallTimeTillBonk
-	fallTimer.start()
+	timerFall.wait_time = fallTimeTillBonk
+	timerFall.start()

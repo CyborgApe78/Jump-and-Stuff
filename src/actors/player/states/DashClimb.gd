@@ -3,6 +3,8 @@ extends PlayerInfo
 #TODO: add block break indicator
 #FIXME: use wall direction to control particles
 
+@export var timerBufferJump: Timer
+
 var duration: float = 0.3
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
@@ -43,7 +45,7 @@ func handle_input(event: InputEvent) -> int:
 		if abilities.can_use(PlayerAbilities.list.JumpAir): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide

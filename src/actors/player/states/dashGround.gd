@@ -3,10 +3,13 @@ extends PlayerInfo
 #FIXME: merge with slide
 #TODO: add block break indicator
 
+@export var timerCoyoteJump: Timer
+@export var timerConsecutiveJump: Timer
+@export var dashJumpTimer: Timer
+@export var dashJumpRefreshTimer: Timer
+
 @export var dashJumpTime: float = 0.17
-@onready var dashJumpTimer: Timer = $DashJump
 @export var dashJumpRefreshTime: float = 0.22
-@onready var dashJumpRefreshTimer: Timer = $DashJumpRefresh
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
@@ -47,7 +50,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide_rotation()
-	player.timers.consecutiveJump.start()
+	timerConsecutiveJump.start()
 	track_top_speed(player.velocity.x)
 
 
@@ -60,9 +63,9 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !player.timers.coyoteJump.is_stopped()): #leave ground, but stil can jump
-		if !player.timers.coyoteJump.is_stopped():
-			player.timers.coyoteJump.stop()
+	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !timerCoyoteJump.is_stopped()): #leave ground, but stil can jump
+		if !timerCoyoteJump.is_stopped():
+			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Coyote Jump")
 		isJumping = true
@@ -97,7 +100,7 @@ func state_check(delta: float) -> int:
 		else:
 			return State.Fall
 #	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
-#		player.timers.coyoteJump.stop()
+#		timerCoyoteJump.stop()
 
 	return State.Null
 

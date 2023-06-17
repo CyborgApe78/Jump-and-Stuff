@@ -4,6 +4,8 @@ extends PlayerInfo
 #LOOKAT: need to mess around with wall jumps, need to jump off wall and keep speedboost
 #TODO: need a variable to return to speed boost player.speedBoostActive
 
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
 
 var skidding: bool = false
 @export var speedModifier: float = 2.5
@@ -75,12 +77,12 @@ func state_check(delta: float) -> int:
 	if skidding:
 		return State.Skid
 	if !player.is_on_floor(): #FIXME: need to figure a way to come back to speed boost after leaving ground
-		player.timers.coyoteJump.start()
+		timerCoyoteJump.start()
 		return State.Fall
 	if player.velocity.x == 0:
 		return State.Idle
-	if !player.timers.bufferJump.is_stopped():
-		player.timers.bufferJump.stop()
+	if !timerBufferJump.is_stopped():
+		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
 		return consecutive_jump_logic()
 

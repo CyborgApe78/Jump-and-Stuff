@@ -5,6 +5,8 @@ extends PlayerInfo
 #TODO: add nuetral input
 
 @export var skidPercent: float = 1.2
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
 var skidding: bool = false
 
 func enter() -> void:
@@ -76,14 +78,14 @@ func state_check(delta: float) -> int:
 	if skidding:
 		return State.Skid
 	if !player.is_on_floor():
-		player.timers.coyoteJump.start()
+		timerCoyoteJump.start()
 		return State.Fall
 #	if abs(player.velocity.x) > stats.moveSpeed:
 #		return State.Turbo
 	if player.velocity.x == 0:
 		return State.Idle
-	if !player.timers.bufferJump.is_stopped():
-		player.timers.bufferJump.stop()
+	if !timerBufferJump.is_stopped():
+		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
 		return consecutive_jump_logic()
 

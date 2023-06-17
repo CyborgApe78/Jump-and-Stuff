@@ -1,5 +1,8 @@
 extends PlayerInfo
 
+@export var timerCoyoteJump: Timer
+@export var timerConsecutiveJump: Timer
+
 #TODO: if moveDirection.x != 0, spin jump, metroid like
 #TODO: look into combine jump and jumpConsec
 
@@ -11,8 +14,8 @@ func enter() -> void:
 	player.animPlayer.queue("Jump")
 	player.sounds.jump.play()
 	player.velocity.y = jumpVelocity
-	player.timers.coyoteJump.stop()
-	player.timers.consecutiveJump.stop()
+	timerCoyoteJump.stop()
+	timerConsecutiveJump.stop()
 	player.jumped = true
 
 

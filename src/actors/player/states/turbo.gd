@@ -1,6 +1,9 @@
 extends PlayerInfo
 
 
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
+
 var gravity = 100
 
 
@@ -44,14 +47,14 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if !player.is_on_floor():
-		player.timers.coyoteJump.start()
+		timerCoyoteJump.start()
 		return State.Fall
 	if abs(player.velocity.x) < moveSpeed:
 		return State.Walk
 	if player.velocity.x == 0:
 		return State.Idle
-	if !player.timers.bufferJump.is_stopped():
-		player.timers.bufferJump.stop()
+	if !timerBufferJump.is_stopped():
+		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
 		return consecutive_jump_logic()
 

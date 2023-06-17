@@ -1,5 +1,9 @@
 extends PlayerInfo
 
+
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
+
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
 @export var transformTime: float = 0.2
@@ -51,6 +55,7 @@ func handle_input(event: InputEvent) -> int:
 		elif abs(player.velocity.x) > minLongJumpVelocity:
 			return State.JumpLong
 		else:
+			#TODO: add time check, for charging jump
 			return State.JumpCrouch
 	if Input.is_action_just_pressed("slide") and abilities.can_use(PlayerAbilities.list.Slide):
 		return State.Slide
@@ -78,10 +83,10 @@ func state_check(delta: float) -> int:
 		else:
 			return State.Idle
 	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight: #TODO: better ground check for all states
-		player.timers.coyoteJump.start()
+		timerCoyoteJump.start()
 		return State.Fall
-	if !player.timers.bufferJump.is_stopped():
-		player.timers.bufferJump.stop()
+	if !timerBufferJump.is_stopped():
+		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.coyoteJump)
 		return State.JumpCrouch
 

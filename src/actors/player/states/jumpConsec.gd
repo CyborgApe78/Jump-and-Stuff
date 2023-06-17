@@ -1,6 +1,9 @@
 extends PlayerInfo
 
 
+@export var timerCoyoteJump: Timer
+@export var timerConsecutiveJump: Timer
+
 @export var jumpModifier: float = 0.25
 @export var particles: GPUParticles2D
 
@@ -16,8 +19,8 @@ func enter() -> void:
 	player.sounds.jump.play()
 	particles.restart() #TODO: adjust based on consec number
 	player.velocity.y = jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)
-	player.timers.coyoteJump.stop()
-	player.timers.consecutiveJump.stop()
+	timerCoyoteJump.stop()
+	timerConsecutiveJump.stop()
 	
 	if abilities.currentJumpConsec > 1: #TODO: move to animation
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)

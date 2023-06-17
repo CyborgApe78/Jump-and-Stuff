@@ -1,6 +1,8 @@
 extends PlayerInfo
 #todo: rename to GPDash
 
+@export var timerBufferJump: Timer
+
 func enter() -> void:
 	player.animPlayer.queue("Jump") #TODO: own animation
 	player.sounds.jump.play()
@@ -36,7 +38,7 @@ func handle_input(event: InputEvent) -> int:
 		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide

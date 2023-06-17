@@ -1,8 +1,10 @@
 extends PlayerInfo
 #TODO: further dive if coming from ground pound
 
-@onready var rollTimer: Timer = $RollPressed
-@onready var fallTimer: Timer = $FallTimeMax
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
+@export var fallTimer: Timer
+@export var rollTimer: Timer
 
 @export var rollTime: float = 0.3
 @export var diveSpeedMultiplier: float = 1.6
@@ -46,14 +48,14 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
-			player.timers.coyoteJump.stop()
+		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
+			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 			return State.Fall
 	if Input.is_action_just_pressed("roll"):
 		rollTimer.start()

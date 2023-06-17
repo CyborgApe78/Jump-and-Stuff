@@ -4,6 +4,8 @@ extends PlayerInfo
 #TODO: bounce of enemy changes to another long jump
 #TODO: spin combo, ref https://www.mariowiki.com/Double_kick
 
+@export var timerBufferJump: Timer
+
 @export var jumpModifier: float = 0.9
 @export var velocityModifier: float = 1.35
 @export var particles: GPUParticles2D
@@ -58,7 +60,7 @@ func handle_input(event: InputEvent) -> int:
 		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
@@ -79,7 +81,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
-		if !player.timers.bufferJump.is_stopped():
+		if !timerBufferJump.is_stopped():
 			return State.JumpWall #TODO: add to other states
 		elif topSpeed > moveSpeed:
 			topSpeed = 0
@@ -92,7 +94,7 @@ func state_check(delta: float) -> int:
 #		return State.JumpApex #FixMe: change to fall state if over certian velocity or time 
 	if player.is_on_floor():
 		player.landed()
-		if !player.timers.bufferJump.is_stopped():
+		if !timerBufferJump.is_stopped():
 			if Input.is_action_pressed("crouch"):
 				return State.JumpLong
 			else: 

@@ -2,9 +2,10 @@ extends PlayerInfo
 
 #TODO: add block break indicator
 #LOOKAT: make it more like cape from mario
+@export var timerBufferJump: Timer
+@export var timerCoyoteJumpWall: Timer
 
 var duration: float = 0.3
-@export var jumpWallSaveTimer: Timer
 var dashDirection: int
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
@@ -50,11 +51,11 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		jumpWallSaveTimer.start()
+		timerCoyoteJumpWall.start()
 		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
@@ -73,7 +74,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
-		if !jumpWallSaveTimer.is_stopped():
+		if !timerCoyoteJumpWall.is_stopped():
 			return State.JumpWall #TODO: create JumpReflect
 #		elif topSpeed > moveSpeed: #TODO: add back affter timer
 #			topSpeed = 0

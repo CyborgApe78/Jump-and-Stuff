@@ -1,5 +1,8 @@
 extends PlayerInfo
 
+
+@export var timerBufferJump: Timer
+
 var transformTime: float = 0.1
 
 func enter() -> void:
@@ -47,8 +50,8 @@ func state_check(delta: float) -> int:
 		return State.Walk
 	if !player.is_on_floor():
 		return State.Fall
-	if !player.timers.bufferJump.is_stopped():
-		player.timers.bufferJump.stop()
+	if !timerBufferJump.is_stopped():
+		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
 		return State.Jump
 

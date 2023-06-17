@@ -2,6 +2,10 @@ extends PlayerInfo
 
 #TODO: animation turned on side, think buzz lightyear mixed with mario cape
 
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
+@export var timerConsecutiveJump: Timer
+
 @export var transTime: float = 0.1
 @export var velocityModifier: float = 0.6
 @export var velocityFallModifier: float = 0.3
@@ -58,14 +62,14 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_released("glide"):
 		return State.Fall
 	if Input.is_action_just_pressed("jump"):
-		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
-			player.timers.coyoteJump.stop()
+		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
+			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 			return State.Fall
 	if Input.is_action_just_pressed("dive"):
 		return State.Dive
@@ -86,7 +90,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if player.is_on_floor():
 		player.landed()
-		player.timers.consecutiveJump.start()
+		timerConsecutiveJump.start()
 		if Input.is_action_pressed("crouch"):
 			return State.Crouch
 		elif player.velocity.x != 0: 

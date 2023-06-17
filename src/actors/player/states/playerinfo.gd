@@ -138,7 +138,7 @@ func consecutive_jump_logic() -> int:
 
 func consecutive_jump_cancel() -> void: 
 	player.jumped = false
-	player.timers.consecutiveJump.stop()
+	player.timers.consecutiveJump.stop() #TODO:find a better to cancel timer
 	abilities.reset(PlayerAbilities.list.JumpConsec)
 
 

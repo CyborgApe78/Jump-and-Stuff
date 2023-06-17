@@ -3,6 +3,10 @@ extends PlayerInfo
 #TODO: merge with dash ground
 #LOOKAT: sliding up hill
 
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
+@export var timerConsecutiveJump: Timer
+
 @export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
@@ -17,11 +21,10 @@ func enter() -> void:
 	player.animPlayer.queue("Slide")
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
-	durationTimer.wait_time = duration
-	durationTimer.start()
 	particles.emitting = true
 	player.velocity.y = 0
 	player.velocity.x = player.facing * max(slideVelocity, abs(player.velocity.x))
+	timers()
 
 
 func exit() -> void:
@@ -33,7 +36,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide_rotation()
-	player.timers.consecutiveJump.start()
+	timerConsecutiveJump.start()
 	
 	if !player.is_on_floor():
 		gravity_logic(gravityFall, delta)
@@ -68,12 +71,12 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"): #TODO: grab jump code from roll state
-		if player.is_on_floor() or !player.timers.coyoteJump.is_stopped():  
+		if player.is_on_floor() or !timerCoyoteJump.is_stopped():  
 			return consecutive_jump_logic() #TODO: special jump state
 		if !player.is_on_floor() and player.wallDirection != 0: #FIXME: this needs to check wall and velocity direction are correct
 			return State.JumpLong #TODO: own jump state
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		if player.is_on_floor():
@@ -106,6 +109,10 @@ func state_check(delta: float) -> int:
 		else:
 			return State.Fall
 #	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
-#		player.timers.coyoteJump.stop()
+#		timerCoyoteJump.stop()
 
 	return State.Null
+
+func timers() -> void:
+	durationTimer.wait_time = duration
+	durationTimer.start()

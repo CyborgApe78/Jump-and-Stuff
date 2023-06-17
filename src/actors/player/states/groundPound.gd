@@ -3,6 +3,9 @@ extends PlayerInfo
 #TODO: add dash down upgrade
 #TODO: add states for landing and converting down dash to side
 
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
+
 @export var transTime: float = 0.1
 @export var particles: GPUParticles2D
 
@@ -39,14 +42,14 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
-			player.timers.coyoteJump.stop()
+		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
+			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 			return State.Fall
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide

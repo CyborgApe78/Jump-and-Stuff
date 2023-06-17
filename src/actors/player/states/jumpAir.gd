@@ -1,5 +1,9 @@
 extends PlayerInfo
 
+
+@export var timerCoyoteJump: Timer
+@export var timerConsecutiveJump: Timer
+
 #LOOKAT: make like space jump
 func enter() -> void:
 	GameStats.jumps += 1
@@ -10,8 +14,8 @@ func enter() -> void:
 	player.animPlayer.queue("Jump Air")
 	player.sounds.jump.play()
 	player.velocity.y = jumpVelocity
-	player.timers.coyoteJump.stop()
-	player.timers.consecutiveJump.stop()
+	timerCoyoteJump.stop()
+	timerConsecutiveJump.stop()
 	consecutive_jump_cancel()
 
 

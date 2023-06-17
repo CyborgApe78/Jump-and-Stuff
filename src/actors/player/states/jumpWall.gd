@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #FIXME: coyote wall jump flips sprite away from wall, but returns to face wall without input. adjust facing to match on exit
 
+@export var timerCoyoteJumpWall: Timer
 @export var timerLock: Timer
 @export var particles: GPUParticles2D
 
@@ -19,9 +20,9 @@ func enter() -> void:
 	player.animPlayer.queue("Jump")
 	player.sounds.jump.play()
 	
-	if !player.timers.coyoteJumpWall.is_stopped():
+	if !timerCoyoteJumpWall.is_stopped():
 		jumpDirection = player.lastWallDirection
-		player.timers.coyoteJumpWall.stop()
+		timerCoyoteJumpWall.stop()
 	
 	if player.moveDirection.y == -1: ## up pressed
 		player.characterRig.scale.x = player.wallDirection #TODO: make a function

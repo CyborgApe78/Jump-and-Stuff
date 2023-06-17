@@ -4907,7 +4907,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0029, 6.81721, 36.749, 17.8921, 40.5408, 31.2112)
+points = PackedVector2Array(0, 0, 24.0024, 6.81955, 36.7476, 17.8956, 40.5385, 31.215)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5117,35 +5117,47 @@ script = ExtResource("11_i4f5l")
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("12_ue11e")
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump")]
 script = ExtResource("13_wqbus")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 
 [node name="Skid" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("14_bvej5")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Skid")
 
-[node name="Crouch" type="Node" parent="StateMachine"]
+[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump")]
 script = ExtResource("15_tm0os")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
 script = ExtResource("16_7w1oc")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 
-[node name="Jump" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump")]
 script = ExtResource("17_8xtx5")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 
-[node name="JumpAir" type="Node" parent="StateMachine"]
+[node name="JumpAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump")]
 script = ExtResource("18_hter0")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 
-[node name="JumpConsec" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
+[node name="JumpConsec" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "particles")]
 script = ExtResource("19_00wlk")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpDouble")
 
 [node name="JumpFlip" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
 script = ExtResource("20_crsmm")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
-[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
+[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "particles")]
 script = ExtResource("21_mo3ie")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
 [node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles")]
@@ -5155,8 +5167,9 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 [node name="JumpApex" type="Node" parent="StateMachine"]
 script = ExtResource("23_w0epw")
 
-[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerLock", "particles")]
+[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpWall", "timerLock", "particles")]
 script = ExtResource("24_rjpry")
+timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
 timerLock = NodePath("Timer")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpWall")
 
@@ -5164,25 +5177,28 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpWall")
 wait_time = 0.2
 one_shot = true
 
-[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallTimer", "jumpWallSaveTimer", "consecutiveJumpTimer")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpWall", "timerBufferJump", "timerFall", "timerConsecutiveJump")]
 script = ExtResource("25_bdy8d")
-fallTimer = NodePath("FallTimeMax")
-jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
-consecutiveJumpTimer = NodePath("../../Timers/ConsecutiveJump")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerFall = NodePath("../../Timers/FallTimeMax")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 
-[node name="FallTimeMax" type="Timer" parent="StateMachine/Fall"]
-one_shot = true
-
-[node name="Glide" type="Node" parent="StateMachine"]
+[node name="Glide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump")]
 script = ExtResource("26_uv5su")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 
-[node name="Dive" type="Node" parent="StateMachine"]
+[node name="Dive" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "fallTimer", "rollTimer")]
 script = ExtResource("27_oxfs3")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+fallTimer = NodePath("../../Timers/FallTimeMax")
+rollTimer = NodePath("RollPressed")
 
 [node name="RollPressed" type="Timer" parent="StateMachine/Dive"]
-one_shot = true
-
-[node name="FallTimeMax" type="Timer" parent="StateMachine/Dive"]
 one_shot = true
 
 [node name="BellySlide" type="Node" parent="StateMachine"]
@@ -5208,8 +5224,12 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 script = ExtResource("31_l4kvw")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
-[node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles", "soundJetpack")]
+[node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "dashJumpTimer", "dashJumpRefreshTimer", "durationTimer", "particles", "soundJetpack")]
 script = ExtResource("32_407l4")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
+dashJumpTimer = NodePath("DashJump")
+dashJumpRefreshTimer = NodePath("DashJumpRefresh")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 soundJetpack = NodePath("../../Sounds/Jetpack")
@@ -5220,33 +5240,40 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "jumpWallSaveTimer", "particles", "soundJetpack")]
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "durationTimer", "chainTimer", "jumpWallSaveTimer", "particles", "soundJetpack")]
 script = ExtResource("33_duxhx")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 durationTimer = NodePath("../../Timers/DashDuration")
 chainTimer = NodePath("../../Timers/DashChain")
 jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jumpWallSaveTimer", "particles", "soundJetpack")]
+[node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "timerCoyoteJumpWall", "particles", "soundJetpack")]
 script = ExtResource("36_4y8yc")
-jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashClimb" type="Node" parent="StateMachine" node_paths=PackedStringArray("particles", "soundJetpack")]
+[node name="DashClimb" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "particles", "soundJetpack")]
 script = ExtResource("37_uycm8")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles", "soundJetpack")]
+[node name="DashJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "durationTimer", "particles", "soundJetpack")]
 script = ExtResource("38_u42tb")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="GroundPound" type="Node" parent="StateMachine"]
+[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump")]
 script = ExtResource("38_i65yo")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 
 [node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge")]
 script = ExtResource("39_q31hf")
@@ -5260,11 +5287,15 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="GroundPoundBounce" type="Node" parent="StateMachine"]
+[node name="GroundPoundBounce" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
 script = ExtResource("40_yon7f")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 
-[node name="GrappleHook" type="Node" parent="StateMachine"]
+[node name="GrappleHook" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpWall", "timerBufferJump")]
 script = ExtResource("41_5rahm")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 
 [node name="Spin" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
 script = ExtResource("34_67425")
@@ -5273,16 +5304,22 @@ chainTimer = NodePath("../../Timers/DashChain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "particles")]
+[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "durationTimer", "particles")]
 script = ExtResource("42_24e85")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
-[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "refreshTimer", "jumpBoostTimer", "particles")]
+[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerRefresh", "timerJumpBoost", "particles")]
 script = ExtResource("43_3drow")
-durationTimer = NodePath("../../Timers/DashDuration")
-refreshTimer = NodePath("Refresh")
-jumpBoostTimer = NodePath("JumpBoost")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
+timerDuration = NodePath("Duration")
+timerRefresh = NodePath("Refresh")
+timerJumpBoost = NodePath("JumpBoost")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 
 [node name="Refresh" type="Timer" parent="StateMachine/Roll"]
@@ -5290,6 +5327,8 @@ one_shot = true
 
 [node name="JumpBoost" type="Timer" parent="StateMachine/Roll"]
 one_shot = true
+
+[node name="Duration" type="Timer" parent="StateMachine/Roll"]
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("43_ft5ho")
@@ -5370,6 +5409,9 @@ coyoteJump = NodePath("CoyoteJump")
 coyoteJumpWall = NodePath("CoyoteJumpWall")
 consecutiveJump = NodePath("ConsecutiveJump")
 bufferJump = NodePath("BufferJump")
+
+[node name="FallTimeMax" type="Timer" parent="Timers"]
+one_shot = true
 
 [node name="JumpWallSaver" type="Timer" parent="Timers"]
 wait_time = 0.5

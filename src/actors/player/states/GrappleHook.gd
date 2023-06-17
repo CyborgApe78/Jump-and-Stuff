@@ -1,6 +1,10 @@
 extends PlayerInfo
 
 
+@export var timerCoyoteJump: Timer
+@export var timerCoyoteJumpWall: Timer
+@export var timerBufferJump: Timer
+
 const slowRadius: = 2 * Util.tileSize
 
 
@@ -32,13 +36,13 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		if !player.timers.coyoteJump.is_stopped(): #leave ground, but stil can jump
-			player.timers.coyoteJump.stop()
+		if timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
+			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Coyote Jump")
 			return consecutive_jump_logic()
-		elif !player.timers.coyoteJumpWall.is_stopped(): #leave wall, but stil can jump
-			player.timers.coyoteJumpWall.stop()
+		elif !timerCoyoteJumpWall.is_stopped(): #leave wall, but stil can jump
+			timerCoyoteJumpWall.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Wall Coyote Jump")
 			return State.JumpWall
@@ -48,7 +52,7 @@ func handle_input(event: InputEvent) -> int:
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
 			return State.JumpAir
 		else:
-			player.timers.bufferJump.start()
+			timerBufferJump.start()
 	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive"):

@@ -1,14 +1,18 @@
 extends PlayerInfo
 #TODO: charRig Rotate needs to move to center of crouched and other one block states
 
+@export var timerCoyoteJump: Timer
+@export var timerBufferJump: Timer
+@export var timerConsecutiveJump: Timer
+@export var timerDuration: Timer
+@export var timerRefresh: Timer
+@export var timerJumpBoost: Timer
+
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
 @export var duration: float = 0.5
 @export var refreshPercent: float = 0.8
 @export var velocityModifier: float = 1.5
-@export var durationTimer: Timer
-@export var refreshTimer: Timer
-@export var jumpBoostTimer: Timer
 @export var particles: GPUParticles2D
 
 
@@ -39,7 +43,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
-	player.timers.consecutiveJump.start()
+	timerConsecutiveJump.start() #FIXME: why is this always being called
 	
 	if !player.is_on_floor():
 		gravity_logic(gravityFall, delta)
@@ -76,8 +80,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !player.timers.coyoteJump.is_stopped()) and !player.crouch_ceiling_detect():
-		if jumpBoostTimer.is_stopped():
+	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !timerCoyoteJump.is_stopped()) and !player.crouch_ceiling_detect():
+		if timerJumpBoost.is_stopped():
 			return State.JumpLong #TODO: special jump state
 		else:
 			EventBus.playerActionAnnounce.emit("Early Jump")
@@ -95,10 +99,10 @@ func handle_input(event: InputEvent) -> int:
 		crouchReleased = false
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_pressed("crouch") and Input.is_action_just_pressed("roll"):
-		if refreshTimer.is_stopped():
+	if Input.is_action_just_pressed("roll"):
+		if timerRefresh.is_stopped():
 			return State.Roll
-		else:
+		else: #LOOKat maybe not kick out of roll. fastest speed with timed pressed and key rolling when held
 			EventBus.playerActionAnnounce.emit("Early Roll")
 			return State.Idle
 
@@ -106,7 +110,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if durationTimer.is_stopped():
+	if timerDuration.is_stopped():
 		if player.is_on_floor(): 
 			if player.crouch_ceiling_detect():
 				player.velocity.x = 0
@@ -120,19 +124,19 @@ func state_check(delta: float) -> int:
 			else:
 				return State.Idle
 		else: #LOOKAT: is this needed  !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight:
-			player.timers.coyoteJump.start()
+			timerCoyoteJump.start()
 			return State.Fall
 #	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
-#		player.timers.coyoteJump.stop()
+#		timerCoyoteJump.stop()
 
 	return State.Null
 
 
 func timers() -> void:
-	durationTimer.wait_time = duration
-	durationTimer.start()
+	timerDuration.wait_time = duration
+	timerDuration.start()
 	refreshTime = duration * refreshPercent
-	refreshTimer.wait_time = refreshTime
-	refreshTimer.start()
+	timerRefresh.wait_time = refreshTime
+	timerRefresh.start()
 	jumpBoostTime = duration * refreshPercent
-	jumpBoostTimer.start()
+	timerJumpBoost.start()
