@@ -4908,7 +4908,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0031, 6.81751, 36.7498, 17.8922, 40.5427, 31.2112)
+points = PackedVector2Array(0, 0, 24.0032, 6.81763, 36.7503, 17.8922, 40.544, 31.2111)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
