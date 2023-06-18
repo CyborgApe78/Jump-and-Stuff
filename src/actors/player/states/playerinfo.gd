@@ -48,7 +48,7 @@ func update_stats() -> void:
 	frictionGround = moveSpeed / stats.baseFriction
 	accelerationAir = moveSpeed / (stats.baseAcceleration * stats.airModifier)
 	frictionAir = moveSpeed / (stats.baseFriction * stats.airModifier)
-	dashVelocity = moveSpeed * 5
+	dashVelocity = moveSpeed * 3
 	
 	jumpHeight = stats.baseJumpHeight * Util.tileSize
 	gravityJump = 2 * jumpHeight / pow(jumpTimeToPeak, 2)
