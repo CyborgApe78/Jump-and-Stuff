@@ -23,6 +23,7 @@ func physics(delta) -> void:
 	else:
 		gravity_logic(gravityFall/4, delta)
 		fall_speed_logic(terminalVelocity/4)
+	player.velocity.x = 10 * player.wallDirection
 
 
 func visual(delta) -> void:
