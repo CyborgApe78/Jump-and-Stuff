@@ -47,6 +47,8 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if timerStun.is_stopped():
+		if Input.is_action_pressed("crouch"):
+			return State.Crouch
 		if player.moveDirection.x != 0:
 			return State.Walk
 		else:
