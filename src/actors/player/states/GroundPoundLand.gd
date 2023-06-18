@@ -6,11 +6,10 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 @export var soundeffect: AudioStreamPlayer
 
-@export var stunDuration: float = 0.3
+@export var stunDuration: float = 0.2
 
 
 func enter() -> void:
-	#particles.restart()
 	abilities.reset(PlayerAbilities.list.JumpAir)
 	abilities.reset(PlayerAbilities.list.Dash)
 	abilities.reset(PlayerAbilities.list.DashChain)
@@ -39,9 +38,12 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to charge
-		return State.GroundPoundBounce
-
+	if Input.is_action_just_pressed("jump"):
+		return State.JumpCrouch #TODO: own state
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to charge
+		return State.DashGroundPound
+		#TODO:dash give velocity reverse (aimable), direction give wall break
+	
 	return State.Null
 
 

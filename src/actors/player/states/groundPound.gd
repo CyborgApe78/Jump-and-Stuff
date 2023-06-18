@@ -72,6 +72,10 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.GPBounce = player.velocity
 	if player.is_on_floor():
-		return State.GroundPoundLand
+		if !Input.is_action_pressed("ground_pound"):
+			player.landed()
+			return State.GroundPoundBounce
+		else:
+			return State.GroundPoundLand
 
 	return State.Null

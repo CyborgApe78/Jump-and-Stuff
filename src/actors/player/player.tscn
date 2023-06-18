@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=105 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_l4kvw"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGround.gd" id="32_407l4"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashAir.gd" id="33_duxhx"]
+[ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashUp.gd" id="34_67425"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="36_4y8yc"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashClimb.gd" id="37_uycm8"]
@@ -4907,7 +4908,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0024, 6.81962, 36.7478, 17.8956, 40.539, 31.215)
+points = PackedVector2Array(0, 0, 24.0031, 6.81751, 36.7498, 17.8922, 40.5427, 31.2112)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5182,6 +5183,8 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 [node name="JumpApex" type="Node" parent="StateMachine"]
 script = ExtResource("23_w0epw")
 
+[node name="JumpGroundPound" type="Node" parent="StateMachine"]
+
 [node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpWall", "timerLock", "particles", "soundeffect")]
 script = ExtResource("24_rjpry")
 timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
@@ -5287,6 +5290,11 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
+
+[node name="DashGroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "soundeffect")]
+script = ExtResource("34_16e5c")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+soundeffect = NodePath("../../Sounds/jump")
 
 [node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump")]
 script = ExtResource("38_i65yo")

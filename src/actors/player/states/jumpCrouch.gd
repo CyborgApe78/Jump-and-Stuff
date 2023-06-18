@@ -1,5 +1,5 @@
 extends PlayerInfo
-#LOOKAT: maybe a charge jump
+
 
 @export var soundeffect: AudioStreamPlayer
 
