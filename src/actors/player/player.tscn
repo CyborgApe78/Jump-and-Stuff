@@ -4907,7 +4907,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.003, 6.81808, 36.7497, 17.8929, 40.5429, 31.212)
+points = PackedVector2Array(0, 0, 24.0024, 6.81962, 36.7478, 17.8956, 40.539, 31.215)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5382,12 +5382,12 @@ shape = SubResource("RectangleShape2D_gvx04")
 [node name="Ground" type="Node2D" parent="Raycasts"]
 
 [node name="Left" type="RayCast2D" parent="Raycasts/Ground"]
-position = Vector2(-32, -16)
+position = Vector2(-24, -16)
 target_position = Vector2(0, 26)
 collision_mask = 2
 
 [node name="Right" type="RayCast2D" parent="Raycasts/Ground"]
-position = Vector2(32, -16)
+position = Vector2(24, -16)
 target_position = Vector2(0, 26)
 collision_mask = 2
 
@@ -5408,12 +5408,12 @@ collision_mask = 2
 [node name="Crouch" type="Node2D" parent="Raycasts"]
 
 [node name="Left" type="RayCast2D" parent="Raycasts/Crouch"]
-position = Vector2(-32, -56)
+position = Vector2(-24, -56)
 target_position = Vector2(0, -64)
 collision_mask = 2
 
 [node name="Right" type="RayCast2D" parent="Raycasts/Crouch"]
-position = Vector2(32, -56)
+position = Vector2(24, -56)
 target_position = Vector2(0, -64)
 collision_mask = 2
 
@@ -5422,7 +5422,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
+blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
