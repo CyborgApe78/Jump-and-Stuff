@@ -5217,8 +5217,9 @@ rollTimer = NodePath("RollPressed")
 [node name="RollPressed" type="Timer" parent="StateMachine/Dive"]
 one_shot = true
 
-[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundSlide")]
+[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDiveJump", "soundSlide")]
 script = ExtResource("28_w0ybt")
+timerDiveJump = NodePath("DiveJump")
 soundSlide = NodePath("../../Sounds/bodySlide")
 
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
@@ -5349,6 +5350,7 @@ one_shot = true
 one_shot = true
 
 [node name="Duration" type="Timer" parent="StateMachine/Roll"]
+one_shot = true
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("43_ft5ho")
