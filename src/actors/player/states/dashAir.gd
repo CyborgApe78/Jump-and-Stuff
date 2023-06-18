@@ -4,13 +4,16 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
-
-var duration: float = 0.5
-@export var durationTimer: Timer
-@export var chainTimer: Timer #TODO: visual feedback when chain can be used
-@export var jumpWallSaveTimer: Timer
+@export var timerLongJump: Timer ## Currrently not used, was going to be long distance if jump timing hit
+@export var timerDuration: Timer
+@export var timerChain: Timer #TODO: visual feedback when chain can be used
+@export var timerJumpWallSave: Timer
 @export var particles: GPUParticles2D #TODO: make rest of particles for states like this
 @export var soundJetpack: AudioStreamPlayer
+
+var duration: float = 0.5
+
+
 
 #TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump
 
@@ -35,7 +38,7 @@ func exit() -> void:
 	particles.local_coords = false
 	particles.emitting = false
 	if player.moveDirection.x != 0:
-		player.velocity.x = player.velocityPrevious.x
+		player.velocity.x = player.velocityPrevious.x #LOOKAT: confused on why it is using previous velocity
 	player.ability_mask(CollisionLayers.DashSide, true)
 
 func physics(delta) -> void:
@@ -53,18 +56,18 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		jumpWallSaveTimer.start()
+		timerJumpWallSave.start()
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+			player.velocity.x = 0
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
+			player.velocity.x = 0
 			return State.Fall
-	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
-		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
@@ -80,22 +83,27 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
-		if !jumpWallSaveTimer.is_stopped():
+		if !timerJumpWallSave.is_stopped():
 			return State.JumpWall #TODO: create JumpReflect
 		elif topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
-	if durationTimer.is_stopped():
-		if player.is_on_floor():
+	if timerDuration.is_stopped():
+		if Input.is_action_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
+			return State.Glide
+		elif player.is_on_floor():
+			player.velocity.x = player.velocity.x/2
 			player.landed()
 			return State.Walk
 		else:
+			player.velocity.x = player.velocity.x/2
 			return State.Fall
 
 	return State.Null
 
 
 func timers() -> void:
-	durationTimer.wait_time = duration
-	durationTimer.start()
-	chainTimer.start()
+	timerDuration.wait_time = duration
+	timerDuration.start()
+	timerChain.start()
+	timerLongJump.wait_time = duration * 0.8

@@ -4908,7 +4908,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0032, 6.81763, 36.7503, 17.8922, 40.544, 31.2111)
+points = PackedVector2Array(0, 0, 24.0027, 6.82027, 36.7492, 17.8959, 40.5425, 31.2151)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5261,15 +5261,19 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "durationTimer", "chainTimer", "jumpWallSaveTimer", "particles", "soundJetpack")]
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerLongJump", "timerDuration", "timerChain", "timerJumpWallSave", "particles", "soundJetpack")]
 script = ExtResource("33_duxhx")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
-durationTimer = NodePath("../../Timers/DashDuration")
-chainTimer = NodePath("../../Timers/DashChain")
-jumpWallSaveTimer = NodePath("../../Timers/JumpWallSaver")
+timerLongJump = NodePath("LongJump")
+timerDuration = NodePath("../../Timers/DashDuration")
+timerChain = NodePath("../../Timers/DashChain")
+timerJumpWallSave = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
+
+[node name="LongJump" type="Timer" parent="StateMachine/DashAir"]
+one_shot = true
 
 [node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "timerCoyoteJumpWall", "particles", "soundJetpack")]
 script = ExtResource("36_4y8yc")
