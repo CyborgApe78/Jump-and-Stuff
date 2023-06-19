@@ -13,10 +13,8 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	rollTimer.wait_time = rollTime
-	fallTimer.wait_time = fallTimeTillBonk
+	timers()
 	neutral_move_direction_logic()
-	fallTimer.start()
 	player.velocity.x = max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)) * player.facing  ## dive at dive speed or current velocity, whichever's high
 	player.velocity.y = -100
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
@@ -77,9 +75,9 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-		if !rollTimer.is_stopped(): #TODO
+		if !rollTimer.is_stopped():
 			return State.Roll
-		if fallTimer.is_stopped():
+		elif fallTimer.is_stopped():
 			return State.BonkGround
 		else:
 #			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
@@ -88,3 +86,8 @@ func state_check(delta: float) -> int:
 			return State.BellySlide
 
 	return State.Null
+
+func timers() -> void:
+	rollTimer.wait_time = rollTime
+	fallTimer.wait_time = fallTimeTillBonk
+	fallTimer.start()
