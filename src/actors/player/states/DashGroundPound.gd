@@ -8,7 +8,7 @@ extends PlayerInfo
 func enter() -> void:
 	player.animPlayer.queue("Jump") #TODO: own animation
 	soundeffect.play()
-	player.velocity.y = -player.GPBounce.y/3 #LOOKAT: might need a max speed #TODO: rename 
+	player.velocity.y = -player.GPMaxVelocity.y/3 #LOOKAT: might need a max speed #TODO: rename 
 
 
 func exit() -> void:

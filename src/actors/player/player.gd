@@ -31,7 +31,7 @@ var aimStrength: Vector2 = Vector2.ZERO
 var groundAngle: float
 var velocityPrevious: Vector2 = Vector2.ZERO
 var velocityRotated: Vector2 = Vector2.ZERO
-var GPBounce: Vector2 = Vector2.ZERO
+var GPMaxVelocity: Vector2 = Vector2.ZERO
 
 var targetGrapple: TargetGrapple
 

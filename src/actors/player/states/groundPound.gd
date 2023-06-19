@@ -70,7 +70,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if !player.is_on_floor():
-		player.GPBounce = player.velocity
+		player.GPMaxVelocity = player.velocity
 	if player.is_on_floor():
 		if !Input.is_action_pressed("ground_pound"):
 			player.landed()
