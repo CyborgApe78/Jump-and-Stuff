@@ -106,7 +106,7 @@ func state_check(delta: float) -> int:
 			else:
 				return State.Crouch
 		elif !timerBufferJump.is_stopped():
-				return State.JumpLong
+				return State.Jump
 		elif player.velocity.x != 0:
 			return State.Walk
 		else:
