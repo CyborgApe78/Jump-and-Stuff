@@ -1,20 +1,20 @@
 extends PlayerInfo
 
-#TODO: if coming from double create special jump
-#TODO: bounce of enemy changes to another long jump
-#TODO: spin combo, ref https://www.mariowiki.com/Double_kick
 
 @export var timerBufferJump: Timer
+@export var rollTimer: Timer
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
 
 @export var jumpModifier: float = 0.9
 @export var velocityModifier: float = 1.35
+@export var rollTime: float = 0.3
 
 var startingHeight: int
 
 
 func enter() -> void:
+	timers()
 	GameStats.jumps += 1
 	EventBus.playerJumped.emit()
 	startingHeight = player.global_position.y
@@ -44,7 +44,6 @@ func physics(delta) -> void:
 		neutral_air_momentum_logic(moveSpeed)
 	else:
 		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
-	#TODO add control lockout or deminished air turn
 	
 	track_top_speed(player.velocity.x)
 
@@ -61,14 +60,14 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 #		if player.wall_detection(15) != 0:
 #			return State.JumpWall
-		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
-		return State.Dive
+#	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
+#		return State.Dive ## not needed since it changes to fall state automagically
 #	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 #		return State.GroundPound ## turned off so long jump chaining is easier
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
@@ -78,7 +77,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 #	if !Input.is_action_pressed("crouch"):
 		#TODO: change velocity based on whether crouch is held
-	#TODO: long jump into roll. if crouch is pressed and roll is just pressed
+	if Input.is_action_pressed("crouch") and Input.is_action_just_pressed("roll"):
+		rollTimer.start()
 
 	return State.Null
 
@@ -88,7 +88,7 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped():
-			return State.JumpWall #TODO: add to other states
+			return State.JumpWall
 		elif topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
@@ -96,16 +96,18 @@ func state_check(delta: float) -> int:
 			return State.WallLand
 		else:
 			return State.WallSlide
-#	if player.velocity.y > -jumpApexHeight:
-#		return State.JumpApex #FixMe: change to fall state if over certian velocity or time 
 	if player.is_on_floor():
 		player.landed()
-		if !timerBufferJump.is_stopped():
-			if Input.is_action_pressed("crouch"):
+		if Input.is_action_pressed("crouch"):
+			if !timerBufferJump.is_stopped():
 				return State.JumpLong
-			else: 
-				return State.Jump
-		if player.velocity.x != 0:
+			elif !rollTimer.is_stopped():
+				return State.Roll
+			else:
+				return State.Crouch
+		elif !timerBufferJump.is_stopped():
+				return State.JumpLong
+		elif player.velocity.x != 0:
 			return State.Walk
 		else:
 			return State.Idle
@@ -113,3 +115,6 @@ func state_check(delta: float) -> int:
 		return State.Fall
 
 	return State.Null
+
+func timers() -> void:
+	rollTimer.wait_time = rollTime
