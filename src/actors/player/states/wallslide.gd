@@ -4,6 +4,8 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 
 func enter() -> void:
+	player.characterRig.scale.x = -player.wallDirection
+	player.animPlayer.play("Wall Slide")
 	player.wall_detection()
 	player.velocityPrevious = player.velocity
 	player.velocity.y = 0
@@ -11,6 +13,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.animPlayer.stop()
 	player.particles.wallSlide.emitting = false
 
 
