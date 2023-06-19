@@ -1,13 +1,12 @@
 extends Resource
 class_name PlayerUpgrades
 
-#TODO: PSpeed/Speedboost, light, velocity redirect from wall grab
 
 var unlockedProtectionHeat: bool = false:
 	set(v):
 		unlockedProtectionHeat = v
 		if unlockedProtectionHeat:
-			EventBus.playerUpgradeUnlock.emit(list.protectionHeat) #TODO: move to unlocker
+			EventBus.playerUpgradeUnlock.emit(list.protectionHeat)
 
 var unlockedProtectionCold: bool = false:
 	set(v):
@@ -39,7 +38,7 @@ var unlockedDashChain: bool = false:
 		if unlockedDashChain:
 			EventBus.playerUpgradeUnlock.emit(list.dashChain)
 
-var unlockedDashTeleport: bool = false: #TODO:
+var unlockedDashTeleport: bool = false:
 	set(v):
 		unlockedDashTeleport = v
 		if unlockedDashTeleport:
@@ -51,15 +50,9 @@ var unlockedLight: bool = false:
 		if unlockedLight:
 			EventBus.playerUpgradeUnlock.emit(list.light)
 
-
-#var maxJumpAir: int = 1 #TODO: move to here
-#var maxDash: int = 1
-#var maxDashChain: int = 2
-#var maxJumpConsec: int = 1 #TODO: move to here
-
 enum list {
 	Null,
-	All, #LOOKAT: Remove
+	All,
 	protectionHeat,
 	protectionCold,
 	protectionWater,
@@ -93,4 +86,4 @@ func unlock(upgrade: int, BOOL:bool) -> void:
 	elif upgrade == list.light:
 		unlockedLight = BOOL
 	else:
-		EventBus.error.emit("Null Upgrade Unlocked " + str(upgrade) + " " + str(BOOL)) #TODO get name
+		EventBus.error.emit("Null Upgrade Unlocked " + str(upgrade) + " " + str(BOOL))

@@ -1,6 +1,5 @@
 extends MarginContainer
 
-#TODO: setting to disable hud
 #TODO: don't announce from debug
 
 @onready var announceLabel: RichTextLabel = $MarginContainer/Label

@@ -8,7 +8,7 @@ extends PlayerInfo
 @export var timerDuration: Timer
 @export var timerChain: Timer #TODO: visual feedback when chain can be used
 @export var timerJumpWallSave: Timer
-@export var particles: GPUParticles2D #TODO: make rest of particles for states like this
+@export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
 
 var duration: float = 0.5

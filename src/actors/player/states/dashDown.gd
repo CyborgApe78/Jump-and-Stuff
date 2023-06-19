@@ -1,14 +1,12 @@
 extends PlayerInfo
 
-#TODO: add block break indicator
-#TODO: move this back to ground pound
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 
 @export var duration: float = 0.3
 @export var durationTimer: Timer
-@export var chainTimer: Timer #TODO: visual feedback when chain can be used
+@export var chainTimer: Timer
 @export var floorTime: float = 0.1
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
@@ -39,7 +37,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	gravity_logic(gravityFall, delta) #LOOKAT: need a fall speed cap?
+	gravity_logic(gravityFall, delta)
 
 
 func visual(delta) -> void:
@@ -56,7 +54,7 @@ func handle_input(event: InputEvent) -> int:
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
-		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
@@ -80,10 +78,10 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if !player.is_on_floor():
-		player.GPBounce = player.velocity
+		player.GPMaxVelocity = player.velocity
 	var floorTimer: float
 	floorTimer = floorTime
-	if player.is_on_ceiling(): #TODO: bonk ceiling
+	if player.is_on_ceiling():
 		return State.Fall
 	if player.is_on_floor():
 		floorTimer -= delta

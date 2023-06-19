@@ -9,7 +9,8 @@ extends AbilityBlockBase
 var playerInHazard: bool = false
 var correctAbility: bool = false
 var damageAmount: int = 1
-#
+
+
 #func _ready() -> void:
 #	detectorCollision.shape = collisionShape.shape
 #	detectorCollision.shape.extents.x = collisionShape.shape.extents.x

@@ -4908,7 +4908,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0027, 6.82027, 36.7492, 17.8959, 40.5425, 31.2151)
+points = PackedVector2Array(0, 0, 24.0023, 6.82025, 36.7475, 17.8965, 40.5386, 31.216)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5169,9 +5169,10 @@ script = ExtResource("20_crsmm")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
-[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "soundeffect", "particles")]
+[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "rollTimer", "soundeffect", "particles")]
 script = ExtResource("21_mo3ie")
 timerBufferJump = NodePath("../../Timers/BufferJump")
+rollTimer = NodePath("../Dive/RollPressed")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 

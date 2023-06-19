@@ -1,12 +1,12 @@
 extends PlayerInfo
 
-#LOOKTAT: probably remove, kills precision. maybe like celeste were you are given one from pickup
+#LOOKAT: probably remove, kills precision. maybe like celeste were you are given one from pickup
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var soundeffect: AudioStreamPlayer
 
-#LOOKAT: make like space jump
+
 func enter() -> void:
 	GameStats.jumps += 1
 	EventBus.playerJumped.emit()

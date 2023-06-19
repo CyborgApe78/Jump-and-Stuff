@@ -47,11 +47,10 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
-		return State.Glide
-#	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
-#		return State.Dive TODO: maybe keep but need to go away from wall
-	#TODO: add dive
+	if Input.is_action_just_pressed("grab"):
+		return State.WallGrab
+	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+		return State.Dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):

@@ -3,7 +3,7 @@ extends AbilityBlockBase
 func _ready() -> void:
 	body_entered.connect(_on_reset_entered)
 
-func _on_reset_entered(body: Player) -> void: #TODO: Change to energy
+func _on_reset_entered(body: Player) -> void:
 	if ability == PlayerAbilities.list.All:
 		Abilities.reset(PlayerAbilities.list.All)
 	elif ability == PlayerAbilities.list.DashSide:

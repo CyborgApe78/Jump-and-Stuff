@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: merge with dash ground
 #LOOKAT: sliding up hill
 
 @export var timerCoyoteJump: Timer
@@ -93,9 +92,9 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
-		return State.Idle #LOOKAT: could mess things up
+		return State.Idle
 	if durationTimer.is_stopped(): #TODO: upgrade that keeps sliding to
-		if player.is_on_floor(): #TODO: if keeping make cd timer
+		if player.is_on_floor():
 			if player.crouch_ceiling_detect():
 				player.velocity.x = 0
 				return State.Crouch
@@ -103,7 +102,7 @@ func state_check(delta: float) -> int:
 				player.velocity.x = 0
 				return State.Crouch
 			elif player.moveDirection.x != 0:
-				return State.Walk #lookat: interaction with speedboost
+				return State.Walk
 			else:
 				return State.Idle
 		else:

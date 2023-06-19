@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#FIXME: merge with slide
+#FIXME: merge with slide or maybe this could start speed booster in shinespark
 #TODO: add block break indicator
 
 @export var timerCoyoteJump: Timer
@@ -17,9 +17,6 @@ extends PlayerInfo
 
 var isJumping: bool = false
 var saveTriple: bool
-
-#TODO: reverse ultra jump
-#TODO: save triple or more for super/ultra
 
 
 func enter() -> void:
@@ -70,7 +67,7 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.playerActionAnnounce.emit("Coyote Jump")
 		isJumping = true
 		if dashJumpRefreshTimer.is_stopped(): ## dash jump with dash count reset
-			abilities.reset(PlayerAbilities.list.Dash)  #TODO: Change to energy
+			abilities.reset(PlayerAbilities.list.Dash)
 #			player.dashCDTimer.stop()  #TODO
 			EventBus.playerActionAnnounce.emit("Ultra Jump")
 			return consecutive_jump_logic()
@@ -95,7 +92,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if durationTimer.is_stopped():
 		if player.is_on_floor(): #TODO: if keeping make cd timer
-			abilities.reset(PlayerAbilities.list.Dash)  #TODO: Change to energy
+			abilities.reset(PlayerAbilities.list.Dash)
 			return State.Walk
 		else:
 			return State.Fall

@@ -1,9 +1,5 @@
 extends Resource
 class_name PlayerAbilities
-#TODO: move to player scripts, to use signals
-#TODO:: dashchain and jumpchain. Change jump consec to jump chain
-#TODO: all abilities should get an upgrade and shards/modifires/charms
-#TODO: add unlockable skills enum
 
 
 var unlockedJumpAir: bool = false:
@@ -54,7 +50,7 @@ var unlockedDive: bool = true:
 	set(v):
 		unlockedDive = v
 
-var unlockedGroundPound: bool = true: #TODO: create default unlocked abilities
+var unlockedGroundPound: bool = true:
 	set(v):
 		unlockedGroundPound = v
 
@@ -71,8 +67,6 @@ var unlockedSlide: bool = false:
 #var unlockedSwimDash: bool = false
 #var unlockedBurrow: bool = false
 
-#TODO: add things like jump, move left, move right for cursed rando
-#TODO: change to energy
 var maxJumpAir: int = 1
 var maxDash: int = 1
 var maxDashSide: int = 1
@@ -109,8 +103,7 @@ var currentDashChain: int = 0:
 	set(v):
 		currentDashChain = clamp(v, 0, maxDashChain)
 
-#FIXME: look at making specific lists for specific funcs
-enum list { #TODO: jump flip, etc
+enum list {
 	Null,
 	All,
 	JumpAll,
@@ -139,7 +132,7 @@ enum list { #TODO: jump flip, etc
 	Burrow,
 	}
 
-enum listAbilityBlock { #TODO: convert blocks to this
+enum listAbilityBlock {
 	Null,
 	All,
 	DashSide,
@@ -156,7 +149,7 @@ enum listAbilityBlock { #TODO: convert blocks to this
 enum listAbilityTarget {Null, grappleHook, burrow}
 
 
-func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
+func unlock(ability: int, BOOL:bool) -> void:
 	if ability == list.All:
 		unlockedJumpAir = BOOL
 		unlockedJumpConsec = BOOL
@@ -202,7 +195,7 @@ func unlock(ability: int, BOOL:bool) -> void: #TODO: add rest
 	else:
 		EventBus.error.emit("Null Ability Unlocked " + str(ability) + " " + str(BOOL))
 
-#TODO: move to PlayerInfo create health and energy variables
+
 func can_use(ability: int) -> bool:
 	if ability == list.JumpAir and remainingJumpAir > 0 and unlockedJumpAir:
 		return true
@@ -235,7 +228,7 @@ func can_use(ability: int) -> bool:
 	
 	return false
 
-func chain_check(ability: int) -> bool: #TODO: need to remove and reset currentChain
+func chain_check(ability: int) -> bool:
 	if currentDashChain < maxDashChain:
 		if ability == list.DashSide and unlockedDashSide:
 			return true

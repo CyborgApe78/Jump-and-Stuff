@@ -1,7 +1,6 @@
 extends Resource
 class_name GameStats
 
-#TODO: more
 
 var timePlayed: float = 0
 var deaths: float = 0

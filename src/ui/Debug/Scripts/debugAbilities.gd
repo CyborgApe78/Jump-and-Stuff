@@ -71,7 +71,7 @@ func _on_jump_consec_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.JumpConsec, button_pressed)
 
 
-func _on_jump_consec_amount_item_selected(index: int) -> void: #TODO: move to stats
+func _on_jump_consec_amount_item_selected(index: int) -> void:
 	Abilities.maxJumpConsec = index + 1
 
 

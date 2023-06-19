@@ -29,7 +29,7 @@ func check(BOOL) -> void:
 	buttonDashChain.button_pressed = Upgrades.unlockedDashChain
 	buttonLight.button_pressed = Upgrades.unlockedLight
 	
-	dashChainAmount.selected = Abilities.maxDashChain -1 #TODO: move to stats
+	dashChainAmount.selected = Abilities.maxDashChain -1
 
 
 func _on_upgrades_all_toggled(button_pressed: bool) -> void:
@@ -66,7 +66,7 @@ func _on_dash_chain_toggled(button_pressed: bool) -> void:
 	Upgrades.unlock(PlayerUpgrades.list.dashChain, button_pressed)
 
 
-func _on_dash_chain_amount_item_selected(index: int) -> void: #TODO: move to stats
+func _on_dash_chain_amount_item_selected(index: int) -> void:
 	Abilities.maxDashChain = index + 1
 
 

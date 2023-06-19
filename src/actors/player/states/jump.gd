@@ -8,7 +8,7 @@ extends PlayerInfo
 #TODO: look into combine jump and jumpConsec
 
 func enter() -> void:
-	GameStats.jumps += 1 #TODO: remove and create stats recorder
+	GameStats.jumps += 1
 	EventBus.playerJumped.emit()
 	topSpeed = 0
 	neutral_move_direction_logic()

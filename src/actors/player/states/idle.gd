@@ -12,7 +12,7 @@ func enter() -> void:
 	player.set_up_direction(Vector2.UP)
 	player.animPlayer.queue("Idle")
 	if player.characterRig.skew != 0:
-		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT) #LOOKAT: move to player info
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(player.characterRig, "skew", 0, transformTime).from_current()
 
 
@@ -32,7 +32,7 @@ func visual(delta) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_pressed("crouch"): 
 		return State.Crouch
-	if Input.is_action_just_pressed("jump"): #LOOKAT: can't consec jump from idle, watch if that causes problems
+	if Input.is_action_just_pressed("jump"):
 		return State.Jump
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)

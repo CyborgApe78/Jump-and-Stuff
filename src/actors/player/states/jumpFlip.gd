@@ -27,7 +27,7 @@ func enter() -> void:
 func exit() -> void:
 	player.animPlayer.stop()
 	soundeffect.pitch_scale = 1
-	player.characterRotate.rotation_degrees = 0  #LOOKAT: maybe make a timer tp set back to zero
+	player.characterRotate.rotation_degrees = 0  #LOOKAT: maybe make a timer to set back to zero
 	player.characterCollision.rotation_degrees = 0 
 
 

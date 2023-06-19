@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: break left and right apart
 #TODO: get friction from enviroment
 #TODO: add nuetral input
 
@@ -31,7 +30,7 @@ func physics(delta) -> void:
 		player.velocity.x = player.lastMoveDirection.x * 1
 	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
 		apply_acceleration(accelerationGround, delta)
-	elif player.moveDirection.x == 0: #FIXME: friction is too low if retaining speed over movespeed
+	elif player.moveDirection.x == 0:
 		apply_friction(frictionGround, delta)
 	elif abs(player.velocity.x) >= moveSpeed:
 		momentum_logic(moveSpeed, true)
@@ -64,8 +63,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.DashGround
 	if Input.is_action_just_pressed("slide"):
 		return State.Slide
-	if Input.is_action_just_pressed("speed_boost"): #TODO: add unlock
-		return State.SpeedBoost
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 

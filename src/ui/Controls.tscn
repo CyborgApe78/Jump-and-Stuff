@@ -65,6 +65,14 @@ offset_right = 995.0
 offset_bottom = 143.0
 text = "Crouch"
 
+[node name="Grab" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 116.0
+offset_right = 1114.0
+offset_bottom = 142.0
+text = "Grab"
+
 [node name="StoreSpeed" type="Label" parent="."]
 layout_mode = 0
 offset_left = 938.0

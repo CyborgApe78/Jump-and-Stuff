@@ -21,7 +21,6 @@ class_name  Player
 @onready var detectorCrouchRight: RayCast2D = $Raycasts/Crouch/Right
 @onready var grappleHookLine: Line2D = $GrappleHook
 
-var eyeDirection: int = 1 #TODO: randomizer on spawn
 var moveDirection: Vector2 = Vector2.ZERO
 var lastMoveDirection: Vector2 = Vector2.ZERO
 var moveStrength: Vector2 = Vector2.ZERO
@@ -39,7 +38,7 @@ var neutralMoveDirection: bool = false
 
 var wallDirection: int = 0 
 var lastWallDirection: int = 0
-var facing: int = 1 #FIXME: better facing logic
+var facing: int = 1
 
 var jumped: bool
 var ledgeLeft: bool
@@ -86,11 +85,10 @@ func move_and_slide_rotation() -> void:
 	velocity = velocity.rotated(-rotation)
 
 
-func get_move_input() -> void: #FIXME: acts weird when x input is close to center
+func get_move_input() -> void:
 	var deadzoneRadius: float = 0.2
 	#TODO: make deadzone radius in settings
 	var inputStrength: = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
-	#TODO: need to add input get_vector
 	var aimInput = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	
 	moveStrength = inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
@@ -110,7 +108,6 @@ func facing_logic():
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(characterRig, "scale", Vector2(lastMoveDirection.x, characterRig.scale.y), 0.4).from_current()
 		facing = lastMoveDirection.x
-		#TODO: look into finding another way to do
 
 func ledge_detection() -> void:
 	if is_on_floor() and !detectorGroundLeft.is_colliding():
@@ -126,7 +123,6 @@ func ledge_detection() -> void:
 
 func attempt_vertical_corner_correction(amount: int, delta) -> void:
 	if test_move(global_transform, Vector2(velocity.x * delta, 0)): 
-		#FIXME: need to check if angled ceiling and cancel
 		for i in range(1, amount*2+1):
 			for j in [-1.0, 1.0]:
 				if !test_move(global_transform.translated(Vector2(0, i * j / 2)), Vector2(velocity.x * delta, 0)):
@@ -231,7 +227,7 @@ func default_ability_mask() -> void:
 func teleport_player(location: Vector2) -> void:
 	global_position = location
 	velocity = Vector2.ZERO
-	#TODO: dificulty setting for healing on teleport
+	#TODO: healing on teleport
 
 
 func animation_speed(scale: float) -> void:

@@ -1,8 +1,6 @@
 extends Node
 class_name PlayerState
 
-#TODO: States: Roll, Swim, Swim Dash, Grapple/hookshot, Bash
-
 
 enum State {
 	Null,

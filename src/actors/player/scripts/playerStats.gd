@@ -1,7 +1,6 @@
 extends Resource
 class_name PlayerStats
 
-#TODO: update PlayerInfo with new stats
 
 var healthMax: int = 4:
 	set(v):
@@ -24,7 +23,6 @@ var energyMax: float = 1:
 		energyMax += v
 		energyMax = max(0, energyMax)
 
-#TODO: move things that won't change to playerInfo
 var baseAcceleration: float = 1.2
 var baseFriction: float = 1.0
 var airModifier: float = 1.2

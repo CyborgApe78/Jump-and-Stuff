@@ -8,7 +8,7 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 
 var wallHop: bool
-var jumpDirection: int #TODO: change to jumpDirection 
+var jumpDirection: int
 
 
 func enter() -> void:
@@ -27,7 +27,7 @@ func enter() -> void:
 		
 	## up pressed
 	if player.moveDirection.y == -1:
-		player.characterRig.scale.x = player.wallDirection #TODO: make a function
+		player.characterRig.scale.x = player.wallDirection #TODO: use facing func
 		player.velocity = Vector2(100 * -jumpDirection, jumpVelocity * 1.0)
 		EventBus.playerActionAnnounce.emit("Wall Up")
 	## down pressed
@@ -52,7 +52,7 @@ func enter() -> void:
 		player.velocity = Vector2(200 * -jumpDirection, jumpVelocity * 0.8)
 		wallHop = true
 	
-	particles.restart() #TODO: get direction from wall direction
+	particles.restart()
 	topSpeed = 0
 
 
@@ -115,7 +115,7 @@ func state_check(delta: float) -> int:
 		if player.is_on_ceiling():
 			consecutive_jump_cancel()
 			return State.Fall
-		if player.is_on_wall() and topSpeed > moveSpeed: #TODO: wallland if going up
+		if player.is_on_wall() and topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 		if player.velocity.y > -jumpApexHeight:

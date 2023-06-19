@@ -1,8 +1,6 @@
 extends PlayerState
 class_name PlayerInfo
 
-#TODO: look into making ability groups (dash, air, ground, swim) they control sending to particular states
-
 
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
@@ -31,7 +29,7 @@ var upHillFrictionModifier: float = 2.0
 var flatGroundFrictionModifier: float = 1.75
 var downHillAccel: float = 50
 
-var topSpeed: int ## keeps track of player speed for bonking #LOOKAT: might need to be state by state, from leftover variable
+var topSpeed: int ## keeps track of player speed for bonking
 
 func _ready() -> void:
 	EventBus.playerStatsCheck.connect(update_stats)
@@ -102,7 +100,7 @@ func air_velocity_logic(speed: float, acceleration: float, friction: float, delt
 			apply_acceleration(acceleration, delta)
 		elif player.moveDirection.x == 0:
 			apply_friction(friction, delta)
-		elif abs(player.velocity.x) >= speed: #LOOKAT: remove
+		elif abs(player.velocity.x) >= speed:
 			momentum_logic(speed, true)
 
 
@@ -156,11 +154,9 @@ func neutral_move_direction_logic() -> void:
 
 func neutral_air_momentum_logic(speed) -> void:
 	if player.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
-		#TODO: variable to keep speed and timer 
 		player.neutralMoveDirection = false
 
 
 func track_top_speed(speed:int) -> void:
-	#LOOKAT: might break if char is rotated
 	if abs(player.velocity.x) > topSpeed:
 		topSpeed = abs(speed)

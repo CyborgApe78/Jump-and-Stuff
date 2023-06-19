@@ -50,7 +50,7 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump") and (sign(player.velocity.x) != player.moveDirection.x) and skidLockTime > 0:
 		consecutive_jump_cancel()
-		return State.JumpFlip #TODO: make unlockable
+		return State.JumpFlip
 #	if Input.is_action_just_pressed("dash") and abilities.can_use(abilities.list.DashSide):
 #		return State.Dash $TODO: make special interaction
 
@@ -64,8 +64,6 @@ func state_check(delta: float) -> int:
 		else:
 			player.velocity.x = 0
 			return State.Walk
-#	if player.moveDirection.x == 0:
-#			return State.Walk
-	
+
 
 	return State.Null
