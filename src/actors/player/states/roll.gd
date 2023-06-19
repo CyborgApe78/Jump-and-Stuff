@@ -69,7 +69,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	player.animPlayer.speed_scale = abs(player.velocity.x) * .0008
+	player.animation_speed(.0008)
 	align_to_ground()
 
 

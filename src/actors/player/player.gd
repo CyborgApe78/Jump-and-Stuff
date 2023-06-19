@@ -234,8 +234,8 @@ func teleport_player(location: Vector2) -> void:
 	#TODO: dificulty setting for healing on teleport
 
 
-func animation_speed() -> void:
-	animPlayer.speed_scale = abs(velocity.x) * .004 #TODO: turn to var
+func animation_speed(scale: float) -> void:
+	animPlayer.speed_scale = abs(velocity.x) * scale
 
 
 func _on_health_component_health_changed(healthCurrent: int) -> void:

@@ -45,7 +45,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	player.animation_speed()
+	player.animation_speed(0.004)
 	player.facing_logic()
 	speed_bend(false) #TODO: move to animation tree
 	align_to_ground()

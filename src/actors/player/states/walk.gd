@@ -43,18 +43,15 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	player.animation_speed()
+	player.animation_speed(.004)
 	player.facing_logic()
 	speed_bend(false) #TODO: create own bend function
 	align_to_ground()
 	
 
 
-func sound(delta: float) -> void: #TODO: move to animPlayer
+func sound(delta: float) -> void:
 		pass
-#	if !soundeffect.playing:
-#		soundeffect.pitch_scale = randf_range(0.8, 1.2)
-#		soundeffect.play()
 
 
 func handle_input(event: InputEvent) -> int:
