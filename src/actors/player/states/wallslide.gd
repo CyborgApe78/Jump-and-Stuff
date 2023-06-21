@@ -10,6 +10,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	player.velocity.y = 0
 	particles.emitting = true
+	abilities.reset(PlayerAbilities.list.All)
 
 
 func exit() -> void:
@@ -31,7 +32,6 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	pass 
-	#TODO: need to move facing func to each state
 
 
 func sound(delta: float) -> void:
@@ -51,10 +51,9 @@ func handle_input(event: InputEvent) -> int:
 		return State.WallGrab
 	if Input.is_action_just_pressed("jump"):
 		return State.JumpWall
-	#TODO: add dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"): #TODO:dash wall
+	if Input.is_action_just_pressed("dash"):
 		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
 			return State.DashClimb
 		elif abilities.can_use(PlayerAbilities.list.DashSide):
