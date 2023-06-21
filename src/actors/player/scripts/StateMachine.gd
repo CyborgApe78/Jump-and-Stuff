@@ -66,7 +66,7 @@ func change_state(newState: int) -> void:
 		previousState = currentState
 		previousStateName = previousState.name
 #		PlayerState.statePrevious = previousState #FIXME: set states in PlayerState
-#		player.previousState = currentState
+		player.previousState = previousState.name
 		#TODO: make black list check
 	
 	currentState = states[newState]
@@ -75,7 +75,7 @@ func change_state(newState: int) -> void:
 	player.currentStateName = currentState.name
 	
 	EventBus.debugState.emit(currentStateName + " from " + previousStateName)
-	EventBus.playerStateChange.emit(currentStateName + " from " + previousStateName) #TODO: make tab for state changes
+	EventBus.playerStateChange.emit(currentStateName + " from " + previousStateName)
 
 
 func init() -> void:

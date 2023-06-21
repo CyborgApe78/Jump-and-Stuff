@@ -1,5 +1,5 @@
 extends PlayerInfo
-#TODO: further dive if coming from ground pound
+
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -13,9 +13,12 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	if player.previousState == "GroundPound":
+		player.velocity.x = max(moveSpeed * 2, abs(player.velocity.x)) * player.facing
+	else: ## dive at dive speed or current velocity, whichever's high
+		player.velocity.x = max(moveSpeed, abs(player.velocity.x)) * player.facing
 	timers()
-	neutral_move_direction_logic()
-	player.velocity.x = max(moveSpeed * diveSpeedMultiplier, abs(player.velocity.x)) * player.facing  ## dive at dive speed or current velocity, whichever's high
+	neutral_move_direction_logic()	  
 	player.velocity.y = -100
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRotate, "rotation_degrees", 45 * player.facing, transformTime).from(0)

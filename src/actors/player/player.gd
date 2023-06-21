@@ -45,6 +45,7 @@ var ledgeLeft: bool
 var ledgeRight: bool
 
 var currentStateName
+var previousState
 
 var groundColor: Color = Color.BLACK
 
