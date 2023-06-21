@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: add block break indicator
+
 #LOOKAT: make it more like cape from mario
 @export var timerBufferJump: Timer
 @export var timerCoyoteJumpWall: Timer
@@ -12,7 +12,6 @@ var dashDirection: int
 
 
 func enter() -> void:
-	GameStats.dashSide += 1 #TODO: own stat
 	EventBus.playerDashed.emit()
 	soundJetpack.play()
 	player.animPlayer.queue("Dash Side Air")
@@ -76,8 +75,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
 		if !timerCoyoteJumpWall.is_stopped():
 			return State.JumpWall #TODO: create JumpReflect
-#		elif topSpeed > moveSpeed: #TODO: add back affter timer
-#			topSpeed = 0
-#			return State.BonkAir
+		elif topSpeed > moveSpeed: #TODO: add back affter timer
+			topSpeed = 0
+			return State.BonkAir
 
 	return State.Null

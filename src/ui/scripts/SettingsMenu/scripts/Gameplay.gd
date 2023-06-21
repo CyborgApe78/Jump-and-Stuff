@@ -1,6 +1,5 @@
 extends VBoxContainer
 
-#TODO: toggle should be on to the left and off to the right
 
 @export var buttonAimIndicator: CheckButton
 var SettingsFile: Resource = preload("res://src/resources/SettingsConfig.tres")

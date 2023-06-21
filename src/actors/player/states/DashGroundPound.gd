@@ -6,9 +6,10 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	player.animPlayer.queue("Jump") #TODO: own animation
+	EventBus.playerJumped.emit()
+	player.animPlayer.queue("Jump")
 	soundeffect.play()
-	player.velocity.y = -player.GPMaxVelocity.y/3 #LOOKAT: might need a max speed #TODO: rename 
+	player.velocity.y = -player.GPMaxVelocity.y/3 #LOOKAT: might need a max speed
 
 
 func exit() -> void:

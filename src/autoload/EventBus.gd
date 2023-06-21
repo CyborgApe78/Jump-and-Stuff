@@ -13,6 +13,8 @@ signal teleportPlayer(location)
 signal playerDashed
 signal playerJumped
 
+signal playerDied
+
 signal checkpointEntered
 
 signal debugState(info)

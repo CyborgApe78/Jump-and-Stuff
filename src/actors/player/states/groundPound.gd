@@ -1,7 +1,7 @@
 extends PlayerInfo
 
 #TODO: add dash down upgrade
-#TODO: add states for landing and converting down dash to side
+#TODO: add states converting down dash to side
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -12,7 +12,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	player.velocity.y = max(moveSpeed, abs(player.velocity.y))
-	player.animPlayer.queue("Ground Pound") #TODO: use signals to send to animationtree
+	player.animPlayer.queue("Ground Pound")
 	if player.characterRotate.rotation_degrees != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(player.characterRotate, "rotation_degrees", 0, transTime).from(0)
@@ -46,7 +46,7 @@ func handle_input(event: InputEvent) -> int:
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
-		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()

@@ -1,10 +1,8 @@
 extends PlayerInfo
 
-#INGGAME: Rocket Jump, Shinespark inspired
-#TODO: remove duration
-#TODO: needs to be charged from SpeedBoost, 
-#TODO: delay for aiming
-#TODO: add block break indicator
+#INGGAME: Rocket Jump, Shinespark and Ori charge jump
+#TODO: make state to aim
+
 @export var timerBufferJump: Timer
 
 @export var duration: float = 0.3
@@ -15,13 +13,12 @@ extends PlayerInfo
 
 func enter() -> void:
 	soundJetpack.play()
-	GameStats.dashSide += 1 #TODO: own stat
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	timers()
 	particles.local_coords = true
 	particles.emitting = true
-	player.velocity = player.aimDirection * dashVelocity * 1.6  #TODO: find a more forgiving way to get 8 directions
+	player.velocity = player.aimDirection * dashVelocity * 1.6
 	player.ability_mask(CollisionLayers.DashJump, false)
 
 
@@ -45,9 +42,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	#TODO: less states to go into
 	if Input.is_action_just_pressed("jump"):
-		if abilities.can_use(PlayerAbilities.list.JumpAir): #TODO: ground check to use buffer instead of double jump
+		if abilities.can_use(PlayerAbilities.list.JumpAir):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()

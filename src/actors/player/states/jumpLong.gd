@@ -15,7 +15,6 @@ var startingHeight: int
 
 func enter() -> void:
 	timers()
-	GameStats.jumps += 1
 	EventBus.playerJumped.emit()
 	startingHeight = player.global_position.y
 	topSpeed = 0

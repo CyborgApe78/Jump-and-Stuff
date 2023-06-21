@@ -12,7 +12,6 @@ var jumpDirection: int
 
 
 func enter() -> void:
-	GameStats.jumps += 1 
 	EventBus.playerJumped.emit()
 	timerLock.start()
 	jumpDirection = player.wall_detection(30)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpn0y7ftimcj5"]
+[gd_scene load_steps=3 format=3 uid="uid://dpn0y7ftimcj5"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/PauseMenu.gd" id="1_7xjbr"]
-[ext_resource type="Script" path="res://src/ui/scripts/buttons/MainMenuButton.gd" id="3_i0or6"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_q2n8j"]
 
 [node name="PauseMenu" type="CenterContainer"]
@@ -63,7 +62,6 @@ text = "Settings"
 visible = false
 layout_mode = 2
 text = "Main Menu"
-script = ExtResource("3_i0or6")
 
 [node name="Quit" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -75,5 +73,4 @@ script = ExtResource("4_q2n8j")
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Quit" to="MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_pressed"]

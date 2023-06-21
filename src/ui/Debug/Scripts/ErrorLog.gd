@@ -13,7 +13,6 @@ func _ready() -> void:
 	EventBus.error.connect(enter_error_text)
 	EventBus.playerStateChange.connect(enter_state_text)
 	EventBus.playerActionAnnounce.connect(enter_action_text)
-	#TODO: also send to log when that is added
 
 
 func show_debug(BOOL) -> void:

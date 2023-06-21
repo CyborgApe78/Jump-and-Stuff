@@ -1,6 +1,5 @@
 extends MarginContainer
 
-#TODO: don't announce from debug
 
 @onready var announceLabel: RichTextLabel = $MarginContainer/Label
 @onready var announceTimer: Timer = $Timer
@@ -93,7 +92,7 @@ func announce_ability_unlock(ability: int) -> void:
 	elif ability == PlayerAbilities.list.Dive:
 		announce(str("Dive Unlocked"))
 	else:
-		EventBus.emit_signal("debug", str("ability unlock error: ", ability)) #TODO: make debug log
+		EventBus.debug.emit(str("ability unlock error: ", ability))
 
 
 func announce_upgrade_unlock(upgrade: int) -> void:
@@ -110,4 +109,4 @@ func announce_upgrade_unlock(upgrade: int) -> void:
 	elif upgrade == PlayerUpgrades.list.protectionLava:
 		announce(str("Lava Protection Unlocked"))
 	else:
-		EventBus.emit_signal("debug", str("ability unlock error: ", upgrade)) #TODO: make debug log
+		EventBus.debug.emit(str("ability unlock error: ", upgrade))

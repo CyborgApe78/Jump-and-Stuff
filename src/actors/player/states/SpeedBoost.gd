@@ -41,13 +41,12 @@ func physics(delta) -> void:
 	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
 		player.velocity.x = move_toward(player.velocity.x, 0, frictionGround)
 		EventBus.helperUsed.emit(Util.helper.stopOnLedge)
-		#TODO: make callable function
 
 
 func visual(delta) -> void:
 	player.animation_speed(0.004)
 	player.facing_logic()
-	speed_bend(false) #TODO: move to animation tree
+	speed_bend(false)
 	align_to_ground()
 
 
@@ -57,7 +56,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_pressed("store_boost"): 
-		pass #TODO: store energy
+		pass
 	if Input.is_action_just_pressed("jump"):
 		return consecutive_jump_logic()
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):

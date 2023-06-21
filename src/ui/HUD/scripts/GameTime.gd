@@ -1,12 +1,11 @@
 extends MarginContainer
 
 
-#TODO: dungeon time
 var SettingsFile: Resource = preload("res://src/resources/SettingsConfig.tres")
 var stats: Resource = preload("res://src/resources/gameStats.tres")
 
 @onready var labelTime: RichTextLabel = $MarginContainer/TimeLabel
-#var timePlayed: float #LOOKAT: ok to always update resource
+#var timePlayed: float 
 var strTimeElapsed: String
 
 

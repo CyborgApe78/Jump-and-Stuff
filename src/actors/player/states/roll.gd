@@ -1,5 +1,5 @@
 extends PlayerInfo
-#TODO: charRig Rotate needs to move to center of crouched and other one block states
+
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer

@@ -5573,7 +5573,7 @@ explosiveness = 0.7
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0027, 6.81882, 36.7485, 17.8943, 40.5404, 31.2136)
+points = PackedVector2Array(0, 0, 24.0027, 6.81845, 36.7487, 17.8938, 40.5407, 31.213)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6102,7 +6102,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

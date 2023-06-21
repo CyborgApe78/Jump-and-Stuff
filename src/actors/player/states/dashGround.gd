@@ -1,7 +1,5 @@
 extends PlayerInfo
 
-#FIXME: merge with slide or maybe this could start speed booster in shinespark
-#TODO: add block break indicator
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
@@ -21,7 +19,6 @@ var saveTriple: bool
 
 func enter() -> void:
 	soundJetpack.play()
-	GameStats.dashSide += 1
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false

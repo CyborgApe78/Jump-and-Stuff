@@ -14,7 +14,6 @@ extends PlayerInfo
 
 func enter() -> void:
 	soundJetpack.play()
-	GameStats.dashUp += 1
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	timers()
@@ -56,7 +55,7 @@ func handle_input(event: InputEvent) -> int:
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
-		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
@@ -77,8 +76,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_ceiling(): #TODO: bonk ceiling
-		return State.Fall
+	if player.is_on_ceiling():
+		return State.BonkAir
 	if durationTimer.is_stopped():
 		return State.Fall
 

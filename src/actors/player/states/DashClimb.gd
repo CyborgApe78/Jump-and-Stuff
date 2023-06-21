@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: add block break indicator
 #FIXME: use wall direction to control particles
 
 @export var timerBufferJump: Timer
@@ -11,7 +10,6 @@ var duration: float = 0.3
 
 
 func enter() -> void:
-	GameStats.dashSide += 1 #TODO: own stat
 	EventBus.playerDashed.emit()
 	soundJetpack.play()
 	player.velocityPrevious = player.velocity
@@ -42,7 +40,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		if abilities.can_use(PlayerAbilities.list.JumpAir): #TODO: ground check to use buffer instead of double jump
+		if abilities.can_use(PlayerAbilities.list.JumpAir):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
