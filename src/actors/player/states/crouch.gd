@@ -82,7 +82,7 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
-	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight: #TODO: better ground check for all states
+	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight.is_colliding():
 		timerCoyoteJump.start()
 		return State.Fall
 	if !timerBufferJump.is_stopped():
