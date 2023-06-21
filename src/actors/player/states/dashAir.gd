@@ -20,7 +20,6 @@ var duration: float = 0.5
 
 func enter() -> void:
 	soundJetpack.play()
-	GameStats.dashSide += 1 #TODO: change to signal
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
 	timers()
@@ -28,7 +27,10 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true 
 	player.velocity.y = 0
-	player.velocity.x = player.facing * dashVelocity
+	if player.is_on_wall():
+		player.velocity.x = -player.wallDirection * dashVelocity
+	else:
+		player.velocity.x = player.facing * dashVelocity
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 
