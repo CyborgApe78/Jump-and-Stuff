@@ -42,12 +42,11 @@ func handle_input(event: InputEvent) -> int:
 	#TODO: add dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"): #TODO:dash wall
+	if Input.is_action_just_pressed("dash"):
 		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
 			return State.DashClimb
-		elif abilities.can_use(PlayerAbilities.list.DashSide):
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
+		elif abilities.can_use(PlayerAbilities.list.DashWall): #TODO: add charge
+			return State.DashWall
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 
