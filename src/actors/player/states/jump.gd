@@ -8,15 +8,13 @@ extends PlayerInfo
 #TODO: look into combine jump and jumpConsec
 
 func enter() -> void:
-	GameStats.jumps += 1
 	EventBus.playerJumped.emit()
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
 	player.velocity.y = jumpVelocity
-	timerCoyoteJump.stop()
-	timerConsecutiveJump.stop()
+	timers()
 	player.jumped = true
 
 
@@ -91,3 +89,8 @@ func state_check(delta: float) -> int:
 			return State.Idle
 
 	return State.Null
+
+
+func timers () -> void:
+	timerCoyoteJump.stop()
+	timerConsecutiveJump.stop()
