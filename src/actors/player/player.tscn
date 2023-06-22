@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=107 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -277,6 +277,19 @@ scale_curve = SubResource("CurveTexture_vjq7j")
 color = Color(0, 0, 0, 1)
 hue_variation_min = -0.12
 hue_variation_max = 0.2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nwdm1"]
+emission_shape = 1
+emission_sphere_radius = 16.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 140.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 15.0
+scale_max = 20.0
 
 [sub_resource type="Gradient" id="Gradient_obg28"]
 interpolation_mode = 2
@@ -5570,10 +5583,21 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 0.7
 
+[node name="ChainIndicator" type="GPUParticles2D" parent="CharacterRig/CharacterRotate/Particles"]
+position = Vector2(0, -64)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_nwdm1")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.3
+local_coords = true
+
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0022, 6.81943, 36.7467, 17.8958, 40.5363, 31.2154)
+points = PackedVector2Array(0, 0, 24.003, 6.81778, 36.7496, 17.8926, 40.5424, 31.2117)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5934,7 +5958,7 @@ timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerLongJump = NodePath("LongJump")
 timerDuration = NodePath("../../Timers/DashDuration")
-timerChain = NodePath("../../Timers/DashChain")
+timerChain = NodePath("../../Timers/Chain")
 timerJumpWallSave = NodePath("../../Timers/JumpWallSaver")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
@@ -6000,7 +6024,7 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 [node name="Spin" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
 script = ExtResource("34_67425")
 durationTimer = NodePath("../../Timers/DashDuration")
-chainTimer = NodePath("../../Timers/DashChain")
+chainTimer = NodePath("../../Timers/Chain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
@@ -6012,15 +6036,15 @@ timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
-[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerRefresh", "timerJumpBoost", "particles")]
+[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerChain", "particles", "particleChain")]
 script = ExtResource("43_3drow")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 timerDuration = NodePath("Duration")
-timerRefresh = NodePath("Refresh")
-timerJumpBoost = NodePath("JumpBoost")
+timerChain = NodePath("../../Timers/Chain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
+particleChain = NodePath("../../CharacterRig/CharacterRotate/Particles/ChainIndicator")
 
 [node name="Refresh" type="Timer" parent="StateMachine/Roll"]
 one_shot = true
@@ -6056,6 +6080,8 @@ health = NodePath("../HealthComponent")
 [node name="HitboxCollision" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -56)
 shape = SubResource("RectangleShape2D_gvx04")
+
+[node name="VelocityComponent" type="Node" parent="."]
 
 [node name="Raycasts" type="Node2D" parent="."]
 
@@ -6102,7 +6128,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
+blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -6142,7 +6168,7 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
-[node name="DashChain" type="Timer" parent="Timers"]
+[node name="Chain" type="Timer" parent="Timers"]
 wait_time = 0.2
 one_shot = true
 
@@ -6240,4 +6266,5 @@ points = PackedVector2Array(8, 0, 24, 0)
 [connection signal="timeout" from="StateMachine/WallLand/Hold" to="StateMachine/WallLand" method="_on_hold_timeout"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]
-[connection signal="timeout" from="Timers/DashChain" to="." method="_on_dash_chain_timeout"]
+[connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
+[connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]

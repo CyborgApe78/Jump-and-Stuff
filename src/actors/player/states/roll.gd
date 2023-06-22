@@ -5,15 +5,15 @@ extends PlayerInfo
 @export var timerBufferJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var timerDuration: Timer
-@export var timerRefresh: Timer
-@export var timerJumpBoost: Timer
+@export var timerChain: Timer
 
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
-@export var duration: float = 0.5
+@export var duration: float = 1.0
 @export var refreshPercent: float = 0.8
 @export var velocityModifier: float = 1.5
 @export var particles: GPUParticles2D
+@export var particleChain: GPUParticles2D
 
 
 var crouchReleased: bool = false
@@ -37,6 +37,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop()
+	timerChain.stop()
 	particles.emitting = false
 
 
@@ -81,7 +82,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !timerCoyoteJump.is_stopped()) and !player.crouch_ceiling_detect():
-		if timerJumpBoost.is_stopped():
+		if timerChain.is_stopped():
 			return State.JumpLong #TODO: special jump state
 		else:
 			EventBus.playerActionAnnounce.emit("Early Jump")
@@ -100,7 +101,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("roll"):
-		if timerRefresh.is_stopped():
+		if timerChain.is_stopped():
 			return State.Roll
 		else: #LOOKat maybe not kick out of roll. fastest speed with timed pressed and key rolling when held
 			EventBus.playerActionAnnounce.emit("Early Roll")
@@ -136,7 +137,9 @@ func timers() -> void:
 	timerDuration.wait_time = duration
 	timerDuration.start()
 	refreshTime = duration * refreshPercent
-	timerRefresh.wait_time = refreshTime
-	timerRefresh.start()
-	jumpBoostTime = duration * refreshPercent
-	timerJumpBoost.start()
+	timerChain.wait_time = refreshTime
+	timerChain.start()
+
+
+func _on_chain_timeout() -> void:
+	particleChain.restart()
