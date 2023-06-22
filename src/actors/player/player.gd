@@ -72,6 +72,7 @@ func _physics_process(delta: float) -> void:
 		ledge_detection()
 	
 	EventBus.debugVelocity.emit(velocity.round())
+#	EventBus.debug.emit(facing)
 
 
 func _process(delta: float) -> void:
