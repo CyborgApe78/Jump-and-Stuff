@@ -11,6 +11,7 @@ extends PlayerInfo
 @export var rollTime: float = 0.3
 
 var startingHeight: int
+var velocityLongJump: float
 
 
 func enter() -> void:
@@ -24,7 +25,9 @@ func enter() -> void:
 	soundeffect.play()
 	particles.restart()
 	player.velocity.y = jumpVelocity * jumpModifier
-	player.velocity.x = max(moveSpeed * velocityModifier, abs(player.velocity.x)) * player.facing
+	velocityLongJump = moveSpeed * velocityModifier
+#	player.velocity.x = max(moveSpeed * velocityModifier, abs(player.velocity.x)) * player.facing
+
 
 func exit() -> void:
 	player.animPlayer.stop()
@@ -40,9 +43,17 @@ func physics(delta) -> void:
 	gravity_logic(gravityJump, delta)
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
+		neutral_move_direction_logic()
+		if abs(player.velocity.x) < velocityLongJump:
+			player.velocity.x = move_toward(abs(player.velocity.x), velocityLongJump, (moveSpeed * 3) * delta) * player.facing
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+		if player.moveDirection.x != 0:
+			if player.moveDirection.x != player.facing:
+#				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
+				apply_friction(moveSpeed * 2, delta)
+			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < velocityLongJump:
+#					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
+					player.velocity.x = move_toward(abs(player.velocity.x), velocityLongJump, (moveSpeed * 3) * delta) * player.facing
 	
 	track_top_speed(player.velocity.x)
 
@@ -107,7 +118,10 @@ func state_check(delta: float) -> int:
 		elif !timerBufferJump.is_stopped():
 				return State.Jump
 		elif player.velocity.x != 0:
-			return State.Walk
+			if player.moveDirection.x != sign(player.velocity.x) and player.moveDirection.x != 0:
+				return State.Skid
+			else:
+				return State.Walk
 		else:
 			return State.Idle
 	if player.is_on_ceiling():
