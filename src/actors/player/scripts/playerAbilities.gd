@@ -38,6 +38,10 @@ var unlockedDashJump: bool = false:
 	set(v):
 		unlockedDashJump = v
 
+var unlockedDashChain: bool = false:
+	set(v):
+		unlockedDashChain = v
+
 var unlockedGrappleHook: bool = false:
 	set(v):
 		unlockedGrappleHook = v
@@ -159,6 +163,7 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedDashWall = BOOL
 		unlockedDashClimb = BOOL
 		unlockedDashJump = BOOL
+		unlockedDashChain = BOOL
 		unlockedGlide = BOOL
 		unlockedDive = BOOL
 		unlockedGroundPound = BOOL
@@ -180,6 +185,8 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedDashClimb = BOOL
 	elif ability == list.DashJump:
 		unlockedDashJump = BOOL
+	elif ability == list.DashChain:
+		unlockedDashChain = BOOL
 	elif ability == list.GrappleHook:
 		unlockedGrappleHook = BOOL
 	elif ability == list.Slide:
@@ -229,8 +236,10 @@ func can_use(ability: int) -> bool:
 	return false
 
 func chain_check(ability: int) -> bool:
-	if currentDashChain < maxDashChain:
-		if ability == list.DashSide and unlockedDashSide:
+	if unlockedDashChain and currentDashChain < maxDashChain:
+		if ability == list.DashChain:
+			return true
+		elif ability == list.DashSide and unlockedDashSide:
 			return true
 		elif ability == list.DashUp and unlockedDashUp:
 			return true
@@ -290,5 +299,7 @@ func consume(ability: int, amount: int) -> void:
 		remainingDashDown -= amount
 	elif ability == list.DashDown:
 		remainingDashDown -= amount
+	elif ability == list.DashChain:
+		currentDashChain += amount
 	else:
 		EventBus.error.emit("Null Ability Consume " + str(ability)) #TODO: create error log

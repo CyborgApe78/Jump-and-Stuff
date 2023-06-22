@@ -5597,7 +5597,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.003, 6.81778, 36.7496, 17.8926, 40.5424, 31.2117)
+points = PackedVector2Array(0, 0, 24.0029, 6.81705, 36.7487, 17.892, 40.5401, 31.2112)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6214,7 +6214,6 @@ stream = ExtResource("56_v8j0l")
 volume_db = -10.636
 
 [node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("detector", "indicatorAim", "indicatorTarget")]
-visible = false
 position = Vector2(0, -64)
 script = ExtResource("57_n4b1h")
 detector = NodePath("Detector")

@@ -11,7 +11,7 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
 
-var duration: float = 0.5
+var duration: float = 1
 
 
 
@@ -42,6 +42,7 @@ func exit() -> void:
 	if player.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x #LOOKAT: confused on why it is using previous velocity
 	player.ability_mask(CollisionLayers.DashSide, true)
+	timerChain.stop()
 
 func physics(delta) -> void:
 	player.move_and_slide()
@@ -74,9 +75,13 @@ func handle_input(event: InputEvent) -> int:
 		return State.Dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
-		abilities.consume(PlayerAbilities.list.DashSide, 1)
-		return State.DashAir
+	if Input.is_action_just_pressed("dash"):  #FIXME: gets called as soon as state is enter
+		if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.DashChain, 1)
+			return State.DashAir
+		elif abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.DashSide, 1)
+			return State.DashAir
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 
@@ -107,5 +112,7 @@ func state_check(delta: float) -> int:
 func timers() -> void:
 	timerDuration.wait_time = duration
 	timerDuration.start()
-	timerChain.start()
+	timerChain.wait_time = duration * 0.8
+	if abilities.chain_check(PlayerAbilities.list.DashChain):
+		timerChain.start()
 	timerLongJump.wait_time = duration * 0.8

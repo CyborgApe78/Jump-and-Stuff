@@ -26,7 +26,7 @@ func check(BOOL) -> void:
 	buttonProtectionWater.button_pressed = Upgrades.unlockedProtectionWater
 	buttonProtectionAcid.button_pressed = Upgrades.unlockedProtectionAcid
 	buttonProtectionLava.button_pressed = Upgrades.unlockedProtectionLava
-	buttonDashChain.button_pressed = Upgrades.unlockedDashChain
+	buttonDashChain.button_pressed = Abilities.unlockedDashChain
 	buttonLight.button_pressed = Upgrades.unlockedLight
 	
 	dashChainAmount.selected = Abilities.maxDashChain -1
@@ -63,7 +63,7 @@ func _on_protection_lava_toggled(button_pressed: bool) -> void:
 
 
 func _on_dash_chain_toggled(button_pressed: bool) -> void:
-	Upgrades.unlock(PlayerUpgrades.list.dashChain, button_pressed)
+	Abilities.unlock(PlayerAbilities.list.DashChain, button_pressed)
 
 
 func _on_dash_chain_amount_item_selected(index: int) -> void:
