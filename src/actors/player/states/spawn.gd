@@ -9,13 +9,12 @@ extends PlayerInfo
 func enter() -> void:
 	if CheckpointSystem.get_respawn() != Vector2.ZERO:
 		player.global_position = CheckpointSystem.get_respawn()
-	player.animPlayer.play("Spawn")
+#	player.animPlayer.play("Spawn") #breaks some states
 	EventBus.playerStatsCheck.emit()
 
 
 func exit() -> void:
 	player.animPlayer.stop()
-	player.characterRig.scale = Vector2(1,1) ## Makes sure character is full size ##
 
 
 func physics(delta) -> void:
