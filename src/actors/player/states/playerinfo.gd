@@ -63,8 +63,8 @@ func gravity_logic(amount: float, delta) -> void:
 	player.velocity.y += amount * delta
 
 
-func apply_acceleration(amount: float, delta) -> void: #TODO: add bool for user input use
-	player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, amount * delta) * player.moveStrength.x
+func apply_acceleration(speed: float, amount: float, delta: float) -> void: #TODO: add bool for user input use
+	player.velocity.x = move_toward(abs(player.velocity.x), speed, amount * delta) * player.moveStrength.x
 
 
 func apply_friction(amount: float, delta) -> void:
@@ -97,7 +97,7 @@ func air_velocity_logic(speed: float, acceleration: float, friction: float, delt
 		if player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x:
 			player.velocity.x = player.lastMoveDirection.x * 1
 		elif player.moveDirection.x != 0 and abs(player.velocity.x) < speed:
-			apply_acceleration(acceleration, delta)
+			apply_acceleration(speed, acceleration, delta)
 		elif player.moveDirection.x == 0:
 			apply_friction(friction, delta)
 		elif abs(player.velocity.x) >= speed:

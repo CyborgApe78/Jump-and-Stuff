@@ -64,13 +64,13 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide_rotation()
-	#FIXME: create full velocity logic, currently can back to wall sometimes
+	#FIXME: create full velocity logic, currently can back to wall sometimes, look at long jump state change
 	if timerLock.is_stopped():
 		if player.neutralMoveDirection:
 			neutral_air_momentum_logic(moveSpeed)
 		else:
 			if player.moveDirection.x != 0:
-				apply_acceleration(accelerationAir, delta)
+				apply_acceleration(moveSpeed, accelerationAir, delta)
 			elif player.moveDirection.x == 0:
 				apply_friction(frictionAir, delta)
 	gravity_logic(gravityJump, delta)

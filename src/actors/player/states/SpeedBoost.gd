@@ -32,7 +32,7 @@ func physics(delta) -> void:
 	if abs(player.velocity.x) > pMoveSpeed  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
 	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
-		apply_acceleration(accelerationGround, delta)
+		apply_acceleration(moveSpeed, accelerationGround, delta)
 	elif player.moveDirection.x == 0:
 		apply_friction(frictionGround, delta)
 	elif abs(player.velocity.x) >= moveSpeed:
