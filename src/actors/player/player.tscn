@@ -6090,12 +6090,10 @@ shape = SubResource("RectangleShape2D_gvx04")
 [node name="Left" type="RayCast2D" parent="Raycasts/Ground"]
 position = Vector2(-24, -16)
 target_position = Vector2(0, 26)
-collision_mask = 2
 
 [node name="Right" type="RayCast2D" parent="Raycasts/Ground"]
 position = Vector2(24, -16)
 target_position = Vector2(0, 26)
-collision_mask = 2
 
 [node name="Wall" type="Node2D" parent="Raycasts"]
 
@@ -6103,25 +6101,21 @@ collision_mask = 2
 position = Vector2(-32, -56)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(-5, 0)
-collision_mask = 2
 
 [node name="Right" type="ShapeCast2D" parent="Raycasts/Wall"]
 position = Vector2(32, -56)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(5, 0)
-collision_mask = 2
 
 [node name="Crouch" type="Node2D" parent="Raycasts"]
 
 [node name="Left" type="RayCast2D" parent="Raycasts/Crouch"]
 position = Vector2(-24, -56)
 target_position = Vector2(0, -64)
-collision_mask = 2
 
 [node name="Right" type="RayCast2D" parent="Raycasts/Crouch"]
 position = Vector2(24, -56)
 target_position = Vector2(0, -64)
-collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"

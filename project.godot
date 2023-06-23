@@ -237,9 +237,12 @@ toggle_debug={
 
 [layer_names]
 
-2d_physics/layer_1="Don't Use"
-2d_physics/layer_2="Ground"
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Semisolid"
 2d_physics/layer_7="Player"
+2d_physics/layer_13="DashSide"
+2d_physics/layer_14="DashUp"
+2d_physics/layer_15="DashDown"
 
 [rendering]
 
