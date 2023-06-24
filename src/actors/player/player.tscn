@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=111 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/GroundPound.gd" id="38_i65yo"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="38_u42tb"]
 [ext_resource type="Script" path="res://src/actors/player/states/GroundPoundLand.gd" id="39_q31hf"]
+[ext_resource type="Script" path="res://src/actors/player/states/BashAim.gd" id="39_wb8jk"]
 [ext_resource type="Script" path="res://src/actors/player/states/GroundPoundBounce.gd" id="40_yon7f"]
 [ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="41_5rahm"]
 [ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="42_24e85"]
@@ -46,6 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://bxio7mtc2sse1" path="res://src/object/components/health_component.tscn" id="45_an6xy"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="45_puitl"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="46_uutlu"]
+[ext_resource type="Script" path="res://src/actors/player/states/Bash.gd" id="46_ux6xt"]
 [ext_resource type="Resource" uid="uid://i6ja7hqkkxh8" path="res://src/actors/player/resources/playerStats.tres" id="46_vm2yr"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="47_crc7s"]
 [ext_resource type="PackedScene" uid="uid://2ji8t713xoqn" path="res://src/object/components/hitbox_component.tscn" id="47_w6udr"]
@@ -60,6 +62,7 @@
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="56_v8j0l"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_n4b1h"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_hbso6"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/BashableDetector.gd" id="62_7uo1w"]
 
 [sub_resource type="Curve" id="Curve_wyqxj"]
 _data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -5458,9 +5461,12 @@ size = Vector2(15, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oudvw"]
 size = Vector2(47, 82)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ihvx"]
+radius = 75.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 64
-collision_mask = 65538
+collision_mask = 65537
 floor_constant_speed = true
 floor_snap_length = 10.2
 platform_wall_layers = 2
@@ -5597,7 +5603,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0029, 6.81705, 36.7487, 17.892, 40.5401, 31.2112)
+points = PackedVector2Array(0, 0, 24.0031, 6.818, 36.75, 17.8927, 40.5435, 31.2117)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6021,6 +6027,17 @@ timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 
+[node name="BashAim" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerAim")]
+script = ExtResource("39_wb8jk")
+timerAim = NodePath("aim")
+
+[node name="aim" type="Timer" parent="StateMachine/BashAim"]
+one_shot = true
+
+[node name="Bash" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration")]
+script = ExtResource("46_ux6xt")
+timerDuration = NodePath("../../Timers/DashDuration")
+
 [node name="Spin" type="Node" parent="StateMachine" node_paths=PackedStringArray("durationTimer", "chainTimer", "particles", "soundJetpack")]
 script = ExtResource("34_67425")
 durationTimer = NodePath("../../Timers/DashDuration")
@@ -6122,7 +6139,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -6251,6 +6268,24 @@ visible = false
 position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_oudvw")
 
+[node name="BashableDetector" type="Area2D" parent="." node_paths=PackedStringArray("indicatorTarget")]
+position = Vector2(0, -64)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("62_7uo1w")
+indicatorTarget = NodePath("Target")
+
+[node name="RayCast2D" type="RayCast2D" parent="BashableDetector"]
+position = Vector2(0, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BashableDetector"]
+shape = SubResource("CircleShape2D_5ihvx")
+
+[node name="Target" type="Line2D" parent="BashableDetector"]
+visible = false
+points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -8)
+default_color = Color(0.862745, 0.709804, 0.0980392, 1)
+
 [node name="GrappleHook" type="Line2D" parent="."]
 visible = false
 position = Vector2(-8, -64)
@@ -6261,3 +6296,7 @@ points = PackedVector2Array(8, 0, 24, 0)
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
 [connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]
+[connection signal="area_entered" from="BashableDetector" to="." method="_on_bashable_detector_area_entered"]
+[connection signal="area_entered" from="BashableDetector" to="BashableDetector" method="_on_area_entered"]
+[connection signal="area_exited" from="BashableDetector" to="." method="_on_bashable_detector_area_exited"]
+[connection signal="area_exited" from="BashableDetector" to="BashableDetector" method="_on_area_exited"]

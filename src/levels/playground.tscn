@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=22 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://bebi3j0rfayd2" path="res://asset/objects/carrot.png" id="12_hknrh"]
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="12_orgcd"]
 [ext_resource type="Texture2D" uid="uid://b8vfu0d8jq3ed" path="res://asset/hazard/spikesBottom.png" id="13_33b4r"]
+[ext_resource type="PackedScene" uid="uid://csjv5180r3acu" path="res://src/object/components/bashable_component.tscn" id="14_3w5vg"]
+[ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="14_xmqek"]
+[ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="16_80qwx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
 texture = ExtResource("11_tl8nd")
@@ -518,6 +521,9 @@ size = Vector2(48, 86)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7l1i"]
 size = Vector2(78, 46)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx7c3"]
+size = Vector2(64, 64)
+
 [node name="Playground" type="Node"]
 script = ExtResource("1_t3d88")
 
@@ -575,5 +581,17 @@ texture = ExtResource("13_33b4r")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(-3, 13)
 shape = SubResource("RectangleShape2D_c7l1i")
+
+[node name="TargetGrapple" parent="." instance=ExtResource("14_xmqek")]
+position = Vector2(-32, -171)
+
+[node name="BashableComponent" parent="." instance=ExtResource("14_3w5vg")]
+position = Vector2(471, -209)
+
+[node name="Outline" parent="BashableComponent" instance=ExtResource("16_80qwx")]
+position = Vector2(1, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BashableComponent"]
+shape = SubResource("RectangleShape2D_gx7c3")
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

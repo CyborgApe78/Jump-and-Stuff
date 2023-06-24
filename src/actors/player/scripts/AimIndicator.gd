@@ -1,11 +1,12 @@
 extends Marker2D
 #TODO: fire without having target, change state if have one
 #TODO: this needs to move with animations, add nodes in tree
+#TODO: seperate aim and grapple target
 
 @export var color: Color = Color.FOREST_GREEN
 @export var detector: ShapeCast2D
-@export var indicatorAim: Line2D
-@export var indicatorTarget: Line2D
+@export var indicatorAim: Line2D #TODO: make reusable
+@export var indicatorTarget: Line2D #TODO: make reusable
 
 @onready var player: CharacterBody2D = owner
 var aimInput: Vector2 
@@ -17,7 +18,7 @@ var SettingsConfig: Resource = preload("res://src/resources/SettingsConfig.tres"
 
 func _ready() -> void:
 	detector.set_collision_mask_value(CollisionLayers.GrappleHook, true)
-
+	indicatorTarget.default_color = AbilityColor.grappleColor
 
 func _physics_process(delta: float) -> void:
 	aimInput = player.aimStrength if player.aimStrength != Vector2.ZERO else player.moveStrength

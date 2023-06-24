@@ -32,6 +32,8 @@ extends Node
 	PlayerState.State.DashJump: $DashJump,
 	PlayerState.State.DashGroundPound: $DashGroundPound,
 	PlayerState.State.GrappleHook: $GrappleHook,
+	PlayerState.State.BashAim: $BashAim,
+	PlayerState.State.Bash: $Bash,
 	PlayerState.State.Slide: $Slide,
 	PlayerState.State.Roll: $Roll,
 	PlayerState.State.Swim: $Swim,
@@ -42,7 +44,6 @@ extends Node
 #	PlayerState.State.Teleport: $Teleport,
 #	PlayerState.State.Die: $Die,
 #	PlayerState.State.WallClimb: $WallClimb,
-#	PlayerState.State.Bash: $Bash,
 #	PlayerState.State.Shinespark: $Shinespark,
 #	PlayerState.State.SwimDash: $SwimDash,
 }

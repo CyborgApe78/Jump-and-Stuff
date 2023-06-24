@@ -33,6 +33,7 @@ var velocityRotated: Vector2 = Vector2.ZERO
 var GPMaxVelocity: Vector2 = Vector2.ZERO
 
 var targetGrapple: TargetGrapple
+var targetBash: TargetBash
 
 var neutralMoveDirection: bool = false
 
@@ -72,7 +73,6 @@ func _physics_process(delta: float) -> void:
 		ledge_detection()
 	
 	EventBus.debugVelocity.emit(velocity.round())
-#	EventBus.debug.emit(facing)
 
 
 func _process(delta: float) -> void:
@@ -223,7 +223,6 @@ func default_ability_mask() -> void:
 	ability_mask(CollisionLayers.DashSide, true)
 	ability_mask(CollisionLayers.DashUp, true)
 	ability_mask(CollisionLayers.DashDown, true)
-	ability_mask(CollisionLayers.DashJump, true)
 
 
 func teleport_player(location: Vector2) -> void:
@@ -238,3 +237,11 @@ func animation_speed(scale: float) -> void:
 
 func _on_health_component_health_changed(healthCurrent: int) -> void:
 	EventBus.playerHealthChanged.emit(healthCurrent)
+
+
+func _on_bashable_detector_area_entered(area: TargetBash) -> void:
+	targetBash = area
+
+
+func _on_bashable_detector_area_exited(area: TargetBash) -> void:
+	targetBash = null

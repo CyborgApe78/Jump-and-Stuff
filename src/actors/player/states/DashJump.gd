@@ -19,14 +19,14 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity = player.aimDirection * dashVelocity * 1.6
-	player.ability_mask(CollisionLayers.DashJump, false)
+#	player.ability_mask(CollisionLayers.DashJump, false) #TODO: all dash blocks
 
 
 func exit() -> void:
 	soundJetpack.stop()
 	particles.local_coords = false
 	particles.emitting = false
-	player.ability_mask(CollisionLayers.DashJump, true)
+#	player.ability_mask(CollisionLayers.DashJump, true)
 
 
 func physics(delta) -> void:
@@ -57,8 +57,10 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		return State.DashAir
-#	if Input.is_action_just_pressed("grapple hook"): #TODO
-#		return State.GrappleHook
+	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+		return State.GrappleHook
+	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+		return State.BashAim
 
 	return State.Null
 

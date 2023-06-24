@@ -100,6 +100,8 @@ func handle_input(event: InputEvent) -> int:
 		crouchReleased = false
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
+	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+		return State.BashAim
 	if Input.is_action_just_pressed("roll"):
 		if timerChain.is_stopped():
 			return State.Roll

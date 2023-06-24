@@ -12,8 +12,12 @@ signal teleportPlayer(location)
 
 signal playerDashed
 signal playerJumped
+signal playerBashed
 
 signal playerDied
+
+signal timeFreeze
+signal timeResume
 
 signal checkpointEntered
 

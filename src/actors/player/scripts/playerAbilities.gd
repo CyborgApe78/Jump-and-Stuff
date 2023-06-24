@@ -46,6 +46,10 @@ var unlockedGrappleHook: bool = false:
 	set(v):
 		unlockedGrappleHook = v
 
+var unlockedBash: bool = false:
+	set(v):
+		unlockedBash = v
+
 var unlockedGlide: bool = false:
 	set(v):
 		unlockedGlide = v
@@ -130,6 +134,7 @@ enum list {
 	GroundPound,
 	GroundPoundBounce,
 	GrappleHook,
+	Bash,
 	Climb,
 	Grab,
 	SwimDash,
@@ -150,7 +155,7 @@ enum listAbilityBlock {
 	Burrow,
 }
 
-enum listAbilityTarget {Null, grappleHook, burrow}
+enum listAbilityTarget {Null, bash, grappleHook, burrow}
 
 
 func unlock(ability: int, BOOL:bool) -> void:
@@ -169,6 +174,8 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedGroundPound = BOOL
 		unlockedGroundPoundBounce = BOOL
 		unlockedSlide = BOOL
+		unlockedGrappleHook = BOOL
+		unlockedBash = BOOL
 	elif ability == list.JumpAir:
 		unlockedJumpAir = BOOL
 	elif ability == list.JumpConsec:
@@ -189,6 +196,8 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedDashChain = BOOL
 	elif ability == list.GrappleHook:
 		unlockedGrappleHook = BOOL
+	elif ability == list.Bash:
+		unlockedBash = BOOL
 	elif ability == list.Slide:
 		unlockedSlide = BOOL
 	elif ability == list.Glide:
@@ -221,6 +230,8 @@ func can_use(ability: int) -> bool:
 	elif ability == list.DashJump and unlockedDashJump:
 		return true
 	elif ability == list.GrappleHook and unlockedGrappleHook:
+		return true
+	elif ability == list.Bash and unlockedBash:
 		return true
 	elif ability == list.Slide and unlockedSlide:
 		return true

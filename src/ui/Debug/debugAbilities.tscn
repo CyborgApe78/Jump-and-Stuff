@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_r3h2n"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_3r0j1"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "consecAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "buttonBash", "consecAmount")]
 script = ExtResource("1_r3h2n")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -22,6 +22,7 @@ buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPundBounce")
 buttonGlide = NodePath("HBoxContainer/Other/Glide")
 buttonDive = NodePath("HBoxContainer/Other/Dive")
 buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
+buttonBash = NodePath("HBoxContainer/Other/Bash")
 consecAmount = NodePath("HBoxContainer/Jumps/Consec/Amount")
 
 [node name="Label" type="Label" parent="."]
@@ -195,6 +196,12 @@ theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "GrappleHook"
 
+[node name="Bash" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Bash"
+
 [connection signal="toggled" from="All" to="." method="_on_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/All" to="." method="_on_jump_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Air" to="." method="_on_jump_air_toggled"]
@@ -213,3 +220,4 @@ text = "GrappleHook"
 [connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GrappleHook" to="." method="_on_grapple_hook_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Bash" to="." method="_on_bash_toggled"]

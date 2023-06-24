@@ -35,6 +35,8 @@ enum State {
 	DashJump,
 	DashGroundPound,
 	GrappleHook,
+	BashAim,
+	Bash,
 	Slide,
 	Roll,
 	Swim,

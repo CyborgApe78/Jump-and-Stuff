@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csjv5180r3acu"]
+
+[ext_resource type="Script" path="res://src/object/components/scripts/bashable_component.gd" id="1_23rjl"]
+
+[node name="BashableComponent" type="Area2D"]
+script = ExtResource("1_23rjl")
