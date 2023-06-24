@@ -5,7 +5,7 @@ extends BaseMenu
 
 
 func enter() -> void:
-	EventBus.debugMenuOpened.emit(true) #TODO: change to menu, use to check in normal menus what is unlocked
+	EventBus.debugMenuOpened.emit(true)
 	set_paused(true)
 	visible = true
 	ability.buttonAbilityAll.grab_focus()

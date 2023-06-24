@@ -1,6 +1,5 @@
 extends Node
 
-#TODO: move more timers to here
 
 @export var coyoteJump: Timer
 @export var coyoteJumpWall: Timer

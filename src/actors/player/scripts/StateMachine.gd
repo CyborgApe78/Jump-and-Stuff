@@ -66,7 +66,6 @@ func change_state(newState: int) -> void:
 		currentState.exit()
 		previousState = currentState
 		previousStateName = previousState.name
-#		PlayerState.statePrevious = previousState #FIXME: set states in PlayerState
 		player.previousState = previousState.name
 		#TODO: make black list check
 	

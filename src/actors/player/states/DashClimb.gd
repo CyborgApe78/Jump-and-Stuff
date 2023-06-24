@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#FIXME: use wall direction to control particles
 
 @export var timerBufferJump: Timer
 

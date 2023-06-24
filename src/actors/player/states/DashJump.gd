@@ -1,7 +1,5 @@
 extends PlayerInfo
 
-#INGGAME: Rocket Jump, Shinespark and Ori charge jump
-#TODO: make state to aim
 
 @export var timerBufferJump: Timer
 
@@ -18,7 +16,7 @@ func enter() -> void:
 	timers()
 	particles.local_coords = true
 	particles.emitting = true
-	player.velocity = player.aimDirection * dashVelocity * 1.6
+	player.velocity = player.aimDirection * dashVelocity * 1.6 #TODO: make aim direction like it is in grapple and bash detectors
 #	player.ability_mask(CollisionLayers.DashJump, false) #TODO: all dash blocks
 
 

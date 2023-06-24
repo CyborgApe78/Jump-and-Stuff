@@ -17,7 +17,7 @@ extends PlayerInfo
 
 
 var crouchReleased: bool = false
-var saveTriple: bool
+var saveConsecutive: bool
 var rollVelocity: float
 var refreshTime: float
 var jumpBoostTime: float
@@ -28,23 +28,25 @@ func enter() -> void:
 	crouchReleased = false
 	player.animPlayer.queue("Roll")
 	player.velocityPrevious = player.velocity
-	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	timers()
 	particles.emitting = true
 	player.velocity.y = 0
+	if timerConsecutiveJump.is_stopped():
+		saveConsecutive = true
 #	player.velocity.x = player.facing * max(rollVelocity, abs(player.velocity.x))
 
 
 func exit() -> void:
 	player.animPlayer.stop()
 	timerChain.stop()
+	if saveConsecutive:
+		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
 	particles.emitting = false
+	saveConsecutive = false
 
 
 func physics(delta) -> void:
 	player.move_and_slide_rotation()
-	
-	timerConsecutiveJump.start() #FIXME: why is this always being called
 	
 	if !player.is_on_floor():
 		gravity_logic(gravityFall, delta)

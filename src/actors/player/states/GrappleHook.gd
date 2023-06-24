@@ -15,7 +15,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.targetGrapple = null
-	player.grappleHookLine.visible = false #FIXME: needs to disappear when reached
+	player.grappleHookLine.visible = false
 
 
 func physics(delta) -> void:
@@ -84,9 +84,6 @@ func state_check(delta: float) -> int:
 			player.animPlayer.stop()
 			return State.Slide
 		elif player.velocity.x != 0:
-#			if player.neutralMoveDirection:
-#				return State.NeutralGround #TODO: keep momentum if jumping
-#			else:
 			return State.Walk
 		else:
 			return State.Idle
