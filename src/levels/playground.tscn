@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=23 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://csjv5180r3acu" path="res://src/object/components/bashable_component.tscn" id="14_3w5vg"]
 [ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="14_xmqek"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="16_80qwx"]
+[ext_resource type="PackedScene" uid="uid://d32ncso47mb14" path="res://src/object/enviroment/Water.tscn" id="17_3as08"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
 texture = ExtResource("11_tl8nd")
@@ -593,5 +594,9 @@ position = Vector2(1, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BashableComponent"]
 shape = SubResource("RectangleShape2D_gx7c3")
+
+[node name="Water" parent="." instance=ExtResource("17_3as08")]
+position = Vector2(-728, -24)
+scale = Vector2(5, 5)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

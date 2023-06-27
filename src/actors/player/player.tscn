@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=112 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -45,6 +45,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="43_ft5ho"]
 [ext_resource type="Script" path="res://src/actors/player/states/SpeedBoost.gd" id="44_7bwnv"]
 [ext_resource type="PackedScene" uid="uid://bxio7mtc2sse1" path="res://src/object/components/health_component.tscn" id="45_an6xy"]
+[ext_resource type="Script" path="res://src/actors/player/states/Burrow.gd" id="45_d52h1"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="45_puitl"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="46_uutlu"]
 [ext_resource type="Script" path="res://src/actors/player/states/Bash.gd" id="46_ux6xt"]
@@ -5603,7 +5604,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0023, 6.82001, 36.7476, 17.8962, 40.5387, 31.2156)
+points = PackedVector2Array(0, 0, 24.002, 6.81973, 36.7464, 17.8963, 40.5357, 31.2159)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6074,6 +6075,11 @@ one_shot = true
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("43_ft5ho")
+
+[node name="SwimDash" type="Node" parent="StateMachine"]
+
+[node name="Burrow" type="Node" parent="StateMachine"]
+script = ExtResource("45_d52h1")
 
 [node name="SpeedBoost" type="Node" parent="StateMachine"]
 script = ExtResource("44_7bwnv")
