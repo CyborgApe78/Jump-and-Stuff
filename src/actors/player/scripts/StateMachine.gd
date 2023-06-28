@@ -36,6 +36,7 @@ extends Node
 	PlayerState.State.Bash: $Bash,
 	PlayerState.State.Slide: $Slide,
 	PlayerState.State.Roll: $Roll,
+	PlayerState.State.RollJump: $RollJump,
 	PlayerState.State.Swim: $Swim,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,

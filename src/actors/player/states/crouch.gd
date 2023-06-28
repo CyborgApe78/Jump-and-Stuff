@@ -3,6 +3,7 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
+@export var timerBufferRoll: Timer
 
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
@@ -91,5 +92,8 @@ func state_check(delta: float) -> int:
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.coyoteJump)
 		return State.JumpCrouch
+	if !timerBufferRoll.is_stopped():
+		timerBufferRoll.stop()
+		return State.Roll
 
 	return State.Null

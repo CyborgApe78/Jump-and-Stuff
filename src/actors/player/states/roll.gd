@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#FIXME: got stuck landing on the edge of a platform
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -85,7 +86,7 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !timerCoyoteJump.is_stopped()) and !player.crouch_ceiling_detect():
 		if timerChain.is_stopped():
-			return State.JumpLong #TODO: special jump state
+			return State.RollJump
 		else:
 			EventBus.playerActionAnnounce.emit("Early Jump")
 			player.velocity.x = player.velocity.x/4

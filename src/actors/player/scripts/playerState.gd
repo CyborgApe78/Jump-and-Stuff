@@ -39,6 +39,7 @@ enum State {
 	Bash,
 	Slide,
 	Roll,
+	RollJump,
 	Swim,
 	SwimDash,
 	BonkAir,

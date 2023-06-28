@@ -3,8 +3,9 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
+@export var timerBufferRoll: Timer
 @export var fallTimer: Timer
-@export var rollTimer: Timer
+
 
 @export var rollTime: float = 0.3
 @export var diveSpeedMultiplier: float = 1.6
@@ -59,7 +60,7 @@ func handle_input(event: InputEvent) -> int:
 			timerBufferJump.start()
 			return State.Fall
 	if Input.is_action_just_pressed("roll"):
-		rollTimer.start()
+		timerBufferRoll.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 #	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
@@ -80,7 +81,7 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-		if !rollTimer.is_stopped():
+		if !timerBufferRoll.is_stopped():
 			return State.Roll
 		elif fallTimer.is_stopped():
 			return State.BonkGround
@@ -93,6 +94,5 @@ func state_check(delta: float) -> int:
 	return State.Null
 
 func timers() -> void:
-	rollTimer.wait_time = rollTime
 	fallTimer.wait_time = fallTimeTillBonk
 	fallTimer.start()

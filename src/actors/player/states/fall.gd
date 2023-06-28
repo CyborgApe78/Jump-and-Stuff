@@ -5,6 +5,7 @@ extends PlayerInfo
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpWall: Timer
 @export var timerBufferJump: Timer
+@export var timerBufferRoll: Timer
 @export var timerFall: Timer
 @export var timerConsecutiveJump: Timer
 
@@ -114,7 +115,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
-		if !timerBufferJump.is_stopped(): #TODO: remove from plater script and use @export
+		if !timerBufferJump.is_stopped():
 			return State.JumpWall
 		if topSpeed > moveSpeed:
 			topSpeed = 0
@@ -123,7 +124,14 @@ func state_check(delta: float) -> int:
 			return State.WallSlide
 	if player.is_on_floor():
 		player.landed()
-		if timerFall.is_stopped():
+		if !timerBufferJump.is_stopped():
+			timerBufferJump.stop()
+			EventBus.helperUsed.emit(Util.helper.bufferJump)
+			return consecutive_jump_logic()
+		if !timerBufferRoll.is_stopped():
+			timerBufferRoll.stop()
+			return State.Roll
+		elif timerFall.is_stopped():
 			return State.BonkGround
 		else:
 			timerConsecutiveJump.start()
