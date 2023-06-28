@@ -29,16 +29,17 @@ func physics(delta) -> void:
 	elif player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = player.lastMoveDirection.x * 1
 	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
-		apply_acceleration(moveSpeed, accelerationGround, delta)
+		player.velocity.x = VelEq.apply_acceleration(player.velocity.x, moveSpeed, accelerationGround, player.moveStrength.x, delta)
 	elif player.moveDirection.x == 0:
-		apply_friction(frictionGround, delta)
+		player.velocity.x = VelEq.apply_friction(player.velocity.x, frictionGround, delta)
 	elif abs(player.velocity.x) >= moveSpeed:
 		momentum_logic(moveSpeed, true)
 	
 	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
-		player.velocity.x = move_toward(player.velocity.x, 0, frictionGround)
+		#TODO:make it so you have to be facing the ledge 
+		#TODO: setting to turn off
+		player.velocity.x = 0
 		EventBus.helperUsed.emit(Util.helper.stopOnLedge)
-		#TODO: make callable function
 
 
 func visual(delta) -> void:
