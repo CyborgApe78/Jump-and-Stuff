@@ -57,8 +57,9 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			player.velocity.x = 0
 			return State.Jump
-#	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll): #LOOKAT: should you be able to go to slide
-#		return State.Roll
+	if Input.is_action_just_pressed("roll"):
+#	 and abilities.can_use(PlayerAbilities.list.Roll): #TODO: turn into unlock
+		return State.Roll
 
 	return State.Null
 
