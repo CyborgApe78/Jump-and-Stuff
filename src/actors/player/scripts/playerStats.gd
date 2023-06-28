@@ -24,7 +24,7 @@ var energyMax: float = 1:
 		energyMax = max(0, energyMax)
 
 var baseAcceleration: float = 1.2
-var baseFriction: float = 1.0
+var baseFriction: float = 0.5
 var airModifier: float = 1.2
 var terminalVelocityModifier: float = 2
 
