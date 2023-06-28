@@ -88,8 +88,11 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
-		return State.GroundPound
+	if Input.is_action_just_pressed("ground_pound"):
+		if abilities.can_use(PlayerAbilities.list.GroundPound): 
+			return State.GroundPound
+		else: #TODO: find a better way to cancel
+			return State.Fall
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		return State.DashAir

@@ -17,7 +17,6 @@ extends PlayerInfo
 @export var particleChain: GPUParticles2D
 
 
-var crouchReleased: bool = false
 var saveConsecutive: bool
 var rollVelocity: float
 var refreshTime: float
@@ -26,7 +25,6 @@ var jumpBoostTime: float
 
 func enter() -> void:
 	rollVelocity = moveSpeed * velocityModifier
-	crouchReleased = false
 	player.animPlayer.queue("Roll")
 	player.velocityPrevious = player.velocity
 	timers()
@@ -58,7 +56,7 @@ func physics(delta) -> void:
 	elif abs(player.velocity.x) >= rollVelocity:
 		momentum_logic(rollVelocity, false)
 	
-#	if rad_to_deg(player.groundAngle) < -1:
+#	if rad_to_deg(player.groundAngle) < -1: #TOOD: add speed based on ground angle and pull back to slow done
 #		if sign(player.velocity.x) == -1:
 #			player.velocity.x -= downHillAccel ## Speed up on down hill
 #		else:
@@ -100,7 +98,8 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			return State.DashAir
 	if Input.is_action_just_pressed("crouch"):
-		crouchReleased = false
+		player.velocity.x = 0
+		return State.Crouch
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -108,7 +107,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("roll"):
 		if timerChain.is_stopped():
 			return State.Roll
-		else: #LOOKat maybe not kick out of roll. fastest speed with timed pressed and key rolling when held
+		else:
 			EventBus.playerActionAnnounce.emit("Early Roll")
 			return State.Idle
 
