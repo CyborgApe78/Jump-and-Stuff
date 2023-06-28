@@ -2,6 +2,7 @@ extends Marker2D
 #TODO: fire without having target, change state if have one
 #TODO: this needs to move with animations, add nodes in tree
 #TODO: seperate aim and grapple target
+#TODO: make it use bash detector area, but prefer one that is aimed if exist
 
 @export var color: Color = Color.FOREST_GREEN
 @export var detector: ShapeCast2D

@@ -1,20 +1,19 @@
 extends PlayerInfo
 
-
-#TDOO: similar to swimming, but don't stop moving
-#TODO: also need to dash into water
+#TODO: should have a timer to boost out of water
+#LOOKAT: change name since it will work with burrow
 
 
 func enter() -> void:
-	player.animPlayer.queue("Swim") #TODO: own animation
+	pass
 
 
 func exit() -> void:
-	player.animPlayer.stop()
+	pass
 
 
 func physics(delta) -> void:
-	player.move_and_slide()
+	pass
 
 
 func visual(delta) -> void:
@@ -32,7 +31,6 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if !player.inWater:
-		return State.Fall
 	
+
 	return State.Null

@@ -18,7 +18,14 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	player.velocity = player.moveDirection * swimVelocity
+#	var velocity_target = player.moveDirection * swimVelocity
+	if player.moveDirection == Vector2.ZERO:
+		player.velocity.y = 100
+		apply_friction(frictionGround * 2, delta)
+#	elif abs(player.velocity) < abs(velocity_target): #TODO: need to find a better way for accel and deccel
+#		player.velocity = player.velocity.move_toward(velocity_target, accelerationAir * delta)
+	else:
+		player.velocity = player.moveDirection * swimVelocity
 
 
 func visual(delta) -> void:

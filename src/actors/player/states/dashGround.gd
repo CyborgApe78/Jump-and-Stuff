@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: Upgrade to turn into speed boost
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer

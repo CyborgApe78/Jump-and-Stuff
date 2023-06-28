@@ -40,14 +40,12 @@ enum State {
 	Slide,
 	Roll,
 	Swim,
-	SpeedBoost,
+	SwimDash,
 	BonkAir,
 	BonkGround,
 	
 	Teleport,
 	Die,
-	SwimDash,
-	FallDamage,
 }
 
 var stateBlacklist: Array = [] #TODO: figure way to block states during dungeons
