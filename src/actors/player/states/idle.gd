@@ -32,7 +32,10 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_pressed("crouch"): 
 		return State.Crouch
 	if Input.is_action_just_pressed("jump"):
-		return State.Jump
+		if Input.is_action_pressed("move_down"):
+			player.set_collision_mask_value(CollisionLayers.Semisolid, false)
+		else:
+			return State.Jump
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		return State.DashGround

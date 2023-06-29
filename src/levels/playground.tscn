@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=26 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="14_xmqek"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="16_80qwx"]
 [ext_resource type="PackedScene" uid="uid://d32ncso47mb14" path="res://src/object/enviroment/Water.tscn" id="17_3as08"]
+[ext_resource type="PackedScene" uid="uid://bvk0yjcujvif8" path="res://src/object/prefab/semisolid.tscn" id="18_07xgy"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="19_1iekm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
 texture = ExtResource("11_tl8nd")
@@ -525,6 +527,9 @@ size = Vector2(78, 46)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx7c3"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5e1r"]
+size = Vector2(704, 66)
+
 [node name="Playground" type="Node"]
 script = ExtResource("1_t3d88")
 
@@ -598,5 +603,17 @@ shape = SubResource("RectangleShape2D_gx7c3")
 [node name="Water" parent="." instance=ExtResource("17_3as08")]
 position = Vector2(-2728, 1.52588e-05)
 scale = Vector2(5, 5)
+
+[node name="Semisolid" parent="." instance=ExtResource("18_07xgy")]
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Semisolid"]
+position = Vector2(-544, -288)
+shape = SubResource("RectangleShape2D_n5e1r")
+script = ExtResource("19_1iekm")
+
+[node name="VisibleCollisionShape2D2" type="CollisionShape2D" parent="Semisolid"]
+position = Vector2(-352, -480)
+shape = SubResource("RectangleShape2D_n5e1r")
+script = ExtResource("19_1iekm")
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

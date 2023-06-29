@@ -8,6 +8,7 @@ extends PlayerInfo
 @export var timerBufferRoll: Timer
 @export var timerFall: Timer
 @export var timerConsecutiveJump: Timer
+@export var timerSemisolidReset: Timer
 
 @export var jumpHeldSlowModifier: float = 2.0
 @export var transTime: float = 0.1
@@ -68,6 +69,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	if Input.is_action_just_released("move_down"):
+		timerSemisolidReset.start()
 	if Input.is_action_pressed("jump"):
 		jumpHeld = true
 	else: 

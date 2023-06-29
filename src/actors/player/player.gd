@@ -159,6 +159,7 @@ func landed() -> void:
 	abilities.reset(PlayerAbilities.list.Dash)
 	abilities.reset(PlayerAbilities.list.DashChain)
 	sounds.land.play()
+	set_collision_mask_value(CollisionLayers.Semisolid, true)
 #	if get_last_slide_collision() != null:
 #			groundColor = get_last_slide_collision().get_collider().color #FIXME: crash if doesn't have color
 #	particles.land.restart()
@@ -245,3 +246,7 @@ func _on_bashable_detector_area_entered(area: TargetBash) -> void:
 
 func _on_bashable_detector_area_exited(area: TargetBash) -> void:
 	targetBash = null
+
+
+func _on_semisoild_timeout() -> void:
+	set_collision_mask_value(CollisionLayers.Semisolid, true)

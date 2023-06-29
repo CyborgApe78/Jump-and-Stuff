@@ -5700,7 +5700,7 @@ radius = 75.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 64
-collision_mask = 65537
+collision_mask = 65539
 floor_constant_speed = true
 floor_snap_length = 10.2
 platform_wall_layers = 2
@@ -5837,7 +5837,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0022, 6.81909, 36.7466, 17.8954, 40.536, 31.215)
+points = PackedVector2Array(0, 0, 24.003, 6.8174, 36.7492, 17.8923, 40.5414, 31.2114)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6128,7 +6128,7 @@ soundeffect = NodePath("../../Sounds/jump")
 wait_time = 0.2
 one_shot = true
 
-[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpWall", "timerBufferJump", "timerBufferRoll", "timerFall", "timerConsecutiveJump")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpWall", "timerBufferJump", "timerBufferRoll", "timerFall", "timerConsecutiveJump", "timerSemisolidReset")]
 script = ExtResource("25_bdy8d")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
@@ -6136,6 +6136,7 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 timerFall = NodePath("../../Timers/FallTimeMax")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
+timerSemisolidReset = NodePath("../../Timers/Semisoild")
 
 [node name="Glide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump")]
 script = ExtResource("26_uv5su")
@@ -6388,7 +6389,7 @@ blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle",
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Timers" type="Node" parent="." node_paths=PackedStringArray("coyoteJump", "coyoteJumpWall", "consecutiveJump", "bufferJump", "bufferJumpWall", "bufferRoll")]
+[node name="Timers" type="Node" parent="." node_paths=PackedStringArray("coyoteJump", "coyoteJumpWall", "consecutiveJump", "bufferJump", "bufferJumpWall", "bufferRoll", "timerSemisolidReset")]
 script = ExtResource("47_crc7s")
 coyoteJump = NodePath("CoyoteJump")
 coyoteJumpWall = NodePath("CoyoteJumpWall")
@@ -6396,6 +6397,7 @@ consecutiveJump = NodePath("ConsecutiveJump")
 bufferJump = NodePath("BufferJump")
 bufferJumpWall = NodePath("BufferJumpWall")
 bufferRoll = NodePath("BufferRoll")
+timerSemisolidReset = NodePath("Semisoild")
 
 [node name="FallTimeMax" type="Timer" parent="Timers"]
 one_shot = true
@@ -6437,6 +6439,8 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Invincibility" type="Timer" parent="Timers"]
+
+[node name="Semisoild" type="Timer" parent="Timers"]
 
 [node name="Sounds" type="Node" parent="."]
 script = ExtResource("48_atp3b")
@@ -6551,6 +6555,7 @@ points = PackedVector2Array(8, 0, 24, 0)
 [connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
 [connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]
 [connection signal="timeout" from="Timers/Invincibility" to="HitboxComponent" method="_on_invincibility_timeout"]
+[connection signal="timeout" from="Timers/Semisoild" to="." method="_on_semisoild_timeout"]
 [connection signal="area_entered" from="BashableDetector" to="." method="_on_bashable_detector_area_entered"]
 [connection signal="area_entered" from="BashableDetector" to="BashableDetector" method="_on_area_entered"]
 [connection signal="area_exited" from="BashableDetector" to="." method="_on_bashable_detector_area_exited"]
