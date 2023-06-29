@@ -2,7 +2,8 @@ extends VBoxContainer
 
 
 @export var buttonAimIndicator: CheckButton
-var SettingsFile: Resource = preload("res://src/resources/SettingsConfig.tres")
+@export var buttonRumble: CheckButton
+var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
 
 
 func _ready() -> void:
@@ -10,8 +11,13 @@ func _ready() -> void:
 
 
 func update_menu() -> void:
-	buttonAimIndicator.button_pressed = SettingsFile.showAimIndicator
+	buttonAimIndicator.button_pressed = settings.showAimIndicator
+	buttonRumble.button_pressed = settings.rumble
 
 
 func show_aim_indicator(toggled: bool) -> void:
-	SettingsFile.showAimIndicator = toggled
+	settings.showAimIndicator = toggled
+
+
+func _on_rumble_toggled(toggled: bool) -> void:
+	settings.rumble = toggled

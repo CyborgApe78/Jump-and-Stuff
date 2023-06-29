@@ -5,6 +5,7 @@ class_name SettingsConfig
 
 ## Gameplay ##
 var showAimIndicator: bool = false
+var rumble: bool = true
 
 
 ## HUD ##

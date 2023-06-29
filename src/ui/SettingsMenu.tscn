@@ -147,10 +147,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonAimIndicator")]
+[node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonAimIndicator", "buttonRumble")]
 layout_mode = 2
 script = ExtResource("3_vxf3y")
 buttonAimIndicator = NodePath("VBoxContainer/Aim")
+buttonRumble = NodePath("VBoxContainer/Rumble")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay"]
 layout_mode = 2
@@ -166,7 +167,7 @@ text = "Show Aim Indicator"
 
 [node name="Rumble" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer"]
 layout_mode = 2
-text = "Turn of rumble #TODO"
+text = "Rumble"
 
 [node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("hideHUD", "timerCheck", "buttonController")]
 visible = false
@@ -243,6 +244,7 @@ text = "Spoilers"
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="." method="back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_pressed"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer/Aim" to="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay" method="show_aim_indicator"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer/Rumble" to="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay" method="_on_rumble_toggled"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/HideHUD" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="hide_hud"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Timer" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_timer"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Controller" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_controller"]

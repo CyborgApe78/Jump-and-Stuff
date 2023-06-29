@@ -35,3 +35,5 @@ signal helperUsed(info)
 signal menuChanged
 signal settingsUpdate
 signal showDebug(bool)
+
+signal rumble(min: float, max: float, duration: float)

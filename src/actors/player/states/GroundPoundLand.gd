@@ -15,7 +15,7 @@ func enter() -> void:
 	abilities.reset(PlayerAbilities.list.DashChain)
 	soundeffect.play()
 	particles.restart()
-	Input.start_joy_vibration(0, 0.3, 0.5, 0.3) #TODO: create signal
+	EventBus.rumble.emit(0.3, 0.5, 0.3)
 	timerStun.wait_time = stunDuration
 	timerStun.start()
 	player.animPlayer.queue("Crouch")
