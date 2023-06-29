@@ -5,13 +5,14 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
+@export var detector: ShapeCast2D
 
 @export var transTime: float = 0.1
-@export var particles: GPUParticles2D
 
 
 func enter() -> void:
-	player.global_position.y -= Util.tileSize * 4 #TODO: make semisolid that player raises 1 block above jump height
+	if !detector.is_colliding():
+		player.global_position.y -= Util.tileSize * 4 #TODO: smooth movement
 	player.velocity.y = max(moveSpeed, abs(player.velocity.y))
 	player.animPlayer.queue("Ground Pound")
 	if player.characterRotate.rotation_degrees != 0:

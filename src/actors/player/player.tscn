@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=115 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -330,6 +330,12 @@ size = Vector2(32, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
 size = Vector2(5, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_td2jd"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wcwb"]
+size = Vector2(64, 20)
 
 [sub_resource type="Animation" id="Animation_vhxfq"]
 resource_name = "Belly Slide"
@@ -5837,7 +5843,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.003, 6.8174, 36.7492, 17.8923, 40.5414, 31.2114)
+points = PackedVector2Array(0, 0, 24.0021, 6.82102, 36.747, 17.8977, 40.5377, 31.2173)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5872,9 +5878,8 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
-visible = false
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -16, 8, -24, 24)
+points = PackedVector2Array(0, 8, -8, 16, 8, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5898,7 +5903,6 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
-visible = false
 show_behind_parent = true
 points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 15.4
@@ -5923,9 +5927,8 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
-visible = false
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 56, 16, 56, 16, 64, 24, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5948,9 +5951,8 @@ antialiased = true
 metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
-visible = false
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 18, 0, 40, 16, 32)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5961,9 +5963,8 @@ script = ExtResource("6_ab4rp")
 thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
-visible = false
 show_behind_parent = true
-points = PackedVector2Array(0, 24, 0, 40)
+points = PackedVector2Array(0, 56, 0, 64)
 width = 44.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5996,7 +5997,6 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Head"]
-visible = false
 show_behind_parent = true
 points = PackedVector2Array(0, 0, 0, -1)
 width = 44.0
@@ -6029,9 +6029,8 @@ randomness = 0.13
 local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
-visible = false
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 16)
+points = PackedVector2Array(-32, 16, -32, 32)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6231,10 +6230,11 @@ script = ExtResource("34_16e5c")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 soundeffect = NodePath("../../Sounds/jump")
 
-[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump")]
+[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "detector")]
 script = ExtResource("38_i65yo")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
+detector = NodePath("../../Raycasts/Other/GroundPoundSpace")
 
 [node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge", "particles", "soundeffect")]
 script = ExtResource("39_q31hf")
@@ -6304,13 +6304,14 @@ one_shot = true
 [node name="Duration" type="Timer" parent="StateMachine/Roll"]
 one_shot = true
 
-[node name="RollJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "timerBufferJump", "timerBufferRoll", "soundeffect", "particles")]
+[node name="RollJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "timerBufferJump", "timerBufferRoll", "soundeffect", "particles", "detector")]
 script = ExtResource("44_mqqr0")
 timerDuration = NodePath("../../Timers/DashDuration")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
+detector = NodePath("../../Raycasts/Other/RollJumpSpace")
 duration = 0.8
 
 [node name="Swim" type="Node" parent="StateMachine"]
@@ -6377,6 +6378,18 @@ target_position = Vector2(0, -64)
 [node name="Right" type="RayCast2D" parent="Raycasts/Crouch"]
 position = Vector2(24, -56)
 target_position = Vector2(0, -64)
+
+[node name="Other" type="Node2D" parent="Raycasts"]
+position = Vector2(0, -128)
+
+[node name="GroundPoundSpace" type="ShapeCast2D" parent="Raycasts/Other"]
+shape = SubResource("RectangleShape2D_td2jd")
+target_position = Vector2(0, -64)
+
+[node name="RollJumpSpace" type="ShapeCast2D" parent="Raycasts/Other"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_0wcwb")
+target_position = Vector2(0, -48)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"

@@ -6,6 +6,7 @@ extends PlayerInfo
 @export var timerBufferRoll: Timer
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
+@export var detector: ShapeCast2D
 
 @export var duration: float = 1.0
 @export var jumpModifier: float = 0.25
@@ -26,7 +27,8 @@ func enter() -> void:
 	soundeffect.play()
 	if player.is_on_floor():
 		particles.restart()
-	player.global_position.y -= Util.tileSize * 2
+	if !detector.is_colliding():
+		player.global_position.y -= Util.tileSize * 2
 	player.velocity.x = velocityRollJump * player.facing
 	timers()
 
