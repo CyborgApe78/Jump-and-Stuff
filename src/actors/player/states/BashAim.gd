@@ -1,19 +1,26 @@
 extends PlayerInfo
 
-#TODO: turn off hurt box
+
 @export var timerAim: Timer
+@export var timerInvincibility: Timer
+@export var hitbox: Area2D
+
+@export var timeInvincible: float = 0.8
 @export var aim: float = 0.8
 
 
-
 func enter() -> void:
+	hitbox.monitorable = false ## make player invincible
+	player.global_position = player.targetBash.global_position
 	EventBus.playerBashed.emit()
 	player.velocity = Vector2.ZERO
 	timers()
 
 
 func exit() -> void:
-	pass
+	timerInvincibility.wait_time = timeInvincible
+	timerInvincibility.start()
+	hitbox.monitorable = true
 
 
 func physics(delta) -> void:

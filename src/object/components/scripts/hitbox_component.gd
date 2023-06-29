@@ -15,3 +15,7 @@ func damage(amount: Attack) -> void:
 func heal(amount: Heal) -> void:
 	if health:
 		health.heal(amount)
+
+
+func _on_invincibility_timeout() -> void:
+	monitorable = true

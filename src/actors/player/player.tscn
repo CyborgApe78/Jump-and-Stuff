@@ -6260,9 +6260,11 @@ timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 
-[node name="BashAim" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerAim")]
+[node name="BashAim" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerAim", "timerInvincibility", "hitbox")]
 script = ExtResource("39_wb8jk")
 timerAim = NodePath("aim")
+timerInvincibility = NodePath("../../Timers/Invincibility")
+hitbox = NodePath("../../HitboxComponent")
 
 [node name="aim" type="Timer" parent="StateMachine/BashAim"]
 one_shot = true
@@ -6434,6 +6436,8 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="Invincibility" type="Timer" parent="Timers"]
+
 [node name="Sounds" type="Node" parent="."]
 script = ExtResource("48_atp3b")
 
@@ -6544,6 +6548,7 @@ points = PackedVector2Array(8, 0, 24, 0)
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
 [connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]
+[connection signal="timeout" from="Timers/Invincibility" to="HitboxComponent" method="_on_invincibility_timeout"]
 [connection signal="area_entered" from="BashableDetector" to="." method="_on_bashable_detector_area_entered"]
 [connection signal="area_entered" from="BashableDetector" to="BashableDetector" method="_on_area_entered"]
 [connection signal="area_exited" from="BashableDetector" to="." method="_on_bashable_detector_area_exited"]
