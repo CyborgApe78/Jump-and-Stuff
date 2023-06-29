@@ -1,14 +1,13 @@
 extends PlayerInfo
 
 
-#LOOKAT: make it more like cape from mario
 @export var timerBufferJump: Timer
 @export var timerCoyoteJumpWall: Timer
+@export var particles: GPUParticles2D
+@export var soundJetpack: AudioStreamPlayer
 
 var duration: float = 0.3
 var dashDirection: int
-@export var particles: GPUParticles2D
-@export var soundJetpack: AudioStreamPlayer
 
 
 func enter() -> void:
@@ -52,7 +51,7 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 		timerCoyoteJumpWall.start()
-		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
@@ -77,8 +76,8 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
 		if !timerCoyoteJumpWall.is_stopped():
-			return State.JumpWall #TODO: create JumpReflect
-		elif topSpeed > moveSpeed: #TODO: add back affter timer
+			return State.JumpWall
+		elif topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 

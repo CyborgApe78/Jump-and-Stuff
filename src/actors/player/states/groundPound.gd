@@ -11,6 +11,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	player.global_position.y -= Util.tileSize * 4 #TODO: make semisolid that player raises 1 block above jump height
 	player.velocity.y = max(moveSpeed, abs(player.velocity.y))
 	player.animPlayer.queue("Ground Pound")
 	if player.characterRotate.rotation_degrees != 0:

@@ -49,8 +49,7 @@ enum State {
 	Die,
 }
 
-var stateBlacklist: Array = [] #TODO: figure way to block states during dungeons
-var statePrevious: int #TODO: find way to set
+var statePrevious: int 
 var player: Player
 
 func enter() -> void:

@@ -87,7 +87,7 @@ func handle_input(event: InputEvent) -> int:
 		elif player.wall_detection(10) != 0:
 			EventBus.playerActionAnnounce.emit("Near Wall Jump")
 			return State.JumpWall
-		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()

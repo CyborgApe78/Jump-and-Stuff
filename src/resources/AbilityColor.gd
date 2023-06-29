@@ -1,6 +1,6 @@
 extends RefCounted
 class_name AbilityColor
-#TODO: move to a resource, so that it can be changed
+
 
 const dashSideColor: Color = Color.BLUE
 const dashUpColor: Color = Color.RED

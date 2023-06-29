@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-
+#TODO: make state work
 
 func enter() -> void:
 	EventBus.playerDied.emit()

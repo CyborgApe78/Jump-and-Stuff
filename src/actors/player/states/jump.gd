@@ -1,11 +1,10 @@
 extends PlayerInfo
 
+
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var soundeffect: AudioStreamPlayer
 
-#TODO: if moveDirection.x != 0, spin jump, metroid like
-#TODO: look into combine jump and jumpConsec
 
 func enter() -> void:
 	EventBus.playerJumped.emit()

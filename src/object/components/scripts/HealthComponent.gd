@@ -4,7 +4,6 @@ class_name HealthComponent
 signal died
 signal  healthChanged(amount)
 
-#TODO: invincitbility timer
 
 @export var healthMax: int = 1
 @export var invicibleTime: float = 1.0

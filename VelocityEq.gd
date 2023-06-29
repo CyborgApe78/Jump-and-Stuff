@@ -48,13 +48,13 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #
 #
 #func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
-#	#FIXME: gut this and start over or make for each state
-#	#TODO: if movedirection != 0 and abs(player.velocity.x) > moveSpeed:
+#	
+#	if movedirection != 0 and abs(player.velocity.x) > moveSpeed:
 #	#	player.velocity.x = moveSpeed * sign(player.velocity.x)
 #	if player.velocity.x != 0  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 #		player.velocity.x = player.lastMoveDirection.x * 1
 ##		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * player.moveDirection.x, acceleration)
-#		#TODO: add min(player.velocity.x / airTurnModifier, maxTurnSpeed) to velocity to keep from scaling to large
+#		add min(player.velocity.x / airTurnModifier, maxTurnSpeed) to velocity to keep from scaling to large
 #	else:
 #		if player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x:
 #			player.velocity.x = player.lastMoveDirection.x * 1
@@ -69,7 +69,6 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #
 #
 #func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float = 0.1) -> void:
-#	#TODO: use animeation tree instead
 #	if forwardLean:
 #		player.characterRig.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
 #	if !forwardLean:
@@ -77,7 +76,6 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #
 #
 #func squash_and_stretch(delta):
-#	#TODO: use animeation tree instead
 ##	if !player.is_on_floor():
 ##		player.characterRig.scale.y = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 0.75, 1.25)
 ##		player.characterRig.scale.x = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 1.25, 0.75)
@@ -92,12 +90,6 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #		return State.JumpConsec
 #	else:
 #		return State.Jump
-#
-#
-#func consecutive_jump_cancel() -> void: 
-#	player.jumped = false
-#	player.timers.consecutiveJump.stop() #TODO:find a better to cancel timer
-#	abilities.reset(PlayerAbilities.list.JumpConsec)
 #
 #
 #func align_to_ground()-> void:

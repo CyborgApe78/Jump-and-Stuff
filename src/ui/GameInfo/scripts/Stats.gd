@@ -10,7 +10,6 @@ extends MarginContainer
 
 var Stats: Resource = preload("res://src/resources/gameStats.tres")
 
-#TODO: change label of dash side from dash 
 func stat_update() -> void:
 	labelPlayTime.text = convert_time(Stats.timePlayed)
 	labelDeath.text = str(Stats.deaths)

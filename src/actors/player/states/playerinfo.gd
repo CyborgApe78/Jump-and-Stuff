@@ -63,7 +63,7 @@ func gravity_logic(amount: float, delta) -> void:
 	player.velocity.y += amount * delta
 
 
-func apply_acceleration(speed: float, amount: float, delta: float) -> void: #TODO: add bool for user input use
+func apply_acceleration(speed: float, amount: float, delta: float) -> void:
 	player.velocity.x = move_toward(abs(player.velocity.x), speed, amount * delta) * player.moveStrength.x
 
 
@@ -72,7 +72,6 @@ func apply_friction(amount: float, delta) -> void:
 
 
 func momentum_logic(speed: float, useMoveDirection: bool) -> void:
-	#TODO: better logic
 	if useMoveDirection:
 		if abs(player.velocity.x) < moveSpeed:
 			player.velocity.x = player.velocity.x
@@ -86,13 +85,8 @@ func momentum_logic(speed: float, useMoveDirection: bool) -> void:
 
 
 func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
-	#FIXME: gut this and start over or make for each state
-	#TODO: if movedirection != 0 and abs(player.velocity.x) > moveSpeed:
-	#	player.velocity.x = moveSpeed * sign(player.velocity.x)
 	if player.velocity.x != 0  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		player.velocity.x = player.lastMoveDirection.x * 1
-#		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * player.moveDirection.x, acceleration)
-		#TODO: add min(player.velocity.x / airTurnModifier, maxTurnSpeed) to velocity to keep from scaling to large
 	else:
 		if player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x:
 			player.velocity.x = player.lastMoveDirection.x * 1

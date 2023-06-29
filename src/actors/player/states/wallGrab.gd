@@ -19,7 +19,6 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	pass 
-	#TODO: need to move facing func to each state
 
 
 func sound(delta: float) -> void:
@@ -39,7 +38,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.WallSlide
 	if Input.is_action_just_pressed("jump"):
 		return State.JumpWall
-	#TODO: add dive
+	if Input.is_action_just_pressed("dive"):
+		return State.Dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
 	if Input.is_action_just_pressed("dash"):

@@ -8,7 +8,7 @@ extends BaseMenu
 @export var infoContainter: Control
 @export var labelCurrent: Label
 
-#TODO: use to define which menu is active
+
 enum tab {
 	FastTravel,
 	Skills,

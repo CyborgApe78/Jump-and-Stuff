@@ -1,6 +1,5 @@
 extends Resource
 class_name SettingsConfig
-#TODO: change to config
 
 
 ## Gameplay ##

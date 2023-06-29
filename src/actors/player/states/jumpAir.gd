@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#LOOKAT: probably remove, kills precision. maybe like celeste were you are given one from pickup
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer

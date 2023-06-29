@@ -7,7 +7,6 @@ var transformTime: float = 0.1
 
 func enter() -> void:
 	## Pulls player off the wall
-	#TODO: check rotation to move off wall
 	player.velocity = Vector2(0, 10)
 	player.set_up_direction(Vector2.UP)
 	player.animPlayer.queue("Idle")

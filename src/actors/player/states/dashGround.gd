@@ -77,7 +77,6 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-		#TODO: add chain dash and dash cooldown
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -91,7 +90,7 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if durationTimer.is_stopped():
-		if player.is_on_floor(): #TODO: if keeping make cd timer
+		if player.is_on_floor():
 			abilities.reset(PlayerAbilities.list.Dash)
 			return State.Walk
 		else:

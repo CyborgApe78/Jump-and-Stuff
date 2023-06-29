@@ -1,5 +1,5 @@
 extends PlayerInfo
-#TODO: turn off bonk in settings
+
 
 @export var soundBonk: AudioStreamPlayer
 @export var soundSplat: AudioStreamPlayer
@@ -7,7 +7,6 @@ extends PlayerInfo
 var currentBonkTime: float
 @export var bonkTime: float = 1.5
 @export var bounceBack: int = 400
-#TODO:variables for amimation
 
 
 func enter() -> void:
@@ -35,7 +34,7 @@ func physics(delta) -> void:
 	currentBonkTime -= delta #TODO: make timer
 	if abs(player.groundAngle) > 1: ## slide if on slope
 		player.velocity.x = move_toward(abs(player.velocity.x), moveSpeed, accelerationGround) * sin(player.groundAngle)
-	else: #lookat: letting enviroment effects move
+	else:
 		player.velocity = Vector2.ZERO 
 
 

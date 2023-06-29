@@ -1,21 +1,16 @@
 extends PlayerInfo
 
-#TODO: add block break indicator
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerLongJump: Timer ## Currrently not used, was going to be long distance if jump timing hit
 @export var timerDuration: Timer
-@export var timerChain: Timer #TODO: visual feedback when chain can be used
+@export var timerChain: Timer
 @export var timerJumpWallSave: Timer
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
 
 var duration: float = 1
-
-
-
-#TODO: conserve consec jump, make challenge were 2 jump, dash under then triple jump
 
 
 func enter() -> void:
@@ -64,7 +59,7 @@ func handle_input(event: InputEvent) -> int:
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			return consecutive_jump_logic()
-		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()): #TODO: ground check to use buffer instead of double jump
+		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			player.velocity.x = 0
 			return State.JumpAir
 		else:
@@ -75,7 +70,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.Dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):  #FIXME: gets called as soon as state is enter
+	if Input.is_action_just_pressed("dash"):
 		if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
 			abilities.consume(PlayerAbilities.list.DashChain, 1)
 			return State.DashAir

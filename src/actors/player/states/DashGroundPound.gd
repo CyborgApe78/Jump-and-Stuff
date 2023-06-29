@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: aimable
 
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer
@@ -9,7 +10,7 @@ func enter() -> void:
 	EventBus.playerJumped.emit()
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
-	player.velocity.y = -player.GPMaxVelocity.y/3 #LOOKAT: might need a max speed
+	player.velocity.y = -player.GPMaxVelocity.y/3
 
 
 func exit() -> void:

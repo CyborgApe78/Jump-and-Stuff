@@ -313,4 +313,4 @@ func consume(ability: int, amount: int) -> void:
 	elif ability == list.DashChain:
 		currentDashChain += amount
 	else:
-		EventBus.error.emit("Null Ability Consume " + str(ability)) #TODO: create error log
+		EventBus.error.emit("Null Ability Consume " + str(ability))

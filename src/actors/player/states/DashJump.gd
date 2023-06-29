@@ -17,14 +17,12 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity = player.aimDirection * dashVelocity * 1.6 #TODO: make aim direction like it is in grapple and bash detectors
-#	player.ability_mask(CollisionLayers.DashJump, false) #TODO: all dash blocks
 
 
 func exit() -> void:
 	soundJetpack.stop()
 	particles.local_coords = false
 	particles.emitting = false
-#	player.ability_mask(CollisionLayers.DashJump, true)
 
 
 func physics(delta) -> void:
@@ -64,8 +62,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_ceiling() or player.is_on_wall(): #TODO: autograb walls? or make player save from bonk
-		return State.Fall
+	if player.is_on_ceiling() or player.is_on_wall():
+		return State.BonkAir
 	if durationTimer.is_stopped():
 		return State.Fall
 

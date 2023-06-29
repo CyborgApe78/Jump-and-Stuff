@@ -11,6 +11,11 @@ func enter() -> void:
 		player.global_position = CheckpointSystem.get_respawn()
 #	player.animPlayer.play("Spawn") #breaks some states
 	EventBus.playerStatsCheck.emit()
+#	var faceState = randi_range(0, 1) 
+#	if faceState == 1:
+#		player.scale.x = 1
+#	else:
+#		player.scale.x = -1
 
 
 func exit() -> void:

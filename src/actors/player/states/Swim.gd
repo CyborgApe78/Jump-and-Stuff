@@ -21,7 +21,8 @@ func physics(delta) -> void:
 #	var velocity_target = player.moveDirection * swimVelocity
 	if player.moveDirection == Vector2.ZERO:
 		player.velocity.y = 100
-		player.velocity.x = VelEq.apply_friction(player.velocity.y, frictionGround * 2, delta)
+		player.velocity.x = 0
+#		player.velocity.x = VelEq.apply_friction(player.velocity.y, frictionGround * 2, delta)
 #	elif abs(player.velocity) < abs(velocity_target): #TODO: need to find a better way for accel and deccel
 #		player.velocity = player.velocity.move_toward(velocity_target, accelerationAir * delta)
 	else:

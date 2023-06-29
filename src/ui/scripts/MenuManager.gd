@@ -20,7 +20,6 @@ func _ready() -> void:
 	menu_hid()
 	change_menu(BaseMenu.State.Unpaused)
 	EventBus.menuChanged.connect(button_pressed)
-	#LOOKAT: why does this have to be on ready instead of init. like player state machine
 
 
 func _input(event: InputEvent) -> void:

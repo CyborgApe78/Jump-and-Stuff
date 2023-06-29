@@ -573,7 +573,7 @@ position = Vector2(14, 8)
 shape = SubResource("RectangleShape2D_yyd6p")
 
 [node name="HurtBox" parent="." instance=ExtResource("12_orgcd")]
-position = Vector2(-281, 175)
+position = Vector2(-120, 184)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="HurtBox"]

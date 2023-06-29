@@ -1,6 +1,5 @@
 extends MarginContainer
 
-#TODO: gather scripts and scenes into the same folder
 
 @export var stateLabel: Label
 @export var velocityLabel: Label

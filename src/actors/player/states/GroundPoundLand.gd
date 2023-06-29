@@ -42,7 +42,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.JumpCrouch #TODO: own state
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to charge
 		return State.DashGroundPound
-		#TODO:dash give velocity reverse (aimable), direction give wall break
 	
 	return State.Null
 

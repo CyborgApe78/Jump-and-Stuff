@@ -58,7 +58,7 @@ func physics(delta) -> void:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
 				apply_friction(moveSpeed * 2, delta)
 			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < velocityRollJump:
-#					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
+#					apply_acceleration(velocityLongJump, moveSpeed * 3, delta)
 					player.velocity.x = move_toward(abs(player.velocity.x), velocityRollJump, (moveSpeed * 3) * delta) * player.facing
 	
 	track_top_speed(player.velocity.x)

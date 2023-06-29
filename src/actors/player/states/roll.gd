@@ -63,7 +63,7 @@ func physics(delta) -> void:
 #			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
 #	if rad_to_deg(player.groundAngle) > 1:
 #		if sign(player.velocity.x) == 1:
-#			player.velocity.x += downHillAccel #TODO: make like friction func, need a top speed or make this function
+#			player.velocity.x += downHillAccel
 #		else:
 #			apply_friction(frictionGround * upHillFrictionModifier, delta)
 #	else:
@@ -89,8 +89,6 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.playerActionAnnounce.emit("Early Jump")
 			player.velocity.x = player.velocity.x/4
 			return State.Jump
-	if Input.is_action_just_pressed("slide") and abilities.can_use(PlayerAbilities.list.Slide): #LOOKAT: should you be able to go to slide
-		return State.Slide
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		if player.is_on_floor():
@@ -128,7 +126,7 @@ func state_check(delta: float) -> int:
 				return State.Walk
 			else:
 				return State.Idle
-		else: #LOOKAT: is this needed  !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight:
+		else:
 			timerCoyoteJump.start()
 			return State.Fall
 #	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool

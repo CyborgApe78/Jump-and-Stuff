@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: get friction from enviroment
 #TODO: add nuetral input
 
 @export var timerCoyoteJump: Timer
@@ -10,6 +9,7 @@ extends PlayerInfo
 @export var skidPercent: float = 1.2
 
 var skidding: bool = false
+
 
 func enter() -> void:
 	player.animPlayer.queue("Walk")
@@ -45,7 +45,7 @@ func physics(delta) -> void:
 func visual(delta) -> void:
 	player.animation_speed(.004)
 	player.facing_logic()
-	speed_bend(false) #TODO: create own bend function
+	speed_bend(false)
 	align_to_ground()
 	
 

@@ -1,8 +1,5 @@
 extends PlayerInfo
 
-#TODO: change from state to more PSpeed inspired. charging up coils
-#LOOKAT: need to mess around with wall jumps, need to jump off wall and keep speedboost
-#TODO: need a variable to return to speed boost player.speedBoostActive
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -78,7 +75,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if skidding:
 		return State.Skid
-	if !player.is_on_floor(): #FIXME: need to figure a way to come back to speed boost after leaving ground
+	if !player.is_on_floor():
 		timerCoyoteJump.start()
 		return State.Fall
 	if player.velocity.x == 0:
