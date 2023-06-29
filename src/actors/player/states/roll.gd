@@ -7,15 +7,15 @@ extends PlayerInfo
 @export var timerConsecutiveJump: Timer
 @export var timerDuration: Timer
 @export var timerChain: Timer
+@export var particles: GPUParticles2D
+@export var particleChain: GPUParticles2D
+@export var detector: ShapeCast2D
 
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
 @export var duration: float = 1.0
 @export var refreshPercent: float = 0.8
 @export var velocityModifier: float = 1.5
-@export var particles: GPUParticles2D
-@export var particleChain: GPUParticles2D
-
 
 var saveConsecutive: bool
 var rollVelocity: float
@@ -82,7 +82,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !timerCoyoteJump.is_stopped()) and !player.crouch_ceiling_detect():
+	if Input.is_action_just_pressed("jump") and !detector.is_colliding():
 		if timerChain.is_stopped():
 			return State.RollJump
 		else:
@@ -115,7 +115,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if timerDuration.is_stopped():
 		if player.is_on_floor(): 
-			if player.crouch_ceiling_detect():
+			if detector.is_colliding():
 				player.velocity.x = 0
 				return State.Crouch
 			elif Input.is_action_pressed("crouch"):

@@ -5843,7 +5843,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0021, 6.82102, 36.747, 17.8977, 40.5377, 31.2173)
+points = PackedVector2Array(0, 0, 24.0028, 6.8181, 36.7486, 17.8934, 40.5402, 31.2126)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5952,7 +5952,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 18, 0, 40, 16, 32)
+points = PackedVector2Array(0, 18, 8, 34, 32, 34)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5964,7 +5964,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 56, 0, 64)
+points = PackedVector2Array(0, 48, 0, 56)
 width = 44.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6065,11 +6065,12 @@ script = ExtResource("14_bvej5")
 soundeffect = NodePath("../../Sounds/skid")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Skid")
 
-[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerBufferRoll")]
+[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerBufferRoll", "detector")]
 script = ExtResource("15_tm0os")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
+detector = NodePath("../../Raycasts/Other/CrouchSpace")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
 script = ExtResource("16_7w1oc")
@@ -6276,24 +6277,26 @@ timerDuration = NodePath("../../Timers/DashDuration")
 
 [node name="Spin" type="Node" parent="StateMachine"]
 
-[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "durationTimer", "particles")]
+[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "durationTimer", "particles", "detector")]
 script = ExtResource("42_24e85")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
+detector = NodePath("../../Raycasts/Other/CrouchSpace")
 
-[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerChain", "particles", "particleChain")]
+[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerChain", "particles", "particleChain", "detector")]
 script = ExtResource("43_3drow")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 timerDuration = NodePath("Duration")
 timerChain = NodePath("../../Timers/Chain")
-duration = 0.8
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 particleChain = NodePath("../../CharacterRig/CharacterRotate/Particles/ChainIndicator")
+detector = NodePath("../../Raycasts/Other/CrouchSpace")
+duration = 0.8
 
 [node name="Refresh" type="Timer" parent="StateMachine/Roll"]
 one_shot = true
@@ -6311,7 +6314,7 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
-detector = NodePath("../../Raycasts/Other/RollJumpSpace")
+detector = NodePath("../../Raycasts/Other/CrouchSpace")
 duration = 0.8
 
 [node name="Swim" type="Node" parent="StateMachine"]
@@ -6369,16 +6372,6 @@ position = Vector2(32, -56)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(5, 0)
 
-[node name="Crouch" type="Node2D" parent="Raycasts"]
-
-[node name="Left" type="RayCast2D" parent="Raycasts/Crouch"]
-position = Vector2(-24, -56)
-target_position = Vector2(0, -64)
-
-[node name="Right" type="RayCast2D" parent="Raycasts/Crouch"]
-position = Vector2(24, -56)
-target_position = Vector2(0, -64)
-
 [node name="Other" type="Node2D" parent="Raycasts"]
 position = Vector2(0, -128)
 
@@ -6386,7 +6379,7 @@ position = Vector2(0, -128)
 shape = SubResource("RectangleShape2D_td2jd")
 target_position = Vector2(0, -64)
 
-[node name="RollJumpSpace" type="ShapeCast2D" parent="Raycasts/Other"]
+[node name="CrouchSpace" type="ShapeCast2D" parent="Raycasts/Other"]
 position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)

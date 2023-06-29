@@ -5,11 +5,12 @@ extends PlayerInfo
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerConsecutiveJump: Timer
-
-@export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
+@export var detector: ShapeCast2D
+
 @export var velocityModifier: float = 1.25
+@export var duration: float = 0.3
 
 var saveTriple: bool
 var slideVelocity: float
@@ -97,7 +98,7 @@ func state_check(delta: float) -> int:
 		return State.Idle
 	if durationTimer.is_stopped(): #TODO: upgrade that keeps sliding to
 		if player.is_on_floor():
-			if player.crouch_ceiling_detect():
+			if !detector.is_colliding():
 				player.velocity.x = 0
 				return State.Crouch
 			elif Input.is_action_pressed("crouch"):

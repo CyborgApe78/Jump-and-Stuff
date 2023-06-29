@@ -17,8 +17,6 @@ class_name  Player
 @onready var detectorGroundRight: RayCast2D = $Raycasts/Ground/Right
 @onready var wallRaycastLeft: ShapeCast2D = $Raycasts/Wall/Left
 @onready var wallRaycastRight: ShapeCast2D = $Raycasts/Wall/Right
-@onready var detectorCrouchLeft: RayCast2D = $Raycasts/Crouch/Left
-@onready var detectorCrouchRight: RayCast2D = $Raycasts/Crouch/Right
 @onready var grappleHookLine: Line2D = $GrappleHook
 
 var moveDirection: Vector2 = Vector2.ZERO
@@ -204,12 +202,6 @@ func wall_detection(length: int = 5) -> int:
 	
 	return 0
 
-
-func crouch_ceiling_detect() -> bool:
-	if detectorCrouchLeft.is_colliding() or detectorCrouchRight.is_colliding():
-		return true
-	
-	return false
 
 func _on_dash_chain_timeout() -> void:
 	pass
