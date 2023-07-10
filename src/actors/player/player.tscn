@@ -31,16 +31,16 @@
 [ext_resource type="Script" path="res://src/actors/player/states/DashGround.gd" id="32_407l4"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashAir.gd" id="33_duxhx"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
+[ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="35_hmyo3"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="36_4y8yc"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashClimb.gd" id="37_uycm8"]
-[ext_resource type="Script" path="res://src/actors/player/states/GroundPound.gd" id="38_i65yo"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashJump.gd" id="38_u42tb"]
 [ext_resource type="Script" path="res://src/actors/player/states/GroundPoundLand.gd" id="39_q31hf"]
 [ext_resource type="Script" path="res://src/actors/player/states/BashAim.gd" id="39_wb8jk"]
 [ext_resource type="Script" path="res://src/actors/player/states/GroundPoundBounce.gd" id="40_yon7f"]
 [ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="41_5rahm"]
 [ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="42_24e85"]
-[ext_resource type="Script" path="res://src/actors/player/states/Roll.gd" id="43_3drow"]
+[ext_resource type="Script" path="res://src/actors/player/states/roll.gd" id="42_rb26t"]
 [ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="43_ft5ho"]
 [ext_resource type="Script" path="res://src/actors/player/states/RollJump.gd" id="44_mqqr0"]
 [ext_resource type="PackedScene" uid="uid://bxio7mtc2sse1" path="res://src/object/components/health_component.tscn" id="45_an6xy"]
@@ -5843,7 +5843,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0031, 6.8182, 36.7499, 17.893, 40.5434, 31.212)
+points = PackedVector2Array(0, 0, 24.003, 6.81701, 36.7492, 17.8918, 40.5411, 31.2109)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6232,7 +6232,7 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 soundeffect = NodePath("../../Sounds/jump")
 
 [node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "detector")]
-script = ExtResource("38_i65yo")
+script = ExtResource("35_hmyo3")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 detector = NodePath("../../Raycasts/Shapes/GroundPoundSpace")
@@ -6287,13 +6287,13 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerChain", "particles", "particleChain", "detector")]
-script = ExtResource("43_3drow")
+script = ExtResource("42_rb26t")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 timerDuration = NodePath("Duration")
 timerChain = NodePath("../../Timers/Chain")
-particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 particleChain = NodePath("../../CharacterRig/CharacterRotate/Particles/ChainIndicator")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 duration = 0.8
