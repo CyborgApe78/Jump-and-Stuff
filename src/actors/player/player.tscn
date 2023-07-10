@@ -5843,7 +5843,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0028, 6.8181, 36.7486, 17.8934, 40.5402, 31.2126)
+points = PackedVector2Array(0, 0, 24.0031, 6.8182, 36.7499, 17.893, 40.5434, 31.212)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5879,7 +5879,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 8, -8, 16, 8, 24)
+points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5928,7 +5928,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 56, 16, 56, 16, 64, 24, 64)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5952,7 +5952,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 18, 8, 34, 32, 34)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5964,7 +5964,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 48, 0, 56)
+points = PackedVector2Array(0, 24, 0, 40)
 width = 44.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6030,7 +6030,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, 16, -32, 32)
+points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6070,7 +6070,7 @@ script = ExtResource("15_tm0os")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
-detector = NodePath("../../Raycasts/Other/CrouchSpace")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
 script = ExtResource("16_7w1oc")
@@ -6235,7 +6235,7 @@ soundeffect = NodePath("../../Sounds/jump")
 script = ExtResource("38_i65yo")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
-detector = NodePath("../../Raycasts/Other/GroundPoundSpace")
+detector = NodePath("../../Raycasts/Shapes/GroundPoundSpace")
 
 [node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge", "particles", "soundeffect")]
 script = ExtResource("39_q31hf")
@@ -6284,7 +6284,7 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
-detector = NodePath("../../Raycasts/Other/CrouchSpace")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerChain", "particles", "particleChain", "detector")]
 script = ExtResource("43_3drow")
@@ -6295,7 +6295,7 @@ timerDuration = NodePath("Duration")
 timerChain = NodePath("../../Timers/Chain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
 particleChain = NodePath("../../CharacterRig/CharacterRotate/Particles/ChainIndicator")
-detector = NodePath("../../Raycasts/Other/CrouchSpace")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 duration = 0.8
 
 [node name="Refresh" type="Timer" parent="StateMachine/Roll"]
@@ -6314,7 +6314,7 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
-detector = NodePath("../../Raycasts/Other/CrouchSpace")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 duration = 0.8
 
 [node name="Swim" type="Node" parent="StateMachine"]
@@ -6372,24 +6372,29 @@ position = Vector2(32, -56)
 shape = SubResource("RectangleShape2D_2220v")
 target_position = Vector2(5, 0)
 
-[node name="Other" type="Node2D" parent="Raycasts"]
+[node name="Shapes" type="Node2D" parent="Raycasts"]
 position = Vector2(0, -128)
 
-[node name="GroundPoundSpace" type="ShapeCast2D" parent="Raycasts/Other"]
+[node name="GroundPoundSpace" type="ShapeCast2D" parent="Raycasts/Shapes"]
+enabled = false
 shape = SubResource("RectangleShape2D_td2jd")
 target_position = Vector2(0, -64)
 
-[node name="CrouchSpace" type="ShapeCast2D" parent="Raycasts/Other"]
+[node name="CrouchSpace" type="ShapeCast2D" parent="Raycasts/Shapes"]
 position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)
+
+[node name="Ground" type="ShapeCast2D" parent="Raycasts/Shapes"]
+enabled = false
+collision_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

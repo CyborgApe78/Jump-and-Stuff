@@ -11,6 +11,8 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	detector.enabled = true
+	detector.force_shapecast_update()
 	if !detector.is_colliding():
 		player.global_position.y -= Util.tileSize * 4 #TODO: smooth movement
 	player.velocity.y = max(moveSpeed, abs(player.velocity.y))
@@ -22,6 +24,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	detector.enabled = false
 	player.characterRotate.rotation_degrees = 0 
 	player.characterCollision.rotation_degrees = 0 
 

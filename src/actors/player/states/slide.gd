@@ -17,6 +17,7 @@ var slideVelocity: float
 
 
 func enter() -> void:
+	detector.enabled = true
 	slideVelocity = moveSpeed * velocityModifier
 	player.animPlayer.queue("Slide")
 	player.velocityPrevious = player.velocity
@@ -28,6 +29,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	detector.enabled = false
 	player.animPlayer.stop()
 	particles.emitting = false
 #	if abs(player.velocityPrevious.x) < abs(player.velocity.x):
@@ -98,7 +100,7 @@ func state_check(delta: float) -> int:
 		return State.Idle
 	if durationTimer.is_stopped(): #TODO: upgrade that keeps sliding to
 		if player.is_on_floor():
-			if !detector.is_colliding():
+			if detector.is_colliding():
 				player.velocity.x = 0
 				return State.Crouch
 			elif Input.is_action_pressed("crouch"):
