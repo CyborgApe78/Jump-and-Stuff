@@ -69,6 +69,9 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	if Input.is_action_pressed("move_down"):
+		player.set_collision_mask_value(CollisionLayers.Semisolid, false)
+		timerSemisolidReset.stop()
 	if Input.is_action_just_released("move_down"):
 		timerSemisolidReset.start()
 	if Input.is_action_pressed("jump"):
