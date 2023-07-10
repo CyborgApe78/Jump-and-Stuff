@@ -1,0 +1,16 @@
+res://src/object/prefab
+res://src/object/prefab/scripts
+res://src/autoload
+res://src/actors/player/states
+res://src/object/components/scripts
+res://src/object/components
+res://src/actors/player/scripts
+res://src/ui/scripts/buttons
+res://src/object/prefab/hazard
+res://src/object/scripts
+res://src/ui/HUD/scripts
+res://src/ui/HUD
+res://src/ui/Debug/Scripts
+res://src/object/enviroment/scripts
+res://src/object/enviroment
+res://src/object

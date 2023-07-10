@@ -1,0 +1,2 @@
+res://src/actors/player/player.tscn
+res://src/actors/player/states/fall.gd
