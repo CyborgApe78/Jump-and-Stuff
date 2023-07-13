@@ -25,6 +25,7 @@ driver/mix_rate=48000
 
 EventBus="*res://src/autoload/EventBus.gd"
 Global="*res://src/autoload/Global.gd"
+Utility="*res://src/autoload/Util.gd"
 
 [debug]
 
