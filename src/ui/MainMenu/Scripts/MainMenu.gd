@@ -12,11 +12,12 @@ var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
 
 
 func _ready() -> void:
-	DisplayServer.window_set_size(DisplayServer.screen_get_size())
-	if settings.enableFullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	if !OS.has_feature("editor"):
+		DisplayServer.window_set_size(DisplayServer.screen_get_size())
+		if settings.enableFullscreen:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	#TODO: add vsync
 	labelTitle.text = GameInformation.gameName
 	labelVersion.text = GameInformation.version
