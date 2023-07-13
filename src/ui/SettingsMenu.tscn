@@ -223,6 +223,12 @@ layout_mode = 2
 button_pressed = true
 text = "Fullscreen"
 
+[node name="Borderless" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
+visible = false
+layout_mode = 2
+button_pressed = true
+text = "Borderless #TODO"
+
 [node name="Audio" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
 visible = false
 layout_mode = 2
@@ -259,3 +265,4 @@ text = "Spoilers"
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Controller" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_controller"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer/VSync" to="MarginContainer/HBoxContainer/Options/MarginContainer/Video" method="enable_vsync"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer/Fullscreen" to="MarginContainer/HBoxContainer/Options/MarginContainer/Video" method="enable_fullscreen"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer/Borderless" to="MarginContainer/HBoxContainer/Options/MarginContainer/Video" method="enable_borderless"]

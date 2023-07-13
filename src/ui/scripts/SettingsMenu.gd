@@ -15,6 +15,8 @@ extends BaseMenu
 @export var audioButton: Button
 @export var controlsButton: Button 
 
+var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
+
 
 func enter() -> void:
 	set_paused(true)
@@ -25,6 +27,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	ResourceSaver.save(settings)
 	EventBus.settingsUpdate.emit()
 	self.visible = false
 
