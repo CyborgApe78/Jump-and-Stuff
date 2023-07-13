@@ -11,3 +11,8 @@ var rumble: bool = true
 var hideHUD: bool = false
 var showTimer: bool = false
 var showController: bool = false
+
+
+## Video ##
+var enableVysnc: bool = true
+var enableFullscreen: bool = true

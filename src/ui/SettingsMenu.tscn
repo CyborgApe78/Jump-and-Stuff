@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgr00u8sgd2q3"]
+[gd_scene load_steps=6 format=3 uid="uid://cgr00u8sgd2q3"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="1_sbdkq"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="2_4npie"]
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu/scripts/HUD.gd" id="3_oufns"]
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu/scripts/Gameplay.gd" id="3_vxf3y"]
+[ext_resource type="Script" path="res://src/ui/scripts/VideoMenu.gd" id="5_vdgk8"]
 
 [node name="SettingsMenu" type="CenterContainer" node_paths=PackedStringArray("optionsContainer", "gameplayMenu", "hudMenu", "videoMenu", "audioMenu", "controlsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton")]
 anchors_preset = 8
@@ -148,6 +149,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Gameplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonAimIndicator", "buttonRumble")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_vxf3y")
 buttonAimIndicator = NodePath("VBoxContainer/Aim")
@@ -197,9 +199,11 @@ text = "Show Ingame Timer"
 layout_mode = 2
 text = "Show Controller Overlay"
 
-[node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
-visible = false
+[node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonVsync", "buttonFullscreen")]
 layout_mode = 2
+script = ExtResource("5_vdgk8")
+buttonVsync = NodePath("VBoxContainer/VSync")
+buttonFullscreen = NodePath("VBoxContainer/Fullscreen")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video"]
 layout_mode = 2
@@ -213,6 +217,11 @@ layout_mode = 2
 layout_mode = 2
 button_pressed = true
 text = "Enable VSync"
+
+[node name="Fullscreen" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Fullscreen"
 
 [node name="Audio" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
 visible = false
@@ -248,3 +257,5 @@ text = "Spoilers"
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/HideHUD" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="hide_hud"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Timer" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_timer"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer/Controller" to="MarginContainer/HBoxContainer/Options/MarginContainer/HUD" method="show_controller"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer/VSync" to="MarginContainer/HBoxContainer/Options/MarginContainer/Video" method="enable_vsync"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer/Fullscreen" to="MarginContainer/HBoxContainer/Options/MarginContainer/Video" method="enable_fullscreen"]
