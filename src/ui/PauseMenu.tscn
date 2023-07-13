@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpn0y7ftimcj5"]
+[gd_scene load_steps=4 format=3 uid="uid://dpn0y7ftimcj5"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/PauseMenu.gd" id="1_7xjbr"]
+[ext_resource type="PackedScene" uid="uid://dj67hsmvv1p38" path="res://addons/BugReporter/reporter.tscn" id="3_wwlrs"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_q2n8j"]
 
-[node name="PauseMenu" type="CenterContainer"]
+[node name="PauseMenu" type="CenterContainer" node_paths=PackedStringArray("feedback")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,61 +17,72 @@ offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7xjbr")
+feedback = NodePath("HBoxContainer/Reporter")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Resume" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 text = "Resume"
 
-[node name="Reset" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Reset" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Reset"
 
-[node name="Controls" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Controls" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Controls"
 
-[node name="Settings" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
 
-[node name="MainMenu" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
-visible = false
+[node name="Feedback" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Feedback"
+
+[node name="MainMenu" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="Quit" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Resume")
 text = "Quit"
 script = ExtResource("4_q2n8j")
 
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Quit" to="MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_pressed"]
+[node name="Reporter" parent="HBoxContainer" instance=ExtResource("3_wwlrs")]
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" to="." method="_on_feedback_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_pressed"]

@@ -1,11 +1,15 @@
 extends BaseMenu
 
 
+@export var feedback: Control
+
 @onready var resumeButton: Button = $"%Resume"
+
 var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
 
 func enter() -> void:
+	feedback.visible = false
 	set_paused(true)
 	self.visible = true
 	resumeButton.grab_focus()
@@ -44,3 +48,5 @@ func _on_controls_pressed() -> void:
 	EventBus.menuChanged.emit(State.Controls)
 
 
+func _on_feedback_pressed() -> void:
+	feedback.visible = !feedback.visible
