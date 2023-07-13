@@ -25,7 +25,6 @@ enum State {
 	GroundPoundLand,
 	GroundPoundBounce,
 	BellySlide,
-	WallLand,
 	WallSlide,
 	WallGrab,
 	DashGround,

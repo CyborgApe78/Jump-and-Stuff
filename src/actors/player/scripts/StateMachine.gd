@@ -22,7 +22,6 @@ extends Node
 	PlayerState.State.GroundPoundLand: $GroundPoundLand,
 	PlayerState.State.GroundPoundBounce: $GroundPoundBounce,
 	PlayerState.State.BellySlide: $BellySlide,
-	PlayerState.State.WallLand: $WallLand,
 	PlayerState.State.WallSlide: $WallSlide,
 	PlayerState.State.WallGrab: $WallGrab,
 	PlayerState.State.DashGround: $DashGround,

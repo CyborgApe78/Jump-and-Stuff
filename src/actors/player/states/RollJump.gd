@@ -119,7 +119,7 @@ func state_check(delta: float) -> int:
 			topSpeed = 0
 			return State.BonkAir
 		else:
-			return State.WallLand
+			return State.WallSlide
 	if player.is_on_floor():
 		if !timerDuration.is_stopped():
 			return State.Roll
