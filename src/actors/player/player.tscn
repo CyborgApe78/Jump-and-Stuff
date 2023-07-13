@@ -5842,7 +5842,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0026, 6.81838, 36.748, 17.894, 40.5389, 31.2133)
+points = PackedVector2Array(0, 0, 24.0031, 6.81768, 36.7499, 17.8924, 40.543, 31.2114)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6373,6 +6373,7 @@ target_position = Vector2(0, -64)
 
 [node name="CrouchSpace" type="ShapeCast2D" parent="Raycasts/Shapes"]
 position = Vector2(0, 64)
+enabled = false
 shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)
 

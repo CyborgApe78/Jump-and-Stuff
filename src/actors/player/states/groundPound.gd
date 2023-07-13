@@ -13,7 +13,7 @@ extends PlayerInfo
 func enter() -> void:
 	detector.enabled = true
 	detector.force_shapecast_update()
-	if !detector.is_colliding():
+	if !detector.is_colliding(): #TODO: find collision point and move to below that
 		player.global_position.y -= Util.tileSize * 4 #TODO: smooth movement
 	player.velocity.y = max(moveSpeed, abs(player.velocity.y))
 	player.animPlayer.queue("Ground Pound")
