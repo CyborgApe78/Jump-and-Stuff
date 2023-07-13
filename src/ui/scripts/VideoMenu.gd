@@ -15,7 +15,7 @@ func _ready() -> void:
 func update_menu() -> void:
 	buttonVsync.button_pressed = settings.enableVsync
 	buttonFullscreen.button_pressed = settings.enableFullscreen
-	buttonBorderless.button_pressed = settings.enableBorderless
+#	buttonBorderless.button_pressed = settings.enableBorderless
 
 
 func enable_vsync(toggled: bool) -> void:
