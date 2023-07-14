@@ -114,12 +114,11 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if player.is_on_ceiling():
 		return State.Fall
-	if player.is_on_wall():
-		if topSpeed > moveSpeed:
-			topSpeed = 0
-			return State.BonkAir
-		else:
-			return State.WallSlide
+	if player.is_on_wall() and topSpeed > moveSpeed:
+		topSpeed = 0
+		return State.BonkAir
+#		elif player.moveDirection.x == player.wallDirection:
+#			return State.WallSlide
 	if player.is_on_floor():
 		if !timerDuration.is_stopped():
 			return State.Roll

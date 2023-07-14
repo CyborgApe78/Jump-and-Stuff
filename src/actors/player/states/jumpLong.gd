@@ -104,8 +104,6 @@ func state_check(delta: float) -> int:
 		elif topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
-		elif player.velocity.y < 0: ## player is going up go to wallland else slide
-			return State.WallSlide
 		else:
 			return State.WallSlide
 	if player.is_on_floor():
