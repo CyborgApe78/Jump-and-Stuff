@@ -66,6 +66,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		if player.is_on_floor():
+			EventBus.rumble.emit(0.1, 0.2, 0.2)
 			return State.DashGround
 		else:
 			return State.DashAir

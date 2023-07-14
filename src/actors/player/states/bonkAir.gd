@@ -12,6 +12,7 @@ var landed: bool
 
 func enter() -> void:
 	EventBus.playerActionAnnounce.emit("Bonk")
+	EventBus.rumble.emit(0.5, 0.7, 0.4)
 	consecutive_jump_cancel()
 	landed = false
 	soundBonk.play()

@@ -123,6 +123,7 @@ func state_check(delta: float) -> int:
 			return State.JumpApex
 		if player.is_on_floor():
 			player.landed()
+			EventBus.rumble.emit(0.1, 0.2, 0.2)
 			if player.velocity.x != 0:
 				return State.Walk
 			else:

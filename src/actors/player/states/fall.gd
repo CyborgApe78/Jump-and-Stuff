@@ -133,9 +133,11 @@ func state_check(delta: float) -> int:
 		if !timerBufferJump.is_stopped():
 			timerBufferJump.stop()
 			EventBus.helperUsed.emit(Util.helper.bufferJump)
+			EventBus.rumble.emit(0.1, 0.3, 0.2)
 			return consecutive_jump_logic()
 		if !timerBufferRoll.is_stopped():
 			timerBufferRoll.stop()
+			EventBus.rumble.emit(0.1, 0.3, 0.2)
 			return State.Roll
 		elif timerFall.is_stopped():
 			return State.BonkGround
@@ -143,16 +145,20 @@ func state_check(delta: float) -> int:
 			timerConsecutiveJump.start()
 			if Input.is_action_pressed("crouch"):
 				player.animPlayer.stop()
+				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Crouch
 			elif Input.is_action_pressed("slide"):
 				player.animPlayer.stop()
+				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Slide
 			elif player.velocity.x != 0:
 	#			if player.neutralMoveDirection:
 	#				return State.NeutralGround #TODO: keep momentum if jumping
 	#			else:
+				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Walk
 			else:
+				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Idle
 
 	return State.Null

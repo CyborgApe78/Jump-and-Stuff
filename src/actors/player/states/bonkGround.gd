@@ -11,6 +11,7 @@ var currentBonkTime: float
 
 func enter() -> void:
 	EventBus.playerActionAnnounce.emit("Splat")
+	EventBus.rumble.emit(0.5, 0.7, 0.4)
 	consecutive_jump_cancel()
 	player.landed()
 	soundBonk.play()

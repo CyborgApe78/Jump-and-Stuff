@@ -108,6 +108,7 @@ func state_check(delta: float) -> int:
 			return State.WallSlide
 	if player.is_on_floor():
 		player.landed()
+		EventBus.rumble.emit(0.1, 0.2, 0.2)
 		if Input.is_action_pressed("crouch"):
 			if !timerBufferJump.is_stopped():
 				return State.JumpLong

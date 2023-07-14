@@ -83,10 +83,12 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if player.is_on_floor():
 		if !timerBufferRoll.is_stopped():
+			EventBus.rumble.emit(0.1, 0.2, 0.2)
 			return State.Roll
 		elif fallTimer.is_stopped():
 			return State.BonkGround
 		else:
+			EventBus.rumble.emit(0.2, 0.3, 0.2)
 #			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 #			tween.tween_property(player.characterRotate, "rotation_degrees", 0, transformTime).from_current()
 #			tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
