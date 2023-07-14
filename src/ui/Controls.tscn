@@ -129,6 +129,14 @@ offset_right = 1202.0
 offset_bottom = 661.0
 text = "Spin"
 
+[node name="Pogo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1121.0
+offset_top = 593.0
+offset_right = 1183.0
+offset_bottom = 619.0
+text = "POGO"
+
 [node name="Bash" type="Label" parent="."]
 layout_mode = 0
 offset_left = 224.0

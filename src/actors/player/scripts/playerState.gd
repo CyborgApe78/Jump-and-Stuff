@@ -46,6 +46,8 @@ enum State {
 	
 	Teleport,
 	Die,
+	DashUp,
+	DashDown,
 }
 
 var statePrevious: int 

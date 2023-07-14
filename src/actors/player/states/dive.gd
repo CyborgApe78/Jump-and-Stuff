@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#todo: homing dive into bouncy things
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer

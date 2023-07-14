@@ -8,9 +8,9 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 @export var detector: ShapeCast2D
 
-@export var duration: float = 1.0
+@export var duration: float = 0.3
 @export var jumpModifier: float = 0.25
-@export var velocityModifier: float = 2.0
+@export var velocityModifier: float = 1.75
 
 var velocityRollJump: float
 var startingHeight: int
@@ -36,6 +36,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	timerDuration.stop()
 	detector.enabled = false
 	player.animPlayer.stop()
 	soundeffect.pitch_scale = 1
@@ -119,9 +120,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 #		elif player.moveDirection.x == player.wallDirection:
 #			return State.WallSlide
-	if player.is_on_floor():
-		if !timerDuration.is_stopped():
-			return State.Roll
+	if player.is_on_floor() and timerDuration.is_stopped():
 		if !timerBufferRoll.is_stopped():
 			timerBufferRoll.stop()
 			return State.Roll

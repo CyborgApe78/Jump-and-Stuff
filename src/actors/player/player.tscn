@@ -25,10 +25,10 @@
 [ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="26_uv5su"]
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="27_oxfs3"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
+[ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallSlide.gd" id="30_suiwv"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_l4kvw"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGround.gd" id="32_407l4"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashAir.gd" id="33_duxhx"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="35_hmyo3"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="36_4y8yc"]
@@ -5842,7 +5842,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0024, 6.81899, 36.7477, 17.8949, 40.5384, 31.2143)
+points = PackedVector2Array(0, 0, 24.0026, 6.81875, 36.7481, 17.8944, 40.5394, 31.2137)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6040,7 +6040,6 @@ script = ExtResource("6_ab4rp")
 thickness = 1.05
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
@@ -6183,14 +6182,14 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerLongJump", "timerDuration", "timerChain", "timerJumpWallSave", "particles", "soundJetpack")]
-script = ExtResource("33_duxhx")
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerLongJump", "timerDuration", "timerChain", "timerBufferJumpWall", "particles", "soundJetpack")]
+script = ExtResource("29_j03jp")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerLongJump = NodePath("LongJump")
 timerDuration = NodePath("../../Timers/DashDuration")
 timerChain = NodePath("../../Timers/Chain")
-timerJumpWallSave = NodePath("../../Timers/BufferJumpWall")
+timerBufferJumpWall = NodePath("../../Timers/BufferJumpWall")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
@@ -6287,7 +6286,6 @@ timerChain = NodePath("../../Timers/Chain")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 particleChain = NodePath("../../CharacterRig/CharacterRotate/Particles/ChainIndicator")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
-duration = 0.8
 
 [node name="Refresh" type="Timer" parent="StateMachine/Roll"]
 one_shot = true
@@ -6306,7 +6304,6 @@ timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
-duration = 0.8
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("43_ft5ho")
@@ -6386,7 +6383,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
