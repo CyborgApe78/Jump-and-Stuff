@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#FIXME: got stuck landing on the edge of a platform
+#TODO: downhill speed up, uphill slow down
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -13,7 +13,7 @@ extends PlayerInfo
 
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
-@export var duration: float = 1.0
+@export var duration: float = 0.8
 @export var refreshPercent: float = 0.8
 @export var velocityModifier: float = 1.5
 
@@ -40,6 +40,7 @@ func exit() -> void:
 	detector.enabled = false
 	player.animPlayer.stop()
 	timerChain.stop()
+	timerDuration.stop()
 	if saveConsecutive:
 		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
 	particles.emitting = false
@@ -53,10 +54,13 @@ func physics(delta) -> void:
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
 	
-	if  abs(player.velocity.x) < rollVelocity: 
-		player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
-	elif abs(player.velocity.x) >= rollVelocity:
-		momentum_logic(rollVelocity, false)
+	if !timerDuration.is_stopped():
+		if  abs(player.velocity.x) < rollVelocity: 
+			player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
+		elif abs(player.velocity.x) >= rollVelocity:
+			momentum_logic(rollVelocity, false)
+	else:
+		apply_friction(frictionGround / 2, delta) #TODO: own friction
 	
 #	if rad_to_deg(player.groundAngle) < -1: #TOOD: add speed based on ground angle and pull back to slow done
 #		if sign(player.velocity.x) == -1:
@@ -84,13 +88,16 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and !detector.is_colliding():
-		if timerChain.is_stopped():
-			return State.RollJump
+	if Input.is_action_just_pressed("jump"):
+		if detector.is_colliding():
+			return State.Crouch
 		else:
-			EventBus.playerActionAnnounce.emit("Early Jump")
-			player.velocity.x = player.velocity.x/4
-			return State.Jump
+			if timerChain.is_stopped():
+				return State.RollJump
+			else:
+				EventBus.playerActionAnnounce.emit("Early Jump")
+				player.velocity.x = player.velocity.x/4
+				return State.Jump
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		if player.is_on_floor():
@@ -109,13 +116,17 @@ func handle_input(event: InputEvent) -> int:
 			return State.Roll
 		else:
 			EventBus.playerActionAnnounce.emit("Early Roll")
-			return State.Idle
+			if detector.is_colliding():
+				player.velocity.x = 0
+				return State.Crouch
+			else: 
+				return State.Idle
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if timerDuration.is_stopped():
+	if timerDuration.is_stopped() and abs(player.velocity.x) < 100:
 		if player.is_on_floor(): 
 			if detector.is_colliding():
 				player.velocity.x = 0
