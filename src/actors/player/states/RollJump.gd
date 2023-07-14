@@ -125,12 +125,15 @@ func state_check(delta: float) -> int:
 		if !timerBufferRoll.is_stopped():
 			timerBufferRoll.stop()
 			return State.Roll
-		else:
+		elif !detector.is_colliding():
 			player.landed()
 			if player.velocity.x != 0:
 				return State.Walk
 			else:
 				return State.Idle
+		else:
+			player.velocity.x = 0
+			return State.Crouch
 
 	return State.Null
 

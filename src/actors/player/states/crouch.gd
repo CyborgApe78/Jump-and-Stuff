@@ -48,7 +48,7 @@ func handle_input(event: InputEvent) -> int:
 				return State.Walk
 			else:
 				return State.Idle
-	if Input.is_action_just_pressed("jump"):  #TODO: add charge time
+	if Input.is_action_just_pressed("jump") and !detector.is_colliding():  #TODO: add charge time
 		if Input.is_action_pressed("move_down"):
 			player.set_collision_mask_value(CollisionLayers.Semisolid, false)
 		elif !detector.is_colliding():
