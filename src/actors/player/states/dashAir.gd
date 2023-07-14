@@ -6,7 +6,7 @@ extends PlayerInfo
 @export var timerLongJump: Timer ## Currrently not used, was going to be long distance if jump timing hit
 @export var timerDuration: Timer
 @export var timerChain: Timer
-@export var timerJumpWallSave: Timer
+@export var timerBufferJumpWall: Timer
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
 
@@ -38,6 +38,7 @@ func exit() -> void:
 		player.velocity.x = player.velocityPrevious.x #LOOKAT: confused on why it is using previous velocity
 	player.ability_mask(CollisionLayers.DashSide, true)
 	timerChain.stop()
+	timerDuration.stop()
 
 func physics(delta) -> void:
 	player.move_and_slide()
@@ -54,7 +55,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		timerJumpWallSave.start()
+		timerBufferJumpWall.start()
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -87,7 +88,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
-		if !timerJumpWallSave.is_stopped():
+		if !timerBufferJumpWall.is_stopped():
 			return State.JumpWall #TODO: create JumpReflect
 		elif topSpeed > moveSpeed:
 			topSpeed = 0
