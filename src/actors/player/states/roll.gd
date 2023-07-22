@@ -16,6 +16,7 @@ extends PlayerInfo
 @export var duration: float = 0.8
 @export var refreshPercent: float = 0.8
 @export var velocityModifier: float = 1.5
+@export var velocityBoostModifier: float = 1.8
 
 var saveConsecutive: bool
 var rollVelocity: float
@@ -111,7 +112,9 @@ func handle_input(event: InputEvent) -> int:
 		return State.BashAim
 	if Input.is_action_just_pressed("roll"):
 		if timerChain.is_stopped():
-			return State.Roll
+			if !timerDuration.is_stopped():
+				player.velocity.x = moveSpeed * velocityBoostModifier
+			return State.Roll 
 		else:
 			EventBus.playerActionAnnounce.emit("Early Roll")
 			if detector.is_colliding():
