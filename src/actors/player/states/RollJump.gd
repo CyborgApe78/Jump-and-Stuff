@@ -27,8 +27,6 @@ func enter() -> void:
 	soundeffect.play()
 	if player.is_on_floor():
 		particles.restart()
-	detector.enabled = true
-	detector.force_shapecast_update()
 	if !detector.is_colliding():
 		player.global_position.y -= Util.tileSize * 2
 	player.velocity.x = velocityRollJump * player.facing
@@ -37,7 +35,6 @@ func enter() -> void:
 
 func exit() -> void:
 	timerDuration.stop()
-	detector.enabled = false
 	player.animPlayer.stop()
 	soundeffect.pitch_scale = 1
 

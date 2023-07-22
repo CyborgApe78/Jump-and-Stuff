@@ -12,16 +12,14 @@ extends PlayerInfo
 
 
 #LOOKAT: crouch stores consec jumps
-#TOSO: change control to down pressed
+
 
 func enter() -> void:
-	detector.enabled = true
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Crouch")
 
 
 func exit() -> void:
-	detector.enabled = false
 	player.animPlayer.stop()
 
 

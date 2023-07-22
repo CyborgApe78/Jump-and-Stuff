@@ -24,7 +24,6 @@ var jumpBoostTime: float
 
 
 func enter() -> void:
-	detector.enabled = true
 	rollVelocity = moveSpeed * velocityModifier
 	player.animPlayer.queue("Roll")
 	player.velocityPrevious = player.velocity
@@ -37,7 +36,6 @@ func enter() -> void:
 
 
 func exit() -> void:
-	detector.enabled = false
 	player.animPlayer.stop()
 	timerChain.stop()
 	timerDuration.stop()

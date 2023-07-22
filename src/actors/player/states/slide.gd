@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#LOOKAT: sliding up hill
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -17,7 +16,6 @@ var slideVelocity: float
 
 
 func enter() -> void:
-	detector.enabled = true
 	slideVelocity = moveSpeed * velocityModifier
 	player.animPlayer.queue("Slide")
 	player.velocityPrevious = player.velocity
@@ -29,7 +27,6 @@ func enter() -> void:
 
 
 func exit() -> void:
-	detector.enabled = false
 	player.animPlayer.stop()
 	particles.emitting = false
 #	if abs(player.velocityPrevious.x) < abs(player.velocity.x):
@@ -56,7 +53,7 @@ func physics(delta) -> void:
 			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
 	elif rad_to_deg(player.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += downHillAccel #TODO: make like friction func, need a top speed or make this function
+			player.velocity.x += downHillAccel
 		else:
 			apply_friction(frictionGround * upHillFrictionModifier, delta)
 	else:
@@ -72,7 +69,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"): #TODO: grab jump code from roll state
+	if Input.is_action_just_pressed("jump"):
 		if player.is_on_floor() or !timerCoyoteJump.is_stopped():  
 			return consecutive_jump_logic() #TODO: special jump state
 		if !player.is_on_floor() and player.wallDirection != 0: #FIXME: this needs to check wall and velocity direction are correct
@@ -112,8 +109,6 @@ func state_check(delta: float) -> int:
 				return State.Idle
 		else:
 			return State.Fall
-#	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
-#		timerCoyoteJump.stop()
 
 	return State.Null
 
