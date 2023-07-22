@@ -6,9 +6,6 @@ extends PlayerInfo
 var runUpTile: int = 3
 var holdTime: float = 0.5
 var noHold: bool
-#TODO: redirect previous velocity bassed on aim direction
-#TODO: can all wall entraces to this
-#TODO: particles
 
 ## let the player rise till gravity reduces to 0 and wait on timer or input. able to run up wall for a few tiles. 
 ## holding into wall goes to wall slide

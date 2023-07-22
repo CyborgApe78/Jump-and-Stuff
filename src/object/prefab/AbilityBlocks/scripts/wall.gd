@@ -8,7 +8,6 @@ extends AbilityBlockBase
 
 func _ready() -> void:
 	super._ready()
-	#FIXME: can't call ready from
 	staticBodyCollision.shape = collisionShape.shape
 	staticBodyCollision.shape.extents.x = collisionShape.shape.extents.x
 	staticBodyCollision.shape.extents.y = collisionShape.shape.extents.y

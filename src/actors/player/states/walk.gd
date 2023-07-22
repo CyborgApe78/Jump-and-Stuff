@@ -37,7 +37,6 @@ func physics(delta) -> void:
 	
 	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
 		#TODO:make it so you have to be facing the ledge 
-		#TODO: setting to turn off
 		player.velocity.x = 0
 		EventBus.helperUsed.emit(Util.helper.stopOnLedge)
 

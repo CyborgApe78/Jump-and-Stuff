@@ -7,7 +7,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	EventBus.rumble.emit(0.2, 0.3, 0.2)
-	player.animPlayer.queue("Jump") #TODO: own animation
+	player.animPlayer.queue("Jump")
 	soundeffect.play()
 	player.velocity.y = jumpVelocity/2
 
