@@ -89,12 +89,12 @@ func handle_input(event: InputEvent) -> int:
 		timerBufferRoll.start()
 	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
-		return State.Dive
+#	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
+#		return State.Dive ## removed since interfers with roll
 	if Input.is_action_just_pressed("ground_pound"):
 		if abilities.can_use(PlayerAbilities.list.GroundPound): 
 			return State.GroundPound
-		else: #TODO: find a better way to cancel
+		else:
 			return State.Fall
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
@@ -112,11 +112,12 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if player.is_on_ceiling():
 		return State.Fall
-	if player.is_on_wall() and topSpeed > moveSpeed:
-		topSpeed = 0
-		return State.BonkAir
-#		elif player.moveDirection.x == player.wallDirection:
-#			return State.WallSlide
+	if player.wallDirection != 0:
+		if topSpeed > moveSpeed:
+			topSpeed = 0
+			return State.BonkAir
+		else:
+			return State.WallSlide
 	if player.is_on_floor() and timerDuration.is_stopped():
 		if !timerBufferRoll.is_stopped():
 			timerBufferRoll.stop()
