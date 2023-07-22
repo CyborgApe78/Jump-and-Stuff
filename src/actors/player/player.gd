@@ -69,8 +69,10 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor(): #TODo: create is grounded using floor raycasts
 		ledge_detection()
+	wall_detection()
 	
 	EventBus.debugVelocity.emit(velocity.round())
+	EventBus.debug.emit(wallDirection)
 
 
 func _process(delta: float) -> void:
@@ -196,7 +198,9 @@ func wall_detection(length: int = 5) -> int:
 	elif wallRaycastRight.is_colliding():
 		wallDirection = 1
 		return 1
-	
+	else:
+		wallDirection = 0
+		
 	if wallDirection != 0:
 		lastWallDirection = wallDirection
 	
