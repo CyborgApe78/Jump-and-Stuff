@@ -87,9 +87,9 @@ func handle_input(event: InputEvent) -> int:
 			return State.Fall
 	if Input.is_action_just_pressed("roll"):
 		timerBufferRoll.start()
-	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
+	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-#	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
+#	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
 #		return State.Dive ## removed since interfers with roll
 	if Input.is_action_just_pressed("ground_pound"):
 		if abilities.can_use(PlayerAbilities.list.GroundPound): 

@@ -4,7 +4,7 @@ class_name Hitbox
 @export var health: HealthComponent
 
 
-func  _ready() -> void:
+func _ready() -> void:
 	if !health:
 		EventBus.error.emit(str(owner) + " missing health component")
 

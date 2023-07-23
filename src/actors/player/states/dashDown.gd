@@ -59,9 +59,9 @@ func handle_input(event: InputEvent) -> int:
 			timerBufferJump.start()
 			player.velocity.y = 0 #Gives more air control when canceling 
 			return State.Fall
-	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
+	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
+	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)

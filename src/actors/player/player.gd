@@ -1,5 +1,5 @@
 extends Actor
-class_name  Player
+class_name Player
 
 
 @onready var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
@@ -72,7 +72,6 @@ func _physics_process(delta: float) -> void:
 	wall_detection()
 	
 	EventBus.debugVelocity.emit(velocity.round())
-	EventBus.debug.emit(wallDirection)
 
 
 func _process(delta: float) -> void:
@@ -189,7 +188,7 @@ func wall_detection(length: int = 5) -> int:
 	if wallRaycastRight.target_position.x != length:
 		wallRaycastRight.target_position.x = length
 	
-	if  wallRaycastLeft.is_colliding() and wallRaycastRight.is_colliding():
+	if wallRaycastLeft.is_colliding() and wallRaycastRight.is_colliding():
 		wallDirection = 0
 		return 0
 	elif wallRaycastLeft.is_colliding():

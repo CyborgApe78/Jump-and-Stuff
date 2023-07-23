@@ -21,5 +21,5 @@ func _ready() -> void:
 	#TODO: add vsync
 	labelTitle.text = GameInformation.gameName
 	labelVersion.text = GameInformation.version
-	labelGodot.text =  "Godot %s" % Engine.get_version_info().string
+	labelGodot.text = "Godot %s" % Engine.get_version_info().string
 	labelCreator.text = GameInformation.creator

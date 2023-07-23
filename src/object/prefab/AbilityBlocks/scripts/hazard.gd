@@ -4,7 +4,7 @@ extends AbilityBlockBase
 #TODO can hurt player after respawn, need invincability timer
 @export var detectorCollision: CollisionShape2D
 @export var collisionShape: CollisionShape2D
-@export var  abilityDetector: Area2D
+@export var abilityDetector: Area2D
 
 var playerInHazard: bool = false
 var correctAbility: bool = false
@@ -35,7 +35,7 @@ var damageAmount: int = 1
 #	elif ability == PlayerAbilities.list.SwimDash:
 #		abilityDetector.set_collision_mask_value(CollisionLayers.SwimDash, true)
 #	else:
-#		EventBus.emit_signal("error", "Ability Boost error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
+#		EventBus.emit_signal("error", "Ability Boost error for " + str(ability) +" at: " + str(name) + " at " + str(global_position))
 #
 #func _physics_process(delta: float) -> void:
 #	if playerInHazard and !correctAbility:

@@ -8,6 +8,6 @@ extends StaticBody2D
 		color = v
 		queue_redraw()
 
-func  _ready() -> void:
+func _ready() -> void:
 	for bodies in get_children():
 		bodies.color = color

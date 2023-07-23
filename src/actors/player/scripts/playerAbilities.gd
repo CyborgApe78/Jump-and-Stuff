@@ -182,7 +182,7 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedJumpConsec = BOOL
 	elif ability == list.DashSide:
 		unlockedDashSide = BOOL
-	elif ability ==  list.DashUp:
+	elif ability == list.DashUp:
 		unlockedDashUp = BOOL
 	elif ability == list.DashDown:
 		unlockedDashDown = BOOL
@@ -283,7 +283,7 @@ func reset(ability: int) -> void:
 		remainingDashUp = maxDashUp
 	elif ability == list.DashDown:
 		remainingDashDown = maxDashDown
-	elif  ability == list.DashChain:
+	elif ability == list.DashChain:
 		currentDashChain = 0
 	else:
 		EventBus.error.emit("Null Ability Reset " + str(ability))

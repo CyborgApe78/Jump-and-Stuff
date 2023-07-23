@@ -9,7 +9,7 @@ func _ready() -> void:
 #	if direction == directions.Null:
 #		EventBus.error.emit(str("wind direction null: " + str(name) + " at " + str(global_position)))
 	adjust_particle()
-	windVelocity =  Vector2(0,-strength).rotated(rotation)
+	windVelocity = Vector2(0,-strength).rotated(rotation)
 
 func adjust_particle():
 	particles.process_material.emission_box_extents.x = collisionShape.shape.extents.x

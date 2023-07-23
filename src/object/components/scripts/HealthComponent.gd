@@ -2,7 +2,7 @@ extends Node
 class_name HealthComponent
 
 signal died
-signal  healthChanged(amount)
+signal healthChanged(amount)
 
 
 @export var healthMax: int = 1
@@ -19,7 +19,7 @@ var healthCurrent: int:
 			
 
 
-func  _ready() -> void:
+func _ready() -> void:
 	invicibleTimer.wait_time = invicibleTime
 	if stats != null:
 		healthMax = stats.healthMax

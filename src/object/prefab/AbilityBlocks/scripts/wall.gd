@@ -3,7 +3,7 @@ extends AbilityBlockBase
 
 @onready var staticBodyCollision: CollisionShape2D = $StaticBody2D/CollisionShape2D
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
-@onready var  staticBody: StaticBody2D = $StaticBody2D
+@onready var staticBody: StaticBody2D = $StaticBody2D
 
 
 func _ready() -> void:
@@ -25,5 +25,5 @@ func _ready() -> void:
 	elif ability == PlayerAbilities.list.SwimDash:
 		staticBody.set_collision_layer_value(CollisionLayers.SwimDash, true)
 	else:
-		EventBus.error.emit("Ability Wall error for " + str(ability) +" at: "  + str(name) + " at " + str(global_position))
+		EventBus.error.emit("Ability Wall error for " + str(ability) +" at: " + str(name) + " at " + str(global_position))
 

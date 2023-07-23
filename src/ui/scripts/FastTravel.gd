@@ -44,10 +44,10 @@ func state_check() -> int:
 
 
 func waypoint_up_pressed() -> void:
-#	teleportLocation =  CheckpointSystem.waypointsName.Up
+#	teleportLocation = CheckpointSystem.waypointsName.Up
 	teleportPlayer = true
 
 
 func waypoint_down_pressed() -> void:
-#	teleportLocation =  CheckpointSystem.waypointsName.Down
+#	teleportLocation = CheckpointSystem.waypointsName.Down
 	teleportPlayer = true

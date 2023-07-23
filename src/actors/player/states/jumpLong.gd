@@ -74,9 +74,9 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
-	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
+	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-#	if Input.is_action_just_pressed("dive")  and abilities.can_use(PlayerAbilities.list.Dive):
+#	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
 #		return State.Dive ## not needed since it changes to fall state automagically
 #	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 #		return State.GroundPound ## turned off so long jump chaining is easier

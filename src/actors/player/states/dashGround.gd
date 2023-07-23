@@ -66,7 +66,7 @@ func handle_input(event: InputEvent) -> int:
 		isJumping = true
 		if dashJumpRefreshTimer.is_stopped(): ## dash jump with dash count reset
 			abilities.reset(PlayerAbilities.list.Dash)
-#			player.dashCDTimer.stop()  #TODO
+#			player.dashCDTimer.stop() #TODO
 			EventBus.playerActionAnnounce.emit("Ultra Jump")
 			return consecutive_jump_logic()
 		else: ## dash jump 
@@ -101,7 +101,7 @@ func state_check(delta: float) -> int:
 	return State.Null
 
 
-func  timers() -> void:
+func timers() -> void:
 	dashJumpTimer.wait_time = dashJumpTime
 	dashJumpRefreshTimer.wait_time = dashJumpRefreshTime
 	durationTimer.wait_time = duration

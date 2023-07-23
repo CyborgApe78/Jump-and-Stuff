@@ -26,7 +26,7 @@ func physics(delta) -> void:
 	if !player.is_on_floor():
 		player.move_and_slide()
 		player.velocity.y = 2000
-	elif  player.is_on_floor():
+	elif player.is_on_floor():
 		player.velocity = Vector2.ZERO
 
 

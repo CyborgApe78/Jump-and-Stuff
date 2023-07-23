@@ -24,7 +24,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	if abs(player.velocity.x) > moveSpeed * skidPercent  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if abs(player.velocity.x) > moveSpeed * skidPercent and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
 	elif player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = player.lastMoveDirection.x * 1

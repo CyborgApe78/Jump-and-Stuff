@@ -41,7 +41,7 @@ func physics(delta) -> void:
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
 	
-#	if  abs(player.velocity.x) < slideVelocity: 
+#	if abs(player.velocity.x) < slideVelocity: 
 #		player.velocity.x = move_toward(abs(player.velocity.x), slideVelocity, (moveSpeed * 6) * delta) * player.facing
 #	elif abs(player.velocity.x) >= slideVelocity:
 #		momentum_logic(slideVelocity, false)
@@ -70,7 +70,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		if player.is_on_floor() or !timerCoyoteJump.is_stopped():  
+		if player.is_on_floor() or !timerCoyoteJump.is_stopped():
 			return consecutive_jump_logic() #TODO: special jump state
 		if !player.is_on_floor() and player.wallDirection != 0: #FIXME: this needs to check wall and velocity direction are correct
 			return State.JumpLong #TODO: own jump state

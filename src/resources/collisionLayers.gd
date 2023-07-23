@@ -10,7 +10,7 @@ const Collectables: int = 5
 const Player: int = 7
 
 const Hazard: int = 9
-#const Water: int =  
+#const Water: int =
 #const LAVA: int = 
 #const SAND: int = 
 #const SNOW: int = 

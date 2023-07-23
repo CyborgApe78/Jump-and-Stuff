@@ -44,14 +44,14 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #		if abs(player.velocity.x) < moveSpeed:
 #			player.velocity.x = player.velocity.x
 #		else:
-#			player.velocity.x =  max(abs(speed), abs(player.velocity.x)) * player.facing
+#			player.velocity.x = max(abs(speed), abs(player.velocity.x)) * player.facing
 #
 #
 #func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
 #	
 #	if movedirection != 0 and abs(player.velocity.x) > moveSpeed:
 #	#	player.velocity.x = moveSpeed * sign(player.velocity.x)
-#	if player.velocity.x != 0  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+#	if player.velocity.x != 0 and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 #		player.velocity.x = player.lastMoveDirection.x * 1
 ##		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * player.moveDirection.x, acceleration)
 #		add min(player.velocity.x / airTurnModifier, maxTurnSpeed) to velocity to keep from scaling to large

@@ -81,11 +81,11 @@ func momentum_logic(speed: float, useMoveDirection: bool) -> void:
 		if abs(player.velocity.x) < moveSpeed:
 			player.velocity.x = player.velocity.x
 		else:
-			player.velocity.x =  max(abs(speed), abs(player.velocity.x)) * player.facing
+			player.velocity.x = max(abs(speed), abs(player.velocity.x)) * player.facing
 
 
 func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
-	if player.velocity.x != 0  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if player.velocity.x != 0 and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		player.velocity.x = player.lastMoveDirection.x * 1
 	else:
 		if player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x:

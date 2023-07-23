@@ -24,11 +24,11 @@
 [ext_resource type="Script" path="res://src/actors/player/states/fall.gd" id="25_bdy8d"]
 [ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="26_uv5su"]
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="27_oxfs3"]
+[ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="28_ggeir"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallSlide.gd" id="30_suiwv"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_l4kvw"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashGround.gd" id="32_407l4"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="35_hmyo3"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="36_4y8yc"]
@@ -5842,7 +5842,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0026, 6.81843, 36.7482, 17.894, 40.5394, 31.2133)
+points = PackedVector2Array(0, 0, 23.9695, 6.81517, 36.606, 17.9417, 40.208, 31.2828)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6167,7 +6167,7 @@ script = ExtResource("31_l4kvw")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
 [node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "dashJumpTimer", "dashJumpRefreshTimer", "durationTimer", "particles", "soundJetpack")]
-script = ExtResource("32_407l4")
+script = ExtResource("28_ggeir")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 dashJumpTimer = NodePath("DashJump")
@@ -6381,7 +6381,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

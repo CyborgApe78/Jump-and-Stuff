@@ -45,7 +45,7 @@ func physics(delta) -> void:
 	
 	if jumpHeld:
 		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
-	elif  player.moveDirection.y == 1:
+	elif player.moveDirection.y == 1:
 		fall_speed_logic(terminalVelocity * 1.5)
 	else:
 		fall_speed_logic(terminalVelocity)

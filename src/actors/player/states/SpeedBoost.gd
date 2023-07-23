@@ -26,7 +26,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	if abs(player.velocity.x) > pMoveSpeed  and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if abs(player.velocity.x) > pMoveSpeed and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
 	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
 		apply_acceleration(moveSpeed, accelerationGround, delta)

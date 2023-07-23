@@ -54,7 +54,7 @@ func physics(delta) -> void:
 		fall_speed_logic(terminalVelocity)
 	
 	if !timerDuration.is_stopped():
-		if  abs(player.velocity.x) < rollVelocity: 
+		if abs(player.velocity.x) < rollVelocity: 
 			player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
 		elif abs(player.velocity.x) >= rollVelocity:
 			momentum_logic(rollVelocity, false)

@@ -20,7 +20,7 @@ func enter() -> void:
 	else: ## dive at dive speed or current velocity, whichever's high
 		player.velocity.x = max(moveSpeed, abs(player.velocity.x)) * player.facing
 	timers()
-	neutral_move_direction_logic()	  
+	neutral_move_direction_logic()
 	player.velocity.y = -100
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRotate, "rotation_degrees", 45 * player.facing, transformTime).from(0)
@@ -62,7 +62,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.Fall
 	if Input.is_action_just_pressed("roll"):
 		timerBufferRoll.start()
-	if Input.is_action_just_pressed("glide")  and abilities.can_use(PlayerAbilities.list.Glide):
+	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 #	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 #		return State.GroundPound ## Removed to make it easier to get to roll state
