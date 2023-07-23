@@ -3,6 +3,7 @@ extends PlayerInfo
 
 @export var timerDiveJump: Timer
 @export var soundSlide: AudioStreamPlayer
+@export var detector: ShapeCast2D
 
 @export var diveJumpTime: float = 0.2
 
@@ -50,13 +51,14 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	#TODO: add check for returning to two block height
 	#TODO: add entering other states
-	if Input.is_action_just_pressed("jump"):
-		if !timerDiveJump.is_stopped(): # timer to get a special jump
-			return State.JumpLong 
-#			return State.BellyHop #TODO: special jump
-		else:
-			player.velocity.x = 0
-			return State.Jump
+	if !detector.is_colliding():
+		if Input.is_action_just_pressed("jump"):
+			if !timerDiveJump.is_stopped(): # timer to get a special jump
+				return State.JumpLong 
+	#			return State.BellyHop #TODO: special jump
+			else:
+				player.velocity.x = 0
+				return State.Jump
 	if Input.is_action_just_pressed("roll"):
 #	 and abilities.can_use(PlayerAbilities.list.Roll): #TODO: turn into unlock
 		return State.Roll
@@ -66,9 +68,12 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.velocity.x == 0:
-		if player.moveDirection.x != 0:
-			return State.Walk
+		if detector.is_colliding():
+			return State.Crouch
 		else:
-			return State.Idle
+			if player.moveDirection.x != 0:
+				return State.Walk
+			else:
+				return State.Idle
 
 	return State.Null

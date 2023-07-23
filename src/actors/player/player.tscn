@@ -5842,7 +5842,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 23.9695, 6.81517, 36.606, 17.9417, 40.208, 31.2828)
+points = PackedVector2Array(0, 0, 24.0023, 6.82037, 36.7479, 17.8965, 40.5397, 31.2159)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6149,10 +6149,11 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 fallTimer = NodePath("../../Timers/FallTimeMax")
 
-[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDiveJump", "soundSlide")]
+[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDiveJump", "soundSlide", "detector")]
 script = ExtResource("28_w0ybt")
 timerDiveJump = NodePath("DiveJump")
 soundSlide = NodePath("../../Sounds/bodySlide")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
 one_shot = true
@@ -6182,7 +6183,7 @@ one_shot = true
 [node name="DashJumpRefresh" type="Timer" parent="StateMachine/DashGround"]
 one_shot = true
 
-[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerLongJump", "timerDuration", "timerChain", "timerBufferJumpWall", "particles", "soundJetpack")]
+[node name="DashAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerLongJump", "timerDuration", "timerChain", "timerBufferJumpWall", "particles", "soundJetpack", "detector")]
 script = ExtResource("29_j03jp")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
@@ -6192,6 +6193,7 @@ timerChain = NodePath("../../Timers/Chain")
 timerBufferJumpWall = NodePath("../../Timers/BufferJumpWall")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="LongJump" type="Timer" parent="StateMachine/DashAir"]
 one_shot = true

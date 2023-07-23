@@ -9,8 +9,9 @@ extends PlayerInfo
 @export var timerBufferJumpWall: Timer
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
+@export var detector: ShapeCast2D
 
-var duration: float = 1
+var duration: float = 0.4
 
 
 func enter() -> void:
@@ -94,15 +95,19 @@ func state_check(delta: float) -> int:
 			topSpeed = 0
 			return State.BonkAir
 	if timerDuration.is_stopped():
-		if Input.is_action_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
-			return State.Glide
-		elif player.is_on_floor():
-			player.velocity.x = player.velocity.x/2
-			player.landed()
-			return State.Walk
+		if detector.is_colliding():
+			player.velocity.x = player.velocity.x / 2
+			return State.BellySlide
 		else:
-			player.velocity.x = player.velocity.x/2
-			return State.Fall
+			if Input.is_action_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+				return State.Glide
+			elif player.is_on_floor():
+				player.velocity.x = player.velocity.x/2
+				player.landed()
+				return State.Walk
+			else:
+				player.velocity.x = player.velocity.x/2
+				return State.Fall
 
 	return State.Null
 

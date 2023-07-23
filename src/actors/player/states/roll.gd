@@ -97,7 +97,7 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide) and !detector.is_colliding():
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		if player.is_on_floor():
 			return State.DashGround

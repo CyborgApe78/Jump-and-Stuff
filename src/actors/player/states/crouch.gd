@@ -40,28 +40,28 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_released("crouch"):
-		if !detector.is_colliding():
+	if !detector.is_colliding():
+		if Input.is_action_just_released("crouch"):
 			if player.velocity.x != 0:
 				return State.Walk
 			else:
 				return State.Idle
-	if Input.is_action_just_pressed("jump") and !detector.is_colliding(): #TODO: add charge time
-		if Input.is_action_pressed("move_down"):
-			player.set_collision_mask_value(CollisionLayers.Semisolid, false)
-		elif !detector.is_colliding():
-			if player.jumped:
-				consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
-				return State.JumpLong #TODO: special jump, timer to get a boosted jump
-			elif abs(player.velocity.x) > minLongJumpVelocity:
-				return State.JumpLong
-			else:
-				#TODO: add time check, for charging jump
-				return State.JumpCrouch
+		if Input.is_action_just_pressed("jump"): #TODO: add charge time
+			if Input.is_action_pressed("move_down"):
+				player.set_collision_mask_value(CollisionLayers.Semisolid, false)
+			elif !detector.is_colliding():
+				if player.jumped:
+					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
+					return State.JumpLong #TODO: special jump, timer to get a boosted jump
+				elif abs(player.velocity.x) > minLongJumpVelocity:
+					return State.JumpLong
+				else:
+					#TODO: add time check, for charging jump
+					return State.JumpCrouch
+		if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump): #TODO: add charge time
+			return State.DashJump
 	if Input.is_action_just_pressed("slide") and abilities.can_use(PlayerAbilities.list.Slide):
 		return State.Slide
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump) and !detector.is_colliding(): #TODO: add charge time
-		return State.DashJump
 	if Input.is_action_just_pressed("roll"):
 		return State.Roll
 	if Input.is_action_just_pressed("slide"):

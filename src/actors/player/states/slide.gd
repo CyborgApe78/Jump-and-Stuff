@@ -69,19 +69,20 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"):
-		if player.is_on_floor() or !timerCoyoteJump.is_stopped():
-			return consecutive_jump_logic() #TODO: special jump state
-		if !player.is_on_floor() and player.wallDirection != 0: #FIXME: this needs to check wall and velocity direction are correct
-			return State.JumpLong #TODO: own jump state
-		else:
-			timerBufferJump.start()
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
-		abilities.consume(PlayerAbilities.list.DashSide, 1)
-		if player.is_on_floor():
-			return State.DashGround
-		else:
-			return State.DashAir
+	if !detector.is_colliding():
+		if Input.is_action_just_pressed("jump"):
+			if player.is_on_floor() or !timerCoyoteJump.is_stopped():
+				return consecutive_jump_logic() #TODO: special jump state
+			if !player.is_on_floor() and player.wallDirection != 0: #FIXME: this needs to check wall and velocity direction are correct
+				return State.JumpLong #TODO: own jump state
+			else:
+				timerBufferJump.start()
+		if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.DashSide, 1)
+			if player.is_on_floor():
+				return State.DashGround
+			else:
+				return State.DashAir
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
