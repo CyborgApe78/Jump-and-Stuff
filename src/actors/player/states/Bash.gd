@@ -12,6 +12,7 @@ func enter() -> void:
 	timers()
 	aimInput = player.aimStrength if player.aimStrength != Vector2.ZERO else player.moveStrength
 	player.velocity = aimInput * (dashVelocity)
+	abilities.reset(PlayerAbilities.list.All)
 
 
 func exit() -> void:
@@ -40,7 +41,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if timerDuration.is_stopped():
-		if Input.is_action_pressed("glide"):
+		if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 			return State.Glide
 		if !player.is_on_floor():
 			if !player.moveDirection == Vector2.ZERO:
