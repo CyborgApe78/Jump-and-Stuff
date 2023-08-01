@@ -5,6 +5,7 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
+@export var timerSemisolidReset: Timer
 @export var detector: ShapeCast2D
 
 @export var transTime: float = 0.1
@@ -49,6 +50,11 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	if Input.is_action_pressed("move_down"):
+		player.set_collision_mask_value(CollisionLayers.Semisolid, false)
+		timerSemisolidReset.stop()
+	if Input.is_action_just_released("move_down"):
+		timerSemisolidReset.start()
 	if Input.is_action_just_pressed("jump"):
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()

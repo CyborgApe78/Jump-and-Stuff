@@ -6223,10 +6223,11 @@ script = ExtResource("34_16e5c")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 soundeffect = NodePath("../../Sounds/jump")
 
-[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "detector")]
+[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerSemisolidReset", "detector")]
 script = ExtResource("35_hmyo3")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
+timerSemisolidReset = NodePath("../../Timers/Semisoild")
 detector = NodePath("../../Raycasts/Shapes/GroundPoundSpace")
 
 [node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge", "particles", "soundeffect")]
