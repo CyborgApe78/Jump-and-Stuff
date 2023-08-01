@@ -4,12 +4,14 @@ extends PlayerInfo
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer
 
+@export var modifier: float = 1.25
+
 
 func enter() -> void:
 	EventBus.rumble.emit(0.2, 0.3, 0.2)
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
-	player.velocity.y = jumpVelocity/2
+	player.velocity.y = jumpVelocity * modifier
 
 
 func exit() -> void:
