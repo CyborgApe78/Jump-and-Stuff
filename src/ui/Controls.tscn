@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/scripts/Controls.gd" id="1_64nhq"]
 [ext_resource type="Texture2D" uid="uid://c2vhbatni277l" path="res://asset/xboxone.svg" id="2_pd3ac"]
 
-[node name="Controlls" type="Control"]
+[node name="Controls" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

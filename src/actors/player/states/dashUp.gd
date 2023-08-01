@@ -1,5 +1,6 @@
 extends PlayerInfo
-## REMOVED ##
+
+#TODO: add back
 #LOOAT: vertical air movement and block breaker
 
 @export var timerCoyoteJump: Timer

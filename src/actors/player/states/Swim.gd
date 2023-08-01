@@ -1,5 +1,8 @@
 extends PlayerInfo
 
+#TODO: quick jump off the water
+#TODO: jump out of water
+
 
 @export var velocityModifier: float = 1
 

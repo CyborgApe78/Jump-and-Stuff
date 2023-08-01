@@ -1,5 +1,17 @@
 #TODO 
 
+Jetpack usable during other states to boost movement 
+In ori the world and platforms react to player 
+Look at ori randomizer dat to see how they do pickup assignment 
+During randomizer show generic pickup icon on map, until seen. Look how dread randomizer does it 
+on jump playground, show that you can jump around 1 tile ceiling
+Rando logic with and without having to use teleport 
+Setting for autosave, scenes and at save points. Keep items after death. Death warp strats for speed run
+
+Momentum wall jump, quickly wall jump. With stick in opposite direction and jump pressed
+
+Upgrade to teleport to last save 
+
 save states for testing 
 
 ledge grab, but needs to auto move when holding direction
@@ -192,6 +204,7 @@ enemies
 	Enemy like bombs or celeste monster. Two stage enemies that explosion that moves player or temp platform 
 
 Blocks to add
+	disappear after leaving
 	Environmental blocks that cause to use a ability they learn later
 		High jump plants before increase jump height, aimable barrels before bash
 		Help people that help you go fast over water and thru teach you water run

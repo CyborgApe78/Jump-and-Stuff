@@ -13,6 +13,8 @@ signal teleportPlayer(location)
 signal playerDashed
 signal playerJumped
 signal playerBashed
+signal playerLanded #TODO: add to states
+signal playerAirborne #TODO: add to states
 
 signal playerDied
 

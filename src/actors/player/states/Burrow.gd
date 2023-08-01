@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-
+#TODO: look at combining with spin. like mario screw
 #TDOO: similar to swimming, but don't stop moving
 #TODO: also need to dash into water
 

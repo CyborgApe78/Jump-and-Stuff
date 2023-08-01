@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: add back
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
