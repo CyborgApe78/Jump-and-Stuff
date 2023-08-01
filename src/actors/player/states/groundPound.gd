@@ -28,9 +28,15 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta) #TODO: make downward version
-	gravity_logic(gravityFall, delta)
 	player.move_and_slide()
+	
+	gravity_logic(gravityFall, delta)
+	
 	player.velocity.x = 0
+#	if Input.is_action_pressed("ground_pound"): ## could use this bounce along the ground
+#		player.velocity.x = 0
+#	else:
+#		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
 
 
 func visual(delta) -> void:
