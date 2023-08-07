@@ -53,13 +53,16 @@ func physics(delta) -> void:
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
 	
-	if !timerDuration.is_stopped():
-		if abs(player.velocity.x) < rollVelocity: 
-			player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
-		elif abs(player.velocity.x) >= rollVelocity:
-			momentum_logic(rollVelocity, false)
+	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing:
+			apply_friction(moveSpeed * 2, delta)
 	else:
-		apply_friction(frictionGround / 2, delta) #TODO: own friction
+		if !timerDuration.is_stopped():
+			if abs(player.velocity.x) < rollVelocity: 
+				player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
+			elif abs(player.velocity.x) >= rollVelocity:
+				momentum_logic(rollVelocity, false)
+		else:
+			apply_friction(frictionGround / 2, delta) #TODO: own friction
 	
 #	if rad_to_deg(player.groundAngle) < -1: #TOOD: add speed based on ground angle and pull back to slow done
 #		if sign(player.velocity.x) == -1:
@@ -117,7 +120,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.Roll 
 		else:
 			EventBus.playerActionAnnounce.emit("Early Roll")
-			if detector.is_colliding():
+			if detector.is_colliding() or Input.is_action_pressed("crouch"):
 				player.velocity.x = 0
 				return State.Crouch
 			else: 
