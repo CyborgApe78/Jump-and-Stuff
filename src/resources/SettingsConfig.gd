@@ -15,5 +15,5 @@ var showController: bool = false
 
 ## Video ##
 var enableVsync: bool = true
-var enableFullscreen: bool = true
+var enableFullscreen: bool = false
 var enableBorderless: bool = false
