@@ -102,11 +102,17 @@ func state_check(delta: float) -> int:
 			if Input.is_action_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 				return State.Glide
 			elif player.is_on_floor():
-				player.velocity.x = player.velocity.x/2
+				player.velocity.x = player.velocity.x/4
 				player.landed()
 				return State.Walk
-			else:
-				player.velocity.x = player.velocity.x/2
+			else:  ## Neutral input leaves the player with the most speed on exiting
+				if player.moveDirection.x == 0:
+					player.velocity.x = player.velocity.x/2
+				else:
+					if player.moveDirection.x == player.facing:
+						player.velocity.x = moveSpeed
+					else:
+						player.velocity.x = 0
 				return State.Fall
 
 	return State.Null
