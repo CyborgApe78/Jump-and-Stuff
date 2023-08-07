@@ -4,3 +4,13 @@
 
 [node name="BashableComponent" type="Area2D"]
 script = ExtResource("1_23rjl")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "Bash
+Point"
+horizontal_alignment = 1
+vertical_alignment = 1
