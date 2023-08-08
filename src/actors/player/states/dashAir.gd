@@ -96,7 +96,7 @@ func state_check(delta: float) -> int:
 			return State.BonkAir
 	if timerDuration.is_stopped():
 		if detector.is_colliding():
-			player.velocity.x = player.velocity.x / 2
+			player.velocity.x = player.velocity.x
 			return State.BellySlide
 		else:
 			if Input.is_action_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):

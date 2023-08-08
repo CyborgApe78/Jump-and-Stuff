@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=115 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/jumpApex.gd" id="23_w0epw"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpWall.gd" id="24_rjpry"]
 [ext_resource type="Script" path="res://src/actors/player/states/fall.gd" id="25_bdy8d"]
+[ext_resource type="Script" path="res://src/actors/player/states/BellySlideHop.gd" id="26_grhql"]
 [ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="26_uv5su"]
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="27_oxfs3"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="28_ggeir"]
@@ -5842,7 +5843,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0026, 6.81806, 36.7481, 17.8935, 40.5391, 31.2128)
+points = PackedVector2Array(0, 0, 24.0023, 6.81842, 36.7469, 17.8944, 40.5363, 31.214)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6149,14 +6150,19 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 fallTimer = NodePath("../../Timers/FallTimeMax")
 
-[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDiveJump", "soundSlide", "detector")]
+[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundSlide", "detector")]
 script = ExtResource("28_w0ybt")
-timerDiveJump = NodePath("DiveJump")
 soundSlide = NodePath("../../Sounds/bodySlide")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
-[node name="DiveJump" type="Timer" parent="StateMachine/BellySlide"]
-one_shot = true
+[node name="BellySlideHop" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "detector", "timerBufferJump", "timerBufferRoll", "soundeffect", "particles")]
+script = ExtResource("26_grhql")
+timerDuration = NodePath("../Roll/Duration")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerBufferRoll = NodePath("../../Timers/BufferRoll")
+soundeffect = NodePath("../../Sounds/jump")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
 
 [node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "particles")]
 script = ExtResource("30_suiwv")
@@ -6384,7 +6390,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
+blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

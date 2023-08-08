@@ -1,17 +1,12 @@
 extends PlayerInfo
 
 
-@export var timerDiveJump: Timer
 @export var soundSlide: AudioStreamPlayer
 @export var detector: ShapeCast2D
-
-@export var diveJumpTime: float = 0.2
 
 
 func enter() -> void:
 	soundSlide.play()
-	timerDiveJump.wait_time = diveJumpTime
-	timerDiveJump.start()
 	player.animPlayer.queue("Belly Slide")
 
 
@@ -37,7 +32,7 @@ func physics(delta) -> void:
 		else:
 			apply_friction(frictionGround * upHillFrictionModifier, delta)
 	else:
-		apply_friction(frictionGround * 1.5, delta)
+		apply_friction(frictionGround * 0.75, delta)
 
 
 func visual(delta) -> void:
@@ -49,16 +44,10 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	#TODO: add check for returning to two block height
 	#TODO: add entering other states
 	if !detector.is_colliding():
 		if Input.is_action_just_pressed("jump"):
-			if !timerDiveJump.is_stopped(): # timer to get a special jump
-				return State.JumpLong 
-	#			return State.BellyHop #TODO: special jump
-			else:
-				player.velocity.x = 0
-				return State.Jump
+			return State.BellySlideHop
 	if Input.is_action_just_pressed("roll"):
 #	 and abilities.can_use(PlayerAbilities.list.Roll): #TODO: turn into unlock
 		return State.Roll
