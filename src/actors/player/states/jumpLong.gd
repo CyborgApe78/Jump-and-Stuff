@@ -8,15 +8,17 @@ extends PlayerInfo
 
 @export var jumpModifier: float = 0.9
 @export var velocityModifier: float = 1.35
-@export var rollTime: float = 0.3
+@export var modifierChainBoost: float = 1.50
 
 var startingHeight: int
 var velocityLongJump: float
+var velocityChainBoost: float
 
 
 func enter() -> void:
 	timers()
 	EventBus.playerJumped.emit()
+	velocityChainBoost = moveSpeed * modifierChainBoost
 	startingHeight = player.global_position.y
 	topSpeed = 0
 	neutral_move_direction_logic()
@@ -110,6 +112,7 @@ func state_check(delta: float) -> int:
 		EventBus.rumble.emit(0.1, 0.2, 0.2)
 		if Input.is_action_pressed("crouch"):
 			if !timerBufferJump.is_stopped():
+				player.velocity.x = max(velocityChainBoost, abs(player.velocity.x)) * player.facing
 				return State.JumpLong
 			elif !timerBufferRoll.is_stopped():
 				return State.Roll
