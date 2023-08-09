@@ -79,14 +79,15 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		timerCoyoteJump.start()
 		return State.Fall
-#	if abs(player.velocity.x) > stats.moveSpeed:
-#		return State.Turbo
 	if player.velocity.x == 0:
 		return State.Idle
 	if !timerBufferJump.is_stopped():
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
-		return consecutive_jump_logic()
+		if Input.is_action_pressed("crouch"): ## not sure if do anything since long jump checks for this
+			return State.JumpLong
+		else:
+			return consecutive_jump_logic()
 
 	return State.Null
 
