@@ -7,7 +7,7 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 
 @export var jumpModifier: float = 0.9
-@export var velocityModifier: float = 1.35
+@export var modifierVelocity: float = 1.35
 @export var modifierChainBoost: float = 1.50
 
 var startingHeight: int
@@ -16,19 +16,23 @@ var velocityChainBoost: float
 
 
 func enter() -> void:
-	timers()
 	EventBus.playerJumped.emit()
+	
+	velocityLongJump = moveSpeed * modifierVelocity
 	velocityChainBoost = moveSpeed * modifierChainBoost
 	startingHeight = player.global_position.y
 	topSpeed = 0
-	neutral_move_direction_logic()
+	
+	player.velocity.y = jumpVelocity * jumpModifier
 	player.velocity.x = max(velocityLongJump, abs(player.velocity.x)) * player.facing
+	
 	player.animPlayer.queue("Jump")
+	
 	soundeffect.pitch_scale = jumpModifier
 	soundeffect.play()
 	particles.restart()
-	player.velocity.y = jumpVelocity * jumpModifier
-	velocityLongJump = moveSpeed * velocityModifier
+	
+	neutral_move_direction_logic()
 	timers()
 
 

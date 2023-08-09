@@ -15,26 +15,34 @@ extends PlayerInfo
 @export var minLongJumpVelocity: int = 30
 @export var duration: float = 0.8
 @export var refreshPercent: float = 0.8
-@export var velocityModifier: float = 1.5
-@export var velocityBoostModifier: float = 1.8
+@export var modifierVelocity: float = 1.5
+@export var modifierChainBoost: float = 1.8
 
 var saveConsecutive: bool
 var rollVelocity: float
+var velocityChainBoost: float
 var refreshTime: float
 var jumpBoostTime: float
 
 
 func enter() -> void:
-	rollVelocity = moveSpeed * velocityModifier
-	player.animPlayer.queue("Roll")
+	EventBus.playerRolled.emit()
+	
+	rollVelocity = moveSpeed * modifierVelocity
+	velocityChainBoost = moveSpeed * modifierChainBoost
+	
 	player.velocityPrevious = player.velocity
-	timers()
-	particles.emitting = true
-	player.velocity.y = 0
 	if timerConsecutiveJump.is_stopped():
 		saveConsecutive = true
 		
 	player.velocity.x = player.facing * max(rollVelocity, abs(player.velocity.x))
+	player.velocity.y = 0
+	
+	player.animPlayer.queue("Roll")
+	
+	particles.emitting = true
+	
+	timers()
 
 
 func exit() -> void:
@@ -115,23 +123,18 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 	if Input.is_action_just_pressed("roll"):
-		if timerChain.is_stopped():
-			if !timerDuration.is_stopped():
-				player.velocity.x = moveSpeed * velocityBoostModifier
-			return State.Roll 
+		if timerDuration.is_stopped():
+			return State.Roll
 		else:
-			EventBus.playerActionAnnounce.emit("Early Roll")
-			if detector.is_colliding() or Input.is_action_pressed("crouch"):
-				player.velocity.x = 0
-				return State.Crouch
-			else: 
-				return State.Idle
+			if timerChain.is_stopped():
+				player.velocity.x = velocityChainBoost
+				return State.Roll 
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if timerDuration.is_stopped() and abs(player.velocity.x) < 100:
+	if timerDuration.is_stopped() and abs(player.velocity.x) < 100: #Lookat: lowering the value
 		if player.is_on_floor(): 
 			if detector.is_colliding():
 				player.velocity.x = 0

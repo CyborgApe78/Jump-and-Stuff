@@ -5844,7 +5844,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0028, 6.81786, 36.7485, 17.8931, 40.5399, 31.2124)
+points = PackedVector2Array(0, 0, 24.0026, 6.8188, 36.7482, 17.8944, 40.5396, 31.2137)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
