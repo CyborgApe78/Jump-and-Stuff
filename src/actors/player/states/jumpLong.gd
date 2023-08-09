@@ -69,18 +69,14 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-#		if player.wall_detection(15) != 0:
-#			return State.JumpWall
 		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
 	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-#	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
-#		return State.Dive ## not needed since it changes to fall state automagically
-#	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
-#		return State.GroundPound ## turned off so long jump chaining is easier
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		return State.DashAir
@@ -90,6 +86,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.BashAim
 #	if !Input.is_action_pressed("crouch"):
 		#TODO: change velocity based on whether crouch is held
+	if Input.is_action_just_pressed("dive"):
+		return State.Dive
 	if Input.is_action_pressed("crouch") and Input.is_action_just_pressed("roll"):
 		timerBufferRoll.start()
 
