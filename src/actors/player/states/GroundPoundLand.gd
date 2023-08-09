@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 
+@export var timerCoyoteJumpGroundPound: Timer
 @export var timerStun: Timer
 @export var timerCharge: Timer
 @export var particles: GPUParticles2D
@@ -22,7 +23,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	timerCoyoteJumpGroundPound.start()
 
 
 func physics(delta) -> void:
@@ -39,7 +40,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
-		return State.JumpCrouch #TODO: own state
+		return State.JumpGroundPound
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce): #TODO: change to charge
 		return State.DashGroundPound
 	

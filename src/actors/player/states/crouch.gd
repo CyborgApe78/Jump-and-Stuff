@@ -2,6 +2,7 @@ extends PlayerInfo
 
 
 @export var timerCoyoteJump: Timer
+@export var timerCoyoteJumpGroundPound: Timer
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
 @export var detector: ShapeCast2D
@@ -50,11 +51,13 @@ func handle_input(event: InputEvent) -> int:
 			if Input.is_action_pressed("move_down"):
 				player.set_collision_mask_value(CollisionLayers.Semisolid, false)
 			elif !detector.is_colliding():
-				if player.jumped:
-					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
-					return State.JumpLong #TODO: special jump, timer to get a boosted jump
-				elif abs(player.velocity.x) > minLongJumpVelocity or player.moveDirection.x != 0:
+#				if player.jumped: #FIXME: what is this???
+#					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
+#					return State.JumpLong #TODO: special jump, timer to get a boosted jump
+				if abs(player.velocity.x) > minLongJumpVelocity or player.moveDirection.x != 0:
 					return State.JumpLong
+				elif !timerCoyoteJumpGroundPound.is_stopped(): ## gives extra time after ground pound to still get boosted jump
+					return State.JumpGroundPound
 				else:
 					#TODO: add time check, for charging jump
 					return State.JumpCrouch

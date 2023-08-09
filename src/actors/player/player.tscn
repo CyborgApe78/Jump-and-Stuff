@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=116 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/jumpConsec.gd" id="19_00wlk"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpFlip.gd" id="20_crsmm"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpLong.gd" id="21_mo3ie"]
+[ext_resource type="Script" path="res://src/actors/player/states/JumpGroundPound.gd" id="21_mo3qg"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpCrouch.gd" id="22_e2i38"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpApex.gd" id="23_w0epw"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpWall.gd" id="24_rjpry"]
@@ -5843,7 +5844,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0023, 6.81842, 36.7469, 17.8944, 40.5363, 31.214)
+points = PackedVector2Array(0, 0, 24.0028, 6.81786, 36.7485, 17.8931, 40.5399, 31.2124)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -6064,9 +6065,10 @@ script = ExtResource("14_bvej5")
 soundeffect = NodePath("../../Sounds/skid")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Skid")
 
-[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerBufferRoll", "detector")]
+[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpGroundPound", "timerBufferJump", "timerBufferRoll", "detector")]
 script = ExtResource("15_tm0os")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerCoyoteJumpGroundPound = NodePath("../../Timers/CoyoteJumpGroundPound")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
@@ -6114,7 +6116,11 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 [node name="JumpApex" type="Node" parent="StateMachine"]
 script = ExtResource("23_w0epw")
 
-[node name="JumpGroundPound" type="Node" parent="StateMachine"]
+[node name="JumpGroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "timerCoyoteJumpGroundPound", "particles")]
+script = ExtResource("21_mo3qg")
+soundeffect = NodePath("../../Sounds/jump")
+timerCoyoteJumpGroundPound = NodePath("../../Timers/CoyoteJumpGroundPound")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpDouble")
 
 [node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpWall", "timerLock", "particles", "soundeffect")]
 script = ExtResource("24_rjpry")
@@ -6236,8 +6242,9 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerSemisolidReset = NodePath("../../Timers/Semisoild")
 detector = NodePath("../../Raycasts/Shapes/GroundPoundSpace")
 
-[node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerStun", "timerCharge", "particles", "soundeffect")]
+[node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpGroundPound", "timerStun", "timerCharge", "particles", "soundeffect")]
 script = ExtResource("39_q31hf")
+timerCoyoteJumpGroundPound = NodePath("../../Timers/CoyoteJumpGroundPound")
 timerStun = NodePath("Stun")
 timerCharge = NodePath("Charge")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/GroundPound")
@@ -6390,7 +6397,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -6418,6 +6425,10 @@ wait_time = 0.1
 one_shot = true
 
 [node name="CoyoteJumpWall" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteJumpGroundPound" type="Timer" parent="Timers"]
 wait_time = 0.2
 one_shot = true
 
