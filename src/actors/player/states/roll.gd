@@ -33,7 +33,8 @@ func enter() -> void:
 	player.velocity.y = 0
 	if timerConsecutiveJump.is_stopped():
 		saveConsecutive = true
-#	player.velocity.x = player.facing * max(rollVelocity, abs(player.velocity.x))
+		
+	player.velocity.x = player.facing * max(rollVelocity, abs(player.velocity.x))
 
 
 func exit() -> void:

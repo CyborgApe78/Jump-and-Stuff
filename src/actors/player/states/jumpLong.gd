@@ -20,13 +20,14 @@ func enter() -> void:
 	startingHeight = player.global_position.y
 	topSpeed = 0
 	neutral_move_direction_logic()
+	player.velocity.x = max(velocityLongJump, abs(player.velocity.x)) * player.facing
 	player.animPlayer.queue("Jump")
 	soundeffect.pitch_scale = jumpModifier
 	soundeffect.play()
 	particles.restart()
 	player.velocity.y = jumpVelocity * jumpModifier
 	velocityLongJump = moveSpeed * velocityModifier
-#	player.velocity.x = max(moveSpeed * velocityModifier, abs(player.velocity.x)) * player.facing
+	timers()
 
 
 func exit() -> void:
