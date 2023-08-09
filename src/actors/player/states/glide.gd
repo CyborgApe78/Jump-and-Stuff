@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: animation turned on side, think buzz lightyear mixed with mario cape
+#LOOKAT: make 2, one for slow fall, other for coming out of side dashes more like buzz lightyear mixed with mario cape
 #TODO: add a check to double jump and others to go back to glide if it is still held
 
 @export var timerCoyoteJump: Timer

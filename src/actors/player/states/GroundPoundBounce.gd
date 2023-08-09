@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: keep small hitbox and give more control, turn this version in to ground pound jump
 
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer

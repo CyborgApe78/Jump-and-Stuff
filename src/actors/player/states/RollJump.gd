@@ -28,7 +28,7 @@ func enter() -> void:
 	if player.is_on_floor():
 		particles.restart()
 	if !detector.is_colliding():
-		player.global_position.y -= Util.tileSize * 2
+		player.global_position.y -= Util.tileSize * 2 #TODO: tween movement or change to velocity
 	player.velocity.x = velocityRollJump * player.facing
 	timers()
 
