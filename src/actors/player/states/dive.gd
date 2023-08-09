@@ -35,6 +35,10 @@ func physics(delta: float) -> void:
 	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
+	
+	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing: #TODO: add speed in moving that direction
+			apply_friction(moveSpeed * 2, delta)
+	
 	gravity_logic(gravityFall, delta)
 	fall_speed_logic(terminalVelocity)
 	track_top_speed(player.velocity.x)
