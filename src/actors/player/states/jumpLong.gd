@@ -112,14 +112,17 @@ func state_check(delta: float) -> int:
 		EventBus.rumble.emit(0.1, 0.2, 0.2)
 		if Input.is_action_pressed("crouch"):
 			if !timerBufferJump.is_stopped():
+				timerBufferJump.stop()
 				player.velocity.x = max(velocityChainBoost, abs(player.velocity.x)) * player.facing
 				return State.JumpLong
 			elif !timerBufferRoll.is_stopped():
+				timerBufferRoll.stop()
 				return State.Roll
 			else:
 				return State.Crouch
 		elif !timerBufferJump.is_stopped():
-				return State.Jump
+			timerBufferJump.stop()
+			return State.Jump
 		elif player.velocity.x != 0:
 			if player.moveDirection.x != sign(player.velocity.x) and player.moveDirection.x != 0:
 				return State.Skid
