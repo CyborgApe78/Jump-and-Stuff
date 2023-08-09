@@ -62,29 +62,29 @@ func physics(delta) -> void:
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
 	
-	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing:
-			apply_friction(moveSpeed * 2, delta)
-	else:
-		if !timerDuration.is_stopped():
-			if abs(player.velocity.x) < rollVelocity: 
-				player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
-			elif abs(player.velocity.x) >= rollVelocity:
-				momentum_logic(rollVelocity, false)
-		else:
-			apply_friction(frictionGround / 2, delta) #TODO: own friction
-	
-#	if rad_to_deg(player.groundAngle) < -1: #TOOD: add speed based on ground angle and pull back to slow done
-#		if sign(player.velocity.x) == -1:
-#			player.velocity.x -= downHillAccel ## Speed up on down hill
-#		else:
-#			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
-#	if rad_to_deg(player.groundAngle) > 1:
-#		if sign(player.velocity.x) == 1:
-#			player.velocity.x += downHillAccel
-#		else:
-#			apply_friction(frictionGround * upHillFrictionModifier, delta)
+#	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing:
+#			apply_friction(moveSpeed * 2, delta)
 #	else:
-#		momentum_logic(rollVelocity, false)
+#		if !timerDuration.is_stopped():
+#			if abs(player.velocity.x) < rollVelocity: 
+#				player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
+#			elif abs(player.velocity.x) >= rollVelocity:
+#				momentum_logic(rollVelocity, false)
+#		else:
+#			apply_friction(frictionGround / 2, delta) #TODO: own friction
+	
+	if rad_to_deg(player.groundAngle) < -1: #TOOD: add speed based on ground angle and pull back to slow done
+		if sign(player.velocity.x) == -1:
+			player.velocity.x -= downHillAccel ## Speed up on down hill
+		else:
+			apply_friction(frictionGround * upHillFrictionModifier * 2, delta) ## Slow on up hill
+	elif rad_to_deg(player.groundAngle) > 1:
+		if sign(player.velocity.x) == 1:
+			player.velocity.x += downHillAccel
+		else:
+			apply_friction(frictionGround * upHillFrictionModifier * 2, delta)
+	elif timerDuration.is_stopped():
+		apply_friction(frictionGround / 2, delta) #TODO: own friction
 
 
 func visual(delta) -> void:
@@ -134,7 +134,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if timerDuration.is_stopped() and abs(player.velocity.x) < 100: #Lookat: lowering the value
+	if timerDuration.is_stopped() and abs(player.velocity.x) < 100: #fixme: stops player from rolling, need timer
 		if player.is_on_floor(): 
 			if detector.is_colliding():
 				player.velocity.x = 0

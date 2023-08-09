@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=29 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -530,6 +530,15 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5e1r"]
 size = Vector2(704, 66)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvg7l"]
+size = Vector2(880, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8d3m"]
+size = Vector2(1646, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rtte"]
+size = Vector2(1642.5, 20)
+
 [node name="Playground" type="Node"]
 script = ExtResource("1_t3d88")
 
@@ -614,6 +623,23 @@ script = ExtResource("19_1iekm")
 [node name="VisibleCollisionShape2D2" type="CollisionShape2D" parent="Semisolid"]
 position = Vector2(-352, -480)
 shape = SubResource("RectangleShape2D_n5e1r")
+script = ExtResource("19_1iekm")
+
+[node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="Semisolid"]
+position = Vector2(2165, -593)
+rotation = 0.339045
+shape = SubResource("RectangleShape2D_cvg7l")
+script = ExtResource("19_1iekm")
+
+[node name="VisibleCollisionShape2D4" type="CollisionShape2D" parent="Semisolid"]
+position = Vector2(3274, -463)
+shape = SubResource("RectangleShape2D_b8d3m")
+script = ExtResource("19_1iekm")
+
+[node name="VisibleCollisionShape2D5" type="CollisionShape2D" parent="Semisolid"]
+position = Vector2(4856, -694)
+rotation = -0.294341
+shape = SubResource("RectangleShape2D_4rtte")
 script = ExtResource("19_1iekm")
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
