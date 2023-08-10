@@ -16,7 +16,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	player.animPlayer.stop()
 
 
 func physics(delta) -> void:
