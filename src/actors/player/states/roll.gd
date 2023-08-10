@@ -1,6 +1,7 @@
 extends PlayerInfo
 
-#TODO: downhill speed up, uphill slow down
+#FIXME: animation break after rolling on hills
+#TODO: lots of number tweeaking
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -77,14 +78,14 @@ func physics(delta) -> void:
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= downHillAccel ## Speed up on down hill
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier * 2, delta) ## Slow on up hill
+			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
 	elif rad_to_deg(player.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += downHillAccel
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier * 2, delta)
+			apply_friction(frictionGround * upHillFrictionModifier, delta)
 	elif timerDuration.is_stopped():
-		apply_friction(frictionGround / 2, delta) #TODO: own friction
+		apply_friction(frictionGround, delta) #TODO: own friction
 
 
 func visual(delta) -> void:
@@ -134,7 +135,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if timerDuration.is_stopped() and abs(player.velocity.x) < 100: #fixme: stops player from rolling, need timer
+	if timerDuration.is_stopped() and abs(player.velocity.x) < 10 and abs(player.groundAngle) < 0.001: #fixme: stops player from rolling, need timer
 		if player.is_on_floor(): 
 			if detector.is_colliding():
 				player.velocity.x = 0

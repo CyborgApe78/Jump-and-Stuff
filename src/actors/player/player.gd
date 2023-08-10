@@ -72,6 +72,7 @@ func _physics_process(delta: float) -> void:
 	wall_detection()
 	
 	EventBus.debugVelocity.emit(velocity.round())
+	EventBus.debug.emit(groundAngle)
 
 
 func _process(delta: float) -> void:

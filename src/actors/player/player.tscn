@@ -5844,7 +5844,7 @@ local_coords = true
 [node name="Tail" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(-16, 24)
 rotation = 3.14159
-points = PackedVector2Array(0, 0, 24.0026, 6.81854, 36.748, 17.8942, 40.5391, 31.2135)
+points = PackedVector2Array(0, 0, 24.0029, 6.81819, 36.7494, 17.8932, 40.5421, 31.2123)
 default_color = Color(0.0862745, 0.819608, 0, 1)
 texture_mode = 2
 begin_cap_mode = 1
@@ -5880,7 +5880,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)
+points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5905,7 +5905,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)
+points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5929,7 +5929,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -5953,7 +5953,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -40.0001)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6031,7 +6031,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 8)
+points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6399,7 +6399,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
