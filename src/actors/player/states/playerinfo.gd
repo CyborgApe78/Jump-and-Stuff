@@ -26,7 +26,7 @@ var percentMinJumpVelocity: float = 0.8
 var percentKeepJumpConsecutive: float = 0.9
 var airTurnModifier: float = 4.0
 var upHillFrictionModifier: float = 2.0
-var flatGroundFrictionModifier: float = 1.75
+var flatGroundFrictionModifier: float = 1.75 #TODO: these need to move to state using them. slide/roll have different values
 var downHillAccel: float = 50
 
 var topSpeed: int ## keeps track of player speed for bonking

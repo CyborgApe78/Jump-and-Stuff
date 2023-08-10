@@ -1,7 +1,7 @@
 extends PlayerInfo
 
-#FIXME: animation break after rolling on hills
 #TODO: lots of number tweeaking
+#TODO: max roll speed
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -22,6 +22,7 @@ extends PlayerInfo
 var saveConsecutive: bool
 var rollVelocity: float
 var velocityChainBoost: float
+var naxRoll
 var refreshTime: float
 var jumpBoostTime: float
 
@@ -63,27 +64,19 @@ func physics(delta) -> void:
 		gravity_logic(gravityFall, delta)
 		fall_speed_logic(terminalVelocity)
 	
-#	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing:
-#			apply_friction(moveSpeed * 2, delta)
-#	else:
-#		if !timerDuration.is_stopped():
-#			if abs(player.velocity.x) < rollVelocity: 
-#				player.velocity.x = move_toward(abs(player.velocity.x), rollVelocity, (moveSpeed * 3) * delta) * player.facing
-#			elif abs(player.velocity.x) >= rollVelocity:
-#				momentum_logic(rollVelocity, false)
-#		else:
-#			apply_friction(frictionGround / 2, delta) #TODO: own friction
-	
-	if rad_to_deg(player.groundAngle) < -1: #TOOD: add speed based on ground angle and pull back to slow done
+	#TODO: needs hori movement code when !isonfloor
+	if rad_to_deg(player.groundAngle) < -1: #TODO: create own accel and deccel
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= downHillAccel ## Speed up on down hill
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
+			player.velocity.x -= downHillAccel ## Slow on up hill
+#			apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif rad_to_deg(player.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += downHillAccel
+			player.velocity.x += downHillAccel  ## Speed up on down hill
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier, delta)
+			player.velocity.x += downHillAccel ## Slow on up hill
+#			apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif timerDuration.is_stopped():
 		apply_friction(frictionGround, delta) #TODO: own friction
 
