@@ -1,7 +1,7 @@
 extends PlayerInfo
 
-#TODO: add dash down upgrade
 #TODO: add states converting down dash to side
+#TODO: drill upgrade from spin
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -68,7 +68,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
-		return State.Dive
+		return State.DiveHop
 	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
 		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		if player.is_on_floor():

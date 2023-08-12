@@ -10,21 +10,19 @@ extends PlayerInfo
 
 @export var rollTime: float = 0.3
 @export var diveSpeedMultiplier: float = 1.6
+@export var multiplierGroundPound: float = 1.5
 @export var transformTime: float = 0.05
 @export var fallTimeTillBonk: float = .7
 
 
 func enter() -> void:
-	if player.previousState == "GroundPound":
-		player.velocity.x = max(moveSpeed * 2, abs(player.velocity.x)) * player.facing
-	else: ## dive at dive speed or current velocity, whichever's high
-		player.velocity.x = max(moveSpeed, abs(player.velocity.x)) * player.facing
-	timers()
-	neutral_move_direction_logic()
-	player.velocity.y = -100
+	player.velocity.x = max(moveSpeed, abs(player.velocity.x)) * player.facing
+	
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
-	tween.tween_property(player.characterRotate, "rotation_degrees", 45 * player.facing, transformTime).from(0)
-	tween.tween_property(player.characterCollision, "rotation_degrees", 45 * player.facing, transformTime).from(0)
+	tween.tween_property(player.characterRotate, "rotation_degrees", 125, transformTime).from(0)
+	tween.tween_property(player.characterCollision, "rotation_degrees", 125, transformTime).from(0)
+	
+	timers()
 
 
 func exit() -> void:
@@ -93,9 +91,6 @@ func state_check(delta: float) -> int:
 			return State.BonkGround
 		else:
 			EventBus.rumble.emit(0.2, 0.3, 0.2)
-#			var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
-#			tween.tween_property(player.characterRotate, "rotation_degrees", 0, transformTime).from_current()
-#			tween.tween_property(player.characterCollision, "rotation_degrees", 0, transformTime).from_current()
 			return State.BellySlide
 
 	return State.Null

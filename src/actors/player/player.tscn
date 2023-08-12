@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/jumpApex.gd" id="23_w0epw"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpWall.gd" id="24_rjpry"]
 [ext_resource type="Script" path="res://src/actors/player/states/fall.gd" id="25_bdy8d"]
+[ext_resource type="Script" path="res://src/actors/player/states/DiveHop.gd" id="26_44r6p"]
 [ext_resource type="Script" path="res://src/actors/player/states/BellySlideHop.gd" id="26_grhql"]
 [ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="26_uv5su"]
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="27_oxfs3"]
@@ -6155,6 +6156,12 @@ timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 fallTimer = NodePath("../../Timers/FallTimeMax")
+
+[node name="DiveHop" type="Node" parent="StateMachine" node_paths=PackedStringArray("detector", "timerBufferJump", "timerBufferRoll")]
+script = ExtResource("26_44r6p")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerBufferRoll = NodePath("../../Timers/BufferRoll")
 
 [node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundSlide", "detector")]
 script = ExtResource("28_w0ybt")

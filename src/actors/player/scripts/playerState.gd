@@ -21,6 +21,7 @@ enum State {
 	Fall,
 	Glide,
 	Dive,
+	DiveHop,
 	GroundPound,
 	GroundPoundLand,
 	GroundPoundBounce,
