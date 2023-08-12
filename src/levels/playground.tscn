@@ -534,10 +534,10 @@ size = Vector2(704, 66)
 size = Vector2(880, 57)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8d3m"]
-size = Vector2(1646, 20)
+size = Vector2(1785, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4rtte"]
-size = Vector2(1642.5, 20)
+size = Vector2(5655.27, 160.687)
 
 [node name="Playground" type="Node"]
 script = ExtResource("1_t3d88")
@@ -632,13 +632,14 @@ shape = SubResource("RectangleShape2D_cvg7l")
 script = ExtResource("19_1iekm")
 
 [node name="VisibleCollisionShape2D4" type="CollisionShape2D" parent="Semisolid"]
-position = Vector2(3274, -463)
+position = Vector2(3343.5, -410.5)
 shape = SubResource("RectangleShape2D_b8d3m")
 script = ExtResource("19_1iekm")
 
 [node name="VisibleCollisionShape2D5" type="CollisionShape2D" parent="Semisolid"]
-position = Vector2(4856, -694)
+position = Vector2(6794.72, -1208.21)
 rotation = -0.294341
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4rtte")
 script = ExtResource("19_1iekm")
 
