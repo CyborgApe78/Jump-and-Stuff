@@ -63,12 +63,8 @@ func handle_input(event: InputEvent) -> int:
 					return State.JumpCrouch
 		if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump): #TODO: add charge time
 			return State.DashJump
-	if Input.is_action_just_pressed("slide") and abilities.can_use(PlayerAbilities.list.Slide):
-		return State.Slide
 	if Input.is_action_just_pressed("roll"):
 		return State.Roll
-	if Input.is_action_just_pressed("slide"):
-		return State.Slide 
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -80,7 +76,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 #TODO:
 #	if player.groundAngle > 1:
-#		return State.BackSlide
+#		return State.Slide
 	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight.is_colliding():
 		timerCoyoteJump.start()
 		return State.Fall

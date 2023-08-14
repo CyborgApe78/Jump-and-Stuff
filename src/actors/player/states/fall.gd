@@ -147,10 +147,6 @@ func state_check(delta: float) -> int:
 				player.animPlayer.stop()
 				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Crouch
-			elif Input.is_action_pressed("slide"):
-				player.animPlayer.stop()
-				EventBus.rumble.emit(0.1, 0.2, 0.2)
-				return State.Slide
 			elif player.velocity.x != 0:
 	#			if player.neutralMoveDirection:
 	#				return State.NeutralGround #TODO: keep momentum if jumping
