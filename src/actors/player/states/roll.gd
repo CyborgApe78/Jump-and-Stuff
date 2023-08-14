@@ -128,7 +128,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if timerDuration.is_stopped() and abs(player.velocity.x) < 10 and abs(player.groundAngle) < 0.001: #fixme: stops player from rolling, need timer
+	if timerDuration.is_stopped() and abs(player.velocity.x) < 10 and abs(player.groundAngle) < 0.01: #fixme: stops player from rolling, need timer
 		if player.is_on_floor(): 
 			if detector.is_colliding():
 				player.velocity.x = 0
