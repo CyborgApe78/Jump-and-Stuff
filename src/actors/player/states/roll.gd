@@ -16,8 +16,8 @@ extends PlayerInfo
 @export var minLongJumpVelocity: int = 30
 @export var duration: float = 0.8
 @export var refreshPercent: float = 0.8
-@export var modifierVelocity: float = 1.5
-@export var modifierChainBoost: float = 1.8
+@export var modifierVelocity: float = 1.25
+@export var modifierChainBoost: float = 1.5
 
 var saveConsecutive: bool
 var rollVelocity: float
@@ -97,7 +97,7 @@ func handle_input(event: InputEvent) -> int:
 		if detector.is_colliding():
 			return State.Crouch
 		else:
-			if timerChain.is_stopped():
+			if timerChain.is_stopped() and !timerDuration.is_stopped():
 				return State.RollJump
 			else:
 				EventBus.playerActionAnnounce.emit("Early Jump")
