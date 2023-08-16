@@ -178,7 +178,7 @@ func get_slope_angle() -> void:
 	else:
 		groundAngle = 0
 	
-	if rad_to_deg(abs(groundAngle)) > 45:
+	if abs(groundAngle) < 0.0001:
 		groundAngle = 0
 
 
