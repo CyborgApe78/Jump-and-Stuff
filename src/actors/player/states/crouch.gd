@@ -16,8 +16,9 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	neutral_move_direction_logic()
 	player.animPlayer.queue("Crouch")
+	
+	neutral_move_direction_logic()
 
 
 func exit() -> void:
@@ -26,6 +27,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
+	
 	apply_friction(frictionGround * 1.5, delta)
 
 
@@ -47,13 +49,13 @@ func handle_input(event: InputEvent) -> int:
 				return State.Walk
 			else:
 				return State.Idle
-		if Input.is_action_just_pressed("jump"): #TODO: add charge time
+		if Input.is_action_just_pressed("jump"):
 			if Input.is_action_pressed("move_down"):
 				player.set_collision_mask_value(CollisionLayers.Semisolid, false)
-			elif !detector.is_colliding():
 #				if player.jumped: #FIXME: what is this???
 #					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
 #					return State.JumpLong #TODO: special jump, timer to get a boosted jump
+			else:
 				if abs(player.velocity.x) > minLongJumpVelocity or player.moveDirection.x != 0:
 					return State.JumpLong
 				elif !timerCoyoteJumpGroundPound.is_stopped(): ## gives extra time after ground pound to still get boosted jump
