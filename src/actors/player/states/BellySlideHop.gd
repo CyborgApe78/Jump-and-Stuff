@@ -9,8 +9,8 @@ extends PlayerInfo
 @export var particles: GPUParticles2D #TODO: own particles
 
 @export var duration: float = 0.2
-@export var jumpModifier: float = 0.5
-@export var velocityModifier: float = 1.25
+@export var jumpModifier: float = 0.25
+@export var velocityModifier: float = 1.0
 
 
 var startingHeight: int
@@ -20,19 +20,23 @@ var velocityHop: float
 func enter() -> void:
 	velocityHop = moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
-	EventBus.playerJumped.emit()
 	topSpeed = 0
-	neutral_move_direction_logic()
+	
+	player.velocity.x = velocityHop * player.facing
+	player.velocity.y = jumpVelocity * jumpModifier
+#	if !detector.is_colliding():
+#		player.global_position.y -= Util.tileSize * 4 #TODO: tween movement or change to velocity
+	
+	EventBus.playerJumped.emit()
+	
 	player.animPlayer.queue("Belly Slide")
+	
 	soundeffect.pitch_scale = jumpModifier
 	soundeffect.play()
 	particles.restart()
-	player.velocity.x = velocityHop * player.facing
-	player.velocity.y = 0
-	if !detector.is_colliding():
-		player.global_position.y -= Util.tileSize * 4 #TODO: tween movement or change to velocity
 	
 	timers()
+	neutral_move_direction_logic()
 
 
 func exit() -> void:
@@ -44,6 +48,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
 	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_vertical_corner_correction(-jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
@@ -109,8 +114,8 @@ func state_check(delta: float) -> int:
 		if topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
-		else:
-			return State.WallSlide
+#		else:
+#			return State.WallSlide
 	if player.is_on_floor():
 		if !timerBufferRoll.is_stopped():
 			timerBufferRoll.stop()
