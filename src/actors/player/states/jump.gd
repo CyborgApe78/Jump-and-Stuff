@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: higher jump at faster speed
 
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer

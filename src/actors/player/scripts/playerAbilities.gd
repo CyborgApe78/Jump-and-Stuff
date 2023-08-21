@@ -1,6 +1,7 @@
 extends Resource
 class_name PlayerAbilities
 
+#TODO: add all abilities
 
 var unlockedJumpAir: bool = false:
 	set(v):

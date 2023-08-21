@@ -31,6 +31,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	player.animPlayer.stop() #FIXME: kills land animation
 	jumpHeld = false
 
 

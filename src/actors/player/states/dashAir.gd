@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: upgrade for ori like burrow
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer

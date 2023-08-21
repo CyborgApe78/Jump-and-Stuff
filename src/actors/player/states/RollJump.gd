@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#FIXME: rework this. similiar to belly hop
 
 @export var timerDuration: Timer
 @export var timerBufferJump: Timer
