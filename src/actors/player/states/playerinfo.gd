@@ -31,6 +31,8 @@ var downHillAccel: float = 50
 
 var topSpeed: int ## keeps track of player speed for bonking
 
+var dashBufferState: int
+
 func _ready() -> void:
 	EventBus.playerStatsCheck.connect(update_stats)
 
@@ -135,7 +137,7 @@ func consecutive_jump_cancel() -> void:
 
 
 func align_to_ground()-> void:
-	if player.groundAngle != 0:
+	if player.groundAngle != player.rotation:
 		player.rotation = player.groundAngle
 
 
@@ -154,3 +156,30 @@ func neutral_air_momentum_logic(speed) -> void:
 func track_top_speed(speed:int) -> void:
 	if abs(player.velocity.x) > topSpeed:
 		topSpeed = abs(speed)
+
+
+func dash_pressed_buffer() -> void:
+#	var initial_direction = player.aimDirection.round()
+	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
+	dash_pressed_logic()
+	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
+	dashBufferState = State.Null
+
+
+func dash_pressed_logic() -> void:
+	var dashInput: Vector2 = player.aimDirection if player.aimDirection != Vector2.ZERO else player.moveDirection
+	
+	if player.is_on_wall():
+		if player.moveDirection.y == -1:
+			dashBufferState = State.DashClimb
+		else:
+			dashBufferState = State.DashWall
+	elif dashInput.y != 0:
+		dashBufferState = State.DashUp #TODO: DashV
+	elif player.is_on_floor():
+		dashBufferState = State.DashGround
+	elif !player.is_on_floor():
+		dashBufferState = State.DashAir
+	else:
+		dashBufferState = State.Null
+		EventBus.error.emit("null dash pressed logic")

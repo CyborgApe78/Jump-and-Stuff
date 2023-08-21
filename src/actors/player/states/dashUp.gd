@@ -1,7 +1,6 @@
 extends PlayerInfo
 
-#TODO: add back
-#LOOAT: vertical air movement and block breaker
+#TODO: add back and turn air dashes to hori and vert
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer

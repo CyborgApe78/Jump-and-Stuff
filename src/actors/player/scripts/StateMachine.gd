@@ -28,6 +28,8 @@ extends Node
 	PlayerState.State.WallGrab: $WallGrab,
 	PlayerState.State.DashGround: $DashGround,
 	PlayerState.State.DashAir: $DashAir,
+	PlayerState.State.DashUp: $DashUp,
+	PlayerState.State.DashDown: $DashDown,
 	PlayerState.State.DashWall: $DashWall,
 	PlayerState.State.DashClimb: $DashClimb,
 	PlayerState.State.DashJump: $DashJump,

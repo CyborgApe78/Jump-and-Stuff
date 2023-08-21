@@ -95,6 +95,19 @@ func state_check(delta: float) -> int:
 		elif topSpeed > moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashAir and timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashAir
+		elif dashBufferState == State.DashUp and timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashUp
+		elif dashBufferState == State.DashDown and timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
+				abilities.currentDashChain += 1
+				EventBus.actionAnnounce.emit("Chain")
+				return State.DashDown
 	if timerDuration.is_stopped():
 		if detector.is_colliding():
 			player.velocity.x = player.velocity.x

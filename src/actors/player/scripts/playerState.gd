@@ -31,6 +31,8 @@ enum State {
 	WallGrab,
 	DashGround,
 	DashAir,
+	DashUp,
+	DashDown,
 	DashWall,
 	DashClimb,
 	DashJump,
@@ -48,8 +50,6 @@ enum State {
 	
 	Teleport,
 	Die,
-	DashUp,
-	DashDown,
 }
 
 var statePrevious: int 

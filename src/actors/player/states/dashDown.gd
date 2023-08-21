@@ -4,13 +4,13 @@ extends PlayerInfo
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
-
-@export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var chainTimer: Timer
-@export var floorTime: float = 0.1
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
+
+@export var duration: float = 0.3
+@export var floorTime: float = 0.1
 
 
 func enter() -> void:
