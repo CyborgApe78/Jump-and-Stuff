@@ -49,7 +49,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BugReporter/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/wiggly_appendage_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
 
 [input]
 
