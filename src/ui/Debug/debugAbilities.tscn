@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_r3h2n"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_3r0j1"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "buttonBash", "consecAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "buttonBash", "consecAmount", "dashAmount")]
 script = ExtResource("1_r3h2n")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -24,6 +24,7 @@ buttonDive = NodePath("HBoxContainer/Other/Dive")
 buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
 buttonBash = NodePath("HBoxContainer/Other/Bash")
 consecAmount = NodePath("HBoxContainer/Jumps/Consec/Amount")
+dashAmount = NodePath("HBoxContainer/Dashes/Amount")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -140,6 +141,25 @@ theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Jump"
 
+[node name="Label" type="Label" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+text = "Amount"
+horizontal_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+alignment = 1
+item_count = 4
+selected = 0
+popup/item_0/text = "1"
+popup/item_0/id = 1
+popup/item_1/text = "2"
+popup/item_1/id = 2
+popup/item_2/text = "3"
+popup/item_2/id = 3
+popup/item_3/text = "4"
+popup/item_3/id = 4
+
 [node name="Other" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
@@ -214,6 +234,7 @@ text = "Bash"
 [connection signal="toggled" from="HBoxContainer/Dashes/Wall" to="." method="_on_dash_wall_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Climb" to="." method="_on_dash_climb_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Jump" to="." method="_on_dash_jump_toggled"]
+[connection signal="item_selected" from="HBoxContainer/Dashes/Amount" to="." method="_on_dash_amount_item_selected"]
 [connection signal="toggled" from="HBoxContainer/Other/Slide" to="." method="_on_slide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GroundPundBounce" to="." method="_on_ground_pound_bounce_toggled"]

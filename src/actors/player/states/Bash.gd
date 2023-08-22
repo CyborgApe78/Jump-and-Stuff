@@ -2,6 +2,9 @@ extends PlayerInfo
 
 
 @export var timerDuration: Timer
+@export var timerCoyoteJump: Timer
+@export var timerCoyoteJumpWall: Timer
+@export var timerBufferJump: Timer
 
 @export var duration: float = 0.6
 
@@ -34,7 +37,32 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	
+	if Input.is_action_just_pressed("jump"):
+		if timerCoyoteJump.is_stopped(): #leave ground, but still can jump
+			timerCoyoteJump.stop()
+			EventBus.helperUsed.emit(Util.helper.coyoteJump)
+			EventBus.playerActionAnnounce.emit("Coyote Jump")
+			return consecutive_jump_logic()
+		elif !timerCoyoteJumpWall.is_stopped(): #leave wall, but still can jump
+			timerCoyoteJumpWall.stop()
+			EventBus.helperUsed.emit(Util.helper.coyoteJump)
+			EventBus.playerActionAnnounce.emit("Wall Coyote Jump")
+			return State.JumpWall
+		elif player.wall_detection(30) != 0:
+			EventBus.playerActionAnnounce.emit("Near Wall Jump")
+			return State.JumpWall
+		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
+			return State.JumpAir
+		else:
+			timerBufferJump.start()
+	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+		return State.Glide
+	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+			return State.Dive 
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -49,6 +77,16 @@ func state_check(delta: float) -> int:
 			return State.Fall
 	if player.is_on_floor():
 		return State.Walk
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashAir and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashAir
+		if dashBufferState == State.DashUp and abilities.can_use(PlayerAbilities.list.DashUp):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashUp
+		if dashBufferState == State.DashDown and abilities.can_use(PlayerAbilities.list.DashDown):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashDown
 	
 
 	return State.Null

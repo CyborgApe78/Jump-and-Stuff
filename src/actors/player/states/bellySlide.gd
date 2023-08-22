@@ -51,6 +51,8 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("roll"):
 #	 and abilities.can_use(PlayerAbilities.list.Roll): #TODO: turn into unlock
 		return State.Roll
+	if Input.is_action_just_pressed("dash"): #TODO: create state of boosted roll
+		dash_pressed_buffer()
 
 	return State.Null
 
@@ -64,5 +66,12 @@ func state_check(delta: float) -> int:
 				return State.Walk
 			else:
 				return State.Idle
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashGround and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashGround #TODO: own state
+		if dashBufferState == State.DashUp and abilities.can_use(PlayerAbilities.list.DashUp):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashUp
 
 	return State.Null

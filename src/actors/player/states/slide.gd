@@ -77,12 +77,8 @@ func handle_input(event: InputEvent) -> int:
 				return State.JumpLong #TODO: own jump state
 			else:
 				timerBufferJump.start()
-		if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			if player.is_on_floor():
-				return State.DashGround
-			else:
-				return State.DashAir
+		if Input.is_action_just_pressed("dash"):
+			dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -110,6 +106,13 @@ func state_check(delta: float) -> int:
 				return State.Idle
 		else:
 			return State.Fall
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashGround and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashGround
+		if dashBufferState == State.DashUp and abilities.can_use(PlayerAbilities.list.DashUp):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashUp
 
 	return State.Null
 

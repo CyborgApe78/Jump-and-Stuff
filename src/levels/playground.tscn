@@ -563,7 +563,7 @@ floor_snap_length = 9.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, 93)
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("12_gn10c")
 
 [node name="HealBox" parent="." instance=ExtResource("10_iwkrg")]

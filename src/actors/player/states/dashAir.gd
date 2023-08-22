@@ -74,12 +74,7 @@ func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
-		if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
-			abilities.consume(PlayerAbilities.list.DashChain, 1)
-			return State.DashAir
-		elif abilities.can_use(PlayerAbilities.list.DashSide):
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
+		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -96,17 +91,26 @@ func state_check(delta: float) -> int:
 			topSpeed = 0
 			return State.BonkAir
 	if dashBufferState != State.Null:
-		if dashBufferState == State.DashAir and timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
-				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+		if dashBufferState == State.DashAir:
+			if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
+				abilities.consume(PlayerAbilities.list.DashChain, 1)
 				return State.DashAir
-		elif dashBufferState == State.DashUp and timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
-				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+			elif abilities.can_use(PlayerAbilities.list.DashSide):
+				abilities.consume(PlayerAbilities.list.Dash, 1)
+				return State.DashAir
+		elif dashBufferState == State.DashUp:
+			if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
+				abilities.consume(PlayerAbilities.list.DashChain, 1)
 				return State.DashUp
-		elif dashBufferState == State.DashDown and timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
-				abilities.currentDashChain += 1
-				EventBus.actionAnnounce.emit("Chain")
+			elif abilities.can_use(PlayerAbilities.list.DashUp):
+				abilities.consume(PlayerAbilities.list.Dash, 1)
+				return State.DashUp
+		elif dashBufferState == State.DashDown:
+			if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
+				abilities.consume(PlayerAbilities.list.DashChain, 1)
+				return State.DashDown
+			elif abilities.can_use(PlayerAbilities.list.DashDown):
+				abilities.consume(PlayerAbilities.list.Dash, 1)
 				return State.DashDown
 	if timerDuration.is_stopped():
 		if detector.is_colliding():

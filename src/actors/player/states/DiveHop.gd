@@ -1,5 +1,5 @@
 extends PlayerInfo
-
+## Boosted distance after ground pound
 
 @export var detector: ShapeCast2D
 @export var timerBufferJump: Timer
@@ -64,9 +64,8 @@ func handle_input(event: InputEvent) -> int:
 			return State.GroundPound
 		else:
 			return State.Fall
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
-		abilities.consume(PlayerAbilities.list.DashSide, 1)
-		return State.DashAir
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -93,5 +92,15 @@ func state_check(delta: float) -> int:
 		else:
 			EventBus.rumble.emit(0.2, 0.3, 0.2)
 			return State.BellySlide
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashAir and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashAir
+		if dashBufferState == State.DashUp and abilities.can_use(PlayerAbilities.list.DashUp):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashUp
+		if dashBufferState == State.DashDown and abilities.can_use(PlayerAbilities.list.DashDown):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashDown
 
 	return State.Null

@@ -160,9 +160,9 @@ func track_top_speed(speed:int) -> void:
 
 func dash_pressed_buffer() -> void:
 #	var initial_direction = player.aimDirection.round()
-	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
+	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed, look at buffer input timer
 	dash_pressed_logic()
-	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed
+	await get_tree().create_timer(0.1).timeout
 	dashBufferState = State.Null
 
 
@@ -173,9 +173,11 @@ func dash_pressed_logic() -> void:
 		if player.moveDirection.y == -1:
 			dashBufferState = State.DashClimb
 		else:
-			dashBufferState = State.DashWall
-	elif dashInput.y != 0:
-		dashBufferState = State.DashUp #TODO: DashV
+			dashBufferState = State.DashWall #TODO: remove and only from wallgrab
+	elif dashInput.y == -1:
+		dashBufferState = State.DashUp
+	elif dashInput.y == 1:
+		dashBufferState = State.DashDown
 	elif player.is_on_floor():
 		dashBufferState = State.DashGround
 	elif !player.is_on_floor():

@@ -69,12 +69,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Glide
 	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.DiveHop
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide):
-		abilities.consume(PlayerAbilities.list.DashSide, 1)
-		if player.is_on_floor():
-			return State.DashGround
-		else:
-			return State.DashAir
+	if Input.is_action_just_pressed("dash"):
+		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -92,5 +88,15 @@ func state_check(delta: float) -> int:
 			return State.GroundPoundBounce
 		else:
 			return State.GroundPoundLand
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashAir and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashAir
+		if dashBufferState == State.DashUp and abilities.can_use(PlayerAbilities.list.DashUp):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashUp
+		if dashBufferState == State.DashDown and abilities.can_use(PlayerAbilities.list.DashDown):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashDown
 
 	return State.Null

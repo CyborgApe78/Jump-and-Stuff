@@ -20,6 +20,7 @@ extends Control
 @export var buttonGrappleHook: Button
 @export var buttonBash: Button
 @export var consecAmount: OptionButton
+@export var dashAmount: OptionButton
 #TODO: change to signals once the player has all ability, stats, and upgrade checks
 var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var Stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
@@ -47,6 +48,7 @@ func check(BOOL) -> void:
 	buttonBash.button_pressed = Abilities.unlockedBash
 	
 	consecAmount.selected = Abilities.maxJumpConsec -1
+	dashAmount.selected = Abilities.maxDash -1
 
 
 func _on_all_toggled(button_pressed: bool) -> void:
@@ -105,6 +107,10 @@ func _on_dash_wall_toggled(button_pressed: bool) -> void:
 
 func _on_dash_climb_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.DashClimb, button_pressed)
+
+
+func _on_dash_amount_item_selected(index: int) -> void:
+	Abilities.maxDash = index + 1
 
 
 func _on_dash_jump_toggled(button_pressed: bool) -> void:

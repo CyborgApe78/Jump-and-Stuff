@@ -343,13 +343,6 @@ color_ramp = SubResource("GradientTexture1D_j3xbn")
 hue_variation_min = -0.1
 hue_variation_max = 0.1
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
-radius = 24.0
-height = 96.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvx04"]
-size = Vector2(32, 80)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
 size = Vector2(5, 96)
 
@@ -358,6 +351,19 @@ size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wcwb"]
 size = Vector2(48, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx3rl"]
+radius = 24.0
+height = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvx04"]
+size = Vector2(32, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oudvw"]
+size = Vector2(47, 82)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ihvx"]
+radius = 75.0
 
 [sub_resource type="Animation" id="Animation_vhxfq"]
 resource_name = "Belly Slide"
@@ -5492,18 +5498,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3meqx"]
 size = Vector2(15, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oudvw"]
-size = Vector2(47, 82)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5ihvx"]
-radius = 75.0
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 64
 collision_mask = 65539
 floor_constant_speed = true
 floor_snap_length = 10.2
-platform_wall_layers = 2
+platform_wall_layers = 3
 script = ExtResource("1_8artv")
 metadata/_edit_vertical_guides_ = [-456.0]
 
@@ -5996,11 +5996,23 @@ detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 [node name="LongJump" type="Timer" parent="StateMachine/DashAir"]
 one_shot = true
 
-[node name="DashUp" type="Node" parent="StateMachine"]
+[node name="DashUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerDuration", "timerChain", "particles", "soundJetpack")]
 script = ExtResource("32_3ge2r")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerDuration = NodePath("../../Timers/DashDuration")
+timerChain = NodePath("../../Timers/Chain")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashDown" type="Node" parent="StateMachine"]
+[node name="DashDown" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerDuration", "timerChain", "particles", "soundJetpack")]
 script = ExtResource("34_mljf1")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerBufferJump = NodePath("../../Timers/BufferJump")
+timerDuration = NodePath("../../Timers/DashDuration")
+timerChain = NodePath("../../Timers/Chain")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Dash")
+soundJetpack = NodePath("../../Sounds/Jetpack")
 
 [node name="DashWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "timerCoyoteJumpWall", "particles", "soundJetpack")]
 script = ExtResource("36_4y8yc")
@@ -6069,9 +6081,12 @@ hitbox = NodePath("../../HitboxComponent")
 [node name="aim" type="Timer" parent="StateMachine/BashAim"]
 one_shot = true
 
-[node name="Bash" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration")]
+[node name="Bash" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "timerCoyoteJump", "timerCoyoteJumpWall", "timerBufferJump")]
 script = ExtResource("46_ux6xt")
 timerDuration = NodePath("../../Timers/DashDuration")
+timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
+timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
+timerBufferJump = NodePath("../../Timers/BufferJump")
 
 [node name="Spin" type="Node" parent="StateMachine"]
 
@@ -6134,18 +6149,6 @@ soundSplat = NodePath("../../Sounds/splat")
 [node name="HealthComponent" parent="." instance=ExtResource("45_an6xy")]
 stats = ExtResource("46_vm2yr")
 
-[node name="BodyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -48)
-shape = SubResource("CapsuleShape2D_jx3rl")
-
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("47_w6udr")]
-visible = false
-health = NodePath("../HealthComponent")
-
-[node name="HitboxCollision" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -56)
-shape = SubResource("RectangleShape2D_gvx04")
-
 [node name="VelocityComponent" type="Node" parent="."]
 
 [node name="Raycasts" type="Node2D" parent="."]
@@ -6190,6 +6193,59 @@ target_position = Vector2(0, -48)
 [node name="Ground" type="ShapeCast2D" parent="Raycasts/Shapes"]
 enabled = false
 collision_mask = 3
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -48)
+shape = SubResource("CapsuleShape2D_jx3rl")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("47_w6udr")]
+visible = false
+health = NodePath("../HealthComponent")
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -56)
+shape = SubResource("RectangleShape2D_gvx04")
+
+[node name="AbilityCollider" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("58_hbso6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityCollider"]
+position = Vector2(-0.5, -32)
+shape = SubResource("RectangleShape2D_oudvw")
+
+[node name="PickupCollider" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupCollider"]
+visible = false
+position = Vector2(-0.5, -32)
+shape = SubResource("RectangleShape2D_oudvw")
+
+[node name="BashableDetector" type="Area2D" parent="." node_paths=PackedStringArray("indicatorTarget")]
+visible = false
+position = Vector2(0, -64)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("62_7uo1w")
+indicatorTarget = NodePath("Target")
+
+[node name="RayCast2D" type="RayCast2D" parent="BashableDetector"]
+position = Vector2(0, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BashableDetector"]
+shape = SubResource("CircleShape2D_5ihvx")
+
+[node name="Target" type="Line2D" parent="BashableDetector"]
+visible = false
+points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -8)
+default_color = Color(0.862745, 0.709804, 0.0980392, 1)
+
+[node name="EnviromentalDetector" type="Area2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
@@ -6320,59 +6376,18 @@ visible = false
 points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -8)
 default_color = Color(0.862745, 0.709804, 0.0980392, 1)
 
-[node name="AbilityCollider" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("58_hbso6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityCollider"]
-position = Vector2(-0.5, -32)
-shape = SubResource("RectangleShape2D_oudvw")
-
-[node name="PickupCollider" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupCollider"]
-visible = false
-position = Vector2(-0.5, -32)
-shape = SubResource("RectangleShape2D_oudvw")
-
-[node name="BashableDetector" type="Area2D" parent="." node_paths=PackedStringArray("indicatorTarget")]
-visible = false
-position = Vector2(0, -64)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("62_7uo1w")
-indicatorTarget = NodePath("Target")
-
-[node name="RayCast2D" type="RayCast2D" parent="BashableDetector"]
-position = Vector2(0, 64)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BashableDetector"]
-shape = SubResource("CircleShape2D_5ihvx")
-
-[node name="Target" type="Line2D" parent="BashableDetector"]
-visible = false
-points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -8)
-default_color = Color(0.862745, 0.709804, 0.0980392, 1)
-
 [node name="GrappleHook" type="Line2D" parent="."]
 visible = false
 position = Vector2(-8, -64)
 points = PackedVector2Array(8, 0, 24, 0)
 
-[node name="EnviromentalDetector" type="Area2D" parent="."]
-
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]
-[connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
-[connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]
-[connection signal="timeout" from="Timers/Invincibility" to="HitboxComponent" method="_on_invincibility_timeout"]
-[connection signal="timeout" from="Timers/Semisoild" to="." method="_on_semisoild_timeout"]
 [connection signal="area_entered" from="BashableDetector" to="." method="_on_bashable_detector_area_entered"]
 [connection signal="area_entered" from="BashableDetector" to="BashableDetector" method="_on_area_entered"]
 [connection signal="area_exited" from="BashableDetector" to="." method="_on_bashable_detector_area_exited"]
 [connection signal="area_exited" from="BashableDetector" to="BashableDetector" method="_on_area_exited"]
+[connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
+[connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]
+[connection signal="timeout" from="Timers/Invincibility" to="HitboxComponent" method="_on_invincibility_timeout"]
+[connection signal="timeout" from="Timers/Semisoild" to="." method="_on_semisoild_timeout"]

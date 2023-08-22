@@ -46,7 +46,7 @@ func handle_input(event: InputEvent) -> int:
 		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
 			return State.DashClimb
 		elif abilities.can_use(PlayerAbilities.list.DashWall): #TODO: add charge
-			return State.DashWall
+			return State.DashWall #LOOKAT: should this be like other dash checks
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
