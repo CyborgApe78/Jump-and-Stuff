@@ -47,18 +47,14 @@ func handle_input(event: InputEvent) -> int:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if Input.is_action_just_pressed("grab"):
+	if Input.is_action_just_pressed("grab") and abilities.can_use(PlayerAbilities.list.WallGrab):
 		return State.WallGrab
 	if Input.is_action_just_pressed("jump"):
 		return State.JumpWall
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
-		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
-			return State.DashClimb
-		elif abilities.can_use(PlayerAbilities.list.DashSide):
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
-			return State.DashAir
+		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
@@ -79,5 +75,17 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
+	if dashBufferState != State.Null:
+		if dashBufferState == State.DashClimb and abilities.can_use(PlayerAbilities.list.DashClimb):
+			return State.DashClimb
+		if dashBufferState == State.DashAir and abilities.can_use(PlayerAbilities.list.DashSide):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashAir
+		if dashBufferState == State.DashUp and abilities.can_use(PlayerAbilities.list.DashUp):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashUp
+		if dashBufferState == State.DashDown and abilities.can_use(PlayerAbilities.list.DashDown):
+			abilities.consume(PlayerAbilities.list.Dash, 1)
+			return State.DashDown
 
 	return State.Null

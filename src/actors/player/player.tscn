@@ -27,9 +27,9 @@
 [ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="26_uv5su"]
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="27_oxfs3"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="28_ggeir"]
+[ext_resource type="Script" path="res://src/actors/player/states/wallslide.gd" id="28_h3ycc"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
-[ext_resource type="Script" path="res://src/actors/player/states/wallSlide.gd" id="30_suiwv"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_l4kvw"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="32_3ge2r"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
@@ -5957,7 +5957,7 @@ soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
 
 [node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "particles")]
-script = ExtResource("30_suiwv")
+script = ExtResource("28_h3ycc")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
