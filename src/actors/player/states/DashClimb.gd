@@ -44,7 +44,7 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if Input.is_action_just_pressed("grab"):
+	if Input.is_action_just_pressed("grab") and abilities.can_use(PlayerAbilities.list.WallGrab):
 		return State.WallGrab
 	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive

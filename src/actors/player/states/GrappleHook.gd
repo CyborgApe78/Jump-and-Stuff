@@ -41,12 +41,12 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Coyote Jump")
 			return consecutive_jump_logic()
-		elif !timerCoyoteJumpWall.is_stopped(): #leave wall, but stil can jump
+		elif !timerCoyoteJumpWall.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpWall): #leave wall, but stil can jump
 			timerCoyoteJumpWall.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Wall Coyote Jump")
 			return State.JumpWall
-		elif player.wall_detection(30) != 0:
+		elif player.wall_detection(30) != 0 and abilities.can_use(PlayerAbilities.list.JumpWall):
 			EventBus.playerActionAnnounce.emit("Near Wall Jump")
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
@@ -79,9 +79,6 @@ func state_check(delta: float) -> int:
 		if Input.is_action_pressed("crouch"):
 			player.animPlayer.stop()
 			return State.Crouch
-		elif Input.is_action_pressed("slide"):
-			player.animPlayer.stop()
-			return State.Slide
 		elif player.velocity.x != 0:
 			return State.Walk
 		else:

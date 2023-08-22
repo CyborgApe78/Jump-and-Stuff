@@ -56,16 +56,16 @@ func handle_input(event: InputEvent) -> int:
 #					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
 #					return State.JumpLong #TODO: special jump, timer to get a boosted jump
 			else:
-				if abs(player.velocity.x) > minLongJumpVelocity or player.moveDirection.x != 0:
+				if abs(player.velocity.x) > minLongJumpVelocity or player.moveDirection.x != 0 and abilities.can_use(PlayerAbilities.list.JumpLong):
 					return State.JumpLong
-				elif !timerCoyoteJumpGroundPound.is_stopped(): ## gives extra time after ground pound to still get boosted jump
+				elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound): ## gives extra time after ground pound to still get boosted jump
 					return State.JumpGroundPound
-				else:
+				elif abilities.can_use(PlayerAbilities.list.JumpCrouch):
 					#TODO: add time check, for charging jump
 					return State.JumpCrouch
 		if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump): #TODO: add charge time
 			return State.DashJump
-	if Input.is_action_just_pressed("roll"):
+	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
 		return State.Roll
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
@@ -82,11 +82,11 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight.is_colliding():
 		timerCoyoteJump.start()
 		return State.Fall
-	if !timerBufferJump.is_stopped():
+	if !timerBufferJump.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpCrouch):
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.coyoteJump)
 		return State.JumpCrouch
-	if !timerBufferRoll.is_stopped():
+	if !timerBufferRoll.is_stopped() and abilities.can_use(PlayerAbilities.list.Roll):
 		timerBufferRoll.stop()
 		return State.Roll
 

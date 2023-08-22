@@ -86,12 +86,12 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Coyote Jump")
 			return consecutive_jump_logic()
-		elif !timerCoyoteJumpWall.is_stopped(): #leave wall, but stil can jump
+		elif !timerCoyoteJumpWall.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpWall): #leave wall, but stil can jump
 			timerCoyoteJumpWall.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
 			EventBus.playerActionAnnounce.emit("Wall Coyote Jump")
 			return State.JumpWall
-		elif player.wall_detection(10) != 0:
+		elif player.wall_detection(10) != 0 and abilities.can_use(PlayerAbilities.list.JumpWall):
 			EventBus.playerActionAnnounce.emit("Near Wall Jump")
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
@@ -117,7 +117,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
-		if !timerBufferJump.is_stopped():
+		if !timerBufferJump.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpWall):
 			return State.JumpWall
 		if topSpeed > moveSpeed:
 			topSpeed = 0
@@ -131,7 +131,7 @@ func state_check(delta: float) -> int:
 			EventBus.helperUsed.emit(Util.helper.bufferJump)
 			EventBus.rumble.emit(0.1, 0.3, 0.2)
 			return consecutive_jump_logic()
-		if !timerBufferRoll.is_stopped():
+		if !timerBufferRoll.is_stopped() and abilities.can_use(PlayerAbilities.list.Roll):
 			timerBufferRoll.stop()
 			EventBus.rumble.emit(0.1, 0.3, 0.2)
 			return State.Roll

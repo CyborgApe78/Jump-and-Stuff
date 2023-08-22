@@ -3,26 +3,43 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_r3h2n"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_3r0j1"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGlide", "buttonDive", "buttonGrappleHook", "buttonBash", "consecAmount", "dashAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpFlip", "buttonJumpLong", "buttonJumpCrouch", "buttonJumpGroundPound", "buttonJumpWall", "buttonJumpRoll", "buttonJumpBelly", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashGround", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonDashGroundPound", "buttonDashRoll", "buttonDashBelly", "buttonOtherAll", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonWallGrab", "buttonGrappleHook", "buttonBash", "buttonSpin", "buttonRoll", "buttonBurrow", "buttonGlide", "buttonDive", "buttonSwimDash", "consecAmount", "dashAmount")]
 script = ExtResource("1_r3h2n")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
 buttonJumpAir = NodePath("HBoxContainer/Jumps/Air")
+buttonJumpFlip = NodePath("HBoxContainer/Jumps/Flip")
+buttonJumpLong = NodePath("HBoxContainer/Jumps/Long")
+buttonJumpCrouch = NodePath("HBoxContainer/Jumps/Crouch")
+buttonJumpGroundPound = NodePath("HBoxContainer/Jumps/GroundPound")
+buttonJumpWall = NodePath("HBoxContainer/Jumps/Wall")
+buttonJumpRoll = NodePath("HBoxContainer/Jumps/Roll")
+buttonJumpBelly = NodePath("HBoxContainer/Jumps/Belly")
 buttonJumpConsec = NodePath("HBoxContainer/Jumps/Consec/Consec")
 buttonDashAll = NodePath("HBoxContainer/Dashes/All")
 buttonDashSide = NodePath("HBoxContainer/Dashes/Side")
 buttonDashUp = NodePath("HBoxContainer/Dashes/Up")
 buttonDashDown = NodePath("HBoxContainer/Dashes/Down")
+buttonDashGround = NodePath("HBoxContainer/Dashes/Ground")
 buttonDashWall = NodePath("HBoxContainer/Dashes/Wall")
 buttonDashClimb = NodePath("HBoxContainer/Dashes/Climb")
 buttonDashJump = NodePath("HBoxContainer/Dashes/Jump")
+buttonDashGroundPound = NodePath("HBoxContainer/Dashes/GroundPound")
+buttonDashRoll = NodePath("HBoxContainer/Dashes/Roll")
+buttonDashBelly = NodePath("HBoxContainer/Dashes/Belly")
+buttonOtherAll = NodePath("HBoxContainer/Other/All")
 buttonSlide = NodePath("HBoxContainer/Other/Slide")
 buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
-buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPundBounce")
-buttonGlide = NodePath("HBoxContainer/Other/Glide")
-buttonDive = NodePath("HBoxContainer/Other/Dive")
+buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPoundBounce")
+buttonWallGrab = NodePath("HBoxContainer/Other/WallGrab")
 buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
 buttonBash = NodePath("HBoxContainer/Other/Bash")
+buttonSpin = NodePath("HBoxContainer/Other/Spin")
+buttonRoll = NodePath("HBoxContainer/Other/Roll")
+buttonBurrow = NodePath("HBoxContainer/Other/Burrow")
+buttonGlide = NodePath("HBoxContainer/Other/Glide")
+buttonDive = NodePath("HBoxContainer/Other/Dive")
+buttonSwimDash = NodePath("HBoxContainer/Other/SwimDash")
 consecAmount = NodePath("HBoxContainer/Jumps/Consec/Amount")
 dashAmount = NodePath("HBoxContainer/Dashes/Amount")
 
@@ -62,6 +79,48 @@ layout_mode = 2
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Air"
+
+[node name="Flip" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Flip"
+
+[node name="Long" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Long"
+
+[node name="Crouch" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Crouch"
+
+[node name="GroundPound" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Ground Pound"
+
+[node name="Wall" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Wall"
+
+[node name="Roll" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Roll Jump"
+
+[node name="Belly" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Belly"
 
 [node name="Consec" type="VBoxContainer" parent="HBoxContainer/Jumps"]
 layout_mode = 2
@@ -123,6 +182,12 @@ theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Down"
 
+[node name="Ground" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Ground"
+
 [node name="Wall" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
 theme = ExtResource("2_3r0j1")
@@ -140,6 +205,24 @@ layout_mode = 2
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Jump"
+
+[node name="GroundPound" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Ground Pound"
+
+[node name="Roll" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Roll"
+
+[node name="Belly" type="Button" parent="HBoxContainer/Dashes"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Belly"
 
 [node name="Label" type="Label" parent="HBoxContainer/Dashes"]
 layout_mode = 2
@@ -168,6 +251,12 @@ layout_mode = 2
 text = "Other"
 horizontal_alignment = 1
 
+[node name="All" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "All"
+
 [node name="Slide" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
 theme = ExtResource("2_3r0j1")
@@ -180,35 +269,17 @@ theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Ground Pound"
 
-[node name="GroundPundBounce" type="Button" parent="HBoxContainer/Other"]
+[node name="GroundPoundBounce" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Ground Pound Bounce"
 
-[node name="Glide" type="Button" parent="HBoxContainer/Other"]
+[node name="WallGrab" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
-text = "Glide"
-
-[node name="Dive" type="Button" parent="HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("2_3r0j1")
-toggle_mode = true
-text = "Dive "
-
-[node name="SpeedBoost" type="Button" parent="HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("2_3r0j1")
-toggle_mode = true
-text = "Speed Boost"
-
-[node name="Shinespark" type="Button" parent="HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("2_3r0j1")
-toggle_mode = true
-text = "Shinespark"
+text = "Wall Grab"
 
 [node name="GrappleHook" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
@@ -222,23 +293,76 @@ theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Bash"
 
+[node name="Spin" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Spin"
+
+[node name="Roll" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Roll"
+
+[node name="Burrow" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Burrow"
+
+[node name="Glide" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Glide"
+
+[node name="Dive" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Dive "
+
+[node name="SwimDash" type="Button" parent="HBoxContainer/Other"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Swim Dash"
+
 [connection signal="toggled" from="All" to="." method="_on_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/All" to="." method="_on_jump_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Air" to="." method="_on_jump_air_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Flip" to="." method="_on_jump_flip_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Long" to="." method="_on_jump_long_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Crouch" to="." method="_on_jump_crouch_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/GroundPound" to="." method="_on_jump_ground_pound_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Wall" to="." method="_on_jump_wall_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Roll" to="." method="_on_jump_roll_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/Belly" to="." method="_on_jump_belly_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Consec/Consec" to="." method="_on_jump_consec_toggled"]
 [connection signal="item_selected" from="HBoxContainer/Jumps/Consec/Amount" to="." method="_on_jump_consec_amount_item_selected"]
 [connection signal="toggled" from="HBoxContainer/Dashes/All" to="." method="_on_dash_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Side" to="." method="_on_dash_side_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Up" to="." method="_on_dash_up_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Down" to="." method="_on_dash_down_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Ground" to="." method="_on_dash_ground_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Wall" to="." method="_on_dash_wall_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Climb" to="." method="_on_dash_climb_toggled"]
 [connection signal="toggled" from="HBoxContainer/Dashes/Jump" to="." method="_on_dash_jump_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/GroundPound" to="." method="_on_dash_ground_pound_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Roll" to="." method="_on_dash_roll_toggled"]
+[connection signal="toggled" from="HBoxContainer/Dashes/Belly" to="." method="_on_dash_belly_toggled"]
 [connection signal="item_selected" from="HBoxContainer/Dashes/Amount" to="." method="_on_dash_amount_item_selected"]
+[connection signal="toggled" from="HBoxContainer/Other/All" to="." method="_on_other_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Slide" to="." method="_on_slide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
-[connection signal="toggled" from="HBoxContainer/Other/GroundPundBounce" to="." method="_on_ground_pound_bounce_toggled"]
-[connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
-[connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/GroundPoundBounce" to="." method="_on_ground_pound_bounce_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/WallGrab" to="." method="_on_wall_grab_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GrappleHook" to="." method="_on_grapple_hook_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Bash" to="." method="_on_bash_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Spin" to="." method="_on_spin_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Roll" to="." method="_on_roll_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Burrow" to="." method="_on_burrow_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Glide" to="." method="_on_glide_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/Dive" to="." method="_on_dive_toggled"]
+[connection signal="toggled" from="HBoxContainer/Other/SwimDash" to="." method="_on_swim_dash_toggled"]

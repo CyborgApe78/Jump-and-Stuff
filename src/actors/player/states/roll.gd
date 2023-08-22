@@ -95,9 +95,9 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 		if detector.is_colliding():
-			return State.Crouch
+			return State.Crouch #LOOKAT: removing cancel
 		else:
-			if timerChain.is_stopped() and !timerDuration.is_stopped():
+			if timerChain.is_stopped() and !timerDuration.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpRoll):
 				return State.RollJump
 			else:
 				EventBus.playerActionAnnounce.emit("Early Jump")
@@ -117,7 +117,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if Input.is_action_just_pressed("roll"):
+	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
 		if timerDuration.is_stopped():
 			return State.Roll
 		else:

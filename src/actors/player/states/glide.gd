@@ -72,7 +72,7 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if Input.is_action_just_pressed("dive"):
+	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
 	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound

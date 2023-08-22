@@ -81,7 +81,7 @@ func state_check(delta: float) -> int:
 	if !timerBufferJump.is_stopped():
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
-		if Input.is_action_pressed("crouch"): ## not sure if do anything since long jump checks for this
+		if Input.is_action_pressed("crouch") and abilities.can_use(PlayerAbilities.list.JumpLong): ## not sure if do anything since long jump checks for this
 			return State.JumpLong
 		else:
 			return consecutive_jump_logic()

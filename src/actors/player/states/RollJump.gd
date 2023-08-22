@@ -86,17 +86,14 @@ func handle_input(event: InputEvent) -> int:
 			timerBufferJump.start()
 			player.velocity.x = 0
 			return State.Fall
-	if Input.is_action_just_pressed("roll"):
+	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
 		timerBufferRoll.start()
 	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
 #	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
 #		return State.Dive ## removed since interfers with roll
-	if Input.is_action_just_pressed("ground_pound"):
-		if abilities.can_use(PlayerAbilities.list.GroundPound): 
-			return State.GroundPound
-		else:
-			return State.Fall
+	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		return State.GroundPound
 	if Input.is_action_just_pressed("dash"):
 		dash_pressed_buffer()
 	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
@@ -119,7 +116,7 @@ func state_check(delta: float) -> int:
 		else:
 			return State.WallSlide
 	if player.is_on_floor() and timerDuration.is_stopped():
-		if !timerBufferRoll.is_stopped():
+		if !timerBufferRoll.is_stopped() and abilities.can_use(PlayerAbilities.list.Roll):
 			timerBufferRoll.stop()
 			return State.Roll
 		elif !detector.is_colliding():

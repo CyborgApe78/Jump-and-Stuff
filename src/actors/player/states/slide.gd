@@ -73,7 +73,7 @@ func handle_input(event: InputEvent) -> int:
 		if Input.is_action_just_pressed("jump"):
 			if player.is_on_floor() or !timerCoyoteJump.is_stopped():
 				return consecutive_jump_logic() #TODO: special jump state
-			if !player.is_on_floor() and player.wallDirection != 0: #FIXME: this needs to check wall and velocity direction are correct
+			if !player.is_on_floor() and player.wallDirection != 0 and abilities.can_use(PlayerAbilities.list.JumpLong): #FIXME: this needs to check wall and velocity direction are correct
 				return State.JumpLong #TODO: own jump state
 			else:
 				timerBufferJump.start()
