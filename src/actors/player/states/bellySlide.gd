@@ -2,6 +2,7 @@ extends PlayerInfo
 
 
 @export var soundSlide: AudioStreamPlayer
+@export var particlesSlide: GPUParticles2D #TODO: create particles
 @export var detector: ShapeCast2D
 
 
@@ -26,7 +27,7 @@ func physics(delta) -> void:
 			player.velocity.x -= downHillAccel ## Speed up on down hill
 		else:
 			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
-	if rad_to_deg(player.groundAngle) > 1:
+	elif rad_to_deg(player.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += downHillAccel #TODO: make like friction func, need a top speed or make this function
 		else:

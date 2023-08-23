@@ -1,6 +1,8 @@
 extends PlayerInfo
 
 #todo: homing dive into bouncy things
+#FIXME: collision shape is wrong when going left
+#FIXME: breaks on semisolids
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer

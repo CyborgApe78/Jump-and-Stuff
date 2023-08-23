@@ -37,10 +37,12 @@ func exit() -> void:
 	particles.local_coords = false
 	particles.emitting = false
 	if player.moveDirection.x != 0:
-		player.velocity.x = player.velocityPrevious.x #LOOKAT: confused on why it is using previous velocity
+		player.velocity.x = player.velocityPrevious.x
+		## If no input keep dash velocity
 	player.ability_mask(CollisionLayers.DashSide, true)
 	timerChain.stop()
 	timerDuration.stop()
+
 
 func physics(delta) -> void:
 	player.move_and_slide()
