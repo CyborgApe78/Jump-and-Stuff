@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 #TODO: lots of number tweeaking
+#TODO: create spiked update for slippery surfaces
 #TODO: max roll speed
 
 @export var timerCoyoteJump: Timer
@@ -22,7 +23,6 @@ extends PlayerInfo
 var saveConsecutive: bool
 var rollVelocity: float
 var velocityChainBoost: float
-var naxRoll
 var refreshTime: float
 var jumpBoostTime: float
 
@@ -34,9 +34,7 @@ func enter() -> void:
 	velocityChainBoost = moveSpeed * modifierChainBoost
 	
 	player.velocityPrevious = player.velocity
-	if timerConsecutiveJump.is_stopped():
-		saveConsecutive = true
-		
+	
 	player.velocity.x = player.facing * max(rollVelocity, abs(player.velocity.x))
 	player.velocity.y = 0
 	
@@ -82,7 +80,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	player.animation_speed(.0008)
+	player.animation_speed(.0008) #TODO: tweak number based velocity
 	align_to_ground()
 
 
@@ -103,13 +101,8 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashSide) and !detector.is_colliding():
-		#TODO: create state of boosted roll
-		abilities.consume(PlayerAbilities.list.DashSide, 1)
-		if player.is_on_floor():
-			return State.DashGround
-		else:
-			return State.DashAir
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashRoll):
+		return State.RollDash
 	if Input.is_action_just_pressed("crouch"):
 		player.velocity.x = 0
 		return State.Crouch
@@ -152,6 +145,8 @@ func state_check(delta: float) -> int:
 
 
 func timers() -> void:
+	if timerConsecutiveJump.is_stopped():
+		saveConsecutive = true
 	timerDuration.wait_time = duration
 	timerDuration.start()
 	refreshTime = duration * refreshPercent

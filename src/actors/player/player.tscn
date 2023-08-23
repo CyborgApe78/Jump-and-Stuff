@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=124 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -56,6 +56,7 @@
 [ext_resource type="Resource" uid="uid://i6ja7hqkkxh8" path="res://src/actors/player/resources/playerStats.tres" id="46_vm2yr"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="47_crc7s"]
 [ext_resource type="PackedScene" uid="uid://2ji8t713xoqn" path="res://src/object/components/hitbox_component.tscn" id="47_w6udr"]
+[ext_resource type="Script" path="res://src/actors/player/states/RollDash.gd" id="48_8tyxe"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/sounds.gd" id="48_atp3b"]
 [ext_resource type="AudioStream" uid="uid://c655mcgbweid5" path="res://asset/sounds/player/footstep.wav" id="49_jhmpx"]
 [ext_resource type="AudioStream" uid="uid://bnbv8tr478gqg" path="res://asset/sounds/player/land.wav" id="50_04vva"]
@@ -6138,6 +6139,14 @@ timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
+
+[node name="RollDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "soundJetpack", "particlesSlide", "particlesJetpack", "detector")]
+script = ExtResource("48_8tyxe")
+timerDuration = NodePath("../../Timers/DashDuration")
+soundJetpack = NodePath("../../Sounds/Jetpack")
+particlesSlide = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
+particlesJetpack = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+detector = NodePath("../../Aim/Detector")
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("43_ft5ho")
