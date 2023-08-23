@@ -21,7 +21,7 @@ var unlockedDashClimb: bool = false
 var unlockedDashJump: bool = false
 var unlockedDashGroundPound: bool = false
 var unlockedDashRoll: bool = false #TODO: Create State
-var unlockedDashBelly: bool = false #TODO: Create State
+var unlockedDashBelly: bool = false
 var unlockedDashChain: bool = false
 
 var unlockedSlide: bool = false #TODO: Rework State

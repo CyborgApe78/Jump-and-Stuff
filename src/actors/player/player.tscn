@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=123 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="27_oxfs3"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashGround.gd" id="28_ggeir"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallslide.gd" id="28_h3ycc"]
+[ext_resource type="Script" path="res://src/actors/player/states/BellySlideDash.gd" id="28_rn2sq"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
 [ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_l4kvw"]
@@ -5942,9 +5943,10 @@ detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 
-[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundSlide", "detector")]
+[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundSlide", "particlesSlide", "detector")]
 script = ExtResource("28_w0ybt")
 soundSlide = NodePath("../../Sounds/bodySlide")
+particlesSlide = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="BellySlideHop" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "detector", "timerBufferJump", "timerBufferRoll", "soundeffect", "particles")]
@@ -5955,6 +5957,15 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
+
+[node name="BellySlideDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "soundSlide", "soundJetpack", "particlesSlide", "particlesJetpack", "detector")]
+script = ExtResource("28_rn2sq")
+timerDuration = NodePath("../../Timers/DashDuration")
+soundSlide = NodePath("../../Sounds/bodySlide")
+soundJetpack = NodePath("../../Sounds/Jetpack")
+particlesSlide = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
+particlesJetpack = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "particles")]
 script = ExtResource("28_h3ycc")

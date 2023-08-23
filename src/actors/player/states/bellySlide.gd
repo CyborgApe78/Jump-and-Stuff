@@ -49,10 +49,9 @@ func handle_input(event: InputEvent) -> int:
 		if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.JumpBelly):
 			return State.BellySlideHop
 	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
-#	 and abilities.can_use(PlayerAbilities.list.Roll): #TODO: turn into unlock
 		return State.Roll
-#	if Input.is_action_just_pressed("dash"): #TODO: create state of boosted roll
-#		return State.DashSlide
+	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashBelly):
+		return State.BellySlideDash
 
 	return State.Null
 

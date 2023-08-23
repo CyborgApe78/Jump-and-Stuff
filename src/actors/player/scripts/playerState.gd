@@ -27,6 +27,7 @@ enum State {
 	GroundPoundBounce,
 	BellySlide,
 	BellySlideHop,
+	BellySlideDash,
 	WallSlide,
 	WallGrab,
 	DashGround,
