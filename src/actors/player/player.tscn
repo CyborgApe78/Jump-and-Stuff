@@ -5795,6 +5795,19 @@ antialiased = true
 script = ExtResource("6_ab4rp")
 thickness = 1.1
 
+[node name="Hair" type="Line2D" parent="CharacterRig/CharacterRotate/Head"]
+points = PackedVector2Array(8, -24, -16, -16, -24, 8)
+width = 6.0
+default_color = Color(0.396078, 0.109804, 0.0666667, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Hat" type="Line2D" parent="CharacterRig/CharacterRotate/Head"]
+points = PackedVector2Array(16, -24, -24, -16)
+default_color = Color(1, 0, 0.141176, 1)
+begin_cap_mode = 2
+
 [node name="Jetpack" type="Line2D" parent="CharacterRig/CharacterRotate"]
 position = Vector2(8, 0)
 points = PackedVector2Array(-32, -16, -32, 16)
@@ -6272,7 +6285,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
