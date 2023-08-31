@@ -23,6 +23,10 @@ signal playerDied
 signal checkKeys
 signal showKeys
 
+signal announce(info)
+
+signal timeFreeze(bool) #TODO: add to aim indicator
+
 signal checkpointEntered
 
 signal debugState(info)
