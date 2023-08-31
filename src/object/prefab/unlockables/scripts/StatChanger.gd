@@ -28,4 +28,30 @@ func _on_state_changer_entered(body: Player) -> void:
 
 func stat_change(pStat) -> void:
 	Stats.change(pStat, amount)
-	EventBus.playerStatChange.emit(pStat, amount)
+	announce_stat_change(pStat, amount)
+	EventBus.playerStatsCheck.emit() #LOOKAT: is this the best place to call this
+
+
+func announce_stat_change(pStat: int, amount: int) -> void:
+	if pStat == PlayerStats.list.MoveSpeed:
+		if amount > 0:
+			EventBus.announce.emit("Move speed inscreased")
+		else:
+			EventBus.announce.emit("Move speed decreased")
+	elif pStat == PlayerStats.list.JumpHeight:
+		if amount > 0:
+			EventBus.announce.emit("Jump Height inscreased")
+		else:
+			EventBus.announce.emit("Jump Height decreased")
+	elif pStat == PlayerStats.list.HealthMax:
+		if amount > 0:
+			EventBus.announce.emit("Health inscreased")
+		else:
+			EventBus.announce.emit("Health decreased")
+	elif pStat == PlayerStats.list.EnergyMax:
+		if amount > 0:
+			EventBus.announce.emit("Energy inscreased")
+		else:
+			EventBus.announce.emit("Energy decreased")
+	else:
+		EventBus.emit_signal("error", str("stat change error: ", stat))

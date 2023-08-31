@@ -68,10 +68,10 @@ func _on_unlock_entered(body: Player) -> void:
 		ability_unlock(PlayerAbilities.list.GroundPoundBounce)
 	elif ability == PlayerAbilities.list.GrappleHook:
 		ability_unlock(PlayerAbilities.list.GrappleHook)
-	elif ability == PlayerAbilities.list.Climb:
-		ability_unlock(PlayerAbilities.list.Climb)
-	elif ability == PlayerAbilities.list.Grab:
-		ability_unlock(PlayerAbilities.list.Grab)
+#	elif ability == PlayerAbilities.list.Climb:
+#		ability_unlock(PlayerAbilities.list.Climb)
+#	elif ability == PlayerAbilities.list.Grab:
+#		ability_unlock(PlayerAbilities.list.Grab)
 	elif ability == PlayerAbilities.list.SwimDash:
 		ability_unlock(PlayerAbilities.list.SwimDash)
 	elif ability == PlayerAbilities.list.Burrow:
@@ -82,4 +82,27 @@ func _on_unlock_entered(body: Player) -> void:
 func ability_unlock(pAbility) -> void:
 	Abilities.unlock(pAbility, unlock)
 	if unlock:
-		EventBus.playerAbilityUnlock.emit(pAbility)
+		announce_ability_unlock(pAbility)
+
+
+func announce_ability_unlock(pAbility: int) -> void:
+	if pAbility == PlayerAbilities.list.All:
+		EventBus.announce.emit(str("The whole enchilada unlocked"))
+	elif pAbility == PlayerAbilities.list.JumpAir:
+		EventBus.announce.emit(str("Air Jump Unlocked"))
+	elif pAbility == PlayerAbilities.list.JumpConsec:
+		EventBus.announce.emit(str("Consec Jump Unlocked"))
+	elif pAbility == PlayerAbilities.list.JumpWall:
+		EventBus.announce.emit(str("Wall Jump Unlocked"))
+	elif pAbility == PlayerAbilities.list.DashSide:
+		EventBus.announce.emit(str("Dash Unlocked"))
+	elif pAbility == PlayerAbilities.list.DashUp:
+		EventBus.announce.emit(str("Dash Up Unlocked"))
+	elif pAbility == PlayerAbilities.list.DashDown:
+		EventBus.announce.emit(str("Dash Down Unlocked"))
+	elif pAbility == PlayerAbilities.list.Glide:
+		EventBus.announce.emit(str("Glide Unlocked"))
+	elif pAbility == PlayerAbilities.list.Dive:
+		EventBus.announce.emit(str("Dive Unlocked"))
+	else:
+		EventBus.debug.emit(str("ability unlock error: ", ability))

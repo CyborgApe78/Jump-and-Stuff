@@ -31,4 +31,21 @@ func _on_upgrade_unlocker_entered(body: Player) -> void:
 func upgrade_unlock(pUpgrade) -> void:
 	Upgrades.unlock(pUpgrade, unlock)
 	if unlock:
-		EventBus.playerUpgradeUnlock.emit(pUpgrade)
+		announce_upgrade_unlock(pUpgrade)
+
+
+func announce_upgrade_unlock(pUpgrade: int) -> void:
+	if pUpgrade == PlayerUpgrades.list.All:
+		EventBus.announce.emit(str("The whole enchilada unlocked"))
+	elif pUpgrade == PlayerUpgrades.list.protectionHeat:
+		EventBus.announce.emit(str("Heat Protection Unlocked"))
+	elif pUpgrade == PlayerUpgrades.list.protectionCold:
+		EventBus.announce.emit(str("Cold Protection Unlocked"))
+	elif pUpgrade == PlayerUpgrades.list.protectionWater:
+		EventBus.announce.emit(str("Water Protection Unlocked"))
+	elif pUpgrade == PlayerUpgrades.list.protectionAcid:
+		EventBus.announce.emit(str("Acid Protection Unlocked"))
+	elif pUpgrade == PlayerUpgrades.list.protectionLava:
+		EventBus.announce.emit(str("Lava Protection Unlocked"))
+	else:
+		EventBus.debug.emit(str("ability unlock error: ", upgrade))
