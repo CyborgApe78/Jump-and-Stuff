@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=31 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -19,6 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://d32ncso47mb14" path="res://src/object/enviroment/Water.tscn" id="17_3as08"]
 [ext_resource type="PackedScene" uid="uid://bvk0yjcujvif8" path="res://src/object/prefab/semisolid.tscn" id="18_07xgy"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="19_1iekm"]
+[ext_resource type="PackedScene" uid="uid://cmrb6s6eigorv" path="res://src/object/prefab/doors/DoorLocked.tscn" id="20_8211g"]
+[ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="21_el1g6"]
+[ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="22_vdons"]
+[ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="23_u041q"]
+[ext_resource type="PackedScene" uid="uid://dgsl3q5vqs5uu" path="res://src/object/prefab/unlockables/StatChanger.tscn" id="24_ydpky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
 texture = ExtResource("11_tl8nd")
@@ -567,7 +572,7 @@ zoom = Vector2(0.5, 0.5)
 script = ExtResource("12_gn10c")
 
 [node name="HealBox" parent="." instance=ExtResource("10_iwkrg")]
-position = Vector2(-434, 203)
+position = Vector2(-762, -79)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="HealBox"]
@@ -578,7 +583,7 @@ position = Vector2(14, 8)
 shape = SubResource("RectangleShape2D_yyd6p")
 
 [node name="HurtBox" parent="." instance=ExtResource("12_orgcd")]
-position = Vector2(-120, 184)
+position = Vector2(-935, -38)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="HurtBox"]
@@ -620,5 +625,36 @@ script = ExtResource("19_1iekm")
 modulate = Color(1, 1, 1, 0.3)
 position = Vector2(1479, -832)
 polygon = PackedVector2Array(291, 58, 1090, 363, 2607, 373, 7234, -1030, 6730, -726, 2616, 476, 979, 493, 263, 123)
+
+[node name="DoorLocked" parent="." instance=ExtResource("20_8211g")]
+position = Vector2(-1188, 435)
+amount = 2
+
+[node name="Key" parent="." instance=ExtResource("21_el1g6")]
+position = Vector2(-827, 403)
+
+[node name="Key3" parent="." instance=ExtResource("21_el1g6")]
+position = Vector2(-915, 407)
+
+[node name="Key4" parent="." instance=ExtResource("21_el1g6")]
+position = Vector2(-909, 490)
+
+[node name="Key2" parent="." instance=ExtResource("21_el1g6")]
+position = Vector2(-831, 509)
+
+[node name="AbilityUnlock" parent="." instance=ExtResource("22_vdons")]
+position = Vector2(-670, 434)
+ability = 2
+
+[node name="AbilityUnlock2" parent="." instance=ExtResource("22_vdons")]
+position = Vector2(-415, 434)
+ability = 13
+
+[node name="UpgradeUnlocker" parent="." instance=ExtResource("23_u041q")]
+position = Vector2(-532, 499)
+upgrade = 2
+
+[node name="StatChanger" parent="." instance=ExtResource("24_ydpky")]
+position = Vector2(-425, -34)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

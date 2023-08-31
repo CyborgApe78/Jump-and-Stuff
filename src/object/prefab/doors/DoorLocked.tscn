@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmrb6s6eigorv"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_g42bw"]
+[ext_resource type="Script" path="res://src/object/prefab/doors/Scripts/DoorLocked.gd" id="1_wfnyn"]
+[ext_resource type="Script" path="res://src/object/prefab/doors/Scripts/ShowKeys.gd" id="2_l17eu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sygfk"]
+size = Vector2(64, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8r1j"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0k375"]
+size = Vector2(384, 128)
+
+[node name="DoorLocked" type="StaticBody2D" node_paths=PackedStringArray("labelAmount")]
+collision_mask = 0
+script = ExtResource("1_wfnyn")
+labelAmount = NodePath("Label")
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_sygfk")
+script = ExtResource("1_g42bw")
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="UnlockArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnlockArea"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_y8r1j")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -80.0
+offset_right = 16.0
+offset_bottom = -48.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShowKeys" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("2_l17eu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShowKeys"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_0k375")
+
+[connection signal="body_entered" from="UnlockArea" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="ShowKeys" to="ShowKeys" method="_on_body_entered"]

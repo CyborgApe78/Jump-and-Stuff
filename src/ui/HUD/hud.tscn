@@ -1,18 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo8y4w3rri0k2"]
+[gd_scene load_steps=7 format=3 uid="uid://bo8y4w3rri0k2"]
 
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/HUDOverlay.gd" id="1_hsdcn"]
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/GameTime.gd" id="1_i244g"]
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/Announcer.gd" id="3_chdqa"]
 [ext_resource type="Script" path="res://src/levels/controllervisual.gd" id="4_xuka8"]
 [ext_resource type="Script" path="res://src/ui/HUD/scripts/HealthBar.gd" id="5_7v3vy"]
-[ext_resource type="Texture2D" uid="uid://bgs6ul44ovm7k" path="res://asset/hud/platformPack_item005.png" id="5_mtduu"]
-[ext_resource type="Texture2D" uid="uid://ixu1unnrkjre" path="res://asset/hud/platformPack_item017.png" id="6_c1fvb"]
+[ext_resource type="Script" path="res://src/ui/HUD/scripts/KeysOverlay.gd" id="6_2nl16"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hsdcn")
 
 [node name="GameTime" type="MarginContainer" parent="."]
-visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -27,6 +25,7 @@ script = ExtResource("1_i244g")
 metadata/_edit_group_ = true
 
 [node name="Panel" type="Panel" parent="GameTime"]
+modulate = Color(1, 1, 1, 0.470588)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="GameTime"]
@@ -78,6 +77,7 @@ metadata/_edit_group_ = true
 one_shot = true
 
 [node name="ControlVisuals" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -95,29 +95,68 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("4_xuka8")
 
-[node name="HealthBar" type="MarginContainer" parent="." node_paths=PackedStringArray("healthEmpty", "healthFull")]
-visible = false
-offset_right = 64.0
-offset_bottom = 64.0
+[node name="Info" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="Panel" type="Panel" parent="Info"]
+modulate = Color(1, 1, 1, 0.509804)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info"]
+layout_mode = 2
+
+[node name="HealthBar" type="MarginContainer" parent="Info/VBoxContainer" node_paths=PackedStringArray("labelCurrent", "labelMax")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 script = ExtResource("5_7v3vy")
-healthEmpty = NodePath("Control/HeartEmpty")
-healthFull = NodePath("Control/HeartFull")
-textureSize = 64
+labelCurrent = NodePath("HBoxContainer/Current")
+labelMax = NodePath("HBoxContainer/Max")
 
-[node name="Control" type="Control" parent="HealthBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Info/VBoxContainer/HealthBar"]
 layout_mode = 2
 
-[node name="HeartEmpty" type="TextureRect" parent="HealthBar/Control"]
+[node name="Label" type="Label" parent="Info/VBoxContainer/HealthBar/HBoxContainer"]
 layout_mode = 2
-offset_right = 64.0
-offset_bottom = 64.0
-texture = ExtResource("5_mtduu")
-stretch_mode = 1
+size_flags_horizontal = 3
+text = "Health:"
 
-[node name="HeartFull" type="TextureRect" parent="HealthBar/Control"]
+[node name="Current" type="Label" parent="Info/VBoxContainer/HealthBar/HBoxContainer"]
 layout_mode = 2
-offset_right = 64.0
-offset_bottom = 64.0
-texture = ExtResource("6_c1fvb")
-expand_mode = 1
-stretch_mode = 1
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Max" type="Label" parent="Info/VBoxContainer/HealthBar/HBoxContainer"]
+layout_mode = 2
+text = "/ 1"
+
+[node name="Keys" type="MarginContainer" parent="Info/VBoxContainer" node_paths=PackedStringArray("labelKeys", "timer", "labels")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("6_2nl16")
+labelKeys = NodePath("HBoxContainer/Amount")
+timer = NodePath("Timer")
+labels = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info/VBoxContainer/Keys"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info/VBoxContainer/Keys/HBoxContainer"]
+layout_mode = 2
+text = "Keys: "
+
+[node name="Amount" type="Label" parent="Info/VBoxContainer/Keys/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Timer" type="Timer" parent="Info/VBoxContainer/Keys"]
+one_shot = true
+
+[connection signal="timeout" from="Info/VBoxContainer/Keys/Timer" to="Info/VBoxContainer/Keys" method="_on_timer_timeout"]

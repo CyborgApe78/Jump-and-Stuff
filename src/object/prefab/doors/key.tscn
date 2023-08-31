@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmh8jp33df7qy"]
+
+[ext_resource type="Script" path="res://src/object/prefab/doors/key.gd" id="1_umoh2"]
+[ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_xngw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ennc8"]
+size = Vector2(64, 64)
+
+[node name="Key" type="Area2D"]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_umoh2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_ennc8")
+
+[node name="Outline" parent="." instance=ExtResource("2_xngw5")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -48.0
+offset_right = 24.0
+offset_bottom = -22.0
+text = "Key"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

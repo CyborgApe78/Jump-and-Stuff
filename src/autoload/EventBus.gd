@@ -20,8 +20,8 @@ signal playerAirborne #TODO: add to states
 
 signal playerDied
 
-signal timeFreeze
-signal timeResume
+signal checkKeys
+signal showKeys
 
 signal checkpointEntered
 
