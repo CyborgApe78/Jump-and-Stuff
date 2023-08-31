@@ -49,7 +49,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_released("jump"):
+	if Input.is_action_just_released("jump"): #LOOKAT: cutting in half instead of instant
 		player.velocity.y = max(player.velocity.y, jumpVelocity * percentMinJumpVelocity)
 		if player.velocity.y > jumpVelocity * percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
 			consecutive_jump_cancel()

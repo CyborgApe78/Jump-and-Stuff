@@ -95,6 +95,7 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.playerActionAnnounce.emit("Near Wall Jump")
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
+			#FIXME: create function to call from ground check that can be used by other states
 			return State.JumpAir
 		else:
 			timerBufferJump.start()

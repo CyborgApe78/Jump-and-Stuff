@@ -1,5 +1,24 @@
 #TODO 
 
+Make new jump calculation for each jump
+On death or reset, make a function to return to initial place
+Look into dictionary for things like consecutive jump
+Use wall detector to check for wall jumps instead of double jump
+Use grapple to activate platforms, like cappy
+Run up walls a short distance
+Ledge grab, slide off Ledge with grab pressed to grab before falling off
+Parts of collectible. Celeste strawberry pieces
+Collectables follow like strawberries
+Conveyors vert and hori
+Look at other games for ability ideas
+Ori like doors for areas and banjo note doors for shortcuts 
+Pickups need a name, collected check, and check a resource to see what they are
+More rewards for speed for chaining moves. Like dive boosted from dash 
+Platform that changes direction when land on
+Platform needs to be hit before use. Odyssey clouds
+Waterfalls can be an obstacle till you can burrow
+
+
 Jetpack usable during other states to boost movement 
 In ori the world and platforms react to player 
 Look at ori randomizer dat to see how they do pickup assignment 
@@ -392,3 +411,14 @@ However when you press the directional pad it resets that speed, so the way to k
 But in general this is a really handy video to see a few basic movement speeds compare
 Would've been great to see some measurement numbers alongside them, though that would've taken a lot of resources
 http://www.davetech.co.uk/gamedevplatformer
+
+
+Odyssey Jump Height
+	Single 258
+	Double 312
+	Triple  550
+	Ground Pound 513
+	Crouch 496
+	Side Flip 496
+	GP Dive + 182
+	Long 144

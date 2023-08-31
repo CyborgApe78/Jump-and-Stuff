@@ -1,6 +1,8 @@
 extends Node
 class_name HealthComponent
 
+#FIXME: rework health to use this
+
 signal died
 signal healthChanged(amount)
 

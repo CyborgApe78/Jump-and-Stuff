@@ -8,7 +8,7 @@ func enter() -> void:
 	player.animPlayer.play("Wall Slide")
 	player.wall_detection()
 	player.velocityPrevious = player.velocity
-	player.velocity.y = 0
+#	player.velocity.y = 0 ## Removed to slide up walls, needs testing
 	particles.emitting = true
 	abilities.reset(PlayerAbilities.list.All)
 

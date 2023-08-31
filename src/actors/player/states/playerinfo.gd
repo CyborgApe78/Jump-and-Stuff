@@ -37,7 +37,6 @@ func _ready() -> void:
 	EventBus.playerStatsCheck.connect(update_stats)
 
 func update_stats() -> void:
-	#TODO: create setget
 	var jumpHeight: float
 	var jumpTimeToPeak: float = 0.5
 	var jumpTimeToDescent: float = 0.25
@@ -50,7 +49,7 @@ func update_stats() -> void:
 	frictionAir = moveSpeed / (stats.baseFriction * stats.airModifier)
 	dashVelocity = moveSpeed * 3
 	
-	jumpHeight = stats.baseJumpHeight * Util.tileSize
+	jumpHeight = stats.baseJumpHeight * Util.tileSize #FIXME: for more accurate jumps this should be run by each type of jump
 	gravityJump = 2 * jumpHeight / pow(jumpTimeToPeak, 2)
 	gravityFall = 2 * jumpHeight / pow(jumpTimeToDescent, 2)
 	gravityApex = 2 * jumpHeight / pow(jumpTimeAtApex, 2)
@@ -104,7 +103,7 @@ func fall_speed_logic(amount) -> void:
 	player.velocity.y = min(player.velocity.y, amount)
 
 
-func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float = 0.1) -> void:
+func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float = 0.1) -> void: #FIXME: get this working
 	#TODO: use animeation tree instead
 	if forwardLean:
 		player.characterRig.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
@@ -112,7 +111,7 @@ func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float =
 		player.characterRig.skew = remap(-player.velocity.x, 0, speed, 0.0, leanAmount)
 
 
-func squash_and_stretch(delta):
+func squash_and_stretch(delta): #FIXME: get this working
 	#TODO: use animeation tree instead
 #	if !player.is_on_floor():
 #		player.characterRig.scale.y = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 0.75, 1.25)
