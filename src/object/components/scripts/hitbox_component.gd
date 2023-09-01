@@ -11,6 +11,8 @@ func _ready() -> void:
 func damage(amount: Attack) -> void:
 	if health:
 		health.damage(amount)
+		set_deferred("monitorable", false) #FIXME: not working, suppose to make it so the player gets hurt on the same spikes after timer
+
 
 func heal(amount: Heal) -> void:
 	if health:
@@ -18,4 +20,4 @@ func heal(amount: Heal) -> void:
 
 
 func _on_invincibility_timeout() -> void:
-	monitorable = true
+	set_deferred("monitorable", true)

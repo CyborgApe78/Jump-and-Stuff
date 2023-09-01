@@ -1,24 +1,25 @@
 extends Node
 class_name HealthComponent
 
-#FIXME: rework health to use this
+#FIXME: rework interaction of hitbox and health component to simplify
 
 signal died
 signal healthChanged(amount)
 
 
-@export var healthMax: int = 1
+var healthMax: int
 @export var invicibleTime: float = 1.0
-@export var stats: Resource
-@onready var invicibleTimer: Timer = $Invincability
+@export var invicibleTimer: Timer
+
+var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
+
 
 var healthCurrent: int:
 	set(v):
-		healthChanged.emit(v)
 		healthCurrent = clamp(v, 0, healthMax)
+		EventBus.playerHealthChanged.emit(healthCurrent)
 		if v == 0:
 			died.emit()
-			
 
 
 func _ready() -> void:
@@ -27,12 +28,19 @@ func _ready() -> void:
 		healthMax = stats.healthMax
 		
 	healthCurrent = healthMax #LOOKAT: might heal unexpectedly
+	
+	EventBus.playerStatsCheck.connect(set_health_max)
+
+
+func set_health_max() -> void:
+	healthMax = stats.healthMax
 
 
 func damage(attack: Attack) -> void:
 	if invicibleTimer.is_stopped():
-		invicibleTimer.start()
+		invicibleTimer.start() 
 		healthCurrent -= attack.damage
+
 
 
 func heal(amount: Heal) -> void:

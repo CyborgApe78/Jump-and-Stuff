@@ -8,7 +8,6 @@ class_name HealBox
 
 
 func _on_area_entered(area: Hitbox) -> void:
-	print("heal me")
 	var heal = Heal.new()
 	
 	heal.amount = amount

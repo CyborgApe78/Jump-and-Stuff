@@ -4,7 +4,7 @@ class_name PlayerStats
 
 var healthMax: int = 2:
 	set(v):
-		healthMax += v
+		healthMax = v
 		healthMax = max(1, healthMax)
 
 var baseSpeed: int = 25:

@@ -231,10 +231,6 @@ func animation_speed(scale: float) -> void:
 	animPlayer.speed_scale = abs(velocity.x) * scale
 
 
-func _on_health_component_health_changed(healthCurrent: int) -> void:
-	EventBus.playerHealthChanged.emit(healthCurrent)
-
-
 func _on_bashable_detector_area_entered(area: TargetBash) -> void:
 	targetBash = area
 
