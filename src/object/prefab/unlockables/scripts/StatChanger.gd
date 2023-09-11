@@ -1,6 +1,7 @@
 extends UnlockableBase
 
 #LOOKAT: negative stat change
+#TODO: change to own custom resource that gets added to player, instead of directly editing
 
 @onready var Stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 @export var stat: PlayerStats.list

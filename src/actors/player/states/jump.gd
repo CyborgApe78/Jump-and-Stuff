@@ -13,7 +13,10 @@ func enter() -> void:
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
-	player.velocity.y = jumpVelocity
+	
+	if abs(player.velocity.x) > stats.moveSpeed: #TODO: make higher jump for moving fast
+		player.velocity.y = stats.jumpVelocity
+	player.velocity.y = stats.jumpVelocity
 	timers()
 	player.jumped = true
 
@@ -24,17 +27,17 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide_rotation()
 	
-	gravity_logic(gravityJump, delta)
+	gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
+		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 	
 	track_top_speed(player.velocity.x)
 
@@ -50,8 +53,8 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if Input.is_action_just_released("jump"): #LOOKAT: cutting in half instead of instant
-		player.velocity.y = max(player.velocity.y, jumpVelocity * percentMinJumpVelocity)
-		if player.velocity.y > jumpVelocity * percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
+		player.velocity.y = max(player.velocity.y, stats.jumpVelocity * stats.percentMinJumpVelocity)
+		if player.velocity.y > stats.jumpVelocity * stats.percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
 			consecutive_jump_cancel()
 		return State.Fall
 	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
@@ -74,12 +77,12 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		consecutive_jump_cancel()
 		return State.Fall
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 #		elif player.moveDirection.x == player.wallDirection:
 #			return State.WallSlide
-	if player.velocity.y > -jumpApexHeight:
+	if player.velocity.y > -stats.jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()

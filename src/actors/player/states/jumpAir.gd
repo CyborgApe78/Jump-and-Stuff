@@ -13,7 +13,7 @@ func enter() -> void:
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump Air")
 	soundeffect.play()
-	player.velocity.y = jumpVelocity
+	player.velocity.y = stats.jumpVelocity
 	timerCoyoteJump.stop()
 	timerConsecutiveJump.stop()
 	consecutive_jump_cancel()
@@ -25,17 +25,17 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide_rotation()
 	
-	gravity_logic(gravityJump, delta)
+	gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
+		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 	
 	track_top_speed(player.velocity.x)
 
@@ -72,10 +72,10 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		consecutive_jump_cancel()
 		return State.Fall
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
-	if player.velocity.y > -jumpApexHeight:
+	if player.velocity.y > -stats.jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()

@@ -36,27 +36,27 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
 	if timerCoyoteJump.is_stopped():
-		gravity_logic(gravityFall, delta)
+		gravity_logic(stats.gravityFall, delta)
 	
 	if jumpHeld:
-		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
+		fall_speed_logic(stats.terminalVelocity / jumpHeldSlowModifier)
 	elif player.moveDirection.y == 1:
-		fall_speed_logic(terminalVelocity * 1.5)
+		fall_speed_logic(stats.terminalVelocity * 1.5)
 	else:
-		fall_speed_logic(terminalVelocity)
+		fall_speed_logic(stats.terminalVelocity)
 	
 	track_top_speed(player.velocity.x)
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
+		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 
 
 func visual(delta) -> void:
@@ -120,7 +120,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpWall):
 			return State.JumpWall
-		if topSpeed > moveSpeed:
+		if topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 		else:

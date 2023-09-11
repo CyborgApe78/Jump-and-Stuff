@@ -20,7 +20,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	gravity_logic(gravityFall, delta)
+	gravity_logic(stats.gravityFall, delta)
 	track_top_speed(player.velocity.x)
 	if player.targetGrapple != null:
 		player.grappleHookLine.set_point_position(1, player.targetGrapple.global_position - player.grappleHookLine.global_position)
@@ -69,7 +69,7 @@ func state_check(delta: float) -> int:
 	if player.velocity.y > 0:
 		return State.Fall
 	if player.is_on_wall():
-		if topSpeed > moveSpeed:
+		if topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 		else:
@@ -102,7 +102,7 @@ func grapple_velocity() -> Vector2:
 	var destination: Vector2 = player.targetGrapple.global_position
 	
 	var distanceToTarget: float = playerPosition.distance_to(destination)
-	var desiredVelocity: Vector2 = playerPosition.direction_to(destination) * dashVelocity
+	var desiredVelocity: Vector2 = playerPosition.direction_to(destination) * stats.dashVelocity
 	
 	if distanceToTarget < slowRadius:
 		desiredVelocity *= (distanceToTarget / slowRadius) * .75 + .25

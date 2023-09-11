@@ -122,7 +122,7 @@ func ledge_detection() -> void:
 		ledgeRight = false
 
 
-func attempt_vertical_corner_correction(amount: int, delta) -> void:
+func attempt_vertical_corner_correction(amount: int, delta) -> void: #TODO: change to have default value after delta
 	if test_move(global_transform, Vector2(velocity.x * delta, 0)): 
 		for i in range(1, amount*2+1):
 			for j in [-1.0, 1.0]:

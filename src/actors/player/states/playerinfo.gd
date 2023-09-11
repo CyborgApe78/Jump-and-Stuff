@@ -2,62 +2,19 @@ extends PlayerState
 class_name PlayerInfo
 
 
-var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
+var stats: PlayerStats
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var GameStats: Resource = preload("res://src/resources/gameStats.tres")
 var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
-var moveSpeed: int
-var jumpVelocity: float
-var gravityJump: float
-var gravityFall: float
-var gravityApex: float
-var dashVelocity: float
-var accelerationGround: float
-var frictionGround: float
-var accelerationAir: float
-var frictionAir: float
-var terminalVelocity: int
 
-var jumpApexHeight: float = 40
-var jumpCornerCorrectionVertical: int = 10
-var jumpCornerCorrectionHorizontal: int = 15
-var percentMinJumpVelocity: float = 0.8
-var percentKeepJumpConsecutive: float = 0.9
-var airTurnModifier: float = 4.0
-var upHillFrictionModifier: float = 2.0
-var flatGroundFrictionModifier: float = 1.75 #TODO: these need to move to state using them. slide/roll have different values
-var downHillAccel: float = 50
+
 
 var topSpeed: int ## keeps track of player speed for bonking
 
 var dashBufferState: int
 
-func _ready() -> void:
-	EventBus.playerStatsCheck.connect(update_stats)
 
-func update_stats() -> void:
-	var jumpHeight: float
-	var jumpTimeToPeak: float = 0.5
-	var jumpTimeToDescent: float = 0.25
-	var jumpTimeAtApex: float = 0.8
-	
-	moveSpeed = stats.baseSpeed * Util.tileSize
-	accelerationGround = moveSpeed / stats.baseAcceleration
-	frictionGround = moveSpeed / stats.baseFriction
-	accelerationAir = moveSpeed / (stats.baseAcceleration * stats.airModifier)
-	frictionAir = moveSpeed / (stats.baseFriction * stats.airModifier)
-	dashVelocity = moveSpeed * 3
-	
-	jumpHeight = stats.baseJumpHeight * Util.tileSize #FIXME: for more accurate jumps this should be run by each type of jump
-	gravityJump = 2 * jumpHeight / pow(jumpTimeToPeak, 2)
-	gravityFall = 2 * jumpHeight / pow(jumpTimeToDescent, 2)
-	gravityApex = 2 * jumpHeight / pow(jumpTimeAtApex, 2)
-	jumpVelocity = -sqrt(2 * gravityJump * jumpHeight)
-	
-	terminalVelocity = -jumpVelocity * stats.terminalVelocityModifier
-	
-	abilities.reset(PlayerAbilities.list.All)
 
 
 func gravity_logic(amount: float, delta) -> void:
@@ -74,12 +31,12 @@ func apply_friction(amount: float, delta) -> void:
 
 func momentum_logic(speed: float, useMoveDirection: bool) -> void:
 	if useMoveDirection:
-		if abs(player.velocity.x) < moveSpeed:
+		if abs(player.velocity.x) < stats.moveSpeed:
 			player.velocity.x = player.velocity.x
 		else:
 			player.velocity.x = player.moveDirection.x * max(abs(speed), abs(player.velocity.x))
 	if !useMoveDirection:
-		if abs(player.velocity.x) < moveSpeed:
+		if abs(player.velocity.x) < stats.moveSpeed:
 			player.velocity.x = player.velocity.x
 		else:
 			player.velocity.x = max(abs(speed), abs(player.velocity.x)) * player.facing
@@ -103,7 +60,7 @@ func fall_speed_logic(amount) -> void:
 	player.velocity.y = min(player.velocity.y, amount)
 
 
-func speed_bend(forwardLean: bool = true, speed = moveSpeed, leanAmount: float = 0.1) -> void: #FIXME: get this working
+func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.1) -> void: #FIXME: get this working
 	#TODO: use animeation tree instead
 	if forwardLean:
 		player.characterRig.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
@@ -184,3 +141,8 @@ func dash_pressed_logic() -> void:
 	else:
 		dashBufferState = State.Null
 		EventBus.error.emit("null dash pressed logic")
+
+
+func jump_logic(jumpHeight: int, runSpeed:int = stats.moveSpeed) -> void:
+	if abs(player.velocity.x) > runSpeed:
+		player.velocity.y = jumpHeight ## Add another tile height

@@ -22,11 +22,11 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if player.moveDirection.y == Vector2.DOWN.y:
-		gravity_logic(gravityFall, delta)
-		fall_speed_logic(terminalVelocity)
+		gravity_logic(stats.gravityFall, delta) #TODO: set default values in func to not have to call default values
+		fall_speed_logic(stats.terminalVelocity)
 	else:
-		gravity_logic(gravityFall/4, delta)
-		fall_speed_logic(terminalVelocity/4)
+		gravity_logic(stats.gravityFall/4, delta)
+		fall_speed_logic(stats.terminalVelocity/4)
 	player.velocity.x = 10 * player.wallDirection
 
 

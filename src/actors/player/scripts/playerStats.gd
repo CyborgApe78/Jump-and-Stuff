@@ -1,5 +1,5 @@
 extends Resource
-class_name PlayerStats
+#TODO:REMOVE 
 
 
 var healthMax: int = 2:

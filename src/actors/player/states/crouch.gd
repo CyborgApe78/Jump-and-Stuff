@@ -28,7 +28,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	apply_friction(frictionGround * 1.5, delta)
+	apply_friction(stats.frictionGround * 1.5, delta)
 
 
 func visual(delta) -> void:

@@ -10,7 +10,7 @@ var swimVelocity: float
 
 
 func enter() -> void:
-	swimVelocity = moveSpeed * velocityModifier
+	swimVelocity = stats.moveSpeed * velocityModifier
 	player.animPlayer.queue("Swim")
 
 

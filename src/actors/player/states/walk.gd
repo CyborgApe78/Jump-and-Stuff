@@ -24,16 +24,16 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	if abs(player.velocity.x) > moveSpeed * skidPercent and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if abs(player.velocity.x) > stats.moveSpeed * skidPercent and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
 	elif player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = player.lastMoveDirection.x * 1
-	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
-		player.velocity.x = VelEq.apply_acceleration(player.velocity.x, moveSpeed, accelerationGround, player.moveStrength.x, delta)
+	elif player.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed:
+		player.velocity.x = VelEq.apply_acceleration(player.velocity.x, stats.moveSpeed, stats.accelerationGround, player.moveStrength.x, delta)
 	elif player.moveDirection.x == 0:
-		player.velocity.x = VelEq.apply_friction(player.velocity.x, frictionGround, delta)
-	elif abs(player.velocity.x) >= moveSpeed:
-		momentum_logic(moveSpeed, true)
+		player.velocity.x = VelEq.apply_friction(player.velocity.x, stats.frictionGround, delta)
+	elif abs(player.velocity.x) >= stats.moveSpeed:
+		momentum_logic(stats.moveSpeed, true)
 	
 	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
 		#TODO:make it so you have to be facing the ledge 

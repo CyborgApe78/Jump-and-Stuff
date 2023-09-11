@@ -139,16 +139,12 @@ horizontal_alignment = 1
 [node name="Amount" type="OptionButton" parent="HBoxContainer/Jumps/Consec"]
 layout_mode = 2
 alignment = 1
-item_count = 4
+item_count = 2
 selected = 0
 popup/item_0/text = "1"
 popup/item_0/id = 1
 popup/item_1/text = "2"
 popup/item_1/id = 2
-popup/item_2/text = "3"
-popup/item_2/id = 3
-popup/item_3/text = "4"
-popup/item_3/id = 4
 
 [node name="Dashes" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

@@ -18,12 +18,12 @@ var velocityChainBoost: float
 func enter() -> void:
 	EventBus.playerJumped.emit()
 	
-	velocityLongJump = moveSpeed * modifierVelocity
-	velocityChainBoost = moveSpeed * modifierChainBoost
+	velocityLongJump = stats.moveSpeed * modifierVelocity
+	velocityChainBoost = stats.moveSpeed * modifierChainBoost
 	startingHeight = player.global_position.y
 	topSpeed = 0
 	
-	player.velocity.y = jumpVelocity * jumpModifier
+	player.velocity.y = stats.jumpVelocity * jumpModifier
 	player.velocity.x = max(velocityLongJump, abs(player.velocity.x)) * player.facing
 	
 	player.animPlayer.queue("Jump")
@@ -42,25 +42,25 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
-	gravity_logic(gravityJump, delta)
+	gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
 		neutral_move_direction_logic()
 		if abs(player.velocity.x) < velocityLongJump:
-			player.velocity.x = move_toward(abs(player.velocity.x), velocityLongJump, (moveSpeed * 3) * delta) * player.facing
+			player.velocity.x = move_toward(abs(player.velocity.x), stats.velocityLongJump, (stats.moveSpeed * 3) * delta) * player.facing
 	else:
 		if player.moveDirection.x != 0:
 			if player.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
-				apply_friction(moveSpeed * 2, delta)
+				apply_friction(stats.moveSpeed * 2, delta)
 			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < velocityLongJump:
 #					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
-					player.velocity.x = move_toward(abs(player.velocity.x), velocityLongJump, (moveSpeed * 3) * delta) * player.facing
+					player.velocity.x = move_toward(abs(player.velocity.x), stats.velocityLongJump, (stats.moveSpeed * 3) * delta) * player.facing
 	
 	track_top_speed(player.velocity.x)
 
@@ -105,7 +105,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped():
 			return State.JumpWall
-		elif topSpeed > moveSpeed:
+		elif topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 		else:

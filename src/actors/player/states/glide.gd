@@ -28,21 +28,21 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed * velocityModifier)
+		neutral_air_momentum_logic(stats.moveSpeed * velocityModifier)
 	else:
-		air_velocity_logic(moveSpeed * velocityModifier, accelerationAir, frictionAir, delta)
+		air_velocity_logic(stats.moveSpeed * velocityModifier, stats.accelerationAir, stats.frictionAir, delta)
 	
 	if player.inWind:
 		player.velocity.y = player.windVelocity.y
 	else:
-		gravity_logic(gravityFall * velocityFallModifier, delta)
-		fall_speed_logic(terminalVelocity * velocityFallModifier)
+		gravity_logic(stats.gravityFall * velocityFallModifier, delta)
+		fall_speed_logic(stats.terminalVelocity * velocityFallModifier)
 	
 	track_top_speed(player.velocity.x)
 	
@@ -87,7 +87,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():

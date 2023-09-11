@@ -16,7 +16,7 @@ var slideVelocity: float
 
 
 func enter() -> void:
-	slideVelocity = moveSpeed * velocityModifier
+	slideVelocity = stats.moveSpeed * velocityModifier
 	player.animPlayer.queue("Slide")
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
@@ -38,8 +38,8 @@ func physics(delta) -> void:
 	timerConsecutiveJump.start()
 	
 	if !player.is_on_floor():
-		gravity_logic(gravityFall, delta)
-		fall_speed_logic(terminalVelocity)
+		gravity_logic(stats.gravityFall, delta)
+		fall_speed_logic(stats.terminalVelocity)
 	
 #	if abs(player.velocity.x) < slideVelocity: 
 #		player.velocity.x = move_toward(abs(player.velocity.x), slideVelocity, (moveSpeed * 6) * delta) * player.facing
@@ -48,14 +48,14 @@ func physics(delta) -> void:
 	
 	if rad_to_deg(player.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
-			player.velocity.x -= downHillAccel ## Speed up on down hill
+			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
+			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
 	elif rad_to_deg(player.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += downHillAccel
+			player.velocity.x += stats.downHillAccel
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier, delta)
+			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
 	else:
 		momentum_logic(slideVelocity, false)
 

@@ -40,7 +40,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
-	speed_bend(true, moveSpeed, 0.3)
+	speed_bend(true, stats.moveSpeed, 0.3)
 
 
 func sound(delta: float) -> void:

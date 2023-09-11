@@ -22,7 +22,7 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.x = 0
-	player.velocity.y = dashVelocity
+	player.velocity.y = stats.dashVelocity
 	player.ability_mask(CollisionLayers.DashDown, false)
 
 
@@ -37,7 +37,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	gravity_logic(gravityFall, delta)
+	gravity_logic(stats.gravityFall, delta)
 
 
 func visual(delta) -> void:

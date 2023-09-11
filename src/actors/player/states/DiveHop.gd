@@ -13,12 +13,12 @@ var velocityHop: float
 
 
 func enter() -> void:
-	velocityHop = moveSpeed * velocityModifier
+	velocityHop = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
 	topSpeed = 0
 	
 	player.velocity.x = max(velocityHop, abs(player.velocity.x)) * player.facing
-	player.velocity.y = jumpVelocity * jumpModifier
+	player.velocity.y = stats.jumpVelocity * jumpModifier
 	
 	player.animPlayer.queue("Belly Slide")
 
@@ -29,16 +29,16 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
 	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing:
-		apply_friction(moveSpeed * 2, delta)
+		apply_friction(stats.moveSpeed * 2, delta)
 	
-	gravity_logic(gravityFall, delta)
-	fall_speed_logic(terminalVelocity)
+	gravity_logic(stats.gravityFall, delta)
+	fall_speed_logic(stats.terminalVelocity)
 	
 	track_top_speed(player.velocity.x)
 
@@ -77,7 +77,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling(): #TODO: change to bonk
 		return State.Fall
 	if player.wallDirection != 0:
-		if topSpeed > moveSpeed:
+		if topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 		else:

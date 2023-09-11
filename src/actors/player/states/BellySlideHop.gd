@@ -18,12 +18,12 @@ var velocityHop: float
 
 
 func enter() -> void:
-	velocityHop = moveSpeed * velocityModifier
+	velocityHop = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
 	topSpeed = 0
 	
 	player.velocity.x = velocityHop * player.facing
-	player.velocity.y = jumpVelocity * jumpModifier
+	player.velocity.y = stats.jumpVelocity * jumpModifier
 #	if !detector.is_colliding():
 #		player.global_position.y -= Util.tileSize * 4 #TODO: tween movement or change to velocity
 	
@@ -46,27 +46,27 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
-	player.attempt_vertical_corner_correction(-jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
+	player.attempt_vertical_corner_correction(-stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
 	if timerDuration.is_stopped():
-		gravity_logic(gravityJump, delta)
+		gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
 		neutral_move_direction_logic()
 		if abs(player.velocity.x) < velocityHop:
-			player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (moveSpeed * 3) * delta) * player.facing
+			player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (stats.moveSpeed * 3) * delta) * player.facing
 	else:
 		if player.moveDirection.x != 0:
 			if player.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
-				apply_friction(moveSpeed * 2, delta)
+				apply_friction(stats.moveSpeed * 2, delta)
 			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < velocityHop:
 #					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
-					player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (moveSpeed * 3) * delta) * player.facing
+					player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (stats.moveSpeed * 3) * delta) * player.facing
 	
 	track_top_speed(player.velocity.x)
 
@@ -107,7 +107,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		return State.Fall
 	if player.wallDirection != 0:
-		if topSpeed > moveSpeed:
+		if topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 #		else:

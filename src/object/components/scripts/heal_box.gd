@@ -7,7 +7,7 @@ class_name HealBox
 @export var oneUse: bool = false
 
 
-func _on_area_entered(area: Hitbox) -> void:
+func _on_area_entered(area: HitboxComponent) -> void:
 	var heal = Heal.new()
 	
 	heal.amount = amount

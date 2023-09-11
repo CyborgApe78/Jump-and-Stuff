@@ -27,7 +27,6 @@ on jump playground, show that you can jump around 1 tile ceiling
 Rando logic with and without having to use teleport 
 Setting for autosave, scenes and at save points. Keep items after death. Death warp strats for speed run
 
-Momentum wall jump, quickly wall jump. With stick in opposite direction and jump pressed
 
 Upgrade to teleport to last save 
 
@@ -66,10 +65,8 @@ Abilitie
 		Demon turf dribble -- need to research it again
 			release jump just after hitting ground for increased jump high, during a spin 
 	Dash
-		ground dash become slide?
 		teleport upgrade
 		break blocks upgrade for it
-		chain dash upgrade, dread
 		Jump "Rocket Junmp"
 			Ori charge jump / Metroid shinespark
 			needs speed boost to charge
@@ -78,16 +75,9 @@ Abilitie
 			holding grab into wall can redirect
 			button combo for instant
 			slope reset 
-		Wall Climb
-			gaucamelee donkey 
-		Wall dash
-			Crystal dash from hollow knight
 	Grapple Hook
-		Pull to target
 		Ori like, some targets stop, other pass through
 		Some targets you can swing off
-		able to shoot off screen
-		pull towards enemies
 	Swimming
 		upgrades to go through different types
 		water, lava, poison
@@ -102,15 +92,14 @@ Abilitie
 		Downward slides are infinite, upward slide shortest 
 		https://youtu.be/CTpflm_pFgs Around 5 minutes 
 		Spin used as key to open/turn things on
-	Ori bash
-		Bounce off projectiles
 	pogo/spin
 		Bounce off walls
 	Ledge grab
 		Press jump to boost over
 	SMW PSpeed
-		water run
+		water run with freeze upgrade
 		run on curved walls
+	Water run
 
 create save states for practice
 
@@ -413,12 +402,7 @@ Would've been great to see some measurement numbers alongside them, though that 
 http://www.davetech.co.uk/gamedevplatformer
 
 
-Odyssey Jump Height
-	Single 258
-	Double 312
-	Triple  550
-	Ground Pound 513
-	Crouch 496
-	Side Flip 496
-	GP Dive + 182
-	Long 144
+Alternate characters:
+	luigi spillery
+	all abilities tied to single energy type
+	3d world like bullet dash

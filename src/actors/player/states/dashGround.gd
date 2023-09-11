@@ -28,7 +28,7 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * dashVelocity
+	player.velocity.x = player.facing * stats.dashVelocity
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 
@@ -86,7 +86,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 	if durationTimer.is_stopped():

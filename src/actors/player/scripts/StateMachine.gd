@@ -1,5 +1,7 @@
 extends Node
 
+#TODO: create subcatorgies to orgainize 
+
 @onready var states = {
 	PlayerState.State.Spawn: $Spawn,
 	PlayerState.State.Idle: $Idle,
@@ -59,6 +61,7 @@ var currentStateName: String
 var previousStateName: String
 
 @onready var player: Player = owner
+@export var stats: PlayerStats
 
 
 #func _ready() -> void:
@@ -87,6 +90,7 @@ func init() -> void:
 	for child in get_children():
 		if child is PlayerState:
 			child.player = player
+			child.stats = stats
 
 	change_state(PlayerState.State.Spawn)
 

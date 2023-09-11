@@ -25,9 +25,9 @@ func enter() -> void:
 	particles.emitting = true 
 	player.velocity.y = 0
 	if player.is_on_wall():
-		player.velocity.x = -player.wallDirection * dashVelocity
+		player.velocity.x = -player.wallDirection * stats.dashVelocity
 	else:
-		player.velocity.x = player.facing * dashVelocity
+		player.velocity.x = player.facing * stats.dashVelocity
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 
@@ -89,7 +89,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
 		if !timerBufferJumpWall.is_stopped():
 			return State.JumpWall #TODO: create JumpReflect
-		elif topSpeed > moveSpeed:
+		elif topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 	if dashBufferState != State.Null:
@@ -130,7 +130,7 @@ func state_check(delta: float) -> int:
 					player.velocity.x = player.velocity.x/2
 				else:
 					if player.moveDirection.x == player.facing:
-						player.velocity.x = moveSpeed
+						player.velocity.x = stats.moveSpeed
 					else:
 						player.velocity.x = 0
 				return State.Fall

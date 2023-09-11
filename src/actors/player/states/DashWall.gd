@@ -20,7 +20,7 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.y = 0
 #	player.velocity = player.aimDirection * dashVelocity * 1.6 #TODO: aimable upgrade
-	player.velocity.x = dashDirection * dashVelocity
+	player.velocity.x = dashDirection * stats.dashVelocity
 	player.characterRig.scale.x = dashDirection
 	player.ability_mask(CollisionLayers.DashSide, false)
 
@@ -76,7 +76,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
 		if !timerCoyoteJumpWall.is_stopped():
 			return State.JumpWall
-		elif topSpeed > moveSpeed:
+		elif topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 	if dashBufferState != State.Null:
