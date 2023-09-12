@@ -41,15 +41,15 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if player.is_on_floor():
-		if Input.is_action_pressed("crouch"): 
+		if input.justPressedCrouch: 
 			return State.Crouch
-		if Input.is_action_just_pressed("jump"):
+		if input.justPressedJump:
 			return State.Jump
-		if Input.is_action_just_pressed("dash"):
+		if input.justPressedDash:
 			dash_pressed_buffer()
-		if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+		if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 			return State.GrappleHook
-		if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+		if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 			return State.BashAim
 
 	return State.Null

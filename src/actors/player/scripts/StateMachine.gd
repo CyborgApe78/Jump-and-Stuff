@@ -61,7 +61,9 @@ var currentStateName: String
 var previousStateName: String
 
 @onready var player: Player = owner
-@export var stats: PlayerStats
+@export var stats: StatsComponent
+@export var velocity: VelocityComponent
+@export var input: InputComponent
 
 
 #func _ready() -> void:
@@ -91,6 +93,8 @@ func init() -> void:
 		if child is PlayerState:
 			child.player = player
 			child.stats = stats
+			child.velocity = velocity
+			child.input = input
 
 	change_state(PlayerState.State.Spawn)
 

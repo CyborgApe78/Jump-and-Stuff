@@ -34,7 +34,7 @@ func physics(delta) -> void:
 	gravity_logic(stats.gravityFall, delta)
 	
 	player.velocity.x = 0
-#	if Input.is_action_pressed("ground_pound"): ## could use this bounce along the ground
+#	if input.pressGroundPound: ## could use this bounce along the ground
 #		player.velocity.x = 0
 #	else:
 #		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
@@ -50,12 +50,12 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("move_down"):
+	if input.pressedDown:
 		player.set_collision_mask_value(CollisionLayers.Semisolid, false)
 		timerSemisolidReset.stop()
-	if Input.is_action_just_released("move_down"):
+	if input.justPressedDown:
 		timerSemisolidReset.start()
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -65,15 +65,15 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.DiveHop
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
@@ -83,7 +83,7 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.GPMaxVelocity = player.velocity
 	if player.is_on_floor():
-		if !Input.is_action_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPoundBounce):
+		if !input.pressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPoundBounce):
 			player.landed()
 			return State.GroundPoundBounce
 		else:

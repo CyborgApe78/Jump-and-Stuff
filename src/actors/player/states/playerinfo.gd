@@ -2,7 +2,9 @@ extends PlayerState
 class_name PlayerInfo
 
 
-var stats: PlayerStats
+var stats: StatsComponent
+var velocity: VelocityComponent
+var input: InputComponent
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var GameStats: Resource = preload("res://src/resources/gameStats.tres")
 var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")

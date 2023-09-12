@@ -54,21 +54,21 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("crouch"): 
-		return State.Crouch
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		return consecutive_jump_logic()
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
+	if input.pressedCrouch: 
+		return State.Crouch
 	if player.inWater:
 		return State.Swim
 	if skidding:
@@ -81,7 +81,7 @@ func state_check(delta: float) -> int:
 	if !timerBufferJump.is_stopped():
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
-		if Input.is_action_pressed("crouch") and abilities.can_use(PlayerAbilities.list.JumpLong): ## not sure if do anything since long jump checks for this
+		if input.pressedCrouch and abilities.can_use(PlayerAbilities.list.JumpLong): ## not sure if do anything since long jump checks for this
 			return State.JumpLong
 		else:
 			return consecutive_jump_logic()

@@ -37,7 +37,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		if timerCoyoteJump.is_stopped(): #leave ground, but still can jump
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -55,13 +55,13 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
-	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 			return State.Dive 
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
 
 	return State.Null
@@ -69,7 +69,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if timerDuration.is_stopped():
-		if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+		if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 			return State.Glide
 		if !player.is_on_floor():
 			if !player.moveDirection == Vector2.ZERO:

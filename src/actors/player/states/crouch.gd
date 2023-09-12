@@ -44,13 +44,13 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if !detector.is_colliding():
-		if Input.is_action_just_released("crouch"):
+		if !input.pressedCrouch:
 			if player.velocity.x != 0:
 				return State.Walk
 			else:
 				return State.Idle
-		if Input.is_action_just_pressed("jump"):
-			if Input.is_action_pressed("move_down"):
+		if input.justPressedJump:
+			if input.pressedDown:
 				player.set_collision_mask_value(CollisionLayers.Semisolid, false)
 #				if player.jumped: #FIXME: what is this???
 #					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
@@ -63,13 +63,13 @@ func handle_input(event: InputEvent) -> int:
 				elif abilities.can_use(PlayerAbilities.list.JumpCrouch):
 					#TODO: add time check, for charging jump
 					return State.JumpCrouch
-		if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashJump): #TODO: add charge time
+		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump): #TODO: add charge time
 			return State.DashJump
-	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
 		return State.Roll
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.pressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null

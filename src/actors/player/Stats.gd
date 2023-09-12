@@ -1,8 +1,9 @@
 extends Node
-class_name PlayerStats
+class_name StatsComponent
 
 
 var dashVelocity: float = moveSpeed * 3
+var velocityJumpCrouch: float
 
 var jumpApexHeight: float = 40
 var jumpCornerCorrectionVertical: int = 10

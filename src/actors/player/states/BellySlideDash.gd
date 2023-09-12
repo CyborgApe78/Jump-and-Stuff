@@ -55,11 +55,11 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if !detector.is_colliding(): #FIXME: don't want to stop the hop if detecting, if removed player is stuck in wall
-		if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.JumpBelly):
+		if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpBelly):
 			return State.BellySlideHop
-	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
 		return State.Roll
-	if Input.is_action_just_released("dash"):
+	if input.justReleasedDash:
 		return State.BellySlide
 
 	return State.Null

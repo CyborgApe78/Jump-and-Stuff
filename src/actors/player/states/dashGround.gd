@@ -58,7 +58,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !timerCoyoteJump.is_stopped()): #leave ground, but stil can jump
+	if input.justPressedJump and (player.is_on_floor() or !timerCoyoteJump.is_stopped()): #leave ground, but stil can jump
 		if !timerCoyoteJump.is_stopped():
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -77,9 +77,9 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null

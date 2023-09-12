@@ -37,9 +37,9 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("crouch"): 
+	if input.pressedCrouch: 
 		return State.Crouch
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		return consecutive_jump_logic()
 
 	return State.Null

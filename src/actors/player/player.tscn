@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=126 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -65,6 +65,8 @@
 [ext_resource type="Script" path="res://src/actors/player/Stats.gd" id="54_qbhck"]
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="54_wyd8d"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="55_8qryh"]
+[ext_resource type="Script" path="res://src/actors/player/VelocityComponent.gd" id="55_iviae"]
+[ext_resource type="Script" path="res://src/actors/player/InputComponent.gd" id="56_q3cbc"]
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="56_v8j0l"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_n4b1h"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_hbso6"]
@@ -6269,9 +6271,11 @@ antialiased = true
 script = ExtResource("6_ab4rp")
 thickness = 1.05
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats", "velocity", "input")]
 script = ExtResource("10_mvngt")
 stats = NodePath("../StatsComponent")
+velocity = NodePath("../VelocityComponemt")
+input = NodePath("../InputComponent")
 
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource("11_i4f5l")
@@ -6613,6 +6617,10 @@ soundSplat = NodePath("../../Sounds/splat")
 script = ExtResource("54_qbhck")
 
 [node name="VelocityComponemt" type="Node" parent="."]
+script = ExtResource("55_iviae")
+
+[node name="InputComponent" type="Node" parent="."]
+script = ExtResource("56_q3cbc")
 
 [node name="Raycasts" type="Node2D" parent="."]
 visible = false
@@ -6718,7 +6726,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -6847,8 +6855,6 @@ default_color = Color(0.862745, 0.709804, 0.0980392, 1)
 visible = false
 position = Vector2(-8, -64)
 points = PackedVector2Array(8, 0, 24, 0)
-
-[node name="InputComponent" type="Node" parent="."]
 
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]

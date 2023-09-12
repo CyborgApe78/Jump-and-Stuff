@@ -70,20 +70,20 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if !detector.is_colliding():
-		if Input.is_action_just_pressed("jump"):
+		if input.justPressedJump:
 			if player.is_on_floor() or !timerCoyoteJump.is_stopped():
 				return consecutive_jump_logic() #TODO: special jump state
 			if !player.is_on_floor() and player.wallDirection != 0 and abilities.can_use(PlayerAbilities.list.JumpLong): #FIXME: this needs to check wall and velocity direction are correct
 				return State.JumpLong #TODO: own jump state
 			else:
 				timerBufferJump.start()
-		if Input.is_action_just_pressed("dash"):
+		if input.justPressedDash:
 			dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-#	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll): #LOOKAT: should you be able to go to slide
+#	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll): #LOOKAT: should you be able to go to slide
 #		return State.Roll
 
 	return State.Null
@@ -97,7 +97,7 @@ func state_check(delta: float) -> int:
 			if detector.is_colliding():
 				player.velocity.x = 0
 				return State.Crouch
-			elif Input.is_action_pressed("crouch"):
+			elif input.pressedCrouch:
 				player.velocity.x = 0
 				return State.Crouch
 			elif player.moveDirection.x != 0:
