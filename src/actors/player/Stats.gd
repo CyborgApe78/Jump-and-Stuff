@@ -1,6 +1,6 @@
 extends Node
 class_name StatsComponent
-
+#TODO: added underscore for private var/func
 
 var velocityJumpCrouch: float
 
@@ -97,11 +97,38 @@ var downHillAccel: float = 50
 		jumpTripleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier + jumpRunModifier))
 	get:
 		return jumpTripleModifier
-
+@export_range(0.0 , 5.0, 0.25) var jumpFlipModifier: float = 4.0: #TODO: rest of the values need added
+	set(value):
+		jumpFlipModifier = value
+		jumpFlipVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpFlipModifier))
+	get:
+		return jumpFlipModifier
+@export_range(0.0 , 5.0, 0.25) var jumpLongModifier: float = 4.0:
+	set(value):
+		jumpLongModifier = value
+		jumpLongVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpLongModifier))
+	get:
+		return jumpLongModifier
+@export_range(0.0 , 5.0, 0.25) var jumpCrouchModifier: float = 4.0:
+	set(value):
+		jumpCrouchModifier = value
+		jumpCrouchVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpCrouchModifier))
+	get:
+		return jumpCrouchModifier
+@export_range(0.0 , 5.0, 0.25) var jumpApexModifier: float = 4.0:
+	set(value):
+		jumpApexModifier = value
+		jumpApexVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpApexModifier))
+	get:
+		return jumpApexModifier
+@export_range(0.0 , 5.0, 0.25) var jumpGroundPoundModifier: float = 4.0:
+	set(value):
+		jumpGroundPoundModifier = value
+		jumpGroundPoundVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpGroundPoundModifier))
+	get:
+		return jumpGroundPoundModifier
 ### The value represents a velocity threshold that determines whether the character can jump
 #@export var jump_threshold: float = 300.0
-### Jumps allowed to perform in a row
-#@export var allowed_jumps : int = 1
 ### Reduced amount of jump effectiveness at each iteration
 #@export var height_reduced_by_jump : int = 0
 #
@@ -120,11 +147,11 @@ var downHillAccel: float = 50
 @onready var jumpDoubleRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpDoubleModifier + jumpRunModifier))
 @onready var jumpTripleVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier))
 @onready var jumpTripleRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier + jumpRunModifier))
-@onready var jumpFlipVelocity: float
-@onready var jumpLongVelocity: float
-@onready var jumpCrouchVelocity: float
-@onready var jumpApexVelocity: float ##Lookat: needed?
-@onready var jumpGroundPoundVelocity: float
+@onready var jumpFlipVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpFlipModifier))
+@onready var jumpLongVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpLongModifier))
+@onready var jumpCrouchVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpCrouchModifier))
+@onready var jumpApexVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpApexModifier))
+@onready var jumpGroundPoundVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpGroundPoundModifier))
 @onready var jumpWallVelocity: float
 
 #Odyssey Jump Height
@@ -153,7 +180,7 @@ var downHillAccel: float = 50
 		dashSpeed = calculate_tile_height(baseDash)
 	get:
 		return baseDash
-@onready var dashSpeed: int = calculate_tile_height(baseDash)
+@onready var dashSpeed: int = calculate_tile_height(baseDash) #TODO: change to velocity
 ##TODO: other categories
 
 #################################
