@@ -10,8 +10,6 @@ var GameStats: Resource = preload("res://src/resources/gameStats.tres")
 var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
 
-
-
 var topSpeed: int ## keeps track of player speed for bonking
 
 var dashBufferState: int

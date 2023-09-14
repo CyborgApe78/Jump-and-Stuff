@@ -4,6 +4,7 @@ extends Node
 
 @onready var states = {
 	PlayerState.State.Spawn: $Spawn,
+	PlayerState.State.Die: $Die,
 	PlayerState.State.Idle: $Idle,
 	PlayerState.State.Walk: $Walk,
 	PlayerState.State.Skid: $Skid,
@@ -48,8 +49,6 @@ extends Node
 	PlayerState.State.BonkGround: $BonkGround,
 	
 #	PlayerState.State.Teleport: $Teleport,
-#	PlayerState.State.Die: $Die,
-#	PlayerState.State.WallClimb: $WallClimb,
 #	PlayerState.State.Shinespark: $Shinespark,
 #	PlayerState.State.SwimDash: $SwimDash,
 }
@@ -119,3 +118,7 @@ func visual(delta) -> void:
 
 func sound(delta) -> void:
 	currentState.sound(delta)
+
+
+func player_died() -> void:
+	change_state(PlayerState.State.Die)
