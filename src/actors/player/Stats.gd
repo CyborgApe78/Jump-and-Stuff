@@ -2,7 +2,6 @@ extends Node
 class_name StatsComponent
 
 
-var dashVelocity: float = moveSpeed * 3
 var velocityJumpCrouch: float
 
 var jumpApexHeight: float = 40
@@ -135,7 +134,13 @@ var downHillAccel: float = 50
 @onready var terminalVelocity: int = maxFall * -jumpVelocity
 
 @export_group("Dash")
-
+@export var baseDash: float = 36:
+	set(value):
+		baseDash = value
+		dashSpeed = calculate_tile_height(baseDash)
+	get:
+		return baseDash
+@onready var dashSpeed: int = calculate_tile_height(baseDash)
 ##TODO: other categories
 
 #################################

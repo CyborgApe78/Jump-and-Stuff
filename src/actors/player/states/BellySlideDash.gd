@@ -17,7 +17,7 @@ func enter() -> void:
 	EventBus.playerDashed.emit()
 	
 	player.velocityPrevious = player.velocity
-	player.velocity.x = player.facing * stats.dashVelocity
+	player.velocity.x = player.facing * stats.dashSpeed
 	player.ability_mask(CollisionLayers.DashSide, false)
 	
 	timers()

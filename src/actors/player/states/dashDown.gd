@@ -22,7 +22,7 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.x = 0
-	player.velocity.y = stats.dashVelocity
+	player.velocity.y = stats.dashSpeed
 	player.ability_mask(CollisionLayers.DashDown, false)
 
 

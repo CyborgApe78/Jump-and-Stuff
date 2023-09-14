@@ -28,7 +28,7 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * stats.dashVelocity
+	player.velocity.x = player.facing * stats.dashSpeed
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 

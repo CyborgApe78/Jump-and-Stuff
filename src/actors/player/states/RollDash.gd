@@ -18,7 +18,7 @@ func enter() -> void:
 	EventBus.playerDashed.emit()
 	
 	player.velocityPrevious = player.velocity
-	player.velocity.x = player.facing * stats.dashVelocity #TODO: create max velocity, current vs dashVel
+	player.velocity.x = player.facing * stats.dashSpeed #TODO: create max velocity, current vs dashVel
 	player.ability_mask(CollisionLayers.DashSide, false) #TODO: make own layer to destroy, like melt blocks or something
 	
 	timers()

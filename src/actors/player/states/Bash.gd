@@ -14,7 +14,7 @@ var aimInput: Vector2 #TODO: break aim indicator out so it can be used for other
 func enter() -> void:
 	timers()
 	aimInput = player.aimStrength if player.aimStrength != Vector2.ZERO else player.moveStrength
-	player.velocity = aimInput * (stats.dashVelocity)
+	player.velocity = aimInput * (stats.dashSpeed)
 	abilities.reset(PlayerAbilities.list.All)
 
 

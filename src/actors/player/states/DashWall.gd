@@ -20,7 +20,7 @@ func enter() -> void:
 	particles.emitting = true
 	player.velocity.y = 0
 #	player.velocity = player.aimDirection * dashVelocity * 1.6 #TODO: aimable upgrade
-	player.velocity.x = dashDirection * stats.dashVelocity
+	player.velocity.x = dashDirection * stats.dashSpeed
 	player.characterRig.scale.x = dashDirection
 	player.ability_mask(CollisionLayers.DashSide, false)
 
