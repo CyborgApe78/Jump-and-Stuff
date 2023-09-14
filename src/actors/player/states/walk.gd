@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 #TODO: add nuetral input
+#TODO: add particle effects for over base run
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer

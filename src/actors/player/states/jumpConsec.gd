@@ -19,9 +19,15 @@ func enter() -> void:
 	soundeffect.play()
 	particles.restart() #TODO: adjust based on consec number
 	if abilities.currentJumpConsec == 1: #TODO:remove this from resource and put on node
-		player.velocity.y = stats.jumpDoubleVelocity
+		if abs(player.velocity.x) > stats.moveSpeed:
+			player.velocity.y =  stats.jumpDoubleRunVelocity
+		else:
+			player.velocity.y = stats.jumpDoubleVelocity
 	else:
-		player.velocity.y = stats.jumpTripleVelocity
+		if abs(player.velocity.x) > stats.moveSpeed:
+			player.velocity.y =  stats.jumpTripleRunVelocity
+		else:
+			player.velocity.y = stats.jumpTripleVelocity
 	timerCoyoteJump.stop()
 	timerConsecutiveJump.stop()
 	

@@ -14,9 +14,10 @@ func enter() -> void:
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
 	
-	if abs(player.velocity.x) > stats.moveSpeed: #TODO: make higher jump for moving fast
+	if abs(player.velocity.x) > stats.moveSpeed:
+		player.velocity.y = stats.jumpRunVelocity
+	else:
 		player.velocity.y = stats.jumpVelocity
-	player.velocity.y = stats.jumpVelocity
 	timers()
 	player.jumped = true
 
