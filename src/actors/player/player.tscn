@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=125 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -31,7 +31,6 @@
 [ext_resource type="Script" path="res://src/actors/player/states/BellySlideDash.gd" id="28_rn2sq"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
-[ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_l4kvw"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="32_3ge2r"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="34_mljf1"]
@@ -6420,10 +6419,6 @@ script = ExtResource("28_h3ycc")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
 
-[node name="WallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
-script = ExtResource("31_l4kvw")
-coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
-
 [node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "dashJumpTimer", "dashJumpRefreshTimer", "durationTimer", "particles", "soundJetpack")]
 script = ExtResource("28_ggeir")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
@@ -6726,7 +6721,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

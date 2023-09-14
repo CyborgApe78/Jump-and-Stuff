@@ -62,8 +62,8 @@ func handle_input(event: InputEvent) -> int:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if input.justPressedGrab: #TODO: change to another button
-		return State.WallGrab
+#	if input.justPressedGrab: #TODO: change to another button
+#		return State.WallGrab
 	#TODO: add dive
 	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound

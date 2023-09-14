@@ -44,8 +44,8 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if input.justPressedGrab and abilities.can_use(PlayerAbilities.list.WallGrab):
-		return State.WallGrab
+#	if input.justPressedGrab and abilities.can_use(PlayerAbilities.list.WallGrab):
+#		return State.WallGrab
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
 	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
