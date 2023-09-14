@@ -30,8 +30,8 @@ var jumpBoostTime: float
 func enter() -> void:
 	EventBus.playerRolled.emit()
 	
-	rollVelocity = moveSpeed * modifierVelocity
-	velocityChainBoost = moveSpeed * modifierChainBoost
+	rollVelocity = stats.moveSpeed * modifierVelocity
+	velocityChainBoost = stats.moveSpeed * modifierChainBoost
 	
 	player.velocityPrevious = player.velocity
 	
@@ -59,24 +59,24 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
 	if !player.is_on_floor():
-		gravity_logic(gravityFall, delta)
-		fall_speed_logic(terminalVelocity)
+		gravity_logic(stats.gravityFall, delta)
+		fall_speed_logic(stats.terminalVelocity)
 	
 	#TODO: needs hori movement code when !isonfloor
 	if rad_to_deg(player.groundAngle) < -1: #TODO: create own accel and deccel
 		if sign(player.velocity.x) == -1:
-			player.velocity.x -= downHillAccel ## Speed up on down hill
+			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
-			player.velocity.x -= downHillAccel ## Slow on up hill
+			player.velocity.x -= stats.downHillAccel ## Slow on up hill
 #			apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif rad_to_deg(player.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += downHillAccel  ## Speed up on down hill
+			player.velocity.x += stats.downHillAccel  ## Speed up on down hill
 		else:
-			player.velocity.x += downHillAccel ## Slow on up hill
+			player.velocity.x += stats.downHillAccel ## Slow on up hill
 #			apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif timerDuration.is_stopped():
-		apply_friction(frictionGround, delta) #TODO: own friction
+		apply_friction(stats.frictionGround, delta) #TODO: own friction
 
 
 func visual(delta) -> void:
@@ -91,7 +91,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		if detector.is_colliding():
 			return State.Crouch #LOOKAT: removing cancel
 		else:
@@ -101,16 +101,16 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashRoll):
+	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashRoll):
 		return State.RollDash
-	if Input.is_action_just_pressed("crouch"):
+	if input.justPressedCrouch:
 		player.velocity.x = 0
 		return State.Crouch
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
 		if timerDuration.is_stopped():
 			return State.Roll
 		else:
@@ -127,7 +127,7 @@ func state_check(delta: float) -> int:
 			if detector.is_colliding():
 				player.velocity.x = 0
 				return State.Crouch
-			elif Input.is_action_pressed("crouch"):
+			elif input.pressedCrouch:
 				player.velocity.x = 0
 				return State.Crouch
 			elif player.moveDirection.x != 0:

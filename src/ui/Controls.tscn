@@ -65,22 +65,6 @@ offset_right = 995.0
 offset_bottom = 143.0
 text = "Crouch"
 
-[node name="Grab" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1050.0
-offset_top = 116.0
-offset_right = 1114.0
-offset_bottom = 142.0
-text = "Grab"
-
-[node name="StoreSpeed" type="Label" parent="."]
-layout_mode = 0
-offset_left = 938.0
-offset_top = 82.0
-offset_right = 1079.0
-offset_bottom = 108.0
-text = "Store Speed Boost"
-
 [node name="Dive" type="Label" parent="."]
 layout_mode = 0
 offset_left = 912.0
@@ -91,10 +75,10 @@ text = "Dive"
 
 [node name="Burrow" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1130.0
-offset_top = 679.0
-offset_right = 1188.0
-offset_bottom = 705.0
+offset_left = 960.0
+offset_top = 400.0
+offset_right = 1018.0
+offset_bottom = 426.0
 text = "Burrow"
 
 [node name="GroundPound" type="Label" parent="."]
@@ -123,10 +107,10 @@ text = "Roll"
 
 [node name="Spin" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1140.0
-offset_top = 635.0
-offset_right = 1202.0
-offset_bottom = 661.0
+offset_left = 848.0
+offset_top = 400.0
+offset_right = 910.0
+offset_bottom = 426.0
 text = "Spin"
 
 [node name="Pogo" type="Label" parent="."]
@@ -147,10 +131,10 @@ text = "Bash"
 
 [node name="Slide" type="Label" parent="."]
 layout_mode = 0
-offset_left = 933.0
-offset_top = 398.0
-offset_right = 995.0
-offset_bottom = 424.0
+offset_left = 1040.0
+offset_top = 688.0
+offset_right = 1102.0
+offset_bottom = 714.0
 text = "Slide"
 
 [node name="SpeedBoost" type="Label" parent="."]

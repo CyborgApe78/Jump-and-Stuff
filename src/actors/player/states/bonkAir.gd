@@ -29,8 +29,8 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	gravity_logic(gravityFall, delta)
-	fall_speed_logic(terminalVelocity)
+	gravity_logic(stats.gravityFall, delta)
+	fall_speed_logic(stats.terminalVelocity)
 	if player.is_on_floor():
 		currentBonkTime -= delta
 		player.velocity = Vector2.ZERO

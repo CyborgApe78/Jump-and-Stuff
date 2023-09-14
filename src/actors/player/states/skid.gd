@@ -40,7 +40,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
-	speed_bend(true, moveSpeed, 0.3)
+	speed_bend(true, stats.moveSpeed, 0.3)
 
 
 func sound(delta: float) -> void:
@@ -48,10 +48,10 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.JumpFlip) and (sign(player.velocity.x) != player.moveDirection.x) and skidLockTime > 0:
+	if input.pressedJump and abilities.can_use(PlayerAbilities.list.JumpFlip) and (sign(player.velocity.x) != player.moveDirection.x) and skidLockTime > 0:
 		consecutive_jump_cancel()
 		return State.JumpFlip
-#	if Input.is_action_just_pressed("dash") and abilities.can_use(abilities.list.DashSide):
+#	if input.justPressedDash and abilities.can_use(abilities.list.DashSide):
 #		return State.Dash $TODO: make special interaction
 
 	return State.Null

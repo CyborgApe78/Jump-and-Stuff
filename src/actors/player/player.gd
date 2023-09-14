@@ -122,7 +122,7 @@ func ledge_detection() -> void:
 		ledgeRight = false
 
 
-func attempt_vertical_corner_correction(amount: int, delta) -> void:
+func attempt_vertical_corner_correction(amount: int, delta) -> void: #TODO: change to have default value after delta
 	if test_move(global_transform, Vector2(velocity.x * delta, 0)): 
 		for i in range(1, amount*2+1):
 			for j in [-1.0, 1.0]:
@@ -229,10 +229,6 @@ func teleport_player(location: Vector2) -> void:
 
 func animation_speed(scale: float) -> void:
 	animPlayer.speed_scale = abs(velocity.x) * scale
-
-
-func _on_health_component_health_changed(healthCurrent: int) -> void:
-	EventBus.playerHealthChanged.emit(healthCurrent)
 
 
 func _on_bashable_detector_area_entered(area: TargetBash) -> void:

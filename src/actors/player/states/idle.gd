@@ -29,24 +29,24 @@ func visual(delta) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("crouch"): 
-		return State.Crouch
-	if Input.is_action_just_pressed("jump"):
-		if Input.is_action_pressed("move_down"):
+	if input.justPressedJump:
+		if input.pressedDown:
 			player.set_collision_mask_value(CollisionLayers.Semisolid, false)
 		else:
 			return State.Jump
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
+	if input.pressedCrouch: 
+		return State.Crouch
 	if player.moveDirection.x != 0:
 		return State.Walk
 	if !player.is_on_floor():

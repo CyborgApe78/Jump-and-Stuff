@@ -26,30 +26,30 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("move_left") and player.wall_detection() == Vector2.RIGHT.x:
+	if input.justPressedLeft and player.wall_detection() == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if Input.is_action_just_pressed("move_right") and player.wall_detection() == Vector2.LEFT.x:
+	if input.justPressedRight and player.wall_detection() == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if Input.is_action_just_released("grab"):
+	if input.justReleasedGrab:
 		return State.WallSlide
-	if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.JumpWall):
+	if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpWall):
 		return State.JumpWall
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
 			return State.DashClimb
 		elif abilities.can_use(PlayerAbilities.list.DashWall): #TODO: add charge
 			return State.DashWall #LOOKAT: should this be like other dash checks
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
@@ -62,7 +62,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_floor():
 		player.landed()
 		EventBus.rumble.emit(0.1, 0.2, 0.2)
-		if Input.is_action_pressed("crouch"):
+		if input.pressedCrouch:
 			return State.Crouch
 		elif player.velocity.x != 0: 
 			return State.Walk

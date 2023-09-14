@@ -10,7 +10,7 @@ var swimVelocity: float
 
 
 func enter() -> void:
-	swimVelocity = moveSpeed * velocityModifier
+	swimVelocity = stats.moveSpeed * velocityModifier
 	player.animPlayer.queue("Swim")
 
 
@@ -41,11 +41,11 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.SwimDash):
+	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.SwimDash):
 		return State.SwimDash
  
 	return State.Null

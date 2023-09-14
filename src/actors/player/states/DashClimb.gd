@@ -14,7 +14,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	particles.local_coords = true
 	particles.emitting = true
-	player.velocity.y = -dashVelocity
+	player.velocity.y = -stats.dashSpeed
 	player.velocity.x = 0
 	player.ability_mask(CollisionLayers.DashUp, false)
 
@@ -38,19 +38,19 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		if abilities.can_use(PlayerAbilities.list.JumpAir):
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if Input.is_action_just_pressed("grab") and abilities.can_use(PlayerAbilities.list.WallGrab):
-		return State.WallGrab
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+#	if input.justPressedGrab and abilities.can_use(PlayerAbilities.list.WallGrab):
+#		return State.WallGrab
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
 
 	return State.Null

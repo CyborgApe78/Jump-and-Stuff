@@ -27,7 +27,7 @@ func enter() -> void:
 	## up pressed
 	if player.moveDirection.y == -1:
 		player.characterRig.scale.x = player.wallDirection #TODO: use facing func
-		player.velocity = Vector2(100 * -jumpDirection, jumpVelocity * 1.0)
+		player.velocity = Vector2(100 * -jumpDirection, stats.jumpVelocity * 1.0)
 		EventBus.playerActionAnnounce.emit("Wall Up")
 	## down pressed
 	elif player.moveDirection.y == 1:
@@ -38,17 +38,17 @@ func enter() -> void:
 	elif player.moveDirection.x == 0:
 		player.characterRig.scale.x = -player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Neutral")
-		player.velocity = Vector2(max(moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, jumpVelocity * 0.9)
+		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
 	## away from wall pressed
 	elif player.moveDirection.x == -jumpDirection:
 		player.characterRig.scale.x = -player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Away")
-		player.velocity = Vector2(moveSpeed * -jumpDirection, jumpVelocity * 0.7)
+		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
 	## towards from wall pressed
 	elif player.moveDirection.x == jumpDirection: 
 		player.characterRig.scale.x = player.wallDirection
 		EventBus.playerActionAnnounce.emit("Wall Towards") 
-		player.velocity = Vector2(200 * -jumpDirection, jumpVelocity * 0.8)
+		player.velocity = Vector2(200 * -jumpDirection, stats.jumpVelocity * 0.8)
 		wallHop = true
 	
 	particles.restart()
@@ -60,20 +60,20 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide_rotation()
 	#FIXME: create full velocity logic, currently can back to wall sometimes, look at long jump state change
 	if timerLock.is_stopped():
 		if player.neutralMoveDirection:
-			neutral_air_momentum_logic(moveSpeed)
+			neutral_air_momentum_logic(stats.moveSpeed)
 		else:
 			if player.moveDirection.x != 0:
-				apply_acceleration(moveSpeed, accelerationAir, delta)
+				apply_acceleration(stats.moveSpeed, stats.accelerationAir, delta)
 			elif player.moveDirection.x == 0:
-				apply_friction(frictionAir, delta)
-	gravity_logic(gravityJump, delta)
+				apply_friction(stats.frictionAir, delta)
+	gravity_logic(stats.gravityJump, delta)
 	
 	#TODO: air velocity func
 #	air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
@@ -91,20 +91,20 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if timerLock.is_stopped():
-		if Input.is_action_just_released("jump"):
-			player.velocity.y = max( player.velocity.y, jumpVelocity * percentMinJumpVelocity)
+		if input.justReleasedJump:
+			player.velocity.y = max(player.velocity.y, stats.jumpVelocity * stats.percentMinJumpVelocity)
 			return State.Fall
-		if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+		if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 			return State.Glide
-		if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+		if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 			return State.Dive
-		if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+		if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 			return State.GroundPound
-		if Input.is_action_just_pressed("dash"):
+		if input.justPressedDash:
 			dash_pressed_buffer()
-		if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+		if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 			return State.GrappleHook
-		if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+		if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 			return State.BashAim
 
 	return State.Null
@@ -115,10 +115,10 @@ func state_check(delta: float) -> int:
 		if player.is_on_ceiling():
 			consecutive_jump_cancel()
 			return State.Fall
-		if player.is_on_wall() and topSpeed > moveSpeed:
+		if player.is_on_wall() and topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
-		if player.velocity.y > -jumpApexHeight:
+		if player.velocity.y > -stats.jumpApexHeight:
 			return State.JumpApex
 		if player.is_on_floor():
 			player.landed()

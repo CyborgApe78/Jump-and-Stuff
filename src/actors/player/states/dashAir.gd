@@ -25,9 +25,9 @@ func enter() -> void:
 	particles.emitting = true 
 	player.velocity.y = 0
 	if player.is_on_wall():
-		player.velocity.x = -player.wallDirection * dashVelocity
+		player.velocity.x = -player.wallDirection * stats.dashSpeed
 	else:
-		player.velocity.x = player.facing * dashVelocity
+		player.velocity.x = player.facing * stats.dashSpeed
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 
@@ -58,7 +58,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		timerBufferJumpWall.start()
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
@@ -71,15 +71,15 @@ func handle_input(event: InputEvent) -> int:
 			timerBufferJump.start()
 			player.velocity.x = 0
 			return State.Fall #LOOKAT: removing canceling out of dash
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
@@ -89,7 +89,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
 		if !timerBufferJumpWall.is_stopped():
 			return State.JumpWall #TODO: create JumpReflect
-		elif topSpeed > moveSpeed:
+		elif topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 	if dashBufferState != State.Null:
@@ -119,7 +119,7 @@ func state_check(delta: float) -> int:
 			player.velocity.x = player.velocity.x
 			return State.BellySlide
 		else:
-			if Input.is_action_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+			if input.pressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 				return State.Glide
 			elif player.is_on_floor():
 				player.velocity.x = player.velocity.x/4
@@ -130,7 +130,7 @@ func state_check(delta: float) -> int:
 					player.velocity.x = player.velocity.x/2
 				else:
 					if player.moveDirection.x == player.facing:
-						player.velocity.x = moveSpeed
+						player.velocity.x = stats.moveSpeed
 					else:
 						player.velocity.x = 0
 				return State.Fall

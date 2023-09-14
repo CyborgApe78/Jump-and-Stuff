@@ -20,20 +20,20 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
 	if !player.is_on_floor():
-		gravity_logic(gravityFall, delta)
+		gravity_logic(stats.gravityFall, delta)
 	
 	if rad_to_deg(player.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
-			player.velocity.x -= downHillAccel ## Speed up on down hill
+			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier, delta) ## Slow on up hill
+			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
 	elif rad_to_deg(player.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += downHillAccel #TODO: make like friction func, need a top speed or make this function
+			player.velocity.x += stats.downHillAccel #TODO: make like friction func, need a top speed or make this function
 		else:
-			apply_friction(frictionGround * upHillFrictionModifier, delta)
+			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
 	else:
-		apply_friction(frictionGround * 0.75, delta)
+		apply_friction(stats.frictionGround * 0.75, delta)
 
 
 func visual(delta) -> void:
@@ -47,11 +47,11 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	#TODO: add entering other states
 	if !detector.is_colliding(): #FIXME: don't want to stop the hop if detecting, if removed player is stuck in wall
-		if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.JumpBelly):
+		if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpBelly):
 			return State.BellySlideHop
-	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
 		return State.Roll
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashBelly):
+	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashBelly):
 		return State.BellySlideDash
 
 	return State.Null

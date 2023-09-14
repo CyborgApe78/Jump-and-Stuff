@@ -13,7 +13,6 @@ extends PlayerInfo
 @export var jumpHeldSlowModifier: float = 2.0
 @export var transTime: float = 0.1
 @export var fallTimeTillBonk: float = 0.9
-var jumpHeld: bool
 
 
 func enter() -> void:
@@ -32,31 +31,30 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop() #FIXME: kills land animation
-	jumpHeld = false
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
 	if timerCoyoteJump.is_stopped():
-		gravity_logic(gravityFall, delta)
+		gravity_logic(stats.gravityFall, delta)
 	
-	if jumpHeld:
-		fall_speed_logic(terminalVelocity / jumpHeldSlowModifier)
+	if input.pressedJump:
+		fall_speed_logic(stats.terminalVelocity / jumpHeldSlowModifier)
 	elif player.moveDirection.y == 1:
-		fall_speed_logic(terminalVelocity * 1.5)
+		fall_speed_logic(stats.terminalVelocity * 1.5)
 	else:
-		fall_speed_logic(terminalVelocity)
+		fall_speed_logic(stats.terminalVelocity)
 	
 	track_top_speed(player.velocity.x)
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
+		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 
 
 func visual(delta) -> void:
@@ -70,16 +68,12 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("move_down"):
+	if input.pressedDown:
 		player.set_collision_mask_value(CollisionLayers.Semisolid, false)
 		timerSemisolidReset.stop()
-	if Input.is_action_just_released("move_down"):
+	if input.justPressedDown:
 		timerSemisolidReset.start()
-	if Input.is_action_pressed("jump"):
-		jumpHeld = true
-	else: 
-		jumpHeld = false
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		timerBufferJump.start()
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
@@ -99,17 +93,15 @@ func handle_input(event: InputEvent) -> int:
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
-	if Input.is_action_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide): #FIXME: need to find a way to check 
-		return State.Glide
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 	
 
@@ -117,10 +109,12 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
+	if input.pressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
+		return State.Glide
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpWall):
 			return State.JumpWall
-		if topSpeed > moveSpeed:
+		if topSpeed > stats.moveSpeed:
 			topSpeed = 0
 			return State.BonkAir
 		else:
@@ -140,7 +134,7 @@ func state_check(delta: float) -> int:
 			return State.BonkGround
 		else:
 			timerConsecutiveJump.start()
-			if Input.is_action_pressed("crouch"):
+			if input.pressedCrouch:
 				player.animPlayer.stop()
 				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Crouch

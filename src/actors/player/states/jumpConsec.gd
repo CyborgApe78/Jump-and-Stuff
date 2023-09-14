@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-
+#LOOKAT: merge with jump
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var soundeffect: AudioStreamPlayer
@@ -15,10 +15,13 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	soundeffect.pitch_scale = 0.25 * abilities.currentJumpConsec + 1
+	soundeffect.pitch_scale = 0.25 * abilities.currentJumpConsec + 1 
 	soundeffect.play()
 	particles.restart() #TODO: adjust based on consec number
-	player.velocity.y = jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)
+	if abilities.currentJumpConsec == 1: #TODO:remove this from resource and put on node
+		player.velocity.y = stats.jumpDoubleVelocity
+	else:
+		player.velocity.y = stats.jumpTripleVelocity
 	timerCoyoteJump.stop()
 	timerConsecutiveJump.stop()
 	
@@ -39,15 +42,15 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
-	gravity_logic(gravityJump, delta)
+	gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
+		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 	
 	player.move_and_slide_rotation()
 	track_top_speed(player.velocity.x)
@@ -63,22 +66,22 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_released("jump"):
-		player.velocity.y = max( player.velocity.y, jumpVelocity * percentMinJumpVelocity)
-		if player.velocity.y > (jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)) * percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
+	if input.justReleasedJump:
+		player.velocity.y = max( player.velocity.y, stats.jumpVelocity * stats.percentMinJumpVelocity)
+		if player.velocity.y > (stats.jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)) * stats.percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
 			consecutive_jump_cancel()
 		return State.Fall
-	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
@@ -88,12 +91,12 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		consecutive_jump_cancel()
 		return State.Fall
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 #		elif player.moveDirection.x == player.wallDirection:
 #			return State.WallSlide
-	if player.velocity.y > -jumpApexHeight:
+	if player.velocity.y > -stats.jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()

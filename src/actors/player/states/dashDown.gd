@@ -22,7 +22,7 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.x = 0
-	player.velocity.y = dashVelocity
+	player.velocity.y = stats.dashSpeed
 	player.ability_mask(CollisionLayers.DashDown, false)
 
 
@@ -37,7 +37,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	gravity_logic(gravityFall, delta)
+	gravity_logic(stats.gravityFall, delta)
 
 
 func visual(delta) -> void:
@@ -49,7 +49,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -60,15 +60,15 @@ func handle_input(event: InputEvent) -> int:
 			timerBufferJump.start()
 			player.velocity.y = 0 #Gives more air control when canceling 
 			return State.Fall
-	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
@@ -85,7 +85,7 @@ func state_check(delta: float) -> int:
 			EventBus.rumble.emit(0.1, 0.3, 0.2)
 			return consecutive_jump_logic()
 		else:
-			if Input.is_action_pressed("crouch"):
+			if input.pressedCrouch:
 				player.animPlayer.stop()
 				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Crouch

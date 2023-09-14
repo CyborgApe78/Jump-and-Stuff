@@ -18,7 +18,7 @@ func enter() -> void:
 	EventBus.playerDashed.emit()
 	
 	player.velocityPrevious = player.velocity
-	player.velocity.x = player.facing * dashVelocity #TODO: create max velocity, current vs dashVel
+	player.velocity.x = player.facing * stats.dashSpeed #TODO: create max velocity, current vs dashVel
 	player.ability_mask(CollisionLayers.DashSide, false) #TODO: make own layer to destroy, like melt blocks or something
 	
 	timers()
@@ -41,7 +41,7 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
 	if !player.is_on_floor():
-		gravity_logic(gravityFall, delta)
+		gravity_logic(stats.gravityFall, delta)
 	
 	track_top_speed(player.velocity.x)
 
@@ -57,16 +57,16 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if !detector.is_colliding(): #FIXME: don't want to stop the hop if detecting, if removed player is stuck in wall
-		if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.JumpRoll):
+		if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpRoll):
 			return State.RollJump
-	if Input.is_action_just_released("dash"):
+	if input.justReleasedDash:
 		return State.Roll
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 	if timerDuration.is_stopped():

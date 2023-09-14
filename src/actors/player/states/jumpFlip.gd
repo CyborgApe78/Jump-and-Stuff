@@ -17,7 +17,7 @@ func enter() -> void:
 	soundeffect.play()
 	particles.restart()
 	player.velocity.x = -player.velocity.x
-	player.velocity.y = jumpVelocity * jumpModifier
+	player.velocity.y = stats.jumpVelocity * jumpModifier
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRotate,"rotation", player.facing * 4 * PI, transTime) ## flip,
 	tween.tween_property(player.characterCollision,"rotation", player.facing * 4 * PI, transTime)
@@ -31,15 +31,15 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_horizontal_corner_correction(jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
-	gravity_logic(gravityJump, delta)
+	gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(moveSpeed)
+		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 	
 	player.move_and_slide_rotation()
 	
@@ -55,32 +55,32 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_released("jump"):
-		player.velocity.y = max( player.velocity.y, (jumpVelocity * jumpModifier) * percentMinJumpVelocity)
+	if input.justReleasedJump:
+		player.velocity.y = max( player.velocity.y, (stats.jumpVelocity * jumpModifier) * stats.percentMinJumpVelocity)
 		return State.Fall
-	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if Input.is_action_just_pressed("dive") and abilities.can_use(PlayerAbilities.list.Dive):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 #		elif player.moveDirection.x == player.wallDirection:
 #			return State.WallSlide
-	if player.velocity.y > -jumpApexHeight:
+	if player.velocity.y > -stats.jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()

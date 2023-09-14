@@ -39,9 +39,9 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
+	if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
 		return State.JumpGroundPound
-	if Input.is_action_just_pressed("dash") and abilities.can_use(PlayerAbilities.list.DashGroundPound): #TODO: change to charge
+	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashGroundPound): #TODO: change to charge
 		return State.DashGroundPound
 	
 	return State.Null
@@ -49,7 +49,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 	if timerStun.is_stopped():
-		if Input.is_action_pressed("crouch"):
+		if input.pressedCrouch:
 			return State.Crouch
 		if player.moveDirection.x != 0:
 			return State.Walk

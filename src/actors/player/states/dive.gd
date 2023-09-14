@@ -18,7 +18,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	player.velocity.x = max(moveSpeed, abs(player.velocity.x)) * player.facing
+	player.velocity.x = max(stats.moveSpeed, abs(player.velocity.x)) * player.facing
 	
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRotate, "rotation_degrees", 125, transformTime).from(0)
@@ -32,15 +32,15 @@ func exit() -> void:
 
 
 func physics(delta: float) -> void:
-	player.attempt_vertical_corner_correction(jumpCornerCorrectionVertical, delta)
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
 	
 	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing: #TODO: add speed in moving that direction
-			apply_friction(moveSpeed * 2, delta)
+			apply_friction(stats.moveSpeed * 2, delta)
 	
-	gravity_logic(gravityFall, delta)
-	fall_speed_logic(terminalVelocity)
+	gravity_logic(stats.gravityFall, delta)
+	fall_speed_logic(stats.terminalVelocity)
 	track_top_speed(player.velocity.x)
 
 
@@ -54,7 +54,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -64,24 +64,24 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if Input.is_action_just_pressed("roll") and abilities.can_use(PlayerAbilities.list.Roll):
+	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
 		timerBufferRoll.start()
-	if Input.is_action_just_pressed("glide") and abilities.can_use(PlayerAbilities.list.Glide):
+	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-#	if Input.is_action_just_pressed("ground_pound") and abilities.can_use(PlayerAbilities.list.GroundPound): 
+#	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 #		return State.GroundPound ## Removed to make it easier to get to roll state
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():

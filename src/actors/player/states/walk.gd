@@ -24,16 +24,16 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	if abs(player.velocity.x) > moveSpeed * skidPercent and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if abs(player.velocity.x) > stats.moveSpeed * skidPercent and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
 		skidding = true
 	elif player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = player.lastMoveDirection.x * 1
-	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
-		player.velocity.x = VelEq.apply_acceleration(player.velocity.x, moveSpeed, accelerationGround, player.moveStrength.x, delta)
+	elif player.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed:
+		player.velocity.x = VelEq.apply_acceleration(player.velocity.x, stats.moveSpeed, stats.accelerationGround, player.moveStrength.x, delta)
 	elif player.moveDirection.x == 0:
-		player.velocity.x = VelEq.apply_friction(player.velocity.x, frictionGround, delta)
-	elif abs(player.velocity.x) >= moveSpeed:
-		momentum_logic(moveSpeed, true)
+		player.velocity.x = VelEq.apply_friction(player.velocity.x, stats.frictionGround, delta)
+	elif abs(player.velocity.x) >= stats.moveSpeed:
+		momentum_logic(stats.moveSpeed, true)
 	
 	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
 		#TODO:make it so you have to be facing the ledge 
@@ -54,21 +54,21 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_pressed("crouch"): 
-		return State.Crouch
-	if Input.is_action_just_pressed("jump"):
+	if input.justPressedJump:
 		return consecutive_jump_logic()
-	if Input.is_action_just_pressed("dash"):
+	if input.justPressedDash:
 		dash_pressed_buffer()
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
+	if input.pressedCrouch: 
+		return State.Crouch
 	if player.inWater:
 		return State.Swim
 	if skidding:
@@ -81,7 +81,7 @@ func state_check(delta: float) -> int:
 	if !timerBufferJump.is_stopped():
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.bufferJump)
-		if Input.is_action_pressed("crouch") and abilities.can_use(PlayerAbilities.list.JumpLong): ## not sure if do anything since long jump checks for this
+		if input.pressedCrouch and abilities.can_use(PlayerAbilities.list.JumpLong): ## not sure if do anything since long jump checks for this
 			return State.JumpLong
 		else:
 			return consecutive_jump_logic()

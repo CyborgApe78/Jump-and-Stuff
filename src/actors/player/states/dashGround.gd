@@ -28,7 +28,7 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * dashVelocity
+	player.velocity.x = player.facing * stats.dashSpeed
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 
@@ -58,7 +58,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_pressed("jump") and (player.is_on_floor() or !timerCoyoteJump.is_stopped()): #leave ground, but stil can jump
+	if input.justPressedJump and (player.is_on_floor() or !timerCoyoteJump.is_stopped()): #leave ground, but stil can jump
 		if !timerCoyoteJump.is_stopped():
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
@@ -77,16 +77,16 @@ func handle_input(event: InputEvent) -> int:
 				EventBus.playerActionAnnounce.emit("Early Jump")
 				player.velocity.x = player.velocity.x/4
 				return State.Jump
-	if Input.is_action_just_pressed("grapple_hook") and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
-	if Input.is_action_just_pressed("bash") and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > moveSpeed:
+	if player.is_on_wall() and topSpeed > stats.moveSpeed:
 		topSpeed = 0
 		return State.BonkAir
 	if durationTimer.is_stopped():

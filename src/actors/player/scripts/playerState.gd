@@ -29,7 +29,6 @@ enum State {
 	BellySlideHop,
 	BellySlideDash,
 	WallSlide,
-	WallGrab,
 	DashGround,
 	DashAir,
 	DashUp,

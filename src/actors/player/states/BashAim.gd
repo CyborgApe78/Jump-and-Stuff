@@ -36,7 +36,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if Input.is_action_just_released("bash"):
+	if input.justReleasedBash:
 		return State.Bash
 
 	return State.Null

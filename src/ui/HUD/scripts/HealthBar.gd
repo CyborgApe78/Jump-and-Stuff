@@ -1,10 +1,9 @@
 extends MarginContainer
 
 
-@export var healthEmpty: TextureRect
-@export var healthFull: TextureRect
+@export var labelCurrent: Label
+@export var labelMax: Label
 
-@export var textureSize: int ## Size of asset ##
 var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 
 
@@ -17,11 +16,9 @@ func _ready() -> void:
 
 func set_health(amount:int) -> void:
 	if amount != null:
-		healthFull.size.x = amount * textureSize
+		labelCurrent.text = str(amount)
 
 
 func set_health_max() -> void:
-	var amount = stats.healthMax
-	if amount != null:
-		healthEmpty.size.x = amount * textureSize
+	labelMax.text = "/ " + str(stats.healthMax)
 

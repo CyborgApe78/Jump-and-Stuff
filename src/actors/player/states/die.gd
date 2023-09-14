@@ -7,8 +7,11 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
-#	player.previousVelocity = player.velocity
+	if CheckpointSystem.currentRespawn != Vector2.ZERO:
+		player.global_position = CheckpointSystem.currentRespawn
+	else:
+		get_tree().reload_current_scene()
+		EventBus.emit_signal("error", str("no spawn point set"))
 
 
 func physics(_delta) -> void:
@@ -30,8 +33,6 @@ func handle_input(_event: InputEvent) -> int:
 
 
 func state_check(_delta: float) -> int:
-	
+	return State.Spawn
 
-	
-
-	return State.Null
+#	return State.Null

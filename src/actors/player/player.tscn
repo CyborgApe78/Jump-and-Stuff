@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=125 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -31,7 +31,6 @@
 [ext_resource type="Script" path="res://src/actors/player/states/BellySlideDash.gd" id="28_rn2sq"]
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
-[ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="31_l4kvw"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="32_3ge2r"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="34_mljf1"]
@@ -53,7 +52,6 @@
 [ext_resource type="Script" path="res://src/actors/player/states/SwimDash.gd" id="45_rmmdt"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="46_uutlu"]
 [ext_resource type="Script" path="res://src/actors/player/states/Bash.gd" id="46_ux6xt"]
-[ext_resource type="Resource" uid="uid://i6ja7hqkkxh8" path="res://src/actors/player/resources/playerStats.tres" id="46_vm2yr"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Timers.gd" id="47_crc7s"]
 [ext_resource type="PackedScene" uid="uid://2ji8t713xoqn" path="res://src/object/components/hitbox_component.tscn" id="47_w6udr"]
 [ext_resource type="Script" path="res://src/actors/player/states/RollDash.gd" id="48_8tyxe"]
@@ -63,8 +61,11 @@
 [ext_resource type="AudioStream" uid="uid://btfvrwbgkgyal" path="res://asset/sounds/player/jump.wav" id="51_5jjnj"]
 [ext_resource type="AudioStream" uid="uid://c7muk6odu85aw" path="res://asset/sounds/player/skid.wav" id="52_y6nsh"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="53_wr0ib"]
+[ext_resource type="Script" path="res://src/actors/player/Stats.gd" id="54_qbhck"]
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="54_wyd8d"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="55_8qryh"]
+[ext_resource type="Script" path="res://src/actors/player/VelocityComponent.gd" id="55_iviae"]
+[ext_resource type="Script" path="res://src/actors/player/InputComponent.gd" id="56_q3cbc"]
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="56_v8j0l"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_n4b1h"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_hbso6"]
@@ -6087,7 +6088,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 0, 16, 24, 24)
+points = PackedVector2Array(0, 0, -16, 8, -24, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6138,7 +6139,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 32, 8, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6163,7 +6164,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -16, 8, -16, 32)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6259,7 +6260,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 8)
+points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6269,8 +6270,11 @@ antialiased = true
 script = ExtResource("6_ab4rp")
 thickness = 1.05
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats", "velocity", "input")]
 script = ExtResource("10_mvngt")
+stats = NodePath("../StatsComponent")
+velocity = NodePath("../VelocityComponemt")
+input = NodePath("../InputComponent")
 
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource("11_i4f5l")
@@ -6414,10 +6418,6 @@ detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 script = ExtResource("28_h3ycc")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/WallSlide")
-
-[node name="WallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
-script = ExtResource("31_l4kvw")
-coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
 [node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "dashJumpTimer", "dashJumpRefreshTimer", "durationTimer", "particles", "soundJetpack")]
 script = ExtResource("28_ggeir")
@@ -6608,10 +6608,14 @@ script = ExtResource("46_uutlu")
 soundBonk = NodePath("../../Sounds/bonk")
 soundSplat = NodePath("../../Sounds/splat")
 
-[node name="HealthComponent" parent="." instance=ExtResource("45_an6xy")]
-stats = ExtResource("46_vm2yr")
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("54_qbhck")
 
-[node name="VelocityComponent" type="Node" parent="."]
+[node name="VelocityComponemt" type="Node" parent="."]
+script = ExtResource("55_iviae")
+
+[node name="InputComponent" type="Node" parent="."]
+script = ExtResource("56_q3cbc")
 
 [node name="Raycasts" type="Node2D" parent="."]
 visible = false
@@ -6659,6 +6663,9 @@ collision_mask = 3
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("invicibleTimer") instance=ExtResource("45_an6xy")]
+invicibleTimer = NodePath("../Timers/Invincibility")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("47_w6udr")]
 visible = false
@@ -6714,7 +6721,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -6774,6 +6781,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Invincibility" type="Timer" parent="Timers"]
+one_shot = true
 
 [node name="Semisoild" type="Timer" parent="Timers"]
 
@@ -6844,6 +6852,7 @@ position = Vector2(-8, -64)
 points = PackedVector2Array(8, 0, 24, 0)
 
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
+[connection signal="died" from="HealthComponent" to="StateMachine" method="player_died"]
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="area_entered" from="BashableDetector" to="." method="_on_bashable_detector_area_entered"]
 [connection signal="area_entered" from="BashableDetector" to="BashableDetector" method="_on_area_entered"]

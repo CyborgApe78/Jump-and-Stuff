@@ -1,7 +1,10 @@
 extends Node
 
+#TODO: create subcatorgies to orgainize 
+
 @onready var states = {
 	PlayerState.State.Spawn: $Spawn,
+	PlayerState.State.Die: $Die,
 	PlayerState.State.Idle: $Idle,
 	PlayerState.State.Walk: $Walk,
 	PlayerState.State.Skid: $Skid,
@@ -26,7 +29,6 @@ extends Node
 	PlayerState.State.BellySlideHop: $BellySlideHop,
 	PlayerState.State.BellySlideDash: $BellySlideDash,
 	PlayerState.State.WallSlide: $WallSlide,
-	PlayerState.State.WallGrab: $WallGrab,
 	PlayerState.State.DashGround: $DashGround,
 	PlayerState.State.DashAir: $DashAir,
 	PlayerState.State.DashUp: $DashUp,
@@ -47,8 +49,6 @@ extends Node
 	PlayerState.State.BonkGround: $BonkGround,
 	
 #	PlayerState.State.Teleport: $Teleport,
-#	PlayerState.State.Die: $Die,
-#	PlayerState.State.WallClimb: $WallClimb,
 #	PlayerState.State.Shinespark: $Shinespark,
 #	PlayerState.State.SwimDash: $SwimDash,
 }
@@ -59,6 +59,9 @@ var currentStateName: String
 var previousStateName: String
 
 @onready var player: Player = owner
+@export var stats: StatsComponent
+@export var velocity: VelocityComponent
+@export var input: InputComponent
 
 
 #func _ready() -> void:
@@ -87,6 +90,9 @@ func init() -> void:
 	for child in get_children():
 		if child is PlayerState:
 			child.player = player
+			child.stats = stats
+			child.velocity = velocity
+			child.input = input
 
 	change_state(PlayerState.State.Spawn)
 
@@ -112,3 +118,7 @@ func visual(delta) -> void:
 
 func sound(delta) -> void:
 	currentState.sound(delta)
+
+
+func player_died() -> void:
+	change_state(PlayerState.State.Die)

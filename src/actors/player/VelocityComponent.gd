@@ -1,19 +1,42 @@
-extends PlayerState
-class_name PlayerInfo
+extends Node
+class_name VelocityComponent
 
 
-var stats: StatsComponent
-var velocity: VelocityComponent
-var input: InputComponent
-var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
-var GameStats: Resource = preload("res://src/resources/gameStats.tres")
-var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
+@export var stats: StatsComponent
+@export var abilities: PlayerAbilities
 
+@onready var player = get_parent() as CharacterBody2D
+
+var velocity: Vector2 = Vector2.ZERO
+
+var groundAngle: float #TODO: own component
+var velocityPrevious: Vector2 = Vector2.ZERO
+var velocityRotated: Vector2 = Vector2.ZERO
+var GPMaxVelocity: Vector2 = Vector2.ZERO
+
+var targetGrapple: TargetGrapple #TODO: own component
+var targetBash: TargetBash
+
+var neutralMoveDirection: bool = false
+
+var wallDirection: int = 0 
+var lastWallDirection: int = 0
+var facing: int = 1
+
+var jumped: bool
+var ledgeLeft: bool #TODO: own component
+var ledgeRight: bool
 
 var topSpeed: int ## keeps track of player speed for bonking
 
-var dashBufferState: int
 
+func move() -> void:
+	player.velocity = velocity
+	player.move_and_slide()
+
+func move_and_rotate() -> void:
+	player.velocity = velocity
+	player.move_and_slide()
 
 
 
@@ -79,12 +102,6 @@ func squash_and_stretch(delta): #FIXME: get this working
 	pass
 
 
-func consecutive_jump_logic() -> int:
-	if abilities.can_use(PlayerAbilities.list.JumpConsec) and player.jumped:
-		return State.JumpConsec
-	else:
-		return State.Jump
-
 
 func consecutive_jump_cancel() -> void: 
 	player.jumped = false
@@ -112,35 +129,6 @@ func neutral_air_momentum_logic(speed) -> void:
 func track_top_speed(speed:int) -> void:
 	if abs(player.velocity.x) > topSpeed:
 		topSpeed = abs(speed)
-
-
-func dash_pressed_buffer() -> void:
-#	var initial_direction = player.aimDirection.round()
-	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed, look at buffer input timer
-	dash_pressed_logic()
-	await get_tree().create_timer(0.1).timeout
-	dashBufferState = State.Null
-
-
-func dash_pressed_logic() -> void:
-	var dashInput: Vector2 = player.aimDirection if player.aimDirection != Vector2.ZERO else player.moveDirection
-	
-	if player.is_on_wall():
-		if player.moveDirection.y == -1:
-			dashBufferState = State.DashClimb
-		else:
-			dashBufferState = State.DashWall #TODO: remove and only from wallgrab
-	elif dashInput.y == -1:
-		dashBufferState = State.DashUp
-	elif dashInput.y == 1:
-		dashBufferState = State.DashDown
-	elif player.is_on_floor():
-		dashBufferState = State.DashGround
-	elif !player.is_on_floor():
-		dashBufferState = State.DashAir
-	else:
-		dashBufferState = State.Null
-		EventBus.error.emit("null dash pressed logic")
 
 
 func jump_logic(jumpHeight: int, runSpeed:int = stats.moveSpeed) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=30 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="21_el1g6"]
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="22_vdons"]
 [ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="23_u041q"]
-[ext_resource type="PackedScene" uid="uid://dgsl3q5vqs5uu" path="res://src/object/prefab/unlockables/StatChanger.tscn" id="24_ydpky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
 texture = ExtResource("11_tl8nd")
@@ -623,7 +622,7 @@ script = ExtResource("19_1iekm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Semisolid"]
 modulate = Color(1, 1, 1, 0.3)
-position = Vector2(1479, -832)
+position = Vector2(-1008, 1901)
 polygon = PackedVector2Array(291, 58, 1090, 363, 2607, 373, 7234, -1030, 6730, -726, 2616, 476, 979, 493, 263, 123)
 
 [node name="DoorLocked" parent="." instance=ExtResource("20_8211g")]
@@ -653,8 +652,5 @@ ability = 13
 [node name="UpgradeUnlocker" parent="." instance=ExtResource("23_u041q")]
 position = Vector2(-532, 499)
 upgrade = 2
-
-[node name="StatChanger" parent="." instance=ExtResource("24_ydpky")]
-position = Vector2(-425, -34)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
