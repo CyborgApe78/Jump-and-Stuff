@@ -1,7 +1,28 @@
 #TODO 
 
-Make new jump calculation for each jump
-On death or reset, make a function to return to initial place
+P-speed refers to the boost in Mario's running speed after running forward for a period of time. The name comes from the P-meter bar first used in Super Mario Bros. 3; though no bar is visible in SMW, it functions very similarly. The meter increases as Mario runs on the ground, and decreases while in midair or turning. Once the meter is fully filled, Mario will gain P-meter and start sprinting, and if he has a cape, he can jump to start flight or spinjump with an extra large jump. Since it boosts Mario's speed significantly, you usually want to build it as soon and as quickly as possible.
+
+The P-meter has a few quirks that aren't immediately apparent, however:
+
+If you jump with P-speed, the P-meter will basically function like you're still on the ground; in other words, if you turn, you can still rebuild the meter while in midair.
+Gradual slopes are the only slopes that Mario can build P-meter while running up. Once he has P-speed, he can run up any slope (except very steep) without losing it.
+The P-meter will decrease while flying, but not during the initial jump; only when he actually enters flight mode does it start.
+The P-meter won't decrease while swimming or climbing.
+
+
+spin while dashing too burrow
+Player make platform, bubble mario/cloud
+Look at moving glide to trigger
+Look at enemies for mario, megaman, sonic, disney illusion
+Water power up grow things like vine 
+Store value of speed before skidding and return it if skids jump
+Animation when moving around corners
+Maybe make dash roll into mario blue shell 
+Ground pound bounce pads, higher redirect and exclusive 
+Look into roll jump VS crouch long jump
+Jump from top of poles. Bowser kingdom
+Trapeze bars to swing 
+Holding dash into to redirect shinespark
 Look into dictionary for things like consecutive jump
 Use wall detector to check for wall jumps instead of double jump
 Use grapple to activate platforms, like cappy
