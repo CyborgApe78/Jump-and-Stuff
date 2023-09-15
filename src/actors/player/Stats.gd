@@ -19,19 +19,19 @@ var downHillAccel: float = 50
 
 @export_group("Speed")
 ## Base movement speed
-@export var baseMove: float = 12:
+@export var _baseMove: float = 12:
 	set(value):
-		baseMove = value
-		moveSpeed = calculate_tile_height(baseMove)
+		_baseMove = value
+		moveSpeed = calculate_tile_height(_baseMove)
 	get:
-		return baseMove
+		return _baseMove
 ## This value makes the time it takes to reach maximum speed smoother.
 @export_range(0.0 , 2.0, 0.01) var baseAcceleration: float = 1.2
 ## The force applied to slow down the character's movement.
 @export_range(0.0 , 1.0, 0.01) var baseFriction: float = 0.5
 ## Modulates the rate of horizontal speed decrease during airborne movement.
 @export_range(0.0 , 2.0, 0.01) var baseAirMovement: float = 1.0
-@onready var moveSpeed: int = calculate_tile_height(baseMove)
+@onready var moveSpeed: int = calculate_tile_height(_baseMove)
 @onready var accelerationGround: float = moveSpeed / baseAcceleration
 @onready var frictionGround: float = moveSpeed / baseFriction
 @onready var accelerationAir: float = moveSpeed / (baseAcceleration * baseAirMovement)
@@ -40,93 +40,93 @@ var downHillAccel: float = 50
 
 @export_group("Jump") #TODO: all other jumps
 ## Base Jump Height
-@export var baseJumpHeight: float = 4.0:
+@export var _baseJumpHeight: float = 4.0:
 	set(value):
-		baseJumpHeight = value
-		jumpHeight = calculate_tile_height(baseJumpHeight + 0.25) ## Gives extra boost to get on platforms
+		_baseJumpHeight = value
+		jumpHeight = calculate_tile_height(_baseJumpHeight + 0.25) ## Gives extra boost to get on platforms
 		gravityJump = calculate_gravity()
-		gravityFall = calculate_gravity(jumpHeight, jumpTimeToDescent)
+		gravityFall = calculate_gravity(jumpHeight, _jumpTimeToDescent)
 		jumpVelocity = calculate_jump_velocity()
-		jumpDoubleVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpDoubleModifier))
-		jumpTripleVelocity = calculate_jump_velocity(jumpHeight +calculate_tile_height(jumpTripleModifier))
+		jumpDoubleVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpDoubleModifier))
+		jumpTripleVelocity = calculate_jump_velocity(jumpHeight +calculate_tile_height(_jumpTripleModifier))
 	get:
-		return baseJumpHeight
+		return _baseJumpHeight
 ## Time it takes to reach the maximum jump height
-@export_range(0.0 , 1.0, 0.01) var jumpTimeToPeak: float = 0.5:
+@export_range(0.0 , 1.0, 0.01) var _jumpTimeToPeak: float = 0.5:
 	set(value):
-		jumpTimeToPeak = value
+		_jumpTimeToPeak = value
 		gravityJump = calculate_gravity()
 		jumpVelocity = calculate_jump_velocity()
-		jumpDoubleVelocity = calculate_jump_velocity(calculate_tile_height(baseJumpHeight * jumpDoubleModifier))
-		jumpTripleVelocity = calculate_jump_velocity(calculate_tile_height(baseJumpHeight * jumpTripleModifier))
+		jumpDoubleVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpDoubleModifier))
+		jumpTripleVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpTripleModifier))
 	get:
-		return jumpTimeToPeak
+		return _jumpTimeToPeak
 ## Time it takes to reach the floor after jump
-@export var jumpTimeToDescent: float = 0.25:
+@export var _jumpTimeToDescent: float = 0.25:
 	set(value):
-		jumpTimeToDescent = value
-		gravityFall = calculate_gravity(jumpHeight, jumpTimeToDescent)
+		_jumpTimeToDescent = value
+		gravityFall = calculate_gravity(jumpHeight, _jumpTimeToDescent)
 	get:
-		return jumpTimeToDescent
+		return _jumpTimeToDescent
 ## Time of extra floatyness at peak of jump
-@export var jumpTimeAtApex: float = 0.8:
+@export var _jumpTimeAtApex: float = 0.8:
 	set(value):
-		jumpTimeAtApex = value
-		gravityFall = calculate_gravity(jumpHeight, jumpTimeAtApex)
+		_jumpTimeAtApex = value
+		gravityFall = calculate_gravity(jumpHeight, _jumpTimeAtApex)
 	get:
-		return jumpTimeAtApex
-@export_range(0.0 , 5.0, 0.25) var jumpRunModifier: float = 1.0: 
+		return _jumpTimeAtApex
+@export_range(0.0 , 5.0, 0.25) var _jumpRunModifier: float = 1.0: 
 	set(value):
-		jumpRunModifier = value
-		jumpRunVelocity = calculate_jump_velocity(calculate_tile_height(jumpRunModifier))
-		jumpDoubleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpDoubleModifier + jumpRunModifier))
-		jumpTripleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier + jumpRunModifier))
+		_jumpRunModifier = value
+		jumpRunVelocity = calculate_jump_velocity(calculate_tile_height(_jumpRunModifier))
+		jumpDoubleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpDoubleModifier + _jumpRunModifier))
+		jumpTripleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpTripleModifier + _jumpRunModifier))
 	get:
-		return jumpRunModifier
-@export_range(0.0 , 5.0, 0.25) var jumpDoubleModifier: float = 2.0:
+		return _jumpRunModifier
+@export_range(0.0 , 5.0, 0.25) var _jumpDoubleModifier: float = 2.0:
 	set(value):
-		jumpDoubleModifier = value
-		jumpDoubleVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpDoubleModifier))
-		jumpDoubleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpDoubleModifier + jumpRunModifier))
+		_jumpDoubleModifier = value
+		jumpDoubleVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpDoubleModifier))
+		jumpDoubleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpDoubleModifier + _jumpRunModifier))
 	get:
-		return jumpDoubleModifier
-@export_range(0.0 , 5.0, 0.25) var jumpTripleModifier: float = 4.0:
+		return _jumpDoubleModifier
+@export_range(0.0 , 5.0, 0.25) var _jumpTripleModifier: float = 4.0:
 	set(value):
-		jumpTripleModifier = value
-		jumpTripleVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier))
-		jumpTripleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier + jumpRunModifier))
+		_jumpTripleModifier = value
+		jumpTripleVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpTripleModifier))
+		jumpTripleRunVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpTripleModifier + _jumpRunModifier))
 	get:
-		return jumpTripleModifier
-@export_range(0.0 , 5.0, 0.25) var jumpFlipModifier: float = 4.0: #TODO: rest of the values need added
+		return _jumpTripleModifier
+@export_range(0.0 , 5.0, 0.25) var _jumpFlipModifier: float = 4.0:
 	set(value):
-		jumpFlipModifier = value
-		jumpFlipVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpFlipModifier))
+		_jumpFlipModifier = value
+		jumpFlipVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpFlipModifier))
 	get:
-		return jumpFlipModifier
-@export_range(0.0 , 5.0, 0.25) var jumpLongModifier: float = 4.0:
+		return _jumpFlipModifier
+@export_range(0.0 , 5.0, 0.25) var _jumpLongModifier: float = 4.0:
 	set(value):
-		jumpLongModifier = value
-		jumpLongVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpLongModifier))
+		_jumpLongModifier = value
+		jumpLongVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpLongModifier))
 	get:
-		return jumpLongModifier
-@export_range(0.0 , 5.0, 0.25) var jumpCrouchModifier: float = 4.0:
+		return _jumpLongModifier
+@export_range(0.0 , 5.0, 0.25) var _jumpCrouchModifier: float = 4.0:
 	set(value):
-		jumpCrouchModifier = value
-		jumpCrouchVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpCrouchModifier))
+		_jumpCrouchModifier = value
+		jumpCrouchVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpCrouchModifier))
 	get:
-		return jumpCrouchModifier
-@export_range(0.0 , 5.0, 0.25) var jumpApexModifier: float = 4.0:
+		return _jumpCrouchModifier
+@export_range(0.0 , 5.0, 0.25) var _jumpApexModifier: float = 4.0:
 	set(value):
-		jumpApexModifier = value
-		jumpApexVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpApexModifier))
+		_jumpApexModifier = value
+		jumpApexVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpApexModifier))
 	get:
-		return jumpApexModifier
-@export_range(0.0 , 5.0, 0.25) var jumpGroundPoundModifier: float = 4.0:
+		return _jumpApexModifier
+@export_range(0.0 , 5.0, 0.25) var _jumpGroundPoundModifier: float = 4.0:
 	set(value):
-		jumpGroundPoundModifier = value
-		jumpGroundPoundVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpGroundPoundModifier))
+		_jumpGroundPoundModifier = value
+		jumpGroundPoundVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpGroundPoundModifier))
 	get:
-		return jumpGroundPoundModifier
+		return _jumpGroundPoundModifier
 ### The value represents a velocity threshold that determines whether the character can jump
 #@export var jump_threshold: float = 300.0
 ### Reduced amount of jump effectiveness at each iteration
@@ -137,21 +137,21 @@ var downHillAccel: float = 50
 ### The time window this jump can be executed when the character is not on the floor
 #@export var coyote_jump_time_window: float = 0.15
 
-@onready var jumpHeight: int = calculate_tile_height(baseJumpHeight + 0.25)
-@onready var gravityJump: float = calculate_gravity(jumpHeight, jumpTimeToPeak)
-@onready var gravityFall: float = calculate_gravity(jumpHeight, jumpTimeToDescent)
-@onready var gravityApex: float = calculate_gravity(jumpHeight, jumpTimeAtApex)
+@onready var jumpHeight: int = calculate_tile_height(_baseJumpHeight + 0.25)
+@onready var gravityJump: float = calculate_gravity(jumpHeight, _jumpTimeToPeak)
+@onready var gravityFall: float = calculate_gravity(jumpHeight, _jumpTimeToDescent)
+@onready var gravityApex: float = calculate_gravity(jumpHeight, _jumpTimeAtApex)
 @onready var jumpVelocity: float = calculate_jump_velocity()
-@onready var jumpRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpRunModifier))
-@onready var jumpDoubleVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpDoubleModifier))
-@onready var jumpDoubleRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpDoubleModifier + jumpRunModifier))
-@onready var jumpTripleVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier))
-@onready var jumpTripleRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpTripleModifier + jumpRunModifier))
-@onready var jumpFlipVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpFlipModifier))
-@onready var jumpLongVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpLongModifier))
-@onready var jumpCrouchVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpCrouchModifier))
-@onready var jumpApexVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpApexModifier))
-@onready var jumpGroundPoundVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(jumpGroundPoundModifier))
+@onready var jumpRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpRunModifier))
+@onready var jumpDoubleVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpDoubleModifier))
+@onready var jumpDoubleRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpDoubleModifier + _jumpRunModifier))
+@onready var jumpTripleVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpTripleModifier))
+@onready var jumpTripleRunVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpTripleModifier + _jumpRunModifier))
+@onready var jumpFlipVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpFlipModifier))
+@onready var jumpLongVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpLongModifier))
+@onready var jumpCrouchVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpCrouchModifier))
+@onready var jumpApexVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpApexModifier))
+@onready var jumpGroundPoundVelocity: float = calculate_jump_velocity(jumpHeight + calculate_tile_height(_jumpGroundPoundModifier))
 @onready var jumpWallVelocity: float
 
 #Odyssey Jump Height
@@ -200,9 +200,9 @@ func calculate_tile_height(amount: float) -> float:
 	return amount * Util.tileSize
 
 
-func calculate_jump_velocity(height: float = jumpHeight, time: float = jumpTimeToPeak):
+func calculate_jump_velocity(height: float = jumpHeight, time: float = _jumpTimeToPeak):
 	return -sqrt(2 * gravityJump * height)
 
 
-func calculate_gravity(height: float = jumpHeight, time: float = jumpTimeToPeak):
+func calculate_gravity(height: float = jumpHeight, time: float = _jumpTimeToPeak):
 	return (2.0 * height) / pow(time, 2) 
