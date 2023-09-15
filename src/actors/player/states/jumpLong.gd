@@ -23,8 +23,8 @@ func enter() -> void:
 	startingHeight = player.global_position.y
 	topSpeed = 0
 	
-	player.velocity.y = stats.jumpVelocity * jumpModifier
-	player.velocity.x = max(velocityLongJump, abs(player.velocity.x)) * player.facing
+	player.velocity.y = stats.jumpLongVelocity
+	player.velocity.x = max(velocityLongJump, abs(player.velocity.x)) * player.facing #TODO: 
 	
 	player.animPlayer.queue("Jump")
 	

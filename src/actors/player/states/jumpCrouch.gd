@@ -6,10 +6,8 @@ extends PlayerInfo
 @export var jumpModifier: float = 1.4
 @export var particles: GPUParticles2D
 
-var velocityJumpCrouch: float
 
 func enter() -> void:
-	velocityJumpCrouch = stats.jumpVelocity * jumpModifier
 	EventBus.playerJumped.emit()
 	topSpeed = 0
 	neutral_move_direction_logic()
@@ -17,7 +15,7 @@ func enter() -> void:
 	soundeffect.pitch_scale = jumpModifier
 	soundeffect.play()
 	particles.restart()
-	player.velocity.y = velocityJumpCrouch
+	player.velocity.y = stats.jumpCrouchVelocity
 
 
 func exit() -> void:
@@ -51,7 +49,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if input.justReleasedJump:
-		player.velocity.y = max(player.velocity.y, velocityJumpCrouch * stats.percentMinJumpVelocity)
+		player.velocity.y = max(player.velocity.y, stats.jumpCrouchVelocity * stats.percentMinJumpVelocity)
 		if player.velocity.y > stats.jumpVelocity * stats.percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
 			consecutive_jump_cancel()
 		return State.Fall

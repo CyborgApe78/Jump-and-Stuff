@@ -11,7 +11,7 @@ var velocityJumpCrouch: float
 
 func enter() -> void:
 	timerCoyoteJumpGroundPound.stop()
-	velocityJumpCrouch = stats.jumpVelocity * jumpModifier
+	velocityJumpCrouch = stats.jumpGroundPoundVelocity
 	EventBus.playerJumped.emit()
 	topSpeed = 0
 	neutral_move_direction_logic()

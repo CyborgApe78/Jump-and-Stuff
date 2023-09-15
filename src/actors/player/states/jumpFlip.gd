@@ -17,7 +17,7 @@ func enter() -> void:
 	soundeffect.play()
 	particles.restart()
 	player.velocity.x = -player.velocity.x
-	player.velocity.y = stats.jumpVelocity * jumpModifier
+	player.velocity.y = stats.jumpFlipVelocity
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRotate,"rotation", player.facing * 4 * PI, transTime) ## flip,
 	tween.tween_property(player.characterCollision,"rotation", player.facing * 4 * PI, transTime)
