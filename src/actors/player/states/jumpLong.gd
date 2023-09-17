@@ -7,24 +7,18 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 
 @export var jumpModifier: float = 0.9
-@export var modifierVelocity: float = 1.35
-@export var modifierChainBoost: float = 1.50
 
 var startingHeight: int
-var velocityLongJump: float
-var velocityChainBoost: float
 
 
 func enter() -> void:
 	EventBus.playerJumped.emit()
 	
-	velocityLongJump = stats.moveSpeed * modifierVelocity
-	velocityChainBoost = stats.moveSpeed * modifierChainBoost
 	startingHeight = player.global_position.y
 	topSpeed = 0
 	
 	player.velocity.y = stats.jumpLongVelocity
-	player.velocity.x = max(velocityLongJump, abs(player.velocity.x)) * player.facing #TODO: 
+	player.velocity.x = max(stats.jumpLongSpeed, abs(player.velocity.x)) * player.facing #TODO: hori velocity
 	
 	player.animPlayer.queue("Jump")
 	
@@ -51,16 +45,16 @@ func physics(delta) -> void:
 	
 	if player.neutralMoveDirection:
 		neutral_move_direction_logic()
-		if abs(player.velocity.x) < velocityLongJump:
-			player.velocity.x = move_toward(abs(player.velocity.x), stats.velocityLongJump, (stats.moveSpeed * 3) * delta) * player.facing
+		if abs(player.velocity.x) < stats.jumpLongSpeed:
+			player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongSpeed, (stats.moveSpeed * 3) * delta) * player.facing
 	else:
 		if player.moveDirection.x != 0:
 			if player.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
 				apply_friction(stats.moveSpeed * 2, delta)
-			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < velocityLongJump:
+			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < stats.jumpLongSpeed:
 #					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
-					player.velocity.x = move_toward(abs(player.velocity.x), stats.velocityLongJump, (stats.moveSpeed * 3) * delta) * player.facing
+					player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongVelocity, (stats.moveSpeed * 3) * delta) * player.facing
 	
 	track_top_speed(player.velocity.x)
 
@@ -116,7 +110,7 @@ func state_check(delta: float) -> int:
 		if input.pressedCrouch:
 			if !timerBufferJump.is_stopped():
 				timerBufferJump.stop()
-				player.velocity.x = max(velocityChainBoost, abs(player.velocity.x)) * player.facing
+				player.velocity.x = max(stats.jumpLongChainSpeed, abs(player.velocity.x)) * player.facing
 				return State.JumpLong
 			elif !timerBufferRoll.is_stopped():
 				timerBufferRoll.stop()
