@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=31 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -534,6 +534,9 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5e1r"]
 size = Vector2(704, 66)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxagc"]
+size = Vector2(25168, 105)
+
 [node name="Playground" type="Node"]
 script = ExtResource("1_t3d88")
 
@@ -571,7 +574,7 @@ zoom = Vector2(0.5, 0.5)
 script = ExtResource("12_gn10c")
 
 [node name="HealBox" parent="." instance=ExtResource("10_iwkrg")]
-position = Vector2(-762, -79)
+position = Vector2(23, 445)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="HealBox"]
@@ -582,7 +585,7 @@ position = Vector2(14, 8)
 shape = SubResource("RectangleShape2D_yyd6p")
 
 [node name="HurtBox" parent="." instance=ExtResource("12_orgcd")]
-position = Vector2(-935, -38)
+position = Vector2(-228, 501)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="HurtBox"]
@@ -652,5 +655,15 @@ ability = 13
 [node name="UpgradeUnlocker" parent="." instance=ExtResource("23_u041q")]
 position = Vector2(-532, 499)
 upgrade = 2
+
+[node name="HurtBox2" parent="." instance=ExtResource("12_orgcd")]
+position = Vector2(-883, 1562)
+kill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
+position = Vector2(3006, -153.5)
+shape = SubResource("RectangleShape2D_bxagc")
+script = ExtResource("19_1iekm")
+color = Color(1, 0, 0, 1)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

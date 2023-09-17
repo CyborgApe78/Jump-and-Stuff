@@ -18,7 +18,7 @@ var healthCurrent: int:
 	set(v):
 		healthCurrent = clamp(v, 0, healthMax)
 		EventBus.playerHealthChanged.emit(healthCurrent)
-		if v == 0:
+		if v <= 0:
 			died.emit()
 
 

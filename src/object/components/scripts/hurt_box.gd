@@ -6,12 +6,16 @@ class_name HurtBox
 @export var isBurning: bool = false
 @export var isFreezing: bool = false
 @export var oneUse: bool = false
+@export var kill: bool = false
 
 
 func _on_area_entered(area: HitboxComponent) -> void:
 	var attack = Attack.new()
 	
-	attack.damage = damage
+	if kill:
+		attack.damage = 99
+	else:
+		attack.damage = damage
 	attack.isBurning = isBurning
 	attack.isFreezing = isFreezing
 	
