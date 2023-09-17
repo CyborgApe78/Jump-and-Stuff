@@ -49,7 +49,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/puzzle_dependencies/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
 
 [input]
 
@@ -235,6 +235,59 @@ screenshot={
 2d_physics/layer_13="DashSide"
 2d_physics/layer_14="DashUp"
 2d_physics/layer_15="DashDown"
+
+[puzzle_dependencies]
+
+types={
+0: {
+"color": Color(0, 0, 0, 1),
+"id": 0,
+"label": "Type 1"
+},
+1: {
+"color": Color(1, 0.470588, 0.419608, 1),
+"id": 1,
+"label": "Type 2"
+},
+2: {
+"color": Color(0.741176, 0.576471, 0.976471, 1),
+"id": 2,
+"label": "Type 3"
+},
+3: {
+"color": Color(0.45098, 0.94902, 0.501961, 1),
+"id": 3,
+"label": "Type 4"
+},
+4: {
+"color": Color(1, 0.870588, 0.4, 1),
+"id": 4,
+"label": "Type 5"
+}
+}
+boards={
+"3eaa6831e1": {
+"connections": [],
+"id": "3eaa6831e1",
+"label": "Ability Tree",
+"scroll_offset": Vector2(0, 0),
+"things": [],
+"zoom": 1.0
+},
+"e3b01c7394": {
+"connections": [],
+"id": "e3b01c7394",
+"label": "Map",
+"scroll_offset": Vector2(0, -33),
+"things": [],
+"zoom": 1.0
+}
+}
+minimap_enabled=true
+minimap_size=Vector2(200, 150)
+use_snap=true
+snap_distance=20
+current_board_id="3eaa6831e1"
 
 [rendering]
 
