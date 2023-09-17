@@ -9,6 +9,14 @@ Gradual slopes are the only slopes that Mario can build P-meter while running up
 The P-meter will decrease while flying, but not during the initial jump; only when he actually enters flight mode does it start.
 The P-meter won't decrease while swimming or climbing.
 
+Chase the rabbit for collectable, mario 
+Freeze enemy to block water current 
+Jump off enemy projectiles 
+
+Check for wall behind player for boosted hori jumps
+Dash reflect mush have a quick angle option 
+
+Hazard have options for solid bottom, insta kill and one way
 
 spin while dashing too burrow
 Player make platform, bubble mario/cloud
