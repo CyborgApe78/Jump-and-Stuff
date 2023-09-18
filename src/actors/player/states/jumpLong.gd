@@ -86,9 +86,10 @@ func handle_input(event: InputEvent) -> int:
 #	if !input.pressedCrouch:
 		#TODO: change velocity based on whether crouch is held
 	if input.justPressedDive:
-		return State.Dive
-	if input.pressedCrouch and input.justPressedDive:
-		timerBufferRoll.start()
+		if input.pressedCrouch:
+			timerBufferRoll.start()
+		else:
+			return State.Dive
 
 	return State.Null
 
