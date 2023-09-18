@@ -218,12 +218,12 @@ var airTurnModifier: float = 4.0
 
 @export_group("Gravity")
 ## The maximum vertical velocity while falling to control fall speed
-@export var maxFall: int = 4:
+@export var _maxFall: int = 4:
 	set(value):
-		terminalVelocity = maxFall * -jumpVelocity
+		terminalVelocity = _maxFall * -jumpVelocity
 	get:
-		return maxFall
-@onready var terminalVelocity: int = maxFall * -jumpVelocity
+		return _maxFall
+@onready var terminalVelocity: int = _maxFall * -jumpVelocity
 
 @export_group("Glide")
 @export_range(0.0 , 5.0, 0.05) var _glideModifier: float = 0.1:
