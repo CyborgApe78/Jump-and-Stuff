@@ -30,7 +30,7 @@ buttonOtherAll = NodePath("HBoxContainer/Other/All")
 buttonSlide = NodePath("HBoxContainer/Other/Slide")
 buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
 buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPoundBounce")
-buttonWallGrab = NodePath("HBoxContainer/Other/WallGrab")
+buttonWallGrab = NodePath("")
 buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
 buttonBash = NodePath("HBoxContainer/Other/Bash")
 buttonSpin = NodePath("HBoxContainer/Other/Spin")
@@ -126,6 +126,7 @@ layout_mode = 2
 
 [node name="Consec" type="Button" parent="HBoxContainer/Jumps/Consec"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Amount")
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Consec"
@@ -137,6 +138,7 @@ horizontal_alignment = 1
 
 [node name="Amount" type="OptionButton" parent="HBoxContainer/Jumps/Consec"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../All")
 alignment = 1
 item_count = 2
 selected = 0
@@ -209,6 +211,7 @@ text = "Roll"
 
 [node name="Belly" type="Button" parent="HBoxContainer/Dashes"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Amount")
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Belly"
@@ -220,6 +223,7 @@ horizontal_alignment = 1
 
 [node name="Amount" type="OptionButton" parent="HBoxContainer/Dashes"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../All")
 alignment = 1
 item_count = 4
 selected = 0
@@ -263,12 +267,6 @@ layout_mode = 2
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Ground Pound Bounce"
-
-[node name="WallGrab" type="Button" parent="HBoxContainer/Other"]
-layout_mode = 2
-theme = ExtResource("2_3r0j1")
-toggle_mode = true
-text = "Wall Grab"
 
 [node name="GrappleHook" type="Button" parent="HBoxContainer/Other"]
 layout_mode = 2
@@ -345,7 +343,6 @@ text = "Swim Dash"
 [connection signal="toggled" from="HBoxContainer/Other/Slide" to="." method="_on_slide_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GroundPound" to="." method="_on_ground_pound_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GroundPoundBounce" to="." method="_on_ground_pound_bounce_toggled"]
-[connection signal="toggled" from="HBoxContainer/Other/WallGrab" to="." method="_on_wall_grab_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/GrappleHook" to="." method="_on_grapple_hook_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Bash" to="." method="_on_bash_toggled"]
 [connection signal="toggled" from="HBoxContainer/Other/Spin" to="." method="_on_spin_toggled"]

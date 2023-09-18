@@ -80,7 +80,6 @@ changeScene = ExtResource("3_c8fpr")
 
 [node name="Discord" type="Button" parent="Buttons"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../Playground")
 text = "Discord"
 script = ExtResource("4_yem1j")
 
