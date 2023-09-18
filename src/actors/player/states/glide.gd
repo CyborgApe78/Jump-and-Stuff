@@ -41,8 +41,8 @@ func physics(delta) -> void:
 	if player.inWind:
 		player.velocity.y = player.windVelocity.y
 	else:
-		gravity_logic(stats.gravityFall * velocityFallModifier, delta)
-		fall_speed_logic(stats.terminalVelocity * velocityFallModifier)
+		gravity_logic(stats.gravityGlide, delta)
+		fall_speed_logic(stats.terminalGlideVelocity)
 	
 	track_top_speed(player.velocity.x)
 	

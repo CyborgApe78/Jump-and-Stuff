@@ -225,9 +225,17 @@ var airTurnModifier: float = 4.0
 		return maxFall
 @onready var terminalVelocity: int = maxFall * -jumpVelocity
 
-@export_group("Glide") #TODO:
-@export var velocityModifier: float = 0.6
-@export var velocityFallModifier: float = 0.3
+@export_group("Glide")
+@export_range(0.0 , 5.0, 0.05) var _glideModifier: float = 0.1:
+	set(value):
+		_glideModifier = value
+		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent * _glideModifier)
+		terminalGlideVelocity = _maxFall * _glideModifier * -jumpVelocity
+	get:
+		return _glideModifier
+@onready var gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent * _glideModifier)
+@onready var terminalGlideVelocity: int = _maxFall * _glideModifier * -jumpVelocity
+@export var glidevelocityModifier: float = 0.6 #TODO: move to speed
 
 @export_group("Dive") #TODO:
 @export var diveSpeedMultiplier: float = 1.6
