@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#lookat: maybe triggered like shinespark
 
 @export var timerBufferJump: Timer
 
@@ -17,8 +18,11 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	
-	#FIXME: if input is 0 use y = -1
-	player.velocity = player.aimDirection * stats.dashSpeed * 1.6 #TODO: make aim direction like it is in grapple and bash detectors
+	##TODO: make aim direction like it is in grapple and bash detectors
+	if player.aimDirection == Vector2.ZERO:
+		player.velocity = Vector2.UP * stats.dashSpeed * 1.6
+	else:
+		player.velocity = player.aimDirection * stats.dashSpeed * 1.6
 
 
 func exit() -> void:
