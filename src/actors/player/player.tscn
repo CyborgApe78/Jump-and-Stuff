@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=124 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -32,7 +32,6 @@
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="32_3ge2r"]
-[ext_resource type="Script" path="res://src/actors/player/states/DashGroundPound.gd" id="34_16e5c"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="34_mljf1"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="35_hmyo3"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="36_4y8yc"]
@@ -6488,11 +6487,6 @@ durationTimer = NodePath("../../Timers/DashDuration")
 particles = NodePath("../../CharacterRig/CharacterRotate/Jetpack/Jetpack")
 soundJetpack = NodePath("../../Sounds/Jetpack")
 
-[node name="DashGroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "soundeffect")]
-script = ExtResource("34_16e5c")
-timerBufferJump = NodePath("../../Timers/BufferJump")
-soundeffect = NodePath("../../Sounds/jump")
-
 [node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerSemisolidReset", "detector")]
 script = ExtResource("35_hmyo3")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
@@ -6660,6 +6654,18 @@ target_position = Vector2(0, -48)
 enabled = false
 collision_mask = 3
 
+[node name="GroundDetector" type="Node2D" parent="."]
+
+[node name="Left" type="RayCast2D" parent="GroundDetector"]
+position = Vector2(-24, -16)
+target_position = Vector2(0, 64)
+collision_mask = 3
+
+[node name="Right" type="RayCast2D" parent="GroundDetector"]
+position = Vector2(24, -16)
+target_position = Vector2(0, 64)
+collision_mask = 3
+
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
@@ -6721,7 +6727,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

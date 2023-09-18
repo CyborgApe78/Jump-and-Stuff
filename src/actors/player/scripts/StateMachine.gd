@@ -36,7 +36,6 @@ extends Node
 	PlayerState.State.DashWall: $DashWall,
 	PlayerState.State.DashClimb: $DashClimb,
 	PlayerState.State.DashJump: $DashJump,
-	PlayerState.State.DashGroundPound: $DashGroundPound,
 	PlayerState.State.GrappleHook: $GrappleHook,
 	PlayerState.State.BashAim: $BashAim,
 	PlayerState.State.Bash: $Bash,

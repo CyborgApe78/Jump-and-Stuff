@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: aimable
+#TODO: combine into gp bounce
 
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer

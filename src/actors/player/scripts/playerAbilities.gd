@@ -19,7 +19,6 @@ var unlockedDashGround: bool = false ## Unlimited dash on ground
 var unlockedDashWall: bool = false
 var unlockedDashClimb: bool = false
 var unlockedDashJump: bool = false
-var unlockedDashGroundPound: bool = false
 var unlockedDashRoll: bool = false #TODO: Create State
 var unlockedDashBelly: bool = false
 var unlockedDashChain: bool = false
@@ -131,7 +130,6 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedDashWall = BOOL
 		unlockedDashClimb = BOOL
 		unlockedDashJump = BOOL
-		unlockedDashGroundPound = BOOL
 		unlockedDashBelly = BOOL
 		unlockedDashChain = BOOL
 		unlockedSlide = BOOL
@@ -178,8 +176,6 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedDashClimb = BOOL
 	elif ability == list.DashJump:
 		unlockedDashJump = BOOL
-	elif ability == list.DashGroundPound:
-		unlockedDashGroundPound = BOOL
 	elif ability == list.DashRoll:
 		unlockedDashRoll = BOOL
 	elif ability == list.DashBelly:
@@ -246,8 +242,6 @@ func can_use(ability: int) -> bool:
 	elif ability == list.DashClimb and unlockedDashClimb:
 		return true
 	elif ability == list.DashJump and unlockedDashJump:
-		return true
-	elif ability == list.DashGroundPound and unlockedDashGroundPound:
 		return true
 	elif ability == list.DashRoll and unlockedDashRoll:
 		return true

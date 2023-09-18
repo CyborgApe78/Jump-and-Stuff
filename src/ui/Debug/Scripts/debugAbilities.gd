@@ -20,7 +20,6 @@ extends Control
 @export var buttonDashWall: Button
 @export var buttonDashClimb: Button
 @export var buttonDashJump: Button
-@export var buttonDashGroundPound: Button
 @export var buttonDashRoll: Button
 @export var buttonDashBelly: Button
 @export var buttonOtherAll: Button
@@ -65,7 +64,6 @@ func check(BOOL) -> void:
 	buttonDashWall.button_pressed = Abilities.unlockedDashWall
 	buttonDashClimb.button_pressed = Abilities.unlockedDashClimb
 	buttonDashJump.button_pressed = Abilities.unlockedDashJump
-	buttonDashGroundPound.button_pressed = Abilities.unlockedDashGroundPound
 	buttonDashRoll.button_pressed = Abilities.unlockedDashRoll
 	buttonDashBelly.button_pressed = Abilities.unlockedDashBelly
 	buttonSlide.button_pressed = Abilities.unlockedSlide
@@ -151,7 +149,6 @@ func _on_dash_all_toggled(button_pressed: bool) -> void:
 	buttonDashWall.button_pressed = button_pressed
 	buttonDashClimb.button_pressed = button_pressed
 	buttonDashJump.button_pressed = button_pressed
-	buttonDashGroundPound.button_pressed = button_pressed
 	buttonDashRoll.button_pressed = button_pressed
 	buttonDashBelly.button_pressed = button_pressed
 
@@ -182,10 +179,6 @@ func _on_dash_climb_toggled(button_pressed: bool) -> void:
 
 func _on_dash_jump_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.DashJump, button_pressed)
-
-
-func _on_dash_ground_pound_toggled(button_pressed: bool) -> void:
-	Abilities.unlock(PlayerAbilities.list.DashGroundPound, button_pressed)
 
 
 func _on_dash_roll_toggled(button_pressed: bool) -> void:

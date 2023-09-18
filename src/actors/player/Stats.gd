@@ -66,6 +66,7 @@ var airTurnModifier: float = 4.0
 	set(value):
 		_jumpTimeToDescent = value
 		gravityFall = calculate_gravity(jumpHeight, _jumpTimeToDescent)
+		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent * _glideModifier)
 	get:
 		return _jumpTimeToDescent
 ## Time of extra floatyness at peak of jump
@@ -221,6 +222,7 @@ var airTurnModifier: float = 4.0
 @export var _maxFall: int = 4:
 	set(value):
 		terminalVelocity = _maxFall * -jumpVelocity
+		terminalGlideVelocity = _maxFall * _glideModifier * -jumpVelocity
 	get:
 		return _maxFall
 @onready var terminalVelocity: int = _maxFall * -jumpVelocity

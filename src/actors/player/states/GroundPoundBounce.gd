@@ -10,9 +10,10 @@ extends PlayerInfo
 
 func enter() -> void:
 	EventBus.rumble.emit(0.2, 0.3, 0.2)
-	player.animPlayer.play("Jump") #TODO: own anim
+	player.animPlayer.play("Roll") #TODO: own anim
 	soundeffect.play()
-	player.velocity.y = stats.jumpVelocity * modifier
+	#TODO: tweak values
+	player.velocity.y = -player.GPMaxVelocity.y / 2
 
 
 func exit() -> void:
