@@ -133,7 +133,7 @@ var airTurnModifier: float = 4.0
 #	GP Dive + 182
 #	Long 144 / .6
 
-@onready var jumpHeight: int = calculate_tile_height(_baseJumpHeight + 0.25)
+@onready var jumpHeight: int = calculate_tile_height(_baseJumpHeight + _jumpHeightPlatformBoost)
 @onready var gravityJump: float = calculate_gravity(jumpHeight, _jumpTimeToPeak)
 @onready var gravityFall: float = calculate_gravity(jumpHeight, _jumpTimeToDescent)
 @onready var gravityApex: float = calculate_gravity(jumpHeight, _jumpTimeAtApex)
@@ -270,7 +270,14 @@ var downpressedFriction
 
 @export_group("Bash") #TODO:
 
-@export_group("Spin") #TODO:
+@export_group("Spin")
+@export var _baseSpinHeight: float = 1.0:
+	set(value):
+		_baseSpinHeight = value
+		jumpHeight = calculate_tile_height(_baseSpinHeight + _jumpHeightPlatformBoost)
+	get:
+		return _baseSpinHeight
+@onready var spinHeight: int = calculate_tile_height(_baseSpinHeight + _jumpHeightPlatformBoost)
 
 @export_group("Roll") #TODO:
 

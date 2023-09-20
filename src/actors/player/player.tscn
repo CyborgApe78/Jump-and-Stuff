@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=125 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -43,6 +43,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/GrappleHook.gd" id="41_5rahm"]
 [ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="42_24e85"]
 [ext_resource type="Script" path="res://src/actors/player/states/roll.gd" id="42_rb26t"]
+[ext_resource type="Script" path="res://src/actors/player/states/Spin.gd" id="43_5j4ax"]
 [ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="43_ft5ho"]
 [ext_resource type="Script" path="res://src/actors/player/states/RollJump.gd" id="44_mqqr0"]
 [ext_resource type="PackedScene" uid="uid://bxio7mtc2sse1" path="res://src/object/components/health_component.tscn" id="45_an6xy"]
@@ -6537,6 +6538,7 @@ timerCoyoteJumpWall = NodePath("../../Timers/CoyoteJumpWall")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 
 [node name="Spin" type="Node" parent="StateMachine"]
+script = ExtResource("43_5j4ax")
 
 [node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "durationTimer", "particles", "detector")]
 script = ExtResource("42_24e85")

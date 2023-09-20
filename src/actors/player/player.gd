@@ -2,7 +2,6 @@ extends Actor
 class_name Player
 
 
-@onready var stats: Resource = preload("res://src/actors/player/resources/playerStats.tres")
 @onready var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 
 @onready var animPlayer: AnimationPlayer = $AnimationPlayer
