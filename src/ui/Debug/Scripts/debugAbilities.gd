@@ -26,7 +26,6 @@ extends Control
 @export var buttonSlide: Button
 @export var buttonGroundPound: Button
 @export var buttonGroundPoundBounce: Button
-@export var buttonWallGrab: Button
 @export var buttonGrappleHook: Button
 @export var buttonBash: Button
 @export var buttonSpin: Button
@@ -69,7 +68,6 @@ func check(BOOL) -> void:
 	buttonSlide.button_pressed = Abilities.unlockedSlide
 	buttonGroundPound.button_pressed = Abilities.unlockedGroundPound
 	buttonGroundPoundBounce.button_pressed = Abilities.unlockedGroundPoundBounce
-	buttonWallGrab.button_pressed = Abilities.unlockedWallGrab
 	buttonGrappleHook.button_pressed = Abilities.unlockedGrappleHook
 	buttonBash.button_pressed = Abilities.unlockedBash
 	buttonSpin.button_pressed = Abilities.unlockedSpin
@@ -197,7 +195,6 @@ func _on_other_all_toggled(button_pressed: bool) -> void:
 	buttonSlide.button_pressed = button_pressed
 	buttonGroundPound.button_pressed = button_pressed
 	buttonGroundPoundBounce.button_pressed = button_pressed
-	buttonWallGrab.button_pressed = button_pressed
 	buttonGrappleHook.button_pressed = button_pressed
 	buttonBash.button_pressed = button_pressed
 	buttonSpin.button_pressed = button_pressed
@@ -218,10 +215,6 @@ func _on_ground_pound_toggled(button_pressed: bool) -> void:
 
 func _on_ground_pound_bounce_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.GroundPoundBounce, button_pressed)
-
-
-func _on_wall_grab_toggled(button_pressed: bool) -> void:
-	Abilities.unlock(PlayerAbilities.list.WallGrab, button_pressed)
 
 
 func _on_grapple_hook_toggled(button_pressed: bool) -> void:

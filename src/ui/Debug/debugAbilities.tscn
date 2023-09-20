@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_r3h2n"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_3r0j1"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpFlip", "buttonJumpLong", "buttonJumpCrouch", "buttonJumpGroundPound", "buttonJumpWall", "buttonJumpRoll", "buttonJumpBelly", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashGround", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonDashRoll", "buttonDashBelly", "buttonOtherAll", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonWallGrab", "buttonGrappleHook", "buttonBash", "buttonSpin", "buttonRoll", "buttonBurrow", "buttonGlide", "buttonDive", "buttonSwimDash", "consecAmount", "dashAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpFlip", "buttonJumpLong", "buttonJumpCrouch", "buttonJumpGroundPound", "buttonJumpWall", "buttonJumpRoll", "buttonJumpBelly", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashGround", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonDashRoll", "buttonDashBelly", "buttonOtherAll", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGrappleHook", "buttonBash", "buttonSpin", "buttonRoll", "buttonBurrow", "buttonGlide", "buttonDive", "buttonSwimDash", "consecAmount", "dashAmount")]
 script = ExtResource("1_r3h2n")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -30,7 +30,6 @@ buttonOtherAll = NodePath("HBoxContainer/Other/All")
 buttonSlide = NodePath("HBoxContainer/Other/Slide")
 buttonGroundPound = NodePath("HBoxContainer/Other/GroundPound")
 buttonGroundPoundBounce = NodePath("HBoxContainer/Other/GroundPoundBounce")
-buttonWallGrab = NodePath("")
 buttonGrappleHook = NodePath("HBoxContainer/Other/GrappleHook")
 buttonBash = NodePath("HBoxContainer/Other/Bash")
 buttonSpin = NodePath("HBoxContainer/Other/Spin")
