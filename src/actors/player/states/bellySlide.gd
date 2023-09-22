@@ -53,6 +53,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.Roll
 	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashBelly):
 		return State.BellySlideDash
+	if input.justPressedCrouch:
+		return State.Crouch
 
 	return State.Null
 
