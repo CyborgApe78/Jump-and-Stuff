@@ -6,7 +6,7 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
 
-@export var jumpModifier: float = 0.9
+@export var jumpSoundModifier: float = stats._jumpLongModifier
 
 var startingHeight: int
 
@@ -22,7 +22,7 @@ func enter() -> void:
 	
 	player.animPlayer.queue("Jump")
 	
-	soundeffect.pitch_scale = jumpModifier
+	soundeffect.pitch_scale = jumpSoundModifier
 	soundeffect.play()
 	particles.restart()
 	

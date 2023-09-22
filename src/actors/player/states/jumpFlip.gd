@@ -2,8 +2,7 @@ extends PlayerInfo
 
 
 @export var soundeffect: AudioStreamPlayer
-
-@export var jumpModifier: float = 1.35
+@export var jumpSoundModifier: float = stats._jumpFlipModifier
 @export var transTime: float = 0.5
 @export var particles: GPUParticles2D
 
@@ -13,7 +12,7 @@ func enter() -> void:
 	topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
-	soundeffect.pitch_scale = jumpModifier
+	soundeffect.pitch_scale = jumpSoundModifier
 	soundeffect.play()
 	particles.restart()
 	player.velocity.x = -player.velocity.x
