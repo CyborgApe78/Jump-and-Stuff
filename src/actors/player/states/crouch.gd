@@ -1,16 +1,18 @@
 extends PlayerInfo
 
+#TODO: add crawl state
 
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpGroundPound: Timer
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
+@export var timerConsecutiveJump: Timer
 @export var detector: ShapeCast2D
 
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
-@export var transformTime: float = 0.2
 
+var saveConsecutive: bool = false
 
 #LOOKAT: crouch stores consec jumps
 
@@ -19,16 +21,23 @@ func enter() -> void:
 	player.animPlayer.queue("Crouch")
 	
 	neutral_move_direction_logic()
+	
+	if !timerConsecutiveJump.is_stopped():
+		saveConsecutive = true
 
 
 func exit() -> void:
 	player.animPlayer.stop()
+	
+	if saveConsecutive:
+		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
+		saveConsecutive = false
 
 
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	apply_friction(stats.frictionGround * 1.5, delta)
+	apply_friction(stats.frictionGround * stats.crouchFriction, delta)
 
 
 func visual(delta) -> void:

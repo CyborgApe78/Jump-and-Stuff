@@ -36,6 +36,9 @@ var airTurnModifier: float = 4.0
 @onready var accelerationAir: float = moveSpeed / (baseAcceleration * baseAirMovement)
 @onready var frictionAir: float = moveSpeed / (baseFriction * baseAirMovement)
 
+@export_group("Crouch")
+@export_range(0.0 , 2.0, 0.01) var crouchFriction: float = 0.5
+
 @export_group("Jump")
 ## Base Jump Height
 @export var _baseJumpHeight: float = 4.0:
