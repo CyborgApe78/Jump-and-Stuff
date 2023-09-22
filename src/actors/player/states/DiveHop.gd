@@ -18,7 +18,7 @@ func enter() -> void:
 	topSpeed = 0
 	
 	player.velocity.x = max(velocityHop, abs(player.velocity.x)) * player.facing
-	player.velocity.y = stats.jumpVelocity * jumpModifier
+	player.velocity.y = stats.diveVelocity
 	
 	player.animPlayer.queue("Belly Slide")
 
@@ -37,7 +37,10 @@ func physics(delta) -> void:
 	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing:
 		apply_friction(stats.moveSpeed * 2, delta)
 	
-	gravity_logic(stats.gravityFall, delta)
+	if player.velocity.y < 0:
+		gravity_logic(stats.gravityDiveFloat, delta)
+	else:
+		gravity_logic(stats.gravityFall, delta)
 	fall_speed_logic(stats.terminalVelocity)
 	
 	track_top_speed(player.velocity.x)

@@ -239,9 +239,31 @@ var airTurnModifier: float = 4.0
 @onready var terminalGlideVelocity: int = _maxFall * _glideModifier * -jumpVelocity
 @export var glidevelocityModifier: float = 0.6 #TODO: move to speed
 
-@export_group("Dive") #TODO:
+@export_group("Dive")
+@export var _baseDiveHeight: float = 2.0:
+	set(value):
+		_baseDiveHeight = value
+		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseDiveHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
+	get:
+		return _baseDiveHeight
+@export_range(0.0 , 1.0, 0.25) var _diveTimeToPeak: float = 0.1:
+	set(value):
+		_diveTimeToPeak = value
+		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseDiveHeight + _jumpHeightPlatformBoost), _diveTimeToPeak)
+	get:
+		return _diveTimeToPeak
+@onready var diveVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseDiveHeight + _jumpHeightPlatformBoost), _diveTimeToPeak)
+@export_range(0.0 , 5.0, 0.05) var _diveFloatModifier: float = 0.5:
+	set(value):
+		_diveFloatModifier = value
+		gravityDiveFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / _diveFloatModifier)
+	get:
+		return _diveFloatModifier
+@onready var gravityDiveFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / _diveFloatModifier)
+
 @export var diveSpeedMultiplier: float = 1.6
 @export var multiplierGroundPound: float = 1.5
+
 
 @export_group("Slide") #TODO:
 var upHillFrictionModifier: float = 2.0
