@@ -18,7 +18,7 @@ func enter() -> void:
 	topSpeed = 0
 	
 	player.velocity.y = stats.jumpLongVelocity
-	player.velocity.x = max(stats.jumpLongSpeed, abs(player.velocity.x)) * player.facing #TODO: hori velocity
+	player.velocity.x = max(stats.jumpLongSpeed, abs(player.velocity.x)) * player.facing
 	
 	player.animPlayer.queue("Jump")
 	
@@ -47,6 +47,7 @@ func physics(delta) -> void:
 		neutral_move_direction_logic()
 		if abs(player.velocity.x) < stats.jumpLongSpeed:
 			player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongSpeed, (stats.moveSpeed * 3) * delta) * player.facing
+			#TODO: long jump acceleration
 	else:
 		if player.moveDirection.x != 0:
 			if player.moveDirection.x != player.facing:

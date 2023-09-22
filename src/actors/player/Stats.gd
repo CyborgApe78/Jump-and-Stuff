@@ -125,7 +125,6 @@ var airTurnModifier: float = 4.0
 		jumpGroundPoundVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpGroundPoundModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpGroundPoundModifier
-
 #Odyssey Jump Height
 #	Single 258
 #	Double 312 / 1.2
@@ -135,7 +134,6 @@ var airTurnModifier: float = 4.0
 #	Side Flip 496 / 1.9
 #	GP Dive + 182
 #	Long 144 / .6
-
 @onready var jumpHeight: int = calculate_tile_height(_baseJumpHeight + _jumpHeightPlatformBoost)
 @onready var gravityJump: float = calculate_gravity(jumpHeight, _jumpTimeToPeak)
 @onready var gravityFall: float = calculate_gravity(jumpHeight, _jumpTimeToDescent)
@@ -150,7 +148,6 @@ var airTurnModifier: float = 4.0
 @onready var jumpLongVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpLongModifier + _jumpHeightPlatformBoost))
 @onready var jumpCrouchVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpCrouchModifier + _jumpHeightPlatformBoost))
 @onready var jumpGroundPoundVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpGroundPoundModifier + _jumpHeightPlatformBoost))
-
 @export_range(0.0 , 5.0, 0.1) var _jumpLongSpeedModifier: float = 1.35:
 	set(value):
 		_jumpLongSpeedModifier = value
@@ -163,24 +160,8 @@ var airTurnModifier: float = 4.0
 		jumpLongChainSpeed = calculate_tile_height(_baseMove * _jumpLongSpeedChainModifier)
 	get:
 		return _jumpLongSpeedChainModifier
-
 @onready var jumpLongSpeed: int = calculate_tile_height(_baseMove * _jumpLongSpeedModifier)
 @onready var jumpLongChainSpeed: int = calculate_tile_height(_baseMove * _jumpLongSpeedChainModifier)
-#TODO: wall jump speed
-#if player.moveDirection.y == -1:
-#		player.velocity = Vector2(100 * -jumpDirection, stats.jumpVelocity * 1.0)
-#	## down pressed
-#	elif player.moveDirection.y == 1:
-#		player.velocity = Vector2(300 * -jumpDirection, 100)
-#	## no directional input
-#	elif player.moveDirection.x == 0:
-#		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
-#	## away from wall pressed
-#	elif player.moveDirection.x == -jumpDirection:
-#		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
-#	## towards from wall pressed
-#	elif player.moveDirection.x == jumpDirection: ) 
-#		player.velocity = Vector2(200 * -jumpDirection, stats.jumpVelocity * 0.8)
 
 
 @export_group("Wall Jump")
@@ -214,11 +195,25 @@ var airTurnModifier: float = 4.0
 		wallJumpUpVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpTowardModifier))
 	get:
 		return _wallJumpTowardModifier
-
 @onready var wallJumpUpVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpUpModifier))
 @onready var wallJumpDownVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpDownModifier))
 @onready var wallJumpAwayVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpNeutralModifier))
 @onready var wallJumpTowardVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpTowardModifier))
+#TODO: wall jump speed
+#if player.moveDirection.y == -1:
+#		player.velocity = Vector2(100 * -jumpDirection, stats.jumpVelocity * 1.0)
+#	## down pressed
+#	elif player.moveDirection.y == 1:
+#		player.velocity = Vector2(300 * -jumpDirection, 100)
+#	## no directional input
+#	elif player.moveDirection.x == 0:
+#		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
+#	## away from wall pressed
+#	elif player.moveDirection.x == -jumpDirection:
+#		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
+#	## towards from wall pressed
+#	elif player.moveDirection.x == jumpDirection: ) 
+#		player.velocity = Vector2(200 * -jumpDirection, stats.jumpVelocity * 0.8)
 
 @export_group("Gravity")
 ## The maximum vertical velocity while falling to control fall speed
@@ -263,7 +258,6 @@ var airTurnModifier: float = 4.0
 	get:
 		return _diveFloatModifier
 @onready var gravityDiveFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / _diveFloatModifier)
-
 @export var diveSpeedMultiplier: float = 1.6
 @export var multiplierGroundPound: float = 1.5
 

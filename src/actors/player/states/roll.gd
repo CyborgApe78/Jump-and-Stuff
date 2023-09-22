@@ -1,8 +1,6 @@
 extends PlayerInfo
 
-#TODO: lots of number tweeaking
-#TODO: create spiked update for slippery surfaces
-#TODO: max roll speed
+#TODO: roll on curved walls
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
@@ -51,8 +49,9 @@ func exit() -> void:
 	timerDuration.stop()
 	if saveConsecutive:
 		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
+		saveConsecutive = false
 	particles.emitting = false
-	saveConsecutive = false
+	
 
 
 func physics(delta) -> void:
@@ -111,6 +110,7 @@ func handle_input(event: InputEvent) -> int:
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
+		saveConsecutive = false
 		if timerDuration.is_stopped():
 			return State.Roll
 		else:
@@ -145,7 +145,7 @@ func state_check(delta: float) -> int:
 
 
 func timers() -> void:
-	if timerConsecutiveJump.is_stopped():
+	if !timerConsecutiveJump.is_stopped():
 		saveConsecutive = true
 	timerDuration.wait_time = duration
 	timerDuration.start()

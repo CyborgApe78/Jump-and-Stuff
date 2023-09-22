@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#LOOKAT: should you gain speed when hopping
 
 @export var timerDuration: Timer
 @export var detector: ShapeCast2D
