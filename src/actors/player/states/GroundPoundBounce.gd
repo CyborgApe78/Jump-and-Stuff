@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: keep small hitbox and give more control, more of bouncing ball
 
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer
@@ -13,7 +12,7 @@ func enter() -> void:
 	player.animPlayer.play("Roll") #TODO: own anim
 	soundeffect.play()
 	#TODO: tweak values
-	player.velocity.y = -player.GPMaxVelocity.y / 2
+	player.velocity.y = -player.GPMaxVelocity.y / 3
 
 
 func exit() -> void:

@@ -31,7 +31,10 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta) #TODO: make downward version
 	player.move_and_slide()
 	
-	gravity_logic(stats.gravityGP, delta)
+	if player.velocity.y < 0:
+		gravity_logic(stats.gravityGPFloat, delta)
+	else:
+		gravity_logic(stats.gravityGP, delta)
 	fall_speed_logic(stats.terminalGPVelocity)
 	
 	player.velocity.x = 0

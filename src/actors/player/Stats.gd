@@ -265,7 +265,7 @@ var downpressedFriction
 @onready var dashSpeed: int = calculate_tile_height(baseDash) #TODO: change to velocity
 
 @export_group("GroundPound")
-@export var _baseGPHeight: float = 2.0:
+@export var _baseGPHeight: float = 1.0:
 	set(value):
 		_baseGPHeight = value
 		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseGPHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
@@ -278,14 +278,22 @@ var downpressedFriction
 	get:
 		return _gpTimeToPeak
 @onready var gpVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseGPHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
-@export_range(0.0 , 5.0, 0.05) var _gpModifier: float = 2.0:
+@export_range(0.0 , 5.0, 0.05) var _gpModifier: float = 1.5:
 	set(value):
 		_gpModifier = value
 		gravityGP = calculate_gravity(jumpHeight, _jumpTimeToDescent / _gpModifier)
+		gravityGPFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / (_gpModifier / _gpFloatModifier))
 		terminalGlideVelocity = _maxFall * _gpModifier * -jumpVelocity
 	get:
 		return _gpModifier
+@export_range(0.0 , 5.0, 0.05) var _gpFloatModifier: float = 3:
+	set(value):
+		_gpFloatModifier = value
+		gravityGPFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / (_gpModifier / _gpFloatModifier))
+	get:
+		return _gpFloatModifier
 @onready var gravityGP = calculate_gravity(jumpHeight, _jumpTimeToDescent / _gpModifier)
+@onready var gravityGPFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / (_gpModifier / _gpFloatModifier))
 @onready var terminalGPVelocity: int = _maxFall * _gpModifier * -jumpVelocity
 
 @export_group("Grapple") #TODO:
