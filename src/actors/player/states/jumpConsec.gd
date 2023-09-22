@@ -4,8 +4,6 @@ extends PlayerInfo
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var soundeffect: AudioStreamPlayer
-
-@export var jumpModifier: float = 0.25
 @export var particles: GPUParticles2D
 
 
@@ -73,8 +71,9 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if input.justReleasedJump:
-		player.velocity.y = max( player.velocity.y, stats.jumpVelocity * stats.percentMinJumpVelocity)
-		if player.velocity.y > (stats.jumpVelocity * ((jumpModifier * abilities.currentJumpConsec) + 1)) * stats.percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
+		player.velocity.y = max(player.velocity.y, stats.jumpVelocity * stats.percentMinJumpVelocity)
+		if player.velocity.y > stats.jumpDoubleVelocity * stats.percentKeepJumpConsecutive: 
+			## needs to be a percent of full jump to keep it going
 			consecutive_jump_cancel()
 		return State.Fall
 	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):

@@ -55,7 +55,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if input.justReleasedJump:
-		player.velocity.y = max( player.velocity.y, (stats.jumpVelocity * jumpModifier) * stats.percentMinJumpVelocity)
+		player.velocity.y = max( player.velocity.y, stats.jumpFlipVelocity * stats.percentMinJumpVelocity)
 		return State.Fall
 	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
