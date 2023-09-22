@@ -1,6 +1,6 @@
 extends Node
 class_name StatsComponent
-#TODO: added underscore for private var/func
+#TODO: add all variables to dependent set/get
 
 var velocityJumpCrouch: float
 
