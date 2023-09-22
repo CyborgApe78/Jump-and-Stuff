@@ -12,9 +12,9 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	if !detector.is_colliding(): #TODO: only move up if in semisolid
-		player.global_position.y -= Util.tileSize * 4 #TODO: smooth movement
-	player.velocity.y = max(stats.moveSpeed, abs(player.velocity.y))
+#	if !detector.is_colliding(): #TODO: only move up if in semisolid
+#		player.global_position.y -= Util.tileSize * 1.25 #TODO: smooth movement
+	player.velocity.y = stats.gpVelocity
 	player.animPlayer.queue("Ground Pound")
 	if player.characterRotate.rotation_degrees != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -31,7 +31,8 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta) #TODO: make downward version
 	player.move_and_slide()
 	
-	gravity_logic(stats.gravityFall, delta)
+	gravity_logic(stats.gravityGP, delta)
+	fall_speed_logic(stats.terminalGPVelocity)
 	
 	player.velocity.x = 0
 #	if input.pressGroundPound: ## could use this bounce along the ground

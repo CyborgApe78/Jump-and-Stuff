@@ -231,11 +231,11 @@ var airTurnModifier: float = 4.0
 @export_range(0.0 , 5.0, 0.05) var _glideModifier: float = 0.1:
 	set(value):
 		_glideModifier = value
-		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent * _glideModifier)
+		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent / _glideModifier)
 		terminalGlideVelocity = _maxFall * _glideModifier * -jumpVelocity
 	get:
 		return _glideModifier
-@onready var gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent * _glideModifier)
+@onready var gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent / _glideModifier)
 @onready var terminalGlideVelocity: int = _maxFall * _glideModifier * -jumpVelocity
 @export var glidevelocityModifier: float = 0.6 #TODO: move to speed
 
@@ -264,7 +264,29 @@ var downpressedFriction
 		return baseDash
 @onready var dashSpeed: int = calculate_tile_height(baseDash) #TODO: change to velocity
 
-@export_group("GroundPound") #TODO:
+@export_group("GroundPound")
+@export var _baseGPHeight: float = 2.0:
+	set(value):
+		_baseGPHeight = value
+		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseGPHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
+	get:
+		return _baseGPHeight
+@export_range(0.0 , 1.0, 0.25) var _gpTimeToPeak: float = 0.2:
+	set(value):
+		_gpTimeToPeak = value
+		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseGPHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
+	get:
+		return _gpTimeToPeak
+@onready var gpVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseGPHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
+@export_range(0.0 , 5.0, 0.05) var _gpModifier: float = 2.0:
+	set(value):
+		_gpModifier = value
+		gravityGP = calculate_gravity(jumpHeight, _jumpTimeToDescent / _gpModifier)
+		terminalGlideVelocity = _maxFall * _gpModifier * -jumpVelocity
+	get:
+		return _gpModifier
+@onready var gravityGP = calculate_gravity(jumpHeight, _jumpTimeToDescent / _gpModifier)
+@onready var terminalGPVelocity: int = _maxFall * _gpModifier * -jumpVelocity
 
 @export_group("Grapple") #TODO:
 
