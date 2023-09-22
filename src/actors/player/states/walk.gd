@@ -70,8 +70,6 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if input.pressedCrouch: 
 		return State.Crouch
-	if player.inWater:
-		return State.Swim
 	if skidding:
 		return State.Skid
 	if !player.is_on_floor():

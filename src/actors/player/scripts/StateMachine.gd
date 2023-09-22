@@ -121,3 +121,8 @@ func sound(delta) -> void:
 
 func player_died() -> void:
 	change_state(PlayerState.State.Die)
+
+
+func player_swim() -> void:
+	#TODO: not all states should change
+	change_state(PlayerState.State.Swim)

@@ -6859,6 +6859,7 @@ visible = false
 position = Vector2(-8, -64)
 points = PackedVector2Array(8, 0, 24, 0)
 
+[connection signal="enterWater" from="." to="StateMachine" method="player_swim"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
 [connection signal="died" from="HealthComponent" to="StateMachine" method="player_died"]
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]

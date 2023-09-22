@@ -33,6 +33,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
+#	player.characterRotate.rotation = input.moveDirection.angle() #FIXME: doesn't work
 	pass
 
 

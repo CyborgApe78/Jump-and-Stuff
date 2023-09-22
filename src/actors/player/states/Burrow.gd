@@ -32,7 +32,6 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if !player.inWater:
-		return State.Fall
 	
+
 	return State.Null
