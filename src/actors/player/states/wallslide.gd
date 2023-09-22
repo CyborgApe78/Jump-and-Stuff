@@ -1,5 +1,7 @@
 extends PlayerInfo
 
+#FIXME: sometimes slides on face
+
 @export var coyoteJumpWallTimer: Timer
 @export var particles: GPUParticles2D
 
@@ -49,7 +51,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.Fall
 #	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.WallGrab):
 #		return State.WallGrab
-	if input.justPressedJump:
+	if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpWall):
 		return State.JumpWall
 	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
