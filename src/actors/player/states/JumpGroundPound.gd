@@ -4,7 +4,7 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 @export var timerCoyoteJumpGroundPound: Timer
 
-@export var jumpSoundModifier: float = stats._jumpGroundPoundModifier
+@export var jumpSoundModifier: float = 3.0
 @export var particles: GPUParticles2D
 
 var velocityJumpCrouch: float

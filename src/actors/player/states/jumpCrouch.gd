@@ -3,7 +3,7 @@ extends PlayerInfo
 
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
-@export var jumpSoundModifier: float = stats._jumpCrouchModifier
+@export var jumpSoundModifier: float = 2.5
 
 
 func enter() -> void:

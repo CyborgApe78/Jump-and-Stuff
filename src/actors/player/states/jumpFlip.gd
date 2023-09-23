@@ -2,7 +2,7 @@ extends PlayerInfo
 
 
 @export var soundeffect: AudioStreamPlayer
-@export var jumpSoundModifier: float = stats._jumpFlipModifier
+@export var jumpSoundModifier: float = 1.75
 @export var transTime: float = 0.5
 @export var particles: GPUParticles2D
 

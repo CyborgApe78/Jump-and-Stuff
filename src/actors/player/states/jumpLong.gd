@@ -6,7 +6,7 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
 
-@export var jumpSoundModifier: float = stats._jumpLongModifier
+@export var jumpSoundModifier: float = 0.9
 
 var startingHeight: int
 

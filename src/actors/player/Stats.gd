@@ -101,7 +101,7 @@ var airTurnModifier: float = 4.0
 		jumpTripleRunVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpTripleModifier + _jumpRunModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpTripleModifier
-@export_range(0.0 , 5.0, 0.25) var _jumpFlipModifier: float = 1.75:
+@export_range(0.0 , 5.0, 0.05) var _jumpFlipModifier: float = 1.75:
 	set(value):
 		_jumpFlipModifier = value
 		jumpFlipVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpFlipModifier + _jumpHeightPlatformBoost))
