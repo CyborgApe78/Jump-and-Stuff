@@ -534,8 +534,9 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5e1r"]
 size = Vector2(704, 66)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxagc"]
-size = Vector2(25168, 105)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_legq7"]
+a = Vector2(10509, 0)
+b = Vector2(-7328, 0)
 
 [node name="Playground" type="Node"]
 script = ExtResource("1_t3d88")
@@ -625,7 +626,7 @@ script = ExtResource("19_1iekm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Semisolid"]
 modulate = Color(1, 1, 1, 0.3)
-position = Vector2(-1008, 1901)
+position = Vector2(-3463, 4639)
 polygon = PackedVector2Array(291, 58, 1090, 363, 2607, 373, 7234, -1030, 6730, -726, 2616, 476, 979, 493, 263, 123)
 
 [node name="DoorLocked" parent="." instance=ExtResource("20_8211g")]
@@ -661,8 +662,7 @@ position = Vector2(-883, 1562)
 kill = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
-position = Vector2(3006, -153.5)
-shape = SubResource("RectangleShape2D_bxagc")
+shape = SubResource("SegmentShape2D_legq7")
 script = ExtResource("19_1iekm")
 color = Color(1, 0, 0, 1)
 
