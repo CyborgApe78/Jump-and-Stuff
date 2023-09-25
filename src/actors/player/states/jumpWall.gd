@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 #FIXME: coyote wall jump flips sprite away from wall, but returns to face wall without input. adjust facing to match on exit
+#TODO: make other wall jumps not go back to wall and gain height
 
 @export var timerCoyoteJumpWall: Timer
 @export var timerLock: Timer
@@ -28,28 +29,23 @@ func enter() -> void:
 	if player.moveDirection.y == -1:
 		player.characterRig.scale.x = player.wallDirection #TODO: use facing func
 		player.velocity = Vector2(100 * -jumpDirection, stats.jumpVelocity * 1.0)
-		EventBus.playerActionAnnounce.emit("Wall Up")
 	## down pressed
 	elif player.moveDirection.y == 1:
 		player.characterRig.scale.x = player.wallDirection
 		player.velocity = Vector2(300 * -jumpDirection, 100)
-		EventBus.playerActionAnnounce.emit("Wall Down")
 	## no directional input
 	elif player.moveDirection.x == 0:
 		player.characterRig.scale.x = -player.wallDirection
-		EventBus.playerActionAnnounce.emit("Wall Neutral")
 		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
-	## away from wall pressed
-	elif player.moveDirection.x == -jumpDirection:
-		player.characterRig.scale.x = -player.wallDirection
-		EventBus.playerActionAnnounce.emit("Wall Away")
-		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
 	## towards from wall pressed
-	elif player.moveDirection.x == jumpDirection: 
+	elif player.moveDirection.x == jumpDirection and abilities.can_use(PlayerAbilities.list.JumpWallSame): 
 		player.characterRig.scale.x = player.wallDirection
-		EventBus.playerActionAnnounce.emit("Wall Towards") 
 		player.velocity = Vector2(200 * -jumpDirection, stats.jumpVelocity * 0.8)
 		wallHop = true
+	## away from wall pressed
+	else:
+		player.characterRig.scale.x = -player.wallDirection
+		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
 	
 	particles.restart()
 	topSpeed = 0

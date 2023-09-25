@@ -9,6 +9,7 @@ var unlockedJumpLong: bool = false
 var unlockedJumpCrouch: bool = false
 var unlockedJumpGroundPound: bool = false
 var unlockedJumpWall: bool = false
+var unlockedJumpWallSame: bool = false
 var unlockedJumpRoll: bool = false
 var unlockedJumpBelly: bool = false
 
@@ -67,6 +68,7 @@ enum list {
 	JumpConsec,
 	JumpGroundPound,
 	JumpWall,
+	JumpWallSame,
 	JumpRoll,
 	JumpBelly,
 	Dash,
@@ -120,6 +122,7 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedJumpCrouch = BOOL
 		unlockedJumpGroundPound = BOOL
 		unlockedJumpWall = BOOL
+		unlockedJumpWallSame = BOOL
 		unlockedJumpRoll = BOOL
 		unlockedJumpBelly = BOOL
 		unlockedJumpConsec = BOOL
@@ -156,6 +159,8 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedJumpGroundPound = BOOL
 	elif ability == list.JumpWall:
 		unlockedJumpWall = BOOL
+	elif ability == list.JumpWallSame:
+		unlockedJumpWallSame = BOOL
 	elif ability == list.JumpRoll:
 		unlockedJumpRoll = BOOL
 	elif ability == list.JumpBelly:
@@ -222,6 +227,8 @@ func can_use(ability: int) -> bool:
 	elif ability == list.JumpGroundPound and unlockedJumpGroundPound:
 		return true
 	elif ability == list.JumpWall and unlockedJumpWall:
+		return true
+	elif ability == list.JumpWallSame and unlockedJumpWallSame:
 		return true
 	elif ability == list.JumpRoll and unlockedJumpRoll:
 		return true

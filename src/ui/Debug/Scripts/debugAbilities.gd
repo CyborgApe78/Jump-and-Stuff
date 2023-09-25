@@ -9,6 +9,7 @@ extends Control
 @export var buttonJumpCrouch: Button
 @export var buttonJumpGroundPound: Button
 @export var buttonJumpWall: Button
+@export var buttonJumpWallSame: Button
 @export var buttonJumpRoll: Button
 @export var buttonJumpBelly: Button
 @export var buttonJumpConsec: Button
@@ -53,6 +54,7 @@ func check(BOOL) -> void:
 	buttonJumpCrouch.button_pressed = Abilities.unlockedJumpCrouch
 	buttonJumpGroundPound.button_pressed = Abilities.unlockedJumpGroundPound
 	buttonJumpWall.button_pressed = Abilities.unlockedJumpWall
+	buttonJumpWallSame.button_pressed = Abilities.unlockedJumpWallSame
 	buttonJumpRoll.button_pressed = Abilities.unlockedJumpRoll
 	buttonJumpBelly.button_pressed = Abilities.unlockedJumpBelly
 	buttonJumpConsec.button_pressed = Abilities.unlockedJumpConsec
@@ -94,6 +96,7 @@ func _on_jump_all_toggled(button_pressed: bool) -> void:
 	buttonJumpCrouch.button_pressed = button_pressed
 	buttonJumpGroundPound.button_pressed = button_pressed
 	buttonJumpWall.button_pressed = button_pressed
+	buttonJumpWallSame.button_pressed = button_pressed
 	buttonJumpRoll.button_pressed = button_pressed
 	buttonJumpBelly.button_pressed = button_pressed
 	buttonJumpConsec.button_pressed = button_pressed
@@ -122,6 +125,8 @@ func _on_jump_ground_pound_toggled(button_pressed: bool) -> void:
 func _on_jump_wall_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.JumpWall, button_pressed)
 
+func _on_jump_wall_same_toggled(button_pressed: bool) -> void:
+	Abilities.unlock(PlayerAbilities.list.JumpWallSame, button_pressed)
 
 func _on_jump_roll_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.JumpRoll, button_pressed)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugAbilities.gd" id="1_r3h2n"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="2_3r0j1"]
 
-[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpFlip", "buttonJumpLong", "buttonJumpCrouch", "buttonJumpGroundPound", "buttonJumpWall", "buttonJumpRoll", "buttonJumpBelly", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashGround", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonDashRoll", "buttonDashBelly", "buttonOtherAll", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGrappleHook", "buttonBash", "buttonSpin", "buttonRoll", "buttonBurrow", "buttonGlide", "buttonDive", "buttonSwimDash", "consecAmount", "dashAmount")]
+[node name="Abilities" type="VBoxContainer" node_paths=PackedStringArray("buttonAbilityAll", "buttonJumpAll", "buttonJumpAir", "buttonJumpFlip", "buttonJumpLong", "buttonJumpCrouch", "buttonJumpGroundPound", "buttonJumpWall", "buttonJumpWallSame", "buttonJumpRoll", "buttonJumpBelly", "buttonJumpConsec", "buttonDashAll", "buttonDashSide", "buttonDashUp", "buttonDashDown", "buttonDashGround", "buttonDashWall", "buttonDashClimb", "buttonDashJump", "buttonDashRoll", "buttonDashBelly", "buttonOtherAll", "buttonSlide", "buttonGroundPound", "buttonGroundPoundBounce", "buttonGrappleHook", "buttonBash", "buttonSpin", "buttonRoll", "buttonBurrow", "buttonGlide", "buttonDive", "buttonSwimDash", "consecAmount", "dashAmount")]
 script = ExtResource("1_r3h2n")
 buttonAbilityAll = NodePath("All")
 buttonJumpAll = NodePath("HBoxContainer/Jumps/All")
@@ -13,6 +13,7 @@ buttonJumpLong = NodePath("HBoxContainer/Jumps/Long")
 buttonJumpCrouch = NodePath("HBoxContainer/Jumps/Crouch")
 buttonJumpGroundPound = NodePath("HBoxContainer/Jumps/GroundPound")
 buttonJumpWall = NodePath("HBoxContainer/Jumps/Wall")
+buttonJumpWallSame = NodePath("HBoxContainer/Jumps/WallSame")
 buttonJumpRoll = NodePath("HBoxContainer/Jumps/Roll")
 buttonJumpBelly = NodePath("HBoxContainer/Jumps/Belly")
 buttonJumpConsec = NodePath("HBoxContainer/Jumps/Consec/Consec")
@@ -107,6 +108,12 @@ layout_mode = 2
 theme = ExtResource("2_3r0j1")
 toggle_mode = true
 text = "Wall"
+
+[node name="WallSame" type="Button" parent="HBoxContainer/Jumps"]
+layout_mode = 2
+theme = ExtResource("2_3r0j1")
+toggle_mode = true
+text = "Wall Same"
 
 [node name="Roll" type="Button" parent="HBoxContainer/Jumps"]
 layout_mode = 2
@@ -323,6 +330,7 @@ text = "Swim Dash"
 [connection signal="toggled" from="HBoxContainer/Jumps/Crouch" to="." method="_on_jump_crouch_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/GroundPound" to="." method="_on_jump_ground_pound_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Wall" to="." method="_on_jump_wall_toggled"]
+[connection signal="toggled" from="HBoxContainer/Jumps/WallSame" to="." method="_on_jump_wall_same_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Roll" to="." method="_on_jump_roll_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Belly" to="." method="_on_jump_belly_toggled"]
 [connection signal="toggled" from="HBoxContainer/Jumps/Consec/Consec" to="." method="_on_jump_consec_toggled"]
