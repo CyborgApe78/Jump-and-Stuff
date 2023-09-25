@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5m37qa00e2eq"]
+
+[ext_resource type="Script" path="res://src/object/components/scripts/GroundDetector.gd" id="1_njfgy"]
+
+[node name="GroundDetector" type="Node2D"]
+script = ExtResource("1_njfgy")
+
+[node name="Left" type="RayCast2D" parent="."]
+position = Vector2(-24, -16)
+target_position = Vector2(0, 64)
+collision_mask = 3
+
+[node name="Right" type="RayCast2D" parent="."]
+position = Vector2(24, -16)
+target_position = Vector2(0, 64)
+collision_mask = 3
