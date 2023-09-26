@@ -11,7 +11,7 @@ var noHold: bool
 ## holding into wall goes to wall slide
 
 func enter() -> void:
-	player.wall_detection()
+	wall.wall_detection()
 	noHold = false
 	player.velocityPrevious = player.velocity
 	player.velocity.x = 0
@@ -54,11 +54,11 @@ func handle_input(event: InputEvent) -> int:
 		#JumpWallDown
 		#JumpWallAway
 		#JumpWallNuetral
-	if input.pressedLeft and player.wall_detection() == Vector2.RIGHT.x:
+	if input.pressedLeft and wall.wall_detection() == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if input.pressedRight and player.wall_detection() == Vector2.LEFT.x:
+	if input.pressedRight and wall.wall_detection() == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
@@ -73,7 +73,7 @@ func handle_input(event: InputEvent) -> int:
 		elif abilities.can_use(PlayerAbilities.list.DashSide):
 			abilities.consume(PlayerAbilities.list.DashSide, 1)
 			return State.DashAir
-#	if player.moveDirection.x == player.lastWallDirection:
+#	if player.moveDirection.x == wall.lastWallDirection:
 #		return State.WallSlide
 	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
@@ -88,7 +88,7 @@ func state_check(delta: float) -> int:
 #			topSpeed = 0
 #			return State.BonkAir
 	if noHold and holdTimer.is_stopped(): ## if not holding against the wall, fall
-		if player.moveDirection.x == player.wallDirection:
+		if player.moveDirection.x == wall.wallDirection:
 			return State.WallSlide
 		else:
 			player.velocity = Vector2(20 * -player.facing, -10)

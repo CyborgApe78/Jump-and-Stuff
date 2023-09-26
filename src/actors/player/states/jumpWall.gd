@@ -15,36 +15,36 @@ var jumpDirection: int
 func enter() -> void:
 	EventBus.playerJumped.emit()
 	timerLock.start()
-	jumpDirection = player.wall_detection(30)
+	jumpDirection = wall.wall_detection(30)
 	
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
 	
 	if !timerCoyoteJumpWall.is_stopped():
-		jumpDirection = player.lastWallDirection
+		jumpDirection = wall.lastWallDirection
 		timerCoyoteJumpWall.stop()
 		
 	## up pressed
 	if player.moveDirection.y == -1:
-		player.characterRig.scale.x = player.wallDirection #TODO: use facing func
+		player.characterRig.scale.x = wall.wallDirection #TODO: use facing func
 		player.velocity = Vector2(100 * -jumpDirection, stats.jumpVelocity * 1.0)
 	## down pressed
 	elif player.moveDirection.y == 1:
-		player.characterRig.scale.x = player.wallDirection
+		player.characterRig.scale.x = wall.wallDirection
 		player.velocity = Vector2(300 * -jumpDirection, 100)
 	## no directional input
 	elif player.moveDirection.x == 0:
-		player.characterRig.scale.x = -player.wallDirection
+		player.characterRig.scale.x = -wall.wallDirection
 		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
 	## towards from wall pressed
 	elif player.moveDirection.x == jumpDirection and abilities.can_use(PlayerAbilities.list.JumpWallSame): 
-		player.characterRig.scale.x = player.wallDirection
+		player.characterRig.scale.x = wall.wallDirection
 		player.velocity = Vector2(200 * -jumpDirection, stats.jumpVelocity * 0.8)
 		wallHop = true
 	## away from wall pressed
 	else:
-		player.characterRig.scale.x = -player.wallDirection
+		player.characterRig.scale.x = -wall.wallDirection
 		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
 	
 	particles.restart()

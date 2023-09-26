@@ -69,7 +69,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-#	if player.is_on_wall() and player.moveDirection.x == player.wallDirection:
+#	if player.is_on_wall() and player.moveDirection.x == wall.wallDirection:
 #		return State.WallSlide
 	if player.velocity.y > -stats.jumpApexHeight:
 		return State.JumpApex

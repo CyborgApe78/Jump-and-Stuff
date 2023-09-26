@@ -14,7 +14,7 @@ func enter() -> void:
 	EventBus.playerDashed.emit()
 	soundJetpack.play()
 	player.animPlayer.queue("Dash Side Air")
-	dashDirection = -player.wall_detection(30)
+	dashDirection = -wall.wall_detection(30)
 	player.velocityPrevious = player.velocity
 	particles.local_coords = true
 	particles.emitting = true

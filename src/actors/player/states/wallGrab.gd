@@ -4,7 +4,7 @@ extends PlayerInfo
 #TODO: redirect previous velocity bassed on aim direction
 
 func enter() -> void:
-	player.wall_detection()
+	wall.wall_detection()
 	player.velocityPrevious = player.velocity
 	player.velocity = Vector2.ZERO
 
@@ -26,11 +26,11 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if input.justPressedLeft and player.wall_detection() == Vector2.RIGHT.x:
+	if input.justPressedLeft and wall.wall_detection() == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if input.justPressedRight and player.wall_detection() == Vector2.LEFT.x:
+	if input.justPressedRight and wall.wall_detection() == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall

@@ -6,9 +6,9 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 
 func enter() -> void:
-	player.characterRig.scale.x = -player.wallDirection
+	player.characterRig.scale.x = -wall.wallDirection
 	player.animPlayer.play("Wall Slide")
-	player.wall_detection()
+	wall.wall_detection()
 	player.velocityPrevious = player.velocity
 #	player.velocity.y = 0 ## Removed to slide up walls, needs testing
 	particles.emitting = true
@@ -29,7 +29,7 @@ func physics(delta) -> void:
 	else:
 		gravity_logic(stats.gravityFall/4, delta)
 		fall_speed_logic(stats.terminalVelocity/4)
-	player.velocity.x = 10 * player.wallDirection
+	player.velocity.x = 10 * wall.wallDirection
 
 
 func visual(delta) -> void:
@@ -41,11 +41,11 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if input.justPressedLeft and player.wall_detection() == Vector2.RIGHT.x:
+	if input.justPressedLeft and wall.wall_detection() == Vector2.RIGHT.x:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if input.justPressedRight and player.wall_detection() == Vector2.LEFT.x:
+	if input.justPressedRight and wall.wall_detection() == Vector2.LEFT.x:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall

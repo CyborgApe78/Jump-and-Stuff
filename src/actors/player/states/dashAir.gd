@@ -25,7 +25,7 @@ func enter() -> void:
 	particles.emitting = true 
 	player.velocity.y = 0
 	if player.is_on_wall():
-		player.velocity.x = -player.wallDirection * stats.dashSpeed
+		player.velocity.x = -wall.wallDirection * stats.dashSpeed
 	else:
 		player.velocity.x = player.facing * stats.dashSpeed
 	player.ability_mask(CollisionLayers.DashSide, false)

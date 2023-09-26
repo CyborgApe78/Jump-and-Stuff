@@ -109,7 +109,7 @@ func state_check(delta: float) -> int:
 		return State.Fall
 	if player.is_on_ceiling():
 		return State.Fall
-	if player.wallDirection != 0:
+	if wall.wallDirection != 0:
 		if topSpeed > stats.moveSpeed: #TODO: make func to check if bonk enabled
 			topSpeed = 0
 			return State.BonkAir

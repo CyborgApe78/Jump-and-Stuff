@@ -62,6 +62,7 @@ var previousStateName: String
 @export var velocity: VelocityComponent
 @export var input: InputComponent
 @export var ground: GroundDetectorComponent
+@export var wall: WallDetectorComponent
 
 
 #func _ready() -> void:
@@ -94,6 +95,7 @@ func init() -> void:
 			child.velocity = velocity
 			child.input = input
 			child.ground = ground
+			child.wall = wall
 
 	change_state(PlayerState.State.Spawn)
 
