@@ -33,8 +33,8 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	currentBonkTime -= delta #TODO: make timer
-	if abs(player.groundAngle) > 1: ## slide if on slope
-		player.velocity.x = move_toward(abs(player.velocity.x), stats.moveSpeed, stats.accelerationGround) * sin(player.groundAngle)
+	if abs(ground.groundAngle) > 1: ## slide if on slope
+		player.velocity.x = move_toward(abs(player.velocity.x), stats.moveSpeed, stats.accelerationGround) * sin(ground.groundAngle)
 	else:
 		player.velocity = Vector2.ZERO 
 

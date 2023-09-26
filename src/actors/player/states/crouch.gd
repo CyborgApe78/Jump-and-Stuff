@@ -86,7 +86,7 @@ func handle_input(event: InputEvent) -> int:
 
 func state_check(delta: float) -> int:
 #TODO:
-#	if player.groundAngle > 1:
+#	if ground.groundAngle > 1:
 #		return State.Slide
 	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight.is_colliding():
 		timerCoyoteJump.start()

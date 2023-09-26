@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=126 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -66,6 +66,7 @@
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="55_8qryh"]
 [ext_resource type="Script" path="res://src/actors/player/VelocityComponent.gd" id="55_iviae"]
 [ext_resource type="Script" path="res://src/actors/player/InputComponent.gd" id="56_q3cbc"]
+[ext_resource type="PackedScene" uid="uid://c5m37qa00e2eq" path="res://src/object/components/ground_detector.tscn" id="56_u1jx6"]
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="56_v8j0l"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_n4b1h"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_hbso6"]
@@ -6270,11 +6271,12 @@ antialiased = true
 script = ExtResource("6_ab4rp")
 thickness = 1.05
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats", "velocity", "input")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats", "velocity", "input", "ground")]
 script = ExtResource("10_mvngt")
 stats = NodePath("../StatsComponent")
 velocity = NodePath("../VelocityComponemt")
 input = NodePath("../InputComponent")
+ground = NodePath("../GroundDetector")
 
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource("11_i4f5l")
@@ -6608,26 +6610,19 @@ soundSplat = NodePath("../../Sounds/splat")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("54_qbhck")
 
-[node name="VelocityComponemt" type="Node" parent="."]
+[node name="VelocityComponemt" type="Node" parent="." node_paths=PackedStringArray("stats", "ground")]
 script = ExtResource("55_iviae")
+stats = NodePath("../StatsComponent")
+ground = NodePath("../GroundDetector")
 
 [node name="InputComponent" type="Node" parent="."]
 script = ExtResource("56_q3cbc")
 
-[node name="Raycasts" type="Node2D" parent="."]
+[node name="GroundDetector" parent="." instance=ExtResource("56_u1jx6")]
 visible = false
 
-[node name="Ground" type="Node2D" parent="Raycasts"]
-
-[node name="Left" type="RayCast2D" parent="Raycasts/Ground"]
-position = Vector2(-24, -16)
-target_position = Vector2(0, 64)
-collision_mask = 3
-
-[node name="Right" type="RayCast2D" parent="Raycasts/Ground"]
-position = Vector2(24, -16)
-target_position = Vector2(0, 64)
-collision_mask = 3
+[node name="Raycasts" type="Node2D" parent="."]
+visible = false
 
 [node name="Wall" type="Node2D" parent="Raycasts"]
 
@@ -6652,22 +6647,6 @@ target_position = Vector2(0, -64)
 position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)
-
-[node name="Ground" type="ShapeCast2D" parent="Raycasts/Shapes"]
-enabled = false
-collision_mask = 3
-
-[node name="GroundDetector" type="Node2D" parent="."]
-
-[node name="Left" type="RayCast2D" parent="GroundDetector"]
-position = Vector2(-24, -16)
-target_position = Vector2(0, 64)
-collision_mask = 3
-
-[node name="Right" type="RayCast2D" parent="GroundDetector"]
-position = Vector2(24, -16)
-target_position = Vector2(0, 64)
-collision_mask = 3
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -48)
@@ -6730,7 +6709,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

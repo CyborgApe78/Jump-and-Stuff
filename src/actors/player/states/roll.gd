@@ -62,13 +62,13 @@ func physics(delta) -> void:
 		fall_speed_logic(stats.terminalVelocity)
 	
 	#TODO: needs hori movement code when !isonfloor
-	if rad_to_deg(player.groundAngle) < -1: #TODO: create own accel and deccel
+	if rad_to_deg(ground.groundAngle) < -1: #TODO: create own accel and deccel
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
 			player.velocity.x -= stats.downHillAccel ## Slow on up hill
 #			apply_friction(frictionGround * upHillFrictionModifier, delta) 
-	elif rad_to_deg(player.groundAngle) > 1:
+	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += stats.downHillAccel  ## Speed up on down hill
 		else:
@@ -122,7 +122,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if timerDuration.is_stopped() and abs(player.velocity.x) < 10 and abs(player.groundAngle) < 0.01: #fixme: stops player from rolling, need timer
+	if timerDuration.is_stopped() and abs(player.velocity.x) < 10 and abs(ground.groundAngle) < 0.01: #fixme: stops player from rolling, need timer
 		if player.is_on_floor(): 
 			if detector.is_colliding():
 				player.velocity.x = 0

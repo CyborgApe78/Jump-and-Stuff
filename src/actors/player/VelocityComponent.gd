@@ -4,6 +4,7 @@ class_name VelocityComponent
 
 @export var stats: StatsComponent
 @export var abilities: PlayerAbilities
+@export var ground: GroundDetectorComponent
 
 @onready var player = get_parent() as CharacterBody2D
 
@@ -110,8 +111,8 @@ func consecutive_jump_cancel() -> void:
 
 
 func align_to_ground()-> void:
-	if player.groundAngle != player.rotation:
-		player.rotation = player.groundAngle
+	if ground.groundAngle != player.rotation:
+		player.rotation = ground.groundAngle
 
 
 func neutral_move_direction_logic() -> void:

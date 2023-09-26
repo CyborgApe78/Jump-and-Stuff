@@ -36,7 +36,7 @@ func physics(delta) -> void:
 	elif abs(player.velocity.x) >= stats.moveSpeed:
 		momentum_logic(stats.moveSpeed, true)
 	
-	if player.moveDirection.x == 0 and (player.ledgeLeft or player.ledgeRight): ## stops on ledge w/o input
+	if player.moveDirection.x == 0 and (ground.ledgeLeft or ground.ledgeRight): ## stops on ledge w/o input
 		#TODO:make it so you have to be facing the ledge 
 		player.velocity.x = 0
 		EventBus.helperUsed.emit(Util.helper.stopOnLedge)

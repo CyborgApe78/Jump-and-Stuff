@@ -93,8 +93,8 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #
 #
 #func align_to_ground()-> void:
-#	if player.groundAngle != 0:
-#		player.rotation = player.groundAngle
+#	if ground.groundAngle != 0:
+#		player.rotation = ground.groundAngle
 #
 #
 #func neutral_move_direction_logic() -> void:

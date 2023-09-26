@@ -5,6 +5,7 @@ class_name PlayerInfo
 var stats: StatsComponent
 var velocity: VelocityComponent
 var input: InputComponent
+var ground: GroundDetectorComponent
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var GameStats: Resource = preload("res://src/resources/gameStats.tres")
 var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
@@ -93,8 +94,8 @@ func consecutive_jump_cancel() -> void:
 
 
 func align_to_ground()-> void:
-	if player.groundAngle != player.rotation:
-		player.rotation = player.groundAngle
+	if ground.groundAngle != player.rotation:
+		player.rotation = ground.groundAngle
 
 
 func neutral_move_direction_logic() -> void:

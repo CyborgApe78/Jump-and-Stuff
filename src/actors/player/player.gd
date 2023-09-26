@@ -12,8 +12,6 @@ class_name Player
 @onready var particles: Node2D = $CharacterRig/CharacterRotate/Particles
 @onready var timers: Node = $Timers
 @onready var sounds: Node = $Sounds
-@onready var detectorGroundLeft: RayCast2D = $Raycasts/Ground/Left
-@onready var detectorGroundRight: RayCast2D = $Raycasts/Ground/Right
 @onready var wallRaycastLeft: ShapeCast2D = $Raycasts/Wall/Left
 @onready var wallRaycastRight: ShapeCast2D = $Raycasts/Wall/Right
 @onready var grappleHookLine: Line2D = $GrappleHook
@@ -24,7 +22,6 @@ var moveStrength: Vector2 = Vector2.ZERO
 var aimDirection: Vector2 = Vector2.ZERO
 var lastAimDirection: Vector2 = Vector2.ZERO
 var aimStrength: Vector2 = Vector2.ZERO
-var groundAngle: float
 var velocityPrevious: Vector2 = Vector2.ZERO
 var velocityRotated: Vector2 = Vector2.ZERO
 var GPMaxVelocity: Vector2 = Vector2.ZERO
@@ -39,8 +36,6 @@ var lastWallDirection: int = 0
 var facing: int = 1
 
 var jumped: bool
-var ledgeLeft: bool
-var ledgeRight: bool
 
 var currentStateName
 var previousState
@@ -63,12 +58,8 @@ func _physics_process(delta: float) -> void:
 	sm.physics(delta)
 	sm.state_check(delta)
 
-	get_move_input()
-	get_slope_angle()
-	
-	if is_on_floor(): #TODo: create is grounded using floor raycasts
-		ledge_detection()
-	wall_detection()
+	get_move_input() #TODO: this should be input component
+	wall_detection() #TODO: wall component
 	
 	EventBus.debugVelocity.emit(velocity.round())
 
@@ -108,17 +99,6 @@ func facing_logic():
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(characterRig, "scale", Vector2(lastMoveDirection.x, characterRig.scale.y), 0.4).from_current()
 		facing = lastMoveDirection.x
-
-func ledge_detection() -> void:
-	if is_on_floor() and !detectorGroundLeft.is_colliding():
-		ledgeLeft = true
-	else:
-		ledgeLeft = false
-	
-	if is_on_floor() and !detectorGroundRight.is_colliding():
-		ledgeRight = true
-	else:
-		ledgeRight = false
 
 
 func attempt_vertical_corner_correction(amount: int, delta) -> void: #TODO: change to have default value after delta
@@ -161,24 +141,6 @@ func landed() -> void:
 #	if get_last_slide_collision() != null:
 #			groundColor = get_last_slide_collision().get_collider().color #FIXME: crash if doesn't have color
 #	particles.land.restart()
-
-
-func get_slope_angle() -> void:
-	if detectorGroundLeft.is_colliding() or detectorGroundRight.is_colliding(): ## angles the player to the ground
-		var leftAngle: float = detectorGroundLeft.get_collision_normal().angle() + PI/2
-		var rightAngle: float = detectorGroundRight.get_collision_normal().angle() + PI/2
-		
-		if !detectorGroundRight.is_colliding():
-			groundAngle = leftAngle
-		if !detectorGroundLeft.is_colliding():
-			groundAngle = rightAngle
-		else:
-			groundAngle = (leftAngle + rightAngle)/2
-	else:
-		groundAngle = 0
-	
-	if abs(groundAngle) < 0.0001:
-		groundAngle = 0
 
 
 func wall_detection(length: int = 5) -> int:

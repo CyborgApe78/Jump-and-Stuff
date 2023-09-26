@@ -46,12 +46,12 @@ func physics(delta) -> void:
 #	elif abs(player.velocity.x) >= slideVelocity:
 #		momentum_logic(slideVelocity, false)
 	
-	if rad_to_deg(player.groundAngle) < -1:
+	if rad_to_deg(ground.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
 			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
-	elif rad_to_deg(player.groundAngle) > 1:
+	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += stats.downHillAccel
 		else:
