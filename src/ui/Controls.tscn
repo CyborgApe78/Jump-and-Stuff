@@ -65,6 +65,14 @@ offset_right = 995.0
 offset_bottom = 143.0
 text = "Crouch"
 
+[node name="Charge" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1004.0
+offset_top = 106.0
+offset_right = 1068.0
+offset_bottom = 132.0
+text = "Charge"
+
 [node name="Dive" type="Label" parent="."]
 layout_mode = 0
 offset_left = 912.0

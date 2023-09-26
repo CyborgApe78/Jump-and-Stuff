@@ -374,8 +374,9 @@ Hub world
 Game Modes:
 	randomizer
 		items
-		doors
+		breakables
 		split abilities left and right
+		pick starting abilities
 	floor is lava
 
 screen wrap https://kidscancode.org/godot_recipes/2d/screen_wrap/
