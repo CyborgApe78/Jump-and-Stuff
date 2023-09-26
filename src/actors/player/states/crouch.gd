@@ -88,7 +88,7 @@ func state_check(delta: float) -> int:
 #TODO:
 #	if ground.groundAngle > 1:
 #		return State.Slide
-	if !player.is_on_floor() and !player.detectorGroundLeft.is_colliding() and !player.detectorGroundRight.is_colliding():
+	if !player.is_on_floor() and !ground.detectorGroundLeft.is_colliding() and !ground.detectorGroundRight.is_colliding():
 		timerCoyoteJump.start()
 		return State.Fall
 	if !timerBufferJump.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpCrouch):

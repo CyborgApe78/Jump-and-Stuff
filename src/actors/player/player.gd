@@ -12,8 +12,6 @@ class_name Player
 @onready var particles: Node2D = $CharacterRig/CharacterRotate/Particles
 @onready var timers: Node = $Timers
 @onready var sounds: Node = $Sounds
-@onready var wallRaycastLeft: ShapeCast2D = $Raycasts/Wall/Left
-@onready var wallRaycastRight: ShapeCast2D = $Raycasts/Wall/Right
 @onready var grappleHookLine: Line2D = $GrappleHook
 
 var moveDirection: Vector2 = Vector2.ZERO

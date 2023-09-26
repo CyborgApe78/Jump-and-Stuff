@@ -82,7 +82,7 @@ func sound(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> int:
 	if input.justPressedJump:
-		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(player.detectorGroundLeft.is_colliding() or player.detectorGroundRight.is_colliding()):
+		if abilities.can_use(PlayerAbilities.list.JumpAir) and !(ground.detectorGroundLeft.is_colliding() or ground.detectorGroundRight.is_colliding()):
 			return State.JumpAir
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
 		timerBufferRoll.start()
