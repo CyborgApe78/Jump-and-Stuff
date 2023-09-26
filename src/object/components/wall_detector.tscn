@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://hn3ey7t7ql3q"]
+
+[ext_resource type="Script" path="res://src/object/components/scripts/WallDetector.gd" id="1_r2uyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2220v"]
+size = Vector2(5, 96)
+
+[node name="WallDetector" type="Node2D"]
+script = ExtResource("1_r2uyx")
+
+[node name="Left" type="ShapeCast2D" parent="."]
+position = Vector2(-32, -56)
+shape = SubResource("RectangleShape2D_2220v")
+target_position = Vector2(-5, 0)
+
+[node name="Right" type="ShapeCast2D" parent="."]
+position = Vector2(32, -56)
+shape = SubResource("RectangleShape2D_2220v")
+target_position = Vector2(5, 0)
