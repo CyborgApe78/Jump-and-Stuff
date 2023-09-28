@@ -5976,7 +5976,7 @@ antialiased = true
 [node name="ArmLeft" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
 position = Vector2(0, 24)
-points = PackedVector2Array(0, 0, 0, 16, 24, 24)
+points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)
 width = 14.0
 default_color = Color(0.0862745, 0.819608, 0, 1)
 gradient = SubResource("Gradient_7l4xn")
@@ -5989,7 +5989,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 0, 16, 24, 24)
+points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6015,7 +6015,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+points = PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6027,7 +6027,7 @@ thickness = 1.1
 
 [node name="LegRight" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 position = Vector2(0, 16)
-points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
 width = 14.0
 default_color = Color(0.0862745, 0.819608, 0, 1)
 gradient = SubResource("Gradient_ltpju")
@@ -6040,7 +6040,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6065,7 +6065,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -16, 8, -16, 32)
+points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -40.0001)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1

@@ -1,4 +1,7 @@
-#TODO 
+#TODO
+
+Ori keeps charge jump break box if quickly dash
+Forest maze area that has randomized areas
 
 P-speed refers to the boost in Mario's running speed after running forward for a period of time. The name comes from the P-meter bar first used in Super Mario Bros. 3; though no bar is visible in SMW, it functions very similarly. The meter increases as Mario runs on the ground, and decreases while in midair or turning. Once the meter is fully filled, Mario will gain P-meter and start sprinting, and if he has a cape, he can jump to start flight or spinjump with an extra large jump. Since it boosts Mario's speed significantly, you usually want to build it as soon and as quickly as possible.
 

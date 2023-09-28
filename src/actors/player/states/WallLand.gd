@@ -26,7 +26,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if !noHold:
-		gravity_logic(gravityFall/4, delta)
+		gravity_logic(stats.gravityFall/4, delta)
 	
 	if player.velocity.y > 0 and !noHold:
 		player.velocity.y = 0

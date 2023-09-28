@@ -49,7 +49,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/puzzle_dependencies/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/puzzle_dependencies/plugin.cfg")
 
 [input]
 
@@ -270,7 +270,7 @@ boards={
 "connections": [],
 "id": "3eaa6831e1",
 "label": "Ability Tree",
-"scroll_offset": Vector2(-582, -393),
+"scroll_offset": Vector2(-582, -379),
 "things": [],
 "zoom": 1.0
 },
