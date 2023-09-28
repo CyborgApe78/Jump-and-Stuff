@@ -4311,6 +4311,30 @@ tracks/33/keys = {
 "update": 0,
 "values": [Vector2(32, -56)]
 }
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("CharacterRig/CharacterRotate/Body/ArmLeft:points")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("CharacterRig/CharacterRotate/Body/LegRight:points")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)]
+}
 
 [sub_resource type="Animation" id="Animation_yjvly"]
 resource_name = "Roll"
@@ -5477,6 +5501,30 @@ tracks/21/keys = {
 "update": 0,
 "values": [Vector2(5, 96)]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("CharacterRig/CharacterRotate/Body/ArmLeft:points")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, -8, 0, 9, 4, 13), PackedVector2Array(0, 0, 16, -8.00006, -24, 24), PackedVector2Array(0, 0, 16, 10, 32, 2), PackedVector2Array(0, -8, -5.333, 8.667, -5.333, 16.667), PackedVector2Array(0, 0, -16, 8, -24, 24)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("CharacterRig/CharacterRotate/Body/LegRight:points")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 40, 8, 48, 0, 64, 8, 64), PackedVector2Array(0, 34, -16, 48, -24, 56, -24, 64), PackedVector2Array(0, 32, -16, 48, -32, 56, -32, 64), PackedVector2Array(0, 32, -13.333, 48, -32, 48, -32, 56), PackedVector2Array(0, 36, -8, 48, -16, 64, -8, 64), PackedVector2Array(0, 40, -3.2, 46.4, -6.4, 60.8, 1.6, 59.2), PackedVector2Array(0, 35, 16, 40, 32, 48, 40, 40), PackedVector2Array(0, 40, 8, 48, 0, 64, 8, 64)]
+}
 
 [sub_resource type="Animation" id="Animation_gibmd"]
 resource_name = "Wall Slide"
@@ -5989,7 +6037,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)
+points = PackedVector2Array(0, 0, 16, 9.36074, 30.0112, 2.78131)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6015,7 +6063,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)
+points = PackedVector2Array(0, 32, 13.9016, 45.0492, 14.7539, 58.0984, 22.7539, 55.1477)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6040,7 +6088,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
+points = PackedVector2Array(0, 35.7869, -8.2841, 48, -16.8523, 63.1477, -9.27851, 63.5738)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6065,7 +6113,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -40.0001)
+points = PackedVector2Array(0, -0.213085, -15.4318, 8.03551, -23.0056, 23.6093)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6077,7 +6125,7 @@ thickness = 1.1
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body"]
 show_behind_parent = true
-points = PackedVector2Array(0, 24, 0, 40)
+points = PackedVector2Array(0, 21.7869, 0, 37.7869)
 width = 44.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6161,7 +6209,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 8)
+points = PackedVector2Array(-32, -18.2131, -32, 5.78692)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6526,6 +6574,7 @@ visible = false
 visible = false
 
 [node name="Raycasts" type="Node2D" parent="."]
+visible = false
 
 [node name="Shapes" type="Node2D" parent="Raycasts"]
 visible = false
@@ -6541,6 +6590,7 @@ shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
@@ -6601,7 +6651,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
