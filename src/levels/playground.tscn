@@ -24,6 +24,22 @@
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="22_vdons"]
 [ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="23_u041q"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyd6p"]
+size = Vector2(48, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7l1i"]
+size = Vector2(78, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx7c3"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5e1r"]
+size = Vector2(704, 66)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_legq7"]
+a = Vector2(10509, 0)
+b = Vector2(-7328, 0)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
 texture = ExtResource("11_tl8nd")
 texture_region_size = Vector2i(64, 64)
@@ -522,22 +538,6 @@ terrain_set_0/terrain_0/name = "grass"
 terrain_set_0/terrain_0/color = Color(0.501961, 0.945098, 0.25098, 1)
 sources/1 = SubResource("TileSetAtlasSource_sokgx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyd6p"]
-size = Vector2(48, 86)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7l1i"]
-size = Vector2(78, 46)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx7c3"]
-size = Vector2(64, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5e1r"]
-size = Vector2(704, 66)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_legq7"]
-a = Vector2(10509, 0)
-b = Vector2(-7328, 0)
-
 [node name="Playground" type="Node"]
 script = ExtResource("1_t3d88")
 
@@ -547,7 +547,7 @@ script = ExtResource("1_t3d88")
 
 [node name="Debug" parent="." instance=ExtResource("4_e4k32")]
 
-[node name="Interactables" type="Node" parent="."]
+[node name="Interactables" type="Node2D" parent="."]
 
 [node name="StartingLocation" parent="Interactables" instance=ExtResource("7_p7o1h")]
 position = Vector2(182, -4)
@@ -559,6 +559,98 @@ waypointName = 1
 [node name="Waypoint2" parent="Interactables" instance=ExtResource("8_1jksd")]
 position = Vector2(-400, 264)
 waypointName = 2
+
+[node name="HealBox" parent="Interactables" instance=ExtResource("10_iwkrg")]
+position = Vector2(23, 445)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Interactables/HealBox"]
+texture = ExtResource("12_hknrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HealBox"]
+position = Vector2(14, 8)
+shape = SubResource("RectangleShape2D_yyd6p")
+
+[node name="HurtBox" parent="Interactables" instance=ExtResource("12_orgcd")]
+position = Vector2(-228, 501)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/HurtBox"]
+texture = ExtResource("13_33b4r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox"]
+position = Vector2(-3, 13)
+shape = SubResource("RectangleShape2D_c7l1i")
+
+[node name="TargetGrapple" parent="Interactables" instance=ExtResource("14_xmqek")]
+position = Vector2(-32, -171)
+
+[node name="BashableComponent" parent="Interactables" instance=ExtResource("14_3w5vg")]
+position = Vector2(471, -209)
+
+[node name="Outline" parent="Interactables/BashableComponent" instance=ExtResource("16_80qwx")]
+position = Vector2(1, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/BashableComponent"]
+shape = SubResource("RectangleShape2D_gx7c3")
+
+[node name="Water" parent="Interactables" instance=ExtResource("17_3as08")]
+position = Vector2(-2838, 11)
+scale = Vector2(5, 5)
+
+[node name="Semisolid" parent="Interactables" instance=ExtResource("18_07xgy")]
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Interactables/Semisolid"]
+position = Vector2(-544, -288)
+shape = SubResource("RectangleShape2D_n5e1r")
+script = ExtResource("19_1iekm")
+
+[node name="VisibleCollisionShape2D2" type="CollisionShape2D" parent="Interactables/Semisolid"]
+position = Vector2(-352, -480)
+shape = SubResource("RectangleShape2D_n5e1r")
+script = ExtResource("19_1iekm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactables/Semisolid"]
+modulate = Color(1, 1, 1, 0.3)
+position = Vector2(-3463, 4639)
+polygon = PackedVector2Array(291, 58, 1090, 363, 2607, 373, 7234, -1030, 6730, -726, 2616, 476, 979, 493, 263, 123)
+
+[node name="DoorLocked" parent="Interactables" instance=ExtResource("20_8211g")]
+position = Vector2(-1188, 435)
+amount = 2
+
+[node name="Key" parent="Interactables" instance=ExtResource("21_el1g6")]
+position = Vector2(-827, 403)
+
+[node name="Key3" parent="Interactables" instance=ExtResource("21_el1g6")]
+position = Vector2(-915, 407)
+
+[node name="Key4" parent="Interactables" instance=ExtResource("21_el1g6")]
+position = Vector2(-909, 490)
+
+[node name="Key2" parent="Interactables" instance=ExtResource("21_el1g6")]
+position = Vector2(-831, 509)
+
+[node name="AbilityUnlock" parent="Interactables" instance=ExtResource("22_vdons")]
+position = Vector2(-670, 434)
+ability = 2
+
+[node name="AbilityUnlock2" parent="Interactables" instance=ExtResource("22_vdons")]
+position = Vector2(-415, 434)
+ability = 13
+
+[node name="UpgradeUnlocker" parent="Interactables" instance=ExtResource("23_u041q")]
+position = Vector2(-532, 499)
+upgrade = 2
+
+[node name="HurtBox2" parent="Interactables" instance=ExtResource("12_orgcd")]
+position = Vector2(-883, 1562)
+kill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox2"]
+shape = SubResource("SegmentShape2D_legq7")
+script = ExtResource("19_1iekm")
+color = Color(1, 0, 0, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8mhj0")
@@ -572,98 +664,16 @@ floor_snap_length = 9.0
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, 93)
 zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 1.0
+drag_left_margin = 0.04
+drag_top_margin = 0.01
+drag_right_margin = 0.04
+drag_bottom_margin = 0.46
+editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource("12_gn10c")
-
-[node name="HealBox" parent="." instance=ExtResource("10_iwkrg")]
-position = Vector2(23, 445)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D2" type="Sprite2D" parent="HealBox"]
-texture = ExtResource("12_hknrh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HealBox"]
-position = Vector2(14, 8)
-shape = SubResource("RectangleShape2D_yyd6p")
-
-[node name="HurtBox" parent="." instance=ExtResource("12_orgcd")]
-position = Vector2(-228, 501)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="HurtBox"]
-texture = ExtResource("13_33b4r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-3, 13)
-shape = SubResource("RectangleShape2D_c7l1i")
-
-[node name="TargetGrapple" parent="." instance=ExtResource("14_xmqek")]
-position = Vector2(-32, -171)
-
-[node name="BashableComponent" parent="." instance=ExtResource("14_3w5vg")]
-position = Vector2(471, -209)
-
-[node name="Outline" parent="BashableComponent" instance=ExtResource("16_80qwx")]
-position = Vector2(1, 32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BashableComponent"]
-shape = SubResource("RectangleShape2D_gx7c3")
-
-[node name="Water" parent="." instance=ExtResource("17_3as08")]
-position = Vector2(-2838, 11)
-scale = Vector2(5, 5)
-
-[node name="Semisolid" parent="." instance=ExtResource("18_07xgy")]
-
-[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Semisolid"]
-position = Vector2(-544, -288)
-shape = SubResource("RectangleShape2D_n5e1r")
-script = ExtResource("19_1iekm")
-
-[node name="VisibleCollisionShape2D2" type="CollisionShape2D" parent="Semisolid"]
-position = Vector2(-352, -480)
-shape = SubResource("RectangleShape2D_n5e1r")
-script = ExtResource("19_1iekm")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Semisolid"]
-modulate = Color(1, 1, 1, 0.3)
-position = Vector2(-3463, 4639)
-polygon = PackedVector2Array(291, 58, 1090, 363, 2607, 373, 7234, -1030, 6730, -726, 2616, 476, 979, 493, 263, 123)
-
-[node name="DoorLocked" parent="." instance=ExtResource("20_8211g")]
-position = Vector2(-1188, 435)
-amount = 2
-
-[node name="Key" parent="." instance=ExtResource("21_el1g6")]
-position = Vector2(-827, 403)
-
-[node name="Key3" parent="." instance=ExtResource("21_el1g6")]
-position = Vector2(-915, 407)
-
-[node name="Key4" parent="." instance=ExtResource("21_el1g6")]
-position = Vector2(-909, 490)
-
-[node name="Key2" parent="." instance=ExtResource("21_el1g6")]
-position = Vector2(-831, 509)
-
-[node name="AbilityUnlock" parent="." instance=ExtResource("22_vdons")]
-position = Vector2(-670, 434)
-ability = 2
-
-[node name="AbilityUnlock2" parent="." instance=ExtResource("22_vdons")]
-position = Vector2(-415, 434)
-ability = 13
-
-[node name="UpgradeUnlocker" parent="." instance=ExtResource("23_u041q")]
-position = Vector2(-532, 499)
-upgrade = 2
-
-[node name="HurtBox2" parent="." instance=ExtResource("12_orgcd")]
-position = Vector2(-883, 1562)
-kill = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
-shape = SubResource("SegmentShape2D_legq7")
-script = ExtResource("19_1iekm")
-color = Color(1, 0, 0, 1)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
