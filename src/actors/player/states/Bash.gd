@@ -76,6 +76,8 @@ func state_check(delta: float) -> int:
 				player.velocity = player.velocity / 2
 			return State.Fall
 	if player.is_on_floor():
+		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
+#		player.landed()
 		return State.Walk
 	if dashBufferState != State.Null:
 		if dashBufferState == State.DashAir and abilities.can_use(PlayerAbilities.list.DashSide):

@@ -15,7 +15,7 @@ signal playerJumped
 signal playerBashed
 signal playerRolled
 #TODO: add other states
-signal playerLanded #TODO: add to states
+signal playerLanded
 signal playerAirborne #TODO: add to states
 
 signal playerDied

@@ -85,7 +85,9 @@ func state_check(delta: float) -> int:
 			return State.BonkAir
 		else:
 			return State.WallSlide
-	if player.is_on_floor() and abilities.can_use(PlayerAbilities.list.Roll):
+	if player.is_on_floor() and abilities.can_use(PlayerAbilities.list.Roll): #FIXME: this should be with timer below
+		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
+#		player.landed()
 		if !timerBufferRoll.is_stopped():
 			EventBus.rumble.emit(0.1, 0.2, 0.2)
 			return State.Roll

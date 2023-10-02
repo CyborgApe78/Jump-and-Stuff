@@ -85,6 +85,8 @@ func state_check(delta: float) -> int:
 		topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
+		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
+#		player.landed()
 		if !timerBufferRoll.is_stopped():
 			EventBus.rumble.emit(0.1, 0.2, 0.2)
 			return State.Roll

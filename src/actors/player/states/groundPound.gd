@@ -87,6 +87,8 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.GPMaxVelocity = player.velocity
 	if player.is_on_floor():
+		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
+#		player.landed()
 		if !input.pressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPoundBounce):
 			player.landed()
 			return State.GroundPoundBounce

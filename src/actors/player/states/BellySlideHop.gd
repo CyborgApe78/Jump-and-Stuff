@@ -114,6 +114,8 @@ func state_check(delta: float) -> int:
 #		else:
 #			return State.WallSlide
 	if player.is_on_floor():
+		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
+#		player.landed()
 		if !timerBufferRoll.is_stopped():
 			timerBufferRoll.stop()
 			return State.Roll
