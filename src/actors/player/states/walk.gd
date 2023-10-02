@@ -47,6 +47,7 @@ func visual(delta) -> void:
 	player.facing_logic()
 	speed_bend(false)
 	align_to_ground()
+	squash_and_stretch(delta)
 	
 
 

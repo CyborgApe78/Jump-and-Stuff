@@ -73,11 +73,12 @@ func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: f
 func squash_and_stretch(delta): #FIXME: get this working
 	#TODO: use animeation tree instead
 #	if !player.is_on_floor():
-#		player.characterRig.scale.y = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 0.75, 1.25)
-#		player.characterRig.scale.x = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 1.25, 0.75)
+#		player.characterRig.scale.y = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 0.75, 1.25)
+#		player.characterRig.scale.x = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 1.25, 0.75) * sign(player.velocity.x)
 #
 #	player.characterRig.scale.x = lerp(player.characterRig.scale.x, 1.0, 1.0 - pow(0.01, delta))
 #	player.characterRig.scale.y = lerp(player.characterRig.scale.y, 1.0, 1.0 - pow(0.01, delta))
+	
 	pass
 
 

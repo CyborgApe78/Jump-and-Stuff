@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: upgrade for infinte dash
+#TODO: upgrade for infinte dash, need to figure out what to do when leaving ground
 
 @export var timerDuration: Timer
 @export var soundSlide: AudioStreamPlayer
