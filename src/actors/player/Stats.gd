@@ -55,7 +55,7 @@ var airTurnModifier: float = 4.0
 	get:
 		return _jumpHeightPlatformBoost
 ## Time it takes to reach the maximum jump height
-@export_range(0.0 , 1.0, 0.25) var _jumpTimeToPeak: float = 0.5:
+@export_range(0.0 , 1.0, 0.05) var _jumpTimeToPeak: float = 0.5:
 	set(value):
 		_jumpTimeToPeak = value
 		gravityJump = calculate_gravity()
@@ -65,7 +65,7 @@ var airTurnModifier: float = 4.0
 	get:
 		return _jumpTimeToPeak
 ## Time it takes to reach the floor after jump
-@export_range(0.0 , 1.0, 0.25) var _jumpTimeToDescent: float = 0.25:
+@export_range(0.0 , 1.0, 0.05) var _jumpTimeToDescent: float = 0.25:
 	set(value):
 		_jumpTimeToDescent = value
 		gravityFall = calculate_gravity(jumpHeight, _jumpTimeToDescent)
@@ -79,7 +79,7 @@ var airTurnModifier: float = 4.0
 		gravityFall = calculate_gravity(jumpHeight, _jumpTimeAtApex)
 	get:
 		return _jumpTimeAtApex
-@export_range(0.0 , 5.0, 0.25) var _jumpRunModifier: float = 1.0: 
+@export_range(0.0 , 5.0, 0.05) var _jumpRunModifier: float = 1.0: 
 	set(value):
 		_jumpRunModifier = value
 		jumpRunVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight + _jumpRunModifier + _jumpHeightPlatformBoost))
@@ -87,14 +87,14 @@ var airTurnModifier: float = 4.0
 		jumpTripleRunVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpTripleModifier + _jumpRunModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpRunModifier
-@export_range(0.0 , 5.0, 0.25) var _jumpDoubleModifier: float = 1.5:
+@export_range(0.0 , 5.0, 0.05) var _jumpDoubleModifier: float = 1.5:
 	set(value):
 		_jumpDoubleModifier = value
 		jumpDoubleVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpDoubleModifier + _jumpHeightPlatformBoost))
 		jumpDoubleRunVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpDoubleModifier + _jumpRunModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpDoubleModifier
-@export_range(0.0 , 5.0, 0.25) var _jumpTripleModifier: float = 2.0:
+@export_range(0.0 , 5.0, 0.05) var _jumpTripleModifier: float = 2.0:
 	set(value):
 		_jumpTripleModifier = value
 		jumpTripleVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpTripleModifier + _jumpHeightPlatformBoost))
@@ -107,19 +107,19 @@ var airTurnModifier: float = 4.0
 		jumpFlipVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpFlipModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpFlipModifier
-@export_range(0.0 , 5.0, 0.25) var _jumpLongModifier: float = 0.5:
+@export_range(0.0 , 5.0, 0.05) var _jumpLongModifier: float = 0.5:
 	set(value):
 		_jumpLongModifier = value
 		jumpLongVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpLongModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpLongModifier
-@export_range(0.0 , 5.0, 0.25) var _jumpCrouchModifier: float = 2.5:
+@export_range(0.0 , 5.0, 0.05) var _jumpCrouchModifier: float = 2.5:
 	set(value):
 		_jumpCrouchModifier = value
 		jumpCrouchVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpCrouchModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpCrouchModifier
-@export_range(0.0 , 5.0, 0.25) var _jumpGroundPoundModifier: float = 3.0:
+@export_range(0.0 , 5.0, 0.05) var _jumpGroundPoundModifier: float = 3.0:
 	set(value):
 		_jumpGroundPoundModifier = value
 		jumpGroundPoundVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpGroundPoundModifier + _jumpHeightPlatformBoost))
@@ -165,31 +165,31 @@ var airTurnModifier: float = 4.0
 
 
 @export_group("Wall Jump")
-@export_range(0.0 , 5.0, 0.25) var _wallJumpUpModifier: float = 1.0:
+@export_range(0.0 , 5.0, 0.05) var _wallJumpUpModifier: float = 1.0:
 	set(value):
 		_wallJumpUpModifier = value
 		wallJumpUpVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpUpModifier))
 	get:
 		return _wallJumpUpModifier
-@export_range(0.0 , 5.0, 0.25) var _wallJumpDownModifier: float = 1.0:
+@export_range(0.0 , 5.0, 0.05) var _wallJumpDownModifier: float = 1.0:
 	set(value):
 		_wallJumpDownModifier = value
 		wallJumpUpVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpDownModifier))
 	get:
 		return _wallJumpDownModifier
-@export_range(0.0 , 5.0, 0.25) var _wallJumpNeutralModifier: float = 1.0:
+@export_range(0.0 , 5.0, 0.05) var _wallJumpNeutralModifier: float = 1.0:
 	set(value):
 		_wallJumpNeutralModifier = value
 		wallJumpUpVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpNeutralModifier))
 	get:
 		return _wallJumpNeutralModifier
-@export_range(0.0 , 5.0, 0.25) var _wallJumpAwayModifier: float = 1.0:
+@export_range(0.0 , 5.0, 0.05) var _wallJumpAwayModifier: float = 1.0:
 	set(value):
 		_wallJumpAwayModifier = value
 		wallJumpUpVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpAwayModifier))
 	get:
 		return _wallJumpAwayModifier
-@export_range(0.0 , 5.0, 0.25) var _wallJumpTowardModifier: float = 1.0:
+@export_range(0.0 , 5.0, 0.05) var _wallJumpTowardModifier: float = 1.0:
 	set(value):
 		_wallJumpTowardModifier = value
 		wallJumpUpVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpTowardModifier))
@@ -244,7 +244,7 @@ var airTurnModifier: float = 4.0
 		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseDiveHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
 	get:
 		return _baseDiveHeight
-@export_range(0.0 , 1.0, 0.25) var _diveTimeToPeak: float = 0.1:
+@export_range(0.0 , 1.0, 0.05) var _diveTimeToPeak: float = 0.1:
 	set(value):
 		_diveTimeToPeak = value
 		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseDiveHeight + _jumpHeightPlatformBoost), _diveTimeToPeak)
@@ -290,7 +290,7 @@ var downpressedFriction
 		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseGPHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
 	get:
 		return _baseGPHeight
-@export_range(0.0 , 1.0, 0.25) var _gpTimeToPeak: float = 0.2:
+@export_range(0.0 , 1.0, 0.05) var _gpTimeToPeak: float = 0.2:
 	set(value):
 		_gpTimeToPeak = value
 		gpVelocity = calculate_jump_velocity(calculate_tile_height(_baseGPHeight + _jumpHeightPlatformBoost), _gpTimeToPeak)
