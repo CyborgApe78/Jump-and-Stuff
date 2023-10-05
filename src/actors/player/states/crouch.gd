@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: add crawl state
+#TODO: add crawl state, can get stuck under corners
 
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpGroundPound: Timer
