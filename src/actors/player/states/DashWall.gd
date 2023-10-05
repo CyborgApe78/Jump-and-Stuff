@@ -19,7 +19,7 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
-#	player.velocity = player.aimDirection * dashVelocity * 1.6 #TODO: aimable upgrade
+#	player.velocity = input.aimDirection * dashVelocity * 1.6 #TODO: aimable upgrade
 	player.velocity.x = dashDirection * stats.dashSpeed
 	player.characterRig.scale.x = dashDirection
 	player.ability_mask(CollisionLayers.DashSide, false)
@@ -30,7 +30,7 @@ func exit() -> void:
 	player.animPlayer.stop()
 	particles.local_coords = false
 	particles.emitting = false
-	if player.moveDirection.x != 0:
+	if input.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x
 	player.ability_mask(CollisionLayers.DashSide, true)
 

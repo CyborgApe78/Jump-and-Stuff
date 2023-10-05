@@ -68,12 +68,12 @@ func handle_input(event: InputEvent) -> int:
 	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
 	if input.justPressedDash: #TODO:dash wall
-		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
+		if abilities.can_use(PlayerAbilities.list.DashClimb) and input.moveDirection.y == 1:
 			return State.DashClimb
 		elif abilities.can_use(PlayerAbilities.list.DashSide):
 			abilities.consume(PlayerAbilities.list.DashSide, 1)
 			return State.DashAir
-#	if player.moveDirection.x == wall.lastWallDirection:
+#	if input.moveDirection.x == wall.lastWallDirection:
 #		return State.WallSlide
 	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
 		return State.GrappleHook
@@ -88,7 +88,7 @@ func state_check(delta: float) -> int:
 #			topSpeed = 0
 #			return State.BonkAir
 	if noHold and holdTimer.is_stopped(): ## if not holding against the wall, fall
-		if player.moveDirection.x == wall.wallDirection:
+		if input.moveDirection.x == wall.wallDirection:
 			return State.WallSlide
 		else:
 			player.velocity = Vector2(20 * -player.facing, -10)

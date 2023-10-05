@@ -43,7 +43,7 @@ func handle_input(event: InputEvent) -> int:
 	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 		return State.GroundPound
 	if input.justPressedDash:
-		if abilities.can_use(PlayerAbilities.list.DashClimb) and player.moveDirection.y == 1:
+		if abilities.can_use(PlayerAbilities.list.DashClimb) and input.moveDirection.y == 1:
 			return State.DashClimb
 		elif abilities.can_use(PlayerAbilities.list.DashWall): #TODO: add charge
 			return State.DashWall #LOOKAT: should this be like other dash checks

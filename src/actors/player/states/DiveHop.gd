@@ -34,7 +34,7 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	
-	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing:
+	if input.moveDirection.x != 0 and input.moveDirection.x != player.facing:
 		apply_friction(stats.moveSpeed * 2, delta)
 	
 	if player.velocity.y < 0:

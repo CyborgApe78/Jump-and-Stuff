@@ -5,6 +5,7 @@ class_name VelocityComponent
 @export var stats: StatsComponent
 @export var abilities: PlayerAbilities
 @export var ground: GroundDetectorComponent
+@export var input: InputComponent
 
 @onready var player = get_parent() as CharacterBody2D
 
@@ -46,7 +47,7 @@ func gravity_logic(amount: float, delta) -> void:
 
 
 func apply_acceleration(speed: float, amount: float, delta: float) -> void:
-	player.velocity.x = move_toward(abs(player.velocity.x), speed, amount * delta) * player.moveStrength.x
+	player.velocity.x = move_toward(abs(player.velocity.x), speed, amount * delta) * input.moveStrength.x
 
 
 func apply_friction(amount: float, delta) -> void:
@@ -58,7 +59,7 @@ func momentum_logic(speed: float, useMoveDirection: bool) -> void:
 		if abs(player.velocity.x) < stats.moveSpeed:
 			player.velocity.x = player.velocity.x
 		else:
-			player.velocity.x = player.moveDirection.x * max(abs(speed), abs(player.velocity.x))
+			player.velocity.x = input.moveDirection.x * max(abs(speed), abs(player.velocity.x))
 	if !useMoveDirection:
 		if abs(player.velocity.x) < stats.moveSpeed:
 			player.velocity.x = player.velocity.x
@@ -67,14 +68,14 @@ func momentum_logic(speed: float, useMoveDirection: bool) -> void:
 
 
 func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
-	if player.velocity.x != 0 and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if player.velocity.x != 0 and input.moveDirection.x != 0 and (sign(player.velocity.x) != input.moveDirection.x):
 		player.velocity.x = player.lastMoveDirection.x * 1
 	else:
 		if player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x:
 			player.velocity.x = player.lastMoveDirection.x * 1
-		elif player.moveDirection.x != 0 and abs(player.velocity.x) < speed:
+		elif input.moveDirection.x != 0 and abs(player.velocity.x) < speed:
 			apply_acceleration(speed, acceleration, delta)
-		elif player.moveDirection.x == 0:
+		elif input.moveDirection.x == 0:
 			apply_friction(friction, delta)
 		elif abs(player.velocity.x) >= speed:
 			momentum_logic(speed, true)
@@ -116,14 +117,14 @@ func align_to_ground()-> void:
 
 
 func neutral_move_direction_logic() -> void:
-	if player.moveDirection == Vector2.ZERO:
+	if input.moveDirection == Vector2.ZERO:
 		player.neutralMoveDirection = true
 	else:
 		player.neutralMoveDirection = false
 
 
 func neutral_air_momentum_logic(speed) -> void:
-	if player.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
+	if input.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
 		player.neutralMoveDirection = false
 
 

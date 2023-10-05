@@ -3,7 +3,7 @@ extends Marker2D
 #TODO: this needs to move with animations, add nodes in tree
 #TODO: seperate aim and grapple target
 #TODO: make it use bash detector area, but prefer one that is aimed if exist
-
+@export var input: InputComponent
 @export var color: Color = Color.FOREST_GREEN
 @export var detector: ShapeCast2D
 @export var indicatorAim: Line2D #TODO: make reusable
@@ -22,14 +22,14 @@ func _ready() -> void:
 	indicatorTarget.default_color = AbilityColor.grappleColor
 
 func _physics_process(delta: float) -> void:
-	aimInput = player.aimStrength if player.aimStrength != Vector2.ZERO else player.moveStrength
+	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.moveStrength
 #	if SettingsConfig.showAimIndicator: #TODO: set own var, not check resource all the time
 	if aimInput != Vector2.ZERO:
-		if player.aimDirection != Vector2.ZERO:
+		if input.aimDirection != Vector2.ZERO:
 			indicatorAim.visible = true
 		rotate_aim_indication()
 		find_target()
-	elif player.aimDirection == Vector2.ZERO and visible:
+	elif input.aimDirection == Vector2.ZERO and visible:
 			indicatorAim.visible = false
 			indicatorTarget.visible = false
 			target = null

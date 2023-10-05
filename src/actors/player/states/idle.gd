@@ -47,7 +47,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if input.pressedCrouch: 
 		return State.Crouch
-	if player.moveDirection.x != 0:
+	if input.moveDirection.x != 0:
 		return State.Walk
 	if !player.is_on_floor():
 		return State.Fall

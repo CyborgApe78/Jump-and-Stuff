@@ -14,12 +14,8 @@ class_name Player
 @onready var sounds: Node = $Sounds
 @onready var grappleHookLine: Line2D = $GrappleHook
 
-var moveDirection: Vector2 = Vector2.ZERO
-var lastMoveDirection: Vector2 = Vector2.ZERO
-var moveStrength: Vector2 = Vector2.ZERO
-var aimDirection: Vector2 = Vector2.ZERO
-var lastAimDirection: Vector2 = Vector2.ZERO
-var aimStrength: Vector2 = Vector2.ZERO
+@export var input: InputComponent
+
 var velocityPrevious: Vector2 = Vector2.ZERO
 var velocityRotated: Vector2 = Vector2.ZERO
 var GPMaxVelocity: Vector2 = Vector2.ZERO
@@ -53,8 +49,6 @@ func _physics_process(delta: float) -> void:
 	sm.physics(delta)
 	sm.state_check(delta)
 
-	get_move_input() #TODO: this should be input component
-	
 	EventBus.debugVelocity.emit(velocity.round())
 
 
@@ -70,29 +64,11 @@ func move_and_slide_rotation() -> void:
 	velocity = velocity.rotated(-rotation)
 
 
-func get_move_input() -> void:
-	var deadzoneRadius: float = 0.2
-	#TODO: make deadzone radius in settings
-	var inputStrength: = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
-	var aimInput = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
-	
-	moveStrength = inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
-	aimStrength = aimInput if aimInput.length() > deadzoneRadius else Vector2.ZERO
-	
-	moveDirection = moveStrength.round()
-	aimDirection = aimStrength.round()
-	
-	if moveDirection.x != 0:
-		lastMoveDirection.x = moveDirection.x
-	if moveDirection.y != 0:
-		lastMoveDirection.y = moveDirection.y
-
-
-func facing_logic():
-	if characterRig.scale.x != lastMoveDirection.x:
+func facing_logic(): #TODOL move this to another node
+	if characterRig.scale.x != input.lastMoveDirection.x:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(characterRig, "scale", Vector2(lastMoveDirection.x, characterRig.scale.y), 0.4).from_current()
-		facing = lastMoveDirection.x
+		tween.tween_property(characterRig, "scale", Vector2(input.lastMoveDirection.x, characterRig.scale.y), 0.4).from_current()
+		facing = input.lastMoveDirection.x
 
 
 func attempt_vertical_corner_correction(amount: int, delta) -> void: #TODO: change to have default value after delta

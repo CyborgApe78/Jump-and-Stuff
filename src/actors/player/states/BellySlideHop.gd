@@ -61,11 +61,11 @@ func physics(delta) -> void:
 		if abs(player.velocity.x) < velocityHop:
 			player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (stats.moveSpeed * 3) * delta) * player.facing
 	else:
-		if player.moveDirection.x != 0:
-			if player.moveDirection.x != player.facing:
+		if input.moveDirection.x != 0:
+			if input.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
 				apply_friction(stats.moveSpeed * 2, delta)
-			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < velocityHop:
+			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < velocityHop:
 #					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
 					player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (stats.moveSpeed * 3) * delta) * player.facing
 	

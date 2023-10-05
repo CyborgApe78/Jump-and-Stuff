@@ -65,7 +65,7 @@ func handle_input(event: InputEvent) -> int:
 #					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
 #					return State.JumpLong #TODO: special jump, timer to get a boosted jump
 			else:
-				if (abs(player.velocity.x) > minLongJumpVelocity or player.moveDirection.x != 0) and abilities.can_use(PlayerAbilities.list.JumpLong):
+				if (abs(player.velocity.x) > minLongJumpVelocity or input.moveDirection.x != 0) and abilities.can_use(PlayerAbilities.list.JumpLong):
 					return State.JumpLong
 				elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound): ## gives extra time after ground pound to still get boosted jump
 					return State.JumpGroundPound

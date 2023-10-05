@@ -48,7 +48,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if input.pressedJump and abilities.can_use(PlayerAbilities.list.JumpFlip) and (sign(player.velocity.x) != player.moveDirection.x) and skidLockTime > 0:
+	if input.pressedJump and abilities.can_use(PlayerAbilities.list.JumpFlip) and (sign(player.velocity.x) != input.moveDirection.x) and skidLockTime > 0:
 		consecutive_jump_cancel()
 		return State.JumpFlip
 #	if input.justPressedDash and abilities.can_use(abilities.list.DashSide):

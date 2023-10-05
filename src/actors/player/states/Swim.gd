@@ -22,7 +22,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-#	var velocity_target = player.moveDirection * swimVelocity
+#	var velocity_target = input.moveDirection * swimVelocity
 	if player.moveDirection == Vector2.ZERO:
 		player.velocity.y = 100
 		player.velocity.x = 0

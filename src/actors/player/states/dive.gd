@@ -36,7 +36,7 @@ func physics(delta: float) -> void:
 	
 	player.move_and_slide()
 	
-	if player.moveDirection.x != 0 and player.moveDirection.x != player.facing: #TODO: add speed in moving that direction
+	if input.moveDirection.x != 0 and input.moveDirection.x != player.facing: #TODO: add speed in moving that direction
 			apply_friction(stats.moveSpeed * 2, delta)
 	
 	gravity_logic(stats.gravityFall, delta)

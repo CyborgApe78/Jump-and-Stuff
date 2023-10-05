@@ -200,19 +200,19 @@ var airTurnModifier: float = 4.0
 @onready var wallJumpAwayVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpNeutralModifier))
 @onready var wallJumpTowardVelocity = calculate_jump_velocity(jumpHeight + calculate_tile_height(_wallJumpTowardModifier))
 #TODO: wall jump speed
-#if player.moveDirection.y == -1:
+#if input.moveDirection.y == -1:
 #		player.velocity = Vector2(100 * -jumpDirection, stats.jumpVelocity * 1.0)
 #	## down pressed
-#	elif player.moveDirection.y == 1:
+#	elif input.moveDirection.y == 1:
 #		player.velocity = Vector2(300 * -jumpDirection, 100)
 #	## no directional input
-#	elif player.moveDirection.x == 0:
+#	elif input.moveDirection.x == 0:
 #		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
 #	## away from wall pressed
-#	elif player.moveDirection.x == -jumpDirection:
+#	elif input.moveDirection.x == -jumpDirection:
 #		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
 #	## towards from wall pressed
-#	elif player.moveDirection.x == jumpDirection: ) 
+#	elif input.moveDirection.x == jumpDirection: ) 
 #		player.velocity = Vector2(200 * -jumpDirection, stats.jumpVelocity * 0.8)
 
 @export_group("Gravity")

@@ -100,7 +100,7 @@ func state_check(delta: float) -> int:
 			elif input.pressedCrouch:
 				player.velocity.x = 0
 				return State.Crouch
-			elif player.moveDirection.x != 0:
+			elif input.moveDirection.x != 0:
 				return State.Walk
 			else:
 				return State.Idle

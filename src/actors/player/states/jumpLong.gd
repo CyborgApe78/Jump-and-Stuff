@@ -49,11 +49,11 @@ func physics(delta) -> void:
 			player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongSpeed, (stats.moveSpeed * 3) * delta) * player.facing
 			#TODO: long jump acceleration
 	else:
-		if player.moveDirection.x != 0:
-			if player.moveDirection.x != player.facing:
+		if input.moveDirection.x != 0:
+			if input.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
 				apply_friction(stats.moveSpeed * 2, delta)
-			elif player.moveDirection.x == player.facing and abs(player.velocity.x) < stats.jumpLongSpeed:
+			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < stats.jumpLongSpeed:
 #					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
 					player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongVelocity, (stats.moveSpeed * 3) * delta) * player.facing
 	
@@ -123,7 +123,7 @@ func state_check(delta: float) -> int:
 			timerBufferJump.stop()
 			return State.Jump
 		elif player.velocity.x != 0:
-			if player.moveDirection.x != sign(player.velocity.x) and player.moveDirection.x != 0:
+			if input.moveDirection.x != sign(player.velocity.x) and input.moveDirection.x != 0:
 				return State.Skid
 			else:
 				return State.Walk

@@ -36,7 +36,7 @@ func exit() -> void:
 	player.animPlayer.stop()
 	particles.local_coords = false
 	particles.emitting = false
-	if player.moveDirection.x != 0:
+	if input.moveDirection.x != 0:
 		player.velocity.x = player.velocityPrevious.x
 		## If no input keep dash velocity
 	player.ability_mask(CollisionLayers.DashSide, true)
@@ -126,10 +126,10 @@ func state_check(delta: float) -> int:
 				player.landed()
 				return State.Walk
 			else:  ## Neutral input leaves the player with the most speed on exiting
-				if player.moveDirection.x == 0:
+				if input.moveDirection.x == 0:
 					player.velocity.x = player.velocity.x/2
 				else:
-					if player.moveDirection.x == player.facing:
+					if input.moveDirection.x == player.facing:
 						player.velocity.x = stats.moveSpeed
 					else:
 						player.velocity.x = 0

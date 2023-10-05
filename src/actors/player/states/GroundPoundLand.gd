@@ -53,7 +53,7 @@ func state_check(delta: float) -> int:
 	if timerStun.is_stopped():
 		if input.pressedCrouch:
 			return State.Crouch
-		if player.moveDirection.x != 0:
+		if input.moveDirection.x != 0:
 			return State.Walk
 		else:
 			return State.Idle

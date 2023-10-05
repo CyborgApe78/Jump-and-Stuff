@@ -39,7 +39,7 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #		if abs(player.velocity.x) < moveSpeed:
 #			player.velocity.x = player.velocity.x
 #		else:
-#			player.velocity.x = player.moveDirection.x * max(abs(speed), abs(player.velocity.x))
+#			player.velocity.x = input.moveDirection.x * max(abs(speed), abs(player.velocity.x))
 #	if !useMoveDirection:
 #		if abs(player.velocity.x) < moveSpeed:
 #			player.velocity.x = player.velocity.x
@@ -51,16 +51,16 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #	
 #	if movedirection != 0 and abs(player.velocity.x) > moveSpeed:
 #	#	player.velocity.x = moveSpeed * sign(player.velocity.x)
-#	if player.velocity.x != 0 and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
-#		player.velocity.x = player.lastMoveDirection.x * 1
-##		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * player.moveDirection.x, acceleration)
+#	if player.velocity.x != 0 and input.moveDirection.x != 0 and (sign(player.velocity.x) != input.moveDirection.x):
+#		player.velocity.x = input.lastMoveDirection.x * 1
+##		player.velocity.x = move_toward(player.velocity.x / airTurnModifier, speed * input.moveDirection.x, acceleration)
 #		add min(player.velocity.x / airTurnModifier, maxTurnSpeed) to velocity to keep from scaling to large
 #	else:
-#		if player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x:
-#			player.velocity.x = player.lastMoveDirection.x * 1
-#		elif player.moveDirection.x != 0 and abs(player.velocity.x) < speed:
+#		if player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x:
+#			player.velocity.x = input.lastMoveDirection.x * 1
+#		elif input.moveDirection.x != 0 and abs(player.velocity.x) < speed:
 #			apply_acceleration(speed, acceleration, delta)
-#		elif player.moveDirection.x == 0:
+#		elif input.moveDirection.x == 0:
 #			apply_friction(friction, delta)
 #		elif abs(player.velocity.x) >= speed:
 #			momentum_logic(speed, true)
@@ -98,12 +98,12 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #
 #
 #func neutral_move_direction_logic() -> void:
-#	if player.moveDirection == Vector2.ZERO:
+#	if input.moveDirection == Vector2.ZERO:
 #		player.neutralMoveDirection = true
 #	else:
 #		player.neutralMoveDirection = false
 #
 #
 #func neutral_air_momentum_logic(speed) -> void:
-#	if player.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
+#	if input.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
 #		player.neutralMoveDirection = false

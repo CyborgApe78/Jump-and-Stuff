@@ -26,16 +26,16 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	if abs(player.velocity.x) > pMoveSpeed and player.moveDirection.x != 0 and (sign(player.velocity.x) != player.moveDirection.x):
+	if abs(player.velocity.x) > pMoveSpeed and input.moveDirection.x != 0 and (sign(player.velocity.x) != input.moveDirection.x):
 		skidding = true
-	elif player.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
+	elif input.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
 		apply_acceleration(moveSpeed, accelerationGround, delta)
-	elif player.moveDirection.x == 0:
+	elif input.moveDirection.x == 0:
 		apply_friction(frictionGround, delta)
 	elif abs(player.velocity.x) >= moveSpeed:
 		momentum_logic(moveSpeed, true)
 	
-	if player.moveDirection.x == 0 and (ground.ledgeLeft or ground.ledgeRight): ## stops on ledge w/o input
+	if input.moveDirection.x == 0 and (ground.ledgeLeft or ground.ledgeRight): ## stops on ledge w/o input
 		player.velocity.x = move_toward(player.velocity.x, 0, frictionGround)
 		EventBus.helperUsed.emit(Util.helper.stopOnLedge)
 

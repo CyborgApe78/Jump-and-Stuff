@@ -19,10 +19,10 @@ func enter() -> void:
 	particles.emitting = true
 	
 	##TODO: make aim direction like it is in grapple and bash detectors
-	if player.aimDirection == Vector2.ZERO:
+	if input.aimDirection == Vector2.ZERO:
 		player.velocity = Vector2.UP * stats.dashSpeed * 1.6
 	else:
-		player.velocity = player.aimDirection * stats.dashSpeed * 1.6
+		player.velocity = input.aimDirection * stats.dashSpeed * 1.6
 
 
 func exit() -> void:

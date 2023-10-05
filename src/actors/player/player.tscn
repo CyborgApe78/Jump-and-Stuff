@@ -5871,13 +5871,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3meqx"]
 size = Vector2(15, 50)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input")]
 collision_layer = 64
 collision_mask = 65539
 floor_constant_speed = true
 floor_snap_length = 10.2
 platform_wall_layers = 3
 script = ExtResource("1_8artv")
+input = NodePath("InputComponent")
 metadata/_edit_vertical_guides_ = [-456.0]
 
 [node name="CharacterRig" type="Node2D" parent="."]
@@ -6595,10 +6596,11 @@ soundSplat = NodePath("../../Sounds/splat")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("54_qbhck")
 
-[node name="VelocityComponemt" type="Node" parent="." node_paths=PackedStringArray("stats", "ground")]
+[node name="VelocityComponemt" type="Node" parent="." node_paths=PackedStringArray("stats", "ground", "input")]
 script = ExtResource("55_iviae")
 stats = NodePath("../StatsComponent")
 ground = NodePath("../GroundDetector")
+input = NodePath("../InputComponent")
 
 [node name="InputComponent" type="Node" parent="."]
 script = ExtResource("56_q3cbc")
@@ -6788,9 +6790,10 @@ volume_db = -11.555
 stream = ExtResource("56_v8j0l")
 volume_db = -10.636
 
-[node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("detector", "indicatorAim", "indicatorTarget")]
+[node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("input", "detector", "indicatorAim", "indicatorTarget")]
 position = Vector2(0, -64)
 script = ExtResource("57_n4b1h")
+input = NodePath("../InputComponent")
 detector = NodePath("Detector")
 indicatorAim = NodePath("Aim")
 indicatorTarget = NodePath("Target")

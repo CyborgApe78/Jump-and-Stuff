@@ -56,7 +56,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.moveDirection != Vector2.ZERO:
+	if input.moveDirection != Vector2.ZERO:
 		return State.Walk
 	if dashBufferState != State.Null:
 		if dashBufferState == State.DashGround and abilities.can_use(PlayerAbilities.list.DashSide):

@@ -64,7 +64,7 @@ func state_check(delta: float) -> int:
 		if detector.is_colliding():
 			return State.Crouch
 		else:
-			if player.moveDirection.x != 0:
+			if input.moveDirection.x != 0:
 				return State.Walk
 			else:
 				return State.Idle

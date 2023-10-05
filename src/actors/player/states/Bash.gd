@@ -13,7 +13,7 @@ var aimInput: Vector2 #TODO: break aim indicator out so it can be used for other
 
 func enter() -> void:
 	timers()
-	aimInput = player.aimStrength if player.aimStrength != Vector2.ZERO else player.moveStrength
+	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.moveStrength
 	player.velocity = aimInput * (stats.dashSpeed)
 	abilities.reset(PlayerAbilities.list.All)
 
@@ -72,7 +72,7 @@ func state_check(delta: float) -> int:
 		if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 			return State.Glide
 		if !player.is_on_floor():
-			if !player.moveDirection == Vector2.ZERO:
+			if !input.moveDirection == Vector2.ZERO:
 				player.velocity = player.velocity / 2
 			return State.Fall
 	if player.is_on_floor():
