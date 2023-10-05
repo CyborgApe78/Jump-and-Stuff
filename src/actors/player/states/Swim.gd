@@ -12,6 +12,7 @@ var swimVelocity: float
 func enter() -> void:
 	swimVelocity = stats.moveSpeed * velocityModifier
 	player.animPlayer.queue("Swim")
+	abilities.reset(PlayerAbilities.list.All)
 
 
 func exit() -> void:
@@ -29,11 +30,12 @@ func physics(delta) -> void:
 #	elif abs(player.velocity) < abs(velocity_target): #TODO: need to find a better way for accel and deccel
 #		player.velocity = player.velocity.move_toward(velocity_target, accelerationAir * delta)
 	else:
-		player.velocity = player.moveDirection * swimVelocity
+		player.velocity = input.swimDirection * swimVelocity #TODO: acceleration
 
 
 func visual(delta) -> void:
-#	player.characterRotate.rotation = input.moveDirection.angle() #FIXME: doesn't work
+#	player.characterRotate.rotation = rad_to_deg(input.moveDirection.angle()) #FIXME: doesn't work
+#	EventBus.debug.emit( rad_to_deg(input.moveDirection.angle()) )
 	pass
 
 
@@ -46,8 +48,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.SwimDash):
-		return State.SwimDash
+#	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.SwimDash):
+#		return State.SwimDash
  
 	return State.Null
 

@@ -2,12 +2,14 @@ extends Node
 class_name InputComponent
 
 
-var moveDirection: Vector2 = Vector2.ZERO
+var moveDirection: Vector2 = Vector2.ZERO ## seperate x and y input
+var swimDirection: Vector2 = Vector2.ZERO #TODO: figure out better name for full direction movement
 var lastMoveDirection: Vector2 = Vector2.ZERO
 var moveStrength: Vector2 = Vector2.ZERO
 var aimDirection: Vector2 = Vector2.ZERO
 var lastAimDirection: Vector2 = Vector2.ZERO
 var aimStrength: Vector2 = Vector2.ZERO
+var aimBackup: Vector2 = Vector2.ZERO #TODO: figure out better name
 
 var pressedUp: bool = false
 var pressedDown: bool = false
@@ -56,6 +58,7 @@ func get_move_input() -> void:
 	var inputStrength: = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
 	var aimInput = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	
+	swimDirection = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	moveStrength = inputStrength if inputStrength.length() > deadzoneRadius else Vector2.ZERO
 	aimStrength = aimInput if aimInput.length() > deadzoneRadius else Vector2.ZERO
 	
@@ -66,6 +69,8 @@ func get_move_input() -> void:
 		lastMoveDirection.x = moveDirection.x
 	if moveDirection.y != 0:
 		lastMoveDirection.y = moveDirection.y
+	
+	aimBackup = aimStrength if aimStrength != Vector2.ZERO else moveStrength #TODO: replace in bash and aim indicator
 
 
 func get_ability_input() -> void:
