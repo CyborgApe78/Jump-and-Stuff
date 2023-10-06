@@ -595,7 +595,7 @@ position = Vector2(1, 32)
 shape = SubResource("RectangleShape2D_gx7c3")
 
 [node name="Water" parent="Interactables" instance=ExtResource("17_3as08")]
-position = Vector2(-2838, 11)
+position = Vector2(-379, -495)
 scale = Vector2(5, 5)
 
 [node name="Semisolid" parent="Interactables" instance=ExtResource("18_07xgy")]

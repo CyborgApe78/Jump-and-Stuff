@@ -2,7 +2,8 @@ extends PlayerInfo
 
 #TODO: quick jump off the water
 #TODO: jump out of water
-
+#TODO: Swim Idle state
+#TODO: accelleration
 
 @export var velocityModifier: float = 1
 
@@ -22,21 +23,26 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-#	var velocity_target = input.moveDirection * swimVelocity
-	if player.moveDirection == Vector2.ZERO:
-		player.velocity.y = 100
-		player.velocity.x = 0
+	var velocity_target = input.swimDirection * swimVelocity
+	
+	if input.moveDirection == Vector2.ZERO:
+		player.velocity.y = move_toward(player.velocity.y, 100, stats.frictionAir * 10 * delta)
+		player.velocity.x = VelEq.apply_friction(player.velocity.x, stats.frictionAir* 5, delta)
 #		player.velocity.x = VelEq.apply_friction(player.velocity.y, frictionGround * 2, delta)
 #	elif abs(player.velocity) < abs(velocity_target): #TODO: need to find a better way for accel and deccel
-#		player.velocity = player.velocity.move_toward(velocity_target, accelerationAir * delta)
+#		player.velocity = player.velocity.move_toward(velocity_target, stats.accelerationAir * delta)
 	else:
 		player.velocity = input.swimDirection * swimVelocity #TODO: acceleration
 
 
 func visual(delta) -> void:
-#	player.characterRotate.rotation = rad_to_deg(input.moveDirection.angle()) #FIXME: doesn't work
-#	EventBus.debug.emit( rad_to_deg(input.moveDirection.angle()) )
-	pass
+#	player.facing_logic()
+#FIXME: getting closer, ori fixes orientaion after going direction for a few seconds
+	if input.swimDirection != Vector2.ZERO:
+		player.characterRotate.rotation = lerp_angle(player.characterRotate.rotation, Vector2.UP.angle_to(player.velocity), delta * 10)
+	else:
+		if player.characterRotate.rotation != 0:
+			player.characterRotate.rotation = lerp_angle(player.characterRotate.rotation, 0, delta * 5)
 
 
 func sound(delta: float) -> void:
