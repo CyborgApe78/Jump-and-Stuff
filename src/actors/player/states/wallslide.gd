@@ -6,13 +6,15 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 
 func enter() -> void:
-	player.characterRig.scale.x = -wall.wallDirection
 	player.animPlayer.play("Wall Slide")
 	wall.wall_detection()
+	
 	player.velocityPrevious = player.velocity
 #	player.velocity.y = 0 ## Removed to slide up walls, needs testing
 	particles.emitting = true
 	abilities.reset(PlayerAbilities.list.All)
+	
+	player.characterRig.scale.x = -wall.wallDirection #FIXME: not working when entering
 
 
 func exit() -> void:
@@ -27,13 +29,14 @@ func physics(delta) -> void:
 		gravity_logic(stats.gravityFall, delta) #TODO: set default values in func to not have to call default values
 		fall_speed_logic(stats.terminalVelocity)
 	else:
-		gravity_logic(stats.gravityFall/4, delta)
+		gravity_logic(stats.gravityFall/10, delta)
 		fall_speed_logic(stats.terminalVelocity/4)
 	player.velocity.x = 10 * wall.wallDirection
 
 
 func visual(delta) -> void:
-	pass 
+	if player.characterRig.scale.x != -wall.wallDirection:
+		player.characterRig.scale.x = -wall.wallDirection 
 
 
 func sound(delta: float) -> void:
