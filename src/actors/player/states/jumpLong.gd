@@ -52,7 +52,7 @@ func physics(delta) -> void:
 		if input.moveDirection.x != 0:
 			if input.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
-				apply_friction(stats.moveSpeed * 2, delta)
+				apply_friction(stats.moveSpeed * 3, delta) #TODO: add to stats
 			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < stats.jumpLongSpeed:
 #					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
 					player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongVelocity, (stats.moveSpeed * 3) * delta) * player.facing
@@ -76,8 +76,8 @@ func handle_input(event: InputEvent) -> int:
 			timerBufferJump.start()
 	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
-		return State.GroundPound
+#	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
+#		return State.GroundPound
 	if input.justPressedDash:
 		dash_pressed_buffer()
 	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
