@@ -1,6 +1,5 @@
 extends MarginContainer
 
-#FIXME: panel shrinks after one annoucment, only on keys
 
 @onready var announceLabel: RichTextLabel = $MarginContainer/Label
 @onready var announceTimer: Timer = $Timer
