@@ -9,7 +9,7 @@ class_name VelocityComponent
 
 @onready var player = get_parent() as CharacterBody2D
 
-var velocity: Vector2 = Vector2.ZERO
+#var velocity: Vector2 = Vector2.ZERO
 
 var groundAngle: float #TODO: own component
 var velocityPrevious: Vector2 = Vector2.ZERO
@@ -18,8 +18,6 @@ var GPMaxVelocity: Vector2 = Vector2.ZERO
 
 var targetGrapple: TargetGrapple #TODO: own component
 var targetBash: TargetBash
-
-var neutralMoveDirection: bool = false
 
 var wallDirection: int = 0 
 var lastWallDirection: int = 0
@@ -33,11 +31,11 @@ var topSpeed: int ## keeps track of player speed for bonking
 
 
 func move() -> void:
-	player.velocity = velocity
+#	player.velocity = velocity
 	player.move_and_slide()
 
 func move_and_rotate() -> void:
-	player.velocity = velocity
+#	player.velocity = velocity
 	player.move_and_slide()
 
 
@@ -69,10 +67,10 @@ func momentum_logic(speed: float, useMoveDirection: bool) -> void:
 
 func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
 	if player.velocity.x != 0 and input.moveDirection.x != 0 and (sign(player.velocity.x) != input.moveDirection.x):
-		player.velocity.x = player.lastMoveDirection.x * 1
+		player.velocity.x = input.lastMoveDirection.x * 1
 	else:
-		if player.velocity.x != 0 and sign(player.velocity.x) != player.lastMoveDirection.x:
-			player.velocity.x = player.lastMoveDirection.x * 1
+		if player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x:
+			player.velocity.x = input.lastMoveDirection.x * 1
 		elif input.moveDirection.x != 0 and abs(player.velocity.x) < speed:
 			apply_acceleration(speed, acceleration, delta)
 		elif input.moveDirection.x == 0:
@@ -85,54 +83,11 @@ func fall_speed_logic(amount) -> void:
 	player.velocity.y = min(player.velocity.y, amount)
 
 
-func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.1) -> void: #FIXME: get this working
-	#TODO: use animeation tree instead
-	if forwardLean:
-		player.characterRig.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
-	if !forwardLean:
-		player.characterRig.skew = remap(-player.velocity.x, 0, speed, 0.0, leanAmount)
-
-
-func squash_and_stretch(delta): #FIXME: get this working
-	#TODO: use animeation tree instead
-#	if !player.is_on_floor():
-#		player.characterRig.scale.y = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 0.75, 1.25)
-#		player.characterRig.scale.x = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 1.25, 0.75)
-#
-#	player.characterRig.scale.x = lerp(player.characterRig.scale.x, 1.0, 1.0 - pow(0.01, delta))
-#	player.characterRig.scale.y = lerp(player.characterRig.scale.y, 1.0, 1.0 - pow(0.01, delta))
-	pass
-
-
-
-func consecutive_jump_cancel() -> void: 
-	player.jumped = false
-	player.timers.consecutiveJump.stop() #TODO:find a better to cancel timer
-	abilities.reset(PlayerAbilities.list.JumpConsec)
-
-
-func align_to_ground()-> void:
-	if ground.groundAngle != player.rotation:
-		player.rotation = ground.groundAngle
-
-
-func neutral_move_direction_logic() -> void:
-	if input.moveDirection == Vector2.ZERO:
-		player.neutralMoveDirection = true
-	else:
-		player.neutralMoveDirection = false
-
-
-func neutral_air_momentum_logic(speed) -> void:
-	if input.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
-		player.neutralMoveDirection = false
-
-
-func track_top_speed(speed:int) -> void:
+func track_top_speed(speed:int) -> void: #TODO: change to bool return
 	if abs(player.velocity.x) > topSpeed:
 		topSpeed = abs(speed)
 
 
-func jump_logic(jumpHeight: int, runSpeed:int = stats.moveSpeed) -> void:
+func jump_logic(jumpHeight: int, runSpeed:int = stats.moveSpeed) -> void: #TODO: change to value return
 	if abs(player.velocity.x) > runSpeed:
 		player.velocity.y = jumpHeight ## Add another tile height

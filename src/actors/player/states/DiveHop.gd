@@ -15,7 +15,7 @@ var velocityHop: float
 func enter() -> void:
 	velocityHop = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
-	topSpeed = 0
+	velocity.topSpeed = 0
 	
 	player.velocity.x = max(velocityHop, abs(player.velocity.x)) * player.facing
 	player.velocity.y = stats.diveVelocity
@@ -35,15 +35,15 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if input.moveDirection.x != 0 and input.moveDirection.x != player.facing:
-		apply_friction(stats.moveSpeed * 2, delta)
+		velocity.apply_friction(stats.moveSpeed * 2, delta)
 	
 	if player.velocity.y < 0:
-		gravity_logic(stats.gravityDiveFloat, delta)
+		velocity.gravity_logic(stats.gravityDiveFloat, delta)
 	else:
-		gravity_logic(stats.gravityFall, delta)
-	fall_speed_logic(stats.terminalVelocity)
+		velocity.gravity_logic(stats.gravityFall, delta)
+	velocity.fall_speed_logic(stats.terminalVelocity)
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -80,8 +80,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling(): #TODO: change to bonk
 		return State.Fall
 	if wall.wallDirection != 0:
-		if topSpeed > stats.moveSpeed:
-			topSpeed = 0
+		if velocity.topSpeed > stats.moveSpeed:
+			velocity.topSpeed = 0
 			return State.BonkAir
 		else:
 			return State.WallSlide

@@ -18,7 +18,7 @@ extends PlayerInfo
 func enter() -> void:
 	player.velocityPrevious = player.velocity
 	timers()
-	topSpeed = 0
+	velocity.topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Fall")
 	player.set_up_direction(Vector2.UP)
@@ -40,21 +40,22 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if timerCoyoteJump.is_stopped():
-		gravity_logic(stats.gravityFall, delta)
+		velocity.gravity_logic(stats.gravityFall, delta)
 	
 	if input.pressedJump:
-		fall_speed_logic(stats.terminalVelocity / jumpHeldSlowModifier)
+		velocity.fall_speed_logic(stats.terminalVelocity / jumpHeldSlowModifier)
 	elif input.moveDirection.y == 1:
-		fall_speed_logic(stats.terminalVelocity * 1.5)
+		velocity.fall_speed_logic(stats.terminalVelocity * 1.5)
 	else:
-		fall_speed_logic(stats.terminalVelocity)
+		velocity.fall_speed_logic(stats.terminalVelocity)
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
+
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
+		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 
 
 func visual(delta) -> void:
@@ -114,8 +115,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpWall):
 			return State.JumpWall
-		if topSpeed > stats.moveSpeed:
-			topSpeed = 0
+		if velocity.topSpeed > stats.moveSpeed:
+			velocity.topSpeed = 0
 			return State.BonkAir
 		else:
 			return State.WallSlide

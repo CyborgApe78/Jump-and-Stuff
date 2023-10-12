@@ -11,55 +11,7 @@ var abilities: Resource = preload("res://src/actors/player/resources/playerAbili
 var GameStats: Resource = preload("res://src/resources/gameStats.tres")
 var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
-
-var topSpeed: int ## keeps track of player speed for bonking
-
 var dashBufferState: int
-
-
-
-
-func gravity_logic(amount: float, delta) -> void:
-	player.velocity.y += amount * delta
-
-
-func apply_acceleration(speed: float, amount: float, delta: float) -> void:
-	player.velocity.x = move_toward(abs(player.velocity.x), speed, amount * delta) * input.moveStrength.x
-
-
-func apply_friction(amount: float, delta) -> void:
-	player.velocity.x = move_toward(player.velocity.x, 0, amount * delta)
-
-
-func momentum_logic(speed: float, useMoveDirection: bool) -> void:
-	if useMoveDirection:
-		if abs(player.velocity.x) < stats.moveSpeed:
-			player.velocity.x = player.velocity.x
-		else:
-			player.velocity.x = input.moveDirection.x * max(abs(speed), abs(player.velocity.x))
-	if !useMoveDirection:
-		if abs(player.velocity.x) < stats.moveSpeed:
-			player.velocity.x = player.velocity.x
-		else:
-			player.velocity.x = max(abs(speed), abs(player.velocity.x)) * player.facing
-
-
-func air_velocity_logic(speed: float, acceleration: float, friction: float, delta: float) -> void:
-	if player.velocity.x != 0 and input.moveDirection.x != 0 and (sign(player.velocity.x) != input.moveDirection.x):
-		player.velocity.x = input.lastMoveDirection.x * 1
-	else:
-		if player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x:
-			player.velocity.x = input.lastMoveDirection.x * 1
-		elif input.moveDirection.x != 0 and abs(player.velocity.x) < speed:
-			apply_acceleration(speed, acceleration, delta)
-		elif input.moveDirection.x == 0:
-			apply_friction(friction, delta)
-		elif abs(player.velocity.x) >= speed:
-			momentum_logic(speed, true)
-
-
-func fall_speed_logic(amount) -> void:
-	player.velocity.y = min(player.velocity.y, amount)
 
 
 func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.1) -> void: #FIXME: get this working
@@ -100,21 +52,11 @@ func align_to_ground()-> void:
 		player.rotation = ground.groundAngle
 
 
-func neutral_move_direction_logic() -> void:
+func neutral_move_direction_logic() -> void: #TODO: move to input and make bool return
 	if input.moveDirection == Vector2.ZERO:
 		player.neutralMoveDirection = true
 	else:
 		player.neutralMoveDirection = false
-
-
-func neutral_air_momentum_logic(speed) -> void:
-	if input.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
-		player.neutralMoveDirection = false
-
-
-func track_top_speed(speed:int) -> void:
-	if abs(player.velocity.x) > topSpeed:
-		topSpeed = abs(speed)
 
 
 func dash_pressed_buffer() -> void:
@@ -144,6 +86,11 @@ func dash_pressed_logic() -> void:
 	else:
 		dashBufferState = State.Null
 		EventBus.error.emit("null dash pressed logic")
+
+
+func neutral_air_momentum_logic(speed) -> void:
+	if input.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
+		player.neutralMoveDirection = false
 
 
 func jump_logic(jumpHeight: int, runSpeed:int = stats.moveSpeed) -> void:

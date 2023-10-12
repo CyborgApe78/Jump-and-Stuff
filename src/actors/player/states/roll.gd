@@ -58,8 +58,8 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
 	if !player.is_on_floor():
-		gravity_logic(stats.gravityFall, delta)
-		fall_speed_logic(stats.terminalVelocity)
+		velocity.gravity_logic(stats.gravityFall, delta)
+		velocity.fall_speed_logic(stats.terminalVelocity)
 	
 	#TODO: needs hori movement code when !isonfloor
 	if rad_to_deg(ground.groundAngle) < -1: #TODO: create own accel and deccel
@@ -67,15 +67,15 @@ func physics(delta) -> void:
 			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
 			player.velocity.x -= stats.downHillAccel ## Slow on up hill
-#			apply_friction(frictionGround * upHillFrictionModifier, delta) 
+#			velocity.apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += stats.downHillAccel  ## Speed up on down hill
 		else:
 			player.velocity.x += stats.downHillAccel ## Slow on up hill
-#			apply_friction(frictionGround * upHillFrictionModifier, delta) 
+#			velocity.apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif timerDuration.is_stopped():
-		apply_friction(stats.frictionGround, delta) #TODO: own friction
+		velocity.apply_friction(stats.frictionGround, delta) #TODO: own friction
 
 
 func visual(delta) -> void:

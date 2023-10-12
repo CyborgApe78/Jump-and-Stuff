@@ -3,7 +3,7 @@ extends PlayerInfo
 #LOOKAT: should there be an increased hor speed for more control
 
 func enter() -> void:
-	topSpeed = 0
+	velocity.topSpeed = 0
 	neutral_move_direction_logic()
 
 
@@ -16,13 +16,13 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide()
-	gravity_logic(stats.gravityApex, delta)
-	track_top_speed(player.velocity.x)
+	velocity.gravity_logic(stats.gravityApex, delta)
+	velocity.track_top_speed(player.velocity.x)
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
+		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 
 
 func visual(delta) -> void:
@@ -55,8 +55,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > stats.moveSpeed:
-		topSpeed = 0
+	if player.is_on_wall() and velocity.topSpeed > stats.moveSpeed:
+		velocity.topSpeed = 0
 		return State.BonkAir
 #		elif input.moveDirection.x == wall.wallDirection:
 #			return State.WallSlide

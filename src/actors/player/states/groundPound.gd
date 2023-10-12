@@ -32,16 +32,16 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if player.velocity.y < 0:
-		gravity_logic(stats.gravityGPFloat, delta)
+		velocity.gravity_logic(stats.gravityGPFloat, delta)
 	else:
-		gravity_logic(stats.gravityGP, delta)
-	fall_speed_logic(stats.terminalGPVelocity)
+		velocity.gravity_logic(stats.gravityGP, delta)
+	velocity.fall_speed_logic(stats.terminalGPVelocity)
 	
 	player.velocity.x = 0
 #	if input.pressGroundPound: ## could use this bounce along the ground
 #		player.velocity.x = 0
 #	else:
-#		air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+#		velocity.air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
 
 
 func visual(delta) -> void:

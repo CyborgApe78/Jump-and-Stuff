@@ -21,7 +21,7 @@ var velocityHop: float
 func enter() -> void:
 	velocityHop = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
-	topSpeed = 0
+	velocity.topSpeed = 0
 	
 	player.velocity.x = velocityHop * player.facing
 	player.velocity.y = stats.jumpVelocity * jumpModifier
@@ -54,7 +54,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if timerDuration.is_stopped():
-		gravity_logic(stats.gravityJump, delta)
+		velocity.gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
 		neutral_move_direction_logic()
@@ -64,12 +64,12 @@ func physics(delta) -> void:
 		if input.moveDirection.x != 0:
 			if input.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
-				apply_friction(stats.moveSpeed * 2, delta)
+				velocity.apply_friction(stats.moveSpeed * 2, delta)
 			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < velocityHop:
-#					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
+#					velocity.apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
 					player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (stats.moveSpeed * 3) * delta) * player.facing
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -108,8 +108,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		return State.Fall
 	if wall.wallDirection != 0:
-		if topSpeed > stats.moveSpeed:
-			topSpeed = 0
+		if velocity.topSpeed > stats.moveSpeed:
+			velocity.topSpeed = 0
 			return State.BonkAir
 #		else:
 #			return State.WallSlide

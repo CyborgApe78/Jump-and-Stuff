@@ -23,14 +23,14 @@ func enter() -> void:
 
 
 func exit() -> void:
-	topSpeed = 0
+	velocity.topSpeed = 0
 
 
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	gravity_logic(stats.gravityFall, delta)
-	fall_speed_logic(stats.terminalVelocity)
+	velocity.gravity_logic(stats.gravityFall, delta)
+	velocity.fall_speed_logic(stats.terminalVelocity)
 	if player.is_on_floor():
 		currentBonkTime -= delta
 		player.velocity = Vector2.ZERO

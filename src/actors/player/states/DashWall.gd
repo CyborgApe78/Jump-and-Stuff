@@ -36,7 +36,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -76,8 +76,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
 		if !timerCoyoteJumpWall.is_stopped():
 			return State.JumpWall
-		elif topSpeed > stats.moveSpeed:
-			topSpeed = 0
+		elif velocity.topSpeed > stats.moveSpeed:
+			velocity.topSpeed = 0
 			return State.BonkAir
 	if dashBufferState != State.Null:
 		if dashBufferState == State.DashAir and abilities.can_use(PlayerAbilities.list.DashSide):

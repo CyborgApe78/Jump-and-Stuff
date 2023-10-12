@@ -20,20 +20,20 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
 	if !player.is_on_floor():
-		gravity_logic(stats.gravityFall, delta)
+		velocity.gravity_logic(stats.gravityFall, delta)
 	
 	if rad_to_deg(ground.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
-			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
+			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
 	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += stats.downHillAccel #TODO: make like friction func, need a top speed or make this function
 		else:
-			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
+			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
 	else:
-		apply_friction(stats.frictionGround * 0.75, delta)
+		velocity.apply_friction(stats.frictionGround * 0.75, delta)
 
 
 func visual(delta) -> void:

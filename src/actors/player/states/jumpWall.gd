@@ -48,7 +48,7 @@ func enter() -> void:
 		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
 	
 	particles.restart()
-	topSpeed = 0
+	velocity.topSpeed = 0
 
 
 func exit() -> void:
@@ -66,15 +66,15 @@ func physics(delta) -> void:
 			neutral_air_momentum_logic(stats.moveSpeed)
 		else:
 			if input.moveDirection.x != 0:
-				apply_acceleration(stats.moveSpeed, stats.accelerationAir, delta)
+				velocity.apply_acceleration(stats.moveSpeed, stats.accelerationAir, delta)
 			elif input.moveDirection.x == 0:
-				apply_friction(stats.frictionAir, delta)
-	gravity_logic(stats.gravityJump, delta)
+				velocity.apply_friction(stats.frictionAir, delta)
+	velocity.gravity_logic(stats.gravityJump, delta)
 	
 	#TODO: air velocity func
-#	air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
+#	velocity.air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -111,8 +111,8 @@ func state_check(delta: float) -> int:
 		if player.is_on_ceiling():
 			consecutive_jump_cancel()
 			return State.Fall
-		if player.is_on_wall() and topSpeed > stats.moveSpeed:
-			topSpeed = 0
+		if player.is_on_wall() and velocity.topSpeed > stats.moveSpeed:
+			velocity.topSpeed = 0
 			return State.BonkAir
 		if player.velocity.y > -stats.jumpApexHeight:
 			return State.JumpApex

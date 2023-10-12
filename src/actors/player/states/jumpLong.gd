@@ -15,7 +15,7 @@ func enter() -> void:
 	EventBus.playerJumped.emit()
 	
 	startingHeight = player.global_position.y
-	topSpeed = 0
+	velocity.topSpeed = 0
 	
 	player.velocity.y = stats.jumpLongVelocity
 	player.velocity.x = max(stats.jumpLongSpeed, abs(player.velocity.x)) * player.facing
@@ -41,7 +41,7 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	
-	gravity_logic(stats.gravityJump, delta)
+	velocity.gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
 		neutral_move_direction_logic()
@@ -52,12 +52,12 @@ func physics(delta) -> void:
 		if input.moveDirection.x != 0:
 			if input.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
-				apply_friction(stats.moveSpeed * 3, delta) #TODO: add to stats
+				velocity.apply_friction(stats.moveSpeed * 3, delta) #TODO: add to stats
 			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < stats.jumpLongSpeed:
-#					apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
+#					velocity.apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
 					player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongVelocity, (stats.moveSpeed * 3) * delta) * player.facing
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -101,8 +101,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped():
 			return State.JumpWall
-		elif topSpeed > stats.moveSpeed:
-			topSpeed = 0
+		elif velocity.topSpeed > stats.moveSpeed:
+			velocity.topSpeed = 0
 			return State.BonkAir
 		else:
 			return State.WallSlide

@@ -38,26 +38,26 @@ func physics(delta) -> void:
 	timerConsecutiveJump.start()
 	
 	if !player.is_on_floor():
-		gravity_logic(stats.gravityFall, delta)
-		fall_speed_logic(stats.terminalVelocity)
+		velocity.gravity_logic(stats.gravityFall, delta)
+		velocity.fall_speed_logic(stats.terminalVelocity)
 	
 #	if abs(player.velocity.x) < slideVelocity: 
 #		player.velocity.x = move_toward(abs(player.velocity.x), slideVelocity, (moveSpeed * 6) * delta) * player.facing
 #	elif abs(player.velocity.x) >= slideVelocity:
-#		momentum_logic(slideVelocity, false)
+#		velocity.momentum_logic(slideVelocity, false)
 	
 	if rad_to_deg(ground.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
 		else:
-			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
+			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
 	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += stats.downHillAccel
 		else:
-			apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
+			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
 	else:
-		momentum_logic(slideVelocity, false)
+		velocity.momentum_logic(slideVelocity, false)
 
 
 func visual(delta) -> void:

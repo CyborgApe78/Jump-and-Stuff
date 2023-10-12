@@ -37,7 +37,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	gravity_logic(stats.gravityFall, delta)
+	velocity.gravity_logic(stats.gravityFall, delta)
 
 
 func visual(delta) -> void:

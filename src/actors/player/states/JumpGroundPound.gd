@@ -13,7 +13,7 @@ func enter() -> void:
 	timerCoyoteJumpGroundPound.stop()
 	velocityJumpCrouch = stats.jumpGroundPoundVelocity
 	EventBus.playerJumped.emit()
-	topSpeed = 0
+	velocity.topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.pitch_scale = jumpSoundModifier
@@ -31,16 +31,16 @@ func physics(delta) -> void:
 	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
-	gravity_logic(stats.gravityJump, delta)
+	velocity.gravity_logic(stats.gravityJump, delta)
 	
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
+		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 		
 	player.move_and_slide_rotation()
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:

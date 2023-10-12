@@ -37,11 +37,11 @@ func physics(delta: float) -> void:
 	player.move_and_slide()
 	
 	if input.moveDirection.x != 0 and input.moveDirection.x != player.facing: #TODO: add speed in moving that direction
-			apply_friction(stats.moveSpeed * 2, delta)
+			velocity.apply_friction(stats.moveSpeed * 2, delta)
 	
-	gravity_logic(stats.gravityFall, delta)
-	fall_speed_logic(stats.terminalVelocity)
-	track_top_speed(player.velocity.x)
+	velocity.gravity_logic(stats.gravityFall, delta)
+	velocity.fall_speed_logic(stats.terminalVelocity)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -81,8 +81,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > stats.moveSpeed:
-		topSpeed = 0
+	if player.is_on_wall() and velocity.topSpeed > stats.moveSpeed:
+		velocity.topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
 		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim

@@ -29,11 +29,11 @@ func physics(delta) -> void:
 	elif player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = input.lastMoveDirection.x * 1
 	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed:
-		player.velocity.x = VelEq.apply_acceleration(player.velocity.x, stats.moveSpeed, stats.accelerationGround, input.moveStrength.x, delta)
+		velocity.apply_acceleration(stats.moveSpeed, stats.accelerationGround, delta)
 	elif input.moveDirection.x == 0:
-		player.velocity.x = VelEq.apply_friction(player.velocity.x, stats.frictionGround, delta)
+		velocity.apply_friction(stats.frictionGround, delta)
 	elif abs(player.velocity.x) >= stats.moveSpeed:
-		momentum_logic(stats.moveSpeed, true)
+		velocity.momentum_logic(stats.moveSpeed, true)
 	
 	if input.moveDirection.x == 0 and (ground.ledgeLeft or ground.ledgeRight): ## stops on ledge w/o input
 		#TODO:make it so you have to be facing the ledge 

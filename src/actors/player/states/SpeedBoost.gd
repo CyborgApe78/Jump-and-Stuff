@@ -11,14 +11,14 @@ var pMoveSpeed: float
 
 
 func enter() -> void:
-	pMoveSpeed = moveSpeed
-	moveSpeed = moveSpeed * speedModifier
+	pMoveSpeed = stats.moveSpeed
+	stats.moveSpeed = stats.moveSpeed * speedModifier
 	player.animPlayer.queue("Walk")
 	skidding = false
 
 
 func exit() -> void:
-	moveSpeed = pMoveSpeed
+	stats.moveSpeed = pMoveSpeed
 	player.animPlayer.stop()
 	soundeffect.stop()
 	player.animPlayer.speed_scale = 1
@@ -28,15 +28,15 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	if abs(player.velocity.x) > pMoveSpeed and input.moveDirection.x != 0 and (sign(player.velocity.x) != input.moveDirection.x):
 		skidding = true
-	elif input.moveDirection.x != 0 and abs(player.velocity.x) < moveSpeed:
-		apply_acceleration(moveSpeed, accelerationGround, delta)
+	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed:
+		velocity.apply_acceleration(stats.moveSpeed, stats.accelerationGround, delta)
 	elif input.moveDirection.x == 0:
-		apply_friction(frictionGround, delta)
-	elif abs(player.velocity.x) >= moveSpeed:
-		momentum_logic(moveSpeed, true)
+		velocity.apply_friction(stats.frictionGround, delta)
+	elif abs(player.velocity.x) >= stats.moveSpeed:
+		velocity.momentum_logic(stats.moveSpeed, true)
 	
 	if input.moveDirection.x == 0 and (ground.ledgeLeft or ground.ledgeRight): ## stops on ledge w/o input
-		player.velocity.x = move_toward(player.velocity.x, 0, frictionGround)
+		player.velocity.x = move_toward(player.velocity.x, 0, stats.frictionGround)
 		EventBus.helperUsed.emit(Util.helper.stopOnLedge)
 
 

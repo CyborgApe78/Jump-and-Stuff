@@ -29,8 +29,8 @@ func physics(delta) -> void:
 	
 	if input.moveDirection == Vector2.ZERO:
 		player.velocity.y = move_toward(player.velocity.y, 100, stats.frictionAir * 10 * delta)
-		player.velocity.x = VelEq.apply_friction(player.velocity.x, stats.frictionAir* 5, delta)
-#		player.velocity.x = VelEq.apply_friction(player.velocity.y, frictionGround * 2, delta)
+		velocity.apply_friction(stats.frictionAir * 5, delta)
+#		velocity.apply_friction(frictionGround * 2, delta)
 #	elif abs(player.velocity) < abs(velocityTarget): #TODO: need to find a better way for accel and deccel
 #		player.velocity = player.velocity.move_toward(velocityTarget, stats.accelerationAir * delta)
 	else:

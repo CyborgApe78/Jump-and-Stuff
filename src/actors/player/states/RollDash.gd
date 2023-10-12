@@ -41,9 +41,9 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
 	if !player.is_on_floor():
-		gravity_logic(stats.gravityFall, delta)
+		velocity.gravity_logic(stats.gravityFall, delta)
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -66,8 +66,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_wall() and topSpeed > stats.moveSpeed:
-		topSpeed = 0
+	if player.is_on_wall() and velocity.topSpeed > stats.moveSpeed:
+		velocity.topSpeed = 0
 		return State.BonkAir
 	if timerDuration.is_stopped():
 		if player.is_on_floor():

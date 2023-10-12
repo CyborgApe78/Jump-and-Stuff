@@ -34,7 +34,7 @@ func physics(delta) -> void:
 	skidTime -= delta
 	skidLockTime -= delta
 	if skidLockTime < 0:
-		apply_friction(frictionSkid, delta)
+		velocity.apply_friction(frictionSkid, delta)
 	#TODO: change min(player.velocity.x / skidFrictionModifier, maxSkidSpeed) to velocity to keep from scaling to large
 
 

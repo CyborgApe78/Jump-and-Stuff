@@ -21,7 +21,7 @@ func enter() -> void:
 	velocityRollJump = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
 	EventBus.playerJumped.emit()
-	topSpeed = 0
+	velocity.topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Roll")
 	soundeffect.pitch_scale = jumpModifier
@@ -48,7 +48,7 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
 	if timerDuration.is_stopped():
-		gravity_logic(stats.gravityJump, delta)
+		velocity.gravity_logic(stats.gravityJump, delta)
 	else:
 		player.velocity.y = 0
 	
@@ -60,12 +60,12 @@ func physics(delta) -> void:
 		if input.moveDirection.x != 0:
 			if input.moveDirection.x != player.facing:
 #				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
-				apply_friction(stats.moveSpeed * 2, delta)
+				velocity.apply_friction(stats.moveSpeed * 2, delta)
 			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < velocityRollJump:
-#					apply_acceleration(velocityLongJump, moveSpeed * 3, delta)
+#					velocity.apply_acceleration(velocityLongJump, moveSpeed * 3, delta)
 					player.velocity.x = move_toward(abs(player.velocity.x), velocityRollJump, (stats.moveSpeed * 3) * delta) * player.facing
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -110,8 +110,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		return State.Fall
 	if wall.wallDirection != 0:
-		if topSpeed > stats.moveSpeed: #TODO: make func to check if bonk enabled
-			topSpeed = 0
+		if velocity.topSpeed > stats.moveSpeed: #TODO: make func to check if bonk enabled
+			velocity.topSpeed = 0
 			return State.BonkAir
 		else:
 			return State.WallSlide

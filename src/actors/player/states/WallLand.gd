@@ -26,7 +26,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if !noHold:
-		gravity_logic(stats.gravityFall/4, delta)
+		velocity.gravity_logic(stats.gravityFall/4, delta)
 	
 	if player.velocity.y > 0 and !noHold:
 		player.velocity.y = 0
@@ -84,8 +84,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-#	if topSpeed > moveSpeed: #TODO: tweak this 
-#			topSpeed = 0
+#	if velocity.topSpeed > moveSpeed: #TODO: tweak this 
+#			velocity.topSpeed = 0
 #			return State.BonkAir
 	if noHold and holdTimer.is_stopped(): ## if not holding against the wall, fall
 		if input.moveDirection.x == wall.wallDirection:

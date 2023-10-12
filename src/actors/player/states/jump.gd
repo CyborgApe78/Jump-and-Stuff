@@ -9,7 +9,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	EventBus.playerJumped.emit()
-	topSpeed = 0
+	velocity.topSpeed = 0
 	neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
@@ -33,14 +33,14 @@ func physics(delta) -> void:
 	
 	player.move_and_slide_rotation()
 	
-	gravity_logic(stats.gravityJump, delta)
+	velocity.gravity_logic(stats.gravityJump, delta)
 	
 	if player.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
-		air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
+		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 	
-	track_top_speed(player.velocity.x)
+	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
@@ -78,8 +78,8 @@ func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		consecutive_jump_cancel()
 		return State.Fall
-	if player.is_on_wall() and topSpeed > stats.moveSpeed:
-		topSpeed = 0
+	if player.is_on_wall() and velocity.topSpeed > stats.moveSpeed:
+		velocity.topSpeed = 0
 		return State.BonkAir
 #		elif input.moveDirection.x == wall.wallDirection:
 #			return State.WallSlide

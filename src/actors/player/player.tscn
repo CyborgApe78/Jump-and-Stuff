@@ -6263,7 +6263,6 @@ script = ExtResource("13_wqbus")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 soundeffect = NodePath("../../Sounds/walk")
-skidPercent = null
 
 [node name="Skid" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
 script = ExtResource("14_bvej5")
@@ -6278,8 +6277,6 @@ timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
-crouchSpeedMin = null
-minLongJumpVelocity = null
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
 script = ExtResource("16_7w1oc")
@@ -6350,9 +6347,6 @@ timerBufferRoll = NodePath("../../Timers/BufferRoll")
 timerFall = NodePath("../../Timers/FallTimeMax")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
 timerSemisolidReset = NodePath("../../Timers/Semisoild")
-jumpHeldSlowModifier = null
-transTime = null
-fallTimeTillBonk = null
 
 [node name="Glide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump")]
 script = ExtResource("26_uv5su")
@@ -6560,9 +6554,6 @@ timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
-duration = null
-jumpModifier = null
-velocityModifier = null
 
 [node name="RollDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "soundJetpack", "particlesSlide", "particlesJetpack", "detector")]
 script = ExtResource("48_8tyxe")
@@ -6625,7 +6616,6 @@ shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
@@ -6686,7 +6676,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")

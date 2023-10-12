@@ -25,9 +25,9 @@ func physics(delta) -> void:
 	
 	player.move_and_slide_rotation()
 	
-	gravity_logic(stats.gravityJump, delta)
+	velocity.gravity_logic(stats.gravityJump, delta)
 	
-	air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
+	velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 
 
 func visual(delta) -> void:
@@ -67,8 +67,8 @@ func state_check(delta: float) -> int:
 		consecutive_jump_cancel()
 		return State.Fall
 	if player.is_on_wall():
-		if topSpeed > stats.moveSpeed:
-			topSpeed = 0
+		if velocity.topSpeed > stats.moveSpeed:
+			velocity.topSpeed = 0
 			return State.BonkAir
 		else:
 			return State.WallSlide
