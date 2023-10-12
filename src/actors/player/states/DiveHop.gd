@@ -10,14 +10,16 @@ extends PlayerInfo
 
 var startingHeight: int
 var velocityHop: float
-
+var diveDirection: int
 
 func enter() -> void:
+	diveDirection = input.moveDirection.x if input.moveDirection.x != 0 else player.facing # lets player switch directions quickly in air
 	velocityHop = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
 	velocity.topSpeed = 0
 	
-	player.velocity.x = max(velocityHop, abs(player.velocity.x)) * player.facing
+	player.velocity.x = max(velocityHop, abs(player.velocity.x)) * diveDirection
+	player.facing_logic(diveDirection)
 	player.velocity.y = stats.diveVelocity
 	
 	player.animPlayer.queue("Belly Slide")
@@ -62,7 +64,7 @@ func handle_input(event: InputEvent) -> int:
 		timerBufferRoll.start()
 	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound):
 		return State.GroundPound
 	if input.justPressedDash:
 		dash_pressed_buffer()
