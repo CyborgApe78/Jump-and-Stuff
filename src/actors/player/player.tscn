@@ -1170,6 +1170,18 @@ tracks/20/keys = {
 "update": 0,
 "values": [Vector2(5, 96)]
 }
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0vwvt"]
 resource_name = "Dash Side"
@@ -1425,6 +1437,18 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(5, 96)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_dcalq"]
@@ -1962,6 +1986,18 @@ tracks/20/keys = {
 "update": 0,
 "values": [Vector2(5, 96)]
 }
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_pvl08"]
 resource_name = "Fall"
@@ -2217,6 +2253,18 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(5, 96)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_4s0wx"]
@@ -3388,6 +3436,18 @@ tracks/21/keys = {
 "update": 0,
 "values": [Vector2(5, 96)]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_8shh4"]
 resource_name = "Jump Air"
@@ -3643,6 +3703,18 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(5, 96)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_im7kq"]
@@ -4236,7 +4308,7 @@ tracks/23/loop_wrap = true
 tracks/23/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [PackedVector2Array(-64, -64, -40, -96, 0, -104, 32, -96, 64, -64)]
 }
 tracks/24/type = "value"
@@ -4260,7 +4332,7 @@ tracks/25/loop_wrap = true
 tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [PackedVector2Array(-40, -96, 0, -8)]
 }
 tracks/26/type = "value"
@@ -4272,7 +4344,7 @@ tracks/26/loop_wrap = true
 tracks/26/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [PackedVector2Array(0, -104, 0, -8)]
 }
 tracks/27/type = "value"
@@ -4284,7 +4356,7 @@ tracks/27/loop_wrap = true
 tracks/27/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [PackedVector2Array(24, -96, 0, -8)]
 }
 tracks/28/type = "value"
@@ -4296,7 +4368,7 @@ tracks/28/loop_wrap = true
 tracks/28/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [PackedVector2Array(64, -64, 0, -8)]
 }
 tracks/29/type = "value"
@@ -4356,7 +4428,7 @@ tracks/33/loop_wrap = true
 tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)]
 }
 tracks/34/type = "value"
@@ -4368,7 +4440,7 @@ tracks/34/loop_wrap = true
 tracks/34/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)]
 }
 
@@ -5853,6 +5925,18 @@ tracks/21/keys = {
 "update": 0,
 "values": [Vector2(5, 96)]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dm5wq"]
 _data = {
@@ -6112,7 +6196,15 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
+<<<<<<< Updated upstream
 points = PackedVector2Array(0, 32, -8, 48, -24, 48, -24, 56)
+=======
+<<<<<<< Updated upstream
+points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+=======
+points = PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6137,7 +6229,15 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
+<<<<<<< Updated upstream
 points = PackedVector2Array(0, 32, 16, 40, 16, 56, 24, 56)
+=======
+<<<<<<< Updated upstream
+points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+=======
+points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6162,7 +6262,15 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
+<<<<<<< Updated upstream
 points = PackedVector2Array(0, 0, 16, 10, 32, -6)
+=======
+<<<<<<< Updated upstream
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+=======
+points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -40.0001)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
