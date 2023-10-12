@@ -1,6 +1,8 @@
 extends Node
 class_name VelocityComponent
 
+#Lookat: using this vs custom resource
+
 
 @export var stats: StatsComponent
 @export var abilities: PlayerAbilities
