@@ -106,9 +106,7 @@ func landed() -> void:
 #	characterRig.scale.y = remap(abs(velocity.y), 0, abs(1700), 0.8, 0.5)
 #	if moveDirection.x != 0: #TODO: animation to rotate on landing
 #		characterRotate.rotate(360)
-	abilities.reset(PlayerAbilities.list.JumpAir)
-	abilities.reset(PlayerAbilities.list.Dash)
-	abilities.reset(PlayerAbilities.list.DashChain)
+	abilities.reset(PlayerAbilities.list.All)
 	sounds.land.play()
 	set_collision_mask_value(CollisionLayers.Semisolid, true)
 #	if get_last_slide_collision() != null:

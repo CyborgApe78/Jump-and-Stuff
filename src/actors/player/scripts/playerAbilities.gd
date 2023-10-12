@@ -41,6 +41,7 @@ var maxJumpAir: int = 1
 var maxDash: int = 1
 var maxDashChain: int = 1
 var maxJumpConsec: int = 1
+var maxGroundPound: int = 1
 
 var currentJumpConsec: int = 0:
 	set(v):
@@ -57,6 +58,10 @@ var remainingDash: int = 0:
 var currentDashChain: int = 0:
 	set(v):
 		currentDashChain = clamp(v, 0, maxDashChain)
+
+var remainingGroundPound: int = 0:
+	set(v):
+		remainingGroundPound = clamp(v, 0, maxGroundPound)
 
 enum list {
 	Null,
@@ -234,13 +239,13 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.JumpBelly and unlockedJumpBelly:
 		return true
-	elif ability == list.JumpConsec and currentJumpConsec < maxJumpConsec and unlockedJumpConsec:
+	elif ability == list.JumpConsec and unlockedJumpConsec and currentJumpConsec < maxJumpConsec:
 		return true
-	elif ability == list.DashSide and remainingDash > 0 and unlockedDashSide:
+	elif ability == list.DashSide and unlockedDashSide and remainingDash > 0:
 		return true
-	elif ability == list.DashUp and remainingDash > 0 and unlockedDashUp:
+	elif ability == list.DashUp and unlockedDashUp and remainingDash > 0:
 		return true
-	elif ability == list.DashDown and remainingDash > 0 and unlockedDashDown:
+	elif ability == list.DashDown and unlockedDashDown and remainingDash > 0:
 		return true
 	elif ability == list.DashGround and unlockedDashGround:
 		return true
@@ -256,7 +261,7 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.Slide and unlockedSlide:
 		return true
-	elif ability == list.GroundPound and unlockedGroundPound:
+	elif ability == list.GroundPound and unlockedGroundPound and remainingGroundPound> 0 :
 		return true
 	elif ability == list.GroundPoundBounce and unlockedGroundPoundBounce:
 		return true
@@ -301,6 +306,7 @@ func reset(ability: int) -> void:
 		currentJumpConsec = 0
 		remainingDash = maxDash
 		currentDashChain = 0
+		remainingGroundPound = maxGroundPound
 	elif ability == list.JumpAir:
 		remainingJumpAir = maxJumpAir
 	elif ability == list.JumpConsec:
@@ -309,6 +315,8 @@ func reset(ability: int) -> void:
 		remainingDash = maxDash
 	elif ability == list.DashChain:
 		currentDashChain = 0
+	elif ability == list.GroundPound:
+		remainingDash = maxGroundPound
 	else:
 		EventBus.error.emit("Null Ability Reset " + str(ability))
 
@@ -318,6 +326,7 @@ func consume(ability: int, amount: int) -> void:
 		remainingJumpAir -= amount
 		currentJumpConsec += amount
 		remainingDash -= amount
+		remainingGroundPound -= amount
 	elif ability == list.JumpAir:
 		remainingJumpAir -= amount
 	elif ability == list.JumpConsec:
@@ -326,5 +335,7 @@ func consume(ability: int, amount: int) -> void:
 		remainingDash -= amount
 	elif ability == list.DashChain:
 		currentDashChain += amount
+	elif ability == list.GroundPound:
+		remainingGroundPound -= amount
 	else:
 		EventBus.error.emit("Null Ability Consume " + str(ability))

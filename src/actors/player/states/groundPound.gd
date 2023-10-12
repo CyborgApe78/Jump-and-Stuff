@@ -12,6 +12,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	abilities.consume(PlayerAbilities.list.GroundPound, 1)
 #	if !detector.is_colliding(): #TODO: only move up if in semisolid
 #		player.global_position.y -= Util.tileSize * 1.25 #TODO: smooth movement
 	player.velocity.y = stats.gpVelocity
