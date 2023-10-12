@@ -4,7 +4,7 @@ class_name InputComponent
 
 var moveDirection: Vector2 = Vector2.ZERO ## seperate x and y input
 var swimDirection: Vector2 = Vector2.ZERO #TODO: figure out better name for full direction movement
-var lastMoveDirection: Vector2 = Vector2.ZERO
+var lastMoveDirection: Vector2 = Vector2.RIGHT
 var moveStrength: Vector2 = Vector2.ZERO
 var aimDirection: Vector2 = Vector2.ZERO
 var lastAimDirection: Vector2 = Vector2.ZERO
