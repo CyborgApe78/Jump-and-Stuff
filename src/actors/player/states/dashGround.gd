@@ -19,6 +19,7 @@ var saveTriple: bool
 
 
 func enter() -> void:
+	abilities.consume(PlayerAbilities.list.Dash, 1)
 	soundJetpack.play()
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity

@@ -71,7 +71,6 @@ func handle_input(event: InputEvent) -> int:
 		if abilities.can_use(PlayerAbilities.list.DashClimb) and input.moveDirection.y == 1:
 			return State.DashClimb
 		elif abilities.can_use(PlayerAbilities.list.DashSide):
-			abilities.consume(PlayerAbilities.list.DashSide, 1)
 			return State.DashAir
 #	if input.moveDirection.x == wall.lastWallDirection:
 #		return State.WallSlide

@@ -57,7 +57,6 @@ func handle_input(event: InputEvent) -> int:
 	if input.justPressedJump:
 		return consecutive_jump_logic()
 	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashSide):
-		abilities.consume(PlayerAbilities.list.DashSide, 1)
 		if player.is_on_floor():
 			return State.DashGround
 		else:
