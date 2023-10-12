@@ -64,11 +64,11 @@ func move_and_slide_rotation() -> void:
 	velocity = velocity.rotated(-rotation)
 
 
-func facing_logic(): #TODOL move this to another node
-	if characterRig.scale.x != input.lastMoveDirection.x:
+func facing_logic(direction: int): #TODOL move this to another node
+	if characterRig.scale.x != direction:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(characterRig, "scale", Vector2(input.lastMoveDirection.x, characterRig.scale.y), 0.4).from_current()
-		facing = input.lastMoveDirection.x
+		tween.tween_property(characterRig, "scale", Vector2(direction, characterRig.scale.y), 0.4).from_current()
+		facing = direction
 
 
 func attempt_vertical_corner_correction(amount: int, delta) -> void: #TODO: change to have default value after delta

@@ -42,7 +42,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	squash_and_stretch(delta)
-	player.facing_logic()
+	player.facing_logic(input.lastMoveDirection.x)
 
 
 func sound(delta: float) -> void:

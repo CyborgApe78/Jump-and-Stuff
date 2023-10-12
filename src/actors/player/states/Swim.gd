@@ -36,7 +36,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-#	player.facing_logic()
+#	player.facing_logic(input.lastMoveDirection.x)
 #FIXME: getting closer, ori fixes orientaion after going direction for a few seconds
 	if input.swimDirection != Vector2.ZERO:
 		player.characterRotate.rotation = lerp_angle(player.characterRotate.rotation, Vector2.UP.angle_to(player.velocity), delta * 10)

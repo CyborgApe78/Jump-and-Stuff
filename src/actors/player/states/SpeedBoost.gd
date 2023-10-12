@@ -42,7 +42,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	player.animation_speed(0.004)
-	player.facing_logic()
+	player.facing_logic(input.lastMoveDirection.x)
 	speed_bend(false)
 	align_to_ground()
 

@@ -1,10 +1,5 @@
 extends PlayerInfo
 
-#FIXME: breaks if no movement before leaving state
-
-@export var transformTime: float = 0.4
-#TODO: make a no control state, for teleport and such
-
 
 func enter() -> void:
 	if CheckpointSystem.get_respawn() != Vector2.ZERO:
@@ -13,9 +8,9 @@ func enter() -> void:
 	EventBus.playerStatsCheck.emit()
 #	var faceState = randi_range(0, 1) 
 #	if faceState == 1:
-#		player.scale.x = 1
+#		player.facing_logic(1)
 #	else:
-#		player.scale.x = -1
+#		player.facing_logic(-1)
 
 
 func exit() -> void:
