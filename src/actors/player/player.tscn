@@ -2546,6 +2546,30 @@ tracks/26/keys = {
 "update": 0,
 "values": [Vector2(5, 96)]
 }
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("CharacterRig/CharacterRotate/Parachute:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("CharacterRig/CharacterRotate/Parachute/Cable:points")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedVector2Array(-8, -16, 0, -8), PackedVector2Array(-64, -64, 0, -8)]
+}
 
 [sub_resource type="Animation" id="Animation_eclwc"]
 resource_name = "Ground Pound"
@@ -6062,7 +6086,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)
+points = PackedVector2Array(0, 0, -16, 8, -16, 24)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6088,7 +6112,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+points = PackedVector2Array(0, 32, -8, 48, -24, 48, -24, 56)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6113,7 +6137,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 32, 16, 40, 16, 56, 24, 56)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6138,7 +6162,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 0, 16, 10, 32, -6)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6234,7 +6258,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 16)
+points = PackedVector2Array(-32, -16, -32, 8)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6676,7 +6700,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
+blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
