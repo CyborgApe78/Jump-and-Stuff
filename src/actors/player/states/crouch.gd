@@ -37,7 +37,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	apply_friction(stats.frictionGround * stats.crouchFriction, delta)
+	apply_friction(1000, delta) #FIXME: friction isn't workin right
 
 
 func visual(delta) -> void:
