@@ -45,7 +45,6 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	#TODO: add entering other states
 	if !detector.is_colliding(): #FIXME: don't want to stop the hop if detecting, if removed player is stuck in wall
 		if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpBelly):
 			return State.BellySlideHop

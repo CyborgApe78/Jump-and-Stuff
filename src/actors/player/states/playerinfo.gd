@@ -126,10 +126,10 @@ func dash_pressed_buffer() -> void:
 
 
 func dash_pressed_logic() -> void:
-	var dashInput: Vector2 = input.aimDirection if input.aimDirection != Vector2.ZERO else input.moveDirection
+	var dashInput: Vector2 = input.aimDirection if input.aimDirection != Vector2.ZERO else input.moveDirection #FIXME: this is not working
 	
 	if player.is_on_wall():
-		if input.moveDirection.y == -1:
+		if input.moveDirection.y == -1: #LOOKAT:changing to dashInput
 			dashBufferState = State.DashClimb
 		else:
 			dashBufferState = State.DashWall #TODO: remove and only from wallgrab

@@ -1,5 +1,6 @@
 extends AbilityBlockBase
 #TODO: connected destruction, probaly own block
+#TODO: this should be on tilemap
 
 @onready var staticBodyCollision: CollisionShape2D = $StaticBody2D/CollisionShape2D
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D

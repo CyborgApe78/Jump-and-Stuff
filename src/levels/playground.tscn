@@ -632,12 +632,12 @@ position = Vector2(-909, 490)
 position = Vector2(-831, 509)
 
 [node name="AbilityUnlock" parent="Interactables" instance=ExtResource("22_vdons")]
-position = Vector2(-670, 434)
+position = Vector2(-932, -32)
 ability = 2
 
 [node name="AbilityUnlock2" parent="Interactables" instance=ExtResource("22_vdons")]
-position = Vector2(-415, 434)
-ability = 13
+position = Vector2(-391, -12)
+ability = 4
 
 [node name="UpgradeUnlocker" parent="Interactables" instance=ExtResource("23_u041q")]
 position = Vector2(-532, 499)

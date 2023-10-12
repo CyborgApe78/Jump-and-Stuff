@@ -38,7 +38,6 @@ func from_json(json: Dictionary) -> void:
 		push_warning("Loading incomplete json data which is missing a title.")
 
 	if json.has("tasks"):
-		# HACK: Workaround for casting to typed array.
 		var s: Array[String] = []
 		for i in json["tasks"]:
 			s.append(i)
