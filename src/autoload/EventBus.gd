@@ -43,5 +43,6 @@ signal helperUsed(info)
 signal menuChanged
 signal settingsUpdate
 signal showDebug(bool)
+signal cursorPosition(gPosition: Vector2, lPositon: Vector2, size: Vector2)
 
 signal rumble(min: float, max: float, duration: float)

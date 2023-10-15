@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpn0y7ftimcj5"]
+[gd_scene load_steps=8 format=3 uid="uid://dpn0y7ftimcj5"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/PauseMenu.gd" id="1_7xjbr"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/MainMenuButton.gd" id="2_nxhw5"]
+[ext_resource type="PackedScene" uid="uid://dbido6ip6hjx8" path="res://src/ui/cursor.tscn" id="2_u7h00"]
+[ext_resource type="Theme" uid="uid://cilr3fed7gs6p" path="res://src/ui/themes/MainMenu.tres" id="3_l2xlo"]
 [ext_resource type="PackedScene" uid="uid://dj67hsmvv1p38" path="res://addons/BugReporter/reporter.tscn" id="3_wwlrs"]
+[ext_resource type="Script" path="res://src/ui/base_button.gd" id="4_6tfhb"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_q2n8j"]
 
 [node name="PauseMenu" type="CenterContainer" node_paths=PackedStringArray("feedback")]
@@ -19,6 +22,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7xjbr")
 feedback = NodePath("HBoxContainer/Reporter")
+
+[node name="Cursor" parent="." node_paths=PackedStringArray("defaultButton") instance=ExtResource("2_u7h00")]
+layout_mode = 2
+defaultButton = NodePath("../HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume")
+margin = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -46,46 +54,88 @@ layout_mode = 2
 [node name="Resume" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 focus_neighbor_top = NodePath("../Quit")
+theme = ExtResource("3_l2xlo")
 text = "Resume"
+script = ExtResource("4_6tfhb")
 
 [node name="Reset" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_l2xlo")
 text = "Reset"
+script = ExtResource("4_6tfhb")
 
 [node name="Controls" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_l2xlo")
 text = "Controls"
+script = ExtResource("4_6tfhb")
 
 [node name="Settings" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_l2xlo")
 text = "Settings"
+script = ExtResource("4_6tfhb")
 
 [node name="Feedback" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_bottom = NodePath("../MainMenu")
+theme = ExtResource("3_l2xlo")
 text = "Feedback"
+script = ExtResource("4_6tfhb")
 
 [node name="MainMenu" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_l2xlo")
 text = "Main Menu"
 script = ExtResource("2_nxhw5")
 
 [node name="Quit" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../MainMenu")
 focus_neighbor_bottom = NodePath("../Resume")
+theme = ExtResource("3_l2xlo")
 text = "Quit"
 script = ExtResource("4_q2n8j")
 
 [node name="Reporter" parent="HBoxContainer" instance=ExtResource("3_wwlrs")]
 layout_mode = 2
 
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" to="." method="_on_feedback_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" to="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_pressed"]

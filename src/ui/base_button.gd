@@ -1,9 +1,6 @@
 extends Button
 
-
-
-func _on_pressed():
-	OS.shell_open("https://discord.gg/6SJyu4NtfW")
+#TODO: make this inherited from all other buttons
 
 
 func _on_focus_entered() -> void:
