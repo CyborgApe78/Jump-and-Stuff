@@ -4,11 +4,12 @@ class_name CollisionLayers
 
 const Ground: int = 1
 const Semisolid: int = 2
-#const PLATFORM: int = 3
+const Platform: int = 3
 const Interactable: int = 4
 const Collectables: int = 5
-const Player: int = 7
 
+const Player: int = 7
+const Enemies: int = 8
 const Hazard: int = 9
 #const Water: int =
 #const LAVA: int = 

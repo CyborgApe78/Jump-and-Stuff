@@ -231,7 +231,12 @@ screenshot={
 
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Semisolid"
+2d_physics/layer_3="Platform"
+2d_physics/layer_4="Interactable"
+2d_physics/layer_5="Collectable"
 2d_physics/layer_7="Player"
+2d_physics/layer_8="Enemies"
+2d_physics/layer_9="Hazard"
 2d_physics/layer_13="DashSide"
 2d_physics/layer_14="DashUp"
 2d_physics/layer_15="DashDown"

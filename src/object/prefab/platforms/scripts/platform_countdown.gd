@@ -1,0 +1,92 @@
+extends AnimatableBody2D
+
+
+## When enities lands on platform counter goes down.
+## If the counter reaches zero platform disappears
+## If nothing is on the platform timer starts and adds back till counter reaches max
+
+#TODO: get size and position of staticbody and set the area above
+#TODO: create platform that reacts to number of bodies on
+#LOOKAT: might need to change this to RigidBody for better detection
+
+
+@export var labelCountdown: Label
+@export var labelContact: Label
+@export var timerReset: Timer
+@export var timerExpire: Timer
+@export var collision: CollisionShape2D
+
+@export_range(1, 10) var maxLandings: int = 1
+@export_range(0.05, 10, 0.5) var timeReset: float = 1
+@export_range(0.05, 10, 0.5) var timeExpire: float = 1
+
+var remainingLandings: int = 0:
+	set(v):
+		remainingLandings = clamp(v, 0, maxLandings)
+		labelCountdown.text = str(remainingLandings)
+		if remainingLandings == 0:
+			expired()
+
+var bodiesOn: int = 0:
+	set(v):
+		bodiesOn = max(v, 0)
+		labelContact.text = str(bodiesOn)
+		if bodiesOn == 0:
+			cleared()
+
+
+func _ready() -> void:
+	timerReset.wait_time = timeReset
+	timerExpire.wait_time = timeExpire
+	reset()
+	labelCountdown.text = str(remainingLandings)
+	labelContact.text = str(bodiesOn)
+
+
+func _physics_process(delta: float) -> void:
+	pass
+
+
+func reset() -> void:
+	collision.set_deferred("disabled", false)
+	remainingLandings = maxLandings
+	timerExpire.stop()
+	timerReset.stop()
+	bodiesOn = 0
+	visible = true
+
+
+func landed() -> void:
+	remainingLandings -= 1
+	timerReset.stop()
+
+
+func cleared() -> void:
+	timerReset.start()
+
+
+func expired() -> void:
+	collision.set_deferred("disabled", true)
+	visible = false
+	timerExpire.start()
+
+
+func _on_reset_timeout() -> void:
+	remainingLandings += 1
+	if remainingLandings != maxLandings:
+		timerReset.start()
+
+
+func _on_expire_timeout() -> void:
+	reset()
+
+
+func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	if visible and body.position.y < position.y:
+		landed()
+		bodiesOn += 1
+
+
+func _on_area_2d_body_exited(body: CharacterBody2D) -> void:
+	if visible and body.position.y < position.y:
+		bodiesOn -= 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=32 format=3 uid="uid://bcsfwmvuqgd7b"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="21_el1g6"]
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="22_vdons"]
 [ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="23_u041q"]
+[ext_resource type="PackedScene" uid="uid://cvcpkjluavmfe" path="res://src/object/prefab/platforms/platform_countdown.tscn" id="24_gyjwg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyd6p"]
 size = Vector2(48, 86)
@@ -675,5 +676,8 @@ drag_bottom_margin = 0.46
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("12_gn10c")
+
+[node name="Countdown" parent="." instance=ExtResource("24_gyjwg")]
+position = Vector2(-194, -26)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
