@@ -42,6 +42,7 @@ var maxDash: int = 1
 var maxDashChain: int = 1
 var maxJumpConsec: int = 1
 var maxGroundPound: int = 1
+var maxWallJumpSame: int = 1
 
 var currentJumpConsec: int = 0:
 	set(v):
@@ -62,6 +63,10 @@ var currentDashChain: int = 0:
 var remainingGroundPound: int = 0:
 	set(v):
 		remainingGroundPound = clamp(v, 0, maxGroundPound)
+
+var remainingWallJumpSame: int = 0: #TODO: added to debug and wall jump
+	set(v):
+		remainingWallJumpSame = clamp(v, 0, maxWallJumpSame)
 
 enum list {
 	Null,
@@ -307,6 +312,7 @@ func reset(ability: int) -> void:
 		remainingDash = maxDash
 		currentDashChain = 0
 		remainingGroundPound = maxGroundPound
+		remainingWallJumpSame = maxWallJumpSame
 	elif ability == list.JumpAir:
 		remainingJumpAir = maxJumpAir
 	elif ability == list.JumpConsec:
@@ -317,6 +323,8 @@ func reset(ability: int) -> void:
 		currentDashChain = 0
 	elif ability == list.GroundPound:
 		remainingDash = maxGroundPound
+	elif ability == list.JumpWallSame:
+		remainingWallJumpSame = maxWallJumpSame
 	else:
 		EventBus.error.emit("Null Ability Reset " + str(ability))
 
