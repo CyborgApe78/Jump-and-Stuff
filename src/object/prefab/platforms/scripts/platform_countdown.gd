@@ -9,9 +9,9 @@ extends AnimatableBody2D
 #TODO: create platform that reacts to number of bodies on
 #LOOKAT: might need to change this to RigidBody for better detection
 
+signal spawned
 
 @export var labelCountdown: Label
-@export var labelContact: Label
 @export var timerReset: Timer
 @export var timerReplenish: Timer
 @export var collision: CollisionShape2D
@@ -27,12 +27,7 @@ var remainingLandings: int = 0:
 		if remainingLandings == 0:
 			expired()
 
-var bodiesOn: int = 0:
-	set(v):
-		bodiesOn = max(v, 0)
-		labelContact.text = str(bodiesOn)
-		if bodiesOn == 0:
-			cleared()
+
 
 
 func _ready() -> void:
@@ -40,7 +35,6 @@ func _ready() -> void:
 	timerReplenish.wait_time = timeReplenish
 	reset()
 	labelCountdown.text = str(remainingLandings)
-	labelContact.text = str(bodiesOn)
 
 
 func _physics_process(delta: float) -> void:
@@ -50,9 +44,9 @@ func _physics_process(delta: float) -> void:
 func reset() -> void:
 	collision.set_deferred("disabled", false)
 	remainingLandings = maxLandings
+	spawned.emit()
 	timerReplenish.stop()
 	timerReset.stop()
-	bodiesOn = 0
 	visible = true
 
 
@@ -78,15 +72,4 @@ func _on_reset_timeout() -> void:
 func _on_replenish_timeout() -> void:
 	remainingLandings += 1
 	if remainingLandings != maxLandings:
-		timerReset.start()
-
-
-func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
-	if visible and body.position.y < position.y:
-		landed()
-		bodiesOn += 1
-
-
-func _on_area_2d_body_exited(body: CharacterBody2D) -> void:
-	if visible and body.position.y < position.y:
-		bodiesOn -= 1
+		timerReplenish.start()

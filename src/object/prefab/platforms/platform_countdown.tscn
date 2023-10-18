@@ -2,20 +2,17 @@
 
 [ext_resource type="Script" path="res://src/object/prefab/platforms/scripts/platform_countdown.gd" id="1_7b3ar"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_g66yo"]
+[ext_resource type="PackedScene" uid="uid://cpiawly1ei4yy" path="res://src/object/components/actor_counter.tscn" id="3_vprii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgtpk"]
 size = Vector2(128, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h8m8"]
-size = Vector2(128, 10)
-
-[node name="Countdown" type="AnimatableBody2D" node_paths=PackedStringArray("labelCountdown", "labelContact", "timerReset", "timerReplenish", "collision")]
+[node name="Countdown" type="AnimatableBody2D" node_paths=PackedStringArray("labelCountdown", "timerReset", "timerReplenish", "collision")]
 position = Vector2(304, 192)
 collision_layer = 4
 collision_mask = 192
 script = ExtResource("1_7b3ar")
 labelCountdown = NodePath("Remaining")
-labelContact = NodePath("Contacts")
 timerReset = NodePath("Reset")
 timerReplenish = NodePath("Replenish")
 collision = NodePath("VisibleCollisionShape2D")
@@ -42,36 +39,15 @@ text = "Remain"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Contacts" type="Label" parent="."]
-offset_top = -32.0
-offset_right = 64.0
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label4" type="Label" parent="."]
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = -32.0
-text = "Actors"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Reset" type="Timer" parent="."]
 one_shot = true
 
 [node name="Replenish" type="Timer" parent="."]
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 192
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -69)
-shape = SubResource("RectangleShape2D_4h8m8")
+[node name="ActorCounter" parent="." instance=ExtResource("3_vprii")]
 
 [connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]
 [connection signal="timeout" from="Replenish" to="." method="_on_replenish_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="cleared" from="ActorCounter" to="." method="cleared"]
+[connection signal="entered" from="ActorCounter" to="." method="landed"]

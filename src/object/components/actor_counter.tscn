@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpiawly1ei4yy"]
+
+[ext_resource type="Script" path="res://src/object/components/scripts/ActorCounter.gd" id="1_soq6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h8m8"]
+size = Vector2(128, 10)
+
+[node name="ActorCounter" type="Area2D" node_paths=PackedStringArray("labelCount")]
+collision_layer = 0
+collision_mask = 192
+script = ExtResource("1_soq6j")
+labelCount = NodePath("Count")
+
+[node name="Count" type="Label" parent="."]
+offset_top = -32.0
+offset_right = 64.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Actors" type="Label" parent="."]
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = -32.0
+text = "Actors"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -69)
+shape = SubResource("RectangleShape2D_4h8m8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
