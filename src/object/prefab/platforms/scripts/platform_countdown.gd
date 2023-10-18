@@ -14,6 +14,7 @@ signal spawned
 @export var timerReset: Timer
 @export var timerReplenish: Timer
 @export var collision: CollisionShape2D
+@export var areaCounter: Area2D
 
 @export_range(1, 10) var maxLandings: int = 1
 @export_range(0.05, 10, 0.5) var timeReset: float = 1
@@ -34,6 +35,7 @@ func _ready() -> void:
 	timerReplenish.wait_time = timeReplenish
 	reset()
 	labelCountdown.text = str(remainingLandings)
+	
 
 
 func _physics_process(delta: float) -> void:

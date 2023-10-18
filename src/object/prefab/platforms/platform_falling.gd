@@ -11,6 +11,7 @@ signal spawned
 @export var timerReset: Timer
 @export var timerFall: Timer
 @export var collision: CollisionShape2D
+@export var areaCounter: Area2D
 
 @export_range(0.05, 10, 0.5) var timeReset: float = 1
 @export_range(0.05, 10, 0.5) var timeFall: float = 3

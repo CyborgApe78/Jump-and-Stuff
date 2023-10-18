@@ -7,8 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgtpk"]
 size = Vector2(128, 64)
 
-[node name="Falling" type="AnimatableBody2D" node_paths=PackedStringArray("labelTime", "timerReset", "timerFall", "collision")]
-position = Vector2(304, 192)
+[node name="Falling" type="AnimatableBody2D" node_paths=PackedStringArray("labelTime", "timerReset", "timerFall", "collision", "areaCounter")]
 collision_layer = 4
 collision_mask = 192
 sync_to_physics = false
@@ -17,6 +16,7 @@ labelTime = NodePath("Time")
 timerReset = NodePath("Reset")
 timerFall = NodePath("Fall")
 collision = NodePath("VisibleCollisionShape2D")
+areaCounter = NodePath("ActorCounter")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
