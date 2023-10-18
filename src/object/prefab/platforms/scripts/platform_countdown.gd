@@ -5,7 +5,6 @@ extends AnimatableBody2D
 ## If the counter reaches zero platform disappears
 ## If nothing is on the platform timer starts and adds back till counter reaches max
 
-#TODO: get size and position of staticbody and set the area above
 #TODO: create platform that reacts to number of bodies on
 #LOOKAT: might need to change this to RigidBody for better detection
 
@@ -48,6 +47,7 @@ func reset() -> void:
 	timerReplenish.stop()
 	timerReset.stop()
 	visible = true
+	spawned.emit()
 
 
 func landed() -> void:

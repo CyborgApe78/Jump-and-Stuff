@@ -47,6 +47,7 @@ one_shot = true
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_vprii")]
 
+[connection signal="spawned" from="." to="ActorCounter" method="reset"]
 [connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]
 [connection signal="timeout" from="Replenish" to="." method="_on_replenish_timeout"]
 [connection signal="cleared" from="ActorCounter" to="." method="cleared"]
