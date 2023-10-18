@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=127 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -72,6 +72,7 @@
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_n4b1h"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_hbso6"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/BashableDetector.gd" id="62_7uo1w"]
+[ext_resource type="PackedScene" uid="uid://bxt44u72o7bxe" path="res://src/object/components/platform_checker.tscn" id="73_hobbw"]
 
 [sub_resource type="Curve" id="Curve_wyqxj"]
 _data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -6915,6 +6916,8 @@ default_color = Color(0.862745, 0.709804, 0.0980392, 1)
 visible = false
 position = Vector2(-8, -64)
 points = PackedVector2Array(8, 0, 24, 0)
+
+[node name="PlatformChecker" parent="." instance=ExtResource("73_hobbw")]
 
 [connection signal="enterWater" from="." to="StateMachine" method="player_swim"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
