@@ -2,6 +2,7 @@ extends Area2D
 class_name ActorCounterComponent
 
 ## tracks the number of actors in an area
+#TODO: get size and position of parent and set the area above
 
 signal cleared
 signal entered
@@ -22,21 +23,25 @@ func _ready() -> void:
 	reset()
 
 
-func _process(delta: float) -> void:
-	pass
-
-
 func reset() -> void:
-	bodiesOn = 0
-	#LOOKAT: might need to look at overlapping bodies to see if something is there when spawning
+	if get_overlapping_areas().is_empty():
+			bodiesOn = 0 
+	else:
+		for i in get_overlapping_areas():
+			bodiesOn += 1
 
 
-func _on_body_entered(body: Actor) -> void:
-	if parent.visible and body.position.y < position.y:
+func _on_area_entered(area: PlatformCheckerComponent) -> void:
+	if parent.visible:
 		entered.emit()
-		bodiesOn += 1
+		for i in get_overlapping_areas():
+			bodiesOn += 1
 
 
-func _on_body_exited(body: Actor) -> void:
-	if parent.visible and body.position.y < position.y:
-		bodiesOn -= 1.
+func _on_area_exited(area: PlatformCheckerComponent) -> void:
+	if parent.visible:
+		if get_overlapping_areas().is_empty():
+			bodiesOn = 0 
+		else:
+			for i in get_overlapping_areas():
+				bodiesOn += 1

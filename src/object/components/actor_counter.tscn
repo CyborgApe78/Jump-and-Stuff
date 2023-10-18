@@ -6,7 +6,7 @@
 size = Vector2(128, 10)
 
 [node name="ActorCounter" type="Area2D" node_paths=PackedStringArray("labelCount")]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 192
 script = ExtResource("1_soq6j")
 labelCount = NodePath("Count")
@@ -30,5 +30,5 @@ vertical_alignment = 1
 position = Vector2(0, -69)
 shape = SubResource("RectangleShape2D_4h8m8")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
