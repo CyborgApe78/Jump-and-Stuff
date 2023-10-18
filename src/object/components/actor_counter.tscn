@@ -5,11 +5,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4h8m8"]
 size = Vector2(128, 10)
 
-[node name="ActorCounter" type="Area2D" node_paths=PackedStringArray("labelCount")]
+[node name="ActorCounter" type="Area2D" node_paths=PackedStringArray("labelCount", "collision")]
 collision_layer = 4
 collision_mask = 192
 script = ExtResource("1_soq6j")
 labelCount = NodePath("Count")
+collision = NodePath("CollisionShape2D")
 
 [node name="Count" type="Label" parent="."]
 offset_top = -32.0

@@ -10,6 +10,7 @@ signal entered
 @onready var parent:= get_parent()
 
 @export var labelCount: Label
+@export var collision: CollisionShape2D
 
 var bodiesOn: int = 0:
 	set(v):
