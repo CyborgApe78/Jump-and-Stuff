@@ -22,7 +22,7 @@ func enter() -> void:
 	visible = true
 	menuStats.stat_update()
 	show_waypoints()
-	menuWaypoints.update_waypoints()
+#	menuWaypoints.update_waypoints()
 
 
 func exit() -> void:
