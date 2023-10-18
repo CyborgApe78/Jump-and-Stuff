@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="21_el1g6"]
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="22_vdons"]
 [ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="23_u041q"]
-[ext_resource type="PackedScene" uid="uid://cvcpkjluavmfe" path="res://src/object/prefab/platforms/platform_countdown.tscn" id="24_gyjwg"]
+[ext_resource type="PackedScene" uid="uid://87ij05swdkl4" path="res://src/object/prefab/platforms/platform_falling.tscn" id="25_nq5vw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyd6p"]
 size = Vector2(48, 86)
@@ -677,7 +677,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("12_gn10c")
 
-[node name="Countdown" parent="." instance=ExtResource("24_gyjwg")]
-position = Vector2(-194, -26)
+[node name="Falling" parent="." instance=ExtResource("25_nq5vw")]
+position = Vector2(-102, -3)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
