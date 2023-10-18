@@ -13,12 +13,12 @@ extends AnimatableBody2D
 @export var labelCountdown: Label
 @export var labelContact: Label
 @export var timerReset: Timer
-@export var timerExpire: Timer
+@export var timerReplenish: Timer
 @export var collision: CollisionShape2D
 
 @export_range(1, 10) var maxLandings: int = 1
 @export_range(0.05, 10, 0.5) var timeReset: float = 1
-@export_range(0.05, 10, 0.5) var timeExpire: float = 1
+@export_range(0.05, 10, 0.5) var timeReplenish: float = 1
 
 var remainingLandings: int = 0:
 	set(v):
@@ -37,7 +37,7 @@ var bodiesOn: int = 0:
 
 func _ready() -> void:
 	timerReset.wait_time = timeReset
-	timerExpire.wait_time = timeExpire
+	timerReplenish.wait_time = timeReplenish
 	reset()
 	labelCountdown.text = str(remainingLandings)
 	labelContact.text = str(bodiesOn)
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 func reset() -> void:
 	collision.set_deferred("disabled", false)
 	remainingLandings = maxLandings
-	timerExpire.stop()
+	timerReplenish.stop()
 	timerReset.stop()
 	bodiesOn = 0
 	visible = true
@@ -58,27 +58,27 @@ func reset() -> void:
 
 func landed() -> void:
 	remainingLandings -= 1
-	timerReset.stop()
+	timerReplenish.stop()
 
 
 func cleared() -> void:
-	timerReset.start()
+	timerReplenish.start()
 
 
 func expired() -> void:
 	collision.set_deferred("disabled", true)
 	visible = false
-	timerExpire.start()
+	timerReset.start()
 
 
 func _on_reset_timeout() -> void:
+	reset()
+
+
+func _on_replenish_timeout() -> void:
 	remainingLandings += 1
 	if remainingLandings != maxLandings:
 		timerReset.start()
-
-
-func _on_expire_timeout() -> void:
-	reset()
 
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
