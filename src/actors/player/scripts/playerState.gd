@@ -15,6 +15,7 @@ enum State {
 	JumpFlip,
 	JumpLong,
 	JumpCrouch,
+	JumpCrouchCharged,
 	JumpApex,
 	JumpWall,
 	JumpGroundPound,

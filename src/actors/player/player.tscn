@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=128 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/jump.gd" id="17_8xtx5"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpAir.gd" id="18_hter0"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpConsec.gd" id="19_00wlk"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpCrouchCharged.gd" id="19_f85lq"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpFlip.gd" id="20_crsmm"]
 [ext_resource type="Script" path="res://src/actors/player/states/jumpLong.gd" id="21_mo3ie"]
 [ext_resource type="Script" path="res://src/actors/player/states/JumpGroundPound.gd" id="21_mo3qg"]
@@ -6378,14 +6379,19 @@ script = ExtResource("14_bvej5")
 soundeffect = NodePath("../../Sounds/skid")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Skid")
 
-[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpGroundPound", "timerBufferJump", "timerBufferRoll", "timerConsecutiveJump", "detector")]
+[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpGroundPound", "timerBufferJump", "timerBufferRoll", "timerConsecutiveJump", "timerCharge", "detector", "particlesCharge")]
 script = ExtResource("15_tm0os")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerCoyoteJumpGroundPound = NodePath("../../Timers/CoyoteJumpGroundPound")
 timerBufferJump = NodePath("../../Timers/BufferJump")
 timerBufferRoll = NodePath("../../Timers/BufferRoll")
 timerConsecutiveJump = NodePath("../../Timers/ConsecutiveJump")
+timerCharge = NodePath("../../Timers/Charge")
 detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
+particlesCharge = NodePath("../../CharacterRig/CharacterRotate/Particles/ChainIndicator")
+timeCharge = 1
+
+[node name="Crawl" type="Node" parent="StateMachine"]
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
 script = ExtResource("16_7w1oc")
@@ -6424,6 +6430,11 @@ particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
 [node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
 script = ExtResource("22_e2i38")
+soundeffect = NodePath("../../Sounds/jump")
+particles = NodePath("../../CharacterRig/CharacterRotate/Particles/Jump")
+
+[node name="JumpCrouchCharged" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
+script = ExtResource("19_f85lq")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/Particles/JumpTriple")
 
@@ -6786,7 +6797,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -6843,6 +6854,10 @@ one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="Timers"]
 wait_time = 0.2
+one_shot = true
+
+[node name="Charge" type="Timer" parent="Timers"]
+wait_time = 2.0
 one_shot = true
 
 [node name="Invincibility" type="Timer" parent="Timers"]
@@ -6918,6 +6933,7 @@ position = Vector2(-8, -64)
 points = PackedVector2Array(8, 0, 24, 0)
 
 [node name="PlatformChecker" parent="." instance=ExtResource("73_hobbw")]
+visible = false
 
 [connection signal="enterWater" from="." to="StateMachine" method="player_swim"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
@@ -6929,6 +6945,7 @@ points = PackedVector2Array(8, 0, 24, 0)
 [connection signal="area_exited" from="BashableDetector" to="BashableDetector" method="_on_area_exited"]
 [connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
 [connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]
+[connection signal="timeout" from="Timers/Charge" to="StateMachine/Crouch" method="_on_charge_timeout"]
 [connection signal="timeout" from="Timers/Invincibility" to="HitboxComponent" method="_on_invincibility_timeout"]
 [connection signal="timeout" from="Timers/Semisoild" to="." method="_on_semisoild_timeout"]
 

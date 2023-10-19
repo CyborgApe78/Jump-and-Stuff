@@ -7,6 +7,7 @@ var unlockedJumpConsec: bool = false
 var unlockedJumpFlip: bool = false
 var unlockedJumpLong: bool = false
 var unlockedJumpCrouch: bool = false
+var unlockedJumpCrouchCharged: bool = false
 var unlockedJumpGroundPound: bool = false
 var unlockedJumpWall: bool = false
 var unlockedJumpWallSame: bool = false
@@ -16,23 +17,23 @@ var unlockedJumpBelly: bool = false
 var unlockedDashSide: bool = false
 var unlockedDashUp: bool = false
 var unlockedDashDown: bool = false
-var unlockedDashGround: bool = false ## Unlimited dash on ground
+var unlockedDashGround: bool = false
 var unlockedDashWall: bool = false
 var unlockedDashClimb: bool = false
 var unlockedDashJump: bool = false
-var unlockedDashRoll: bool = false #TODO: Create State
+var unlockedDashRoll: bool = false 
 var unlockedDashBelly: bool = false
 var unlockedDashChain: bool = false
 
-var unlockedSlide: bool = false #TODO: Rework State
+var unlockedSlide: bool = false 
 var unlockedGroundPound: bool = false
 var unlockedGroundPoundBounce: bool = false
 var unlockedWallGrab: bool = false
 var unlockedGrappleHook: bool = false
 var unlockedBash: bool = false
-var unlockedSpin: bool = false #TODO: Create State
+var unlockedSpin: bool = false 
 var unlockedRoll: bool = false
-var unlockedBurrow: bool = false #TODO: Create State
+var unlockedBurrow: bool = false
 var unlockedGlide: bool = false
 var unlockedDive: bool = false
 var unlockedSwimDash: bool = false
@@ -75,6 +76,7 @@ enum list {
 	JumpFlip,
 	JumpLong,
 	JumpCrouch,
+	JumpCrouchCharged,
 	JumpConsec,
 	JumpGroundPound,
 	JumpWall,
@@ -130,6 +132,7 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedJumpFlip = BOOL
 		unlockedJumpLong = BOOL
 		unlockedJumpCrouch = BOOL
+		unlockedJumpCrouchCharged = BOOL
 		unlockedJumpGroundPound = BOOL
 		unlockedJumpWall = BOOL
 		unlockedJumpWallSame = BOOL
@@ -165,6 +168,8 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedJumpLong = BOOL
 	elif ability == list.JumpCrouch:
 		unlockedJumpCrouch = BOOL
+	elif ability == list.JumpCrouchCharged:
+		unlockedJumpCrouchCharged = BOOL
 	elif ability == list.JumpGroundPound:
 		unlockedJumpGroundPound = BOOL
 	elif ability == list.JumpWall:
@@ -233,6 +238,8 @@ func can_use(ability: int) -> bool:
 	elif ability == list.JumpLong and unlockedJumpLong:
 		return true
 	elif ability == list.JumpCrouch and unlockedJumpCrouch:
+		return true
+	elif ability == list.JumpCrouchCharged and unlockedJumpCrouchCharged:
 		return true
 	elif ability == list.JumpGroundPound and unlockedJumpGroundPound:
 		return true

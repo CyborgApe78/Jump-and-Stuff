@@ -7,6 +7,7 @@ extends Control
 @export var buttonJumpFlip: Button
 @export var buttonJumpLong: Button
 @export var buttonJumpCrouch: Button
+@export var buttonJumpCrouchCharged: Button
 @export var buttonJumpGroundPound: Button
 @export var buttonJumpWall: Button
 @export var buttonJumpWallSame: Button
@@ -52,6 +53,7 @@ func check(BOOL) -> void:
 	buttonJumpFlip.button_pressed = Abilities.unlockedJumpFlip
 	buttonJumpLong.button_pressed = Abilities.unlockedJumpLong
 	buttonJumpCrouch.button_pressed = Abilities.unlockedJumpCrouch
+	buttonJumpCrouchCharged.button_pressed = Abilities.unlockedJumpCrouchCharged
 	buttonJumpGroundPound.button_pressed = Abilities.unlockedJumpGroundPound
 	buttonJumpWall.button_pressed = Abilities.unlockedJumpWall
 	buttonJumpWallSame.button_pressed = Abilities.unlockedJumpWallSame
@@ -94,6 +96,7 @@ func _on_jump_all_toggled(button_pressed: bool) -> void:
 	buttonJumpFlip.button_pressed = button_pressed
 	buttonJumpLong.button_pressed = button_pressed
 	buttonJumpCrouch.button_pressed = button_pressed
+	buttonJumpCrouchCharged.button_pressed = button_pressed
 	buttonJumpGroundPound.button_pressed = button_pressed
 	buttonJumpWall.button_pressed = button_pressed
 	buttonJumpWallSame.button_pressed = button_pressed
@@ -252,3 +255,7 @@ func _on_dive_toggled(button_pressed: bool) -> void:
 
 func _on_swim_dash_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.SwimDash, button_pressed)
+
+
+func _on_crouch_charged_toggled(button_pressed: bool) -> void:
+	Abilities.unlock(PlayerAbilities.list.JumpCrouchCharged, button_pressed)

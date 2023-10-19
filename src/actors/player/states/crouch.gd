@@ -3,14 +3,17 @@ extends PlayerInfo
 #TODO: add crawl state, can get stuck under corners
 
 @export var timerCoyoteJump: Timer
-@export var timerCoyoteJumpGroundPound: Timer
+@export var timerCoyoteJumpGroundPound: Timer ## gives extra time after ground pound to still get boosted jump
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
 @export var timerConsecutiveJump: Timer
+@export var timerCharge: Timer
 @export var detector: ShapeCast2D
+@export var particlesCharge: GPUParticles2D
 
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
+@export var timeCharge: int = 2
 
 var saveConsecutive: bool = false
 
@@ -19,6 +22,8 @@ var saveConsecutive: bool = false
 
 func enter() -> void:
 	player.animPlayer.queue("Crouch")
+	timerCharge.wait_time = timeCharge
+	timerCharge.start()
 	
 	neutral_move_direction_logic()
 	
@@ -28,6 +33,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop()
+	timerCharge.stop()
 	
 	if saveConsecutive:
 		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
@@ -58,22 +64,28 @@ func handle_input(event: InputEvent) -> int:
 				return State.Walk
 			else:
 				return State.Idle
-		if input.justPressedJump:
-			if input.pressedDown:
-				player.set_collision_mask_value(CollisionLayers.Semisolid, false)
-#				if player.jumped: #FIXME: what is this???
-#					consecutive_jump_cancel() #LOOKAT: maybe not cancel to carry triple jump
-#					return State.JumpLong #TODO: special jump, timer to get a boosted jump
-			else:
-				if (abs(player.velocity.x) > minLongJumpVelocity or input.moveDirection.x != 0) and abilities.can_use(PlayerAbilities.list.JumpLong):
-					return State.JumpLong
-				elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound): ## gives extra time after ground pound to still get boosted jump
-					return State.JumpGroundPound
-				elif abilities.can_use(PlayerAbilities.list.JumpCrouch):
-					#TODO: add time check, for charging jump
-					return State.JumpCrouch
-		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump): #TODO: add charge time
+		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump) and timerCharge.is_stopped():
 			return State.DashJump
+		if input.justPressedJump:
+			if abs(player.velocity.x) > minLongJumpVelocity:
+				if input.moveDirection.y == -1:
+					if timerCharge.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpCrouchCharged):
+						return State.JumpCrouchCharged
+					elif abilities.can_use(PlayerAbilities.list.JumpCrouch):
+						return State.JumpCrouch
+				if input.moveDirection.x != 0 and abilities.can_use(PlayerAbilities.list.JumpLong):
+					return State.JumpLong
+			elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
+				return State.JumpGroundPound
+			elif timerCharge.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpCrouchCharged):
+				return State.JumpCrouchCharged
+			elif abilities.can_use(PlayerAbilities.list.JumpCrouch):
+				return State.JumpCrouch
+	if input.justPressedJump:
+		if input.pressedDown:
+			player.set_collision_mask_value(CollisionLayers.Semisolid, false)
+		elif abilities.can_use(PlayerAbilities.list.JumpCrouch):
+			return State.JumpCrouch
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
 		return State.Roll
 	if input.pressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
@@ -100,3 +112,7 @@ func state_check(delta: float) -> int:
 		return State.Roll
 
 	return State.Null
+
+
+func _on_charge_timeout() -> void:
+	particlesCharge.restart()

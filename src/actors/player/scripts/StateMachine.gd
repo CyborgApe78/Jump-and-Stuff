@@ -14,6 +14,7 @@ extends Node
 	PlayerState.State.JumpConsec: $JumpConsec,
 	PlayerState.State.JumpLong: $JumpLong,
 	PlayerState.State.JumpCrouch: $JumpCrouch,
+	PlayerState.State.JumpCrouchCharged: $JumpCrouchCharged,
 	PlayerState.State.JumpFlip: $JumpFlip,
 	PlayerState.State.JumpApex: $JumpApex,
 	PlayerState.State.JumpWall: $JumpWall,
