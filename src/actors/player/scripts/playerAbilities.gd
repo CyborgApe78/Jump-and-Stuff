@@ -146,6 +146,7 @@ func unlock(ability: int, BOOL:bool) -> void:
 		unlockedDashWall = BOOL
 		unlockedDashClimb = BOOL
 		unlockedDashJump = BOOL
+		unlockedDashRoll = BOOL
 		unlockedDashBelly = BOOL
 		unlockedDashChain = BOOL
 		unlockedSlide = BOOL
