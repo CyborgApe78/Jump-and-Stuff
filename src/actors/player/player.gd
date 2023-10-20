@@ -9,12 +9,12 @@ class_name Player
 @onready var characterRig: Node2D = $CharacterRig
 @onready var characterRotate: Node2D = $CharacterRig/CharacterRotate
 @onready var characterCollision: CollisionShape2D = $BodyCollision
-@onready var particles: Node2D = $CharacterRig/CharacterRotate/Particles
 @onready var timers: Node = $Timers
 @onready var sounds: Node = $Sounds
 @onready var grappleHookLine: Line2D = $GrappleHook
 
 @export var characterSAS: Node2D
+@export var particles: Node2D
 @export var input: InputComponent
 @export var stats: StatsComponent
 
