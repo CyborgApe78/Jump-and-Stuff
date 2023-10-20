@@ -9,6 +9,7 @@ enum State {
 	Walk,
 	Skid,
 	Crouch,
+	CrouchWalk,
 	Jump,
 	JumpAir,
 	JumpConsec,

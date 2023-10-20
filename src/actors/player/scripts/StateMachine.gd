@@ -1,6 +1,5 @@
 extends Node
 
-#TODO: create subcatorgies to orgainize 
 
 @onready var states = {
 	PlayerState.State.Spawn: $Spawn,
@@ -9,6 +8,7 @@ extends Node
 	PlayerState.State.Walk: $Walk,
 	PlayerState.State.Skid: $Skid,
 	PlayerState.State.Crouch: $Crouch,
+	PlayerState.State.CrouchWalk: $CrouchWalk,
 	PlayerState.State.Jump: $Jump,
 	PlayerState.State.JumpAir: $JumpAir,
 	PlayerState.State.JumpConsec: $JumpConsec,

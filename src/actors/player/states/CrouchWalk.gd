@@ -4,29 +4,21 @@ extends PlayerInfo
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpGroundPound: Timer ## gives extra time after ground pound to still get boosted jump
 @export var timerBufferJump: Timer
-@export var timerBufferRoll: Timer
 @export var timerConsecutiveJump: Timer
 @export var timerCharge: Timer
+@export var soundeffect: AudioStreamPlayer
 @export var detector: ShapeCast2D
-@export var particlesCharge: GPUParticles2D
-@export var particlesSlide: GPUParticles2D
-@export var soundSlide: AudioStreamPlayer
 
-@export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30 #TODO: move to stats
 @export var timeCharge: int = 1 #TODO: move to stats
 
 var saveConsecutive: bool = false
 
-#LOOKAT: crouch stores consec jumps
-
 
 func enter() -> void:
-	player.animPlayer.queue("Crouch")
+	player.animPlayer.queue("Crouch Walk")
 	timerCharge.wait_time = timeCharge
 	timerCharge.start()
-	
-	neutral_move_direction_logic()
 	
 	if !timerConsecutiveJump.is_stopped():
 		saveConsecutive = true
@@ -34,8 +26,9 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop()
+	soundeffect.stop()
+	player.animPlayer.speed_scale = 1
 	timerCharge.stop() #TODO: don't stop if going to crouch walk
-	soundSlide.stop()
 	
 	if saveConsecutive:
 		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
@@ -44,22 +37,24 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-	
-	velocity.apply_friction(1000, delta) #FIXME: friction isn't workin right
+
+	if player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x: ## kill velocity when changing directions
+		player.velocity.x = input.lastMoveDirection.x * 1
+	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed / 5: #TODO: own stat
+		velocity.apply_acceleration(stats.moveSpeed / 5, stats.accelerationGround, delta)
+	elif input.moveDirection.x == 0:
+		velocity.apply_friction(stats.frictionGround, delta)
 
 
 func visual(delta) -> void:
+	player.animation_speed(.004)
 	player.facing_logic(input.lastMoveDirection.x)
 	align_to_ground()
 	
-	if player.velocity.x != 0:
-		particlesSlide.restart()
+
 
 func sound(delta: float) -> void:
-	if player.velocity.x != 0 and !soundSlide.playing:
-		soundSlide.play()
-	elif player.velocity.x == 0 and soundSlide.playing:
-		soundSlide.stop()
+		pass
 
 
 func handle_input(event: InputEvent) -> int:
@@ -98,9 +93,8 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-#TODO:
-#	if ground.groundAngle > 1:
-#		return State.Slide
+	if player.velocity.x == 0:
+		return State.Crouch
 	if !player.is_on_floor() and !ground.detectorGroundLeft.is_colliding() and !ground.detectorGroundRight.is_colliding():
 		timerCoyoteJump.start()
 		return State.Fall
@@ -108,12 +102,6 @@ func state_check(delta: float) -> int:
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.coyoteJump)
 		return State.JumpCrouch
-	if !timerBufferRoll.is_stopped() and abilities.can_use(PlayerAbilities.list.Roll):
-		timerBufferRoll.stop()
-		return State.Roll
 
 	return State.Null
 
-
-func _on_charge_timeout() -> void:
-	particlesCharge.restart()
