@@ -17,12 +17,12 @@ extends Node2D
 
 func _ready() -> void:
 	dash.process_material.color = AbilityColor.dashSideColor
-	check_ground_color()
-
-func check_ground_color() -> void:
-	walk.process_material.color = player.groundColor
-	skid.process_material.color = player.groundColor
-	land.process_material.color = player.groundColor
-	jump.process_material.color = player.groundColor
-	jumpDouble.process_material.color = player.groundColor
-	jumpTriple.process_material.color = player.groundColor
+#	check_ground_color()
+#
+#func check_ground_color() -> void:
+#	walk.process_material.color = player.groundColor
+#	skid.process_material.color = player.groundColor
+#	land.process_material.color = player.groundColor
+#	jump.process_material.color = player.groundColor
+#	jumpDouble.process_material.color = player.groundColor
+#	jumpTriple.process_material.color = player.groundColor
