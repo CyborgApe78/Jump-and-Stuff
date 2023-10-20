@@ -15,6 +15,7 @@ func enter() -> void:
 	soundeffect.play()
 	particles.restart()
 	player.velocity.y = stats.jumpCrouchVelocity
+	player.velocity.x = 0
 
 
 func exit() -> void:
