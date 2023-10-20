@@ -17,19 +17,19 @@ var dashBufferState: int
 func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.1) -> void: #FIXME: get this working
 	#TODO: use animeation tree instead
 	if forwardLean:
-		player.characterRig.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
+		player.characterSAS.skew = remap(-player.velocity.x, 0, speed, 0.0, leanAmount)
 	if !forwardLean:
-		player.characterRig.skew = remap(-player.velocity.x, 0, speed, 0.0, leanAmount)
+		player.characterSAS.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
 
 
-func squash_and_stretch(delta): #FIXME: get this working
+func squash_and_stretch(delta): 
 	#TODO: use animeation tree instead
 #	if !player.is_on_floor():
-#		player.characterRig.scale.y = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 0.75, 1.25)
-#		player.characterRig.scale.x = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 1.25, 0.75) * sign(player.velocity.x)
+#		player.characterSAS.scale.y = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 0.75, 1.25)
+#		player.characterSAS.scale.x = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 1.25, 0.75)
 #
-#	player.characterRig.scale.x = lerp(player.characterRig.scale.x, 1.0, 1.0 - pow(0.01, delta))
-#	player.characterRig.scale.y = lerp(player.characterRig.scale.y, 1.0, 1.0 - pow(0.01, delta))
+#	player.characterSAS.scale.x = lerp(player.characterSAS.scale.x, 1.0, 1.0 - pow(0.01, delta))
+#	player.characterSAS.scale.y = lerp(player.characterSAS.scale.y, 1.0, 1.0 - pow(0.01, delta))
 	
 	pass
 

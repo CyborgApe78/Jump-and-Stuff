@@ -14,7 +14,9 @@ class_name Player
 @onready var sounds: Node = $Sounds
 @onready var grappleHookLine: Line2D = $GrappleHook
 
+@export var characterSAS: Node2D
 @export var input: InputComponent
+@export var stats: StatsComponent
 
 var velocityPrevious: Vector2 = Vector2.ZERO
 var velocityRotated: Vector2 = Vector2.ZERO
@@ -56,6 +58,8 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	sm.visual(delta)
 	sm.sound(delta)
+	
+	squash_and_stretch(delta)
 
 
 func move_and_slide_rotation() -> void:
@@ -63,6 +67,17 @@ func move_and_slide_rotation() -> void:
 	velocity = velocity.rotated(rotation)
 	move_and_slide()
 	velocity = velocity.rotated(-rotation)
+
+
+func squash_and_stretch(delta): 
+	#TODO: use animeation tree instead
+	if !is_on_floor():
+		characterSAS.scale.y = remap(abs(min(velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 0.75, 1.25)
+		characterSAS.scale.x = remap(abs(min(velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 1.25, 0.75)
+
+	characterSAS.scale.x = lerp(characterSAS.scale.x, 1.0, 1.0 - pow(0.01, delta))
+	characterSAS.scale.y = lerp(characterSAS.scale.y, 1.0, 1.0 - pow(0.01, delta))
+	
 
 
 func facing_logic(direction: int): #TODOL move this to another node
