@@ -10,6 +10,8 @@ extends PlayerInfo
 @export var timerCharge: Timer
 @export var detector: ShapeCast2D
 @export var particlesCharge: GPUParticles2D
+@export var particlesSlide: GPUParticles2D
+@export var soundSlide: AudioStreamPlayer
 
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
@@ -34,6 +36,7 @@ func enter() -> void:
 func exit() -> void:
 	player.animPlayer.stop()
 	timerCharge.stop()
+	soundSlide.stop()
 	
 	if saveConsecutive:
 		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
@@ -49,12 +52,15 @@ func physics(delta) -> void:
 func visual(delta) -> void:
 	player.facing_logic(input.lastMoveDirection.x)
 	align_to_ground()
-
+	
+	if player.velocity.x != 0:
+		particlesSlide.restart()
 
 func sound(delta: float) -> void:
-	if player.velocity.x != 0:
-		#TODO: need a sound when sliding
-		pass
+	if player.velocity.x != 0 and !soundSlide.playing:
+		soundSlide.play()
+	elif player.velocity.x == 0 and soundSlide.playing:
+		soundSlide.stop()
 
 
 func handle_input(event: InputEvent) -> int:
@@ -67,14 +73,8 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump) and timerCharge.is_stopped():
 			return State.DashJump
 		if input.justPressedJump:
-			if abs(player.velocity.x) > minLongJumpVelocity:
-				if input.moveDirection.y == -1:
-					if timerCharge.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpCrouchCharged):
-						return State.JumpCrouchCharged
-					elif abilities.can_use(PlayerAbilities.list.JumpCrouch):
-						return State.JumpCrouch
-				if input.moveDirection.x != 0 and abilities.can_use(PlayerAbilities.list.JumpLong):
-					return State.JumpLong
+			if abs(player.velocity.x) > minLongJumpVelocity and abilities.can_use(PlayerAbilities.list.JumpLong):
+				return State.JumpLong
 			elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
 				return State.JumpGroundPound
 			elif timerCharge.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpCrouchCharged):
