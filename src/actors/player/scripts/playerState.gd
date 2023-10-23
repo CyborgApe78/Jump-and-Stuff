@@ -54,7 +54,6 @@ enum State {
 	Die,
 }
 
-var statePrevious: int 
 var player: Player
 
 func enter() -> void:
