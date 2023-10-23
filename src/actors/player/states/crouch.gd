@@ -72,7 +72,7 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump) and timerCharge.is_stopped():
 			return State.DashJump
 		if input.justPressedJump:
-			if abs(player.velocity.x) > minLongJumpVelocity and abilities.can_use(PlayerAbilities.list.JumpLong):
+			if abs(player.velocity.x) > minLongJumpVelocity and (sign(player.velocity.x) == input.moveDirection.x or input.moveDirection.x == 0) and abilities.can_use(PlayerAbilities.list.JumpLong):
 				return State.JumpLong
 			elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
 				return State.JumpGroundPound
