@@ -3,6 +3,7 @@ class_name ActorCounterComponent
 
 ## tracks the number of actors in an area
 #TODO: get size and position of parent and set the area above
+#FIXME: player can jump up and down through and is counted on being on it
 
 signal cleared
 signal entered

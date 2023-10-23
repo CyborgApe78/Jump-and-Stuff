@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 #TODO: upgrade for ori like burrow
+#TODO: chane this all back to one dash for all directions
 
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer

@@ -1,6 +1,6 @@
 extends PlayerInfo
+
 #TODO: air crouch
-#TODO: holding down makes you go through semisolids
 
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpWall: Timer

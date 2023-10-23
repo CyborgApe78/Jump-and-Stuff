@@ -49,6 +49,7 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpBelly):
 			return State.BellySlideHop
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
+		#TODO: don't gain speed from roll
 		return State.Roll
 	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashBelly):
 		return State.BellySlideDash
