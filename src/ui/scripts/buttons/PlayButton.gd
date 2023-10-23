@@ -3,9 +3,12 @@ extends Button
 
 @export var changeScene: PackedScene
 
+@export var firstButton: bool = false
+
 
 func _ready() -> void:
-	grab_focus()
+	if firstButton:
+		grab_focus()
 
 
 func _on_pressed() -> void:

@@ -88,6 +88,7 @@ theme = ExtResource("3_mw0pa")
 text = "Playground"
 script = ExtResource("2_5t864")
 changeScene = ExtResource("3_c8fpr")
+firstButton = true
 
 [node name="TestingGround" type="Button" parent="Buttons"]
 layout_mode = 2
