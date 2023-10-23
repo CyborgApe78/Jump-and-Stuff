@@ -52,7 +52,6 @@ func _physics_process(delta: float) -> void:
 	sm.state_check(delta)
 
 	EventBus.debugVelocity.emit(velocity.round())
-	EventBus.debug.emit(input.moveDirection)
 
 
 func _process(delta: float) -> void:

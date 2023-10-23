@@ -45,6 +45,9 @@ var justReleasedJump: bool = false
 var justReleasedGlide: bool = false
 
 
+func _process(delta: float) -> void:
+	EventBus.debug.emit(moveDirection)
+
 func _unhandled_input(event: InputEvent) -> void:
 	get_move_input()
 	get_ability_input()
