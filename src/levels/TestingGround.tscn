@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=34 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cmrb6s6eigorv" path="res://src/object/prefab/doors/DoorLocked.tscn" id="21_vnydo"]
 [ext_resource type="PackedScene" uid="uid://87ij05swdkl4" path="res://src/object/prefab/platforms/platform_falling.tscn" id="22_d32gw"]
 [ext_resource type="PackedScene" uid="uid://cvcpkjluavmfe" path="res://src/object/prefab/platforms/platform_countdown.tscn" id="23_0k671"]
+[ext_resource type="PackedScene" uid="uid://d0dtvqtj86ej1" path="res://src/object/prefab/platforms/platform_moving.tscn" id="24_kttip"]
 [ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="24_xrqhw"]
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_d0jmx"]
 
@@ -591,7 +592,7 @@ position = Vector2(1, 32)
 shape = SubResource("RectangleShape2D_gx7c3")
 
 [node name="Water" parent="Interactables" instance=ExtResource("13_jbo0m")]
-position = Vector2(-1088, 1408)
+position = Vector2(-448, 1536)
 scale = Vector2(5, 5)
 
 [node name="Semisolid" parent="Interactables" instance=ExtResource("14_jnhoi")]
@@ -700,6 +701,70 @@ offset_right = 64.0
 offset_bottom = -96.0
 text = "Countdown
 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Moving" type="Node2D" parent="Platforms"]
+position = Vector2(-2496, 1024)
+metadata/_edit_group_ = true
+
+[node name="Moving" parent="Platforms/Moving" instance=ExtResource("24_kttip")]
+startingDirection = 1
+
+[node name="Label" type="Label" parent="Platforms/Moving"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -96.0
+text = "Moving"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Moving2" type="Node2D" parent="Platforms"]
+position = Vector2(-2304, 1024)
+metadata/_edit_group_ = true
+
+[node name="Moving" parent="Platforms/Moving2" instance=ExtResource("24_kttip")]
+startingDirection = 2
+
+[node name="Label" type="Label" parent="Platforms/Moving2"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -96.0
+text = "Moving"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Moving3" type="Node2D" parent="Platforms"]
+position = Vector2(-2112, 1024)
+metadata/_edit_group_ = true
+
+[node name="Moving" parent="Platforms/Moving3" instance=ExtResource("24_kttip")]
+startingDirection = 3
+
+[node name="Label" type="Label" parent="Platforms/Moving3"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -96.0
+text = "Moving"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Moving4" type="Node2D" parent="Platforms"]
+position = Vector2(-1920, 1024)
+metadata/_edit_group_ = true
+
+[node name="Moving" parent="Platforms/Moving4" instance=ExtResource("24_kttip")]
+startingDirection = 4
+
+[node name="Label" type="Label" parent="Platforms/Moving4"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -96.0
+text = "Moving"
 horizontal_alignment = 1
 vertical_alignment = 1
 
