@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://87ij05swdkl4"]
 
-[ext_resource type="Script" path="res://src/object/prefab/platforms/platform_falling.gd" id="1_nkr23"]
+[ext_resource type="Script" path="res://src/object/prefab/platforms/scripts/platform_falling.gd" id="1_e3fi8"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_n5hoi"]
 [ext_resource type="PackedScene" uid="uid://cpiawly1ei4yy" path="res://src/object/components/actor_counter.tscn" id="3_17o4n"]
 
@@ -11,7 +11,7 @@ size = Vector2(128, 64)
 collision_layer = 4
 collision_mask = 192
 sync_to_physics = false
-script = ExtResource("1_nkr23")
+script = ExtResource("1_e3fi8")
 labelTime = NodePath("Time")
 timerReset = NodePath("Reset")
 timerFall = NodePath("Fall")
