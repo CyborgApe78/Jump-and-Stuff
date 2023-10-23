@@ -1,33 +1,33 @@
-[gd_scene load_steps=33 format=3 uid="uid://bcsfwmvuqgd7b"]
+[gd_scene load_steps=33 format=3 uid="uid://dmmc6ouc7p8kh"]
 
-[ext_resource type="Script" path="res://src/levels/playground.gd" id="1_t3d88"]
-[ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_b7rj6"]
-[ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_f6u44"]
-[ext_resource type="PackedScene" uid="uid://ianrymnomtg8" path="res://src/ui/HUD/debugOverlay.tscn" id="4_e4k32"]
-[ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="7_p7o1h"]
-[ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="8_1jksd"]
-[ext_resource type="PackedScene" uid="uid://dot2bj57yrodl" path="res://src/object/components/heal_box.tscn" id="10_iwkrg"]
-[ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="11_d4pbc"]
-[ext_resource type="Texture2D" uid="uid://bfkikuksvxsuy" path="res://asset/tilemap/grass2.png" id="11_tl8nd"]
-[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="12_gn10c"]
-[ext_resource type="Texture2D" uid="uid://bebi3j0rfayd2" path="res://asset/objects/carrot.png" id="12_hknrh"]
-[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="12_orgcd"]
-[ext_resource type="Texture2D" uid="uid://b8vfu0d8jq3ed" path="res://asset/hazard/spikesBottom.png" id="13_33b4r"]
-[ext_resource type="PackedScene" uid="uid://csjv5180r3acu" path="res://src/object/components/bashable_component.tscn" id="14_3w5vg"]
-[ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="14_xmqek"]
-[ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="16_80qwx"]
-[ext_resource type="PackedScene" uid="uid://d32ncso47mb14" path="res://src/object/enviroment/Water.tscn" id="17_3as08"]
-[ext_resource type="PackedScene" uid="uid://bvk0yjcujvif8" path="res://src/object/prefab/semisolid.tscn" id="18_07xgy"]
-[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="19_1iekm"]
-[ext_resource type="PackedScene" uid="uid://cmrb6s6eigorv" path="res://src/object/prefab/doors/DoorLocked.tscn" id="20_8211g"]
-[ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="21_el1g6"]
-[ext_resource type="PackedScene" uid="uid://cvcpkjluavmfe" path="res://src/object/prefab/platforms/platform_countdown.tscn" id="22_b4sr7"]
-[ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="22_vdons"]
-[ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="23_u041q"]
-[ext_resource type="PackedScene" uid="uid://87ij05swdkl4" path="res://src/object/prefab/platforms/platform_falling.tscn" id="25_nq5vw"]
+[ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
+[ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
+[ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_4lfnv"]
+[ext_resource type="PackedScene" uid="uid://ianrymnomtg8" path="res://src/ui/HUD/debugOverlay.tscn" id="4_ryybi"]
+[ext_resource type="Texture2D" uid="uid://bfkikuksvxsuy" path="res://asset/tilemap/grass2.png" id="5_m23an"]
+[ext_resource type="PackedScene" uid="uid://dot2bj57yrodl" path="res://src/object/components/heal_box.tscn" id="6_3m12p"]
+[ext_resource type="Texture2D" uid="uid://bebi3j0rfayd2" path="res://asset/objects/carrot.png" id="7_crqhc"]
+[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="8_pvan0"]
+[ext_resource type="Texture2D" uid="uid://b8vfu0d8jq3ed" path="res://asset/hazard/spikesBottom.png" id="9_abyyn"]
+[ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="10_lxvkx"]
+[ext_resource type="PackedScene" uid="uid://csjv5180r3acu" path="res://src/object/components/bashable_component.tscn" id="11_gs3d8"]
+[ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="12_vhemv"]
+[ext_resource type="PackedScene" uid="uid://d32ncso47mb14" path="res://src/object/enviroment/Water.tscn" id="13_jbo0m"]
+[ext_resource type="PackedScene" uid="uid://bvk0yjcujvif8" path="res://src/object/prefab/semisolid.tscn" id="14_jnhoi"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="15_ly23x"]
+[ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="16_bo2pu"]
+[ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="17_v1pvv"]
+[ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="18_87hk3"]
+[ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="19_owdc2"]
+[ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="20_5tqcw"]
+[ext_resource type="PackedScene" uid="uid://cmrb6s6eigorv" path="res://src/object/prefab/doors/DoorLocked.tscn" id="21_vnydo"]
+[ext_resource type="PackedScene" uid="uid://87ij05swdkl4" path="res://src/object/prefab/platforms/platform_falling.tscn" id="22_d32gw"]
+[ext_resource type="PackedScene" uid="uid://cvcpkjluavmfe" path="res://src/object/prefab/platforms/platform_countdown.tscn" id="23_0k671"]
+[ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="24_xrqhw"]
+[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_d0jmx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
-texture = ExtResource("11_tl8nd")
+texture = ExtResource("5_m23an")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -541,13 +541,13 @@ a = Vector2(10509, 0)
 b = Vector2(-7328, 0)
 
 [node name="Playground" type="Node"]
-script = ExtResource("1_t3d88")
+script = ExtResource("1_i5twd")
 
-[node name="Menu" parent="." instance=ExtResource("2_b7rj6")]
+[node name="Menu" parent="." instance=ExtResource("2_v4ta7")]
 
-[node name="HUD" parent="." instance=ExtResource("3_f6u44")]
+[node name="HUD" parent="." instance=ExtResource("3_4lfnv")]
 
-[node name="Debug" parent="." instance=ExtResource("4_e4k32")]
+[node name="Debug" parent="." instance=ExtResource("4_ryybi")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8mhj0")
@@ -556,117 +556,117 @@ layer_0/tile_data = PackedInt32Array(262210, 65537, 2, 196674, 65537, 1, 131138,
 
 [node name="Interactables" type="Node2D" parent="."]
 
-[node name="HealBox" parent="Interactables" instance=ExtResource("10_iwkrg")]
+[node name="HealBox" parent="Interactables" instance=ExtResource("6_3m12p")]
 position = Vector2(23, 445)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Interactables/HealBox"]
-texture = ExtResource("12_hknrh")
+texture = ExtResource("7_crqhc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HealBox"]
 position = Vector2(14, 8)
 shape = SubResource("RectangleShape2D_yyd6p")
 
-[node name="HurtBox" parent="Interactables" instance=ExtResource("12_orgcd")]
+[node name="HurtBox" parent="Interactables" instance=ExtResource("8_pvan0")]
 position = Vector2(-228, 501)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/HurtBox"]
-texture = ExtResource("13_33b4r")
+texture = ExtResource("9_abyyn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox"]
 position = Vector2(-3, 13)
 shape = SubResource("RectangleShape2D_c7l1i")
 
-[node name="TargetGrapple" parent="Interactables" instance=ExtResource("14_xmqek")]
+[node name="TargetGrapple" parent="Interactables" instance=ExtResource("10_lxvkx")]
 position = Vector2(-32, -171)
 
-[node name="BashableComponent" parent="Interactables" instance=ExtResource("14_3w5vg")]
+[node name="BashableComponent" parent="Interactables" instance=ExtResource("11_gs3d8")]
 position = Vector2(471, -209)
 
-[node name="Outline" parent="Interactables/BashableComponent" instance=ExtResource("16_80qwx")]
+[node name="Outline" parent="Interactables/BashableComponent" instance=ExtResource("12_vhemv")]
 position = Vector2(1, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/BashableComponent"]
 shape = SubResource("RectangleShape2D_gx7c3")
 
-[node name="Water" parent="Interactables" instance=ExtResource("17_3as08")]
+[node name="Water" parent="Interactables" instance=ExtResource("13_jbo0m")]
 position = Vector2(-1088, 1408)
 scale = Vector2(5, 5)
 
-[node name="Semisolid" parent="Interactables" instance=ExtResource("18_07xgy")]
+[node name="Semisolid" parent="Interactables" instance=ExtResource("14_jnhoi")]
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="Interactables/Semisolid"]
 position = Vector2(-3456, 928)
 shape = SubResource("RectangleShape2D_n5e1r")
-script = ExtResource("19_1iekm")
+script = ExtResource("15_ly23x")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactables/Semisolid"]
 modulate = Color(1, 1, 1, 0.3)
 position = Vector2(-3463, 4639)
 polygon = PackedVector2Array(291, 58, 1090, 363, 2607, 373, 7234, -1030, 6730, -726, 2616, 476, 979, 493, 263, 123)
 
-[node name="AbilityUnlock" parent="Interactables" instance=ExtResource("22_vdons")]
+[node name="AbilityUnlock" parent="Interactables" instance=ExtResource("16_bo2pu")]
 position = Vector2(160, 0)
 ability = 1
 
-[node name="UpgradeUnlocker" parent="Interactables" instance=ExtResource("23_u041q")]
+[node name="UpgradeUnlocker" parent="Interactables" instance=ExtResource("17_v1pvv")]
 position = Vector2(-532, 499)
 upgrade = 2
 
-[node name="HurtBox2" parent="Interactables" instance=ExtResource("12_orgcd")]
+[node name="HurtBox2" parent="Interactables" instance=ExtResource("8_pvan0")]
 position = Vector2(-883, 1562)
 kill = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox2"]
 shape = SubResource("SegmentShape2D_legq7")
-script = ExtResource("19_1iekm")
+script = ExtResource("15_ly23x")
 color = Color(1, 0, 0, 1)
 
 [node name="Waypoints" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="StartingLocation" parent="Waypoints" instance=ExtResource("7_p7o1h")]
+[node name="StartingLocation" parent="Waypoints" instance=ExtResource("18_87hk3")]
 position = Vector2(160, 0)
 
-[node name="Starting" parent="Waypoints" instance=ExtResource("8_1jksd")]
+[node name="Starting" parent="Waypoints" instance=ExtResource("19_owdc2")]
 position = Vector2(160, 0)
 waypointName = 1
 
-[node name="Platforms" parent="Waypoints" instance=ExtResource("8_1jksd")]
+[node name="Platforms" parent="Waypoints" instance=ExtResource("19_owdc2")]
 position = Vector2(-3232, 1088)
 waypointName = 2
 
-[node name="Doors" parent="Waypoints" node_paths=PackedStringArray("lockoutTimer") instance=ExtResource("8_1jksd")]
+[node name="Doors" parent="Waypoints" node_paths=PackedStringArray("lockoutTimer") instance=ExtResource("19_owdc2")]
 position = Vector2(-5408, 1088)
 waypointName = 3
 lockoutTimer = NodePath("../Platforms/Timer")
 
 [node name="Door" type="Node2D" parent="."]
 
-[node name="Key" parent="Door" instance=ExtResource("21_el1g6")]
+[node name="Key" parent="Door" instance=ExtResource("20_5tqcw")]
 position = Vector2(-4768, 1024)
 
-[node name="Key3" parent="Door" instance=ExtResource("21_el1g6")]
+[node name="Key3" parent="Door" instance=ExtResource("20_5tqcw")]
 position = Vector2(-4288, 992)
 
-[node name="Key4" parent="Door" instance=ExtResource("21_el1g6")]
+[node name="Key4" parent="Door" instance=ExtResource("20_5tqcw")]
 position = Vector2(-4512, 832)
 
-[node name="Key2" parent="Door" instance=ExtResource("21_el1g6")]
+[node name="Key2" parent="Door" instance=ExtResource("20_5tqcw")]
 position = Vector2(-4288, 1056)
 
-[node name="Key5" parent="Door" instance=ExtResource("21_el1g6")]
+[node name="Key5" parent="Door" instance=ExtResource("20_5tqcw")]
 position = Vector2(-5280, 1024)
 
-[node name="DoorLocked3" parent="Door" instance=ExtResource("20_8211g")]
+[node name="DoorLocked3" parent="Door" instance=ExtResource("21_vnydo")]
 position = Vector2(-5024, 1088)
 amount = 2
 
-[node name="DoorLocked2" parent="Door" instance=ExtResource("20_8211g")]
+[node name="DoorLocked2" parent="Door" instance=ExtResource("21_vnydo")]
 position = Vector2(-4512, 1088)
 
-[node name="DoorLocked" parent="Door" instance=ExtResource("20_8211g")]
+[node name="DoorLocked" parent="Door" instance=ExtResource("21_vnydo")]
 position = Vector2(-4064, 1088)
 amount = 2
 
@@ -676,7 +676,7 @@ amount = 2
 position = Vector2(-2944, 1024)
 metadata/_edit_group_ = true
 
-[node name="Falling" parent="Platforms/Falling" instance=ExtResource("25_nq5vw")]
+[node name="Falling" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
 
 [node name="Label" type="Label" parent="Platforms/Falling"]
 offset_left = -64.0
@@ -691,7 +691,7 @@ vertical_alignment = 1
 position = Vector2(-2688, 1024)
 metadata/_edit_group_ = true
 
-[node name="Countdown" parent="Platforms/Countdown" instance=ExtResource("22_b4sr7")]
+[node name="Countdown" parent="Platforms/Countdown" instance=ExtResource("23_0k671")]
 
 [node name="Label" type="Label" parent="Platforms/Countdown"]
 offset_left = -64.0
@@ -703,7 +703,7 @@ text = "Countdown
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player" parent="." instance=ExtResource("11_d4pbc")]
+[node name="Player" parent="." instance=ExtResource("24_xrqhw")]
 position = Vector2(-617, -37)
 floor_snap_length = 9.0
 
@@ -720,6 +720,6 @@ drag_right_margin = 0.04
 drag_bottom_margin = 0.46
 editor_draw_limits = true
 editor_draw_drag_margin = true
-script = ExtResource("12_gn10c")
+script = ExtResource("25_d0jmx")
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

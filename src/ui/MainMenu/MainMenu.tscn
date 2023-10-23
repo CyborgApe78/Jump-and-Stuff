@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://do4my7cc022xx"]
+[gd_scene load_steps=9 format=3 uid="uid://do4my7cc022xx"]
 
 [ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MainMenu.gd" id="1_r3yfy"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/PlayButton.gd" id="2_5t864"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://cilr3fed7gs6p" path="res://src/ui/themes/MainMenu.tres" id="3_mw0pa"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_amagm"]
 [ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/Discord.gd" id="4_yem1j"]
+[ext_resource type="PackedScene" uid="uid://dmmc6ouc7p8kh" path="res://src/levels/TestingGround.tscn" id="6_u6ses"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("labelTitle", "labelVersion", "labelGodot", "labelCreator")]
 layout_mode = 3
@@ -88,6 +89,15 @@ text = "Playground"
 script = ExtResource("2_5t864")
 changeScene = ExtResource("3_c8fpr")
 
+[node name="TestingGround" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_mw0pa")
+text = "Testing Ground"
+script = ExtResource("2_5t864")
+changeScene = ExtResource("6_u6ses")
+
 [node name="Discord" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -157,6 +167,9 @@ horizontal_alignment = 2
 [connection signal="focus_entered" from="Buttons/Playground" to="Buttons/Playground" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="Buttons/Playground" to="Buttons/Playground" method="_on_mouse_entered"]
 [connection signal="pressed" from="Buttons/Playground" to="Buttons/Playground" method="_on_pressed"]
+[connection signal="focus_entered" from="Buttons/TestingGround" to="Buttons/TestingGround" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="Buttons/TestingGround" to="Buttons/TestingGround" method="_on_mouse_entered"]
+[connection signal="pressed" from="Buttons/TestingGround" to="Buttons/TestingGround" method="_on_pressed"]
 [connection signal="focus_entered" from="Buttons/Discord" to="Buttons/Discord" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="Buttons/Discord" to="Buttons/Discord" method="_on_mouse_entered"]
 [connection signal="pressed" from="Buttons/Discord" to="Buttons/Discord" method="_on_pressed"]
