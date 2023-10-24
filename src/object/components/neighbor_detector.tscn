@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm7aaqfg2sgsf"]
+
+[ext_resource type="Script" path="res://src/object/components/scripts/NeighborDetector.gd" id="1_3j0qa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxc7u"]
+size = Vector2(144, 80)
+
+[node name="NeighborDetector" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_3j0qa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_nxc7u")
