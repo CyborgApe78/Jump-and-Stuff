@@ -1,9 +1,12 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var soundeffect: AudioStreamPlayer
+
+@export_group("")
 
 
 func enter() -> void:

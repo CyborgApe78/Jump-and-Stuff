@@ -3,10 +3,12 @@ extends PlayerInfo
 #LOOKAT: make 2, one for slow fall, other for coming out of side dashes more like buzz lightyear mixed with mario cape
 #TODO: add a check to double jump and others to go back to glide if it is still held
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerConsecutiveJump: Timer
 
+@export_group("")
 @export var transTime: float = 0.1
 @export var velocityModifier: float = 0.6
 @export var velocityFallModifier: float = 0.3

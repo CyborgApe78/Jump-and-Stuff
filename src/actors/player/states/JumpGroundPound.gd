@@ -1,13 +1,16 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var soundeffect: AudioStreamPlayer
 @export var timerCoyoteJumpGroundPound: Timer
-
-@export var jumpSoundModifier: float = 3.0
 @export var particles: GPUParticles2D
 
+@export_group("")
+@export var jumpSoundModifier: float = 3.0
+
 var velocityJumpCrouch: float
+
 
 func enter() -> void:
 	timerCoyoteJumpGroundPound.stop()

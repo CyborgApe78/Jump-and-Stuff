@@ -1,9 +1,11 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer
 
+@export_group("")
 @export var modifier: float = 1.25
 
 

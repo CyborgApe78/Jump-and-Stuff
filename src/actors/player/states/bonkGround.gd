@@ -1,12 +1,15 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var soundBonk: AudioStreamPlayer
 @export var soundSplat: AudioStreamPlayer
 
-var currentBonkTime: float
+@export_group("")
 @export var bonkTime: float = 1.5
 @export var bounceBack: int = 400
+
+var currentBonkTime: float
 
 
 func enter() -> void:

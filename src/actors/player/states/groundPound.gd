@@ -3,11 +3,13 @@ extends PlayerInfo
 #TODO: add states converting down dash to side
 #TODO: drill upgrade from spin
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerSemisolidReset: Timer
 @export var detector: ShapeCast2D
 
+@export_group("")
 @export var transTime: float = 0.1
 
 

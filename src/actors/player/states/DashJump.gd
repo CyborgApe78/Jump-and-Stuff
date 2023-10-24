@@ -2,12 +2,14 @@ extends PlayerInfo
 
 #lookat: maybe triggered like shinespark
 
+@export_group("Connections")
 @export var timerBufferJump: Timer
-
-@export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
+
+@export_group("")
+@export var duration: float = 0.3
 
 
 func enter() -> void:

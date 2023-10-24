@@ -4,12 +4,13 @@ extends PlayerInfo
 #FIXME: collision shape is wrong when going left
 #FIXME: breaks on semisolids
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
 @export var fallTimer: Timer
 
-
+@export_group("")
 @export var rollTime: float = 0.3
 @export var diveSpeedMultiplier: float = 1.6
 @export var multiplierGroundPound: float = 1.5

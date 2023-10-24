@@ -1,11 +1,15 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerBufferJump: Timer
-
-var duration: float = 0.3
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
+
+
+@export_group("")
+
+var duration: float = 0.3
 
 
 func enter() -> void:

@@ -1,12 +1,14 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerCoyoteJumpGroundPound: Timer
 @export var timerStun: Timer
 @export var timerCharge: Timer
 @export var particles: GPUParticles2D
 @export var soundeffect: AudioStreamPlayer
 
+@export_group("")
 @export var stunDuration: float = 0.2
 
 

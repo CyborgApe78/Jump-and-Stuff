@@ -1,6 +1,6 @@
 extends Node
 
-
+@export_group("Connections")
 @export var coyoteJump: Timer
 @export var coyoteJumpWall: Timer
 @export var consecutiveJump: Timer
@@ -9,6 +9,7 @@ extends Node
 @export var bufferRoll: Timer
 @export var timerSemisolidReset: Timer
 
+@export_group("")
 @export var bufferTime: float = 0.1
 @export var semisolidResetTime: float = 0.1
 

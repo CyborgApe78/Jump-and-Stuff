@@ -2,10 +2,12 @@ extends PlayerInfo
 
 #TODO: add nuetral input
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var soundeffect: AudioStreamPlayer
 
+@export_group("")
 @export var skidPercent: float = 1.2
 
 var skidding: bool = false

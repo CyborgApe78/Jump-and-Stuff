@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #TODO: roll on curved walls
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerConsecutiveJump: Timer
@@ -11,6 +12,7 @@ extends PlayerInfo
 @export var particleChain: GPUParticles2D
 @export var detector: ShapeCast2D
 
+@export_group("")
 @export var crouchSpeedMin: int = 20
 @export var minLongJumpVelocity: int = 30
 @export var duration: float = 0.8

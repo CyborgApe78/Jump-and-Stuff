@@ -1,9 +1,12 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
 @export var jumpSoundModifier: float = 2.5
+
+@export_group("")
 
 
 func enter() -> void:

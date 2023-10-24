@@ -1,11 +1,13 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerDuration: Timer
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpWall: Timer
 @export var timerBufferJump: Timer
 
+@export_group("")
 @export var duration: float = 0.6
 
 var aimInput: Vector2 #TODO: break aim indicator out so it can be used for other targets

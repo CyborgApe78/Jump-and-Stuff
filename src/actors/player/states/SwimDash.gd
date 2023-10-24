@@ -3,6 +3,10 @@ extends PlayerInfo
 #TODO: should have a timer to boost out of water
 #LOOKAT: change name since it will work with burrow
 
+@export_group("Connections")
+
+@export_group("")
+
 
 func enter() -> void:
 	pass

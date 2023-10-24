@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #FIXME: rework this. too similiar to belly hop. turn into bouncing ball
 
+@export_group("Connections")
 @export var timerDuration: Timer
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
@@ -9,6 +10,7 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 @export var detector: ShapeCast2D
 
+@export_group("")
 @export var duration: float = 0.3
 @export var jumpModifier: float = 0.25
 @export var velocityModifier: float = 1.75

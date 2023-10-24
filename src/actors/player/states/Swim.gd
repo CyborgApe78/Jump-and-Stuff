@@ -7,6 +7,9 @@ extends PlayerInfo
 #TODO: when approaching water dive in
 #TODO: swim faster button
 
+@export_group("Connections")
+
+@export_group("")
 @export var velocityModifier: float = 1
 
 var swimVelocity: float

@@ -13,10 +13,13 @@ class_name Player
 @onready var sounds: Node = $Sounds
 @onready var grappleHookLine: Line2D = $GrappleHook
 
+@export_group("Connections")
 @export var characterSAS: Node2D
 @export var particles: Node2D
 @export var input: InputComponent
 @export var stats: StatsComponent
+
+@export_group("")
 
 var velocityPrevious: Vector2 = Vector2.ZERO
 var velocityRotated: Vector2 = Vector2.ZERO

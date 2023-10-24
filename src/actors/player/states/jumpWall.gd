@@ -3,10 +3,13 @@ extends PlayerInfo
 #FIXME: coyote wall jump flips sprite away from wall, but returns to face wall without input. adjust facing to match on exit
 #TODO: make other wall jumps not go back to wall and gain height
 
+@export_group("Connections")
 @export var timerCoyoteJumpWall: Timer
 @export var timerLock: Timer
 @export var particles: GPUParticles2D
 @export var soundeffect: AudioStreamPlayer
+
+@export_group("")
 
 var wallHop: bool
 var jumpDirection: int

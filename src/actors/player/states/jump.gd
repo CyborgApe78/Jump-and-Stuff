@@ -2,9 +2,12 @@ extends PlayerInfo
 
 #TODO: higher jump at faster speed
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var soundeffect: AudioStreamPlayer
+
+@export_group("")
 
 
 func enter() -> void:

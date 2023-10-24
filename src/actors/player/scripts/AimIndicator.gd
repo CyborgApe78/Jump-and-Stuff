@@ -3,13 +3,18 @@ extends Marker2D
 #TODO: this needs to move with animations, add nodes in tree
 #TODO: seperate aim and grapple target
 #TODO: make it use bash detector area, but prefer one that is aimed if exist
+
+@onready var player: CharacterBody2D = owner
+
+@export_group("Connections")
 @export var input: InputComponent
 @export var color: Color = Color.FOREST_GREEN
 @export var detector: ShapeCast2D
 @export var indicatorAim: Line2D #TODO: make reusable
 @export var indicatorTarget: Line2D #TODO: make reusable
 
-@onready var player: CharacterBody2D = owner
+@export_group("")
+
 var aimInput: Vector2 
 var target: TargetGrapple
 

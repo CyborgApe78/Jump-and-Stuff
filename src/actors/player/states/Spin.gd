@@ -1,6 +1,11 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
+
+@export_group("")
+
+
 func enter() -> void:
 	pass
 

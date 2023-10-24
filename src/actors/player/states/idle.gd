@@ -1,7 +1,9 @@
 extends PlayerInfo
 
-
+@export_group("Connections")
 @export var timerBufferJump: Timer
+
+@export_group("")
 
 var transformTime: float = 0.1
 

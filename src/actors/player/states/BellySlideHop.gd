@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #LOOKAT: should you gain speed when hopping
 
+@export_group("Connections")
 @export var timerDuration: Timer
 @export var detector: ShapeCast2D
 @export var timerBufferJump: Timer
@@ -9,6 +10,7 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D #TODO: own particles
 
+@export_group("")
 @export var duration: float = 0.2
 @export var jumpModifier: float = 0.25
 @export var velocityModifier: float = 1.0

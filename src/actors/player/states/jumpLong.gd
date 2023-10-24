@@ -1,11 +1,13 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
 
+@export_group("")
 @export var jumpSoundModifier: float = 0.9
 
 var startingHeight: int

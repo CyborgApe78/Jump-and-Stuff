@@ -1,9 +1,12 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var soundSlide: AudioStreamPlayer
 @export var particlesSlide: GPUParticles2D #TODO: create particles
 @export var detector: ShapeCast2D
+
+@export_group("")
 
 
 func enter() -> void:

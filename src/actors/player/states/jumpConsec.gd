@@ -1,10 +1,14 @@
 extends PlayerInfo
 
 #LOOKAT: merge with jump
+
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var soundeffect: AudioStreamPlayer
 @export var particles: GPUParticles2D
+
+@export_group("")
 
 
 func enter() -> void:

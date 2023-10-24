@@ -1,9 +1,12 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpWall: Timer
 @export var timerBufferJump: Timer
+
+@export_group("")
 
 const slowRadius: = 2 * Util.tileSize
 

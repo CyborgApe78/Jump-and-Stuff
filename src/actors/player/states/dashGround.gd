@@ -2,17 +2,20 @@ extends PlayerInfo
 
 #TODO: Upgrade to turn into speed boost
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerConsecutiveJump: Timer
 @export var dashJumpTimer: Timer
 @export var dashJumpRefreshTimer: Timer
-
-@export var dashJumpTime: float = 0.17
-@export var dashJumpRefreshTime: float = 0.22
-@export var duration: float = 0.3
 @export var durationTimer: Timer
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
+
+@export_group("")
+@export var dashJumpTime: float = 0.17
+@export var dashJumpRefreshTime: float = 0.22
+@export var duration: float = 0.3
+
 
 var isJumping: bool = false
 var saveTriple: bool

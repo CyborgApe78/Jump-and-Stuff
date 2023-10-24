@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerDuration: Timer
@@ -8,6 +9,7 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
 
+@export_group("")
 @export var duration: float = 0.3
 
 

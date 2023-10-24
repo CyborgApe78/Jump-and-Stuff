@@ -1,10 +1,12 @@
 extends PlayerInfo
 ## Boosted distance after ground pound
 
+@export_group("Connections")
 @export var detector: ShapeCast2D
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
 
+@export_group("")
 @export var jumpModifier: float = 0.5
 @export var velocityModifier: float = 1.5
 

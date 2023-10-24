@@ -1,10 +1,12 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerAim: Timer
 @export var timerInvincibility: Timer
 @export var hitbox: Area2D
 
+@export_group("")
 @export var timeInvincible: float = 0.8
 @export var aim: float = 0.8
 

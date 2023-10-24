@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpGroundPound: Timer ## gives extra time after ground pound to still get boosted jump
 @export var timerBufferJump: Timer
@@ -9,7 +10,8 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 @export var detector: ShapeCast2D
 
-@export var minLongJumpVelocity: int = 30 #TODO: move to stats
+@export_group("")
+@export var minLongJumpVelocity: int = 200 #TODO: move to stats
 @export var timeCharge: int = 1 #TODO: move to stats
 
 var saveConsecutive: bool = false
@@ -17,8 +19,9 @@ var saveConsecutive: bool = false
 
 func enter() -> void:
 	player.animPlayer.queue("Crouch Walk")
+	
 	timerCharge.wait_time = timeCharge
-	timerCharge.start()
+	timerCharge.start() #Todo: don't restart when coming from crouch walk
 	
 	if !timerConsecutiveJump.is_stopped():
 		saveConsecutive = true

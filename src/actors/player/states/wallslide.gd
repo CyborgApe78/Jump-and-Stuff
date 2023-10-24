@@ -2,8 +2,12 @@ extends PlayerInfo
 
 #FIXME: sometimes slides on face
 
+@export_group("Connections")
 @export var coyoteJumpWallTimer: Timer
 @export var particles: GPUParticles2D
+
+@export_group("")
+
 
 func enter() -> void:
 	player.animPlayer.play("Wall Slide")

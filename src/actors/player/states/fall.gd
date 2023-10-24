@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #TODO: air crouch
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpWall: Timer
 @export var timerBufferJump: Timer
@@ -10,6 +11,7 @@ extends PlayerInfo
 @export var timerConsecutiveJump: Timer
 @export var timerSemisolidReset: Timer
 
+@export_group("")
 @export var jumpHeldSlowModifier: float = 2.0
 @export var transTime: float = 0.1
 @export var fallTimeTillBonk: float = 0.9

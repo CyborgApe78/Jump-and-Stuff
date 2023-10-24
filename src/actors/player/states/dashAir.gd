@@ -3,6 +3,7 @@ extends PlayerInfo
 #TODO: upgrade for ori like burrow
 #TODO: chane this all back to one dash for all directions
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
 @export var timerLongJump: Timer ## Currrently not used, was going to be long distance if jump timing hit
@@ -12,6 +13,8 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 @export var soundJetpack: AudioStreamPlayer
 @export var detector: ShapeCast2D
+
+@export_group("")
 
 var duration: float = 0.4
 

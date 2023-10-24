@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #TODO: upgrade for infinte dash
 
+@export_group("Connections")
 @export var timerDuration: Timer
 @export var soundRoll: AudioStreamPlayer #TODO: create sound
 @export var soundJetpack: AudioStreamPlayer
@@ -9,6 +10,7 @@ extends PlayerInfo
 @export var particlesJetpack: GPUParticles2D
 @export var detector: ShapeCast2D
 
+@export_group("")
 @export var duration: float = 0.4
 
 

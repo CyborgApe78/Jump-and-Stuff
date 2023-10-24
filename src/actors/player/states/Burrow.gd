@@ -4,6 +4,10 @@ extends PlayerInfo
 #TDOO: similar to swimming, but don't stop moving
 #TODO: also need to dash into water
 
+@export_group("Connections")
+
+@export_group("")
+
 
 func enter() -> void:
 	player.animPlayer.queue("Swim") #TODO: own animation

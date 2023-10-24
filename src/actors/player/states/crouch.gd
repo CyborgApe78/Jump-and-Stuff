@@ -1,6 +1,7 @@
 extends PlayerInfo
 
 
+@export_group("Connections")
 @export var timerCoyoteJump: Timer
 @export var timerCoyoteJumpGroundPound: Timer ## gives extra time after ground pound to still get boosted jump
 @export var timerBufferJump: Timer
@@ -12,9 +13,10 @@ extends PlayerInfo
 @export var particlesSlide: GPUParticles2D
 @export var soundSlide: AudioStreamPlayer
 
+@export_group("")
 @export var crouchSpeedMin: int = 20
-@export var minLongJumpVelocity: int = 30 #TODO: move to stats
-@export var timeCharge: int = 1 #TODO: move to stats
+@export var minLongJumpVelocity: int = 200 #TODO: move to stats
+@export var timeCharge: int = 1 #TODO: move to timers
 
 var saveConsecutive: bool = false
 
