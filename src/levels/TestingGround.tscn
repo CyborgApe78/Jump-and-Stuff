@@ -541,7 +541,7 @@ size = Vector2(384, 66)
 a = Vector2(10509, 0)
 b = Vector2(-7328, 0)
 
-[node name="Playground" type="Node"]
+[node name="Testing" type="Node"]
 script = ExtResource("1_i5twd")
 
 [node name="Menu" parent="." instance=ExtResource("2_v4ta7")]
@@ -678,18 +678,39 @@ position = Vector2(-2944, 1024)
 metadata/_edit_group_ = true
 
 [node name="Falling" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
+connectedDestruction = true
+
+[node name="Falling2" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
+position = Vector2(128, 0)
 
 [node name="Label" type="Label" parent="Platforms/Falling"]
-offset_left = -64.0
-offset_top = -128.0
-offset_right = 64.0
-offset_bottom = -96.0
+offset_top = -144.0
+offset_right = 128.0
+offset_bottom = -112.0
 text = "Falling"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label2" type="Label" parent="Platforms/Falling"]
+offset_left = -64.0
+offset_top = -112.0
+offset_right = 64.0
+offset_bottom = -80.0
+text = "Connected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Platforms/Falling"]
+offset_left = 64.0
+offset_top = -112.0
+offset_right = 192.0
+offset_bottom = -80.0
+text = "Not"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Countdown" type="Node2D" parent="Platforms"]
-position = Vector2(-2688, 1024)
+position = Vector2(-2560, 1024)
 metadata/_edit_group_ = true
 
 [node name="Countdown" parent="Platforms/Countdown" instance=ExtResource("23_0k671")]
@@ -705,61 +726,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Moving" type="Node2D" parent="Platforms"]
-position = Vector2(-2496, 1024)
+position = Vector2(-2304, 1024)
 metadata/_edit_group_ = true
 
 [node name="Moving" parent="Platforms/Moving" instance=ExtResource("24_kttip")]
 startingDirection = 1
 
 [node name="Label" type="Label" parent="Platforms/Moving"]
-offset_left = -64.0
-offset_top = -128.0
-offset_right = 64.0
-offset_bottom = -96.0
-text = "Moving"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Moving2" type="Node2D" parent="Platforms"]
-position = Vector2(-2304, 1024)
-metadata/_edit_group_ = true
-
-[node name="Moving" parent="Platforms/Moving2" instance=ExtResource("24_kttip")]
-startingDirection = 2
-
-[node name="Label" type="Label" parent="Platforms/Moving2"]
-offset_left = -64.0
-offset_top = -128.0
-offset_right = 64.0
-offset_bottom = -96.0
-text = "Moving"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Moving3" type="Node2D" parent="Platforms"]
-position = Vector2(-2112, 1024)
-metadata/_edit_group_ = true
-
-[node name="Moving" parent="Platforms/Moving3" instance=ExtResource("24_kttip")]
-startingDirection = 3
-
-[node name="Label" type="Label" parent="Platforms/Moving3"]
-offset_left = -64.0
-offset_top = -128.0
-offset_right = 64.0
-offset_bottom = -96.0
-text = "Moving"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Moving4" type="Node2D" parent="Platforms"]
-position = Vector2(-1920, 1024)
-metadata/_edit_group_ = true
-
-[node name="Moving" parent="Platforms/Moving4" instance=ExtResource("24_kttip")]
-startingDirection = 4
-
-[node name="Label" type="Label" parent="Platforms/Moving4"]
 offset_left = -64.0
 offset_top = -128.0
 offset_right = 64.0

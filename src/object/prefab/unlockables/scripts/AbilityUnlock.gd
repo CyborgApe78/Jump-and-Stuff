@@ -17,7 +17,6 @@ func _on_unlock_entered(body: Player) -> void:
 
 
 func announce_ability_unlock(pAbility: int) -> void:
-	#TODO: move text to own file
 	if pAbility == PlayerAbilities.list.All:
 		EventBus.announce.emit(str("The whole enchilada unlocked"))
 	elif pAbility == PlayerAbilities.list.JumpAir:

@@ -4,6 +4,7 @@ extends AnimatableBody2D
 ## When enities lands on platform it moves in the direction of the arrow
 #TODO: make a variant that changes direction after landing
 #lookat: should this be using move and collide?
+#FIXME: player can;t jump off up moving platform, look at moving platform on player
 
 signal spawned
 
