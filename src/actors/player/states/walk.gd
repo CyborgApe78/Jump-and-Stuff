@@ -53,7 +53,9 @@ func visual(delta) -> void:
 
 
 func sound(delta: float) -> void:
-		pass
+	if !soundeffect.playing:
+		soundeffect.pitch_scale = randf_range(0.9, 1.1)
+		soundeffect.play()
 
 
 func handle_input(event: InputEvent) -> int:

@@ -58,9 +58,6 @@
 [ext_resource type="PackedScene" uid="uid://2ji8t713xoqn" path="res://src/object/components/hitbox_component.tscn" id="47_w6udr"]
 [ext_resource type="Script" path="res://src/actors/player/states/RollDash.gd" id="48_8tyxe"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/sounds.gd" id="48_atp3b"]
-[ext_resource type="AudioStream" uid="uid://c655mcgbweid5" path="res://asset/sounds/player/footstep.wav" id="49_jhmpx"]
-[ext_resource type="AudioStream" uid="uid://bnbv8tr478gqg" path="res://asset/sounds/player/land.wav" id="50_04vva"]
-[ext_resource type="AudioStream" uid="uid://btfvrwbgkgyal" path="res://asset/sounds/player/jump.wav" id="51_5jjnj"]
 [ext_resource type="AudioStream" uid="uid://c7muk6odu85aw" path="res://asset/sounds/player/skid.wav" id="52_y6nsh"]
 [ext_resource type="AudioStream" uid="uid://cqxhhb6hsdhg8" path="res://asset/sounds/player/bonkAir.wav" id="53_wr0ib"]
 [ext_resource type="Script" path="res://src/actors/player/Stats.gd" id="54_qbhck"]
@@ -74,6 +71,9 @@
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_n4b1h"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_hbso6"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/BashableDetector.gd" id="62_7uo1w"]
+[ext_resource type="AudioStream" uid="uid://d2xji2hyvdmxr" path="res://asset/sounds/player/walking.ogg" id="66_02wh0"]
+[ext_resource type="AudioStream" uid="uid://52qkk7aobgn8" path="res://asset/sounds/player/land.ogg" id="67_xcel1"]
+[ext_resource type="AudioStream" uid="uid://yrifeqyyefog" path="res://asset/sounds/player/jump.ogg" id="68_wgrqy"]
 [ext_resource type="PackedScene" uid="uid://bxt44u72o7bxe" path="res://src/object/components/platform_checker.tscn" id="73_hobbw"]
 
 [sub_resource type="Curve" id="Curve_wyqxj"]
@@ -313,12 +313,12 @@ colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 [sub_resource type="Gradient" id="Gradient_a3m2a"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.364516, 0.680645)
-colors = PackedColorArray(0, 0.184314, 0.988235, 1, 0.619608, 0.133333, 0, 1)
+colors = PackedColorArray(0.615686, 0.00784314, 1, 1, 0.619608, 0.133333, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_ltpju"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.00967742, 0.693548)
-colors = PackedColorArray(0, 0.184314, 0.988235, 1, 0.619608, 0.133333, 0, 1)
+colors = PackedColorArray(0.615686, 0.00784314, 1, 1, 0.619608, 0.133333, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_dlhji"]
 interpolation_mode = 1
@@ -6438,7 +6438,7 @@ show_behind_parent = true
 position = Vector2(0, -24)
 points = PackedVector2Array(0, 24, 0, 40)
 width = 40.0
-default_color = Color(0, 0.184314, 0.988235, 1)
+default_color = Color(0.615686, 0.00784314, 1, 1)
 texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -6460,7 +6460,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)
+points = PackedVector2Array(0, -8, 0, 9, 4, 13)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6486,7 +6486,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+points = PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6500,7 +6500,6 @@ thickness = 1.1
 position = Vector2(0, 16)
 points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
 width = 14.0
-default_color = Color(0.0862745, 0.819608, 0, 1)
 gradient = SubResource("Gradient_ltpju")
 texture_mode = 2
 joint_mode = 2
@@ -6511,7 +6510,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 40, 8, 48, 0, 64, 8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6536,7 +6535,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 0, 16, 10, 32, 2)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6632,7 +6631,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 16)
+points = PackedVector2Array(-32, -16, -32, 8)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -7033,7 +7032,6 @@ shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
@@ -7094,7 +7092,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
@@ -7166,18 +7164,17 @@ one_shot = true
 script = ExtResource("48_atp3b")
 
 [node name="walk" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("49_jhmpx")
-volume_db = -20.8
+stream = ExtResource("66_02wh0")
 bus = &"Player"
 
 [node name="land" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("50_04vva")
-volume_db = -1.3
+stream = ExtResource("67_xcel1")
+volume_db = 4.522
 bus = &"Player"
 
 [node name="jump" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("51_5jjnj")
-volume_db = -1.3
+stream = ExtResource("68_wgrqy")
+volume_db = -4.013
 bus = &"Player"
 
 [node name="skid" type="AudioStreamPlayer" parent="Sounds"]
