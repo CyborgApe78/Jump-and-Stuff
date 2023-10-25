@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgr00u8sgd2q3"]
+[gd_scene load_steps=11 format=3 uid="uid://cgr00u8sgd2q3"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="1_sbdkq"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="2_4npie"]
@@ -8,6 +8,20 @@
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu/scripts/Gameplay.gd" id="3_vxf3y"]
 [ext_resource type="Script" path="res://src/ui/base_button.gd" id="3_ykukb"]
 [ext_resource type="Script" path="res://src/ui/scripts/VideoMenu.gd" id="5_vdgk8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysjsm"]
+bg_color = Color(0.47451, 0, 0.788235, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8jki"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="SettingsMenu" type="CenterContainer" node_paths=PackedStringArray("optionsContainer", "gameplayMenu", "hudMenu", "videoMenu", "audioMenu", "controlsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton")]
 anchors_preset = 8
@@ -21,6 +35,7 @@ offset_right = 183.0
 offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_0u5pl")
 script = ExtResource("1_sbdkq")
 optionsContainer = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer")
 gameplayMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay")
@@ -35,9 +50,8 @@ videoButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginCont
 audioButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio")
 controlsButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls")
 
-[node name="Cursor" parent="." node_paths=PackedStringArray("defaultButton") instance=ExtResource("2_tcr7x")]
+[node name="Cursor" parent="." instance=ExtResource("2_tcr7x")]
 layout_mode = 2
-defaultButton = NodePath("../MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay")
 margin = 10
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -49,6 +63,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ysjsm")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -72,8 +87,8 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer"]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8jki")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer"]
 layout_mode = 2
@@ -134,8 +149,8 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2"]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8jki")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2"]
 layout_mode = 2
@@ -172,9 +187,9 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/Options"]
-modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8jki")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Options"]
 layout_mode = 2

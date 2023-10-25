@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpn0y7ftimcj5"]
+[gd_scene load_steps=9 format=3 uid="uid://dpn0y7ftimcj5"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/PauseMenu.gd" id="1_7xjbr"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/MainMenuButton.gd" id="2_nxhw5"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dj67hsmvv1p38" path="res://addons/BugReporter/reporter.tscn" id="3_wwlrs"]
 [ext_resource type="Script" path="res://src/ui/base_button.gd" id="4_6tfhb"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_q2n8j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb5vw"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="PauseMenu" type="CenterContainer" node_paths=PackedStringArray("feedback")]
 anchors_preset = 8
@@ -23,9 +30,8 @@ grow_vertical = 2
 script = ExtResource("1_7xjbr")
 feedback = NodePath("HBoxContainer/Reporter")
 
-[node name="Cursor" parent="." node_paths=PackedStringArray("defaultButton") instance=ExtResource("2_u7h00")]
+[node name="Cursor" parent="." instance=ExtResource("2_u7h00")]
 layout_mode = 2
-defaultButton = NodePath("../HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume")
 margin = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -40,6 +46,7 @@ theme_override_constants/margin_bottom = 30
 
 [node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yb5vw")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -60,6 +67,7 @@ focus_neighbor_top = NodePath("../Quit")
 theme = ExtResource("3_l2xlo")
 text = "Resume"
 script = ExtResource("4_6tfhb")
+firstButton = true
 
 [node name="Reset" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

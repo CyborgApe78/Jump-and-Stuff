@@ -1,8 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdf1tqwnqch8c"]
+[gd_scene load_steps=14 format=3 uid="uid://bdf1tqwnqch8c"]
 
+[ext_resource type="Theme" uid="uid://cilr3fed7gs6p" path="res://src/ui/themes/MainMenu.tres" id="1_4htmi"]
 [ext_resource type="Script" path="res://src/ui/scripts/GameInfo.gd" id="1_eigog"]
 [ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Stats.gd" id="2_37txa"]
 [ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Waypoints.gd" id="2_tm0nr"]
+[ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MovingBackground.gd" id="3_wqqw1"]
+
+[sub_resource type="Gradient" id="Gradient_w2ysl"]
+colors = PackedColorArray(0.32549, 0.858824, 0.541176, 1, 0.47451, 0, 0.788235, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u82ec"]
+gradient = SubResource("Gradient_w2ysl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75mar"]
+bg_color = Color(0.47451, 0, 0.788235, 1)
+corner_radius_top_right = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c04rv"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+corner_radius_bottom_right = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wx4sg"]
+bg_color = Color(0.47451, 0, 0.788235, 1)
+corner_radius_bottom_left = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlllc"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+corner_radius_top_left = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3au6b"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkbv4"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
 
 [node name="GameInfo" type="Control" node_paths=PackedStringArray("menuStats", "menuWaypoints", "menuSkills", "menuCharms", "infoContainter", "labelCurrent")]
 layout_mode = 3
@@ -11,6 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4htmi")
 script = ExtResource("1_eigog")
 menuStats = NodePath("InfoContainer/Stats")
 menuWaypoints = NodePath("InfoContainer/Waypoints")
@@ -19,13 +50,84 @@ menuCharms = NodePath("InfoContainer/Charms")
 infoContainter = NodePath("InfoContainer")
 labelCurrent = NodePath("Top/MarginContainer/VBoxContainer/Current")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("GradientTexture1D_u82ec")
+
+[node name="ColorRect" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -544.0
+offset_right = 832.0
+offset_bottom = 40.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_75mar")
+script = ExtResource("3_wqqw1")
+timerMove = NodePath("Timer")
+moveRange = 20
+baseTime = 4.0
+
+[node name="Timer" type="Timer" parent="Background/ColorRect"]
+one_shot = true
+
+[node name="ColorRect2" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 704.0
+offset_bottom = 512.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c04rv")
+script = ExtResource("3_wqqw1")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect2"]
+
+[node name="ColorRect4" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -704.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 512.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wx4sg")
+script = ExtResource("3_wqqw1")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect4"]
+
+[node name="ColorRect3" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -768.0
+offset_top = -544.0
+offset_right = 64.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xlllc")
+script = ExtResource("3_wqqw1")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect3"]
 
 [node name="Top" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -39,8 +141,8 @@ grow_horizontal = 2
 theme_override_constants/margin_top = 20
 
 [node name="Panel" type="Panel" parent="Top"]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3au6b")
 
 [node name="MarginContainer" type="MarginContainer" parent="Top"]
 layout_mode = 2
@@ -55,6 +157,7 @@ theme_override_constants/separation = 15
 
 [node name="Buttons" type="HBoxContainer" parent="Top/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Waypoints" type="Button" parent="Top/MarginContainer/VBoxContainer/Buttons"]
@@ -104,8 +207,8 @@ buttonUp = NodePath("MarginContainer/VBoxContainer/Starting")
 buttonDown = NodePath("MarginContainer/VBoxContainer/Playforms")
 
 [node name="Panel" type="Panel" parent="InfoContainer/Waypoints"]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mkbv4")
 
 [node name="MarginContainer" type="MarginContainer" parent="InfoContainer/Waypoints"]
 layout_mode = 2
@@ -116,6 +219,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InfoContainer/Waypoints/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Starting" type="Button" parent="InfoContainer/Waypoints/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -261,6 +365,10 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
+[connection signal="timeout" from="Background/ColorRect/Timer" to="Background/ColorRect" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect2/Timer" to="Background/ColorRect2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect4/Timer" to="Background/ColorRect4" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect3/Timer" to="Background/ColorRect3" method="_on_timer_timeout"]
 [connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Waypoints" to="." method="show_waypoints"]
 [connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Skills" to="." method="show_skills"]
 [connection signal="pressed" from="Top/MarginContainer/VBoxContainer/Buttons/Charms" to="." method="show_charms"]

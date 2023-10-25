@@ -11,11 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://52u4irmselg4" path="res://src/ui/WorldSelect/world_select.tscn" id="5_d8qbv"]
 [ext_resource type="PackedScene" uid="uid://dmmc6ouc7p8kh" path="res://src/levels/TestingGround.tscn" id="6_u6ses"]
 
-[sub_resource type="Gradient" id="Gradient_rlh1k"]
+[sub_resource type="Gradient" id="Gradient_o2utx"]
 colors = PackedColorArray(0.32549, 0.858824, 0.541176, 1, 0.47451, 0, 0.788235, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3aejy"]
-gradient = SubResource("Gradient_rlh1k")
+gradient = SubResource("Gradient_o2utx")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xswv0"]
 bg_color = Color(0.47451, 0, 0.788235, 1)
@@ -189,9 +189,12 @@ text = "Testing Ground"
 script = ExtResource("2_5t864")
 changeScene = ExtResource("6_u6ses")
 
-[node name="Button" type="Button" parent="Buttons"]
+[node name="Settings" type="Button" parent="Buttons"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Settings"
+script = ExtResource("2_5t864")
 
 [node name="Discord" type="Button" parent="Buttons"]
 layout_mode = 2
@@ -270,6 +273,9 @@ horizontal_alignment = 2
 [connection signal="focus_entered" from="Buttons/TestingGround" to="Buttons/TestingGround" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="Buttons/TestingGround" to="Buttons/TestingGround" method="_on_mouse_entered"]
 [connection signal="pressed" from="Buttons/TestingGround" to="Buttons/TestingGround" method="_on_pressed"]
+[connection signal="focus_entered" from="Buttons/Settings" to="Buttons/Settings" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="Buttons/Settings" to="Buttons/Settings" method="_on_mouse_entered"]
+[connection signal="pressed" from="Buttons/Settings" to="Buttons/Settings" method="_on_pressed"]
 [connection signal="focus_entered" from="Buttons/Discord" to="Buttons/Discord" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="Buttons/Discord" to="Buttons/Discord" method="_on_mouse_entered"]
 [connection signal="pressed" from="Buttons/Discord" to="Buttons/Discord" method="_on_pressed"]
