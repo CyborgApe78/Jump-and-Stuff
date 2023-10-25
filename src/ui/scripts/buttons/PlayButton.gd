@@ -9,6 +9,8 @@ extends Button
 func _ready() -> void:
 	if firstButton:
 		grab_focus()
+		await get_tree().process_frame
+		send_data()
 
 
 func _on_pressed() -> void:
