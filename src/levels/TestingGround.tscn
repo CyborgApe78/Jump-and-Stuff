@@ -678,7 +678,6 @@ position = Vector2(-2944, 1024)
 metadata/_edit_group_ = true
 
 [node name="Falling" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
-connectedDestruction = true
 
 [node name="Falling2" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
 position = Vector2(128, 0)
