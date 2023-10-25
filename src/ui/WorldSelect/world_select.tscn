@@ -1,0 +1,217 @@
+[gd_scene load_steps=14 format=3 uid="uid://52u4irmselg4"]
+
+[ext_resource type="PackedScene" uid="uid://dbido6ip6hjx8" path="res://src/ui/cursor.tscn" id="1_j621d"]
+[ext_resource type="Theme" uid="uid://cilr3fed7gs6p" path="res://src/ui/themes/MainMenu.tres" id="2_w0gg7"]
+[ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MovingBackground.gd" id="2_x0yia"]
+[ext_resource type="Script" path="res://src/ui/scripts/buttons/PlayButton.gd" id="3_gwaqs"]
+[ext_resource type="PackedScene" uid="uid://c6po21eno80hp" path="res://src/levels/Mario11.tscn" id="4_5fppo"]
+[ext_resource type="PackedScene" uid="uid://c0xilge452x64" path="res://src/levels/OriBF.tscn" id="4_e558k"]
+[ext_resource type="Script" path="res://src/ui/scripts/buttons/MainMenuButton.gd" id="6_de43f"]
+
+[sub_resource type="Gradient" id="Gradient_pgby7"]
+colors = PackedColorArray(0.32549, 0.858824, 0.541176, 1, 0.47451, 0, 0.788235, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p8lqs"]
+gradient = SubResource("Gradient_pgby7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k775t"]
+bg_color = Color(0.47451, 0, 0.788235, 1)
+corner_radius_top_right = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtdxi"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+corner_radius_bottom_right = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihw0g"]
+bg_color = Color(0.47451, 0, 0.788235, 1)
+corner_radius_bottom_left = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8s43"]
+bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+corner_radius_top_left = 500
+
+[node name="World Select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_w0gg7")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_p8lqs")
+
+[node name="ColorRect" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -544.0
+offset_right = 832.0
+offset_bottom = 40.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k775t")
+script = ExtResource("2_x0yia")
+timerMove = NodePath("Timer")
+moveRange = 20
+baseTime = 4.0
+
+[node name="Timer" type="Timer" parent="Background/ColorRect"]
+one_shot = true
+
+[node name="ColorRect2" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 704.0
+offset_bottom = 512.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jtdxi")
+script = ExtResource("2_x0yia")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect2"]
+
+[node name="ColorRect4" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -704.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 512.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ihw0g")
+script = ExtResource("2_x0yia")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect4"]
+
+[node name="ColorRect3" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -768.0
+offset_top = -544.0
+offset_right = 64.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8s43")
+script = ExtResource("2_x0yia")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect3"]
+
+[node name="Cursor" parent="." instance=ExtResource("1_j621d")]
+visible = false
+layout_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Ori" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Ori"]
+layout_mode = 2
+text = "Ori
+Blind Forest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OriPlay" type="Button" parent="GridContainer/Ori"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../Mario 1-1/MarioPlay")
+focus_neighbor_top = NodePath("../../../MarginContainer/Back")
+focus_neighbor_bottom = NodePath("../../../MarginContainer/Back")
+theme = ExtResource("2_w0gg7")
+text = "Play"
+script = ExtResource("3_gwaqs")
+changeScene = ExtResource("4_e558k")
+firstButton = true
+
+[node name="Mario 1-1" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Mario 1-1"]
+layout_mode = 2
+text = "Mario
+1-1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarioPlay" type="Button" parent="GridContainer/Mario 1-1"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../MarginContainer/Back")
+focus_neighbor_right = NodePath("../../Ori/OriPlay")
+focus_neighbor_bottom = NodePath("../../../MarginContainer/Back")
+theme = ExtResource("2_w0gg7")
+text = "Play"
+script = ExtResource("3_gwaqs")
+changeScene = ExtResource("4_5fppo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="Back" type="Button" parent="MarginContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../GridContainer/Ori/OriPlay")
+focus_neighbor_bottom = NodePath("../../GridContainer/Ori/OriPlay")
+theme = ExtResource("2_w0gg7")
+text = "Back"
+script = ExtResource("6_de43f")
+
+[connection signal="timeout" from="Background/ColorRect/Timer" to="Background/ColorRect" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect2/Timer" to="Background/ColorRect2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect4/Timer" to="Background/ColorRect4" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect3/Timer" to="Background/ColorRect3" method="_on_timer_timeout"]
+[connection signal="focus_entered" from="GridContainer/Ori/OriPlay" to="GridContainer/Ori/OriPlay" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="GridContainer/Ori/OriPlay" to="GridContainer/Ori/OriPlay" method="_on_mouse_entered"]
+[connection signal="pressed" from="GridContainer/Ori/OriPlay" to="GridContainer/Ori/OriPlay" method="_on_pressed"]
+[connection signal="focus_entered" from="GridContainer/Mario 1-1/MarioPlay" to="GridContainer/Mario 1-1/MarioPlay" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="GridContainer/Mario 1-1/MarioPlay" to="GridContainer/Mario 1-1/MarioPlay" method="_on_mouse_entered"]
+[connection signal="pressed" from="GridContainer/Mario 1-1/MarioPlay" to="GridContainer/Mario 1-1/MarioPlay" method="_on_pressed"]
+[connection signal="focus_entered" from="MarginContainer/Back" to="MarginContainer/Back" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/Back" to="MarginContainer/Back" method="_on_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/Back" to="MarginContainer/Back" method="_on_pressed"]
