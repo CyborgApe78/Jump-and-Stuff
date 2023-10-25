@@ -23,7 +23,7 @@ func enter() -> void:
 	
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRotate, "rotation_degrees", 125, transformTime).from(0)
-	tween.tween_property(player.characterCollision, "rotation_degrees", 125, transformTime).from(0)
+	tween.tween_property(player.characterCollision, "rotation_degrees", 125 * player.facing, transformTime).from(0) #TODO: create function to rotate these and raycasts
 	
 	timers()
 
