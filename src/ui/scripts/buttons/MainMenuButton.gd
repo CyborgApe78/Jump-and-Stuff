@@ -1,6 +1,4 @@
-extends Button
-
-#FIXME: button is skipped
+extends ButtonBase
 
 
 func _on_pressed() -> void:
@@ -9,8 +7,8 @@ func _on_pressed() -> void:
 
 
 func _on_focus_entered() -> void:
-	pass # Replace with function body.
+	super._on_focus_entered()
 
 
 func _on_mouse_entered() -> void:
-	pass # Replace with function body.
+	super._on_mouse_entered()

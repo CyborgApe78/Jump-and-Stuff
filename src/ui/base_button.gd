@@ -1,4 +1,5 @@
 extends Button
+class_name ButtonBase
 
 #TODO: make this inherited from all other buttons
 
