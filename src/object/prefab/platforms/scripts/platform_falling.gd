@@ -12,14 +12,15 @@ signal spawned
 @export var timerReset: Timer
 @export var timerFall: Timer
 @export var collision: CollisionShape2D
-@export var areaCounter: Area2D
-@export var neighborDetector: Area2D
+@export var areaCounter: ActorCounterComponent
+@export var neighborDetector: NeighborDetectorComponent
 
 @export_group("")
 @export_range(0.05, 10, 0.5) var timeReset: float = 1
 @export_range(0.05, 10, 0.5) var timeFall: float = 3
 @export var fallSpeed: int = 200
 @export var connectedMovement: bool = false
+@export var oneUse: bool = false
 
 enum state {idle, shake, fall}
 var currentState
@@ -41,18 +42,22 @@ func _physics_process(delta: float) -> void:
 		state.shake:
 			if connectedMovement:
 				for i in neighborDetector.neighbors:
-					i.set_time_label(round(timerFall.time_left)) 
+					if i.connectedMovement:
+						i.set_time_label(round(timerFall.time_left)) 
 		state.fall:
 			position.y += fallSpeed * delta
 
 
 
 func reset() -> void:
-	currentState = state.idle
-	global_position = startingPosition
-	collision.set_deferred("disabled", false)
-	visible = true
-	spawned.emit()
+	if oneUse:
+		queue_free()
+	else:
+		currentState = state.idle
+		global_position = startingPosition
+		collision.set_deferred("disabled", false)
+		visible = true
+		spawned.emit()
 
 
 func landed() -> void:
@@ -62,6 +67,11 @@ func landed() -> void:
 
 func cleared() -> void:
 	if currentState != state.fall:
+		if connectedMovement:
+			for i in neighborDetector.neighbors:
+				if i.connectedMovement:
+					pass
+					#TODO: have it check for actors on connected platforms
 		currentState = state.idle
 		timerFall.stop()
 		set_time_label(timerFall.wait_time)
@@ -72,7 +82,8 @@ func _on_fall_timeout() -> void:
 	
 	if connectedMovement:
 		for i in neighborDetector.neighbors:
-			i.currentState = state.fall
+			if i.connectedMovement:
+				i.currentState = state.fall
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
@@ -87,3 +98,4 @@ func _on_reset_timeout() -> void:
 
 func set_time_label(info: float) -> void:
 	labelTime.text = str(info)
+
