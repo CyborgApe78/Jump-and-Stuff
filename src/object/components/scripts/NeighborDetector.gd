@@ -24,5 +24,6 @@ func reset() -> void:
 func get_neighbors() -> void:
 	for i in get_overlapping_bodies():
 		if i.get_script().resource_path.get_file() == parentType and i != parent:
+			if i.connectedMovement:
 #			print(str(parent) + " is touch " + str(i))
-			neighbors.append(i)
+				neighbors.append(i)
