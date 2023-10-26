@@ -42,8 +42,7 @@ func _physics_process(delta: float) -> void:
 		state.shake:
 			if connectedMovement:
 				for i in neighborDetector.neighbors:
-					if i.connectedMovement:
-						i.set_time_label(round(timerFall.time_left)) 
+					i.set_time_label(round(timerFall.time_left)) 
 		state.fall:
 			position.y += fallSpeed * delta
 
@@ -69,7 +68,6 @@ func cleared() -> void:
 	if currentState != state.fall:
 		if connectedMovement:
 			for i in neighborDetector.neighbors:
-				if i.connectedMovement:
 					pass
 					#TODO: have it check for actors on connected platforms
 		currentState = state.idle
@@ -82,7 +80,6 @@ func _on_fall_timeout() -> void:
 	
 	if connectedMovement:
 		for i in neighborDetector.neighbors:
-			if i.connectedMovement:
 				i.currentState = state.fall
 
 
