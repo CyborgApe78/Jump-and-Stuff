@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6w75yfmxvi6r"]
+
+[ext_resource type="Script" path="res://src/object/prefab/platforms/scripts/platform_floating.gd" id="1_benok"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_n0srr"]
+[ext_resource type="PackedScene" uid="uid://cpiawly1ei4yy" path="res://src/object/components/actor_counter.tscn" id="3_hjyfx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgtpk"]
+size = Vector2(128, 64)
+
+[node name="Floating" type="AnimatableBody2D" node_paths=PackedStringArray("labelTime", "timerReset", "collision", "areaCounter")]
+collision_layer = 4
+collision_mask = 192
+sync_to_physics = false
+script = ExtResource("1_benok")
+labelTime = NodePath("Time")
+timerReset = NodePath("Reset")
+collision = NodePath("VisibleCollisionShape2D")
+areaCounter = NodePath("ActorCounter")
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_fgtpk")
+one_way_collision = true
+script = ExtResource("2_n0srr")
+
+[node name="Time" type="Label" parent="."]
+visible = false
+offset_left = -64.0
+offset_top = -32.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="."]
+visible = false
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -5.0
+offset_bottom = -32.0
+text = "Remain"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reset" type="Timer" parent="."]
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ActorCounter" parent="." instance=ExtResource("3_hjyfx")]
+
+[connection signal="spawned" from="." to="ActorCounter" method="reset"]
+[connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="cleared" from="ActorCounter" to="." method="cleared"]
+[connection signal="entered" from="ActorCounter" to="." method="landed"]
