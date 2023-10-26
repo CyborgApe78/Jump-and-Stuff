@@ -308,22 +308,22 @@ scale_max = 20.0
 
 [sub_resource type="Gradient" id="Gradient_7l4xn"]
 interpolation_mode = 1
-colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.396078, 0.937255, 0.258824, 1, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_a3m2a"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.364516, 0.680645)
-colors = PackedColorArray(0.615686, 0.00784314, 1, 1, 0.619608, 0.133333, 0, 1)
+colors = PackedColorArray(0.596078, 0.133333, 0.658824, 1, 0.541176, 0.243137, 0.105882, 1)
 
 [sub_resource type="Gradient" id="Gradient_ltpju"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.00967742, 0.693548)
-colors = PackedColorArray(0.615686, 0.00784314, 1, 1, 0.619608, 0.133333, 0, 1)
+colors = PackedColorArray(0.596078, 0.133333, 0.658824, 1, 0.541176, 0.243137, 0.105882, 1)
 
 [sub_resource type="Gradient" id="Gradient_dlhji"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.664671, 1)
-colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.396078, 0.937255, 0.258824, 1, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_obg28"]
 interpolation_mode = 2
@@ -6284,32 +6284,32 @@ end_cap_mode = 2
 z_index = -1
 points = PackedVector2Array(-64, -64, 0, -8)
 width = 5.0
-default_color = Color(0.34902, 0.34902, 0.34902, 1)
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
 
 [node name="Cable2" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Parachute"]
 z_index = -1
 points = PackedVector2Array(-40, -96, 0, -8)
 width = 5.0
-default_color = Color(0.34902, 0.34902, 0.34902, 1)
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
 
 [node name="Cable3" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Parachute"]
 z_index = -1
 points = PackedVector2Array(0, -104, 0, -8)
 width = 5.0
-default_color = Color(0.34902, 0.34902, 0.34902, 1)
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
 
 [node name="Cable4" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Parachute"]
 z_index = -1
 position = Vector2(8, 0)
 points = PackedVector2Array(24, -96, 0, -8)
 width = 5.0
-default_color = Color(0.34902, 0.34902, 0.34902, 1)
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
 
 [node name="Cable5" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Parachute"]
 z_index = -1
 points = PackedVector2Array(64, -64, 0, -8)
 width = 5.0
-default_color = Color(0.34902, 0.34902, 0.34902, 1)
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
 
 [node name="Particles" type="Node2D" parent="CharacterRig/CharacterRotate/SquashAndStretch" node_paths=PackedStringArray("walk", "skid", "land", "jump", "jumpDouble", "jumpTriple", "dash", "wallSlide", "WallClimb", "jumpWall")]
 position = Vector2(0, 64)
@@ -6438,7 +6438,7 @@ show_behind_parent = true
 position = Vector2(0, -24)
 points = PackedVector2Array(0, 24, 0, 40)
 width = 40.0
-default_color = Color(0.615686, 0.00784314, 1, 1)
+default_color = Color(0.596078, 0.133333, 0.658824, 1)
 texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -6460,7 +6460,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/ArmLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, -8, 0, 9, 4, 13)
+points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -32.0001)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6486,7 +6486,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -24, 56, -16, 64)
+points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6510,7 +6510,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 40, 8, 48, 0, 64, 8, 64)
+points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6524,7 +6524,6 @@ thickness = 1.1
 position = Vector2(0, 24)
 points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 14.0
-default_color = Color(0.0862745, 0.819608, 0, 1)
 gradient = SubResource("Gradient_dlhji")
 texture_mode = 2
 joint_mode = 2
@@ -6535,7 +6534,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 16, 10, 32, 2)
+points = PackedVector2Array(0, 0, 8, 10, 24, 18)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6594,26 +6593,26 @@ thickness = 1.1
 [node name="Hair" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Head"]
 points = PackedVector2Array(8, -24, -8, -16, -16, -16, -24, 8)
 width = 12.0
-default_color = Color(0.396078, 0.109804, 0.0666667, 1)
+default_color = Color(0.286275, 0.0941176, 0.0862745, 1)
 joint_mode = 1
 end_cap_mode = 2
 
 [node name="Hat" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Head"]
 points = PackedVector2Array(16, -24, -24, -16)
-default_color = Color(0, 1, 0, 1)
+default_color = Color(0.396078, 0.937255, 0.258824, 1)
 begin_cap_mode = 2
 end_cap_mode = 1
 
 [node name="Hat2" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Head"]
 points = PackedVector2Array(8, -32, -24, -24)
-default_color = Color(0, 1, 0, 1)
+default_color = Color(0.396078, 0.937255, 0.258824, 1)
 end_cap_mode = 1
 
 [node name="Jetpack" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch"]
 position = Vector2(8, 0)
 points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.0
-default_color = Color(0.380392, 0.380392, 0.380392, 1)
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
 texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 1
@@ -6631,7 +6630,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 8)
+points = PackedVector2Array(-32, -16, -32, 16)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -7032,6 +7031,7 @@ shape = SubResource("RectangleShape2D_0wcwb")
 target_position = Vector2(0, -48)
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -48)
 shape = SubResource("CapsuleShape2D_jx3rl")
 
@@ -7092,7 +7092,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
