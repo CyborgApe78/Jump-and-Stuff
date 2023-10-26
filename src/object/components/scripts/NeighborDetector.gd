@@ -1,4 +1,5 @@
 extends Area2D
+class_name NeighborDetectorComponent
 
 
 @onready var parent: Node = get_parent()
