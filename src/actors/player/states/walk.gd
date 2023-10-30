@@ -20,7 +20,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.animPlayer.stop()
-	soundeffect.stop()
+	soundeffect.pitch_scale = 1
 	player.animPlayer.speed_scale = 1
 
 
@@ -55,7 +55,6 @@ func visual(delta) -> void:
 func sound(delta: float) -> void:
 	if !soundeffect.playing:
 		soundeffect.pitch_scale = randf_range(0.9, 1.1)
-		soundeffect.play()
 
 
 func handle_input(event: InputEvent) -> int:
