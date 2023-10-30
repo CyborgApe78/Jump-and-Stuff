@@ -86,7 +86,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 #		elif input.moveDirection.x == wall.wallDirection:
 #			return State.WallSlide
-	if player.velocity.y > -stats.jumpApexHeight:
+	if player.velocity.y > -stats.jumpApexHeight: #FIXME: this is part of broken jumping on up moving platform
 		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()

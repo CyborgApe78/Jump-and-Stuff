@@ -10,7 +10,21 @@ config_version=5
 
 [addons]
 
-instance_dock/scenes=[]
+instance_dock/scenes=[{
+"name": "Platforms",
+"scenes": [{
+"scene": "res://src/object/prefab/platforms/platform_falling.tscn"
+}, {
+"scene": "res://src/object/prefab/platforms/platform_countdown.tscn"
+}, {
+"scene": "res://src/object/prefab/platforms/platform_moving.tscn"
+}, {
+"scene": "res://src/object/prefab/platforms/platform_floating.tscn"
+}, {
+"scene": "res://src/object/prefab/platforms/platform_direction_change.tscn"
+}],
+"scroll": 0
+}]
 
 [application]
 
@@ -48,7 +62,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
 
 [input]
 

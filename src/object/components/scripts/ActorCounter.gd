@@ -34,7 +34,7 @@ func reset() -> void:
 
 
 func _on_area_entered(area: PlatformCheckerComponent) -> void:
-	if parent.visible:
+	if parent.visible: #FIXME: this needs to check if body is velocity <= 0
 		entered.emit()
 		for i in get_overlapping_areas():
 			bodiesOn += 1
