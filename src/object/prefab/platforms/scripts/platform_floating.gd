@@ -20,7 +20,7 @@ signal spawned
 @export var oneUse: bool = false
 
 enum state {idle, fall, rise}
-var currentState
+var currentState: int
 
 
 func _ready() -> void:
@@ -62,9 +62,10 @@ func cleared() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	collision.set_deferred("disabled", true)
-	visible = false
-	timerReset.start()
+	if currentState == state.fall or state.rise:
+		collision.set_deferred("disabled", true)
+		visible = false
+		timerReset.start()
 
 
 func set_time_label(info: float) -> void:

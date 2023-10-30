@@ -2,6 +2,7 @@ extends AnimatableBody2D
 
 
 ## When enities lands on platform timer starts then platform falls when reaching zero
+#TODO: add a check for onscreen starting position to reset platforms
 
 signal spawned
 
@@ -23,7 +24,7 @@ signal spawned
 @export var oneUse: bool = false
 
 enum state {idle, shake, fall}
-var currentState
+var currentState: int
 
 
 func _ready() -> void:
@@ -84,9 +85,10 @@ func _on_fall_timeout() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	collision.set_deferred("disabled", true)
-	visible = false
-	timerReset.start()
+	if currentState == state.fall:
+		collision.set_deferred("disabled", true)
+		visible = false
+		timerReset.start()
 
 
 func _on_reset_timeout() -> void:

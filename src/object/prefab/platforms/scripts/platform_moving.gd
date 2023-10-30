@@ -18,11 +18,15 @@ enum direction {Null, up, down, left, right}
 @export var collision: CollisionShape2D
 @export var areaCounter: Area2D
 
-@export var startingDirection: direction
+@export var startingDirection: direction:
+	set(v):
+		startingDirection = v
+		turn_arrow(v)
+
 @export_range(0.05, 10, 0.5) var timeReset: float = 1
 @export var movingSpeed: int = 200 #TODO: function for blocks per sec
 
-var currentState
+var currentState: int
 
 
 func _ready() -> void:
@@ -65,10 +69,11 @@ func landed() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	collision.set_deferred("disabled", true)
-	visible = false
-	timerReset.start()
-	currentState = state.reset
+	if currentState == state.move:
+		collision.set_deferred("disabled", true)
+		visible = false
+		timerReset.start()
+		currentState = state.reset
 
 
 func _on_reset_timeout() -> void:
