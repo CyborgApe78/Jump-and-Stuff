@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=36 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://d0dtvqtj86ej1" path="res://src/object/prefab/platforms/platform_moving.tscn" id="24_kttip"]
 [ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="24_xrqhw"]
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_d0jmx"]
+[ext_resource type="PackedScene" uid="uid://c6w75yfmxvi6r" path="res://src/object/prefab/platforms/platform_floating.tscn" id="25_ni1xa"]
+[ext_resource type="PackedScene" uid="uid://bd40gjjcbnun" path="res://src/object/prefab/platforms/platform_direction_change.tscn" id="26_3thjv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokgx"]
 texture = ExtResource("5_m23an")
@@ -678,9 +680,15 @@ position = Vector2(-2944, 1024)
 metadata/_edit_group_ = true
 
 [node name="Falling" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
+connectedMovement = true
 
 [node name="Falling2" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
 position = Vector2(128, 0)
+oneUse = true
+
+[node name="Falling3" parent="Platforms/Falling" instance=ExtResource("22_d32gw")]
+position = Vector2(-128, 0)
+connectedMovement = true
 
 [node name="Label" type="Label" parent="Platforms/Falling"]
 offset_top = -144.0
@@ -737,6 +745,37 @@ offset_top = -128.0
 offset_right = 64.0
 offset_bottom = -96.0
 text = "Moving"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floating" type="Node2D" parent="Platforms"]
+position = Vector2(-2048, 1024)
+metadata/_edit_group_ = true
+
+[node name="Floating" parent="Platforms/Floating" instance=ExtResource("25_ni1xa")]
+
+[node name="Label" type="Label" parent="Platforms/Floating"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -96.0
+text = "Floating"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DirectionChange" type="Node2D" parent="Platforms"]
+position = Vector2(-1792, 1024)
+metadata/_edit_group_ = true
+
+[node name="DirectionChange" parent="Platforms/DirectionChange" instance=ExtResource("26_3thjv")]
+startingDirection = 2
+
+[node name="Label" type="Label" parent="Platforms/DirectionChange"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -96.0
+text = "DirectionChange"
 horizontal_alignment = 1
 vertical_alignment = 1
 
