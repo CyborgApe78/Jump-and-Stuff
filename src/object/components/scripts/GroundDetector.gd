@@ -1,6 +1,9 @@
 extends Node2D
 class_name GroundDetectorComponent
 
+#TODO: ledge animation
+
+
 @onready var detectorGroundLeft: RayCast2D = $Left
 @onready var detectorGroundRight: RayCast2D = $Right
 @onready var player = get_parent() as CharacterBody2D
@@ -25,9 +28,6 @@ func _process(delta: float) -> void:
 	
 	if player.is_on_floor():
 		ledge_detection()
-
-
-
 
 
 func ledge_detection() -> void:

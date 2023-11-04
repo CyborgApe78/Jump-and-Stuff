@@ -1,5 +1,15 @@
 #TODO
 
+Stick foot out to stop #Animation
+
+Difference is crouch jump angle of direction is pressed
+
+Dash off Ledge let's you jump in air
+
+If  camera is not on player, teleport it to player instead of just letting it move slowly. Like after teleporting
+
+If walking and on walk don't keep walking
+
 Ori keeps charge jump break box if quickly dash
 Forest maze area that has randomized areas
 
@@ -124,6 +134,7 @@ Abilitie
 		Downward slides are infinite, upward slide shortest 
 		https://youtu.be/CTpflm_pFgs Around 5 minutes 
 		Spin used as key to open/turn things on
+		Roll jump on water to skip like a stone. Later ice upgrade to run on
 	pogo/spin
 		Bounce off walls
 	Ledge grab
@@ -132,6 +143,15 @@ Abilitie
 		water run with freeze upgrade
 		run on curved walls
 	Water run
+
+
+Charms/Relic/Shards
+	Skates, doesnt moving
+	Look into mario character abilities and power ups
+	https://hollowknight.fandom.com/wiki/Category:Charms
+	https://github.com/dpinela/Transcendence/blob/main/SPOILERS.md
+	https://www.mariowiki.com/Badge_(Super_Mario_Bros._Wonder)
+	https://oriandtheblindforest.fandom.com/wiki/Spirit_Shards
 
 create save states for practice
 
@@ -153,8 +173,7 @@ Ability Combos
 		https://www.ign.com/wikis/ori-and-the-will-of-the-wisps/Skills_(Spirit_Shards)
 		https://kb.speeddemosarchive.com/Ori/Techniques_and_Glitches
 		https://www.speedrun.com/ori_wotw/guide/i70ul
-		https://wiki.orirando.com/tutorials/
-		https://hollowknight.fandom.com/wiki/Category:Charms
+		https://wiki.orirando.com/tutorials/https://hollowknight.fandom.com/wiki/Category:Charms
 		https://gamefaqs.gamespot.com/switch/200275-super-mario-odyssey/faqs/75301/controls
 		lone fungus
 		https://celeste.ink/wiki/Techniques
@@ -190,6 +209,7 @@ Checkpoints
 	You can save the last position the player was on the ground as last safe position to teleport back to after death. 
 		Saving the previous one lets you keep a back up location if the player dies instantly
 		Create autoload for checkpoints
+	Options for auto v save at checkpoint
 
 Dark/Light or Hot/Cold or on/off switch to have things with different actions, celeste core or gucamelee
 maybe future past
@@ -197,6 +217,9 @@ maybe future past
 Climb and sonic run on walls. Combine like blue walls in ori and dread, also can grapple
 
 Platforms
+	Elevator section but can break the platform to go faster, yooka laylee inspired
+	https://www.mariowiki.com/Category:Platforms
+	Platform you fall slowly through when standing on. Mario nut platform 
 	celeste like moving platform
 	celeste bubbles:
 		look at helper mods for more ideas
@@ -341,11 +364,17 @@ Dungeons
 	Only allowed to touch the ground for a certain amount of time
 		Then death
 	Checkpoint regression 
-		Die go back a checkpoint 
+		Die go back a checkpoint
+	Help random people, snail getting blocked from getting dinner with friend. You have to keep the snail from getting hit
 
 Teleport upgrades, able to teleport between all, portable teleporter
 
-	
+Challenges/Curses
+	Always run
+	Always jump
+	Hit timers to keep ground active 
+	https://github.com/Korzer420/CurseRandomizer
+
 Accessability/game options
 	infinite jump
 	infinte dashes
@@ -380,6 +409,7 @@ Game Modes:
 		breakables
 		split abilities left and right
 		pick starting abilities
+		button to show last 5 Pickups
 	floor is lava
 
 screen wrap https://kidscancode.org/godot_recipes/2d/screen_wrap/
