@@ -1,6 +1,8 @@
 extends PlayerInfo
 
+
 ## jump that keeps crouch shoe. 
+#TODO: look at adding match state
 
 
 @export_group("Connections")
@@ -96,7 +98,7 @@ func state_check(delta: float) -> int:
 	if player.is_on_floor():
 		player.landed()
 		if player.velocity.x != 0:
-			return State.Walk
+			return State.CrouchWalk
 		else:
 			return State.Idle
 	if player.is_on_ceiling():
