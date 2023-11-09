@@ -32,7 +32,7 @@ func enter() -> void:
 		particles.restart()
 	if !detector.is_colliding():
 		player.global_position.y -= Util.tileSize * 2 #TODO: tween movement or change to velocity
-	player.velocity.x = velocityRollJump * player.facing
+	player.velocity.x = velocityRollJump * player.facing #TODO: add max velocity check
 	timers()
 
 
@@ -53,21 +53,6 @@ func physics(delta) -> void:
 		velocity.gravity_logic(stats.gravityJump, delta)
 	else:
 		player.velocity.y = 0
-	
-	if player.neutralMoveDirection:
-		neutral_move_direction_logic()
-		if abs(player.velocity.x) < velocityRollJump:
-			player.velocity.x = move_toward(abs(player.velocity.x), velocityRollJump, (stats.moveSpeed * 3) * delta) * player.facing
-	else:
-		if input.moveDirection.x != 0:
-			if input.moveDirection.x != player.facing:
-#				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
-				velocity.apply_friction(stats.moveSpeed * 2, delta)
-			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < velocityRollJump:
-#					velocity.apply_acceleration(velocityLongJump, moveSpeed * 3, delta)
-					player.velocity.x = move_toward(abs(player.velocity.x), velocityRollJump, (stats.moveSpeed * 3) * delta) * player.facing
-	
-	velocity.track_top_speed(player.velocity.x)
 
 
 func visual(delta) -> void:
