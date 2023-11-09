@@ -6,6 +6,8 @@ class_name ButtonBase
 
 
 func _ready() -> void:
+	focus_entered.connect(_on_focus_entered)
+	mouse_entered.connect(_on_mouse_entered)
 	if firstButton:
 		grab_focus()
 		await get_tree().process_frame

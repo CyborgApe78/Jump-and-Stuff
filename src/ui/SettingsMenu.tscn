@@ -10,14 +10,14 @@
 [ext_resource type="Script" path="res://src/ui/scripts/VideoMenu.gd" id="5_vdgk8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysjsm"]
-bg_color = Color(0.47451, 0, 0.788235, 1)
+bg_color = Color(0.596078, 0.133333, 0.658824, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8jki"]
-bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+bg_color = Color(0.0509804, 0.141176, 0.529412, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -51,6 +51,7 @@ audioButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginCont
 controlsButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls")
 
 [node name="Cursor" parent="." instance=ExtResource("2_tcr7x")]
+z_index = 1
 layout_mode = 2
 margin = 10
 
@@ -102,6 +103,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Gameplay" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -110,6 +112,7 @@ text = "Gameplay"
 script = ExtResource("3_ykukb")
 
 [node name="HUD" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -118,6 +121,7 @@ text = "HUD"
 script = ExtResource("3_ykukb")
 
 [node name="Video" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -126,6 +130,7 @@ text = "Video"
 script = ExtResource("3_ykukb")
 
 [node name="Audio" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -134,6 +139,7 @@ text = "Audio"
 script = ExtResource("3_ykukb")
 
 [node name="Controls" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -164,6 +170,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Back" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -172,6 +179,7 @@ text = "Back"
 script = ExtResource("3_ykukb")
 
 [node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -214,12 +222,16 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="Aim" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 text = "Show Aim Indicator"
+script = ExtResource("3_ykukb")
 
 [node name="Rumble" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 text = "Rumble"
+script = ExtResource("3_ykukb")
 
 [node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("hideHUD", "timerCheck", "buttonController")]
 visible = false
@@ -238,16 +250,22 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="HideHUD" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 text = "Hide HUD"
+script = ExtResource("3_ykukb")
 
 [node name="Timer" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 text = "Show Ingame Timer"
+script = ExtResource("3_ykukb")
 
 [node name="Controller" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 text = "Show Controller Overlay"
+script = ExtResource("3_ykukb")
 
 [node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonVsync", "buttonFullscreen")]
 layout_mode = 2
@@ -264,20 +282,26 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="VSync" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 button_pressed = true
 text = "Enable VSync"
+script = ExtResource("3_ykukb")
 
 [node name="Fullscreen" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
+z_index = 2
 layout_mode = 2
 button_pressed = true
 text = "Fullscreen"
+script = ExtResource("3_ykukb")
 
 [node name="Borderless" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
 visible = false
+z_index = 2
 layout_mode = 2
 button_pressed = true
 text = "Borderless #TODO"
+script = ExtResource("3_ykukb")
 
 [node name="Audio" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer"]
 visible = false
@@ -298,29 +322,17 @@ text = "Controls"
 horizontal_alignment = 1
 
 [node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Controls"]
+z_index = 2
 layout_mode = 2
 text = "Spoilers"
+script = ExtResource("3_ykukb")
 
-[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" to="." method="show_gameplay"]
-[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" to="." method="show_hud"]
-[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video" method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video" to="." method="show_video"]
-[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio" method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio" to="." method="show_audio"]
-[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="show_controls"]
-[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="." method="back_button_pressed"]
-[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_pressed"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer/Aim" to="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay" method="show_aim_indicator"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer/Rumble" to="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay" method="_on_rumble_toggled"]

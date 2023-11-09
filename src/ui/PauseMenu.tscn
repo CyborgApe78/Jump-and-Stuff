@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="4_q2n8j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb5vw"]
-bg_color = Color(0.32549, 0.858824, 0.541176, 1)
+bg_color = Color(0.0509804, 0.141176, 0.529412, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -148,24 +148,10 @@ script = ExtResource("4_q2n8j")
 [node name="Reporter" parent="PauseMenu/HBoxContainer" instance=ExtResource("3_wwlrs")]
 layout_mode = 2
 
-[connection signal="focus_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="focus_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
-[connection signal="focus_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
-[connection signal="focus_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="focus_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Feedback" to="." method="_on_feedback_pressed"]
-[connection signal="focus_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MainMenu" method="_on_pressed"]
-[connection signal="focus_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_mouse_entered"]
 [connection signal="pressed" from="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" to="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Quit" method="_on_pressed"]
