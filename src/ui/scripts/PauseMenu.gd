@@ -13,6 +13,8 @@ func enter() -> void:
 	set_paused(true)
 	self.visible = true
 	resumeButton.grab_focus()
+	await get_tree().process_frame
+	resumeButton.send_data()
 
 
 func exit() -> void:

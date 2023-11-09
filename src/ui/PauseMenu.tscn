@@ -30,10 +30,10 @@ visible = false
 z_index = 1
 layout_direction = 1
 layout_mode = 2
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+offset_left = 200.0
+offset_top = 84.0
+offset_right = 288.0
+offset_bottom = 112.0
 rotation = 0.0
 margin = 10
 
