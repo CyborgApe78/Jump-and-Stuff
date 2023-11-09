@@ -25,8 +25,10 @@ var saveConsecutive: bool = false
 
 func enter() -> void:
 	player.animPlayer.queue("Crouch")
+	#TODO: Squash and stretch player up from crouch
+	
 	timerCharge.wait_time = timeCharge
-	timerCharge.start()
+	timerCharge.start() #Todo: don't restart when coming from crouch walk
 	
 	neutral_move_direction_logic()
 	
@@ -47,7 +49,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	velocity.apply_friction(1000, delta) #FIXME: friction isn't workin right
+	velocity.apply_friction(stats.frictionGround / 2, delta) #TODO: own stat
 
 
 func visual(delta) -> void:
@@ -56,6 +58,7 @@ func visual(delta) -> void:
 	
 	if player.velocity.x != 0:
 		particlesSlide.restart()
+
 
 func sound(delta: float) -> void:
 	if player.velocity.x != 0 and !soundSlide.playing:
@@ -93,8 +96,9 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if input.moveDirection.x != 0:
-		return State.CrouchWalk
+	if abs(player.velocity.x) < minLongJumpVelocity:
+		if input.moveDirection.x != 0:
+			return State.CrouchWalk
 
 	return State.Null
 
