@@ -31,13 +31,8 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	velocity.gravity_logic(stats.gravityJump, delta)
+	velocity.air_velocity_logic(stats.moveSpeed / 2, stats.accelerationAir, stats.frictionAir, delta)
 	
-	
-	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(stats.moveSpeed)
-	else:
-		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
-		
 	player.move_and_slide_rotation()
 	velocity.track_top_speed(player.velocity.x)
 
