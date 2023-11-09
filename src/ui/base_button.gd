@@ -2,7 +2,7 @@ extends Button
 class_name ButtonBase
 
 #FIXME: the cursor doesn't start in the correct place on pause menu
-@export var firstButton: bool = false
+@export var firstButton: bool = false #TODO: remove
 
 
 func _ready() -> void:

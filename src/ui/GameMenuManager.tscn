@@ -14,7 +14,6 @@ layer = 90
 script = ExtResource("1_he17h")
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_gipf7")]
-visible = false
 
 [node name="Unpaused" type="Control" parent="."]
 visible = false

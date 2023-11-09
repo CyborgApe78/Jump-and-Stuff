@@ -1,5 +1,4 @@
-extends Control
-#TODO: swap out menues to keep background constant
+extends MainMenuBase
 
 
 @export var labelTitle: Label
