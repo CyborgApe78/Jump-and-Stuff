@@ -31,6 +31,7 @@ func exit() -> void:
 	player.animPlayer.stop()
 	soundeffect.stop()
 	player.animPlayer.speed_scale = 1
+	
 	timerCharge.stop() #TODO: don't stop if going to crouch walk
 	
 	if saveConsecutive:
@@ -40,7 +41,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.move_and_slide()
-
+	
 	if player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = input.lastMoveDirection.x * 1
 	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed / 5: #TODO: own stat
@@ -70,9 +71,9 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump) and timerCharge.is_stopped():
 			return State.DashJump
 		if input.justPressedJump:
-			if abs(player.velocity.x) > minLongJumpVelocity and abilities.can_use(PlayerAbilities.list.JumpLong):
-				return State.JumpLong
-			elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
+#			if abs(player.velocity.x) > minLongJumpVelocity and abilities.can_use(PlayerAbilities.list.JumpLong):
+#				return State.JumpLong
+			if !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
 				return State.JumpGroundPound
 			elif timerCharge.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpCrouchCharged):
 				return State.JumpCrouchCharged
@@ -89,8 +90,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if input.moveDirection.x != 0:
-		return State.CrouchWalk
 
 	return State.Null
 
