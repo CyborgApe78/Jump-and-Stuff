@@ -1,8 +1,7 @@
 extends PlayerInfo
 
 
-## jump that keeps crouch shoe. 
-#TODO: look at adding match state
+## jump that keeps crouch shoe
 
 
 @export_group("Connections")
@@ -14,6 +13,10 @@ extends PlayerInfo
 
 @export_group("")
 @export var jumpSoundModifier: float = 1.2
+
+#TODO: add match state
+enum state {jump, apex, fall}
+var currentState: int
 
 
 func enter() -> void:
