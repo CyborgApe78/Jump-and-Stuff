@@ -68,8 +68,14 @@ func state_check(delta: float) -> int:
 			return State.Crouch
 		else:
 			if input.moveDirection.x != 0:
-				return State.Walk
+				if input.pressedCrouch:
+					return State.CrouchWalk
+				else:
+					return State.Walk
 			else:
-				return State.Idle
+				if input.pressedCrouch:
+					return State.Crouch
+				else:
+					return State.Idle
 
 	return State.Null
