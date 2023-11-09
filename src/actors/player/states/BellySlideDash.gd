@@ -41,8 +41,8 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	
-	if !player.is_on_floor():
-		velocity.gravity_logic(stats.gravityFall, delta)
+#	if !player.is_on_floor():
+#		velocity.gravity_logic(stats.gravityFall, delta)
 	
 	velocity.track_top_speed(player.velocity.x)
 
