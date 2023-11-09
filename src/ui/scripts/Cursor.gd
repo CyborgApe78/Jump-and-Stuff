@@ -1,9 +1,7 @@
 extends Panel
 
-#FIXME: position not right when opened in the ingame menu
+#FIXME: pause menu still slides button
 
-
-#@export var defaultButton: Button #TODO: bring this back instead of the buttons telling
 @export var margin: int = 20
 
 
