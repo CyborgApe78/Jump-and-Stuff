@@ -76,7 +76,7 @@ func handle_input(event: InputEvent) -> int:
 	if input.justPressedDown:
 		timerSemisolidReset.start()
 	if input.justPressedJump:
-		timerBufferJump.start()
+#		timerBufferJump.start() #LOOKAT: did this break something
 		if !timerCoyoteJump.is_stopped(): #leave ground, but stil can jump
 			timerCoyoteJump.stop()
 			EventBus.helperUsed.emit(Util.helper.coyoteJump)
