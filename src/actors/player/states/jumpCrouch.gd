@@ -85,7 +85,6 @@ func handle_input(event: InputEvent) -> int:
 	if player.velocity.y > 0: #TODO: create is_falling(): checks if positive y velocity v
 		if input.justPressedJump:
 			if abilities.can_use(PlayerAbilities.list.JumpAir) and !(ground.detectorGroundLeft.is_colliding() or ground.detectorGroundRight.is_colliding()):
-				#FIXME: create function to call from ground check that can be used by other states
 				return State.JumpAir
 			else:
 				timerBufferJump.start()
@@ -94,18 +93,12 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-#	if player.is_on_wall() and input.moveDirection.x == wall.wallDirection:
-#		return State.WallSlide
-#	if player.velocity.y > -stats.jumpApexHeight:
-#		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()
 		if player.velocity.x != 0:
 			return State.CrouchWalk
 		else:
 			return State.Idle
-	if player.is_on_ceiling():
-		return State.Fall
 	if dashBufferState != State.Null:
 		if dashBufferState == State.DashAir and abilities.can_use(PlayerAbilities.list.DashSide):
 			return State.DashAir
