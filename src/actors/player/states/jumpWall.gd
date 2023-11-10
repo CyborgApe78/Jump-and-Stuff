@@ -97,7 +97,7 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 			return State.Glide
 		if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
-			return State.Dive
+			return State.Dive #TODO: doesn't dive away from wall
 		if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 			return State.GroundPound
 		if input.justPressedDash:
