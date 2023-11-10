@@ -27,7 +27,13 @@ func physics(delta) -> void:
 	
 	player.move_and_slide_rotation()
 	
-	velocity.gravity_logic(stats.gravityJump, delta)
+	## self contained fall state
+	if player.velocity.y < -stats.jumpApexHeight:
+		velocity.gravity_logic(stats.gravityJump, delta)
+	elif player.velocity.y < stats.jumpApexHeight:
+		velocity.gravity_logic(stats.gravityApex, delta)
+	else:
+		velocity.gravity_logic(stats.gravityFall, delta)
 	
 	velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 
@@ -65,17 +71,12 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.is_on_ceiling():
-		consecutive_jump_cancel()
-		return State.Fall
 	if player.is_on_wall():
 		if velocity.topSpeed > stats.moveSpeed:
 			velocity.topSpeed = 0
 			return State.BonkAir
 		else:
 			return State.WallSlide
-	if player.velocity.y > -stats.jumpApexHeight:
-		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()
 		if player.velocity.x != 0:
