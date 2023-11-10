@@ -11,9 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="24_nisya"]
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_3blqo"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_ua4x7"]
-a = Vector2(12844, -75)
-b = Vector2(-532, -75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brhd2"]
+size = Vector2(13376, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjms6"]
 size = Vector2(4416, 320)
@@ -94,12 +93,13 @@ position = Vector2(160, 0)
 ability = 1
 
 [node name="HurtBox" parent="Interactables" instance=ExtResource("8_vmba6")]
+position = Vector2(4576, 352)
 kill = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox"]
-position = Vector2(532, 395)
-shape = SubResource("SegmentShape2D_ua4x7")
+position = Vector2(2112, -19)
+shape = SubResource("RectangleShape2D_brhd2")
 
 [node name="Waypoints" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
