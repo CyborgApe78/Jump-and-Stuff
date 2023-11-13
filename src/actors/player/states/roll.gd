@@ -14,15 +14,11 @@ extends PlayerInfo
 
 @export_group("")
 @export var crouchSpeedMin: int = 20
-@export var minLongJumpVelocity: int = 30
+@export var minLongJumpVelocity: int = 30 #LOOKAT: grabbing from stats 
 @export var duration: float = 0.8
 @export var refreshPercent: float = 0.8
-@export var modifierVelocity: float = 1.25
-@export var modifierChainBoost: float = 1.5
 
 var saveConsecutive: bool
-var rollVelocity: float
-var velocityChainBoost: float
 var refreshTime: float
 var jumpBoostTime: float
 
@@ -30,12 +26,9 @@ var jumpBoostTime: float
 func enter() -> void:
 	EventBus.playerRolled.emit()
 	
-	rollVelocity = stats.moveSpeed * modifierVelocity
-	velocityChainBoost = stats.moveSpeed * modifierChainBoost
-	
 	player.velocityPrevious = player.velocity
 	
-	player.velocity.x = player.facing * max(rollVelocity, abs(player.velocity.x))
+	player.velocity.x = player.facing * max(stats.moveSpeed * stats.rollVelocityModifier, abs(player.velocity.x)) #LOOKAT: should there be accel
 	player.velocity.y = 0
 	
 	player.animPlayer.queue("Roll")
@@ -117,7 +110,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.Roll
 		else:
 			if timerChain.is_stopped():
-				player.velocity.x = velocityChainBoost
+				player.velocity.x = stats.moveSpeed * stats.rollChainVelocityModifier
 				return State.Roll 
 
 	return State.Null

@@ -17,7 +17,7 @@ func enter() -> void:
 	soundeffect.pitch_scale = jumpSoundModifier
 	soundeffect.play()
 	particles.restart()
-	player.velocity.y = stats.jumpCrouchVelocity
+	player.velocity.y = stats.jumpCrouchChargedVelocity
 	player.velocity.x = 0
 
 
@@ -31,7 +31,7 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	velocity.gravity_logic(stats.gravityJump, delta)
-	velocity.air_velocity_logic(stats.moveSpeed / 2, stats.accelerationAir, stats.frictionAir, delta)
+	velocity.air_velocity_logic(stats.moveSpeed * stats.crouchChargedSpeedModifier, stats.accelerationAir, stats.frictionAir, delta)
 	
 	player.move_and_slide_rotation()
 	velocity.track_top_speed(player.velocity.x)

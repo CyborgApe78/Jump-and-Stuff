@@ -27,7 +27,7 @@ func enter() -> void:
 	soundeffect.pitch_scale = jumpSoundModifier
 	soundeffect.play()
 	particles.restart()
-	player.velocity.y = stats.jumpRunVelocity #TODO: own velocity
+	player.velocity.y = stats.jumpCrouchVelocity
 	player.velocity.x = 0
 
 
@@ -48,8 +48,7 @@ func physics(delta) -> void:
 	else:
 		velocity.gravity_logic(stats.gravityFall, delta)
 	
-	velocity.air_velocity_logic(stats.moveSpeed / 4, stats.accelerationAir, stats.frictionAir, delta)
-												#TODO: own move speed
+	velocity.air_velocity_logic(stats.moveSpeed * stats.crouchSpeedModifier, stats.accelerationAir, stats.frictionAir, delta)
 	player.move_and_slide_rotation()
 	velocity.track_top_speed(player.velocity.x)
 

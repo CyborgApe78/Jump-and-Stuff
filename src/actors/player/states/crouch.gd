@@ -14,8 +14,6 @@ extends PlayerInfo
 @export var soundSlide: AudioStreamPlayer
 
 @export_group("")
-@export var crouchSpeedMin: int = 20
-@export var minLongJumpVelocity: int = 200 #TODO: move to stats
 @export var timeCharge: int = 1 #TODO: move to timers
 
 var saveConsecutive: bool = false
@@ -49,7 +47,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	velocity.apply_friction(stats.frictionGround / 2, delta) #TODO: own stat
+	velocity.apply_friction(stats.frictionCrouch, delta)
 
 
 func visual(delta) -> void:
@@ -77,7 +75,7 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump) and timerCharge.is_stopped():
 			return State.DashJump
 		if input.justPressedJump:
-			if abs(player.velocity.x) > minLongJumpVelocity and (sign(player.velocity.x) == input.moveDirection.x or input.moveDirection.x == 0) and abilities.can_use(PlayerAbilities.list.JumpLong):
+			if abs(player.velocity.x) > stats.minLongJumpVelocity and (sign(player.velocity.x) == input.moveDirection.x or input.moveDirection.x == 0) and abilities.can_use(PlayerAbilities.list.JumpLong):
 				return State.JumpLong
 			elif !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
 				return State.JumpGroundPound
@@ -96,7 +94,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if abs(player.velocity.x) < minLongJumpVelocity:
+	if abs(player.velocity.x) < stats.minLongJumpVelocity:
 		if input.moveDirection.x != 0:
 			return State.CrouchWalk
 

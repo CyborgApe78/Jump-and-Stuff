@@ -24,20 +24,27 @@ var airTurnModifier: float = 4.0
 	get:
 		return _baseMove
 ## This value makes the time it takes to reach maximum speed smoother.
-@export_range(0.0 , 2.0, 0.01) var baseAcceleration: float = 1.2
+@export_range(0.0 , 2.0, 0.01) var _baseAcceleration: float = 1.2
 ## The force applied to slow down the character's movement.
-@export_range(0.0 , 1.0, 0.01) var baseFriction: float = 0.5
+@export_range(0.0 , 1.0, 0.01) var _baseFriction: float = 0.5
 ## Modulates the rate of horizontal speed decrease during airborne movement.
-@export_range(0.0 , 2.0, 0.01) var baseAirMovement: float = 1.0
+@export_range(0.0 , 2.0, 0.01) var baseAirMovement: float = 1.0 #LOOKAT: remove
 
 @onready var moveSpeed: int = calculate_tile_height(_baseMove)
-@onready var accelerationGround: float = moveSpeed / baseAcceleration
-@onready var frictionGround: float = moveSpeed / baseFriction
-@onready var accelerationAir: float = moveSpeed / (baseAcceleration * baseAirMovement)
-@onready var frictionAir: float = moveSpeed / (baseFriction * baseAirMovement)
+@onready var accelerationGround: float = moveSpeed / _baseAcceleration
+@onready var frictionGround: float = moveSpeed / _baseFriction
+@onready var accelerationAir: float = moveSpeed / (_baseAcceleration * baseAirMovement)
+@onready var frictionAir: float = moveSpeed / (_baseFriction * baseAirMovement)
 
 @export_group("Crouch")
-@export_range(0.0 , 2.0, 0.01) var crouchFriction: float = 0.1
+@export_range(0.0 , 2.0, 0.01) var _basefrictionCrouch: float = 0.8
+@export_range(0.0 , 5.0, 0.01) var crouchVelocityModifier: float = 0.2
+@export_range(0.0 , 5.0, 0.01) var crouchSpeedModifier: float = 0.25
+@export_range(0.0 , 5.0, 0.01) var crouchChargedSpeedModifier: float = 0.5
+@export var minLongJumpVelocity: int = 200
+@export_range(0.0 , 2.0, 0.05) var timeCrouchCharge: float = 1.0
+
+@onready var frictionCrouch: float = moveSpeed / _basefrictionCrouch #TODO: check for set/get for onready funcs
 
 @export_group("Jump")
 ## Base Jump Height
@@ -69,7 +76,7 @@ var airTurnModifier: float = 4.0
 	set(value):
 		_jumpTimeToDescent = value
 		gravityFall = calculate_gravity(jumpHeight, _jumpTimeToDescent)
-		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent * _glideModifier)
+		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent * _glideSpeedModifier)
 	get:
 		return _jumpTimeToDescent
 ## Time of extra floatyness at peak of jump
@@ -113,12 +120,18 @@ var airTurnModifier: float = 4.0
 		jumpLongVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpLongModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpLongModifier
-@export_range(0.0 , 5.0, 0.05) var _jumpCrouchModifier: float = 2.5:
+@export_range(0.0 , 5.0, 0.05) var _jumpCrouchModifier: float = 1.25:
 	set(value):
 		_jumpCrouchModifier = value
 		jumpCrouchVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpCrouchModifier + _jumpHeightPlatformBoost))
 	get:
 		return _jumpCrouchModifier
+@export_range(0.0 , 5.0, 0.05) var _jumpCrouchChargedModifier: float = 2.5:
+	set(value):
+		_jumpCrouchChargedModifier = value
+		jumpCrouchChargedVelocity = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpCrouchChargedModifier + _jumpHeightPlatformBoost))
+	get:
+		return _jumpCrouchChargedModifier
 @export_range(0.0 , 5.0, 0.05) var _jumpGroundPoundModifier: float = 3.0:
 	set(value):
 		_jumpGroundPoundModifier = value
@@ -147,6 +160,7 @@ var airTurnModifier: float = 4.0
 @onready var jumpFlipVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpFlipModifier + _jumpHeightPlatformBoost))
 @onready var jumpLongVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpLongModifier + _jumpHeightPlatformBoost))
 @onready var jumpCrouchVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpCrouchModifier + _jumpHeightPlatformBoost))
+@onready var jumpCrouchChargedVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpCrouchChargedModifier + _jumpHeightPlatformBoost))
 @onready var jumpGroundPoundVelocity: float = calculate_jump_velocity(calculate_tile_height(_baseJumpHeight * _jumpGroundPoundModifier + _jumpHeightPlatformBoost))
 @export_range(0.0 , 5.0, 0.1) var _jumpLongSpeedModifier: float = 1.35:
 	set(value):
@@ -220,22 +234,22 @@ var airTurnModifier: float = 4.0
 @export var _maxFall: int = 4:
 	set(value):
 		terminalVelocity = _maxFall * -jumpVelocity
-		terminalGlideVelocity = _maxFall * _glideModifier * -jumpVelocity
+		terminalGlideVelocity = _maxFall * _glideSpeedModifier * -jumpVelocity
 	get:
 		return _maxFall
 @onready var terminalVelocity: int = _maxFall * -jumpVelocity
 
 @export_group("Glide")
-@export_range(0.0 , 5.0, 0.05) var _glideModifier: float = 0.1:
+@export_range(0.0 , 5.0, 0.05) var _glideSpeedModifier: float = 0.1:
 	set(value):
-		_glideModifier = value
-		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent / _glideModifier)
-		terminalGlideVelocity = _maxFall * _glideModifier * -jumpVelocity
+		_glideSpeedModifier = value
+		gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent / _glideSpeedModifier)
+		terminalGlideVelocity = _maxFall * _glideSpeedModifier * -jumpVelocity
 	get:
-		return _glideModifier
-@onready var gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent / _glideModifier)
-@onready var terminalGlideVelocity: int = _maxFall * _glideModifier * -jumpVelocity
-@export var glidevelocityModifier: float = 0.6 #TODO: move to speed
+		return _glideSpeedModifier
+@onready var gravityGlide = calculate_gravity(jumpHeight, _jumpTimeToDescent / _glideSpeedModifier)
+@onready var terminalGlideVelocity: int = _maxFall * _glideSpeedModifier * -jumpVelocity
+@export_range(0.0 , 5.0, 0.01) var glideVelocityModifier: float = 0.6
 
 @export_group("Dive")
 @export var _baseDiveHeight: float = 2.0:
@@ -261,8 +275,7 @@ var airTurnModifier: float = 4.0
 @export var diveSpeedMultiplier: float = 1.6
 @export var multiplierGroundPound: float = 1.5
 
-
-@export_group("Slide") #TODO:
+@export_group("Slide")
 var upHillFrictionModifier: float = 2.0
 var flatGroundFrictionModifier: float = 1.75 #TODO: these need to move to state using them. slide/roll have different values
 var downHillAccel: float = 50
@@ -270,18 +283,18 @@ var downHillAccel: float = 50
 @export var slidevelocityModifier: float = 1.0
 var velocityHop: float
 
-@export_group("Wall Slide") #TODO:
-var wallSlideFriction
+@export_group("Wall Slide")
+var wallSlideFriction #TODO:
 var downpressedFriction
 
-@export_group("Dash") #TODO:
-@export var baseDash: float = 36:
+@export_group("Dash")
+@export var _baseDash: float = 36:
 	set(value):
-		baseDash = value
-		dashSpeed = calculate_tile_height(baseDash)
+		_baseDash = value
+		dashSpeed = calculate_tile_height(_baseDash)
 	get:
-		return baseDash
-@onready var dashSpeed: int = calculate_tile_height(baseDash) #TODO: change to velocity
+		return _baseDash
+@onready var dashSpeed: int = calculate_tile_height(_baseDash) #TODO: change to velocity
 
 @export_group("GroundPound")
 @export var _baseGPHeight: float = 1.0:
@@ -302,7 +315,7 @@ var downpressedFriction
 		_gpModifier = value
 		gravityGP = calculate_gravity(jumpHeight, _jumpTimeToDescent / _gpModifier)
 		gravityGPFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / (_gpModifier / _gpFloatModifier))
-		terminalGlideVelocity = _maxFall * _gpModifier * -jumpVelocity
+		terminalGPVelocity = _maxFall * _gpModifier * -jumpVelocity
 	get:
 		return _gpModifier
 @export_range(0.0 , 5.0, 0.05) var _gpFloatModifier: float = 3:
@@ -315,9 +328,16 @@ var downpressedFriction
 @onready var gravityGPFloat = calculate_gravity(jumpHeight, _jumpTimeToDescent / (_gpModifier / _gpFloatModifier))
 @onready var terminalGPVelocity: int = _maxFall * _gpModifier * -jumpVelocity
 
-@export_group("Grapple") #TODO:
+@export_group("Grapple")
+@export var _baseGrapple: float = 36:
+	set(value):
+		_baseGrapple = value
+		grappleSpeed = calculate_tile_height(_baseGrapple)
+	get:
+		return _baseGrapple
+@onready var grappleSpeed: int = calculate_tile_height(_baseGrapple)
 
-@export_group("Bash") #TODO:
+@export_group("Bash")
 
 @export_group("Spin")
 @export var _baseSpinHeight: float = 1.0:
@@ -328,11 +348,20 @@ var downpressedFriction
 		return _baseSpinHeight
 @onready var spinHeight: int = calculate_tile_height(_baseSpinHeight + _jumpHeightPlatformBoost)
 
-@export_group("Roll") #TODO:
+@export_group("Roll")
+@export_range(0.0 , 5.0, 0.01) var rollVelocityModifier: float = 1.25
+@export_range(0.0 , 5.0, 0.01) var rollChainVelocityModifier: float = 1.5
+@export_range(0.0 , 5.0, 0.01) var rollJumpVelocityModifier: float = 1.75
+@export_range(0.0 , 5.0, 0.01) var rollDashVelocityModifier: float = 1.25
+@export_range(0.0 , 2.0, 0.01) var _basefrictionRoll: float = 0.1
 
-@export_group("Swim") #TODO:
+@onready var frictionRoll: float = moveSpeed / _basefrictionRoll
 
-@export_group("Burrow") #TODO:
+@export_group("Swim")
+@export_range(0.0 , 5.0, 0.01) var swimVelocityModifier: float = 1.0
+
+
+@export_group("Burrow")
 
 #################################
 

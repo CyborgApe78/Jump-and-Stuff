@@ -10,13 +10,10 @@ extends PlayerInfo
 @export_group("Connections")
 
 @export_group("")
-@export var velocityModifier: float = 1
 
-var swimVelocity: float
 
 
 func enter() -> void:
-	swimVelocity = stats.moveSpeed * velocityModifier
 	player.animPlayer.queue("Swim")
 	abilities.reset(PlayerAbilities.list.All)
 
@@ -34,10 +31,11 @@ func physics(delta) -> void:
 		player.velocity.y = move_toward(player.velocity.y, 100, stats.frictionAir * 10 * delta)
 		velocity.apply_friction(stats.frictionAir * 5, delta)
 #		velocity.apply_friction(frictionGround * 2, delta)
+	#TODO: acceleration
 #	elif abs(player.velocity) < abs(velocityTarget): #TODO: need to find a better way for accel and deccel
 #		player.velocity = player.velocity.move_toward(velocityTarget, stats.accelerationAir * delta)
 	else:
-		player.velocity = input.swimDirection * swimVelocity #TODO: acceleration
+		player.velocity = input.swimDirection * stats.moveSpeed * stats.swimVelocityModifier 
 
 
 func visual(delta) -> void:

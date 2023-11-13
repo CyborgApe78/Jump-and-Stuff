@@ -10,17 +10,13 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 @export var detector: ShapeCast2D
 
-@export_group("")
-@export var minLongJumpVelocity: int = 200 #TODO: move to stats
-@export var timeCharge: int = 1 #TODO: move to stats
-
 var saveConsecutive: bool = false
 
 
 func enter() -> void:
 	player.animPlayer.queue("Crouch Walk")
 	
-	timerCharge.wait_time = timeCharge
+	timerCharge.wait_time = stats.timeCrouchCharge
 	timerCharge.start() #Todo: don't restart when coming from crouch walk
 	
 	if !timerConsecutiveJump.is_stopped():
@@ -32,7 +28,7 @@ func exit() -> void:
 	soundeffect.stop()
 	player.animPlayer.speed_scale = 1
 	
-	timerCharge.stop() #TODO: don't stop if going to crouch walk
+	timerCharge.stop() #TODO: don't stop if going to crouch
 	
 	if saveConsecutive:
 		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
@@ -44,7 +40,7 @@ func physics(delta) -> void:
 	
 	if player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = input.lastMoveDirection.x * 1
-	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed / 5: #TODO: own stat
+	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed * stats.crouchVelocityModifier: #LOOKAT: moving these to stats
 		velocity.apply_acceleration(stats.moveSpeed / 5, stats.accelerationGround, delta)
 	elif input.moveDirection.x == 0:
 		velocity.apply_friction(stats.frictionGround, delta)
@@ -71,7 +67,7 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashJump) and timerCharge.is_stopped():
 			return State.DashJump
 		if input.justPressedJump:
-#			if abs(player.velocity.x) > minLongJumpVelocity and abilities.can_use(PlayerAbilities.list.JumpLong):
+#			if abs(player.velocity.x) > stats.minLongJumpVelocity and abilities.can_use(PlayerAbilities.list.JumpLong):
 #				return State.JumpLong
 			if !timerCoyoteJumpGroundPound.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
 				return State.JumpGroundPound

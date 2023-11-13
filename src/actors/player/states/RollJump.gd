@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#FIXME: rework this. too similiar to belly hop. turn into bouncing ball
+#FIXME: rework this. too similiar to belly hop.
 
 @export_group("Connections")
 @export var timerDuration: Timer
@@ -13,14 +13,11 @@ extends PlayerInfo
 @export_group("")
 @export var duration: float = 0.3
 @export var jumpModifier: float = 0.25
-@export var velocityModifier: float = 1.75
 
-var velocityRollJump: float
 var startingHeight: int
 
 
 func enter() -> void:
-	velocityRollJump = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y
 	EventBus.playerJumped.emit()
 	velocity.topSpeed = 0
@@ -32,7 +29,7 @@ func enter() -> void:
 		particles.restart()
 	if !detector.is_colliding():
 		player.global_position.y -= Util.tileSize * 2 #TODO: tween movement or change to velocity
-	player.velocity.x = velocityRollJump * player.facing #TODO: add max velocity check
+	player.velocity.x = player.facing * max(stats.moveSpeed * stats.rollJumpVelocityModifier, abs(player.velocity.x)) #LOOKAT: should there be accel
 	timers()
 
 

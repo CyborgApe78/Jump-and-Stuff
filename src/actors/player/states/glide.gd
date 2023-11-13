@@ -1,7 +1,6 @@
 extends PlayerInfo
 
 #LOOKAT: make 2, one for slow fall, other for coming out of side dashes more like buzz lightyear mixed with mario cape
-#TODO: add a check to double jump and others to go back to glide if it is still held
 #LOOKAT: look into mario wonder glide
 
 @export_group("Connections")
@@ -11,8 +10,6 @@ extends PlayerInfo
 
 @export_group("")
 @export var transTime: float = 0.1
-@export var velocityModifier: float = 0.6
-@export var velocityFallModifier: float = 0.3
 
 
 func enter() -> void:
@@ -37,9 +34,9 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if player.neutralMoveDirection:
-		neutral_air_momentum_logic(stats.moveSpeed * velocityModifier)
+		neutral_air_momentum_logic(stats.moveSpeed * stats.glideVelocityModifier)
 	else:
-		velocity.air_velocity_logic(stats.moveSpeed * velocityModifier, stats.accelerationAir, stats.frictionAir, delta)
+		velocity.air_velocity_logic(stats.moveSpeed * stats.glideVelocityModifier, stats.accelerationAir, stats.frictionAir, delta)
 	
 	if player.inWind:
 		player.velocity.y = player.windVelocity.y
