@@ -1,5 +1,7 @@
 extends UnlockableBase
 
+#TODO: add preset unlocker
+
 
 @onready var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 @export var ability: PlayerAbilities.list

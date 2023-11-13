@@ -153,6 +153,7 @@ Charms/Relic/Shards
 	https://github.com/dpinela/Transcendence/blob/main/SPOILERS.md
 	https://www.mariowiki.com/Badge_(Super_Mario_Bros._Wonder)
 	https://oriandtheblindforest.fandom.com/wiki/Spirit_Shards
+	swim boost relic or maybe upgrade
 
 create save states for practice
 

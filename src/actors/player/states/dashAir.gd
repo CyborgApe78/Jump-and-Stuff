@@ -16,7 +16,7 @@ extends PlayerInfo
 
 @export_group("")
 
-var duration: float = 0.4
+var duration: float = 0.4 #TODO: move to stats
 
 
 func enter() -> void:
