@@ -48,8 +48,6 @@ func visual(delta) -> void:
 	player.facing_logic(input.lastMoveDirection.x)
 	speed_bend(false)
 	align_to_ground()
-	squash_and_stretch(delta)
-	
 
 
 func sound(delta: float) -> void:

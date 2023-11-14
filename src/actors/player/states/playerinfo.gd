@@ -22,18 +22,6 @@ func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: f
 		player.characterSAS.skew = remap(player.velocity.x, 0, speed, 0.0, leanAmount)
 
 
-func squash_and_stretch(delta): 
-	#TODO: use animeation tree instead
-#	if !player.is_on_floor():
-#		player.characterSAS.scale.y = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 0.75, 1.25)
-#		player.characterSAS.scale.x = remap(abs(min(player.velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 1.25, 0.75)
-#
-#	player.characterSAS.scale.x = lerp(player.characterSAS.scale.x, 1.0, 1.0 - pow(0.01, delta))
-#	player.characterSAS.scale.y = lerp(player.characterSAS.scale.y, 1.0, 1.0 - pow(0.01, delta))
-	
-	pass
-
-
 func consecutive_jump_logic() -> int:
 	if abilities.can_use(PlayerAbilities.list.JumpConsec) and player.jumped:
 		return State.JumpConsec

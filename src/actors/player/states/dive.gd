@@ -46,7 +46,6 @@ func physics(delta: float) -> void:
 
 
 func visual(delta) -> void:
-	squash_and_stretch(delta)
 	align_to_ground()
 
 

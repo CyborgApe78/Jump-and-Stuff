@@ -75,16 +75,6 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #		player.characterRig.skew = remap(-player.velocity.x, 0, speed, 0.0, leanAmount)
 #
 #
-#func squash_and_stretch(delta):
-##	if !player.is_on_floor():
-##		player.characterRig.scale.y = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 0.75, 1.25)
-##		player.characterRig.scale.x = remap(abs(player.velocity.y), 0, abs(jumpVelocity), 1.25, 0.75)
-##
-##	player.characterRig.scale.x = lerp(player.characterRig.scale.x, 1.0, 1.0 - pow(0.01, delta))
-##	player.characterRig.scale.y = lerp(player.characterRig.scale.y, 1.0, 1.0 - pow(0.01, delta))
-#	pass
-#
-#
 #func consecutive_jump_logic() -> int:
 #	if abilities.can_use(PlayerAbilities.list.JumpConsec) and player.jumped:
 #		return State.JumpConsec
