@@ -21,7 +21,7 @@ func enter() -> void:
 	timers()
 	velocity.topSpeed = 0
 	neutral_move_direction_logic()
-	player.animPlayer.queue("Fall") #TODO: air crouch
+	player.animPlayer.queue("Fall")
 	player.set_up_direction(Vector2.UP)
 	if player.characterRotate.rotation_degrees != 0:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -61,7 +61,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	align_to_ground()
-	player.facing_logic(input.lastMoveDirection.x)
+	player.facing_logic(input.lastMoveDirection.x) #FIXME: don't change facing if input is zero
 
 
 func sound(delta: float) -> void:

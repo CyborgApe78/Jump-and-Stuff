@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=132 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -34,6 +34,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="28_w0ybt"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashAir.gd" id="29_j03jp"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashUp.gd" id="32_3ge2r"]
+[ext_resource type="Script" path="res://src/actors/player/states/wallGrab.gd" id="32_umgnq"]
 [ext_resource type="Script" path="res://src/actors/player/states/dashDown.gd" id="34_mljf1"]
 [ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="35_hmyo3"]
 [ext_resource type="Script" path="res://src/actors/player/states/DashWall.gd" id="36_4y8yc"]
@@ -6512,7 +6513,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/LegLeft"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, -8, 48, -16, 64, -8, 64)
+points = PackedVector2Array(0, 32, 0, 48, -8, 72, 0, 72)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6536,7 +6537,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/LegRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 32, 16, 48, 8, 64, 16, 64)
+points = PackedVector2Array(0, 32, 16, 48, 8, 72, 16, 72)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6560,7 +6561,7 @@ metadata/_edit_group_ = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Body/ArmRight"]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, 8, 10, 24, 18)
+points = PackedVector2Array(0, 0, 16, -8.00006, 15.9999, -40.0001)
 width = 15.4
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6656,7 +6657,7 @@ local_coords = true
 
 [node name="Outline" type="Line2D" parent="CharacterRig/CharacterRotate/SquashAndStretch/Jetpack"]
 show_behind_parent = true
-points = PackedVector2Array(-32, -16, -32, 16)
+points = PackedVector2Array(-32, -16, -32, 8)
 width = 16.8
 default_color = Color(0, 0, 0, 1)
 joint_mode = 1
@@ -6838,6 +6839,10 @@ detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 script = ExtResource("28_h3ycc")
 coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 particles = NodePath("../../CharacterRig/CharacterRotate/SquashAndStretch/Particles/WallSlide")
+
+[node name="WallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer")]
+script = ExtResource("32_umgnq")
+coyoteJumpWallTimer = NodePath("../../Timers/CoyoteJumpWall")
 
 [node name="DashGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "dashJumpTimer", "dashJumpRefreshTimer", "durationTimer", "particles", "soundJetpack")]
 script = ExtResource("28_ggeir")
