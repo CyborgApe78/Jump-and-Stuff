@@ -30,6 +30,7 @@ extends Node
 	PlayerState.State.BellySlideHop: $BellySlideHop,
 	PlayerState.State.BellySlideDash: $BellySlideDash,
 	PlayerState.State.WallSlide: $WallSlide,
+	PlayerState.State.WallGrab: $WallGrab,
 	PlayerState.State.DashGround: $DashGround,
 	PlayerState.State.DashAir: $DashAir,
 	PlayerState.State.DashUp: $DashUp,

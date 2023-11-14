@@ -95,8 +95,11 @@ func handle_input(event: InputEvent) -> int:
 			timerBufferJump.start()
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
-	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
-		return State.GroundPound
+	if input.justPressedCrouch:
+		if wall.wallDirection != 0:
+			return State.WallGrab
+		elif abilities.can_use(PlayerAbilities.list.GroundPound): 
+			return State.GroundPound
 	if input.justPressedDash:
 		dash_pressed_buffer()
 	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
