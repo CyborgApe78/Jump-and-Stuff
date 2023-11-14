@@ -11,7 +11,6 @@ var noHold: bool
 ## holding into wall goes to wall slide
 
 func enter() -> void:
-	wall.wall_detection()
 	noHold = false
 	player.velocityPrevious = player.velocity
 	player.velocity.x = 0
@@ -54,11 +53,11 @@ func handle_input(event: InputEvent) -> int:
 		#JumpWallDown
 		#JumpWallAway
 		#JumpWallNuetral
-	if input.pressedLeft and wall.wall_detection() == Vector2.RIGHT.x:
+	if input.pressedLeft and wall.wallDirection == 1:
 		player.velocity = Vector2(-20,-10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
-	if input.pressedRight and wall.wall_detection() == Vector2.LEFT.x:
+	if input.pressedRight and wall.wallDirection == -1:
 		player.velocity = Vector2(20, -10)
 		coyoteJumpWallTimer.start()
 		return State.Fall
