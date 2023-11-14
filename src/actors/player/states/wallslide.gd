@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#FIXME: sometimes slides on face
 
 @export_group("Connections")
 @export var coyoteJumpWallTimer: Timer
@@ -11,14 +10,12 @@ extends PlayerInfo
 
 func enter() -> void:
 	player.animPlayer.play("Wall Slide")
-	wall.wall_detection()
 	
 	player.velocityPrevious = player.velocity
-#	player.velocity.y = 0 ## Removed to slide up walls, needs testing
 	particles.emitting = true
 	abilities.reset(PlayerAbilities.list.All)
 	
-	player.characterRig.scale.x = -wall.wallDirection #FIXME: not working when entering
+	player.facing_logic(-wall.wallDirection)
 
 
 func exit() -> void:
@@ -30,7 +27,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	
 	if input.moveDirection.y == Vector2.DOWN.y:
-		velocity.gravity_logic(stats.gravityFall, delta) #TODO: set default values in func to not have to call default values
+		velocity.gravity_logic(stats.gravityFall, delta)
 		velocity.fall_speed_logic(stats.terminalVelocity)
 	else:
 		velocity.gravity_logic(stats.gravityFall/10, delta)
@@ -39,8 +36,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	if player.characterRig.scale.x != -wall.wallDirection:
-		player.characterRig.scale.x = -wall.wallDirection 
+	pass 
 
 
 func sound(delta: float) -> void:
