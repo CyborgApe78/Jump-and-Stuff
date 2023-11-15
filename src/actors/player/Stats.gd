@@ -353,7 +353,7 @@ var downpressedFriction
 @export_range(0.0 , 5.0, 0.01) var rollChainVelocityModifier: float = 1.5
 @export_range(0.0 , 5.0, 0.01) var rollJumpVelocityModifier: float = 1.75
 @export_range(0.0 , 5.0, 0.01) var rollDashVelocityModifier: float = 1.25
-@export_range(0.0 , 2.0, 0.01) var _basefrictionRoll: float = 0.1
+@export_range(0.0 , 2.0, 0.01) var _basefrictionRoll: float = 0.6
 
 @onready var frictionRoll: float = moveSpeed / _basefrictionRoll
 

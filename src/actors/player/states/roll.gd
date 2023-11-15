@@ -70,7 +70,7 @@ func physics(delta) -> void:
 			player.velocity.x += stats.downHillAccel ## Slow on up hill
 #			velocity.apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif timerDuration.is_stopped():
-		velocity.apply_friction(stats.frictionGround, delta) #TODO: own friction
+		velocity.apply_friction(stats.frictionRoll, delta)
 
 
 func visual(delta) -> void:
@@ -117,7 +117,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if timerDuration.is_stopped() and abs(player.velocity.x) < 10 and abs(ground.groundAngle) < 0.01: #fixme: stops player from rolling, need timer
+	if timerDuration.is_stopped() and abs(player.velocity.x) < 10 and abs(ground.groundAngle) < 0.01:
 		if player.is_on_floor(): 
 			if detector.is_colliding():
 				player.velocity.x = 0
@@ -133,8 +133,6 @@ func state_check(delta: float) -> int:
 		else:
 			timerCoyoteJump.start()
 			return State.Fall
-#	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
-#		timerCoyoteJump.stop()
 
 	return State.Null
 
