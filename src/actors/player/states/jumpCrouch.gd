@@ -9,6 +9,7 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 @export var timerCoyoteJump: Timer
 @export var timerBufferJump: Timer
+@export var detector: ShapeCast2D
 
 
 @export_group("")
@@ -69,24 +70,25 @@ func handle_input(event: InputEvent) -> int:
 #		timerSemisolidReset.start()
 	if input.justReleasedJump and player.velocity.y < -stats.jumpApexHeight:
 		player.velocity.y = max(player.velocity.y, stats.jumpCrouchVelocity * stats.percentMinJumpVelocity)
-	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
-		return State.Glide
-	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
-		return State.Dive
-	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
-		return State.GroundPound
-	if input.justPressedDash:
-		dash_pressed_buffer()
-	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
-		return State.GrappleHook
-	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
-		return State.BashAim
-	if player.velocity.y > 0: #TODO: create is_falling(): checks if positive y velocity v
-		if input.justPressedJump:
-			if abilities.can_use(PlayerAbilities.list.JumpAir) and !(ground.detectorGroundLeft.is_colliding() or ground.detectorGroundRight.is_colliding()):
-				return State.JumpAir
-			else:
-				timerBufferJump.start()
+	if !detector.is_colliding():
+		if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
+			return State.Glide
+		if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
+			return State.Dive
+		if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
+			return State.GroundPound
+		if input.justPressedDash:
+			dash_pressed_buffer()
+		if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
+			return State.GrappleHook
+		if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
+			return State.BashAim
+		if player.velocity.y > 0: #TODO: create is_falling(): checks if positive y velocity v
+			if input.justPressedJump:
+				if abilities.can_use(PlayerAbilities.list.JumpAir) and !(ground.detectorGroundLeft.is_colliding() or ground.detectorGroundRight.is_colliding()):
+					return State.JumpAir
+				else:
+					timerBufferJump.start()
 
 	return State.Null
 
@@ -96,6 +98,10 @@ func state_check(delta: float) -> int:
 		player.landed()
 		if player.velocity.x != 0:
 			return State.CrouchWalk
+		elif detector.is_colliding():
+			return State.Crouch
+		elif input.pressedCrouch:
+			return State.Crouch
 		else:
 			return State.Idle
 	if dashBufferState != State.Null:

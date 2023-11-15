@@ -6750,12 +6750,13 @@ timerBufferRoll = NodePath("../../Timers/BufferRoll")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/SquashAndStretch/Particles/JumpTriple")
 
-[node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles", "timerCoyoteJump", "timerBufferJump")]
+[node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles", "timerCoyoteJump", "timerBufferJump", "detector")]
 script = ExtResource("22_e2i38")
 soundeffect = NodePath("../../Sounds/jump")
 particles = NodePath("../../CharacterRig/CharacterRotate/SquashAndStretch/Particles/Jump")
 timerCoyoteJump = NodePath("../../Timers/CoyoteJump")
 timerBufferJump = NodePath("../../Timers/BufferJump")
+detector = NodePath("../../Raycasts/Shapes/CrouchSpace")
 
 [node name="JumpCrouchCharged" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
 script = ExtResource("19_f85lq")

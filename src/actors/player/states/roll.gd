@@ -74,7 +74,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	player.animation_speed(.0008) #TODO: tweak number based velocity
+	player.animation_speed(.0008)
 	align_to_ground()
 
 
@@ -87,7 +87,7 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if input.justPressedJump:
 		if detector.is_colliding():
-			return State.Crouch #LOOKAT: removing cancel
+			return State.JumpCrouch
 		else:
 			if timerChain.is_stopped() and !timerDuration.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpRoll):
 				return State.RollJump
