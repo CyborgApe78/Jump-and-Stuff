@@ -43,6 +43,7 @@ enum State {
 	BashAim,
 	Bash,
 	Slide,
+	SlideButt,
 	Roll,
 	RollJump,
 	RollDash,

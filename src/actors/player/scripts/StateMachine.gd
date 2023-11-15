@@ -42,6 +42,7 @@ extends Node
 	PlayerState.State.BashAim: $BashAim,
 	PlayerState.State.Bash: $Bash,
 	PlayerState.State.Slide: $Slide,
+	PlayerState.State.SlideButt: $SlideButt,
 	PlayerState.State.Roll: $Roll,
 	PlayerState.State.RollJump: $RollJump,
 	PlayerState.State.RollDash: $RollDash,
