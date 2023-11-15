@@ -53,8 +53,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	sm.physics(delta)
 	sm.state_check(delta)
-
+	
 	EventBus.debugVelocity.emit(velocity.round())
+	EventBus.debugIsGrounded.emit(is_on_floor())
 
 
 func _process(delta: float) -> void:

@@ -9,7 +9,7 @@
 [node name="Debug" type="CanvasLayer"]
 script = ExtResource("1_lmh3d")
 
-[node name="Info" type="MarginContainer" parent="." node_paths=PackedStringArray("stateLabel", "velocityLabel", "debugLabel", "debug2Label", "debug3Label")]
+[node name="Info" type="MarginContainer" parent="." node_paths=PackedStringArray("stateLabel", "velocityLabel", "moveDirectionLabel", "isGroundedLabel", "groundAngleLabel", "debugLabel", "debug2Label", "debug3Label")]
 process_mode = 3
 visible = false
 anchors_preset = 2
@@ -23,6 +23,9 @@ theme_override_constants/margin_bottom = 20
 script = ExtResource("1_vw1db")
 stateLabel = NodePath("MarginContainer/VBoxContainer/State")
 velocityLabel = NodePath("MarginContainer/VBoxContainer/Velocity")
+moveDirectionLabel = NodePath("MarginContainer/VBoxContainer/MoveDirection")
+isGroundedLabel = NodePath("MarginContainer/VBoxContainer/IsGrounded")
+groundAngleLabel = NodePath("MarginContainer/VBoxContainer/GroundAngle")
 debugLabel = NodePath("MarginContainer/VBoxContainer/Debug")
 debug2Label = NodePath("MarginContainer/VBoxContainer/Debug2")
 debug3Label = NodePath("MarginContainer/VBoxContainer/Debug3")
@@ -45,6 +48,15 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Velocity" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoveDirection" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="IsGrounded" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GroundAngle" type="Label" parent="Info/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Debug" type="Label" parent="Info/MarginContainer/VBoxContainer"]

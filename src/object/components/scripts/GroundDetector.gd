@@ -6,13 +6,14 @@ class_name GroundDetectorComponent
 
 @onready var detectorGroundLeft: RayCast2D = $Left
 @onready var detectorGroundRight: RayCast2D = $Right
-@onready var player = get_parent() as CharacterBody2D
+@onready var parent = get_parent() as CharacterBody2D
 
 @export var isSemisolidGround: bool = true
 
 var ledgeLeft: bool
 var ledgeRight: bool
 var groundAngle: float
+var angleDirection: int
 
 
 func _ready() -> void:
@@ -24,19 +25,21 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if owner == Player:
+		EventBus.debugGroundAngle.emit(groundAngle)
 	get_slope_angle()
 	
-	if player.is_on_floor():
+	if parent.is_on_floor():
 		ledge_detection()
 
 
 func ledge_detection() -> void:
-	if player.is_on_floor() and !detectorGroundLeft.is_colliding():
+	if parent.is_on_floor() and !detectorGroundLeft.is_colliding():
 		ledgeLeft = true
 	else:
 		ledgeLeft = false
 	
-	if player.is_on_floor() and !detectorGroundRight.is_colliding():
+	if parent.is_on_floor() and !detectorGroundRight.is_colliding():
 		ledgeRight = true
 	else:
 		ledgeRight = false

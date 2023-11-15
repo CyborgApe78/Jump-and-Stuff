@@ -31,6 +31,9 @@ signal checkpointEntered
 
 signal debugState(info)
 signal debugVelocity(info)
+signal debugMoveDirection(info)
+signal debugIsGrounded(info)
+signal debugGroundAngle(info)
 signal debug(info)
 signal debug2(info)
 signal debug3(info)
