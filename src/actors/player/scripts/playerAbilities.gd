@@ -65,7 +65,7 @@ var remainingGroundPound: int = 0:
 	set(v):
 		remainingGroundPound = clamp(v, 0, maxGroundPound)
 
-var remainingWallJumpSame: int = 0: #TODO: added to debug and wall jump
+var remainingWallJumpSame: int = 0:
 	set(v):
 		remainingWallJumpSame = clamp(v, 0, maxWallJumpSame)
 
@@ -246,7 +246,7 @@ func can_use(ability: int) -> bool:
 		return true
 	elif ability == list.JumpWall and unlockedJumpWall:
 		return true
-	elif ability == list.JumpWallSame and unlockedJumpWallSame:
+	elif ability == list.JumpWallSame and unlockedJumpWallSame and remainingWallJumpSame > 0:
 		return true
 	elif ability == list.JumpRoll and unlockedJumpRoll:
 		return true
@@ -343,6 +343,7 @@ func consume(ability: int, amount: int) -> void:
 		currentJumpConsec += amount
 		remainingDash -= amount
 		remainingGroundPound -= amount
+		remainingWallJumpSame -= amount
 	elif ability == list.JumpAir:
 		remainingJumpAir -= amount
 	elif ability == list.JumpConsec:
@@ -353,5 +354,7 @@ func consume(ability: int, amount: int) -> void:
 		currentDashChain += amount
 	elif ability == list.GroundPound:
 		remainingGroundPound -= amount
+	elif ability == list.JumpWallSame:
+		remainingWallJumpSame -= amount
 	else:
 		EventBus.error.emit("Null Ability Consume " + str(ability))

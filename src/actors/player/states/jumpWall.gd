@@ -12,7 +12,6 @@ extends PlayerInfo
 
 @export_group("")
 
-var wallHop: bool
 var jumpDirection: int
 
 
@@ -29,10 +28,11 @@ func enter() -> void:
 		jumpDirection = wall.lastWallDirection
 		timerCoyoteJumpWall.stop()
 		
-	## up pressed
-	if input.moveDirection.y == -1:
+	## up pressed or towards from wall pressed
+	if (input.moveDirection.y == -1 or input.moveDirection.x == jumpDirection) and abilities.can_use(PlayerAbilities.list.JumpWallSame): 
+		abilities.consume(PlayerAbilities.list.JumpWallSame, 1)
 		player.characterRig.scale.x = wall.wallDirection #TODO: use facing func
-		player.velocity = Vector2(100 * -jumpDirection, stats.jumpVelocity * 1.0)
+		player.velocity = Vector2(10 * -jumpDirection, stats.jumpVelocity * 1.0)
 	## down pressed
 	elif input.moveDirection.y == 1:
 		player.characterRig.scale.x = wall.wallDirection
@@ -41,11 +41,6 @@ func enter() -> void:
 	elif input.moveDirection.x == 0:
 		player.characterRig.scale.x = -wall.wallDirection
 		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
-	## towards from wall pressed
-	elif input.moveDirection.x == jumpDirection and abilities.can_use(PlayerAbilities.list.JumpWallSame): 
-		player.characterRig.scale.x = wall.wallDirection
-		player.velocity = Vector2(200 * -jumpDirection, stats.jumpVelocity * 0.8)
-		wallHop = true
 	## away from wall pressed
 	else:
 		player.characterRig.scale.x = -wall.wallDirection
@@ -69,10 +64,7 @@ func physics(delta) -> void:
 		if player.neutralMoveDirection:
 			neutral_air_momentum_logic(stats.moveSpeed)
 		else:
-			if input.moveDirection.x != 0:
-				velocity.apply_acceleration(stats.moveSpeed, stats.accelerationAir, delta)
-			elif input.moveDirection.x == 0:
-				velocity.apply_friction(stats.frictionAir, delta)
+			velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 	velocity.gravity_logic(stats.gravityJump, delta)
 	
 	#TODO: air velocity func

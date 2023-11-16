@@ -129,6 +129,7 @@ func _on_jump_wall_toggled(button_pressed: bool) -> void:
 	Abilities.unlock(PlayerAbilities.list.JumpWall, button_pressed)
 
 func _on_jump_wall_same_toggled(button_pressed: bool) -> void:
+	#TODO: add way to set infinite
 	Abilities.unlock(PlayerAbilities.list.JumpWallSame, button_pressed)
 
 func _on_jump_roll_toggled(button_pressed: bool) -> void:
