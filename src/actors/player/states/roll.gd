@@ -59,16 +59,16 @@ func physics(delta) -> void:
 	#TODO: needs hori movement code when !isonfloor
 	if rad_to_deg(ground.groundAngle) < -1: #TODO: create own accel and deccel
 		if sign(player.velocity.x) == -1:
-			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
+			player.velocity.x -= stats.rollDownHillAccel * delta ## Speed up on down hill
 		else:
-			player.velocity.x -= stats.downHillAccel ## Slow on up hill
+			player.velocity.x -= stats.rollDownHillAccel * delta ## Slow on up hill
 #			velocity.apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += stats.downHillAccel  ## Speed up on down hill
+			player.velocity.x += stats.rollDownHillAccel * delta  ## Speed up on down hill
 		else:
-			player.velocity.x += stats.downHillAccel ## Slow on up hill
-#			velocity.apply_friction(frictionGround * upHillFrictionModifier, delta) 
+			player.velocity.x += stats.rollDownHillAccel * delta ## Slow on up hill
+#			velocity.apply_friction(stats,rollDownHillAccel, delta) 
 	elif timerDuration.is_stopped():
 		velocity.apply_friction(stats.frictionRoll, delta)
 

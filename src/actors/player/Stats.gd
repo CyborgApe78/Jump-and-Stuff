@@ -353,9 +353,19 @@ var downpressedFriction
 @export_range(0.0 , 5.0, 0.01) var rollChainVelocityModifier: float = 1.5
 @export_range(0.0 , 5.0, 0.01) var rollJumpVelocityModifier: float = 1.75
 @export_range(0.0 , 5.0, 0.01) var rollDashVelocityModifier: float = 1.25
-@export_range(0.0 , 2.0, 0.01) var _basefrictionRoll: float = 0.6
+@export_range(0.0 , 2.0, 0.01) var _basefrictionRoll: float = 0.6:
+	set(v):
+		frictionRoll = moveSpeed * rollVelocityModifier / v
+	get:
+		return _basefrictionRoll
+@export_range(0.0 , 5.0, 0.01) var _baseRollDownHillAccel: float = 0.6:
+	set(v):
+		rollDownHillAccel = moveSpeed * rollVelocityModifier / v
+	get:
+		return _baseRollDownHillAccel
 
-@onready var frictionRoll: float = moveSpeed / _basefrictionRoll
+@onready var frictionRoll: float = moveSpeed * rollVelocityModifier / _basefrictionRoll
+@onready var rollDownHillAccel: float = moveSpeed * rollVelocityModifier / _baseRollDownHillAccel
 
 @export_group("Swim")
 @export_range(0.0 , 5.0, 0.01) var swimVelocityModifier: float = 1.0
