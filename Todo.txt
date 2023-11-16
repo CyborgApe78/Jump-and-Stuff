@@ -395,6 +395,10 @@ Accessability/game options
 	Turn off helpers
 		Coyote timer, Buffer jump etc
 
+Mechanics to add
+	monorail/grindrail
+	wall run
+	trapezee bar
 
 Hub world
 	Unlock dungeons 
@@ -466,6 +470,14 @@ But in general this is a really handy video to see a few basic movement speeds c
 Would've been great to see some measurement numbers alongside them, though that would've taken a lot of resources
 http://www.davetech.co.uk/gamedevplatformer
 
+Platform movement based on player movement direction 
+
+Ledge boosted jump. Like metroid dread 
+
+Platform that disappears if that direction is pushed
+
+Shout out to the devs of Ori and the Blind Forest for realizing the Bash Ability.
+It took months to arrive at something as intuitive and practical as in Ori. When starting, I didn't even know Ori moves with the projectile to an "ideal" position when bashing to avoid clipping into the environment. Also, there is a "bash buffer" when you press Bash in Ori, and nothing is close by; Ori will continue to try to bash in the subsequent frames.
 
 Alternate characters:
 	luigi spillery
