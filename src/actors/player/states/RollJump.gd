@@ -21,7 +21,7 @@ func enter() -> void:
 	startingHeight = player.global_position.y
 	EventBus.playerJumped.emit()
 	velocity.topSpeed = 0
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	player.animPlayer.queue("Roll")
 	soundeffect.pitch_scale = jumpModifier
 	soundeffect.play()

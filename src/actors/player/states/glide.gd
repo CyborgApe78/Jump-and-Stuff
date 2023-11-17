@@ -14,7 +14,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	player.velocityPrevious = player.velocity
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	player.animPlayer.play("Glide")
 	player.set_up_direction(Vector2.UP)
 	if player.characterRotate.rotation_degrees != 0:
@@ -33,7 +33,7 @@ func physics(delta) -> void:
 	
 	player.move_and_slide()
 	
-	if player.neutralMoveDirection:
+	if input.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed * stats.glideVelocityModifier)
 	else:
 		velocity.air_velocity_logic(stats.moveSpeed * stats.glideVelocityModifier, stats.accelerationAir, stats.frictionAir, delta)

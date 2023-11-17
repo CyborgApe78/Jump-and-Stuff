@@ -28,7 +28,7 @@ func enter() -> void:
 	soundeffect.play()
 	particles.restart()
 	
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	timers()
 
 
@@ -45,8 +45,8 @@ func physics(delta) -> void:
 	
 	velocity.gravity_logic(stats.gravityJump, delta)
 	
-	if player.neutralMoveDirection:
-		neutral_move_direction_logic()
+	if input.neutralMoveDirection:
+		input.neutral_move_direction_logic()
 		if abs(player.velocity.x) < stats.jumpLongSpeed:
 			player.velocity.x = move_toward(abs(player.velocity.x), stats.jumpLongSpeed, (stats.moveSpeed * 3) * delta) * player.facing
 			#TODO: long jump acceleration

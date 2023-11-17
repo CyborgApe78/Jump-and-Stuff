@@ -40,13 +40,6 @@ func align_to_ground()-> void:
 		player.rotation = ground.groundAngle
 
 
-func neutral_move_direction_logic() -> void: #TODO: move to input and make bool return
-	if input.moveDirection == Vector2.ZERO:
-		player.neutralMoveDirection = true
-	else:
-		player.neutralMoveDirection = false
-
-
 func dash_pressed_buffer() -> void:
 #	var initial_direction = input.aimDirection.round()
 	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed, look at buffer input timer
@@ -60,7 +53,7 @@ func dash_pressed_logic() -> void:
 		if input.aimBackup.y == -1:
 			dashBufferState = State.DashClimb
 		else:
-			dashBufferState = State.DashWall #TODO: remove and only from wallgrab
+			dashBufferState = State.DashWall
 	elif input.aimBackup.y == -1:
 		dashBufferState = State.DashUp
 	elif input.aimBackup.y == 1:
@@ -75,8 +68,8 @@ func dash_pressed_logic() -> void:
 
 
 func neutral_air_momentum_logic(speed) -> void:
-	if input.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
-		player.neutralMoveDirection = false
+	if input.moveDirection.x != 0 and input.neutralMoveDirection: ## Cancel out neutral momentum
+		input.neutralMoveDirection = false
 
 
 func jump_logic(jumpHeight: int, runSpeed:int = stats.moveSpeed) -> void:

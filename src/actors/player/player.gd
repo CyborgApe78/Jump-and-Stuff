@@ -28,7 +28,6 @@ var GPMaxVelocity: Vector2 = Vector2.ZERO
 var targetGrapple: TargetGrapple
 var targetBash: TargetBash
 
-var neutralMoveDirection: bool = false
 var facing: int = 1
 
 var jumped: bool

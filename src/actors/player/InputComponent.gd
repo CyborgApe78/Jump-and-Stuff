@@ -11,6 +11,8 @@ var lastAimDirection: Vector2 = Vector2.ZERO
 var aimStrength: Vector2 = Vector2.ZERO
 var aimBackup: Vector2 = Vector2.ZERO ## if aim direction is zero use move direction
 
+var neutralMoveDirection: bool = false
+
 var pressedUp: bool = false
 var pressedDown: bool = false
 var pressedLeft: bool = false
@@ -74,6 +76,14 @@ func get_move_input() -> void:
 		lastMoveDirection.y = moveDirection.y
 	
 	aimBackup = aimDirection if aimDirection != Vector2.ZERO else moveDirection
+
+
+
+func neutral_move_direction_logic() -> void:
+	if moveDirection == Vector2.ZERO:
+		neutralMoveDirection = true
+	else:
+		neutralMoveDirection = false
 
 
 func get_ability_input() -> void:

@@ -20,7 +20,7 @@ func enter() -> void:
 	timerLock.start()
 	jumpDirection = wall.wall_detection(30)
 	
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.play()
 	
@@ -61,7 +61,7 @@ func physics(delta) -> void:
 	player.move_and_slide_rotation()
 	#FIXME: create full velocity logic, currently can back to wall sometimes, look at long jump state change
 	if timerLock.is_stopped():
-		if player.neutralMoveDirection:
+		if input.neutralMoveDirection:
 			neutral_air_momentum_logic(stats.moveSpeed)
 		else:
 			velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)

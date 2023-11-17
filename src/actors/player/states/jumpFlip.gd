@@ -13,7 +13,7 @@ extends PlayerInfo
 func enter() -> void:
 	EventBus.playerJumped.emit()
 	velocity.topSpeed = 0
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.pitch_scale = jumpSoundModifier
 	soundeffect.play()
@@ -38,7 +38,7 @@ func physics(delta) -> void:
 	
 	velocity.gravity_logic(stats.gravityJump, delta)
 	
-	if player.neutralMoveDirection:
+	if input.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
 		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)

@@ -12,7 +12,7 @@ extends PlayerInfo
 func enter() -> void:
 	EventBus.playerJumped.emit()
 	velocity.topSpeed = 0
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
 	soundeffect.pitch_scale = jumpSoundModifier
 	soundeffect.play()

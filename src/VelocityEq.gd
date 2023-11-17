@@ -89,11 +89,11 @@ static func apply_friction(current: float, amount: float, delta: float) -> float
 #
 #func neutral_move_direction_logic() -> void:
 #	if input.moveDirection == Vector2.ZERO:
-#		player.neutralMoveDirection = true
+#		input.neutralMoveDirection = true
 #	else:
-#		player.neutralMoveDirection = false
+#		input.neutralMoveDirection = false
 #
 #
 #func neutral_air_momentum_logic(speed) -> void:
-#	if input.moveDirection.x != 0 and player.neutralMoveDirection: ## Cancel out neutral momentum
-#		player.neutralMoveDirection = false
+#	if input.moveDirection.x != 0 and input.neutralMoveDirection: ## Cancel out neutral momentum
+#		input.neutralMoveDirection = false

@@ -4,7 +4,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	velocity.topSpeed = 0
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 
 
 func exit() -> void:
@@ -19,7 +19,7 @@ func physics(delta) -> void:
 	velocity.gravity_logic(stats.gravityApex, delta)
 	velocity.track_top_speed(player.velocity.x)
 	
-	if player.neutralMoveDirection:
+	if input.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
 		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)

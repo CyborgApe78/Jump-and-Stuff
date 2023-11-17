@@ -39,7 +39,7 @@ func enter() -> void:
 	particles.restart()
 	
 	timers()
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 
 
 func exit() -> void:
@@ -58,8 +58,8 @@ func physics(delta) -> void:
 	if timerDuration.is_stopped():
 		velocity.gravity_logic(stats.gravityJump, delta)
 	
-	if player.neutralMoveDirection:
-		neutral_move_direction_logic()
+	if input.neutralMoveDirection:
+		input.neutral_move_direction_logic()
 		if abs(player.velocity.x) < velocityHop:
 			player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (stats.moveSpeed * 3) * delta) * player.facing
 	else:

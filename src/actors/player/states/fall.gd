@@ -20,7 +20,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	timers()
 	velocity.topSpeed = 0
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	player.animPlayer.queue("Fall")
 	player.set_up_direction(Vector2.UP)
 	if player.characterRotate.rotation_degrees != 0:
@@ -53,7 +53,7 @@ func physics(delta) -> void:
 	velocity.track_top_speed(player.velocity.x)
 
 	
-	if player.neutralMoveDirection:
+	if input.neutralMoveDirection:
 		neutral_air_momentum_logic(stats.moveSpeed)
 	else:
 		velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
@@ -143,7 +143,7 @@ func state_check(delta: float) -> int:
 				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Crouch
 			elif player.velocity.x != 0:
-	#			if player.neutralMoveDirection:
+	#			if input.neutralMoveDirection:
 	#				return State.NeutralGround #TODO: keep momentum if jumping
 	#			else:
 				EventBus.rumble.emit(0.1, 0.2, 0.2)

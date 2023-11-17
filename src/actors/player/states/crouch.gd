@@ -28,7 +28,7 @@ func enter() -> void:
 	timerCharge.wait_time = timeCharge
 	timerCharge.start() #Todo: don't restart when coming from crouch walk
 	
-	neutral_move_direction_logic()
+	input.neutral_move_direction_logic()
 	
 	if !timerConsecutiveJump.is_stopped():
 		saveConsecutive = true
