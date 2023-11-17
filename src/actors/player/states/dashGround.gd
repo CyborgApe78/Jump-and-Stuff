@@ -19,9 +19,11 @@ extends PlayerInfo
 
 var isJumping: bool = false
 var saveTriple: bool
+var dashInput: int
 
 
 func enter() -> void:
+	dashInput = input.aimBackup.x if input.aimBackup != Vector2.ZERO else player.facing
 	abilities.consume(PlayerAbilities.list.Dash, 1)
 	soundJetpack.play()
 	EventBus.playerDashed.emit()
@@ -32,7 +34,8 @@ func enter() -> void:
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
-	player.velocity.x = player.facing * stats.dashSpeed
+	player.velocity.x = dashInput * stats.dashSpeed
+	player.facing_logic(dashInput)
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 

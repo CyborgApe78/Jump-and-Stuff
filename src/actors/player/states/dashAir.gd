@@ -15,11 +15,13 @@ extends PlayerInfo
 @export var detector: ShapeCast2D
 
 @export_group("")
-
 var duration: float = 0.4 #TODO: move to stats
+
+var dashInput: int
 
 
 func enter() -> void:
+	dashInput = input.aimBackup.x if input.aimBackup != Vector2.ZERO else player.facing
 	abilities.consume(PlayerAbilities.list.Dash, 1)
 	soundJetpack.play()
 	EventBus.playerDashed.emit()
@@ -32,7 +34,8 @@ func enter() -> void:
 	if player.is_on_wall():
 		player.velocity.x = -wall.wallDirection * stats.dashSpeed
 	else:
-		player.velocity.x = player.facing * stats.dashSpeed
+		player.velocity.x = dashInput * stats.dashSpeed
+	player.facing_logic(dashInput)
 	player.ability_mask(CollisionLayers.DashSide, false)
 
 
