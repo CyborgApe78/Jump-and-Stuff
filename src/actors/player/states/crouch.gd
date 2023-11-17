@@ -51,7 +51,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	player.facing_logic(input.lastMoveDirection.x)
+	player.facing_logic(input.moveDirection.x)
 	align_to_ground()
 	
 	if player.velocity.x != 0:

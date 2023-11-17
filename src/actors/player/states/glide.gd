@@ -51,7 +51,7 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	align_to_ground()
-	player.facing_logic(input.lastMoveDirection.x)
+	player.facing_logic(input.moveDirection.x)
 
 
 func sound(delta: float) -> void:

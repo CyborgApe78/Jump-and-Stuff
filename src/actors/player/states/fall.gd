@@ -61,7 +61,8 @@ func physics(delta) -> void:
 
 func visual(delta) -> void:
 	align_to_ground()
-	player.facing_logic(input.lastMoveDirection.x) #FIXME: don't change facing if input is zero
+	if input.aimBackup.x != 0:
+		player.facing_logic(input.aimBackup.x)
 
 
 func sound(delta: float) -> void:

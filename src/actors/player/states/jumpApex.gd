@@ -26,7 +26,7 @@ func physics(delta) -> void:
 
 
 func visual(delta) -> void:
-	pass
+	player.facing_logic(input.moveDirection.x)
 
 
 func sound(delta: float) -> void:

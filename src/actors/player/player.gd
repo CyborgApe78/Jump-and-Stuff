@@ -74,6 +74,7 @@ func move_and_slide_rotation() -> void:
 
 func squash_and_stretch(delta): 
 	#TODO: use animeation tree instead
+	#FIXME: breaks character when dashing up
 	if !is_on_floor():
 		characterSAS.scale.y = remap(abs(min(velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 0.75, 1.25)
 		characterSAS.scale.x = remap(abs(min(velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 1.25, 0.75)
@@ -84,7 +85,7 @@ func squash_and_stretch(delta):
 
 
 func facing_logic(direction: int): #TODOL move this to another node
-	if characterRig.scale.x != direction:
+	if direction != 0 and characterRig.scale.x != direction:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(characterRig, "scale", Vector2(direction, characterRig.scale.y), 0.4).from_current()
 		facing = direction
