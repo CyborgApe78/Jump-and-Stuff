@@ -73,14 +73,20 @@ func move_and_slide_rotation() -> void:
 
 func squash_and_stretch(delta): 
 	#TODO: use animeation tree instead
-	#FIXME: breaks character when dashing up
+	
+	var maxStretch: int
+	
+	if velocity.y < 0:
+		maxStretch = max(velocity.y, stats.jumpVelocity)
+	else:
+		maxStretch = min(velocity.y, stats.jumpVelocity)
+	
 	if !is_on_floor():
-		characterSAS.scale.y = remap(abs(min(velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 0.75, 1.25)
-		characterSAS.scale.x = remap(abs(min(velocity.y, stats.jumpVelocity)), 0, abs(stats.jumpVelocity), 1.25, 0.75)
-
+		characterSAS.scale.y = remap(abs(maxStretch), 0, abs(stats.jumpVelocity), 0.75, 1.25)
+		characterSAS.scale.x = remap(abs(maxStretch), 0, abs(stats.jumpVelocity), 1.25, 0.75)
+	
 	characterSAS.scale.x = lerp(characterSAS.scale.x, 1.0, 1.0 - pow(0.01, delta))
 	characterSAS.scale.y = lerp(characterSAS.scale.y, 1.0, 1.0 - pow(0.01, delta))
-	
 
 
 func facing_logic(direction: int): #TODOL move this to another node
