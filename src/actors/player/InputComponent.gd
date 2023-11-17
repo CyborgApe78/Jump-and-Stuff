@@ -9,7 +9,7 @@ var moveStrength: Vector2 = Vector2.ZERO
 var aimDirection: Vector2 = Vector2.ZERO
 var lastAimDirection: Vector2 = Vector2.ZERO
 var aimStrength: Vector2 = Vector2.ZERO
-var aimBackup: Vector2 = Vector2.ZERO #TODO: figure out better name
+var aimBackup: Vector2 = Vector2.ZERO ## if aim direction is zero use move direction
 
 var pressedUp: bool = false
 var pressedDown: bool = false
@@ -73,7 +73,7 @@ func get_move_input() -> void:
 	if moveDirection.y != 0:
 		lastMoveDirection.y = moveDirection.y
 	
-	aimBackup = aimStrength if aimStrength != Vector2.ZERO else moveStrength #TODO: replace in bash and aim indicator
+	aimBackup = aimDirection if aimDirection != Vector2.ZERO else moveDirection
 
 
 func get_ability_input() -> void:
