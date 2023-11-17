@@ -484,6 +484,16 @@ Alternate characters:
 	all abilities tied to single energy type
 	3d world like bullet dash
 
+Ground pound into water to sink like a rock
+
+Bunny hop, speed boost from quick jumping
+
+Change death from reseting the scene to send out a reset signal
+
+Destroyed objects add themselves to save file. Named like scene name, object name, plus location 
+Save them in an array. That checks for instant save or save at checkpoint 
+
+
 SMW Regrab
 	In Super Mario World, if you press the jump button (regular or spin) and then immediately release it, you will jump to a low height and fall very quickly back to the ground. If you are moving horizontally, you will have a very short horizontal range.
 	If you press the button and hold it, you will do a max height jump and fall slowly and floatily back to the ground. If you are moving horizontally, you will have a long horizontal range.
