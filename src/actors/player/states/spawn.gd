@@ -2,6 +2,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
+	abilities.reset(PlayerAbilities.list.All)
 	if CheckpointSystem.get_respawn() != Vector2.ZERO:
 		player.global_position = CheckpointSystem.get_respawn()
 #	player.animPlayer.play("Spawn") #breaks some states
