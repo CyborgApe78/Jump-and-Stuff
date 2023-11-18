@@ -13,9 +13,9 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	abilities.reset(PlayerAbilities.list.JumpAir)
-	abilities.reset(PlayerAbilities.list.Dash)
-	abilities.reset(PlayerAbilities.list.DashChain)
+	abilities.reset(PlayerAbilities.listUse.JumpAir)
+	abilities.reset(PlayerAbilities.listUse.Dash)
+	abilities.reset(PlayerAbilities.listChain.DashChain)
 	soundeffect.play()
 	particles.restart()
 	EventBus.rumble.emit(0.4, 0.6, 0.3)

@@ -15,7 +15,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	player.animPlayer.queue("Swim")
-	abilities.reset(PlayerAbilities.list.All)
+	abilities.reset(PlayerAbilities.listUse.All)
 
 
 func exit() -> void:

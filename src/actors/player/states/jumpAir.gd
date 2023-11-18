@@ -11,7 +11,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	EventBus.playerJumped.emit()
-	abilities.consume(PlayerAbilities.list.JumpAir, 1)
+	abilities.consume(PlayerAbilities.listUse.JumpAir, 1)
 	velocity.topSpeed = 0
 	input.neutral_move_direction_logic()
 	player.animPlayer.queue("Jump Air")

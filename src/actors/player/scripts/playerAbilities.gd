@@ -112,6 +112,25 @@ enum list {
 	SwimDash,
 	}
 
+enum listUse {
+	Null,
+	All,
+	JumpAir,
+	JumpWallSame,
+	Dash,
+	GroundPound,
+	}
+
+enum listChain{
+	Null,
+	All,
+	DashChain,
+	DashSide,
+	DashUp,
+	DashDown,
+	JumpConsec,
+	}
+
 enum listAbilityBlock {
 	Null,
 	All,
@@ -305,59 +324,59 @@ func can_use(ability: int) -> bool:
 
 func chain_check(ability: int) -> bool:
 	if unlockedDashChain and currentDashChain < maxDashChain:
-		if ability == list.DashChain:
+		if ability == listChain.DashChain:
 			return true
-		elif ability == list.DashSide and unlockedDashSide:
+		elif ability == listChain.DashSide and unlockedDashSide:
 			return true
-		elif ability == list.DashUp and unlockedDashUp:
+		elif ability == listChain.DashUp and unlockedDashUp:
 			return true
-		elif ability == list.DashDown and unlockedDashDown:
+		elif ability == listChain.DashDown and unlockedDashDown:
 			return true
 	
 	return false
 
 func reset(ability: int) -> void:
-	if ability == list.All:
+	if ability == listUse.All:
 		remainingJumpAir = maxJumpAir
 		currentJumpConsec = 0
 		remainingDash = maxDash
 		currentDashChain = 0
 		remainingGroundPound = maxGroundPound
 		remainingWallJumpSame = maxWallJumpSame
-	elif ability == list.JumpAir:
+	elif ability == listUse.JumpAir:
 		remainingJumpAir = maxJumpAir
-	elif ability == list.JumpConsec:
+	elif ability == listChain.JumpConsec:
 		currentJumpConsec = 0
-	elif ability == list.Dash:
+	elif ability == listUse.Dash:
 		remainingDash = maxDash
-	elif ability == list.DashChain:
+	elif ability == listChain.DashChain:
 		currentDashChain = 0
-	elif ability == list.GroundPound:
+	elif ability == listUse.GroundPound:
 		remainingDash = maxGroundPound
-	elif ability == list.JumpWallSame:
+	elif ability == listUse.JumpWallSame:
 		remainingWallJumpSame = maxWallJumpSame
 	else:
 		EventBus.error.emit("Null Ability Reset " + str(ability))
 
 
 func consume(ability: int, amount: int) -> void:
-	if ability == list.All:
+	if ability == listUse.All:
 		remainingJumpAir -= amount
 		currentJumpConsec += amount
 		remainingDash -= amount
 		remainingGroundPound -= amount
 		remainingWallJumpSame -= amount
-	elif ability == list.JumpAir:
+	elif ability == listUse.JumpAir:
 		remainingJumpAir -= amount
-	elif ability == list.JumpConsec:
+	elif ability == listChain.JumpConsec:
 		currentJumpConsec += amount
-	elif ability == list.Dash:
+	elif ability == listUse.Dash:
 		remainingDash -= amount
-	elif ability == list.DashChain:
+	elif ability == listChain.DashChain:
 		currentDashChain += amount
-	elif ability == list.GroundPound:
+	elif ability == listUse.GroundPound:
 		remainingGroundPound -= amount
-	elif ability == list.JumpWallSame:
+	elif ability == listUse.JumpWallSame:
 		remainingWallJumpSame -= amount
 	else:
 		EventBus.error.emit("Null Ability Consume " + str(ability))

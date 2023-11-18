@@ -17,7 +17,7 @@ func enter() -> void:
 	timers()
 	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.moveStrength
 	player.velocity = aimInput * (stats.dashSpeed)
-	abilities.reset(PlayerAbilities.list.All)
+	abilities.reset(PlayerAbilities.listUse.All)
 
 
 func exit() -> void:

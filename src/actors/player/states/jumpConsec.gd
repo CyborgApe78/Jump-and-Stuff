@@ -13,7 +13,7 @@ extends PlayerInfo
 
 func enter() -> void:
 	EventBus.playerJumped.emit()
-	abilities.consume(PlayerAbilities.list.JumpConsec, 1)
+	abilities.consume(PlayerAbilities.listChain.JumpConsec, 1)
 	velocity.topSpeed = 0
 	input.neutral_move_direction_logic()
 	player.animPlayer.queue("Jump")
@@ -45,7 +45,7 @@ func exit() -> void:
 	player.characterRotate.rotation_degrees = 0 
 	player.characterCollision.rotation_degrees = 0
 	if abilities.currentJumpConsec == abilities.maxJumpConsec:
-		abilities.reset(PlayerAbilities.list.JumpConsec)
+		abilities.reset(PlayerAbilities.listChain.JumpConsec)
 		player.jumped = false
 
 

@@ -13,7 +13,7 @@ func enter() -> void:
 	
 	player.velocityPrevious = player.velocity
 	particles.emitting = true
-#	abilities.reset(PlayerAbilities.list.All)
+#	abilities.reset(PlayerAbilities.listUse.All)
 	#TODO: lookat at what should be added back to reset
 	
 	player.facing_logic(-wall.wallDirection)

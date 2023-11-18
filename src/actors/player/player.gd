@@ -121,7 +121,7 @@ func attempt_horizontal_corner_correction(amount: int, delta) -> void:
 func consecutive_jump_cancel() -> void: 
 	jumped = false
 	timers.consecutiveJump.stop()
-	abilities.reset(PlayerAbilities.list.JumpConsec)
+	abilities.reset(PlayerAbilities.listChain.JumpConsec)
 
 
 func landed() -> void:
@@ -131,7 +131,7 @@ func landed() -> void:
 #	characterRig.scale.y = remap(abs(velocity.y), 0, abs(1700), 0.8, 0.5)
 #	if moveDirection.x != 0: #TODO: animation to rotate on landing
 #		characterRotate.rotate(360)
-	abilities.reset(PlayerAbilities.list.All)
+	abilities.reset(PlayerAbilities.listUse.All)
 	sounds.land.play()
 	set_collision_mask_value(CollisionLayers.Semisolid, true)
 #	if get_last_slide_collision() != null:

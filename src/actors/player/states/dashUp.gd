@@ -14,7 +14,7 @@ extends PlayerInfo
 
 
 func enter() -> void:
-	abilities.consume(PlayerAbilities.list.Dash, 1)
+	abilities.consume(PlayerAbilities.listUse.Dash, 1)
 	soundJetpack.play()
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
@@ -86,19 +86,19 @@ func state_check(delta: float) -> int:
 	if dashBufferState != State.Null:
 		if dashBufferState == State.DashAir:
 			if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashSide):
-				abilities.consume(PlayerAbilities.list.DashChain, 1)
+				abilities.consume(PlayerAbilities.listChain.DashChain, 1)
 				return State.DashAir
 			elif abilities.can_use(PlayerAbilities.list.DashSide):
 				return State.DashAir
 		elif dashBufferState == State.DashUp:
 			if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashUp):
-				abilities.consume(PlayerAbilities.list.DashChain, 1)
+				abilities.consume(PlayerAbilities.listChain.DashChain, 1)
 				return State.DashUp
 			elif abilities.can_use(PlayerAbilities.list.DashUp):
 				return State.DashUp
 		elif dashBufferState == State.DashDown:
 			if timerChain.is_stopped() and abilities.chain_check(PlayerAbilities.list.DashDown):
-				abilities.consume(PlayerAbilities.list.DashChain, 1)
+				abilities.consume(PlayerAbilities.listChain.DashChain, 1)
 				return State.DashDown
 			elif abilities.can_use(PlayerAbilities.list.DashDown):
 				return State.DashDown

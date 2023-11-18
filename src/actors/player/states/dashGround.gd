@@ -24,7 +24,7 @@ var dashInput: int
 
 func enter() -> void:
 	dashInput = input.aimBackup.x if input.aimBackup != Vector2.ZERO else player.facing
-	abilities.consume(PlayerAbilities.list.Dash, 1)
+	abilities.consume(PlayerAbilities.listUse.Dash, 1)
 	soundJetpack.play()
 	EventBus.playerDashed.emit()
 	player.velocityPrevious = player.velocity
@@ -72,7 +72,7 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.playerActionAnnounce.emit("Coyote Jump")
 		isJumping = true
 		if dashJumpRefreshTimer.is_stopped(): ## dash jump with dash count reset
-			abilities.reset(PlayerAbilities.list.Dash)
+			abilities.reset(PlayerAbilities.listUse.Dash)
 #			player.dashCDTimer.stop() #TODO
 			EventBus.playerActionAnnounce.emit("Ultra Jump")
 			return consecutive_jump_logic()
@@ -98,7 +98,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if durationTimer.is_stopped():
 		if player.is_on_floor():
-			abilities.reset(PlayerAbilities.list.Dash)
+			abilities.reset(PlayerAbilities.listUse.Dash)
 			return State.Walk
 		else:
 			return State.Fall

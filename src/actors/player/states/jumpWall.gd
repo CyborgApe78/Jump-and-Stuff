@@ -30,7 +30,7 @@ func enter() -> void:
 		
 	## up pressed or towards from wall pressed
 	if (input.moveDirection.y == -1 or input.moveDirection.x == jumpDirection) and abilities.can_use(PlayerAbilities.list.JumpWallSame): 
-		abilities.consume(PlayerAbilities.list.JumpWallSame, 1)
+		abilities.consume(PlayerAbilities.listUse.JumpWallSame, 1)
 		player.characterRig.scale.x = wall.wallDirection #TODO: use facing func
 		player.velocity = Vector2(10 * -jumpDirection, stats.jumpVelocity * 1.0)
 	## down pressed

@@ -73,7 +73,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 	if timerDuration.is_stopped():
 		if player.is_on_floor():
-			abilities.reset(PlayerAbilities.list.Dash)
+			abilities.reset(PlayerAbilities.listUse.Dash)
 			return State.Roll
 		else:
 			return State.Fall
