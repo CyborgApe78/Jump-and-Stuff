@@ -1,8 +1,6 @@
 extends Resource
 class_name PlayerAbilities
 
-#LOOKAT: turning into node that can be called with class name
-
 
 var unlockedJumpAir: bool = false
 var unlockedJumpConsec: bool = false
@@ -71,7 +69,6 @@ var remainingWallJumpSame: int = 0:
 	set(v):
 		remainingWallJumpSame = clamp(v, 0, maxWallJumpSame)
 
-#TODO: make more list, consume, reset, breakable
 enum list {
 	Null,
 	All,

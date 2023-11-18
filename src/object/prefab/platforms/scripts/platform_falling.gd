@@ -3,6 +3,7 @@ extends AnimatableBody2D
 
 ## When enities lands on platform timer starts then platform falls when reaching zero
 #TODO: add a check for onscreen starting position to reset platforms
+#TODO: rename to timer and make option for disappear or fall
 
 signal spawned
 

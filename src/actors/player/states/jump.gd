@@ -1,6 +1,6 @@
 extends PlayerInfo
 
-#TODO: higher jump at faster speed
+#FIXME: breaks on up moving platforms
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -30,7 +30,6 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	
 	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
@@ -55,7 +54,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if input.justReleasedJump: #LOOKAT: cutting in half instead of instant
+	if input.justReleasedJump:
 		player.velocity.y = max(player.velocity.y, stats.jumpVelocity * stats.percentMinJumpVelocity)
 		if player.velocity.y > stats.jumpVelocity * stats.percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
 			consecutive_jump_cancel()
@@ -65,7 +64,7 @@ func handle_input(event: InputEvent) -> int:
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
 	if input.justPressedCrouch:
-		if wall.wallDirection != 0: #TODO: add to other states.
+		if wall.wallDirection != 0:
 			return State.WallGrab
 		elif abilities.can_use(PlayerAbilities.list.GroundPound): 
 			return State.GroundPound
@@ -88,7 +87,7 @@ func state_check(delta: float) -> int:
 		return State.BonkAir
 #		elif input.moveDirection.x == wall.wallDirection:
 #			return State.WallSlide
-	if player.velocity.y > -stats.jumpApexHeight: #FIXME: this is part of broken jumping on up moving platform
+	if player.velocity.y > -stats.jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():
 		player.landed()

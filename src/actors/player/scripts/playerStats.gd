@@ -1,5 +1,4 @@
 extends Resource
-#TODO:REMOVE 
 
 
 var healthMax: int = 2:

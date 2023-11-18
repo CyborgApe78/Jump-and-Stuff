@@ -14,8 +14,10 @@ var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.t
 var dashBufferState: int
 
 
-func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.2) -> void: #TODO: create and move to visual component
+func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.2) -> void:
+	#TODO: create and move to visual component
 	#TODO: use animeation tree instead
+	#TODO: needs a reset
 	if forwardLean:
 		player.characterSAS.skew = remap(player.facing * abs(player.velocity.x), 0, speed, 0.0, player.facing * leanAmount)
 	if !forwardLean:

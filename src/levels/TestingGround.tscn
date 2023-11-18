@@ -781,7 +781,6 @@ vertical_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("24_xrqhw")]
 position = Vector2(-617, -37)
-floor_snap_length = 9.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, 93)
