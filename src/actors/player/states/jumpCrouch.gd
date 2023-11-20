@@ -39,7 +39,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
+#	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	## self contained fall state
 	if player.velocity.y < -stats.jumpApexHeight and input.pressedJump:

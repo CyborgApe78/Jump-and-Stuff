@@ -39,9 +39,8 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	
 	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
+#	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide_rotation()
 	

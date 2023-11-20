@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#FIXME: breaks on up moving platforms
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -31,7 +30,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
+#	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta) #LOOKA: removed since it brakes moving platforms
 	
 	player.move_and_slide_rotation()
 	

@@ -28,7 +28,7 @@ func exit() -> void:
 
 func physics(delta) -> void:
 	player.attempt_horizontal_corner_correction(stats.jumpCornerCorrectionHorizontal, delta)
-	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
+#	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	velocity.gravity_logic(stats.gravityJump, delta)
 	velocity.air_velocity_logic(stats.moveSpeed * stats.crouchChargedSpeedModifier, stats.accelerationAir, stats.frictionAir, delta)

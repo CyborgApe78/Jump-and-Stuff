@@ -553,7 +553,6 @@ visible = false
 visible = false
 
 [node name="Debug" parent="." instance=ExtResource("4_ryybi")]
-visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8mhj0")
@@ -736,7 +735,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Moving" type="Node2D" parent="Platforms"]
-position = Vector2(-896, 0)
+position = Vector2(-1536, 1024)
 metadata/_edit_group_ = true
 
 [node name="Moving" parent="Platforms/Moving" instance=ExtResource("24_kttip")]
