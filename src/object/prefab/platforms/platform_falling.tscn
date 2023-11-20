@@ -51,8 +51,10 @@ one_shot = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_17o4n")]
+visible = false
 
 [node name="NeighborDetector" parent="." instance=ExtResource("4_ownem")]
+visible = false
 
 [connection signal="spawned" from="." to="ActorCounter" method="reset"]
 [connection signal="spawned" from="." to="NeighborDetector" method="reset"]

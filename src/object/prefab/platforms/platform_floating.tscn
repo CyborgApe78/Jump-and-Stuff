@@ -47,6 +47,7 @@ one_shot = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_hjyfx")]
+visible = false
 
 [connection signal="spawned" from="." to="ActorCounter" method="reset"]
 [connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]

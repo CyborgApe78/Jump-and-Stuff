@@ -47,6 +47,9 @@ one_shot = true
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_vprii")]
 
+[node name="CollisionShape2D" parent="ActorCounter" index="2"]
+visible = false
+
 [connection signal="spawned" from="." to="ActorCounter" method="reset"]
 [connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]
 [connection signal="timeout" from="Replenish" to="." method="_on_replenish_timeout"]
