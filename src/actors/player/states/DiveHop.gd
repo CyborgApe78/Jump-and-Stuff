@@ -81,7 +81,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.global_position.y > startingHeight: ## leave state when passing starting height
 		return State.Dive
-	if player.is_on_ceiling(): #TODO: change to bonk
+	if player.is_on_ceiling():
 		return State.Fall
 	if wall.wallDirection != 0:
 		if velocity.topSpeed > stats.moveSpeed:

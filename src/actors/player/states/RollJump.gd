@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#FIXME: rework this. too similiar to belly hop.
 
 @export_group("Connections")
 @export var timerDuration: Timer

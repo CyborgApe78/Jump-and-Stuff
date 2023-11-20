@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+#TODO: save that the door has been opened
 
 @export var labelAmount: Label
 @export var amount: int = 1
@@ -13,4 +14,4 @@ func _ready() -> void:
 
 func _on_body_entered(body: Player) -> void:
 	if inventory.can_use_keys(amount):
-		queue_free() #TODO: make interactable and save that the door has been opened
+		queue_free() 

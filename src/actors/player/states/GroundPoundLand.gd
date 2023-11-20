@@ -43,8 +43,6 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpGroundPound):
 		return State.JumpGroundPound
-#	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashGroundPound): #TODO: change to charge
-#		return State.DashGroundPound
 #	if (input.pressedLeft or input.pressedRight) and abilities.can_use(PlayerAbilities.list.GroundPoundKick): #TODO: add state
 #		return State.GroundPoundKick
 	

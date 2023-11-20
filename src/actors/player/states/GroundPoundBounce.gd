@@ -6,15 +6,14 @@ extends PlayerInfo
 @export var soundeffect: AudioStreamPlayer
 
 @export_group("")
-@export var modifier: float = 1.25
+@export_range(0, 10, 0.01) var speedModifier: float = 3
 
 
 func enter() -> void:
 	EventBus.rumble.emit(0.2, 0.3, 0.2)
-	player.animPlayer.play("Roll") #TODO: own anim
+	player.animPlayer.play("Roll")
 	soundeffect.play()
-	#TODO: tweak values
-	player.velocity.y = -player.GPMaxVelocity.y / 3
+	player.velocity.y = -player.GPMaxVelocity.y / speedModifier
 
 
 func exit() -> void:
