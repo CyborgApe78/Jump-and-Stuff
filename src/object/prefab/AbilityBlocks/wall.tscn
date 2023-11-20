@@ -21,6 +21,7 @@ lockoutTimer = NodePath("Timer")
 position = Vector2(0, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_ahdsj")
 
 [node name="Label" type="Label" parent="."]

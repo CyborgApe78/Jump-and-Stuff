@@ -135,9 +135,8 @@ enum listAbilityBlock {
 	DashUp,
 	DashDown,
 	DashJump,
-	Slide,
-	Dive,
 	GrappleHook,
+	GroundPound,
 	SwimDash,
 	Burrow,
 }

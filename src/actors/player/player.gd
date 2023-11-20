@@ -152,6 +152,7 @@ func default_ability_mask() -> void:
 	ability_mask(CollisionLayers.DashSide, true)
 	ability_mask(CollisionLayers.DashUp, true)
 	ability_mask(CollisionLayers.DashDown, true)
+	ability_mask(CollisionLayers.GroundPound, true)
 
 
 func teleport_player(location: Vector2) -> void:

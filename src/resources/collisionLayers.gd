@@ -26,3 +26,4 @@ const Burrow: int = 19
 const SwimDash: int = 20
 const Pogo: int = 21
 const Spin: int = 22
+const GroundPound: int = 23

@@ -7132,6 +7132,7 @@ points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -8)
 default_color = Color(0.862745, 0.709804, 0.0980392, 1)
 
 [node name="EnviromentalDetector" type="Area2D" parent="."]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
@@ -7244,6 +7245,7 @@ stream = ExtResource("56_v8j0l")
 volume_db = -10.636
 
 [node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("input", "detector", "indicatorAim", "indicatorTarget")]
+visible = false
 position = Vector2(0, -64)
 script = ExtResource("57_n4b1h")
 input = NodePath("../InputComponent")

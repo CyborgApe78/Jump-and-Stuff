@@ -23,11 +23,13 @@ func enter() -> void:
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(player.characterRotate, "rotation_degrees", 0, transTime).from(0)
 		tween.tween_property(player.characterCollision, "rotation_degrees", 0, transTime).from(0)
+	player.ability_mask(CollisionLayers.GroundPound, false)
 
 
 func exit() -> void:
 	player.characterRotate.rotation_degrees = 0 
 	player.characterCollision.rotation_degrees = 0 
+	player.ability_mask(CollisionLayers.GroundPound, true)
 
 
 func physics(delta) -> void:

@@ -733,7 +733,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Moving" type="Node2D" parent="Platforms"]
-position = Vector2(-2304, 1024)
+position = Vector2(-896, 0)
 metadata/_edit_group_ = true
 
 [node name="Moving" parent="Platforms/Moving" instance=ExtResource("24_kttip")]

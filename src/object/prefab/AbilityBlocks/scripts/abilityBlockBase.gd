@@ -3,7 +3,7 @@ class_name AbilityBlockBase
 #TODO: add collision layers for abilities
 
 @onready var Abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
-@export var ability: PlayerAbilities.list #TODO: convert blocks to listAbilityBlock
+@export var ability: PlayerAbilities.listAbilityBlock #TODO: convert blocks to listAbilityBlock
 var blockColor: Color
 
 
