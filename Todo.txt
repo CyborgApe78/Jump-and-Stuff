@@ -269,6 +269,7 @@ enemies
 	Enemy like bombs or celeste monster. Two stage enemies that explosion that moves player or temp platform 
 
 Blocks to add
+	https://gamebanana.com/mods/cats/5081?
 	disappear after leaving
 	Environmental blocks that cause to use a ability they learn later
 		High jump plants before increase jump height, aimable barrels before bash
