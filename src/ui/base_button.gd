@@ -2,16 +2,11 @@ extends Button
 class_name ButtonBase
 
 #FIXME: the cursor doesn't start in the correct place on pause menu
-@export var firstButton: bool = false #TODO: remove
-
+@export var cursor: Cursor
 
 func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 	mouse_entered.connect(_on_mouse_entered)
-	if firstButton:
-		grab_focus()
-		await get_tree().process_frame
-		send_data()
 
 
 func _on_focus_entered() -> void:
@@ -23,4 +18,5 @@ func _on_mouse_entered() -> void:
 
 
 func send_data() -> void:
-	EventBus.cursorPosition.emit(global_position, position, size)
+	print(self.name)
+	cursor.on_focused(global_position, position, size)

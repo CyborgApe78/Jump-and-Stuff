@@ -15,7 +15,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("feedback")]
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("feedback", "cursor", "firstButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 248.0
@@ -24,18 +24,8 @@ offset_right = 248.0
 offset_bottom = 172.0
 script = ExtResource("1_7xjbr")
 feedback = NodePath("PauseMenu/HBoxContainer/Reporter")
-
-[node name="Cursor" parent="." instance=ExtResource("2_u7h00")]
-visible = false
-z_index = 1
-layout_direction = 1
-layout_mode = 2
-offset_left = 200.0
-offset_top = 84.0
-offset_right = 288.0
-offset_bottom = 112.0
-rotation = 0.0
-margin = 10
+cursor = NodePath("PauseMenu/HBoxContainer/MarginContainer/MarginContainer/Cursor")
+firstButton = NodePath("PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Resume")
 
 [node name="PauseMenu" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -70,10 +60,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
+[node name="Cursor" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer" instance=ExtResource("2_u7h00")]
+visible = false
+z_index = 1
+layout_direction = 1
+layout_mode = 2
+margin = 10
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Resume" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 unique_name_in_owner = true
 z_index = 2
 layout_mode = 2
@@ -83,9 +80,9 @@ focus_neighbor_top = NodePath("../Quit")
 theme = ExtResource("3_l2xlo")
 text = "Resume"
 script = ExtResource("4_6tfhb")
-firstButton = true
+cursor = NodePath("../../Cursor")
 
-[node name="Reset" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Reset" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -93,8 +90,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_l2xlo")
 text = "Reset"
 script = ExtResource("4_6tfhb")
+cursor = NodePath("../../Cursor")
 
-[node name="Controls" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Controls" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 unique_name_in_owner = true
 z_index = 2
 layout_mode = 2
@@ -103,8 +101,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_l2xlo")
 text = "Controls"
 script = ExtResource("4_6tfhb")
+cursor = NodePath("../../Cursor")
 
-[node name="Settings" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 unique_name_in_owner = true
 z_index = 2
 layout_mode = 2
@@ -113,8 +112,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_l2xlo")
 text = "Settings"
 script = ExtResource("4_6tfhb")
+cursor = NodePath("../../Cursor")
 
-[node name="Feedback" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Feedback" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 unique_name_in_owner = true
 z_index = 2
 layout_mode = 2
@@ -124,8 +124,9 @@ focus_neighbor_bottom = NodePath("../MainMenu")
 theme = ExtResource("3_l2xlo")
 text = "Feedback"
 script = ExtResource("4_6tfhb")
+cursor = NodePath("../../Cursor")
 
-[node name="MainMenu" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="MainMenu" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -133,8 +134,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_l2xlo")
 text = "Main Menu"
 script = ExtResource("2_nxhw5")
+cursor = NodePath("../../Cursor")
 
-[node name="Quit" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="PauseMenu/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -144,6 +146,7 @@ focus_neighbor_bottom = NodePath("../Resume")
 theme = ExtResource("3_l2xlo")
 text = "Quit"
 script = ExtResource("4_q2n8j")
+cursor = NodePath("../../Cursor")
 
 [node name="Reporter" parent="PauseMenu/HBoxContainer" instance=ExtResource("3_wwlrs")]
 layout_mode = 2

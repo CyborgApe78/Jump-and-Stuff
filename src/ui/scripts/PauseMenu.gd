@@ -2,6 +2,8 @@ extends BaseMenu
 
 
 @export var feedback: Control
+@export var cursor: Panel
+@export var firstButton: ButtonBase
 
 @onready var resumeButton: Button = $"%Resume"
 
@@ -12,12 +14,13 @@ func enter() -> void:
 	feedback.visible = false
 	set_paused(true)
 	self.visible = true
-	resumeButton.grab_focus()
+	firstButton.grab_focus()
 	await get_tree().process_frame
-	resumeButton.send_data()
+	firstButton.send_data()
 
 
 func exit() -> void:
+	cursor.visible = false
 	self.visible = false
 
 

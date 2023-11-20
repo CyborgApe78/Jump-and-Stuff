@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var mainMenu: MainMenuBase
 @export var worldSelect: MainMenuBase
 @export var settings: MainMenuBase
+@export var cursor: Cursor
 
 
 func _ready() -> void:
@@ -17,6 +18,7 @@ func menu_hid() -> void:
 	mainMenu.visible = false
 	worldSelect.visible = false
 	settings.visible = false
+	cursor.visible = false
 
 
 func _on_world_select_pressed() -> void:

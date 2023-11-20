@@ -10,3 +10,4 @@ func on_visible_focus() -> void:
 		firstButton.grab_focus()
 		await get_tree().process_frame
 		firstButton.send_data()
+	

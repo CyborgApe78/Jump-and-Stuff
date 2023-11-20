@@ -50,11 +50,6 @@ videoButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginCont
 audioButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio")
 controlsButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls")
 
-[node name="Cursor" parent="." instance=ExtResource("2_tcr7x")]
-z_index = 1
-layout_mode = 2
-margin = 10
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -98,11 +93,16 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
+[node name="Cursor" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer" instance=ExtResource("2_tcr7x")]
+z_index = 1
+layout_mode = 2
+margin = 10
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Gameplay" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Gameplay" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -110,8 +110,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "Gameplay"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../Cursor")
 
-[node name="HUD" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="HUD" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -119,8 +120,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "HUD"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../Cursor")
 
-[node name="Video" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Video" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -128,8 +130,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "Video"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../Cursor")
 
-[node name="Audio" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Audio" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -137,8 +140,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "Audio"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../Cursor")
 
-[node name="Controls" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Controls" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -146,6 +150,7 @@ size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "Controls"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../Cursor")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/Buttons/Buttons"]
 layout_mode = 2
@@ -169,7 +174,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 alignment = 1
 
-[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -177,8 +182,9 @@ size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "Back"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../MarginContainer/MarginContainer/Cursor")
 
-[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -186,6 +192,7 @@ size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "Quit"
 script = ExtResource("2_4npie")
+cursor = NodePath("../../../../MarginContainer/MarginContainer/Cursor")
 
 [node name="Options" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -221,17 +228,19 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay"]
 layout_mode = 2
 
-[node name="Aim" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer"]
+[node name="Aim" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 text = "Show Aim Indicator"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
-[node name="Rumble" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer"]
+[node name="Rumble" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 text = "Rumble"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
 [node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("hideHUD", "timerCheck", "buttonController")]
 visible = false
@@ -249,23 +258,26 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD"]
 layout_mode = 2
 
-[node name="HideHUD" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+[node name="HideHUD" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 text = "Hide HUD"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
-[node name="Timer" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+[node name="Timer" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 text = "Show Ingame Timer"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
-[node name="Controller" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer"]
+[node name="Controller" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/HUD/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 text = "Show Controller Overlay"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
 [node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonVsync", "buttonFullscreen")]
 layout_mode = 2
@@ -281,19 +293,21 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video"]
 layout_mode = 2
 
-[node name="VSync" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
+[node name="VSync" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 button_pressed = true
 text = "Enable VSync"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
-[node name="Fullscreen" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
+[node name="Fullscreen" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 button_pressed = true
 text = "Fullscreen"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
 [node name="Borderless" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Video/VBoxContainer"]
 visible = false
@@ -321,11 +335,12 @@ layout_mode = 2
 text = "Controls"
 horizontal_alignment = 1
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Controls"]
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Controls" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 text = "Spoilers"
 script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" to="." method="show_gameplay"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" to="." method="show_hud"]
