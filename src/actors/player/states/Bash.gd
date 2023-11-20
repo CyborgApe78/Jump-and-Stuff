@@ -14,6 +14,7 @@ var aimInput: Vector2 #TODO: break aim indicator out so it can be used for other
 
 
 func enter() -> void:
+	EventBus.playerBashed.emit()
 	timers()
 	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.moveStrength
 	player.velocity = aimInput * (stats.dashSpeed)

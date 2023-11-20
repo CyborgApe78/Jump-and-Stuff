@@ -14,9 +14,8 @@ signal playerDashed
 signal playerJumped
 signal playerBashed
 signal playerRolled
-#TODO: add other states
 signal playerLanded
-signal playerAirborne #TODO: add to states
+signal playerAirborne
 
 signal playerDied
 
@@ -25,7 +24,7 @@ signal showKeys
 
 signal announce(info)
 
-signal timeFreeze(bool) #TODO: add to aim indicator
+signal timeFreeze(bool)
 
 signal checkpointEntered
 

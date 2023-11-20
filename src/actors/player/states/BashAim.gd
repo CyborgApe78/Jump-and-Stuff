@@ -15,11 +15,13 @@ func enter() -> void:
 	hitbox.monitorable = false ## make player invincible
 	player.global_position = player.targetBash.global_position
 	EventBus.playerBashed.emit()
+	EventBus.timeFreeze.emit(true)
 	player.velocity = Vector2.ZERO
 	timers()
 
 
 func exit() -> void:
+	EventBus.timeFreeze.emit(false)
 	timerInvincibility.wait_time = timeInvincible
 	timerInvincibility.start()
 	hitbox.monitorable = true
