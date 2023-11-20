@@ -6,6 +6,8 @@ var SettingsFile: Resource = preload("res://src/resources/SettingsConfig.tres")
 
 func _ready() -> void:
 	EventBus.settingsUpdate.connect(hide_hud)
+	if not visible:
+		visible = true
 
 
 func _input(event: InputEvent) -> void:

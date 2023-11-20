@@ -547,10 +547,13 @@ b = Vector2(-7328, 0)
 script = ExtResource("1_i5twd")
 
 [node name="Menu" parent="." instance=ExtResource("2_v4ta7")]
+visible = false
 
 [node name="HUD" parent="." instance=ExtResource("3_4lfnv")]
+visible = false
 
 [node name="Debug" parent="." instance=ExtResource("4_ryybi")]
+visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8mhj0")
