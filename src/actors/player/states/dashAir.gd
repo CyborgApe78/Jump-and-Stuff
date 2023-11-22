@@ -1,7 +1,7 @@
 extends PlayerInfo
 
 #TODO: upgrade for ori like burrow
-#TODO: chane this all back to one dash for all directions
+#TODO: combine to 1 breaking color
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
