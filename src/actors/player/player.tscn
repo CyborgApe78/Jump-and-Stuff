@@ -7282,8 +7282,8 @@ points = PackedVector2Array(8, 0, 24, 0)
 [node name="PlatformChecker" parent="." instance=ExtResource("73_hobbw")]
 visible = false
 
+[connection signal="enterRail" from="." to="StateMachine" method="player_rail"]
 [connection signal="enterWater" from="." to="StateMachine" method="player_swim"]
-[connection signal="enterZipline" from="." to="StateMachine" method="player_zipline"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
 [connection signal="died" from="HealthComponent" to="StateMachine" method="player_died"]
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]

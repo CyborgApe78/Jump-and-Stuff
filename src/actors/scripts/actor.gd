@@ -2,17 +2,18 @@ extends CharacterBody2D
 class_name Actor
 
 signal enterWater
-signal enterZipline
+signal enterRail
 
 var inWind: bool = false #TODO: make components
 var inWater: bool = false:
 	set(value):
 		inWater = value
 		enterWater.emit()
-var inZipline: bool = false:
+var inRail: bool = false:
 	set(v):
-		inZipline = v
+		inRail = v
 		if v == true:
-			enterZipline.emit()
+			enterRail.emit()
 var windVelocity: Vector2 = Vector2.ZERO
+var grindRail: Path2D
 

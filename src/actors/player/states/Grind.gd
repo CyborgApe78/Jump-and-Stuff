@@ -1,5 +1,12 @@
 extends PlayerInfo
 
+#LOOKAT: get the rail node and move progress on follow, look at modern sonic to get velocity equation
+## add match states for above, below, crouch, roll and dash
+
+enum state {above, below, crouch, dash}
+
+var currentState: int
+
 
 func enter() -> void:
 	player.velocity = Vector2.ZERO
@@ -10,7 +17,15 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	pass
+	match currentState:
+		state.above:
+			pass
+		state.below:
+			pass
+		state.crouch:
+			pass
+		state.dash:
+			pass
 
 
 func visual(delta) -> void:
@@ -22,7 +37,16 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	if input.justPressedJump:
+		return State.Jump
 	
+	if input.justPressedDown:
+		player.global_position.y = player.global_position.y + 128 ## will be capped with match state
+	
+#	if input.pressedCrouch: ## find a better way to play anims
+#		player.animPlayer.play("Crouch")
+#	else:
+#		player.animPlayer.play("Idle")
 
 	return State.Null
 
