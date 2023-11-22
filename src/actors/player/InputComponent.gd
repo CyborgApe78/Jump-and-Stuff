@@ -148,7 +148,7 @@ func get_ability_input() -> void:
 		pressedJump = false
 
 
-func get_ability_just_pressed_input() -> void:
+func get_ability_just_pressed_input() -> void: #LOOKAT: remove func and just call just pressed on states
 	if Input.is_action_just_pressed("move_up"):
 		justPressedUp = true
 		await get_tree().process_frame

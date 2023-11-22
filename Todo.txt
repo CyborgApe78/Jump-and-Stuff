@@ -1,5 +1,7 @@
 #TODO
 
+Wall run
+
 #Animation
 	Stick foot out to stop
 
@@ -48,7 +50,6 @@ Holding dash into to redirect shinespark
 Look into dictionary for things like consecutive jump
 Use wall detector to check for wall jumps instead of double jump
 Use grapple to activate platforms, like cappy
-Run up walls a short distance
 Ledge grab, slide off Ledge with grab pressed to grab before falling off
 Parts of collectible. Celeste strawberry pieces
 Collectables follow like strawberries
