@@ -1,5 +1,7 @@
 extends PlayerInfo
 
+#LOOKAT: corner boosting
+#LOOKAT: 
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer

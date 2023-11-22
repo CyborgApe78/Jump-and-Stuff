@@ -2,7 +2,7 @@ extends PlayerInfo
 
 #FIXME: coyote wall jump flips sprite away from wall, but returns to face wall without input. adjust facing to match on exit
 #TODO: make other wall jumps not go back to wall and gain height
-#TODO: Have max same wall jumps, like marionbadge
+#TODO: make same wall jump refresh if different wall, or look into making wall climb from wall slide
 
 @export_group("Connections")
 @export var timerCoyoteJumpWall: Timer

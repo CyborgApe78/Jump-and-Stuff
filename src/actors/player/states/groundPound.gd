@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #TODO: add states converting down dash to side
 #TODO: drill upgrade from spin
+#TODO: jump when flipping to get boosted jump
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
