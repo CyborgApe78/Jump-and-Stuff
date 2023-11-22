@@ -60,12 +60,15 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Debug" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Debug2" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Debug3" type="Label" parent="Info/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="FPS" type="MarginContainer" parent="." node_paths=PackedStringArray("fpsLabel")]

@@ -24,8 +24,10 @@ func _ready():
 	EventBus.debug2.connect(set_debug_2_label)
 	EventBus.debug3.connect(set_debug_3_label)
 
+
 func show_debug(BOOL) -> void:
 	visible = BOOL
+
 
 func set_state_label(info) -> void:
 	stateLabel.text = "State: " + str(info)
@@ -33,24 +35,33 @@ func set_state_label(info) -> void:
 
 func set_velocity_label(info) -> void:
 	velocityLabel.text = "Velocity: " + str(info)
-	
+
+
 func set_move_direction_label(info) -> void:
 	moveDirectionLabel.text = "Move Direction: " + str(info)
 
+
 func set_is_grounded_label(info) -> void:
 	isGroundedLabel.text = "Is Grounded: " + str(info)
+
 
 func set_ground_angle_label(info) -> void:
 	groundAngleLabel.text = "Ground Angle: " + str(info)
 
 
 func set_debug_label(info) -> void:
+	if not visible:
+		visible = true
 	debugLabel.text = str(info)
 
 
 func set_debug_2_label(info) -> void:
+	if not visible:
+		visible = true
 	debug2Label.text = str(info)
 
 
 func set_debug_3_label(info) -> void:
+	if not visible:
+		visible = true
 	debug3Label.text = str(info)
