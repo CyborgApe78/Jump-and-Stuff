@@ -49,6 +49,7 @@ enum State {
 	RollDash,
 	Swim,
 	SwimDash,
+	Grind,
 	BonkAir,
 	BonkGround,
 	

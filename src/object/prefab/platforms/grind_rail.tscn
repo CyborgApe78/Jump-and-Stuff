@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7ppaujx2tal6"]
+
+[ext_resource type="Script" path="res://src/object/prefab/platforms/scripts/grind_rail.gd" id="1_p0ap4"]
+[ext_resource type="Texture2D" uid="uid://cyhwyt38u71g2" path="res://asset/objects/rail.png" id="2_iokx2"]
+
+[node name="GrindRail" type="Path2D" node_paths=PackedStringArray("rail", "detector", "colision", "remote")]
+script = ExtResource("1_p0ap4")
+rail = NodePath("Line2D")
+detector = NodePath("Area2D")
+colision = NodePath("Area2D/CollisionPolygon2D")
+remote = NodePath("PathFollow2D/RemoteTransform2D")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 20.0
+default_color = Color(1, 0.898039, 0.439216, 1)
+texture = ExtResource("2_iokx2")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+build_mode = 1
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+
+[connection signal="body_entered" from="Area2D" to="." method="body_entered"]

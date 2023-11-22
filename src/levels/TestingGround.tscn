@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=38 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="16_bo2pu"]
 [ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="17_v1pvv"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="18_87hk3"]
+[ext_resource type="PackedScene" uid="uid://c7ppaujx2tal6" path="res://src/object/prefab/platforms/grind_rail.tscn" id="18_qvigo"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="19_owdc2"]
 [ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="20_5tqcw"]
 [ext_resource type="PackedScene" uid="uid://cmrb6s6eigorv" path="res://src/object/prefab/doors/DoorLocked.tscn" id="21_vnydo"]
@@ -543,6 +544,12 @@ size = Vector2(384, 66)
 a = Vector2(10509, 0)
 b = Vector2(-7328, 0)
 
+[sub_resource type="Curve2D" id="Curve2D_ceny4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 208, -48, 0, 0, 0, 0, 552, -184, 0, 0, 0, 0, 872, -16)
+}
+point_count = 3
+
 [node name="Testing" type="Node"]
 script = ExtResource("1_i5twd")
 
@@ -627,6 +634,10 @@ kill = true
 shape = SubResource("SegmentShape2D_legq7")
 script = ExtResource("15_ly23x")
 color = Color(1, 0, 0, 1)
+
+[node name="GrindRail" parent="." instance=ExtResource("18_qvigo")]
+position = Vector2(512, -64)
+curve = SubResource("Curve2D_ceny4")
 
 [node name="Waypoints" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

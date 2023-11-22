@@ -47,6 +47,7 @@ extends Node
 	PlayerState.State.RollJump: $RollJump,
 	PlayerState.State.RollDash: $RollDash,
 	PlayerState.State.Swim: $Swim,
+	PlayerState.State.Grind: $Grind,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	
@@ -133,3 +134,6 @@ func player_died() -> void:
 func player_swim() -> void:
 	#TODO: not all states should change
 	change_state(PlayerState.State.Swim)
+
+func player_zipline() -> void:
+	change_state(PlayerState.State.Grind)

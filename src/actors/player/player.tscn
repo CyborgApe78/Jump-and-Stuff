@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=134 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -67,6 +67,7 @@
 [ext_resource type="AudioStream" uid="uid://ybbddxc5fpl6" path="res://asset/sounds/player/Splat.wav" id="54_wyd8d"]
 [ext_resource type="AudioStream" uid="uid://d0e5lbpc44t8q" path="res://asset/sounds/player/bodySlide.wav" id="55_8qryh"]
 [ext_resource type="Script" path="res://src/actors/player/VelocityComponent.gd" id="55_iviae"]
+[ext_resource type="Script" path="res://src/actors/player/states/Grind.gd" id="56_lb7gn"]
 [ext_resource type="Script" path="res://src/actors/player/InputComponent.gd" id="56_q3cbc"]
 [ext_resource type="PackedScene" uid="uid://c5m37qa00e2eq" path="res://src/object/components/ground_detector.tscn" id="56_u1jx6"]
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="56_v8j0l"]
@@ -7033,6 +7034,9 @@ script = ExtResource("45_d52h1")
 [node name="Bounce" type="Node" parent="StateMachine"]
 script = ExtResource("53_711h5")
 
+[node name="Grind" type="Node" parent="StateMachine"]
+script = ExtResource("56_lb7gn")
+
 [node name="BonkAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundBonk")]
 script = ExtResource("45_puitl")
 soundBonk = NodePath("../../Sounds/bonk")
@@ -7279,6 +7283,7 @@ points = PackedVector2Array(8, 0, 24, 0)
 visible = false
 
 [connection signal="enterWater" from="." to="StateMachine" method="player_swim"]
+[connection signal="enterZipline" from="." to="StateMachine" method="player_zipline"]
 [connection signal="timeout" from="StateMachine/DashGround/DashJumpRefresh" to="StateMachine/DashGround" method="_on_dash_jump_refresh_timeout"]
 [connection signal="died" from="HealthComponent" to="StateMachine" method="player_died"]
 [connection signal="healthChanged" from="HealthComponent" to="." method="_on_health_component_health_changed"]
