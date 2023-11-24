@@ -68,8 +68,6 @@ func reset() -> void:
 
 
 func landed() -> void:
-	
-	print(currentDirection)
 	if currentDirection != 0:
 		if currentDirection == 4:
 			currentDirection = 1
