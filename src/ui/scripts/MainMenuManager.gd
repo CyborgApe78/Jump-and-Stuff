@@ -14,6 +14,12 @@ func _ready() -> void:
 	startingMenu.on_visible_focus()
 
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_back"):
+		if worldSelect.visible or settings.visible:
+			_on_main_menu_pressed()
+
+
 func menu_hid() -> void:
 	mainMenu.visible = false
 	worldSelect.visible = false
