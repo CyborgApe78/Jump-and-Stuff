@@ -2,9 +2,7 @@ extends AnimatableBody2D
 
 
 ## When enities lands on platform it moves in the direction of the arrow
-#TODO: make a variant that changes direction after landing
-#lookat: should this be using move and collide?
-#FIXME: player can;t jump off up moving platform, look at moving platform on player
+
 
 signal spawned
 
@@ -34,7 +32,6 @@ func _ready() -> void:
 	turn_arrow(startingDirection)
 	timerReset.wait_time = timeReset
 	currentState = state.idle
-#	currentDirection = startingDirection
 	
 	if startingDirection == direction.Null:
 		EventBus.error.emit(str("moving direction null: " + str(name) + " at " + str(global_position)))
