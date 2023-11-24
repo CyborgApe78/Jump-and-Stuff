@@ -3,6 +3,7 @@ extends AnimatableBody2D
 
 ## When enities lands on platform it falls, once clear return to original position
 #TODO: add cardinal directions
+#TODO: if groundpound go faster
 
 signal spawned
 
@@ -74,4 +75,4 @@ func set_time_label(info: float) -> void:
 
 
 func _on_reset_timeout() -> void:
-	pass
+	reset()
