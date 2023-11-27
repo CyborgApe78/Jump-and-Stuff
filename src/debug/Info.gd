@@ -50,7 +50,7 @@ func set_ground_angle_label(info) -> void:
 
 
 func set_debug_label(info) -> void:
-	if not visible:
+	if visible == false: #FIXME: does not work
 		visible = true
 	debugLabel.text = str(info)
 
