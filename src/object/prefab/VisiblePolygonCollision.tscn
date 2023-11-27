@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://danawbp0ig6eo"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawPolygon2D.gd" id="1_21bnx"]
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_21bnx")
