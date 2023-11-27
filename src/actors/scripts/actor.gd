@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Actor
 
+
 signal enterWater
 signal enterRail
 

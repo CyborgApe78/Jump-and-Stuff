@@ -19,6 +19,7 @@ class_name Player
 @export var input: InputComponent
 @export var stats: StatsComponent
 
+
 @export_group("")
 
 var velocityPrevious: Vector2 = Vector2.ZERO
