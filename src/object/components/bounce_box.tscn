@@ -1,7 +1,40 @@
-[gd_scene format=3 uid="uid://b4dxfl6nt1exf"]
+[gd_scene load_steps=3 format=3 uid="uid://b4dxfl6nt1exf"]
 
-[node name="BounceBox" type="Area2D"]
-collision_layer = 0
-collision_mask = 256
+[ext_resource type="Script" path="res://src/object/prefab/scripts/bounce_box.gd" id="1_0qvg5"]
+[ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_60usg"]
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="BounceBox" type="Area2D" node_paths=PackedStringArray("indicator")]
+collision_layer = 8
+collision_mask = 192
+script = ExtResource("1_0qvg5")
+indicator = NodePath("Indicator")
+
+[node name="Outline" parent="." instance=ExtResource("2_60usg")]
+metadata/_edit_lock_ = true
+
+[node name="Indicator" type="Node2D" parent="."]
+position = Vector2(0, -32)
+metadata/_edit_group_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="Indicator"]
+offset_left = -12.0
+offset_top = 8.0
+offset_right = 12.0
+offset_bottom = 16.0
+
+[node name="ColorRect9" type="ColorRect" parent="Indicator"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -12.0
+
+[node name="Line2D" type="Line2D" parent="Indicator"]
+points = PackedVector2Array(-8, -12, 8, -8, -8, -4, 8, 0, -8, 4, 8, 8)
+width = 2.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

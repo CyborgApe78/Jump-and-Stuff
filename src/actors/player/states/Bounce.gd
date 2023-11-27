@@ -1,8 +1,9 @@
 extends PlayerInfo
 
+#TODO: let go of jump to cancel
 
 func enter() -> void:
-	pass
+	player.velocity = velocity.bounceVelocity
 
 
 func exit() -> void:
@@ -10,11 +11,14 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	pass
+	player.move_and_slide()
+	
+	velocity.gravity_logic(stats.gravityFall, delta)
 
 
 func visual(delta) -> void:
-	pass
+	if input.aimBackup.x != 0:
+		player.facing_logic(input.aimBackup.x)
 
 
 func sound(delta: float) -> void:

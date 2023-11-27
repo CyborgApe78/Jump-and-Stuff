@@ -29,6 +29,8 @@ var jumped: bool
 var ledgeLeft: bool #TODO: own component
 var ledgeRight: bool
 
+var bounceVelocity: Vector2
+
 var topSpeed: int ## keeps track of player speed for bonking
 
 
