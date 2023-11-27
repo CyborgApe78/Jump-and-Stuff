@@ -33,6 +33,7 @@ func _ready() -> void:
 	timerFall.wait_time = timeFall
 	currentState = state.idle
 	set_time_label(timerFall.wait_time)
+	#TODO: only show labels when debug is on
 
 
 func _physics_process(delta: float) -> void:

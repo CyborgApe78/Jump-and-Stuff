@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cpiawly1ei4yy" path="res://src/object/components/actor_counter.tscn" id="3_hjyfx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgtpk"]
-size = Vector2(128, 64)
+size = Vector2(128, 32)
 
 [node name="Floating" type="AnimatableBody2D" node_paths=PackedStringArray("labelTime", "timerReset", "collision", "areaCounter")]
 collision_layer = 4
@@ -18,7 +18,7 @@ collision = NodePath("VisibleCollisionShape2D")
 areaCounter = NodePath("ActorCounter")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_fgtpk")
 one_way_collision = true
 script = ExtResource("2_n0srr")
@@ -45,6 +45,7 @@ vertical_alignment = 1
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -48)
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_hjyfx")]
 visible = false

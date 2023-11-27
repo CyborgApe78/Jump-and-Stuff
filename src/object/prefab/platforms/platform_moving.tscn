@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cpiawly1ei4yy" path="res://src/object/components/actor_counter.tscn" id="3_aqcou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgtpk"]
-size = Vector2(128, 64)
+size = Vector2(128, 32)
 
 [node name="Moving" type="AnimatableBody2D" node_paths=PackedStringArray("arrow", "timerReset", "collision", "areaCounter")]
 collision_layer = 4
@@ -18,7 +18,7 @@ collision = NodePath("VisibleCollisionShape2D")
 areaCounter = NodePath("ActorCounter")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_fgtpk")
 one_way_collision = true
 script = ExtResource("2_p11bs")
@@ -37,20 +37,23 @@ vertical_alignment = 1
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -48)
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_aqcou")]
 visible = false
 
 [node name="Arrow" type="Node2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -48)
 
 [node name="Line2D" type="Line2D" parent="Arrow"]
 position = Vector2(0, 32)
-points = PackedVector2Array(0, -16, 0, -48)
+points = PackedVector2Array(0, -24, 0, -40)
+width = 4.0
 
 [node name="Line2D2" type="Line2D" parent="Arrow"]
 position = Vector2(0, 32)
-points = PackedVector2Array(-16, -32, 0, -48, 16, -32)
+points = PackedVector2Array(-8, -32, 0, -40, 8, -32)
+width = 4.0
 
 [connection signal="spawned" from="." to="ActorCounter" method="reset"]
 [connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]
