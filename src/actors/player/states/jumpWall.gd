@@ -28,19 +28,19 @@ func enter() -> void:
 	## up pressed or towards from wall pressed
 	if (input.moveDirection.y == -1 or input.moveDirection.x == jumpDirection) and abilities.can_use(PlayerAbilities.list.JumpWallSame): 
 		abilities.consume(PlayerAbilities.listUse.JumpWallSame, 1)
-		player.characterRig.scale.x = wall.wallDirection #TODO: use facing func
+		player.facing_logic(wall.wallDirection)
 		player.velocity = Vector2(10 * -jumpDirection, stats.jumpVelocity * 1.0)
 	## down pressed
 	elif input.moveDirection.y == 1:
-		player.characterRig.scale.x = wall.wallDirection
+		player.facing_logic(wall.wallDirection)
 		player.velocity = Vector2(300 * -jumpDirection, 100)
 	## no directional input
 	elif input.moveDirection.x == 0:
-		player.characterRig.scale.x = -wall.wallDirection
+		player.facing_logic(-wall.wallDirection)
 		player.velocity = Vector2(max(stats.moveSpeed / 1.5 , abs(player.velocityPrevious.x)) * -jumpDirection, stats.jumpVelocity * 0.9)
 	## away from wall pressed
 	else:
-		player.characterRig.scale.x = -wall.wallDirection
+		player.facing_logic(-wall.wallDirection)
 		player.velocity = Vector2(stats.moveSpeed * -jumpDirection, stats.jumpVelocity * 0.7)
 	
 	particles.restart()
