@@ -1,8 +1,6 @@
 extends AnimatableBody2D
 
-
 ## When enities lands on platform it moves in the direction of the arrow
-#FIXME: player can't jump off up moving platform, 
 
 signal spawned
 

@@ -17,7 +17,6 @@ func _ready() -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	#TODO: add vsync
 	labelTitle.text = GameInformation.gameName
 	labelVersion.text = GameInformation.version
 	labelGodot.text = "Godot %s" % Engine.get_version_info().string

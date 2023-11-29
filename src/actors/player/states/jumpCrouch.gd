@@ -63,11 +63,6 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-#	if input.pressedDown: #LOOKAT: are these needed
-#		player.set_collision_mask_value(CollisionLayers.Semisolid, false)
-#		timerSemisolidReset.stop()
-#	if input.justPressedDown:
-#		timerSemisolidReset.start()
 	if input.justReleasedJump and player.velocity.y < -stats.jumpApexHeight:
 		player.velocity.y = max(player.velocity.y, stats.jumpCrouchVelocity * stats.percentMinJumpVelocity)
 	if !detector.is_colliding():
@@ -83,7 +78,7 @@ func handle_input(event: InputEvent) -> int:
 			return State.GrappleHook
 		if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 			return State.BashAim
-		if player.velocity.y > 0: #TODO: create is_falling(): checks if positive y velocity v
+		if player.velocity.y > 0:
 			if input.justPressedJump:
 				if abilities.can_use(PlayerAbilities.list.JumpAir) and !(ground.detectorGroundLeft.is_colliding() or ground.detectorGroundRight.is_colliding()):
 					return State.JumpAir

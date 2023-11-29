@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: Upgrade to turn into speed boost
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -30,7 +29,7 @@ func enter() -> void:
 	player.velocityPrevious = player.velocity
 	saveTriple = true if abilities.currentJumpConsec > 1 else false
 	timers()
-	player.animPlayer.queue("Dash Side") #TODO: own animation if walking, use the animation tree
+	player.animPlayer.queue("Dash Side")
 	particles.local_coords = true
 	particles.emitting = true
 	player.velocity.y = 0
@@ -73,7 +72,6 @@ func handle_input(event: InputEvent) -> int:
 		isJumping = true
 		if dashJumpRefreshTimer.is_stopped(): ## dash jump with dash count reset
 			abilities.reset(PlayerAbilities.listUse.Dash)
-#			player.dashCDTimer.stop() #TODO
 			EventBus.playerActionAnnounce.emit("Ultra Jump")
 			return consecutive_jump_logic()
 		else: ## dash jump 
@@ -102,8 +100,6 @@ func state_check(delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Fall
-#	if !player.is_on_floor(): #FIXME: won't work, will keep restarting timer. make a bool
-#		timerCoyoteJump.stop()
 
 	return State.Null
 
@@ -119,4 +115,3 @@ func timers() -> void:
 
 func _on_dash_jump_refresh_timeout() -> void:
 	pass
-	#TODO: indicator for Ultra Jump

@@ -20,13 +20,12 @@ func lock_out() -> void:
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 	modulate = Color.DARK_GRAY
-	#TODO: timer
 	set_deferred("monitoring", true)
 	set_deferred("monitorable", true)
 	modulate = currentColor
 
 
-func _on_Interactable_entered(body: Player) -> void: #TODO: change to area
+func _on_Interactable_entered(body: Player) -> void:
 	if oneUse:
 		queue_free()
 	elif lockOut:

@@ -31,8 +31,6 @@ func enter() -> void:
 func exit() -> void:
 	player.animPlayer.stop()
 	particles.emitting = false
-#	if abs(player.velocityPrevious.x) < abs(player.velocity.x):
-#		player.velocity.x = player.velocityPrevious.x
 
 
 func physics(delta) -> void:
@@ -42,11 +40,6 @@ func physics(delta) -> void:
 	if !player.is_on_floor():
 		velocity.gravity_logic(stats.gravityFall, delta)
 		velocity.fall_speed_logic(stats.terminalVelocity)
-	
-#	if abs(player.velocity.x) < slideVelocity: 
-#		player.velocity.x = move_toward(abs(player.velocity.x), slideVelocity, (moveSpeed * 6) * delta) * player.facing
-#	elif abs(player.velocity.x) >= slideVelocity:
-#		velocity.momentum_logic(slideVelocity, false)
 	
 	if rad_to_deg(ground.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
@@ -74,9 +67,9 @@ func handle_input(event: InputEvent) -> int:
 	if !detector.is_colliding():
 		if input.justPressedJump:
 			if player.is_on_floor() or !timerCoyoteJump.is_stopped():
-				return consecutive_jump_logic() #TODO: special jump state
-			if !player.is_on_floor() and wall.wallDirection != 0 and abilities.can_use(PlayerAbilities.list.JumpLong): #FIXME: this needs to check wall and velocity direction are correct
-				return State.JumpLong #TODO: own jump state
+				return consecutive_jump_logic()
+			if !player.is_on_floor() and wall.wallDirection != 0 and abilities.can_use(PlayerAbilities.list.JumpLong):
+				return State.JumpLong
 			else:
 				timerBufferJump.start()
 		if input.justPressedDash:
@@ -85,8 +78,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-#	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll): #LOOKAT: should you be able to go to slide
-#		return State.Roll
 
 	return State.Null
 
@@ -94,7 +85,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.is_on_wall():
 		return State.Idle
-	if durationTimer.is_stopped(): #TODO: upgrade that keeps sliding to
+	if durationTimer.is_stopped():
 		if player.is_on_floor():
 			if detector.is_colliding():
 				player.velocity.x = 0

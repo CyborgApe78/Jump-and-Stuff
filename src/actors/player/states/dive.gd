@@ -1,8 +1,5 @@
 extends PlayerInfo
 
-#todo: homing dive into bouncy things
-#FIXME: collision shape is wrong when going left
-#FIXME: breaks on semisolids
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -23,7 +20,7 @@ func enter() -> void:
 	
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(player.characterRotate, "rotation_degrees", 125, transformTime).from(0)
-	tween.tween_property(player.characterCollision, "rotation_degrees", 125 * player.facing, transformTime).from(0) #TODO: create function to rotate these and raycasts
+	tween.tween_property(player.characterCollision, "rotation_degrees", 125 * player.facing, transformTime).from(0)
 	
 	timers()
 
@@ -37,7 +34,7 @@ func physics(delta: float) -> void:
 	
 	player.move_and_slide()
 	
-	if input.moveDirection.x != 0 and input.moveDirection.x != player.facing: #TODO: add speed in moving that direction
+	if input.moveDirection.x != 0 and input.moveDirection.x != player.facing:
 			velocity.apply_friction(stats.moveSpeed * 2, delta)
 	
 	velocity.gravity_logic(stats.gravityFall, delta)
@@ -68,8 +65,6 @@ func handle_input(event: InputEvent) -> int:
 		timerBufferRoll.start()
 	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
-#	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
-#		return State.GroundPound ## Removed to make it easier to get to roll state
 	if input.justPressedDash:
 		dash_pressed_buffer()
 	if input.justPressedGrapple and abilities.can_use(PlayerAbilities.list.GrappleHook) and player.targetGrapple != null:
@@ -85,8 +80,7 @@ func state_check(delta: float) -> int:
 		velocity.topSpeed = 0
 		return State.BonkAir
 	if player.is_on_floor():
-		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
-#		player.landed()
+		EventBus.playerLanded.emit()
 		if !timerBufferRoll.is_stopped():
 			EventBus.rumble.emit(0.1, 0.2, 0.2)
 			return State.Roll

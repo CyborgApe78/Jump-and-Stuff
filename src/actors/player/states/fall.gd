@@ -31,7 +31,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	player.animPlayer.stop() #FIXME: kills land animation
+	player.animPlayer.stop()
 
 
 func physics(delta) -> void:
@@ -90,7 +90,6 @@ func handle_input(event: InputEvent) -> int:
 			EventBus.playerActionAnnounce.emit("Near Wall Jump")
 			return State.JumpWall
 		elif abilities.can_use(PlayerAbilities.list.JumpAir) and !(ground.detectorGroundLeft.is_colliding() or ground.detectorGroundRight.is_colliding()):
-			#FIXME: create function to call from ground check that can be used by other states
 			return State.JumpAir
 		else:
 			timerBufferJump.start()
@@ -143,9 +142,6 @@ func state_check(delta: float) -> int:
 				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Crouch
 			elif player.velocity.x != 0:
-	#			if input.neutralMoveDirection:
-	#				return State.NeutralGround #TODO: keep momentum if jumping
-	#			else:
 				EventBus.rumble.emit(0.1, 0.2, 0.2)
 				return State.Walk
 			else:

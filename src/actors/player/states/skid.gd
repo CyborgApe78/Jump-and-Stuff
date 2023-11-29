@@ -6,25 +6,23 @@ extends PlayerInfo
 @export var particles: GPUParticles2D
 
 @export_group("")
-@export var skidDuration: float = 1 #TODO: make speed relavent to skid
+@export var skidDuration: float = 1
 @export var transformTime: float = 0.2
 @export var skidLockDuration: float = 0.2 
 
 
 var frictionSkid: float = .8 * Util.tileSize
 var skidTime: float
-var skidLockTime: float #TODO: make timer
+var skidLockTime: float
 
 
 func enter() -> void:
 	soundeffect.play()
-	#TODO: anim
 	particles.restart()
 	skidTime = skidDuration
 	skidLockTime = skidLockDuration
-	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT) #TODO: make based on speed as well
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player.characterRig, "skew", player.facing * 0.3, transformTime).from_current()
-	#TODO: look at speed bend to make dynamic
 
 
 func exit() -> void:
@@ -38,7 +36,6 @@ func physics(delta) -> void:
 	skidLockTime -= delta
 	if skidLockTime < 0:
 		velocity.apply_friction(frictionSkid, delta)
-	#TODO: change min(player.velocity.x / skidFrictionModifier, maxSkidSpeed) to velocity to keep from scaling to large
 
 
 func visual(delta) -> void:

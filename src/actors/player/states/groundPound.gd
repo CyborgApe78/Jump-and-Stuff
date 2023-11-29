@@ -1,8 +1,5 @@
 extends PlayerInfo
 
-#TODO: add states converting down dash to side
-#TODO: drill upgrade from spin
-#TODO: jump when flipping to get boosted jump
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -16,8 +13,6 @@ extends PlayerInfo
 
 func enter() -> void:
 	abilities.consume(PlayerAbilities.listUse.GroundPound, 1)
-#	if !detector.is_colliding(): #TODO: only move up if in semisolid
-#		player.global_position.y -= Util.tileSize * 1.25 #TODO: smooth movement
 	player.velocity.y = stats.gpVelocity
 	player.animPlayer.queue("Ground Pound")
 	if player.characterRotate.rotation_degrees != 0:
@@ -34,7 +29,7 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta) #TODO: make downward version
+	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	player.move_and_slide()
 	
 	if player.velocity.y < 0:
@@ -92,8 +87,7 @@ func state_check(delta: float) -> int:
 	if !player.is_on_floor():
 		player.GPMaxVelocity = player.velocity
 	if player.is_on_floor():
-		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
-#		player.landed()
+		EventBus.playerLanded.emit()
 		if !input.pressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPoundBounce):
 			player.landed()
 			return State.GroundPoundBounce

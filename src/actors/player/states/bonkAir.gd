@@ -20,9 +20,9 @@ func enter() -> void:
 	landed = false
 	soundBonk.play()
 	currentBonkTime = bonkTime
-	player.velocity.x = bounceBack * -player.facing #TODO: get wall detection
+	player.velocity.x = bounceBack * -player.facing
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.tween_property(player.characterRig, "scale", Vector2(0.2, 0.8), .05) #FIXME: not always working
+	tween.tween_property(player.characterRig, "scale", Vector2(0.2, 0.8), .05)
 
 
 func exit() -> void:

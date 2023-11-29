@@ -1,8 +1,5 @@
 extends PlayerInfo
 
-#FIXME: coyote wall jump flips sprite away from wall, but returns to face wall without input. adjust facing to match on exit
-#TODO: make other wall jumps not go back to wall and gain height
-#TODO: make same wall jump refresh if different wall, or look into making wall climb from wall slide
 
 @export_group("Connections")
 @export var timerCoyoteJumpWall: Timer
@@ -59,16 +56,12 @@ func physics(delta) -> void:
 	player.attempt_vertical_corner_correction(stats.jumpCornerCorrectionVertical, delta)
 	
 	player.move_and_slide_rotation()
-	#FIXME: create full velocity logic, currently can back to wall sometimes, look at long jump state change
 	if timerLock.is_stopped():
 		if input.neutralMoveDirection:
 			neutral_air_momentum_logic(stats.moveSpeed)
 		else:
 			velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, delta)
 	velocity.gravity_logic(stats.gravityJump, delta)
-	
-	#TODO: air velocity func
-#	velocity.air_velocity_logic(moveSpeed, accelerationAir, frictionAir, delta)
 	
 	velocity.track_top_speed(player.velocity.x)
 
@@ -89,7 +82,7 @@ func handle_input(event: InputEvent) -> int:
 		if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 			return State.Glide
 		if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
-			return State.Dive #TODO: doesn't dive away from wall
+			return State.Dive
 		if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
 			return State.GroundPound
 		if input.justPressedDash:

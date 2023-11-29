@@ -48,8 +48,6 @@ func sound(delta: float) -> void:
 func handle_input(event: InputEvent) -> int:
 	if input.justReleasedJump:
 		player.velocity.y = max(player.velocity.y, stats.jumpCrouchVelocity * stats.percentMinJumpVelocity)
-#		if player.velocity.y > stats.jumpVelocity * stats.percentKeepJumpConsecutive: ## needs to be a percent of full jump to keep it going
-#			consecutive_jump_cancel() #LOOKAT: is this needed?
 		return State.Fall
 	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
 		return State.Glide
@@ -68,8 +66,6 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-#	if player.is_on_wall() and input.moveDirection.x == wall.wallDirection:
-#		return State.WallSlide
 	if player.velocity.y > -stats.jumpApexHeight:
 		return State.JumpApex
 	if player.is_on_floor():

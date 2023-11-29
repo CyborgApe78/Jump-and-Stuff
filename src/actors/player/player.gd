@@ -72,9 +72,7 @@ func move_and_slide_rotation() -> void:
 	velocity = velocity.rotated(-rotation)
 
 
-func squash_and_stretch(delta): 
-	#TODO: use animeation tree instead
-	
+func squash_and_stretch(delta):
 	var maxStretch: int
 	
 	if velocity.y < 0:
@@ -97,7 +95,7 @@ func facing_logic(direction: int): #TODOL move this to another node
 		facing = direction
 
 
-func attempt_vertical_corner_correction(amount: int, delta) -> void: #TODO: change to have default value after delta
+func attempt_vertical_corner_correction(amount: int, delta) -> void:
 	if test_move(global_transform, Vector2(velocity.x * delta, 0)): 
 		for i in range(1, amount*2+1):
 			for j in [-1.0, 1.0]:
@@ -128,16 +126,9 @@ func consecutive_jump_cancel() -> void:
 func landed() -> void:
 	animPlayer.play("Land") #TODO: create hard and soft land
 	EventBus.playerLanded.emit()
-#	characterRig.scale.x = remap(abs(velocity.y), 0, abs(1700), 1.2, 2.0) * sign(velocity.x)
-#	characterRig.scale.y = remap(abs(velocity.y), 0, abs(1700), 0.8, 0.5)
-#	if moveDirection.x != 0: #TODO: animation to rotate on landing
-#		characterRotate.rotate(360)
 	abilities.reset(PlayerAbilities.listUse.All)
 	sounds.land.play()
 	set_collision_mask_value(CollisionLayers.Semisolid, true)
-#	if get_last_slide_collision() != null:
-#			groundColor = get_last_slide_collision().get_collider().color #FIXME: crash if doesn't have color
-#	particles.land.restart()
 
 
 func _on_dash_chain_timeout() -> void:

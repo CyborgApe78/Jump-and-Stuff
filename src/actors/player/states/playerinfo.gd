@@ -15,9 +15,6 @@ var dashBufferState: int
 
 
 func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.2) -> void:
-	#TODO: create and move to visual component
-	#TODO: use animeation tree instead
-	#TODO: needs a reset
 	if forwardLean:
 		player.characterSAS.skew = remap(player.facing * abs(player.velocity.x), 0, speed, 0.0, player.facing * leanAmount)
 	if !forwardLean:
@@ -33,7 +30,7 @@ func consecutive_jump_logic() -> int:
 
 func consecutive_jump_cancel() -> void: 
 	player.jumped = false
-	player.timers.consecutiveJump.stop() #TODO:find a better to cancel timer
+	player.timers.consecutiveJump.stop()
 	abilities.reset(PlayerAbilities.listChain.JumpConsec)
 
 
@@ -43,7 +40,6 @@ func align_to_ground()-> void:
 
 
 func dash_pressed_buffer() -> void:
-#	var initial_direction = input.aimDirection.round()
 	await get_tree().create_timer(0.1).timeout #FIXME: crash if not completed, look at buffer input timer
 	dash_pressed_logic()
 	await get_tree().create_timer(0.1).timeout

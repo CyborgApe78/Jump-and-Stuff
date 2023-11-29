@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#LOOKAT: should there be an increased hor speed for more control
 
 func enter() -> void:
 	velocity.topSpeed = 0

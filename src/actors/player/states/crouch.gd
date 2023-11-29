@@ -14,11 +14,9 @@ extends PlayerInfo
 @export var soundSlide: AudioStreamPlayer
 
 @export_group("")
-@export var timeCharge: int = 1 #TODO: move to timers
+@export var timeCharge: int = 1
 
 var saveConsecutive: bool = false
-
-#LOOKAT: crouch stores consec jumps
 
 
 func enter() -> void:
@@ -40,7 +38,7 @@ func exit() -> void:
 	soundSlide.stop()
 	
 	if saveConsecutive:
-		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
+		timerConsecutiveJump.start()
 		saveConsecutive = false
 
 

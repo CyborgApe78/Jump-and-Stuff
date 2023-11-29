@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: add back
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer

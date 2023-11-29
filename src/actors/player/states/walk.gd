@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: add nuetral input
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -63,8 +62,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-#	if input.justPressedDive: #TODO: add slide like metroid
-#		return State.BellySlide
 
 	return State.Null
 

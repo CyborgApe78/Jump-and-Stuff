@@ -3,7 +3,7 @@ extends PlayerInfo
 
 @export_group("Connections")
 @export var soundSlide: AudioStreamPlayer
-@export var particlesSlide: GPUParticles2D #TODO: create particles
+@export var particlesSlide: GPUParticles2D
 @export var detector: ShapeCast2D
 
 @export_group("")
@@ -32,7 +32,7 @@ func physics(delta) -> void:
 			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
 	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += stats.downHillAccel #TODO: make like friction func, need a top speed or make this function
+			player.velocity.x += stats.downHillAccel
 		else:
 			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
 	else:
@@ -48,11 +48,10 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if !detector.is_colliding(): #FIXME: don't want to stop the hop if detecting, if removed player is stuck in wall
+	if !detector.is_colliding():
 		if input.justPressedJump and abilities.can_use(PlayerAbilities.list.JumpBelly):
 			return State.BellySlideHop
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Roll):
-		#TODO: don't gain speed from roll
 		return State.Roll
 	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.DashBelly):
 		return State.BellySlideDash

@@ -1,6 +1,5 @@
 extends PlayerInfo
 
-#TODO: roll on curved walls
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -14,7 +13,7 @@ extends PlayerInfo
 
 @export_group("")
 @export var crouchSpeedMin: int = 20
-@export var minLongJumpVelocity: int = 30 #LOOKAT: grabbing from stats 
+@export var minLongJumpVelocity: int = 30
 @export var duration: float = 0.8
 @export var refreshPercent: float = 0.8
 
@@ -28,7 +27,7 @@ func enter() -> void:
 	
 	player.velocityPrevious = player.velocity
 	
-	player.velocity.x = player.facing * max(stats.moveSpeed * stats.rollVelocityModifier, abs(player.velocity.x)) #LOOKAT: should there be accel
+	player.velocity.x = player.facing * max(stats.moveSpeed * stats.rollVelocityModifier, abs(player.velocity.x))
 	player.velocity.y = 0
 	
 	player.animPlayer.queue("Roll")
@@ -43,7 +42,7 @@ func exit() -> void:
 	timerChain.stop()
 	timerDuration.stop()
 	if saveConsecutive:
-		timerConsecutiveJump.start() #LOOKAT: fun challange of need high jump but don't have the room, so need to roll or slide
+		timerConsecutiveJump.start()
 		saveConsecutive = false
 	particles.emitting = false
 	
@@ -56,19 +55,16 @@ func physics(delta) -> void:
 		velocity.gravity_logic(stats.gravityFall, delta)
 		velocity.fall_speed_logic(stats.terminalVelocity)
 	
-	#TODO: needs hori movement code when !isonfloor
-	if rad_to_deg(ground.groundAngle) < -1: #TODO: create own accel and deccel
+	if rad_to_deg(ground.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
 			player.velocity.x -= stats.rollDownHillAccel * delta ## Speed up on down hill
 		else:
 			player.velocity.x -= stats.rollDownHillAccel * delta ## Slow on up hill
-#			velocity.apply_friction(frictionGround * upHillFrictionModifier, delta) 
 	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
 			player.velocity.x += stats.rollDownHillAccel * delta  ## Speed up on down hill
 		else:
 			player.velocity.x += stats.rollDownHillAccel * delta ## Slow on up hill
-#			velocity.apply_friction(stats,rollDownHillAccel, delta) 
 	elif timerDuration.is_stopped():
 		velocity.apply_friction(stats.frictionRoll, delta)
 
@@ -80,7 +76,6 @@ func visual(delta) -> void:
 
 func sound(delta: float) -> void:
 	if player.velocity.x != 0:
-		#TODO: need a sound when rolling
 		pass
 
 

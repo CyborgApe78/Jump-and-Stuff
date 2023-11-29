@@ -8,7 +8,7 @@ extends PlayerInfo
 @export var timerBufferJump: Timer
 @export var timerBufferRoll: Timer
 @export var soundeffect: AudioStreamPlayer
-@export var particles: GPUParticles2D #TODO: own particles
+@export var particles: GPUParticles2D
 
 @export_group("")
 @export var duration: float = 0.2
@@ -27,8 +27,6 @@ func enter() -> void:
 	
 	player.velocity.x = velocityHop * player.facing
 	player.velocity.y = stats.jumpVelocity * jumpModifier
-#	if !detector.is_colliding():
-#		player.global_position.y -= Util.tileSize * 4 #TODO: tween movement or change to velocity
 	
 	EventBus.playerJumped.emit()
 	
@@ -65,10 +63,8 @@ func physics(delta) -> void:
 	else:
 		if input.moveDirection.x != 0:
 			if input.moveDirection.x != player.facing:
-#				player.velocity.x = move_toward(player.velocity.x, 0, (moveSpeed * 2) * delta)
 				velocity.apply_friction(stats.moveSpeed * 2, delta)
 			elif input.moveDirection.x == player.facing and abs(player.velocity.x) < velocityHop:
-#					velocity.apply_acceleration(velocityLongJump, moveSpeed * 3, delta) #TODO: make func to input direction
 					player.velocity.x = move_toward(abs(player.velocity.x), velocityHop, (stats.moveSpeed * 3) * delta) * player.facing
 	
 	velocity.track_top_speed(player.velocity.x)
@@ -113,11 +109,8 @@ func state_check(delta: float) -> int:
 		if velocity.topSpeed > stats.moveSpeed:
 			velocity.topSpeed = 0
 			return State.BonkAir
-#		else:
-#			return State.WallSlide
 	if player.is_on_floor():
-		EventBus.playerLanded.emit() #TODO: added landed when changed to squishing player instead of anim
-#		player.landed()
+		EventBus.playerLanded.emit()
 		if !timerBufferRoll.is_stopped():
 			timerBufferRoll.stop()
 			return State.Roll

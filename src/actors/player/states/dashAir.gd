@@ -1,7 +1,5 @@
 extends PlayerInfo
 
-#TODO: upgrade for ori like burrow
-#TODO: combine to 1 breaking color
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer
@@ -15,7 +13,7 @@ extends PlayerInfo
 @export var detector: ShapeCast2D
 
 @export_group("")
-var duration: float = 0.4 #TODO: move to stats
+var duration: float = 0.4
 
 var dashInput: int
 
@@ -78,7 +76,7 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			player.velocity.x = 0
-			return State.Fall #LOOKAT: removing canceling out of dash
+			return State.Fall
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive
 	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
@@ -96,7 +94,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.is_on_wall(): 
 		if !timerBufferJumpWall.is_stopped():
-			return State.JumpWall #TODO: create JumpReflect
+			return State.JumpWall
 		elif velocity.topSpeed > stats.moveSpeed:
 			velocity.topSpeed = 0
 			return State.BonkAir

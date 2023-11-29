@@ -20,7 +20,7 @@ func enter() -> void:
 	soundBonk.play()
 	soundSplat.play()
 	currentBonkTime = bonkTime
-	player.velocity.x = bounceBack * -player.facing #TODO: get wall detection
+	player.velocity.x = bounceBack * -player.facing
 	var tween = create_tween()
 	tween.tween_property(player.characterRig, "scale", Vector2(0.8, 0.2), .2)
 
@@ -35,7 +35,7 @@ func exit() -> void:
 func physics(delta) -> void:
 	player.move_and_slide()
 	
-	currentBonkTime -= delta #TODO: make timer
+	currentBonkTime -= delta
 	if abs(ground.groundAngle) > 1: ## slide if on slope
 		player.velocity.x = move_toward(abs(player.velocity.x), stats.moveSpeed, stats.accelerationGround) * sin(ground.groundAngle)
 	else:
