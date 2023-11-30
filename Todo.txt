@@ -219,6 +219,12 @@ maybe future past
 
 Climb and sonic run on walls. Combine like blue walls in ori and dread, also can grapple
 
+Prince of Persia like ring to reset wall runs and climbs
+
+slippery slopes that you slide on
+
+run over one block
+
 Platforms
 	Elevator section but can break the platform to go faster, yooka laylee inspired
 	https://www.mariowiki.com/Category:Platforms
