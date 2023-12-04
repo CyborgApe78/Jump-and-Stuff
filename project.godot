@@ -33,7 +33,7 @@ instance_dock/scenes=[{
 config/name="Jump And Stuff"
 config/description="Enter an interesting project description here!"
 run/main_scene="res://src/ui/MainMenuManager.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [audio]
