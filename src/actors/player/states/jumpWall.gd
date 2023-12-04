@@ -25,7 +25,7 @@ func enter() -> void:
 		jumpDirection = wall.lastWallDirection
 		timerCoyoteJumpWall.stop()
 		
-	## up pressed or towards from wall pressed
+	## up pressed or towards from wall pressed #TODO: turn into wall climb
 	if (input.moveDirection.y == -1 or input.moveDirection.x == jumpDirection) and abilities.can_use(PlayerAbilities.list.JumpWallSame): 
 		abilities.consume(PlayerAbilities.listUse.JumpWallSame, 1)
 		player.facing_logic(wall.wallDirection)
@@ -99,6 +99,9 @@ func state_check(delta: float) -> int:
 	if timerLock.is_stopped():
 		if player.is_on_ceiling():
 			consecutive_jump_cancel()
+#			if abilities.can_use(PlayerAbilities.list.CeilingRun):
+#				return State.CeilingRun #TODO: add
+#			else:
 			return State.Fall
 		if player.is_on_wall() and velocity.topSpeed > stats.moveSpeed:
 			velocity.topSpeed = 0

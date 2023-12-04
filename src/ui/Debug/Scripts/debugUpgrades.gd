@@ -9,6 +9,7 @@ extends Control
 @export var buttonProtectionLava: Button
 @export var buttonDashChain: Button
 @export var buttonLight: Button
+@export var buttonUnlimitedDash: Button
 @export var dashChainAmount: OptionButton
 
 var Upgrades: Resource = preload("res://src/actors/player/resources/playerUpgrades.tres")
@@ -28,6 +29,7 @@ func check(BOOL) -> void:
 	buttonProtectionLava.button_pressed = Upgrades.unlockedProtectionLava
 	buttonDashChain.button_pressed = Abilities.unlockedDashChain
 	buttonLight.button_pressed = Upgrades.unlockedLight
+	buttonUnlimitedDash.button_pressed = Upgrades.unlockedUnlimitedDash
 	
 	dashChainAmount.selected = Abilities.maxDashChain -1
 
@@ -40,6 +42,7 @@ func _on_upgrades_all_toggled(button_pressed: bool) -> void:
 	buttonProtectionLava.button_pressed = button_pressed
 	buttonDashChain.button_pressed = button_pressed
 	buttonLight.button_pressed = button_pressed
+	buttonUnlimitedDash.button_pressed = button_pressed
 
 
 func _on_protection_heat_toggled(button_pressed: bool) -> void:
@@ -72,3 +75,7 @@ func _on_dash_chain_amount_item_selected(index: int) -> void:
 
 func _on_light_toggled(button_pressed: bool) -> void:
 	Upgrades.unlock(PlayerUpgrades.list.light, button_pressed)
+
+
+func _on_unlimited_dash_toggled(button_pressed: bool) -> void:
+	Upgrades.unlock(PlayerUpgrades.list.unlimitedDash, button_pressed)

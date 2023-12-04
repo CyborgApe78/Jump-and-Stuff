@@ -50,6 +50,12 @@ var unlockedLight: bool = false:
 		if unlockedLight:
 			EventBus.playerUpgradeUnlock.emit(list.light)
 
+var unlockedUnlimitedDash: bool = false:
+	set(v):
+		unlockedUnlimitedDash = v
+		if unlockedUnlimitedDash:
+			EventBus.playerUpgradeUnlock.emit(list.unlimitedDash)
+
 enum list {
 	Null,
 	All,
@@ -61,6 +67,7 @@ enum list {
 	dashChain, 
 	dashTeleport,
 	light,
+	unlimitedDash,
 	}
 
 
@@ -71,6 +78,7 @@ func unlock(upgrade: int, BOOL:bool) -> void:
 		unlockedProtectionWater = BOOL
 		unlockedProtectionAcid = BOOL
 		unlockedProtectionLava = BOOL
+		unlockedUnlimitedDash = BOOL
 	elif upgrade == list.protectionHeat:
 		unlockedProtectionHeat = BOOL
 	elif upgrade == list.protectionCold:
@@ -85,5 +93,7 @@ func unlock(upgrade: int, BOOL:bool) -> void:
 		unlockedDashChain = BOOL
 	elif upgrade == list.light:
 		unlockedLight = BOOL
+	elif upgrade == list.unlimitedDash:
+		unlockedUnlimitedDash = BOOL
 	else:
 		EventBus.error.emit("Null Upgrade Unlocked " + str(upgrade) + " " + str(BOOL))

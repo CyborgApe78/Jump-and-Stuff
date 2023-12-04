@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/ui/Debug/Scripts/debugUpgrades.gd" id="1_8865c"]
 [ext_resource type="Theme" uid="uid://r55fh74mcefg" path="res://src/ui/themes/DebugMenu.tres" id="1_k8gox"]
 
-[node name="Upgrades" type="VBoxContainer" node_paths=PackedStringArray("buttonUpgradeAll", "buttonProtectionHeat", "buttonProtectionCold", "buttonProtectionWater", "buttonProtectionAcid", "buttonProtectionLava", "buttonDashChain", "buttonLight", "dashChainAmount")]
+[node name="Upgrades" type="VBoxContainer" node_paths=PackedStringArray("buttonUpgradeAll", "buttonProtectionHeat", "buttonProtectionCold", "buttonProtectionWater", "buttonProtectionAcid", "buttonProtectionLava", "buttonDashChain", "buttonLight", "buttonUnlimitedDash", "dashChainAmount")]
 script = ExtResource("1_8865c")
 buttonUpgradeAll = NodePath("All")
 buttonProtectionHeat = NodePath("HBoxContainer/Protection/Heat")
@@ -13,6 +13,7 @@ buttonProtectionAcid = NodePath("HBoxContainer/Protection/Acid")
 buttonProtectionLava = NodePath("HBoxContainer/Protection/Lava")
 buttonDashChain = NodePath("HBoxContainer/Chain/DashChain/DashChain")
 buttonLight = NodePath("HBoxContainer/PlaceHolder/Light")
+buttonUnlimitedDash = NodePath("HBoxContainer/PlaceHolder/UnlimitedDash")
 dashChainAmount = NodePath("HBoxContainer/Chain/DashChain/Amount")
 
 [node name="Label" type="Label" parent="."]
@@ -124,6 +125,11 @@ theme = ExtResource("1_k8gox")
 toggle_mode = true
 text = "Bounce"
 
+[node name="UnlimitedDash" type="Button" parent="HBoxContainer/PlaceHolder"]
+layout_mode = 2
+theme = ExtResource("1_k8gox")
+text = "Unlimited Dash"
+
 [connection signal="toggled" from="All" to="." method="_on_upgrades_all_toggled"]
 [connection signal="toggled" from="HBoxContainer/Protection/Heat" to="." method="_on_protection_heat_toggled"]
 [connection signal="toggled" from="HBoxContainer/Protection/Cold" to="." method="_on_protection_cold_toggled"]
@@ -134,3 +140,4 @@ text = "Bounce"
 [connection signal="item_selected" from="HBoxContainer/Chain/DashChain/Amount" to="." method="_on_dash_chain_amount_item_selected"]
 [connection signal="toggled" from="HBoxContainer/PlaceHolder/Light" to="." method="_on_light_toggled"]
 [connection signal="toggled" from="HBoxContainer/PlaceHolder/Bounce" to="." method="_on_light_toggled"]
+[connection signal="toggled" from="HBoxContainer/PlaceHolder/UnlimitedDash" to="." method="_on_unlimited_dash_toggled"]
