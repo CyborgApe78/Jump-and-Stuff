@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk618xfe4fxul"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/Climbable.gd" id="1_gx0sn"]
+[ext_resource type="Script" path="res://src/object/enviroment/scripts/ClimbableArea.gd" id="2_x30v1"]
+
+[node name="Climbable" type="Path2D" node_paths=PackedStringArray("detector", "collision", "line")]
+script = ExtResource("1_gx0sn")
+detector = NodePath("ClimbableArea")
+collision = NodePath("ClimbableArea/CollisionPolygon2D")
+line = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ClimbableArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+script = ExtResource("2_x30v1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClimbableArea"]
+build_mode = 1

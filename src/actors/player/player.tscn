@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=137 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -77,6 +77,7 @@
 [ext_resource type="Script" path="res://src/actors/player/scripts/BashableDetector.gd" id="62_7uo1w"]
 [ext_resource type="AudioStream" uid="uid://c3rxvgnv2uopt" path="res://asset/sounds/player/footstep.wav" id="67_scdrc"]
 [ext_resource type="AudioStream" uid="uid://52qkk7aobgn8" path="res://asset/sounds/player/land.ogg" id="67_xcel1"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/EnviromentalDetector.gd" id="68_tvs4t"]
 [ext_resource type="AudioStream" uid="uid://yrifeqyyefog" path="res://asset/sounds/player/jump.ogg" id="68_wgrqy"]
 [ext_resource type="PackedScene" uid="uid://bxt44u72o7bxe" path="res://src/object/components/platform_checker.tscn" id="73_hobbw"]
 
@@ -89,16 +90,14 @@ curve = SubResource("Curve_wyqxj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_salwb"]
 lifetime_randomness = 0.1
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 1.0
-particle_flag_disable_z = true
 direction = Vector3(-1, -1, 0)
 spread = 55.52
-gravity = Vector3(0, 0, 0)
 initial_velocity_max = 40.0
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_min = 5.0
 scale_max = 15.0
 scale_curve = SubResource("CurveTexture_vjq7j")
@@ -108,17 +107,15 @@ hue_variation_max = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n1xfx"]
 lifetime_randomness = 0.3
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 1.0
-particle_flag_disable_z = true
 direction = Vector3(-1, -1, 0)
 spread = 55.52
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 84.12
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_max = 10.0
 scale_curve = SubResource("CurveTexture_vjq7j")
 color = Color(0.270588, 0.270588, 0.270588, 1)
@@ -133,17 +130,15 @@ point_count = 2
 curve = SubResource("Curve_pgpbg")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k440f"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(50, 1, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 108.04
-gravity = Vector3(0, 10, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 150.0
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 10, 0)
 damping_min = 3.54
 damping_max = 14.16
 scale_min = 5.0
@@ -155,16 +150,14 @@ hue_variation_max = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w0buo"]
 lifetime_randomness = 1.0
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(20, 1, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 92.16
-gravity = Vector3(0, 10, 0)
 initial_velocity_max = 153.44
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 10, 0)
 damping_min = 3.54
 damping_max = 14.16
 scale_max = 20.0
@@ -175,16 +168,14 @@ hue_variation_max = 0.19
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3sxjf"]
 lifetime_randomness = 1.0
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(20, 1, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 92.16
-gravity = Vector3(0, 10, 0)
 initial_velocity_max = 200.0
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 10, 0)
 damping_min = 3.54
 damping_max = 14.16
 scale_min = 0.0
@@ -196,16 +187,14 @@ hue_variation_max = 0.19
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j1mxi"]
 lifetime_randomness = 1.0
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(20, 1, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 92.16
-gravity = Vector3(0, 10, 0)
 initial_velocity_max = 200.0
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 10, 0)
 damping_min = 3.54
 damping_max = 14.16
 scale_min = 0.0
@@ -223,17 +212,15 @@ point_count = 2
 curve = SubResource("Curve_1cp4i")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fn840"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 10, 1)
-particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
 spread = 40.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 14.35
 initial_velocity_max = 148.28
 angular_velocity_max = 720.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 damping_min = 7.14
 damping_max = 18.75
 scale_min = 2.0
@@ -245,16 +232,14 @@ hue_variation_max = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6t6x"]
 lifetime_randomness = 0.08
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 20, 1)
-particle_flag_disable_z = true
 direction = Vector3(-0.5, -1, 0)
 spread = 55.52
-gravity = Vector3(0, 0, 0)
 initial_velocity_max = 40.0
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_max = 5.0
 scale_curve = SubResource("CurveTexture_vjq7j")
 color = Color(0, 0, 0, 1)
@@ -263,16 +248,14 @@ hue_variation_max = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xa8qa"]
 lifetime_randomness = 0.08
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 20, 1)
-particle_flag_disable_z = true
 direction = Vector3(-0.5, 1, 0)
 spread = 55.52
-gravity = Vector3(0, 80, 0)
 initial_velocity_max = 40.0
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 80, 0)
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_vjq7j")
 color = Color(0, 0, 0, 1)
@@ -281,16 +264,14 @@ hue_variation_max = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uu3sd"]
 lifetime_randomness = 0.08
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 15, 1)
-particle_flag_disable_z = true
 direction = Vector3(-0.5, 1, 0)
 spread = 32.14
-gravity = Vector3(0, 80, 0)
 initial_velocity_max = 40.0
 angular_velocity_min = -80.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 80, 0)
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_vjq7j")
 color = Color(0, 0, 0, 1)
@@ -298,15 +279,13 @@ hue_variation_min = -0.12
 hue_variation_max = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nwdm1"]
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 16.0
-particle_flag_disable_z = true
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 140.0
 initial_velocity_max = 150.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_min = 15.0
 scale_max = 20.0
 
@@ -342,11 +321,9 @@ particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 0.5
 flatness = 1.0
-gravity = Vector3(0, 1, 0)
 initial_velocity_min = 150.0
 initial_velocity_max = 200.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 1, 0)
 damping_max = 18.75
 scale_min = 0.01
 scale_max = 0.07
@@ -371,8 +348,15 @@ size = Vector2(32, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oudvw"]
 size = Vector2(47, 82)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b5v7g"]
+radius = 72.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ihvx"]
 radius = 75.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_auny6"]
+radius = 32.0
+height = 128.0
 
 [sub_resource type="Animation" id="Animation_vhxfq"]
 resource_name = "Belly Slide"
@@ -7112,9 +7096,8 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupCollider"]
-visible = false
-position = Vector2(-0.5, -32)
-shape = SubResource("RectangleShape2D_oudvw")
+position = Vector2(0, -64)
+shape = SubResource("CircleShape2D_b5v7g")
 
 [node name="BashableDetector" type="Area2D" parent="." node_paths=PackedStringArray("indicatorTarget")]
 visible = false
@@ -7137,15 +7120,25 @@ default_color = Color(0.862745, 0.709804, 0.0980392, 1)
 
 [node name="EnviromentalDetector" type="Area2D" parent="."]
 visible = false
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("68_tvs4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnviromentalDetector"]
+position = Vector2(0, -64)
+shape = SubResource("CapsuleShape2D_auny6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
-blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
+autoplay = "Idle"
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dm5wq")
+}
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -7291,6 +7284,8 @@ visible = false
 [connection signal="area_entered" from="BashableDetector" to="BashableDetector" method="_on_area_entered"]
 [connection signal="area_exited" from="BashableDetector" to="." method="_on_bashable_detector_area_exited"]
 [connection signal="area_exited" from="BashableDetector" to="BashableDetector" method="_on_area_exited"]
+[connection signal="area_entered" from="EnviromentalDetector" to="EnviromentalDetector" method="_on_area_entered"]
+[connection signal="area_exited" from="EnviromentalDetector" to="EnviromentalDetector" method="_on_area_exited"]
 [connection signal="timeout" from="Timers/Chain" to="." method="_on_dash_chain_timeout"]
 [connection signal="timeout" from="Timers/Chain" to="StateMachine/Roll" method="_on_chain_timeout"]
 [connection signal="timeout" from="Timers/Charge" to="StateMachine/Crouch" method="_on_charge_timeout"]

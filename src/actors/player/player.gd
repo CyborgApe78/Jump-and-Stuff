@@ -1,6 +1,7 @@
 extends Actor
 class_name Player
 
+#TODO: have the body collider react to rotation of rig
 
 @onready var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 

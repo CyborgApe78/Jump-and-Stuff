@@ -1,5 +1,5 @@
 extends Area2D
-class_name EnviromentalEffects
+class_name Enviromental
 
 
 enum directions {Null, UP, UPLEFT, UPRIGHT, LEFT, RIGHT, DOWN, DOWNLEFT, DOWNRIGHT}

@@ -1,0 +1,2 @@
+extends Enviromental
+class_name GrindRail

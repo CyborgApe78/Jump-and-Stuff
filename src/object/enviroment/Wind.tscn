@@ -11,16 +11,14 @@ colors = PackedColorArray(0, 0, 0, 0.00784314, 0.587751, 0.587751, 0.58775, 1, 0
 gradient = SubResource("Gradient_o7f3h")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fopgh"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(62, 1, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 230.0
 initial_velocity_max = 240.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.2
 scale_max = 0.3
 color_ramp = SubResource("GradientTexture1D_fjc5x")
@@ -29,7 +27,7 @@ color_ramp = SubResource("GradientTexture1D_fjc5x")
 size = Vector2(128, 242)
 
 [node name="Wind" type="Area2D"]
-collision_layer = 0
+collision_layer = 32
 collision_mask = 64
 script = ExtResource("1_kdjwu")
 

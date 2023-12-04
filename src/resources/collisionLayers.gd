@@ -7,7 +7,7 @@ const Semisolid: int = 2
 const Platform: int = 3
 const Interactable: int = 4
 const Collectables: int = 5
-
+const Enviromental: int = 6
 const Player: int = 7
 const Enemies: int = 8
 const Hazard: int = 9

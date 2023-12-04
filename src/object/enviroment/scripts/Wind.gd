@@ -1,9 +1,12 @@
-extends EnviromentalEffects
-#TODO: look into 9patchrec
+extends Enviromental
+class_name Wind
+
+
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
 @onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var background: ColorRect = $ColorRect
 var windVelocity: Vector2
+
 
 func _ready() -> void:
 #	if direction == directions.Null:

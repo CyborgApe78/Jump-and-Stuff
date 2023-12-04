@@ -1,4 +1,6 @@
-extends EnviromentalEffects
+extends Enviromental
+class_name Water
+
 #extends Fluids #TODO: create class
 
 #TODO: look into 9patchrec

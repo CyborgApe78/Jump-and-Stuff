@@ -31,6 +31,12 @@
 [ext_resource type="PackedScene" uid="uid://c6w75yfmxvi6r" path="res://src/object/prefab/platforms/platform_floating.tscn" id="25_ni1xa"]
 [ext_resource type="PackedScene" uid="uid://bd40gjjcbnun" path="res://src/object/prefab/platforms/platform_direction_change.tscn" id="26_3thjv"]
 
+[sub_resource type="Curve2D" id="Curve2D_nhl8e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 192, -192, 0, 0, 0, 0, 320, -64, 0, 0, 0, 0, 512, -64)
+}
+point_count = 4
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4766"]
 size = Vector2(64, 64)
 
@@ -49,12 +55,6 @@ size = Vector2(384, 33)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_legq7"]
 a = Vector2(10509, 0)
 b = Vector2(-7328, 0)
-
-[sub_resource type="Curve2D" id="Curve2D_ceny4"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 208, -48, 0, 0, 0, 0, 552, -184, 0, 0, 0, 0, 872, -16)
-}
-point_count = 3
 
 [node name="Testing" type="Node"]
 script = ExtResource("1_i5twd")
@@ -93,6 +93,14 @@ script = ExtResource("6_7jh6b")
 
 [node name="Interactables" type="Node2D" parent="."]
 
+[node name="GrindRail" parent="Interactables" instance=ExtResource("18_qvigo")]
+position = Vector2(448, -64)
+curve = SubResource("Curve2D_nhl8e")
+
+[node name="PathFollow2D" parent="Interactables/GrindRail" index="2"]
+position = Vector2(0, -64)
+rotation = -0.588003
+
 [node name="BounceBox" parent="Interactables" instance=ExtResource("6_exgp3")]
 position = Vector2(-1336, 0)
 _strength = 10
@@ -124,10 +132,11 @@ position = Vector2(-3, 13)
 shape = SubResource("RectangleShape2D_c7l1i")
 
 [node name="TargetGrapple" parent="Interactables" instance=ExtResource("10_lxvkx")]
-position = Vector2(-32, -171)
+position = Vector2(-96, -160)
 
 [node name="BashableComponent" parent="Interactables" instance=ExtResource("11_gs3d8")]
-position = Vector2(471, -209)
+position = Vector2(-224, -160)
+metadata/_edit_group_ = true
 
 [node name="Outline" parent="Interactables/BashableComponent" instance=ExtResource("12_vhemv")]
 position = Vector2(1, 32)
@@ -136,7 +145,7 @@ position = Vector2(1, 32)
 shape = SubResource("RectangleShape2D_gx7c3")
 
 [node name="Water" parent="Interactables" instance=ExtResource("13_jbo0m")]
-position = Vector2(-448, 1536)
+position = Vector2(1664, -16)
 scale = Vector2(5, 5)
 
 [node name="Semisolid" parent="Interactables" instance=ExtResource("14_jnhoi")]
@@ -167,10 +176,6 @@ kill = true
 shape = SubResource("SegmentShape2D_legq7")
 script = ExtResource("15_ly23x")
 color = Color(1, 0, 0, 1)
-
-[node name="GrindRail" parent="." instance=ExtResource("18_qvigo")]
-position = Vector2(512, -64)
-curve = SubResource("Curve2D_ceny4")
 
 [node name="Waypoints" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -343,4 +348,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("25_d0jmx")
 
+[connection signal="body_entered" from="Interactables/GrindRail/Area2D" to="Interactables/GrindRail" method="body_entered"]
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
+
+[editable path="Interactables/GrindRail"]
