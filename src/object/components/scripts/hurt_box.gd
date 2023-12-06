@@ -1,12 +1,17 @@
 extends Area2D
 class_name HurtBox
 
+#TODO: figure out a way to auto connect collision shaoe
 
 @export var damage: int = 1
 @export var isBurning: bool = false
 @export var isFreezing: bool = false
 @export var oneUse: bool = false
 @export var kill: bool = false
+
+
+func _ready() -> void:
+	set_collision_mask_value(CollisionLayers.Hazard, true)
 
 
 func _on_area_entered(area: HitboxComponent) -> void:

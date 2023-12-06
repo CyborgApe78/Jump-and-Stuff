@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=37 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b4dxfl6nt1exf" path="res://src/object/components/bounce_box.tscn" id="6_exgp3"]
 [ext_resource type="Texture2D" uid="uid://bebi3j0rfayd2" path="res://asset/objects/carrot.png" id="7_crqhc"]
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="8_pvan0"]
-[ext_resource type="Texture2D" uid="uid://b8vfu0d8jq3ed" path="res://asset/hazard/spikesBottom.png" id="9_abyyn"]
 [ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="10_lxvkx"]
 [ext_resource type="PackedScene" uid="uid://csjv5180r3acu" path="res://src/object/components/bashable_component.tscn" id="11_gs3d8"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="12_vhemv"]
@@ -21,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="18_87hk3"]
 [ext_resource type="PackedScene" uid="uid://c7ppaujx2tal6" path="res://src/object/prefab/platforms/grind_rail.tscn" id="18_qvigo"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="19_owdc2"]
+[ext_resource type="PackedScene" uid="uid://drbfbu4n5oaqy" path="res://src/object/Hazards/retractable_spikes.tscn" id="20_4ow0q"]
 [ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="20_5tqcw"]
 [ext_resource type="PackedScene" uid="uid://cmrb6s6eigorv" path="res://src/object/prefab/doors/DoorLocked.tscn" id="21_vnydo"]
 [ext_resource type="PackedScene" uid="uid://87ij05swdkl4" path="res://src/object/prefab/platforms/platform_falling.tscn" id="22_d32gw"]
@@ -42,9 +42,6 @@ size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyd6p"]
 size = Vector2(48, 86)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7l1i"]
-size = Vector2(78, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx7c3"]
 size = Vector2(64, 64)
@@ -120,17 +117,6 @@ texture = ExtResource("7_crqhc")
 position = Vector2(14, 8)
 shape = SubResource("RectangleShape2D_yyd6p")
 
-[node name="HurtBox" parent="Interactables" instance=ExtResource("8_pvan0")]
-position = Vector2(-228, 501)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Interactables/HurtBox"]
-texture = ExtResource("9_abyyn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox"]
-position = Vector2(-3, 13)
-shape = SubResource("RectangleShape2D_c7l1i")
-
 [node name="TargetGrapple" parent="Interactables" instance=ExtResource("10_lxvkx")]
 position = Vector2(-96, -160)
 
@@ -168,11 +154,11 @@ ability = 1
 position = Vector2(-532, 499)
 upgrade = 2
 
-[node name="HurtBox2" parent="Interactables" instance=ExtResource("8_pvan0")]
+[node name="KillBox" parent="Interactables" instance=ExtResource("8_pvan0")]
 position = Vector2(-883, 1562)
 kill = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/KillBox"]
 shape = SubResource("SegmentShape2D_legq7")
 script = ExtResource("15_ly23x")
 color = Color(1, 0, 0, 1)
@@ -348,7 +334,24 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("25_d0jmx")
 
-[connection signal="body_entered" from="Interactables/GrindRail/Area2D" to="Interactables/GrindRail" method="body_entered"]
+[node name="Spikes" type="Node2D" parent="."]
+
+[node name="RetractableSpikes" parent="Spikes" instance=ExtResource("20_4ow0q")]
+position = Vector2(288, 64)
+
+[node name="RetractableSpikes2" parent="Spikes" instance=ExtResource("20_4ow0q")]
+position = Vector2(352, 64)
+
+[node name="RetractableSpikes3" parent="Spikes" instance=ExtResource("20_4ow0q")]
+position = Vector2(416, 64)
+
+[node name="RetractableSpikes4" parent="Spikes" instance=ExtResource("20_4ow0q")]
+position = Vector2(480, 64)
+
+[node name="RetractableSpikes5" parent="Spikes" instance=ExtResource("20_4ow0q")]
+position = Vector2(544, 64)
+
+[connection signal="body_entered" from="Interactables/GrindRail/GrindRailArea" to="Interactables/GrindRail" method="body_entered"]
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
 
 [editable path="Interactables/GrindRail"]
