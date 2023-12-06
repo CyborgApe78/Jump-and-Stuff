@@ -60,8 +60,8 @@ func reset() -> void:
 	collision.set_deferred("disabled", false)
 	visible = true
 	spawned.emit()
-	currentDirection = startingDirection
-	turn_arrow(currentDirection)
+	currentDirection = 0
+	turn_arrow(startingDirection)
 
 
 func landed() -> void:
