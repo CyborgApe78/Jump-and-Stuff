@@ -22,6 +22,7 @@ var dashInput: int
 
 
 func enter() -> void:
+	@warning_ignore("incompatible_ternary")
 	dashInput = input.aimBackup.x if input.aimBackup != Vector2.ZERO else player.facing
 	abilities.consume(PlayerAbilities.listUse.Dash, 1)
 	soundJetpack.play()

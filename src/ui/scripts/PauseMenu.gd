@@ -7,7 +7,7 @@ extends BaseMenu
 
 @onready var resumeButton: Button = $"%Resume"
 
-var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
+var cpSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
 
 func enter() -> void:
@@ -41,7 +41,7 @@ func _on_settings_pressed() -> void:
 
 func _on_reset_pressed() -> void:
 	EventBus.menuChanged.emit(State.Unpaused)
-	CheckpointSystem.reset_checkpoint()
+	cpSystem.reset_checkpoint()
 	get_tree().reload_current_scene()
 
 

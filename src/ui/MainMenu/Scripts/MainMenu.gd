@@ -6,7 +6,7 @@ extends MainMenuBase
 @export var labelGodot: Label
 @export var labelCreator: Label
 
-var GameInformation: Resource = preload("res://src/resources/GameInformation.tres")
+var gInfo: Resource = preload("res://src/resources/GameInformation.tres")
 var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
 
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	labelTitle.text = GameInformation.gameName
-	labelVersion.text = GameInformation.version
+	labelTitle.text = gInfo.gameName
+	labelVersion.text = gInfo.version
 	labelGodot.text = "Godot %s" % Engine.get_version_info().string
-	labelCreator.text = GameInformation.creator
+	labelCreator.text = gInfo.creator

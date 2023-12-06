@@ -94,10 +94,6 @@ script = ExtResource("6_7jh6b")
 position = Vector2(448, -64)
 curve = SubResource("Curve2D_nhl8e")
 
-[node name="PathFollow2D" parent="Interactables/GrindRail" index="2"]
-position = Vector2(0, -64)
-rotation = -0.588003
-
 [node name="BounceBox" parent="Interactables" instance=ExtResource("6_exgp3")]
 position = Vector2(-1336, 0)
 _strength = 10
@@ -351,7 +347,4 @@ position = Vector2(480, 64)
 [node name="RetractableSpikes5" parent="Spikes" instance=ExtResource("20_4ow0q")]
 position = Vector2(544, 64)
 
-[connection signal="body_entered" from="Interactables/GrindRail/GrindRailArea" to="Interactables/GrindRail" method="body_entered"]
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
-
-[editable path="Interactables/GrindRail"]

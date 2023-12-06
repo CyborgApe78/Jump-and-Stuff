@@ -18,7 +18,7 @@ extends Marker2D
 var aimInput: Vector2 
 var target: TargetGrapple
 
-var SettingsConfig: Resource = preload("res://src/resources/SettingsConfig.tres")
+var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
 #TODO: need to grapple lenght from player stats
 
 
@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.moveStrength
-#	if SettingsConfig.showAimIndicator: #TODO: set own var, not check resource all the time
+#	if settings.showAimIndicator: #TODO: set own var, not check resource all the time
 	if aimInput != Vector2.ZERO:
 		if input.aimDirection != Vector2.ZERO:
 			indicatorAim.visible = true

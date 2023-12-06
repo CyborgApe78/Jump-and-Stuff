@@ -15,6 +15,7 @@ var velocityHop: float
 var diveDirection: int
 
 func enter() -> void:
+	@warning_ignore("incompatible_ternary")
 	diveDirection = input.moveDirection.x if input.moveDirection.x != 0 else player.facing # lets player switch directions quickly in air
 	velocityHop = stats.moveSpeed * velocityModifier
 	startingHeight = player.global_position.y

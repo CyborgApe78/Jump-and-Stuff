@@ -1,12 +1,12 @@
 extends VBoxContainer
 
 
-var WaypointSystem: Resource = preload("res://src/resources/WaypointSysten.tres")
+var wSystem: Resource = preload("res://src/resources/WaypointSysten.tres")
 
 
 func _on_up_pressed() -> void:
-	EventBus.teleportPlayer.emit(WaypointSystem.locations.Up)
+	EventBus.teleportPlayer.emit(wSystem.locations.Up)
 
 
 func _on_down_pressed() -> void:
-	EventBus.teleportPlayer.emit(WaypointSystem.locations.Down)
+	EventBus.teleportPlayer.emit(wSystem.locations.Down)

@@ -7,8 +7,8 @@ func enter() -> void:
 
 
 func exit() -> void:
-	if CheckpointSystem.currentRespawn != Vector2.ZERO:
-		player.global_position = CheckpointSystem.currentRespawn
+	if cpSystem.currentRespawn != Vector2.ZERO:
+		player.global_position = cpSystem.currentRespawn
 	else:
 		get_tree().reload_current_scene()
 		EventBus.emit_signal("error", str("no spawn point set"))

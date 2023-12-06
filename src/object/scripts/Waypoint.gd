@@ -7,9 +7,9 @@ func _ready() -> void:
 	body_entered.connect(_on_waypoint_entered)
 	
 	if waypointName == WaypointPlayground.list.Starting:
-		WaypointSystem.add_waypoint("Starting", global_position)
+		wpSystem.add_waypoint("Starting", global_position)
 	elif waypointName == WaypointPlayground.list.Platforms:
-		WaypointSystem.add_waypoint("Platforms", global_position)
+		wpSystem.add_waypoint("Platforms", global_position)
 
 
 func _on_waypoint_entered(body) -> void:

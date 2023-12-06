@@ -8,8 +8,8 @@ var input: InputComponent
 var ground: GroundDetectorComponent
 var wall: WallDetectorComponent
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
-var GameStats: Resource = preload("res://src/resources/gameStats.tres")
-var CheckpointSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
+var gStats: Resource = preload("res://src/resources/gameStats.tres")
+var cpSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 
 var dashBufferState: int
 

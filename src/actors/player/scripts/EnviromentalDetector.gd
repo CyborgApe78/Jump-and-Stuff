@@ -8,23 +8,23 @@ func _ready() -> void:
 
 func _on_area_entered(area: Enviromental) -> void:
 	if area is GrindRail:
-		print("Grind me")
+		pass
 	elif area is Climbable:
-		print("Climb me")
+		pass
 	elif area is Wind:
-		print("Blow me")
+		pass
 	elif area is Water:
-		print("Water me")
+		pass
 	#elif area == WallRun:
 		#pass
 
 
 func _on_area_exited(area: Enviromental) -> void:
 	if area is GrindRail:
-		print("Don't Grind me")
+		pass
 	elif area is Climbable:
-		print("Don't Climb me")
+		pass
 	elif area is Wind:
-		print("Don't Blow me")
+		pass
 	elif area is Water:
-		print("Don't Water me")
+		pass

@@ -1,13 +1,17 @@
 extends RefCounted
 class_name CollisionLayers
 
+#TODO: Capitalize these
 
 const Ground: int = 1
 const Semisolid: int = 2
 const Platform: int = 3
+@warning_ignore("shadowed_global_identifier")
 const Interactable: int = 4
 const Collectables: int = 5
+@warning_ignore("shadowed_global_identifier")
 const Enviromental: int = 6
+@warning_ignore("shadowed_global_identifier")
 const Player: int = 7
 const Enemies: int = 8
 const Hazard: int = 9

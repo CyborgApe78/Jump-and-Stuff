@@ -3,8 +3,8 @@ extends PlayerInfo
 
 func enter() -> void:
 	abilities.reset(PlayerAbilities.listUse.All)
-	if CheckpointSystem.get_respawn() != Vector2.ZERO:
-		player.global_position = CheckpointSystem.get_respawn()
+	if cpSystem.get_respawn() != Vector2.ZERO:
+		player.global_position = cpSystem.get_respawn()
 #	player.animPlayer.play("Spawn") #breaks some states
 	EventBus.playerStatsCheck.emit()
 #	var faceState = randi_range(0, 1) 

@@ -3,6 +3,7 @@ extends StaticBody2D
 ## Spikes that extend from the wall
 
 #TODO: eventually look at using a line to tile spikes
+#TODO: add sound
 
 @export_subgroup("Connections")
 @export var detector: Area2D
@@ -112,8 +113,8 @@ func start_retract() -> void:
 	tween.tween_callback(start_idle).set_delay(timeRetract)
 
 
-func set_state_label(state) -> void:
-	labelState.text = str(state)
+func set_state_label(newState: int) -> void:
+	labelState.text = str(newState)
 
 
 func _on_actor_detector_body_entered(body: Actor) -> void:
