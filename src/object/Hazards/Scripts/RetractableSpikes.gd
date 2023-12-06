@@ -4,6 +4,7 @@ extends StaticBody2D
 
 #TODO: eventually look at using a line to tile spikes
 #TODO: add sound
+#TODO: varitations stayDeployed, timedDeploy
 
 @export_subgroup("Connections")
 @export var detector: Area2D
@@ -18,9 +19,6 @@ extends StaticBody2D
 @export var labelState: Label
 
 @export_subgroup("")
-@export var autoDeploy: bool = false #TODO: add this
-@export var stayDeployed: bool = false #TODO: add this
-
 @export var timeWait: float = 0.5
 @export var timeExtend: float = 0.5
 @export var timeHold: float = 0.2
@@ -77,26 +75,20 @@ func start_wait() -> void:
 	currentState = state.wait
 	detector.set_deferred("monitoring", false)
 	timerWait.start()
+	
+	for spike: Line2D in spikes.get_children():
+		random_shake(spike, timeWait)
 
 
 func start_extend() -> void:
 	currentState = state.extend
 	hurtbox.set_deferred("monitorable", true)
+	
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(hurtbox, "position", Vector2(0, -64), timeExtend).from_current()
-	tween.tween_method(update_point1, spike1.points[1], spike1.points[1] + Vector2(0, -32), timeExtend * 1.2)
+	tween.tween_method(update_point1, spike1.points[1], spike1.points[1] + Vector2(0, -32), (timeExtend * 1.2))
 	tween.tween_method(update_point2, spike1.points[2], spike1.points[2] + Vector2(0, -64), timeExtend)
 	tween.tween_callback(start_hold).set_delay(timeExtend)
-
-
-func update_point1(newPosition: Vector2):
-	for spike: Line2D in spikes.get_children():
-		spike.set_point_position(1, newPosition)
-
-
-func update_point2(newPosition: Vector2):
-	for spike: Line2D in spikes.get_children():
-		spike.set_point_position(2, newPosition)
 
 
 func start_hold() -> void:
@@ -106,9 +98,10 @@ func start_hold() -> void:
 
 func start_retract() -> void:
 	currentState = state.retract
+	
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT).set_parallel(true)
 	tween.tween_property(hurtbox, "position", startinPosition, timeRetract).from_current()
-	tween.tween_method(update_point1, spike1.points[1], spike1.points[1] - Vector2(0, -32), timeRetract /1.2)
+	tween.tween_method(update_point1, spike1.points[1], spike1.points[1] - Vector2(0, -32), (timeRetract * 0.8))
 	tween.tween_method(update_point2, spike1.points[2], spike1.points[2] - Vector2(0, -64), timeRetract)
 	tween.tween_callback(start_idle).set_delay(timeRetract)
 
@@ -127,3 +120,31 @@ func _on_wait_timer_timeout() -> void:
 
 func _on_hold_timer_timeout() -> void:
 	start_retract()
+
+
+func random_shake(node: Node, duration: float) -> void: #TODO: add this to global func
+	var starPos: Vector2 = node.position
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(node, "position", new_position(starPos), duration / 3).from_current()
+	tween.tween_property(node, "position", new_position(starPos), duration / 3).from_current()
+	tween.tween_property(node, "position", starPos, duration / 3).from_current()
+
+
+func new_position(pos: Vector2) -> Vector2:
+	var newX: int
+	var newY: int
+	
+	newX = pos.x + randi_range(-2, 2)
+	newY = pos.y + randi_range(-2, 2)
+	
+	return Vector2(newX, newY)
+
+
+func update_point1(newPosition: Vector2):
+	for spike: Line2D in spikes.get_children():
+		spike.set_point_position(1, newPosition)
+
+
+func update_point2(newPosition: Vector2):
+	for spike: Line2D in spikes.get_children():
+		spike.set_point_position(2, newPosition)
