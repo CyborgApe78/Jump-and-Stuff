@@ -54,7 +54,7 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if !player.inWater:
+	if !player.inWater: 
 		if input.pressedDown:
 			player.set_collision_mask_value(CollisionLayers.Semisolid, false)
 			timerSemisolidReset.stop()

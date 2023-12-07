@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=3 uid="uid://drd1sce7py66q"]
+[gd_scene load_steps=139 format=3 uid="uid://drd1sce7py66q"]
 
 [ext_resource type="Script" path="res://src/actors/player/player.gd" id="1_8artv"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/Particles.gd" id="2_hsax6"]
@@ -80,6 +80,7 @@
 [ext_resource type="Script" path="res://src/actors/player/scripts/EnviromentalDetector.gd" id="68_tvs4t"]
 [ext_resource type="AudioStream" uid="uid://yrifeqyyefog" path="res://asset/sounds/player/jump.ogg" id="68_wgrqy"]
 [ext_resource type="PackedScene" uid="uid://bxt44u72o7bxe" path="res://src/object/components/platform_checker.tscn" id="73_hobbw"]
+[ext_resource type="Script" path="res://src/actors/player/scripts/SurfaceDetector.gd" id="81_io5uy"]
 
 [sub_resource type="Curve" id="Curve_wyqxj"]
 _data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -6261,6 +6262,10 @@ _data = {
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0l6b0"]
 
+[sub_resource type="Curve" id="Curve_f8v1x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.502439, 0.098901), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3meqx"]
 size = Vector2(15, 50)
 
@@ -6279,6 +6284,7 @@ stats = NodePath("StatsComponent")
 metadata/_edit_vertical_guides_ = [-456.0]
 
 [node name="CharacterRig" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CharacterRotate" type="Node2D" parent="CharacterRig"]
 position = Vector2(0, -64)
@@ -6653,13 +6659,14 @@ antialiased = true
 script = ExtResource("6_ab4rp")
 thickness = 1.05
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats", "velocity", "input", "ground", "wall")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats", "velocity", "input", "ground", "wall", "surfaceDetector")]
 script = ExtResource("10_mvngt")
 stats = NodePath("../StatsComponent")
 velocity = NodePath("../VelocityComponemt")
 input = NodePath("../InputComponent")
 ground = NodePath("../GroundDetector")
 wall = NodePath("../WallDetector")
+surfaceDetector = NodePath("../SurfaceDetector")
 
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource("11_i4f5l")
@@ -7128,12 +7135,23 @@ script = ExtResource("68_tvs4t")
 position = Vector2(0, -64)
 shape = SubResource("CapsuleShape2D_auny6")
 
+[node name="Surfacing" type="Area2D" parent="EnviromentalDetector"]
+
+[node name="SurfaceDetector" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(0, -80)
+target_position = Vector2(0, 4)
+collision_mask = 0
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("81_io5uy")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
 autoplay = "Idle"
-blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
+blend_times = [&"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3, &"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
@@ -7242,7 +7260,6 @@ stream = ExtResource("56_v8j0l")
 volume_db = -10.636
 
 [node name="Aim" type="Marker2D" parent="." node_paths=PackedStringArray("input", "detector", "indicatorAim", "indicatorTarget")]
-visible = false
 position = Vector2(0, -64)
 script = ExtResource("57_n4b1h")
 input = NodePath("../InputComponent")
@@ -7251,9 +7268,13 @@ indicatorAim = NodePath("Aim")
 indicatorTarget = NodePath("Target")
 
 [node name="Aim" type="Line2D" parent="Aim"]
-points = PackedVector2Array(64, -8, 72, 0, 64, 8)
+points = PackedVector2Array(56, -8, 72, 0, 56, 8)
 width = 5.0
+width_curve = SubResource("Curve_f8v1x")
 default_color = Color(0, 1, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Detector" type="ShapeCast2D" parent="Aim"]
 visible = false

@@ -1,6 +1,14 @@
 extends Area2D
 class_name EnviromentalDetector
 
+enum state{
+	air,
+	ground,
+	water,
+}
+
+#TODO: at match states to 
+
 
 func _ready() -> void:
 	set_collision_mask_value(CollisionLayers.Enviromental, true)

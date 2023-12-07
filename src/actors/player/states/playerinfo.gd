@@ -7,6 +7,7 @@ var velocity: VelocityComponent
 var input: InputComponent
 var ground: GroundDetectorComponent
 var wall: WallDetectorComponent
+var surface: RayCast2D
 var abilities: Resource = preload("res://src/actors/player/resources/playerAbilities.tres")
 var gStats: Resource = preload("res://src/resources/gameStats.tres")
 var cpSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")

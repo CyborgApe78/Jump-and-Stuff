@@ -2,6 +2,7 @@ extends PlayerInfo
 
 #LOOKAT: make 2, one for slow fall, other for coming out of side dashes more like buzz lightyear mixed with mario cape
 #LOOKAT: look into mario wonder glide
+#LOOKAT: glide in water to catch jetstreams
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer

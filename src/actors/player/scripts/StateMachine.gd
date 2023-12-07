@@ -67,6 +67,7 @@ var previousStateName: String
 @export var input: InputComponent
 @export var ground: GroundDetectorComponent
 @export var wall: WallDetectorComponent
+@export var surfaceDetector: RayCast2D
 
 
 #func _ready() -> void:
@@ -100,6 +101,7 @@ func init() -> void:
 			child.input = input
 			child.ground = ground
 			child.wall = wall
+			child.surface = surfaceDetector
 
 	change_state(PlayerState.State.Spawn)
 
@@ -132,8 +134,8 @@ func player_died() -> void:
 
 
 func player_swim() -> void:
-	#TODO: not all states should change
-	if currentState.name != "GroundPound":
+	#TODO: add otherrs: dashes, grapple, etc
+	if currentState.name != "GroundPound" or "Jump":
 		change_state(PlayerState.State.Swim)
 
 func player_rail() -> void:

@@ -13,6 +13,7 @@ var windVelocity: Vector2
 
 
 func _ready() -> void:
+	set_collision_layer_value(CollisionLayers.FLUID, true)
 	adjust_particle()
 
 

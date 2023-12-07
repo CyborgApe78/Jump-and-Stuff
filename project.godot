@@ -316,4 +316,4 @@ current_board_id="3eaa6831e1"
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
