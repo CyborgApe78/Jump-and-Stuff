@@ -57,6 +57,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
+	if input.justPressedCrouch and abilities.can_use(PlayerAbilities.list.GroundPound): 
+			return State.GroundPound
 #	if input.justPressedDash and abilities.can_use(PlayerAbilities.list.SwimDash):
 #		return State.SwimDash
  

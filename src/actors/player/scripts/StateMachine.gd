@@ -133,7 +133,8 @@ func player_died() -> void:
 
 func player_swim() -> void:
 	#TODO: not all states should change
-	change_state(PlayerState.State.Swim)
+	if currentState.name != "GroundPound":
+		change_state(PlayerState.State.Swim)
 
 func player_rail() -> void:
 	change_state(PlayerState.State.Grind)

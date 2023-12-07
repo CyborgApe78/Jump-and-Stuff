@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=39 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_d0jmx"]
 [ext_resource type="PackedScene" uid="uid://c6w75yfmxvi6r" path="res://src/object/prefab/platforms/platform_floating.tscn" id="25_ni1xa"]
 [ext_resource type="PackedScene" uid="uid://bd40gjjcbnun" path="res://src/object/prefab/platforms/platform_direction_change.tscn" id="26_3thjv"]
+[ext_resource type="PackedScene" uid="uid://cmgj5u0dbvjsr" path="res://src/object/prefab/platforms/platform_path_follow.tscn" id="31_oqkat"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
@@ -53,6 +54,12 @@ size = Vector2(384, 33)
 a = Vector2(10509, 0)
 b = Vector2(-7328, 0)
 
+[sub_resource type="Curve2D" id="Curve2D_kx6ci"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 80, 0, 0, 0, 0, 256, 80, 0, 0, 0, 0, 384, 144, 0, 0, 0, 0, 640, 144, 0, 0, 0, 0, 896, 16)
+}
+point_count = 6
+
 [node name="Testing" type="Node"]
 script = ExtResource("1_i5twd")
 metadata/_edit_vertical_guides_ = []
@@ -68,7 +75,7 @@ visible = false
 [node name="Ground" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
-polygon = PackedVector2Array(6144, 128, 6144, 0, -2496, 0, -3392, 896, -3264, 896, -2432, 128)
+polygon = PackedVector2Array(1408, 128, 1408, 0, -2496, 0, -3392, 896, -3264, 896, -2432, 128, 1280, 128, 1280, 1344, 2176, 1344, 2176, 128, 3072, 128, 3072, 0, 2176, 0, 2048, 0, 2048, 1216, 1408, 1216)
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D"]
 color = Color(0, 0, 0, 1)
@@ -127,7 +134,7 @@ position = Vector2(1, 32)
 shape = SubResource("RectangleShape2D_gx7c3")
 
 [node name="Water" parent="Interactables" instance=ExtResource("13_jbo0m")]
-position = Vector2(1664, -16)
+position = Vector2(1728, 1216)
 scale = Vector2(5, 5)
 
 [node name="Semisolid" parent="Interactables" instance=ExtResource("14_jnhoi")]
@@ -311,6 +318,11 @@ offset_bottom = -96.0
 text = "DirectionChange"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PlatformPathFollow" parent="Platforms" instance=ExtResource("31_oqkat")]
+position = Vector2(-1216, 912)
+curve = SubResource("Curve2D_kx6ci")
+metadata/_edit_group_ = true
 
 [node name="Player" parent="." instance=ExtResource("24_xrqhw")]
 position = Vector2(-617, -37)
