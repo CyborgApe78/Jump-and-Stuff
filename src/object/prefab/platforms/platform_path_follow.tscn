@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmgj5u0dbvjsr"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_hqils"]
+[ext_resource type="Script" path="res://src/object/prefab/platforms/scripts/platform_path_follow.gd" id="1_voc7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oy865"]
+size = Vector2(128, 32)
+
+[node name="PlatformPathFollow" type="Path2D" node_paths=PackedStringArray("defaultPlatform", "follow", "line", "remote")]
+script = ExtResource("1_voc7t")
+defaultPlatform = NodePath("AnimateBody2D")
+follow = NodePath("PathFollow2D")
+line = NodePath("Line2D")
+remote = NodePath("PathFollow2D/RemoteTransform2D")
+speed = 200
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="AnimateBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 4
+collision_mask = 192
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="AnimateBody2D"]
+shape = SubResource("RectangleShape2D_oy865")
+one_way_collision = true
+script = ExtResource("1_hqils")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../AnimateBody2D")
