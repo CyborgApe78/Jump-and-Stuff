@@ -181,6 +181,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Quit")
 text = "Playground"
 script = ExtResource("7_jxj7a")
 changeScene = ExtResource("8_jbwpv")
@@ -190,7 +191,6 @@ cursor = NodePath("../../../Cursor")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../Quit")
 text = "World Select"
 script = ExtResource("4_8ja18")
 cursor = NodePath("../../../Cursor")
@@ -438,13 +438,13 @@ script = ExtResource("4_8ja18")
 [connection signal="timeout" from="Background/ColorRect2/Timer" to="Background/ColorRect2" method="_on_timer_timeout"]
 [connection signal="timeout" from="Background/ColorRect4/Timer" to="Background/ColorRect4" method="_on_timer_timeout"]
 [connection signal="timeout" from="Background/ColorRect3/Timer" to="Background/ColorRect3" method="_on_timer_timeout"]
-[connection signal="pressed" from="MainMenu/Buttons/Playground" to="MainMenu/Buttons/Playground" method="_on_pressed" flags=18]
+[connection signal="pressed" from="MainMenu/Buttons/Playground" to="MainMenu/Buttons/Playground" method="_on_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/WorldSelect" to="." method="_on_world_select_pressed"]
-[connection signal="pressed" from="MainMenu/Buttons/TestingGround" to="MainMenu/Buttons/TestingGround" method="_on_pressed" flags=18]
+[connection signal="pressed" from="MainMenu/Buttons/TestingGround" to="MainMenu/Buttons/TestingGround" method="_on_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="MainMenu/Buttons/Discord" to="MainMenu/Buttons/Discord" method="_on_pressed" flags=18]
-[connection signal="pressed" from="MainMenu/Buttons/Quit" to="MainMenu/Buttons/Quit" method="_on_pressed" flags=18]
-[connection signal="pressed" from="World Select/GridContainer/Ori/OriPlay" to="World Select/GridContainer/Ori/OriPlay" method="_on_pressed" flags=18]
-[connection signal="pressed" from="World Select/GridContainer/Mario 1-1/MarioPlay" to="World Select/GridContainer/Mario 1-1/MarioPlay" method="_on_pressed" flags=18]
+[connection signal="pressed" from="MainMenu/Buttons/Discord" to="MainMenu/Buttons/Discord" method="_on_pressed"]
+[connection signal="pressed" from="MainMenu/Buttons/Quit" to="MainMenu/Buttons/Quit" method="_on_pressed"]
+[connection signal="pressed" from="World Select/GridContainer/Ori/OriPlay" to="World Select/GridContainer/Ori/OriPlay" method="_on_pressed"]
+[connection signal="pressed" from="World Select/GridContainer/Mario 1-1/MarioPlay" to="World Select/GridContainer/Mario 1-1/MarioPlay" method="_on_pressed"]
 [connection signal="pressed" from="World Select/Bottom/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Settings/Bottom/MainMenu" to="." method="_on_main_menu_pressed"]
