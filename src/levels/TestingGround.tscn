@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=40 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ujkqemlw0r5p" path="res://src/object/prefab/unlockables/UpgradeUnlocker.tscn" id="17_v1pvv"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="18_87hk3"]
 [ext_resource type="PackedScene" uid="uid://c7ppaujx2tal6" path="res://src/object/prefab/platforms/grind_rail.tscn" id="18_qvigo"]
+[ext_resource type="PackedScene" uid="uid://brsdvxinwtfqd" path="res://src/object/prefab/hidden_area.tscn" id="19_minfx"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="19_owdc2"]
 [ext_resource type="PackedScene" uid="uid://drbfbu4n5oaqy" path="res://src/object/Hazards/retractable_spikes.tscn" id="20_4ow0q"]
 [ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="20_5tqcw"]
@@ -181,7 +182,7 @@ position = Vector2(-3232, 1088)
 waypointName = 2
 
 [node name="Doors" parent="Waypoints" node_paths=PackedStringArray("lockoutTimer") instance=ExtResource("19_owdc2")]
-position = Vector2(-5408, 1088)
+position = Vector2(-4992, 832)
 waypointName = 3
 lockoutTimer = NodePath("../Platforms/Timer")
 
@@ -323,6 +324,10 @@ vertical_alignment = 1
 position = Vector2(-1216, 912)
 curve = SubResource("Curve2D_kx6ci")
 metadata/_edit_group_ = true
+
+[node name="HiddenArea" parent="." instance=ExtResource("19_minfx")]
+position = Vector2(-5376, 960)
+polygon = PackedVector2Array(-128, 128, -128, -112, 320, -112, 320, 128)
 
 [node name="Player" parent="." instance=ExtResource("24_xrqhw")]
 position = Vector2(-617, -37)
