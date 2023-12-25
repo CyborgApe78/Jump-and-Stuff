@@ -2,10 +2,10 @@ extends Polygon2D
 
 ## Area becomes visible when player enters
 
-@export_subgroup("Connections")
+@export_group("Connections")
 @export var collision: CollisionPolygon2D
 
-@export_subgroup("")
+@export_group("")
 @export var transTime: float = 1.0
 @export var stayVisible: bool = false
 

@@ -6,7 +6,7 @@ extends StaticBody2D
 #TODO: add sound
 #TODO: varitations stayDeployed, timedDeploy
 
-@export_subgroup("Connections")
+@export_group("Connections")
 @export var detector: Area2D
 @export var hurtbox: HurtBox
 @export var timerWait: Timer
@@ -18,7 +18,7 @@ extends StaticBody2D
 @export var spike4: Line2D
 @export var labelState: Label
 
-@export_subgroup("")
+@export_group("")
 @export var timeWait: float = 0.5
 @export var timeExtend: float = 0.5
 @export var timeHold: float = 0.2

@@ -4,14 +4,14 @@ extends Path2D
 ## Platform that follows a path
 
 
-@export_subgroup("Connections")
+@export_group("Connections")
 @export var platform: NodePath
 @export var defaultPlatform: AnimatableBody2D
 @export var follow: PathFollow2D
 @export var line: Line2D
 @export var remote: RemoteTransform2D
 
-@export_subgroup("")
+@export_group("")
 @export var speed: int
 
 var currentState: int

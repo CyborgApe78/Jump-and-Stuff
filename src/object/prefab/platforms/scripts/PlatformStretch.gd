@@ -4,10 +4,10 @@ extends AnimatableBody2D
 
 #TODO: figure a way to change the size from code
 
-@export_subgroup("Connections")
+@export_group("Connections")
 @export var collision: CollisionShape2D
 
-@export_subgroup("")
+@export_group("")
 @export var startVertical: bool = false
 @export var speed: int = 200
 @export var timeIdle: float = 1.0
