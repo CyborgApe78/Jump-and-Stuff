@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://wkkjg38srvgh"]
+
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/FallingSpike.gd" id="1_fve6a"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_lmq0j"]
+[ext_resource type="Script" path="res://src/object/components/scripts/hurt_box.gd" id="3_msas0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lf6kt"]
+size = Vector2(64, 16)
+
+[sub_resource type="Curve" id="Curve_3qn1d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.902439, 0.747253), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ncgc"]
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bfro"]
+size = Vector2(64, 304)
+
+[node name="FallingSpike" type="AnimatableBody2D" node_paths=PackedStringArray("detector", "hurtbox", "hurtCollider", "timerWait", "spike", "labelState")]
+collision_layer = 4
+collision_mask = 199
+sync_to_physics = false
+script = ExtResource("1_fve6a")
+detector = NodePath("ActorDetector")
+hurtbox = NodePath("HurtBox")
+hurtCollider = NodePath("HurtBox/CollisionShape2D")
+timerWait = NodePath("WaitTimer")
+spike = NodePath("Spike")
+labelState = NodePath("CurrentState")
+timeWait = 1.0
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_lf6kt")
+script = ExtResource("2_lmq0j")
+
+[node name="Spike" type="Line2D" parent="."]
+position = Vector2(0, -8)
+points = PackedVector2Array(0, 24, 0, 56, 0, 72)
+width = 56.0
+width_curve = SubResource("Curve_3qn1d")
+default_color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("3_msas0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_8ncgc")
+
+[node name="CurrentState" type="Label" parent="."]
+visible = false
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = -1.0
+horizontal_alignment = 1
+
+[node name="ActorDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 192
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActorDetector"]
+position = Vector2(0, 168)
+shape = SubResource("RectangleShape2D_8bfro")
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
+[connection signal="body_entered" from="ActorDetector" to="." method="_on_actor_detector_body_entered"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
