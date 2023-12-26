@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-## Spikes that extend from the wall
+## Spikes that extend from the wall when runover
 
 #TODO: eventually look at using a line to tile spikes
 #TODO: add sound
