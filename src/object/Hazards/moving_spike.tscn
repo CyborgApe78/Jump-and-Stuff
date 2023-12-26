@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgv7obufl6ry"]
+
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/MovingSpike.gd" id="1_qlu28"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_i5i1h"]
+[ext_resource type="Script" path="res://src/object/components/scripts/hurt_box.gd" id="3_nvmcn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6xml"]
+size = Vector2(64, 64)
+
+[sub_resource type="Curve" id="Curve_3qn1d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.902439, 0.747253), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ncgc"]
+size = Vector2(48, 32)
+
+[node name="MovingSpike" type="StaticBody2D" node_paths=PackedStringArray("hurtbox", "hurtCollider", "timerWait", "timerHold", "spike", "labelState")]
+collision_mask = 0
+script = ExtResource("1_qlu28")
+hurtbox = NodePath("HurtBox")
+hurtCollider = NodePath("HurtBox/CollisionShape2D")
+timerWait = NodePath("WaitTimer")
+timerHold = NodePath("HoldTimer")
+spike = NodePath("Spike")
+labelState = NodePath("CurrentState")
+timeWait = 1.0
+_baseRange = 2
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_t6xml")
+script = ExtResource("2_i5i1h")
+
+[node name="Spike" type="Line2D" parent="."]
+position = Vector2(0, -8)
+points = PackedVector2Array(0, -32, 0, -40, 0, -48)
+width = 56.0
+width_curve = SubResource("Curve_3qn1d")
+default_color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("3_nvmcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_8ncgc")
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HoldTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CurrentState" type="Label" parent="."]
+visible = false
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = -1.0
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="HoldTimer" to="." method="_on_hold_timer_timeout"]
