@@ -38,7 +38,7 @@ var airTurnModifier: float = 4.0
 
 @export_group("Crouch")
 @export_range(0.0 , 2.0, 0.01) var _basefrictionCrouch: float = 0.8
-@export_range(0.0 , 5.0, 0.01) var crouchVelocityModifier: float = 0.2
+@export_range(0.0 , 5.0, 0.01) var crouchVelocityModifier: float = 0.1
 @export_range(0.0 , 5.0, 0.01) var crouchSpeedModifier: float = 0.25
 @export_range(0.0 , 5.0, 0.01) var crouchChargedSpeedModifier: float = 0.5
 @export var minLongJumpVelocity: int = 200

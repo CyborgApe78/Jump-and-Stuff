@@ -17,7 +17,7 @@ func enter() -> void:
 	player.animPlayer.queue("Crouch Walk")
 	
 	timerCharge.wait_time = stats.timeCrouchCharge
-	timerCharge.start() #Todo: don't restart when coming from crouch walk
+	timerCharge.start() #Todo: don't restart when coming from crouch
 	
 	if !timerConsecutiveJump.is_stopped():
 		saveConsecutive = true
@@ -41,7 +41,7 @@ func physics(delta) -> void:
 	if player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = input.lastMoveDirection.x * 1
 	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed * stats.crouchVelocityModifier: #LOOKAT: moving these to stats
-		velocity.apply_acceleration(stats.moveSpeed / 5, stats.accelerationGround, delta)
+		velocity.apply_acceleration(stats.moveSpeed * stats.crouchVelocityModifier, stats.accelerationGround, delta)
 	elif input.moveDirection.x == 0:
 		velocity.apply_friction(stats.frictionGround, delta)
 
@@ -100,6 +100,8 @@ func state_check(delta: float) -> int:
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.coyoteJump)
 		return State.JumpCrouch
+	if !detector.is_colliding() and !input.pressedCrouch:
+		return State.Walk
 
 	return State.Null
 
