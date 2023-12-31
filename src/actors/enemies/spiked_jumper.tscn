@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://src/actors/enemies/scripts/spiked_jumper.gd" id="1_y04id"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqnws"]
-size = Vector2(32, 40)
+size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2t78"]
-size = Vector2(48, 16)
+size = Vector2(48, 24)
 
 [node name="Spik-E-Jumper" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "timerWait", "rig", "hurtbox")]
 collision_layer = 128
@@ -59,14 +59,14 @@ color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-16, -64, -16, -56, -8, -56, -8, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_tqnws")
 
 [node name="HurtBox" parent="." instance=ExtResource("1_0mrsi")]
 position = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -32)
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_d2t78")
 
 [node name="VelocityLabel" type="Label" parent="."]
