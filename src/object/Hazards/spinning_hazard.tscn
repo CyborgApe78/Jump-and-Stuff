@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr28hpjsiiytv"]
+
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/SpinningHazard.gd" id="1_8673h"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_arth6"]
+[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="3_2gtcf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csy7f"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i288y"]
+size = Vector2(192, 16)
+
+[node name="SpinningHazard" type="StaticBody2D" node_paths=PackedStringArray("hurtbox", "hurtboxCollision")]
+script = ExtResource("1_8673h")
+hurtbox = NodePath("HurtBox")
+hurtboxCollision = NodePath("HurtBox/VisibleCollisionShape2D")
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_csy7f")
+script = ExtResource("2_arth6")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_2gtcf")]
+position = Vector2(0, -32)
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(96, 0)
+shape = SubResource("RectangleShape2D_i288y")
+script = ExtResource("2_arth6")
+color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]

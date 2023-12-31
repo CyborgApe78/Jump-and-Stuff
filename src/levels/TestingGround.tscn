@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=45 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://cmgj5u0dbvjsr" path="res://src/object/prefab/platforms/platform_path_follow.tscn" id="31_oqkat"]
 [ext_resource type="PackedScene" uid="uid://wkkjg38srvgh" path="res://src/object/Hazards/falling_spike.tscn" id="32_0tyk8"]
 [ext_resource type="PackedScene" uid="uid://bgv7obufl6ry" path="res://src/object/Hazards/moving_spike.tscn" id="32_sifvf"]
+[ext_resource type="PackedScene" uid="uid://dr28hpjsiiytv" path="res://src/object/Hazards/spinning_hazard.tscn" id="35_h0jdy"]
 [ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
 [ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
 
@@ -359,30 +360,33 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("25_d0jmx")
 
-[node name="Spikes" type="Node2D" parent="."]
+[node name="Hazard" type="Node" parent="."]
 
-[node name="FallingSpike" parent="Spikes" instance=ExtResource("32_0tyk8")]
+[node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
 position = Vector2(800, -192)
 
-[node name="MovingSpike" parent="Spikes" instance=ExtResource("32_sifvf")]
+[node name="MovingSpike" parent="Hazard" instance=ExtResource("32_sifvf")]
 position = Vector2(608, 64)
 
-[node name="RetractableSpikes" parent="Spikes" instance=ExtResource("20_4ow0q")]
+[node name="RetractableSpikes" parent="Hazard" instance=ExtResource("20_4ow0q")]
 position = Vector2(352, -192)
 rotation = 3.14159
 
-[node name="RetractableSpikes2" parent="Spikes" instance=ExtResource("20_4ow0q")]
+[node name="RetractableSpikes2" parent="Hazard" instance=ExtResource("20_4ow0q")]
 position = Vector2(352, 64)
 
-[node name="RetractableSpikes3" parent="Spikes" instance=ExtResource("20_4ow0q")]
+[node name="RetractableSpikes3" parent="Hazard" instance=ExtResource("20_4ow0q")]
 position = Vector2(416, 64)
 
-[node name="RetractableSpikes4" parent="Spikes" instance=ExtResource("20_4ow0q")]
+[node name="RetractableSpikes4" parent="Hazard" instance=ExtResource("20_4ow0q")]
 position = Vector2(480, 64)
 
-[node name="RetractableSpikes5" parent="Spikes" instance=ExtResource("20_4ow0q")]
+[node name="RetractableSpikes5" parent="Hazard" instance=ExtResource("20_4ow0q")]
 position = Vector2(416, -192)
 rotation = 3.14159
+
+[node name="SpinningHazard" parent="Hazard" instance=ExtResource("35_h0jdy")]
+position = Vector2(-736, -128)
 
 [node name="Enemies" type="Node" parent="."]
 
