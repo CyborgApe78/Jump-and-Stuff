@@ -1,5 +1,6 @@
 extends Node
 
+#TDOD: create walls that can't jump on
 
 var cpSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 

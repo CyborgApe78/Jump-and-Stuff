@@ -15,7 +15,7 @@ var cpSystem: Resource = preload("res://src/resources/CheckpointSystem.tres")
 var dashBufferState: int
 
 
-func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.2) -> void:
+func speed_bend(forwardLean: bool = true, speed = stats.moveSpeed, leanAmount: float = 0.2) -> void: #TODO: move this to player script
 	if forwardLean:
 		player.characterSAS.skew = remap(player.facing * abs(player.velocity.x), 0, speed, 0.0, player.facing * leanAmount)
 	if !forwardLean:

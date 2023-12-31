@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=44 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -32,7 +32,10 @@
 [ext_resource type="PackedScene" uid="uid://c6w75yfmxvi6r" path="res://src/object/prefab/platforms/platform_floating.tscn" id="25_ni1xa"]
 [ext_resource type="PackedScene" uid="uid://bd40gjjcbnun" path="res://src/object/prefab/platforms/platform_direction_change.tscn" id="26_3thjv"]
 [ext_resource type="PackedScene" uid="uid://cmgj5u0dbvjsr" path="res://src/object/prefab/platforms/platform_path_follow.tscn" id="31_oqkat"]
+[ext_resource type="PackedScene" uid="uid://wkkjg38srvgh" path="res://src/object/Hazards/falling_spike.tscn" id="32_0tyk8"]
 [ext_resource type="PackedScene" uid="uid://bgv7obufl6ry" path="res://src/object/Hazards/moving_spike.tscn" id="32_sifvf"]
+[ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
+[ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
@@ -77,7 +80,7 @@ visible = false
 [node name="Ground" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
-polygon = PackedVector2Array(1408, 128, 1408, 0, -2432, 0, -3328, 896, -3200, 896, -2432, 128, 1280, 128, 1280, 1344, 2176, 1344, 2176, 128, 3072, 128, 3072, 0, 2176, 0, 2048, 0, 2048, 1216, 1408, 1216)
+polygon = PackedVector2Array(1408, 128, 1408, 0, 640, 0, 640, 64, 576, 64, 576, 0, 512, 0, 512, 64, 320, 64, 320, 0, -2432, 0, -3328, 896, -3200, 896, -2432, 128, 1280, 128, 1280, 1344, 2176, 1344, 2176, 128, 3712, 128, 3712, 0, 2176, 0, 2048, 0, 2048, 1216, 1408, 1216)
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D"]
 color = Color(0, 0, 0, 1)
@@ -97,6 +100,13 @@ polygon = PackedVector2Array(-5760, 640, -5760, 1216, 1280, 1216, 1280, 1088, -5
 color = Color(0, 0, 0, 1)
 script = ExtResource("6_7jh6b")
 
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Ground"]
+polygon = PackedVector2Array(2304, -64, 3072, -64, 3072, -128, 2304, -128)
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D4"]
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_7jh6b")
+
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="GrindRail" parent="Interactables" instance=ExtResource("18_qvigo")]
@@ -104,7 +114,7 @@ position = Vector2(192, 448)
 curve = SubResource("Curve2D_nhl8e")
 
 [node name="BounceBox" parent="Interactables" instance=ExtResource("6_exgp3")]
-position = Vector2(-1336, 0)
+position = Vector2(-2376, 288)
 _strength = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/BounceBox"]
@@ -351,6 +361,9 @@ script = ExtResource("25_d0jmx")
 
 [node name="Spikes" type="Node2D" parent="."]
 
+[node name="FallingSpike" parent="Spikes" instance=ExtResource("32_0tyk8")]
+position = Vector2(800, -192)
+
 [node name="MovingSpike" parent="Spikes" instance=ExtResource("32_sifvf")]
 position = Vector2(608, 64)
 
@@ -370,5 +383,14 @@ position = Vector2(480, 64)
 [node name="RetractableSpikes5" parent="Spikes" instance=ExtResource("20_4ow0q")]
 position = Vector2(416, -192)
 rotation = 3.14159
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Spik-E-Sides" parent="Enemies" instance=ExtResource("36_17bw8")]
+position = Vector2(-1184, 0)
+startLeft = false
+
+[node name="SpikedJumper" parent="Enemies" instance=ExtResource("35_q5l7e")]
+position = Vector2(-480, 0)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

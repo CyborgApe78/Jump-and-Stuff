@@ -11,7 +11,7 @@ size = Vector2(64, 64)
 size = Vector2(64, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ncgc"]
-size = Vector2(48, 40)
+size = Vector2(48, 32)
 
 [sub_resource type="Curve" id="Curve_3qn1d"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.902439, 0.747253), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
