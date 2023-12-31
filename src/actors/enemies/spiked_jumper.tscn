@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://44nof0yy21qr"]
+
+[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="1_0mrsi"]
+[ext_resource type="Script" path="res://src/actors/enemies/scripts/spiked_jumper.gd" id="1_y04id"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqnws"]
+size = Vector2(32, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2t78"]
+size = Vector2(48, 16)
+
+[node name="SpikedJumper" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "timerWait", "rig", "hurtbox")]
+collision_layer = 128
+collision_mask = 7
+script = ExtResource("1_y04id")
+labelVelocity = NodePath("VelocityLabel")
+timerWait = NodePath("WaitTimer")
+rig = NodePath("Rig")
+hurtbox = NodePath("HurtBox")
+
+[node name="Rig" type="Polygon2D" parent="."]
+color = Color(0.713726, 0.407843, 0.235294, 1)
+polygon = PackedVector2Array(-16, -64, 16, -64, 32, -40, 32, 0, 8, 0, 16, -16, -16, -16, -8, 0, -32, 0, -32, -40)
+
+[node name="Spikes" type="Line2D" parent="Rig"]
+points = PackedVector2Array(32, -40, 24, -72, 8, -64, 0, -72, -8, -64, -24, -72, -32, -40)
+width = 4.0
+default_color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="Spring" type="Line2D" parent="Rig"]
+position = Vector2(16, 48)
+points = PackedVector2Array(-48, -72, -32, -64, -48, -56, -32, -48)
+width = 4.0
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="Spring2" type="Line2D" parent="Rig"]
+position = Vector2(-16, 48)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(-48, -72, -32, -64, -48, -56, -32, -48)
+width = 4.0
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="Eye" type="Polygon2D" parent="Rig"]
+position = Vector2(-8, 24)
+polygon = PackedVector2Array(-16, -72, -16, -56, 0, -56, 0, -72)
+
+[node name="Polygon2D" type="Polygon2D" parent="Rig/Eye"]
+position = Vector2(8, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-16, -64, -16, -56, -8, -56, -8, -64)
+
+[node name="Eye2" type="Polygon2D" parent="Rig"]
+position = Vector2(24, 24)
+polygon = PackedVector2Array(-16, -72, -16, -56, 0, -56, 0, -72)
+
+[node name="Polygon2D" type="Polygon2D" parent="Rig/Eye2"]
+position = Vector2(8, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-16, -64, -16, -56, -8, -56, -8, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_tqnws")
+
+[node name="HurtBox" parent="." instance=ExtResource("1_0mrsi")]
+position = Vector2(0, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_d2t78")
+
+[node name="VelocityLabel" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -104.0
+offset_right = 24.0
+offset_bottom = -81.0
+horizontal_alignment = 1
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
