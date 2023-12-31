@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://c6po21eno80hp"]
+[gd_scene load_steps=47 format=3 uid="uid://c6po21eno80hp"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_alvql"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_5jr3s"]
 [ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="3_p12i0"]
 [ext_resource type="PackedScene" uid="uid://ianrymnomtg8" path="res://src/ui/HUD/debugOverlay.tscn" id="4_wytvc"]
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="8_vmba6"]
+[ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="12_hur0s"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="12_jmyvf"]
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="16_7lg2w"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="18_d5p5i"]
@@ -12,7 +13,10 @@
 [ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_3blqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brhd2"]
-size = Vector2(13376, 58)
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuiv8"]
+size = Vector2(192, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjms6"]
 size = Vector2(4416, 320)
@@ -21,31 +25,67 @@ size = Vector2(4416, 320)
 size = Vector2(960, 320)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is27x"]
-size = Vector2(4160, 320)
+size = Vector2(4096, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sk44m"]
+size = Vector2(1088, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8utt6"]
-size = Vector2(3392, 320)
+size = Vector2(4416, 320)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7l2r"]
-size = Vector2(64, 3776)
+size = Vector2(64, 3392)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6jjf"]
+size = Vector2(128, 448)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ihfp"]
+size = Vector2(128, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shr4q"]
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djwks"]
-size = Vector2(128, 192)
+size = Vector2(128, 512)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0kkx4"]
-size = Vector2(128, 256)
+size = Vector2(128, 576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b15q3"]
+size = Vector2(5888, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lm6ve"]
 size = Vector2(64, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2b6o"]
-size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2mt4"]
+size = Vector2(128, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncydi"]
-size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6yjj"]
+size = Vector2(192, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6k7v"]
+size = Vector2(256, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh5m6"]
+size = Vector2(448, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcwh1"]
+size = Vector2(64, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifl0i"]
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8p7y"]
+size = Vector2(512, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6380"]
+size = Vector2(256, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rka4n"]
+size = Vector2(320, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr26a"]
+size = Vector2(192, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lx1bj"]
 size = Vector2(259, 64)
@@ -75,10 +115,23 @@ size = Vector2(512, 64)
 size = Vector2(576, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpg5b"]
-size = Vector2(13376, 64)
+size = Vector2(14336, 64)
 
 [node name="Mario 1-1" type="Node"]
 script = ExtResource("1_alvql")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_top = -3008.0
+offset_right = 14336.0
+offset_bottom = 256.0
+color = Color(0.203922, 0.866667, 0.854902, 1)
+
+[node name="Background2" type="ColorRect" parent="."]
+offset_left = -64.0
+offset_top = 320.0
+offset_right = 14400.0
+offset_bottom = 1088.0
+color = Color(0, 0, 0, 1)
 
 [node name="Menu" parent="." instance=ExtResource("2_5jr3s")]
 
@@ -93,13 +146,27 @@ position = Vector2(160, 0)
 ability = 1
 
 [node name="HurtBox" parent="Interactables" instance=ExtResource("8_vmba6")]
-position = Vector2(4576, 352)
+position = Vector2(3728, 1648)
 kill = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/HurtBox"]
-position = Vector2(2112, -19)
+position = Vector2(752, -1360)
 shape = SubResource("RectangleShape2D_brhd2")
+script = ExtResource("12_jmyvf")
+color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Interactables/HurtBox"]
+position = Vector2(6128, -1360)
+shape = SubResource("RectangleShape2D_brhd2")
+script = ExtResource("12_jmyvf")
+color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Interactables/HurtBox"]
+position = Vector2(1872, -1360)
+shape = SubResource("RectangleShape2D_xuiv8")
+script = ExtResource("12_jmyvf")
+color = Color(0.690196, 0.168627, 0.211765, 1)
 
 [node name="Waypoints" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -108,6 +175,56 @@ metadata/_edit_lock_ = true
 position = Vector2(160, 0)
 
 [node name="Platforms" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Spik-E-Sides" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(1440, 0)
+
+[node name="Spik-E-Sides2" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(2592, 0)
+
+[node name="Spik-E-Sides3" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(3296, 0)
+
+[node name="Spik-E-Sides4" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(3424, 0)
+
+[node name="Spik-E-Sides5" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(6240, 0)
+
+[node name="Spik-E-Sides6" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(6368, 0)
+
+[node name="Spik-E-Sides7" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(7328, 0)
+
+[node name="Spik-E-Sides8" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(7456, 0)
+
+[node name="Spik-E-Sides9" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(7968, 0)
+
+[node name="Spik-E-Sides10" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(8096, 0)
+
+[node name="Spik-E-Sides11" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(8224, 0)
+
+[node name="Spik-E-Sides12" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(8352, 0)
+
+[node name="Spik-E-Sides13" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(11168, 0)
+
+[node name="Spik-E-Sides14" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(11296, 0)
+
+[node name="Spik-E-Sides15" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(5152, -512)
+
+[node name="Spik-E-Sides16" parent="Enemies" instance=ExtResource("12_hur0s")]
+position = Vector2(5280, -512)
 
 [node name="Player" parent="." instance=ExtResource("24_nisya")]
 position = Vector2(160, 0)
@@ -133,6 +250,7 @@ editor_draw_drag_margin = true
 script = ExtResource("25_3blqo")
 
 [node name="GroundAndWalls" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="GroundAndWalls"]
 position = Vector2(2208, 160)
@@ -147,60 +265,78 @@ script = ExtResource("12_jmyvf")
 color = Color(0.286275, 0.0941176, 0.0862745, 1)
 
 [node name="VisibleCollisionShape2D3" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(7776, 160)
+position = Vector2(7744, 160)
 shape = SubResource("RectangleShape2D_is27x")
 script = ExtResource("12_jmyvf")
 color = Color(0.286275, 0.0941176, 0.0862745, 1)
 
+[node name="VisibleCollisionShape2D22" type="CollisionShape2D" parent="GroundAndWalls"]
+position = Vector2(10016, 1024)
+shape = SubResource("RectangleShape2D_sk44m")
+script = ExtResource("12_jmyvf")
+color = Color(0.129412, 0.247059, 0.745098, 1)
+
 [node name="VisibleCollisionShape2D4" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(11680, 160)
+position = Vector2(12128, 160)
 shape = SubResource("RectangleShape2D_8utt6")
 script = ExtResource("12_jmyvf")
 color = Color(0.286275, 0.0941176, 0.0862745, 1)
 
 [node name="VisibleCollisionShape2D5" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(-32, -1824)
+position = Vector2(-32, -1376)
 shape = SubResource("RectangleShape2D_q7l2r")
 script = ExtResource("12_jmyvf")
 
 [node name="VisibleCollisionShape2D6" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(13408, -1824)
+position = Vector2(14368, -1376)
 shape = SubResource("RectangleShape2D_q7l2r")
 script = ExtResource("12_jmyvf")
 
 [node name="VisibleCollisionShape2D7" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(1856, -64)
+position = Vector2(1856, 96)
 shape = SubResource("RectangleShape2D_j6jjf")
 script = ExtResource("12_jmyvf")
 color = Color(0.396078, 0.937255, 0.258824, 1)
 
 [node name="VisibleCollisionShape2D11" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10560, -64)
-shape = SubResource("RectangleShape2D_j6jjf")
+position = Vector2(10496, 416)
+shape = SubResource("RectangleShape2D_1ihfp")
+script = ExtResource("12_jmyvf")
+color = Color(0.396078, 0.937255, 0.258824, 1)
+
+[node name="VisibleCollisionShape2D21" type="CollisionShape2D" parent="GroundAndWalls"]
+position = Vector2(10368, 896)
+shape = SubResource("RectangleShape2D_shr4q")
 script = ExtResource("12_jmyvf")
 color = Color(0.396078, 0.937255, 0.258824, 1)
 
 [node name="VisibleCollisionShape2D12" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(11584, -64)
+position = Vector2(11520, 96)
 shape = SubResource("RectangleShape2D_j6jjf")
 script = ExtResource("12_jmyvf")
 color = Color(0.396078, 0.937255, 0.258824, 1)
 
 [node name="VisibleCollisionShape2D8" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(2496, -96)
+position = Vector2(2496, 64)
 shape = SubResource("RectangleShape2D_djwks")
 script = ExtResource("12_jmyvf")
 color = Color(0.396078, 0.937255, 0.258824, 1)
 
 [node name="VisibleCollisionShape2D9" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(3008, -128)
+position = Vector2(3008, 32)
 shape = SubResource("RectangleShape2D_0kkx4")
 script = ExtResource("12_jmyvf")
 color = Color(0.396078, 0.937255, 0.258824, 1)
 
 [node name="VisibleCollisionShape2D10" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(3712, -128)
+position = Vector2(3712, 32)
 shape = SubResource("RectangleShape2D_0kkx4")
+script = ExtResource("12_jmyvf")
+color = Color(0.396078, 0.937255, 0.258824, 1)
+
+[node name="VisibleCollisionShape2D19" type="CollisionShape2D" parent="GroundAndWalls"]
+position = Vector2(6592, 384)
+shape = SubResource("RectangleShape2D_b15q3")
 script = ExtResource("12_jmyvf")
 color = Color(0.396078, 0.937255, 0.258824, 1)
 
@@ -223,14 +359,8 @@ script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D18" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(6432, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D19" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(6496, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
+position = Vector2(6464, -224)
+shape = SubResource("RectangleShape2D_j2mt4")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
@@ -266,349 +396,215 @@ color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D43" type="CollisionShape2D" parent="GroundAndWalls"]
 position = Vector2(7840, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
+shape = SubResource("RectangleShape2D_o6yjj")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D44" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(7904, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D45" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(7968, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D46" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8352, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
+position = Vector2(8320, -480)
+shape = SubResource("RectangleShape2D_x6k7v")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D47" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8416, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
+position = Vector2(9952, 864)
+shape = SubResource("RectangleShape2D_uh5m6")
 script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
+color = Color(0.0509804, 0.141176, 0.529412, 1)
 
 [node name="VisibleCollisionShape2D48" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8288, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
+position = Vector2(9504, 704)
+shape = SubResource("RectangleShape2D_vcwh1")
+script = ExtResource("12_jmyvf")
+color = Color(0.0509804, 0.141176, 0.529412, 1)
+
+[node name="VisibleCollisionShape2D46" type="CollisionShape2D" parent="GroundAndWalls"]
+position = Vector2(10880, -224)
+shape = SubResource("RectangleShape2D_x6k7v")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
-[node name="VisibleCollisionShape2D49" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8352, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D50" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8416, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D51" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8480, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D52" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10848, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D53" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10912, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D54" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10976, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D55" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(11040, -224)
-shape = SubResource("RectangleShape2D_lm6ve")
+[node name="VisibleCollisionShape2D45" type="CollisionShape2D" parent="GroundAndWalls"]
+position = Vector2(8320, -224)
+shape = SubResource("RectangleShape2D_ifl0i")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D20" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5152, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D21" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5216, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D22" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5280, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D23" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5344, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D24" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5408, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D25" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5472, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D26" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5536, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D27" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5600, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
+position = Vector2(5376, -480)
+shape = SubResource("RectangleShape2D_d8p7y")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D28" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5856, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D29" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5920, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D30" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5984, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D31" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(6048, -480)
-shape = SubResource("RectangleShape2D_lm6ve")
+position = Vector2(5952, -480)
+shape = SubResource("RectangleShape2D_l6380")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D15" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(1312, -224)
-shape = SubResource("RectangleShape2D_s2b6o")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D34" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(1376, -224)
-shape = SubResource("RectangleShape2D_s2b6o")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D35" type="CollisionShape2D" parent="GroundAndWalls"]
 position = Vector2(1440, -224)
-shape = SubResource("RectangleShape2D_s2b6o")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D36" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(1504, -224)
-shape = SubResource("RectangleShape2D_s2b6o")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D37" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(1568, -224)
-shape = SubResource("RectangleShape2D_s2b6o")
+shape = SubResource("RectangleShape2D_rka4n")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D16" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(4960, -224)
-shape = SubResource("RectangleShape2D_ncydi")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D32" type="CollisionShape2D" parent="GroundAndWalls"]
 position = Vector2(5024, -224)
-shape = SubResource("RectangleShape2D_ncydi")
-script = ExtResource("12_jmyvf")
-color = Color(0.713726, 0.407843, 0.235294, 1)
-
-[node name="VisibleCollisionShape2D33" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(5088, -224)
-shape = SubResource("RectangleShape2D_ncydi")
+shape = SubResource("RectangleShape2D_yr26a")
 script = ExtResource("12_jmyvf")
 color = Color(0.713726, 0.407843, 0.235294, 1)
 
 [node name="VisibleCollisionShape2D56" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8766.5, -32)
+position = Vector2(8704, -32)
 shape = SubResource("RectangleShape2D_lx1bj")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D57" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9152, -32)
+position = Vector2(9088, -32)
 shape = SubResource("RectangleShape2D_lx1bj")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D58" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10112, -32)
+position = Vector2(10048, -32)
 shape = SubResource("RectangleShape2D_lx1bj")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D76" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(12096, -352)
+position = Vector2(12032, -352)
 shape = SubResource("RectangleShape2D_lx1bj")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D63" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9728, -96)
+position = Vector2(9664, -96)
 shape = SubResource("RectangleShape2D_lx1bj")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D59" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8800, -96)
+position = Vector2(8736, -96)
 shape = SubResource("RectangleShape2D_s025p")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D60" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9120, -96)
+position = Vector2(9056, -96)
 shape = SubResource("RectangleShape2D_s025p")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D61" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9760, -160)
+position = Vector2(9696, -160)
 shape = SubResource("RectangleShape2D_s025p")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D62" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10080, -96)
+position = Vector2(10016, -96)
 shape = SubResource("RectangleShape2D_s025p")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D77" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(12128, -416)
+position = Vector2(12064, -416)
 shape = SubResource("RectangleShape2D_s025p")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D64" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8832, -160)
+position = Vector2(8768, -160)
 shape = SubResource("RectangleShape2D_s8elu")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D65" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9088, -160)
+position = Vector2(9024, -160)
 shape = SubResource("RectangleShape2D_s8elu")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D66" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9792, -224)
+position = Vector2(9728, -224)
 shape = SubResource("RectangleShape2D_s8elu")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D67" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10048, -160)
+position = Vector2(9984, -160)
 shape = SubResource("RectangleShape2D_s8elu")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D78" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(12160, -480)
+position = Vector2(12096, -480)
 shape = SubResource("RectangleShape2D_s8elu")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D68" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(8864, -224)
+position = Vector2(8800, -224)
 shape = SubResource("RectangleShape2D_mwpl0")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D69" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9056, -224)
+position = Vector2(8992, -224)
 shape = SubResource("RectangleShape2D_mwpl0")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D71" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(10016, -224)
+position = Vector2(9952, -224)
 shape = SubResource("RectangleShape2D_mwpl0")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D70" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(9696, -32)
+position = Vector2(9632, -32)
 shape = SubResource("RectangleShape2D_fvlqp")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D72" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(12064, -288)
+position = Vector2(12000, -288)
 shape = SubResource("RectangleShape2D_fvlqp")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D73" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(12032, -224)
+position = Vector2(11968, -224)
 shape = SubResource("RectangleShape2D_tt4il")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D74" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(12000, -160)
+position = Vector2(11936, -160)
 shape = SubResource("RectangleShape2D_2fh56")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D75" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(11968, -96)
+position = Vector2(11904, -96)
 shape = SubResource("RectangleShape2D_exhy4")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D79" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(11936, -32)
+position = Vector2(11872, -32)
 shape = SubResource("RectangleShape2D_v2ycu")
 script = ExtResource("12_jmyvf")
 color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="VisibleCollisionShape2D80" type="CollisionShape2D" parent="GroundAndWalls"]
-position = Vector2(6688, -3040)
+position = Vector2(7168, -3040)
 shape = SubResource("RectangleShape2D_kpg5b")
 script = ExtResource("12_jmyvf")
+
+[node name="CoinPlaceHolder" type="Polygon2D" parent="."]
+color = Color(1, 0.898039, 0.439216, 1)
+polygon = PackedVector2Array(9792, 448, 10112, 448, 10112, 512, 9968, 512, 9968, 576, 10176, 576, 10176, 640, 9968, 640, 9968, 704, 10176, 704, 10176, 768, 9728, 768, 9728, 703.225, 9952, 704, 9952, 640, 9728, 640.157, 9728, 576, 9952, 576, 9952, 512, 9792, 512)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
