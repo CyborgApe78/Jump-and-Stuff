@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://q7elrojricr"]
+
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/spinning_arm.gd" id="1_hp3wp"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_bu2yu"]
+[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="3_ac75j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csy7f"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lilat"]
+radius = 32.0
+
+[node name="SpinningArm" type="StaticBody2D" node_paths=PackedStringArray("arm")]
+script = ExtResource("1_hp3wp")
+arm = NodePath("Line2D")
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_csy7f")
+script = ExtResource("2_bu2yu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, -32)
+points = PackedVector2Array(0, 0, 0, 192)
+width = 16.0
+default_color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="HurtBox" parent="Line2D" instance=ExtResource("3_ac75j")]
+position = Vector2(0, 192)
+metadata/_edit_group_ = true
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Line2D/HurtBox"]
+shape = SubResource("CircleShape2D_lilat")
+script = ExtResource("2_bu2yu")
+color = Color(0.690196, 0.168627, 0.211765, 1)
