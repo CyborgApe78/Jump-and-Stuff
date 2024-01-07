@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://yu6qr5p1otf7"]
+
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/Chaser.gd" id="1_he6tn"]
+[ext_resource type="Texture2D" uid="uid://ou30xpkfmjij" path="res://icon.png" id="2_o7qeg"]
+[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="3_c8ikt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcp4l"]
+size = Vector2(57.6303, 63.5722)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bra7x"]
+size = Vector2(32, 63.2)
+
+[node name="Chaser" type="Path2D" node_paths=PackedStringArray("follow", "remote")]
+position = Vector2(-6.10352e-05, 7.99997)
+scale = Vector2(20, 20)
+script = ExtResource("1_he6tn")
+follow = NodePath("PathFollow2D")
+remote = NodePath("PathFollow2D/RemoteTransform2D")
+
+[node name="Chaser" type="Sprite2D" parent="."]
+self_modulate = Color(0.690196, 0.168627, 0.211765, 1)
+position = Vector2(-0.4, -1.2)
+rotation = 0.000892061
+scale = Vector2(1, 1)
+texture = ExtResource("2_o7qeg")
+
+[node name="HurtBox" parent="Chaser" instance=ExtResource("3_c8ikt")]
+kill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chaser/HurtBox"]
+position = Vector2(-2.81303, 0.21427)
+shape = SubResource("RectangleShape2D_kcp4l")
+
+[node name="PlayerDetector" type="Area2D" parent="Chaser"]
+position = Vector2(0.40107, 1.19964)
+rotation = -0.000892062
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chaser/PlayerDetector"]
+position = Vector2(41.6, -0.399997)
+shape = SubResource("RectangleShape2D_bra7x")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-0.4, -1.2)
+rotation = 0.000892061
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../Chaser")
+
+[node name="_Timer_137253" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="body_entered" from="Chaser/PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="Chaser/PlayerDetector" to="." method="_on_player_detector_body_exited"]
