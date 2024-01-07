@@ -22,9 +22,9 @@ enum state{
 }
 
 func _ready() -> void:
-	#if platform != null: #FIXME: platform doesn't move
-		#remote.remote_path = platform
-		#defaultPlatform.queue_free()
+	if platform != null: #FIXME: platform doesn't move
+		remote.remote_path = platform
+		defaultPlatform.queue_free()
 	
 	if curve != null:
 		line.points = curve.get_baked_points()

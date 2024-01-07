@@ -1,4 +1,5 @@
 extends Area2D
+#TODO: rename to spring and it inherits from bouncebox
 
 #TODO: normal spring, bumper, bounce after jumping, launch barrel
 

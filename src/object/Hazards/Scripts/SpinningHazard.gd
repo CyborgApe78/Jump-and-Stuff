@@ -1,7 +1,6 @@
-@tool
 extends StaticBody2D
 
-#TODO: add length to export
+#TODO: make length change in editor
 
 @export_group("Connections")
 @export var hurtbox: HurtBox
@@ -13,6 +12,7 @@ extends StaticBody2D
 	set(v):
 		_baseLength = v
 		length = v * Util.tileSize
+		set_length()
 	get:
 		return _baseLength
 

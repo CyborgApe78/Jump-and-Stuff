@@ -12,7 +12,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.902439, 0.747253), 0.0, 0.0, 0
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ncgc"]
-size = Vector2(48, 32)
+size = Vector2(48, 1)
 
 [node name="MovingSpike" type="StaticBody2D" node_paths=PackedStringArray("hurtbox", "hurtCollider", "timerWait", "timerHold", "spike", "labelState")]
 collision_mask = 0
@@ -24,7 +24,6 @@ timerHold = NodePath("HoldTimer")
 spike = NodePath("Spike")
 labelState = NodePath("CurrentState")
 timeWait = 1.0
-_baseRange = 2
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)

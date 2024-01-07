@@ -4,7 +4,6 @@ extends StaticBody2D
 
 #TODO: add sound
 
-
 @export_group("Connections")
 @export var hurtbox: HurtBox
 @export var hurtCollider: CollisionShape2D
