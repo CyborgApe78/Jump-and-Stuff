@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=47 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ianrymnomtg8" path="res://src/ui/HUD/debugOverlay.tscn" id="4_ryybi"]
 [ext_resource type="PackedScene" uid="uid://dot2bj57yrodl" path="res://src/object/components/heal_box.tscn" id="6_3m12p"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawPolygon2D.gd" id="6_7jh6b"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="6_e72jf"]
 [ext_resource type="PackedScene" uid="uid://b4dxfl6nt1exf" path="res://src/object/components/bounce_box.tscn" id="6_exgp3"]
 [ext_resource type="Texture2D" uid="uid://bebi3j0rfayd2" path="res://asset/objects/carrot.png" id="7_crqhc"]
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="8_pvan0"]
@@ -86,7 +87,7 @@ polygon = PackedVector2Array(1408, 128, 1408, 0, 640, 0, 640, 64, 576, 64, 576, 
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D"]
 color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(1408, 128, 1408, 0, 640, 0, 640, 64, 576, 64, 576, 0, 512, 0, 512, 64, 320, 64, 320, 0, -2432, 0, -3328, 896, -3200, 896, -2432, 128, 1280, 128, 1280, 1344, 2176, 1344, 2176, 128, 3712, 128, 3712, 0, 2176, 0, 2048, 0, 2048, 1216, 1408, 1216)
+polygon = PackedVector2Array(1408, 128, 1408, 0, 640, 0, 640, 64, 576, 64, 576, 0, 512, 0, 512, 64, 320, 64, 320, 0, -2432, 0, -3328, 896, -3200, 896, -2432, 128, 1280, 128, 1280, 1344, 2176, 1344, 2176, 128, 4416, 128, 4416, 0, 2176, 0, 2048, 0, 2048, 1216, 1408, 1216)
 script = ExtResource("6_7jh6b")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Ground"]
@@ -105,13 +106,40 @@ color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-5760, 640, -5760, 1216, 1280, 1216, 1280, 1088, -5504, 1088, -5504, 1024, -5632, 1024, -5632, 768, -5504, 768, -5504, 640)
 script = ExtResource("6_7jh6b")
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Ground"]
-polygon = PackedVector2Array(2304, -64, 3072, -64, 3072, -128, 2304, -128)
-
-[node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D4"]
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
 color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(2304, -64, 3072, -64, 3072, -128, 2304, -128)
-script = ExtResource("6_7jh6b")
+polygon = PackedVector2Array(3136, -128, 3328, -128, 3328, -64, 3136, -64)
+script = ExtResource("6_e72jf")
+
+[node name="Polygon2D2" type="Polygon2D" parent="Ground"]
+position = Vector2(320, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3136, -128, 3328, -128, 3328, -64, 3136, -64)
+script = ExtResource("6_e72jf")
+
+[node name="Polygon2D3" type="Polygon2D" parent="Ground"]
+position = Vector2(704, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3136, -128, 3328, -128, 3328, -64, 3136, -64)
+script = ExtResource("6_e72jf")
+
+[node name="Polygon2D4" type="Polygon2D" parent="Ground"]
+position = Vector2(-256, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3136, -128, 3328, -128, 3328, -64, 3136, -64)
+script = ExtResource("6_e72jf")
+
+[node name="Polygon2D5" type="Polygon2D" parent="Ground"]
+position = Vector2(-576, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3136, -128, 3328, -128, 3328, -64, 3136, -64)
+script = ExtResource("6_e72jf")
+
+[node name="Polygon2D6" type="Polygon2D" parent="Ground"]
+position = Vector2(-960, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3136, -128, 3328, -128, 3328, -64, 3136, -64)
+script = ExtResource("6_e72jf")
 
 [node name="Interactables" type="Node2D" parent="."]
 

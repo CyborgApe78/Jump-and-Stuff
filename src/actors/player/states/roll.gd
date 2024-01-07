@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: add caps for downhill accel, make rolling faster than bellyslide
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer

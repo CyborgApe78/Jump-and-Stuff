@@ -1,5 +1,7 @@
 extends PlayerInfo
 
+#TODO: add caps for downhill accel, make rolling faster than bellyslide
+#TODO: make own friction
 
 @export_group("Connections")
 @export var soundSlide: AudioStreamPlayer
@@ -24,17 +26,18 @@ func physics(delta) -> void:
 	
 	if !player.is_on_floor():
 		velocity.gravity_logic(stats.gravityFall, delta)
+		velocity.fall_speed_logic(stats.terminalVelocity)
 	
 	if rad_to_deg(ground.groundAngle) < -1:
 		if sign(player.velocity.x) == -1:
-			player.velocity.x -= stats.downHillAccel ## Speed up on down hill
+			player.velocity.x -= stats.rollDownHillAccel * delta ## Speed up on down hill
 		else:
-			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta) ## Slow on up hill
+			player.velocity.x -= stats.rollDownHillAccel * delta ## Slow on up hill
 	elif rad_to_deg(ground.groundAngle) > 1:
 		if sign(player.velocity.x) == 1:
-			player.velocity.x += stats.downHillAccel
+			player.velocity.x += stats.rollDownHillAccel * delta  ## Speed up on down hill
 		else:
-			velocity.apply_friction(stats.frictionGround * stats.upHillFrictionModifier, delta)
+			player.velocity.x += stats.rollDownHillAccel * delta ## Slow on up hill
 	else:
 		velocity.apply_friction(stats.frictionGround * 0.75, delta)
 
@@ -62,7 +65,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if player.velocity.x == 0:
+	if player.velocity.x == 0 and ground.groundAngle == 0:
 		if detector.is_colliding():
 			return State.Crouch
 		else:
