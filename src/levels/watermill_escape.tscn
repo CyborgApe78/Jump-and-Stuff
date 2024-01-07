@@ -1,0 +1,132 @@
+[gd_scene load_steps=19 format=3 uid="uid://d0cqwrg6gfrhy"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="1_2japt"]
+[ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="2_6jiu2"]
+[ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="3_tikcn"]
+[ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="4_fockb"]
+[ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="5_52y4n"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="6_bg10s"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/SpinningCollisionShape.gd" id="6_ikenv"]
+[ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="7_0iuh5"]
+[ext_resource type="PackedScene" uid="uid://bo8y4w3rri0k2" path="res://src/ui/HUD/hud.tscn" id="8_wx47k"]
+[ext_resource type="PackedScene" uid="uid://ianrymnomtg8" path="res://src/ui/HUD/debugOverlay.tscn" id="9_e8d2b"]
+[ext_resource type="PackedScene" uid="uid://csjv5180r3acu" path="res://src/object/components/bashable_component.tscn" id="10_dqvo4"]
+[ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="11_e3hg2"]
+[ext_resource type="PackedScene" uid="uid://yu6qr5p1otf7" path="res://src/object/Hazards/chaser.tscn" id="13_3wjfg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b4541"]
+radius = 192.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k6cx2"]
+radius = 128.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7bpby"]
+a = Vector2(10509, 0)
+b = Vector2(-7328, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kawue"]
+size = Vector2(64, 64)
+
+[sub_resource type="Curve2D" id="Curve2D_gjuxa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 5.60001, -0.800001, 0, 0, 0, 0, 501.6, 2)
+}
+point_count = 2
+
+[node name="Watermill Escape" type="Node"]
+
+[node name="Menu" parent="." instance=ExtResource("7_0iuh5")]
+visible = false
+
+[node name="HUD" parent="." instance=ExtResource("8_wx47k")]
+visible = false
+
+[node name="Debug" parent="." instance=ExtResource("9_e8d2b")]
+
+[node name="HurtBox" parent="." instance=ExtResource("2_6jiu2")]
+kill = true
+
+[node name="Polygon2D" type="Polygon2D" parent="HurtBox"]
+color = Color(0.690196, 0.168627, 0.211765, 1)
+polygon = PackedVector2Array(832, -64, 6016, -64, 6016, 0, 832, 0)
+script = ExtResource("1_2japt")
+
+[node name="Polygon2D6" type="Polygon2D" parent="HurtBox"]
+position = Vector2(488, -80)
+color = Color(0.690196, 0.168627, 0.211765, 1)
+polygon = PackedVector2Array(5720, 144, 5720, 208, 8088, 208, 8088, 144)
+script = ExtResource("1_2japt")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 192, 0, -768, 7936, -768, 7936, -576, 7680, -576, 7680, -320, 7616, -320, 7616, -576, 4800, -576, 4800, -704, 4288, -704, 4288, -448, 4224, -448, 4224, -704, 64, -704, 61.9703, -64, 832, -64, 832, 0, 2496, 0, 2496, -64, 2880, -64, 2880, 0, 3712, 0, 3712, -64, 3840, -64, 3840, 2.9306, 4224, 0, 4224, -128, 4288, -128, 4288, -0.571503, 4544, 0, 4544, -448, 4608, -448, 4608, 0, 6016, 0, 6016, -64, 6208, -64, 6208, 128, 7296, 128, 7296, -192, 7360, -192, 7360, 128, 7488, 128, 7488, 192)
+script = ExtResource("1_2japt")
+metadata/_edit_lock_ = true
+
+[node name="SpinningCollision" type="CollisionShape2D" parent="Ground"]
+position = Vector2(5056, 0)
+shape = SubResource("CircleShape2D_b4541")
+script = ExtResource("6_ikenv")
+speed = -50
+
+[node name="SpinningCollision2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(5632, 0)
+shape = SubResource("CircleShape2D_k6cx2")
+script = ExtResource("6_ikenv")
+speed = -50
+
+[node name="SpinningCollision3" type="CollisionShape2D" parent="Ground"]
+position = Vector2(8320, -64)
+shape = SubResource("CircleShape2D_k6cx2")
+script = ExtResource("6_ikenv")
+speed = -50
+
+[node name="StartingLocation" parent="." instance=ExtResource("3_tikcn")]
+position = Vector2(160, -64)
+
+[node name="AbilityUnlock" parent="." instance=ExtResource("4_fockb")]
+position = Vector2(160, -80)
+ability = 1
+
+[node name="Player" parent="." instance=ExtResource("5_52y4n")]
+position = Vector2(160, -144)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="KillBox" parent="." instance=ExtResource("2_6jiu2")]
+position = Vector2(-883, 1562)
+kill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillBox"]
+shape = SubResource("SegmentShape2D_7bpby")
+script = ExtResource("6_bg10s")
+color = Color(1, 0, 0, 1)
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="BashableComponent" parent="Interactables" instance=ExtResource("10_dqvo4")]
+position = Vector2(4256, -288)
+metadata/_edit_group_ = true
+
+[node name="Outline" parent="Interactables/BashableComponent" instance=ExtResource("11_e3hg2")]
+position = Vector2(1, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/BashableComponent"]
+shape = SubResource("RectangleShape2D_kawue")
+
+[node name="BashableComponent2" parent="Interactables" instance=ExtResource("10_dqvo4")]
+position = Vector2(6688, -96)
+metadata/_edit_group_ = true
+
+[node name="Outline" parent="Interactables/BashableComponent2" instance=ExtResource("11_e3hg2")]
+position = Vector2(1, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/BashableComponent2"]
+shape = SubResource("RectangleShape2D_kawue")
+
+[node name="Chaser" parent="." instance=ExtResource("13_3wjfg")]
+position = Vector2(-880, -304)
+curve = SubResource("Curve2D_gjuxa")

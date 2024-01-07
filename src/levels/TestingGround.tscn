@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=46 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://dr28hpjsiiytv" path="res://src/object/Hazards/spinning_hazard.tscn" id="35_h0jdy"]
 [ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
 [ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
+[ext_resource type="PackedScene" uid="uid://q7elrojricr" path="res://src/object/Hazards/spinning_arm.tscn" id="36_ly8xo"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
@@ -62,9 +63,9 @@ b = Vector2(-7328, 0)
 
 [sub_resource type="Curve2D" id="Curve2D_kx6ci"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 80, 0, 0, 0, 0, 256, 80, 0, 0, 0, 0, 384, 144, 0, 0, 0, 0, 640, 144, 0, 0, 0, 0, 896, 16)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 80, 0, 0, 0, 0, 256, 80, 0, 0, 0, 0, 357.419, 116.938, 0, 0, 0, 0, 384, 144, 0, 0, 0, 0, 640, 144, 0, 0, 0, 0, 896, 16)
 }
-point_count = 6
+point_count = 7
 
 [node name="Testing" type="Node"]
 script = ExtResource("1_i5twd")
@@ -85,6 +86,7 @@ polygon = PackedVector2Array(1408, 128, 1408, 0, 640, 0, 640, 64, 576, 64, 576, 
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D"]
 color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(1408, 128, 1408, 0, 640, 0, 640, 64, 576, 64, 576, 0, 512, 0, 512, 64, 320, 64, 320, 0, -2432, 0, -3328, 896, -3200, 896, -2432, 128, 1280, 128, 1280, 1344, 2176, 1344, 2176, 128, 3712, 128, 3712, 0, 2176, 0, 2048, 0, 2048, 1216, 1408, 1216)
 script = ExtResource("6_7jh6b")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Ground"]
@@ -92,6 +94,7 @@ polygon = PackedVector2Array(-5056, 960, -5056, 832, -4032, 832, -4032, 960, -40
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D2"]
 color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5056, 960, -5056, 832, -4032, 832, -4032, 960, -4096, 960, -4096, 896, -4480, 896, -4480, 960, -4544, 960, -4544, 896, -4992, 896, -4992, 960)
 script = ExtResource("6_7jh6b")
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Ground"]
@@ -99,6 +102,7 @@ polygon = PackedVector2Array(-5760, 640, -5760, 1216, 1280, 1216, 1280, 1088, -5
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D3"]
 color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5760, 640, -5760, 1216, 1280, 1216, 1280, 1088, -5504, 1088, -5504, 1024, -5632, 1024, -5632, 768, -5504, 768, -5504, 640)
 script = ExtResource("6_7jh6b")
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Ground"]
@@ -106,6 +110,7 @@ polygon = PackedVector2Array(2304, -64, 3072, -64, 3072, -128, 2304, -128)
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionPolygon2D4"]
 color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(2304, -64, 3072, -64, 3072, -128, 2304, -128)
 script = ExtResource("6_7jh6b")
 
 [node name="Interactables" type="Node2D" parent="."]
@@ -333,7 +338,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlatformPathFollow" parent="Platforms" instance=ExtResource("31_oqkat")]
-position = Vector2(-1216, 912)
+position = Vector2(-1072, 896)
 curve = SubResource("Curve2D_kx6ci")
 metadata/_edit_group_ = true
 
@@ -363,7 +368,7 @@ script = ExtResource("25_d0jmx")
 [node name="Hazard" type="Node" parent="."]
 
 [node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
-position = Vector2(800, -192)
+position = Vector2(800, -320)
 
 [node name="MovingSpike" parent="Hazard" instance=ExtResource("32_sifvf")]
 position = Vector2(608, 64)
@@ -386,12 +391,15 @@ position = Vector2(416, -192)
 rotation = 3.14159
 
 [node name="SpinningHazard" parent="Hazard" instance=ExtResource("35_h0jdy")]
-position = Vector2(-736, -128)
+position = Vector2(-736, -256)
+
+[node name="SpinningArm" parent="Hazard" instance=ExtResource("36_ly8xo")]
+position = Vector2(-992, -256)
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Spik-E-Sides" parent="Enemies" instance=ExtResource("36_17bw8")]
-position = Vector2(-1184, 0)
+position = Vector2(-1056, 0)
 startLeft = false
 
 [node name="SpikedJumper" parent="Enemies" instance=ExtResource("35_q5l7e")]

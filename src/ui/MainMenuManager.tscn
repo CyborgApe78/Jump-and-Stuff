@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://doj3uayeto8fi"]
+[gd_scene load_steps=22 format=3 uid="uid://doj3uayeto8fi"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/MainMenuManager.gd" id="1_3m1l6"]
 [ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MovingBackground.gd" id="2_k2ocr"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c0xilge452x64" path="res://src/levels/OriBF.tscn" id="12_55iuf"]
 [ext_resource type="Script" path="res://src/ui/scripts/MainMenuBase.gd" id="12_xwssd"]
 [ext_resource type="PackedScene" uid="uid://c6po21eno80hp" path="res://src/levels/Mario11.tscn" id="13_xmvu5"]
+[ext_resource type="PackedScene" uid="uid://d0cqwrg6gfrhy" path="res://src/levels/watermill_escape.tscn" id="14_luyhl"]
 
 [sub_resource type="Gradient" id="Gradient_o2utx"]
 colors = PackedColorArray(0.0666667, 0.54902, 0.376471, 1, 0.596078, 0.133333, 0.658824, 1)
@@ -129,6 +130,7 @@ timerMove = NodePath("Timer")
 visible = false
 
 [node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("labelTitle", "labelVersion", "labelGodot", "labelCreator", "firstButton")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -279,7 +281,6 @@ text = "_creator"
 horizontal_alignment = 2
 
 [node name="World Select" type="Control" parent="." node_paths=PackedStringArray("firstButton")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -325,6 +326,7 @@ theme_override_constants/v_separation = 20
 columns = 2
 
 [node name="Ori" type="VBoxContainer" parent="World Select/GridContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="World Select/GridContainer/Ori"]
@@ -343,6 +345,27 @@ theme = ExtResource("3_b6rvg")
 text = "Play"
 script = ExtResource("7_jxj7a")
 changeScene = ExtResource("12_55iuf")
+cursor = NodePath("../../../../Cursor")
+
+[node name="Ori2" type="VBoxContainer" parent="World Select/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="World Select/GridContainer/Ori2"]
+layout_mode = 2
+text = "Ori WotW
+Water Mill Escape"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OriPlay" type="Button" parent="World Select/GridContainer/Ori2" node_paths=PackedStringArray("cursor")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../Mario 1-1/MarioPlay")
+focus_neighbor_top = NodePath("../../../Bottom/MainMenu")
+focus_neighbor_bottom = NodePath("../../../Bottom/MainMenu")
+theme = ExtResource("3_b6rvg")
+text = "Play"
+script = ExtResource("7_jxj7a")
+changeScene = ExtResource("14_luyhl")
 cursor = NodePath("../../../../Cursor")
 
 [node name="Mario 1-1" type="VBoxContainer" parent="World Select/GridContainer"]
@@ -445,6 +468,7 @@ script = ExtResource("4_8ja18")
 [connection signal="pressed" from="MainMenu/Buttons/Discord" to="MainMenu/Buttons/Discord" method="_on_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Quit" to="MainMenu/Buttons/Quit" method="_on_pressed"]
 [connection signal="pressed" from="World Select/GridContainer/Ori/OriPlay" to="World Select/GridContainer/Ori/OriPlay" method="_on_pressed"]
+[connection signal="pressed" from="World Select/GridContainer/Ori2/OriPlay" to="World Select/GridContainer/Ori2/OriPlay" method="_on_pressed"]
 [connection signal="pressed" from="World Select/GridContainer/Mario 1-1/MarioPlay" to="World Select/GridContainer/Mario 1-1/MarioPlay" method="_on_pressed"]
 [connection signal="pressed" from="World Select/Bottom/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Settings/Bottom/MainMenu" to="." method="_on_main_menu_pressed"]
