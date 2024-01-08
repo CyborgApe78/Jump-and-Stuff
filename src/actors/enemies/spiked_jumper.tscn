@@ -79,4 +79,8 @@ horizontal_alignment = 1
 [node name="WaitTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-3.8147e-06, -32)
+scale = Vector2(9.6, 9.6)
+
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

@@ -45,7 +45,8 @@ vertical_alignment = 1
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0, -48)
+position = Vector2(5.72205e-06, -32)
+scale = Vector2(9.6, 9.6)
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_hjyfx")]
 visible = false

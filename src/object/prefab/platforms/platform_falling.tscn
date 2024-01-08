@@ -49,8 +49,8 @@ one_shot = true
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-1.19209e-07, -48)
-scale = Vector2(0.8, 0.8)
+position = Vector2(0, -32)
+scale = Vector2(9.6, 9.6)
 
 [node name="ActorCounter" parent="." instance=ExtResource("3_17o4n")]
 visible = false
