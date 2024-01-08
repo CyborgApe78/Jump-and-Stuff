@@ -35,7 +35,7 @@ _data = {
 "Squash": SubResource("Animation_l1keo")
 }
 
-[node name="Spik-E-Sides" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "rig", "hurtbox", "bouncebox", "wallDetector", "allyDetector", "rightLedgeDetector", "leftLedgeDetector", "detector")]
+[node name="Spik-E-Sides" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "rig", "hurtbox", "bouncebox", "allyDetector", "rightLedgeDetector", "leftLedgeDetector", "detector")]
 collision_layer = 128
 collision_mask = 7
 script = ExtResource("1_t7qeg")
@@ -43,11 +43,14 @@ labelVelocity = NodePath("VelocityLabel")
 rig = NodePath("Body")
 hurtbox = NodePath("HurtBox")
 bouncebox = NodePath("BounceBox")
-wallDetector = NodePath("Detectors/Wall Detector")
 allyDetector = NodePath("Detectors/Ally Detector")
 rightLedgeDetector = NodePath("Detectors/RightLedgeDetector2")
 leftLedgeDetector = NodePath("Detectors/LeftLedgeDetector")
 detector = NodePath("Detectors")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(9.6, 9.6)
 
 [node name="Body" type="Polygon2D" parent="."]
 color = Color(0.713726, 0.407843, 0.235294, 1)
@@ -99,10 +102,6 @@ width = 4.0
 default_color = Color(0.690196, 0.168627, 0.211765, 1)
 
 [node name="Detectors" type="Node2D" parent="."]
-
-[node name="Wall Detector" type="RayCast2D" parent="Detectors"]
-position = Vector2(0, -40)
-target_position = Vector2(32, 0)
 
 [node name="Ally Detector" type="RayCast2D" parent="Detectors"]
 position = Vector2(0, -24)
@@ -185,10 +184,6 @@ offset_top = -104.0
 offset_right = 24.0
 offset_bottom = -81.0
 horizontal_alignment = 1
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(0, -32)
-scale = Vector2(9.6, 9.6)
 
 [connection signal="damaged" from="HitboxComponent" to="." method="die"]
 [connection signal="body_entered" from="BounceBox" to="." method="_on_bounce_box_body_entered"]

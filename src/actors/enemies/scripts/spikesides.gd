@@ -6,6 +6,8 @@ class_name SpikEsides
 #TODO: moves stats to base enemy class
 #TODO: Eye blink, look at player
 
+enum DIRECTION {LEFT = -1, RIGHT = 1}
+
 @export_group("Stats")
 @export_subgroup("Speed")
 @export var _baseMove: float = 4:
@@ -43,7 +45,6 @@ class_name SpikEsides
 @export var rig: Node2D
 @export var hurtbox: HurtBox
 @export var bouncebox: Area2D #TODO: create class_name
-@export var wallDetector: RayCast2D
 @export var allyDetector: RayCast2D
 @export var rightLedgeDetector: RayCast2D
 @export var leftLedgeDetector: RayCast2D
@@ -51,7 +52,7 @@ class_name SpikEsides
 
 @export_group("")
 @export var startingState: state
-@export var startLeft: bool = true
+@export var startDirection: = DIRECTION.LEFT
 @export var ignoreLedges: bool = false
 @export var respawn: bool = false
 
@@ -73,10 +74,10 @@ func _ready() -> void:
 		currentState = startingState
 	else:
 		currentState = state.fall
-	if startLeft:
-		moveDirection = -moveDirection
-		detector.scale.x = moveDirection
-		facing_logic(moveDirection)
+		
+	moveDirection = startDirection
+	detector.scale.x = startDirection
+	facing_logic(startDirection)
 
 
 func _physics_process(delta: float) -> void:
@@ -104,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if wallDetector.is_colliding() or allyDetector.is_colliding():
+	if is_on_wall() or allyDetector.is_colliding():
 		moveDirection *= -1
 		facing_logic(moveDirection)
 		detector.scale.x = moveDirection
