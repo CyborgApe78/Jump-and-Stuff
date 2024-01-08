@@ -26,7 +26,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	EventBus.debugGroundAngle.emit(round(rad_to_deg(groundAngle))) #FIXME: only show on player
 	get_slope_angle()
 	
 	if parent.is_on_floor():

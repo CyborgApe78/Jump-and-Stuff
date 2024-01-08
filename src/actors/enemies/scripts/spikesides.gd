@@ -46,8 +46,7 @@ enum DIRECTION {LEFT = -1, RIGHT = 1}
 @export var hurtbox: HurtBox
 @export var bouncebox: Area2D #TODO: create class_name
 @export var allyDetector: RayCast2D
-@export var rightLedgeDetector: RayCast2D
-@export var leftLedgeDetector: RayCast2D
+@export var ground: GroundDetectorComponent
 @export var detector: Node2D
 
 @export_group("")
@@ -81,14 +80,17 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if ground.groundAngle != rotation:
+		rotation = ground.groundAngle
+	
 	match currentState:
 		state.walk:
 			if not ignoreLedges:
-				if not leftLedgeDetector.is_colliding():
+				if ground.ledgeLeft:
 					moveDirection *= -1
 					facing_logic(moveDirection)
 					detector.scale.x = moveDirection
-				if not rightLedgeDetector.is_colliding():
+				if ground.ledgeRight:
 					moveDirection *= -1
 					facing_logic(moveDirection)
 					detector.scale.x = moveDirection

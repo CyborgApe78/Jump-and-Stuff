@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1qg27apjv00h"]
+[gd_scene load_steps=14 format=3 uid="uid://d1qg27apjv00h"]
 
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="1_knb35"]
 [ext_resource type="Script" path="res://src/actors/enemies/scripts/spikesides.gd" id="1_t7qeg"]
+[ext_resource type="PackedScene" uid="uid://c5m37qa00e2eq" path="res://src/object/components/ground_detector.tscn" id="2_jqijs"]
 [ext_resource type="Script" path="res://src/object/components/scripts/hitbox_component.gd" id="3_vjokl"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/BounceBox.gd" id="4_lhaph"]
 
@@ -35,7 +36,7 @@ _data = {
 "Squash": SubResource("Animation_l1keo")
 }
 
-[node name="Spik-E-Sides" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "rig", "hurtbox", "bouncebox", "allyDetector", "rightLedgeDetector", "leftLedgeDetector", "detector")]
+[node name="Spik-E-Sides" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "rig", "hurtbox", "bouncebox", "allyDetector", "ground", "detector")]
 collision_layer = 128
 collision_mask = 7
 script = ExtResource("1_t7qeg")
@@ -44,9 +45,10 @@ rig = NodePath("Body")
 hurtbox = NodePath("HurtBox")
 bouncebox = NodePath("BounceBox")
 allyDetector = NodePath("Detectors/Ally Detector")
-rightLedgeDetector = NodePath("Detectors/RightLedgeDetector2")
-leftLedgeDetector = NodePath("Detectors/LeftLedgeDetector")
+ground = NodePath("GroundDetector")
 detector = NodePath("Detectors")
+
+[node name="GroundDetector" parent="." instance=ExtResource("2_jqijs")]
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, -32)
@@ -108,17 +110,6 @@ position = Vector2(0, -24)
 target_position = Vector2(64, 0)
 collision_mask = 128
 collide_with_areas = true
-
-[node name="LeftLedgeDetector" type="RayCast2D" parent="Detectors"]
-position = Vector2(-32, 0)
-collision_mask = 7
-hit_from_inside = true
-collide_with_areas = true
-
-[node name="RightLedgeDetector2" type="RayCast2D" parent="Detectors"]
-position = Vector2(32, 0)
-collision_mask = 7
-hit_from_inside = true
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 visible = false
