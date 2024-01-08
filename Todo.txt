@@ -1,8 +1,9 @@
 #TODO
 
 https://docs.google.com/document/d/e/2PACX-1vTQXjHorrOCug8qg1jRInF5hh8stN_kYQIo1-BeVz8k0fuhzZft3JgFZnfC6NX2gFIyXEr60KRuYnuJ/pub
+https://github.com/CyborgApe78/Jump-and-Stuff
 
-pressing dive on ground makes you slide
+
 Let player shift camera when on ground. 
 If bouncebox is colliding with parent ignore
 Create ground and walls with various properties, speed limits and such
@@ -19,7 +20,6 @@ Vault over one tile high objects
 Jump when just entering water
 Make eye direction the same as move direction, even if body other way
 Break out jetpack into own statemachine
-Make max roll speed that you won't get downhill acceleration 
 Hazard that send player back to respawn without killing them
 
 Coyote time boosted jumps if falling near a wall, like in metroid dread

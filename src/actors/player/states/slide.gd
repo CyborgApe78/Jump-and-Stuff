@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: add going over two tile gaps
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer

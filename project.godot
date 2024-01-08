@@ -34,15 +34,24 @@ instance_dock/scenes=[{
 "scene": "res://src/object/Hazards/moving_spike.tscn"
 }, {
 "scene": "res://src/object/Hazards/falling_spike.tscn"
+}, {
+"scene": "res://src/object/Hazards/spinning_hazard.tscn"
 }],
 "scroll": 0
 }, {
 "name": "Enemies",
 "scenes": [{
 "scene": "res://src/actors/enemies/spikesides.tscn"
+}, {
+"scene": "res://src/actors/enemies/spiked_jumper.tscn"
 }],
 "scroll": 0
 }]
+quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194340,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+],"script":null)
+
+quick_scenes/selected_scene=0
+quick_scenes/scene_list=PackedStringArray("res://src/actors/player/player.tscn")
 
 [application]
 
@@ -81,7 +90,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/puzzle_dependencies/plugin.cfg")
 
 [input]
 
@@ -306,7 +315,7 @@ boards={
 "connections": [],
 "id": "3eaa6831e1",
 "label": "Ability Tree",
-"scroll_offset": Vector2(nan, inf_neg),
+"scroll_offset": Vector2(-1, -248),
 "things": [],
 "zoom": 1.0
 },
@@ -324,6 +333,8 @@ minimap_size=Vector2(200, 150)
 use_snap=true
 snap_distance=20
 current_board_id="3eaa6831e1"
+snapping_enabled=true
+snapping_distance=20
 
 [rendering]
 

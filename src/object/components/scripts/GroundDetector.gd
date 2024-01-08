@@ -2,6 +2,7 @@ extends Node2D
 class_name GroundDetectorComponent
 
 #TODO: ledge animation
+#TODO: look into using built in
 
 
 @onready var detectorGroundLeft: RayCast2D = $Left
