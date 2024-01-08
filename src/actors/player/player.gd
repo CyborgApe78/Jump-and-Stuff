@@ -19,6 +19,7 @@ class_name Player
 @export var particles: Node2D
 @export var input: InputComponent
 @export var stats: StatsComponent
+@export var ground: GroundDetectorComponent
 
 
 @export_group("")
@@ -57,6 +58,7 @@ func _physics_process(delta: float) -> void:
 	
 	EventBus.debugVelocity.emit(velocity.round())
 	EventBus.debugIsGrounded.emit(is_on_floor())
+	EventBus.debugGroundAngle.emit(round(rad_to_deg(ground.groundAngle)))
 
 
 func _process(delta: float) -> void:

@@ -6269,7 +6269,7 @@ point_count = 3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3meqx"]
 size = Vector2(15, 50)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterSAS", "particles", "input", "stats")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterSAS", "particles", "input", "stats", "ground")]
 collision_layer = 64
 collision_mask = 65551
 floor_constant_speed = true
@@ -6281,6 +6281,7 @@ characterSAS = NodePath("CharacterRig/CharacterRotate/SquashAndStretch")
 particles = NodePath("CharacterRig/CharacterRotate/SquashAndStretch/Particles")
 input = NodePath("InputComponent")
 stats = NodePath("StatsComponent")
+ground = NodePath("GroundDetector")
 metadata/_edit_vertical_guides_ = [-456.0]
 
 [node name="CharacterRig" type="Node2D" parent="."]
@@ -7150,7 +7151,7 @@ libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
 autoplay = "Idle"
-blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
+blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
