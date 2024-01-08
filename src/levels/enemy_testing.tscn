@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b25plges1087k"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="1_mmx8u"]
+
+[node name="Enemy Testing" type="Node"]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+position = Vector2(-2944, 384)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(2944, -384, 2944, 384, 4224, 384, 4224, -384, 4288, -384, 4288, 448, 2880, 448, 2880, -384)
+script = ExtResource("1_mmx8u")
+
+[node name="Polygon2D1" type="Polygon2D" parent="Ground"]
+position = Vector2(-2944, 384)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3136, -128, 3200, -192, 3200, -256, 3264, -256, 3264, -192.598, 3328.83, -128, 3392, -128, 3392, -64, 3327.42, -64, 3264, 0, 3264, 64, 3200, 64, 3200, -2.38611, 3136, -64, 3072, -64, 3072, -128)
+script = ExtResource("1_mmx8u")
+
+[node name="Polygon2D2" type="Polygon2D" parent="Ground"]
+position = Vector2(-3200, 832)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3584, -64, 3648, -128, 3712, -128, 3776, -64)
+script = ExtResource("1_mmx8u")
