@@ -11,7 +11,7 @@ class_name PlatformCheckerComponent
 
 func _ready() -> void:
 	set_collision_layer_value(CollisionLayers.Player, parent.get_collision_layer_value(CollisionLayers.Player))
-	set_collision_layer_value(CollisionLayers.Enemies, parent.get_collision_layer_value(CollisionLayers.Enemies))
+	set_collision_layer_value(CollisionLayers.Enemy, parent.get_collision_layer_value(CollisionLayers.Enemy))
 
 func _physics_process(delta: float) -> void:
 	if parent.velocity.y == 0 and parent.is_on_floor():

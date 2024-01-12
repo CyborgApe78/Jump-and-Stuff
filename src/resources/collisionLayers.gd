@@ -13,7 +13,7 @@ const Collectables: int = 5
 const Enviromental: int = 6
 @warning_ignore("shadowed_global_identifier")
 const Player: int = 7
-const Enemies: int = 8
+const Enemy: int = 8
 const Hazard: int = 9
 const FLUID: int = 10
 #const LAVA: int = 
