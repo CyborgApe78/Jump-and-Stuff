@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://doj3uayeto8fi"]
+[gd_scene load_steps=23 format=3 uid="uid://doj3uayeto8fi"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/MainMenuManager.gd" id="1_3m1l6"]
 [ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MovingBackground.gd" id="2_k2ocr"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/ui/scripts/MainMenuBase.gd" id="12_xwssd"]
 [ext_resource type="PackedScene" uid="uid://c6po21eno80hp" path="res://src/levels/Mario11.tscn" id="13_xmvu5"]
 [ext_resource type="PackedScene" uid="uid://d0cqwrg6gfrhy" path="res://src/levels/watermill_escape.tscn" id="14_luyhl"]
+[ext_resource type="PackedScene" uid="uid://b25plges1087k" path="res://src/levels/enemy_testing.tscn" id="16_ep0u4"]
 
 [sub_resource type="Gradient" id="Gradient_o2utx"]
 colors = PackedColorArray(0.0666667, 0.54902, 0.376471, 1, 0.596078, 0.133333, 0.658824, 1)
@@ -38,13 +39,14 @@ corner_radius_bottom_left = 500
 bg_color = Color(0.0666667, 0.54902, 0.376471, 1)
 corner_radius_top_left = 500
 
-[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("startingMenu", "mainMenu", "worldSelect", "settings", "cursor")]
+[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("startingMenu", "mainMenu", "worldSelect", "testSelect", "settings", "cursor")]
 process_mode = 3
 layer = 90
 script = ExtResource("1_3m1l6")
 startingMenu = NodePath("MainMenu")
 mainMenu = NodePath("MainMenu")
 worldSelect = NodePath("World Select")
+testSelect = NodePath("Test Select")
 settings = NodePath("Settings")
 cursor = NodePath("Cursor")
 
@@ -197,13 +199,12 @@ text = "World Select"
 script = ExtResource("4_8ja18")
 cursor = NodePath("../../../Cursor")
 
-[node name="TestingGround" type="Button" parent="MainMenu/Buttons" node_paths=PackedStringArray("cursor")]
+[node name="TestChambers" type="Button" parent="MainMenu/Buttons" node_paths=PackedStringArray("cursor")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Testing Ground"
-script = ExtResource("7_jxj7a")
-changeScene = ExtResource("9_154h6")
+text = "Test Chambers"
+script = ExtResource("4_8ja18")
 cursor = NodePath("../../../Cursor")
 
 [node name="Settings" type="Button" parent="MainMenu/Buttons" node_paths=PackedStringArray("cursor")]
@@ -409,6 +410,111 @@ text = "Back"
 script = ExtResource("4_8ja18")
 cursor = NodePath("../../../Cursor")
 
+[node name="Test Select" type="Control" parent="." node_paths=PackedStringArray("firstButton")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_b6rvg")
+script = ExtResource("12_xwssd")
+firstButton = NodePath("../World Select/GridContainer/Ori/OriPlay")
+
+[node name="Top" type="MarginContainer" parent="Test Select"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_right = 48.5
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Test Select/Top"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "World Select"
+
+[node name="GridContainer" type="GridContainer" parent="Test Select"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Testing" type="VBoxContainer" parent="Test Select/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Test Select/GridContainer/Testing"]
+layout_mode = 2
+text = "Testing Grounds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="Test Select/GridContainer/Testing" node_paths=PackedStringArray("cursor")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../Enemies/Play")
+focus_neighbor_top = NodePath("../../../Bottom/MainMenu")
+focus_neighbor_bottom = NodePath("../../../Bottom/MainMenu")
+theme = ExtResource("3_b6rvg")
+text = "Play"
+script = ExtResource("7_jxj7a")
+changeScene = ExtResource("9_154h6")
+cursor = NodePath("../../../../Cursor")
+
+[node name="Enemies" type="VBoxContainer" parent="Test Select/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Test Select/GridContainer/Enemies"]
+layout_mode = 2
+text = "Enemies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="Test Select/GridContainer/Enemies" node_paths=PackedStringArray("cursor")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Bottom/MainMenu")
+focus_neighbor_bottom = NodePath("../../../Bottom/MainMenu")
+theme = ExtResource("3_b6rvg")
+text = "Play"
+script = ExtResource("7_jxj7a")
+changeScene = ExtResource("16_ep0u4")
+cursor = NodePath("../../../../Cursor")
+
+[node name="Bottom" type="MarginContainer" parent="Test Select"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="MainMenu" type="Button" parent="Test Select/Bottom" node_paths=PackedStringArray("cursor")]
+layout_mode = 2
+text = "Back"
+script = ExtResource("4_8ja18")
+cursor = NodePath("../../../Cursor")
+
 [node name="Settings" type="Control" parent="." node_paths=PackedStringArray("firstButton")]
 visible = false
 layout_mode = 3
@@ -463,7 +569,7 @@ script = ExtResource("4_8ja18")
 [connection signal="timeout" from="Background/ColorRect3/Timer" to="Background/ColorRect3" method="_on_timer_timeout"]
 [connection signal="pressed" from="MainMenu/Buttons/Playground" to="MainMenu/Buttons/Playground" method="_on_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/WorldSelect" to="." method="_on_world_select_pressed"]
-[connection signal="pressed" from="MainMenu/Buttons/TestingGround" to="MainMenu/Buttons/TestingGround" method="_on_pressed"]
+[connection signal="pressed" from="MainMenu/Buttons/TestChambers" to="." method="_on_test_chambers_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Discord" to="MainMenu/Buttons/Discord" method="_on_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Quit" to="MainMenu/Buttons/Quit" method="_on_pressed"]
@@ -471,4 +577,7 @@ script = ExtResource("4_8ja18")
 [connection signal="pressed" from="World Select/GridContainer/Ori2/OriPlay" to="World Select/GridContainer/Ori2/OriPlay" method="_on_pressed"]
 [connection signal="pressed" from="World Select/GridContainer/Mario 1-1/MarioPlay" to="World Select/GridContainer/Mario 1-1/MarioPlay" method="_on_pressed"]
 [connection signal="pressed" from="World Select/Bottom/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Test Select/GridContainer/Testing/Play" to="Test Select/GridContainer/Testing/Play" method="_on_pressed"]
+[connection signal="pressed" from="Test Select/GridContainer/Enemies/Play" to="Test Select/GridContainer/Enemies/Play" method="_on_pressed"]
+[connection signal="pressed" from="Test Select/Bottom/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Settings/Bottom/MainMenu" to="." method="_on_main_menu_pressed"]

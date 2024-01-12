@@ -4,6 +4,7 @@ extends CanvasLayer
 @export var startingMenu: MainMenuBase
 @export var mainMenu: MainMenuBase
 @export var worldSelect: MainMenuBase
+@export var testSelect: MainMenuBase
 @export var settings: MainMenuBase
 @export var cursor: Cursor
 
@@ -43,3 +44,9 @@ func _on_settings_pressed() -> void:
 	menu_hid()
 	settings.visible = true
 	settings.on_visible_focus()
+
+
+func _on_test_chambers_pressed() -> void:
+	menu_hid()
+	testSelect.visible = true
+	testSelect.on_visible_focus()
