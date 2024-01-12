@@ -14,6 +14,7 @@ extends AnimatableBody2D
 @export var timerWait: Timer
 @export var spike: Line2D
 @export var labelState: Label
+@export var groundDetector: RayCast2D
 
 @export_group("")
 @export var movingSpeed: int = 200 #TODO: function for blocks per sec
@@ -27,8 +28,7 @@ enum state{
 	idle,
 	wait,
 	fall,
-	hold,
-	retract,
+	ground,
 }
 
 func _ready() -> void:
@@ -50,9 +50,9 @@ func _physics_process(delta: float) -> void:
 			pass
 		state.fall:
 			position.y += movingSpeed * delta
-		state.hold:
-			pass
-		state.retract:
+			if groundDetector.is_colliding():
+				currentState = state.ground
+		state.ground:
 			pass
 
 
@@ -77,13 +77,6 @@ func start_fall() -> void:
 	hurtbox.set_deferred("monitorable", true)
 
 
-func start_hold() -> void:
-	currentState = state.hold
-
-
-func start_retract() -> void:
-	currentState = state.retract
-
 
 func set_state_label(newState: int) -> void:
 	labelState.text = str(newState)
@@ -93,8 +86,6 @@ func _on_wait_timer_timeout() -> void:
 	start_fall()
 
 
-func _on_hold_timer_timeout() -> void:
-	start_retract()
 
 
 func random_shake(node: Node, duration: float) -> void:
