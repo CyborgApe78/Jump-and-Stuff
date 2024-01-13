@@ -46,12 +46,26 @@ instance_dock/scenes=[{
 "scene": "res://src/actors/enemies/spiked_jumper.tscn"
 }],
 "scroll": 0
+}, {
+"name": "Objects",
+"scenes": [{
+"scene": "res://src/object/TargetGrapple.tscn"
+}, {
+"scene": "res://src/object/components/bashable_component.tscn"
+}, {
+"scene": "res://src/object/trapeze.tscn"
+}, {
+"scene": "res://src/object/Waypoint.tscn"
+}],
+"scroll": 0
 }]
 quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194340,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 ],"script":null)
 
-quick_scenes/selected_scene=0
+quick_scenes/selected_scene=1
 quick_scenes/scene_list=PackedStringArray("res://src/actors/player/player.tscn", "res://src/levels/TestingGround.tscn", "res://src/levels/enemy_testing.tscn")
+instance_dock/preview_resolution=Vector2i(64, 64)
+metroidvania_system/settings_file="res://MetSysSettings.tres"
 
 [application]
 
@@ -71,6 +85,7 @@ driver/mix_rate=48000
 EventBus="*res://src/autoload/EventBus.gd"
 Global="*res://src/autoload/Global.gd"
 Utility="*res://src/autoload/Util.gd"
+MetSys="*res://addons/MetroidvaniaSystem/Nodes/Singleton.tscn"
 
 [debug]
 
@@ -90,7 +105,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/puzzle_dependencies/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/MetroidvaniaSystem/plugin.cfg", "res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/puzzle_dependencies/plugin.cfg")
 
 [input]
 
@@ -315,7 +330,7 @@ boards={
 "connections": [],
 "id": "3eaa6831e1",
 "label": "Ability Tree",
-"scroll_offset": Vector2(-1, -248),
+"scroll_offset": Vector2(-40, -248),
 "things": [],
 "zoom": 1.0
 },

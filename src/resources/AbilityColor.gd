@@ -1,6 +1,8 @@
 extends RefCounted
 class_name AbilityColor
 
+#TODO: rename to game colors and bring in color pallete
+
 
 const dashSideColor: Color = Color(0.173, 0.612, 0.835) ## Blue
 const dashUpColor: Color = Color(0.173, 0.612, 0.835)
