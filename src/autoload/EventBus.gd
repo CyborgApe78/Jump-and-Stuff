@@ -17,6 +17,9 @@ signal playerRolled
 signal playerLanded
 signal playerAirborne
 
+signal playerInGrindRail
+signal playerInTrapeze
+
 signal playerDied
 
 signal checkKeys
