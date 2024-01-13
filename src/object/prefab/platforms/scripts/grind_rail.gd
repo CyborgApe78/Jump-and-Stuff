@@ -27,10 +27,11 @@ func _ready() -> void:
 func body_entered(body: Player) -> void:
 	remote.remote_path = body.get_path()
 	body.grindRail = self
-	body.inRail = true
+	body.inRail = true #TODO: change to signal like trapeze
 
 
 func body_exit(body: Player) -> void:
+	remote.remote_path = NodePath("")
 	body.inRail = false
 	#TODO: need to null body.grindRail 
 
