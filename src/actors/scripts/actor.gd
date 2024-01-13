@@ -10,11 +10,11 @@ var inWater: bool = false:
 	set(value):
 		inWater = value
 		enterWater.emit()
-var inRail: bool = false:
+var inRail: bool = false: #TODO: make signal
 	set(v):
 		inRail = v
 		if v == true:
 			enterRail.emit()
 var windVelocity: Vector2 = Vector2.ZERO
 var grindRail: Path2D
-
+var trapeze: Area2D

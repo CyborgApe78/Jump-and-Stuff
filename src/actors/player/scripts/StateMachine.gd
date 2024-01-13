@@ -48,6 +48,7 @@ extends Node
 	PlayerState.State.RollDash: $RollDash,
 	PlayerState.State.Swim: $Swim,
 	PlayerState.State.Grind: $Grind,
+	PlayerState.State.Trapeze: $Trapeze,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	
@@ -70,10 +71,11 @@ var previousStateName: String
 @export var surfaceDetector: RayCast2D
 
 
-#func _ready() -> void:
+func _ready() -> void:
 #	EventBus.playerDied.connect(player_died)
 #	EventBus.playerBounced.connect(bounce)
 #	EventBus.playerTeleported.connect(player_teleported)
+	EventBus.playerInTrapeze.connect(enter_trapeze)
 
 func change_state(newState: int) -> void:
 	if currentState:
@@ -138,5 +140,10 @@ func player_swim() -> void:
 	if currentState.name != "GroundPound" or "Jump":
 		change_state(PlayerState.State.Swim)
 
+
 func player_rail() -> void:
 	change_state(PlayerState.State.Grind)
+
+
+func enter_trapeze() -> void:
+	change_state(PlayerState.State.Trapeze)
