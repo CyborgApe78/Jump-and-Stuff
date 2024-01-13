@@ -6,6 +6,7 @@ class_name GroundDetectorComponent
 
 
 @onready var detectorGroundLeft: RayCast2D = $Left
+@onready var detectorGroundMiddle: RayCast2D = $Middle
 @onready var detectorGroundRight: RayCast2D = $Right
 @onready var parent = get_parent() as CharacterBody2D
 

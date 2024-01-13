@@ -10,6 +10,11 @@ position = Vector2(-24, -16)
 target_position = Vector2(0, 64)
 collision_mask = 3
 
+[node name="Middle" type="RayCast2D" parent="."]
+position = Vector2(0, -16)
+target_position = Vector2(0, 64)
+collision_mask = 3
+
 [node name="Right" type="RayCast2D" parent="."]
 position = Vector2(24, -16)
 target_position = Vector2(0, 64)
