@@ -1,4 +1,4 @@
-extends Actor
+extends Enemies
 class_name SpikEsides
 
 ## Slow moving enemy that can be bounced on. Sides hurt player
@@ -42,7 +42,6 @@ enum DIRECTION {LEFT = -1, RIGHT = 1}
 
 @export_group("Connections")
 @export var labelVelocity: Label
-@export var rig: Node2D
 @export var hurtbox: HurtBox
 @export var bouncebox: Area2D #TODO: create class_name
 @export var allyDetector: RayCast2D
@@ -115,10 +114,7 @@ func _physics_process(delta: float) -> void:
 	labelVelocity.text = str(velocity.round())
 
 
-func facing_logic(direction: int): #TODO: add to global
-	if direction != 0 and rig.scale.x != direction:
-		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property(rig, "scale", Vector2(direction, rig.scale.y), 0.4).from_current()
+
 
 
 
