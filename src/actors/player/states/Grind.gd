@@ -10,6 +10,7 @@ var currentState: int
 
 func enter() -> void:
 	player.velocity = Vector2.ZERO
+	abilities.reset(PlayerAbilities.listUse.All)
 
 
 func exit() -> void:
@@ -40,8 +41,15 @@ func handle_input(event: InputEvent) -> int:
 	if input.justPressedJump:
 		return State.Jump
 	
-	if input.justPressedDown:
-		player.global_position.y = player.global_position.y + 128 ## will be capped with match state
+	match currentState:
+		state.above:
+			if input.justPressedDown:
+				player.global_position.y = player.global_position.y + 128 ## will be capped with match state
+				currentState = state.below
+		state.below:
+			if input.justPressedUp:
+				player.global_position.y = player.global_position.y - 128 ## will be capped with match state
+				currentState = state.above
 	
 #	if input.pressedCrouch: ## find a better way to play anims
 #		player.animPlayer.play("Crouch")
