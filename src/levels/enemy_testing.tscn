@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b25plges1087k"]
+[gd_scene load_steps=4 format=3 uid="uid://b25plges1087k"]
 
 [ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="1_mmx8u"]
+[ext_resource type="PackedScene" uid="uid://b1hjxyclwtycb" path="res://src/actors/enemies/wall_e_crawler.tscn" id="2_snilb"]
+[ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="3_lnwv6"]
 
 [node name="Enemy Testing" type="Node"]
 
@@ -18,8 +20,42 @@ color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(3136, -128, 3200, -192, 3200, -256, 3264, -256, 3264, -192.598, 3328.83, -128, 3392, -128, 3392, -64, 3327.42, -64, 3264, 0, 3264, 64, 3200, 64, 3200, -2.38611, 3136, -64, 3072, -64, 3072, -128)
 script = ExtResource("1_mmx8u")
 
+[node name="Polygon2D4" type="Polygon2D" parent="Ground"]
+position = Vector2(-2240, 384)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3200, -128, 3200, -192, 3264, -192, 3264, -128, 3328, -128, 3328, -64, 3264, -64, 3264, 64, 3200, 64, 3200, -64, 3072, -64, 3072, -128)
+script = ExtResource("1_mmx8u")
+
+[node name="Polygon2D3" type="Polygon2D" parent="Ground"]
+position = Vector2(-2624, 192)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3456, -128, 3456, -64, 3072, -64, 3072, -128)
+script = ExtResource("1_mmx8u")
+
 [node name="Polygon2D2" type="Polygon2D" parent="Ground"]
 position = Vector2(-3200, 832)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(3584, -64, 3648, -128, 3712, -128, 3776, -64)
 script = ExtResource("1_mmx8u")
+
+[node name="Wall-E-Crawler" parent="." instance=ExtResource("2_snilb")]
+position = Vector2(288, 128)
+
+[node name="Wall-E-Crawler2" parent="." instance=ExtResource("2_snilb")]
+position = Vector2(992, 192)
+
+[node name="Wall-E-Crawler3" parent="." instance=ExtResource("2_snilb")]
+position = Vector2(608, 64)
+startDirection = 1
+
+[node name="Wall-E-Crawler4" parent="." node_paths=PackedStringArray("ground", "wallDetector", "rig") instance=ExtResource("2_snilb")]
+position = Vector2(288, 768)
+ground = NodePath("../Wall-E-Crawler3/GroundDetector")
+wallDetector = NodePath("../Wall-E-Crawler3/Rig/WallDetector")
+rig = NodePath("../Wall-E-Crawler3/Rig")
+
+[node name="Spik-E-Sides" parent="." instance=ExtResource("3_lnwv6")]
+position = Vector2(944, -584)
+
+[node name="Spik-E-Sides2" parent="." instance=ExtResource("3_lnwv6")]
+position = Vector2(368, -144)

@@ -1,0 +1,171 @@
+[gd_scene load_steps=6 format=3 uid="uid://drukkw8lpuoyf"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_u8kdb"]
+[ext_resource type="Script" path="res://src/actors/enemies/scripts/ChainedChomper.gd" id="2_7tcea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqlcr"]
+size = Vector2(32, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sjrkh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rnqvl"]
+radius = 32.0
+
+[node name="ChainChompContainer" type="Node2D"]
+
+[node name="Base" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Base"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_hqlcr")
+script = ExtResource("1_u8kdb")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -32)
+node_a = NodePath("../Chain")
+node_b = NodePath("../Base")
+
+[node name="Chain" type="RigidBody2D" parent="."]
+position = Vector2(0, -56)
+collision_layer = 0
+collision_mask = 7
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Chain"]
+shape = SubResource("CapsuleShape2D_sjrkh")
+script = ExtResource("1_u8kdb")
+color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(0, -80)
+node_a = NodePath("../Chain")
+node_b = NodePath("../Chain2")
+
+[node name="Chain2" type="RigidBody2D" parent="."]
+position = Vector2(0, -104)
+collision_layer = 0
+collision_mask = 7
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Chain2"]
+shape = SubResource("CapsuleShape2D_sjrkh")
+script = ExtResource("1_u8kdb")
+color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, -128)
+node_a = NodePath("../Chain3")
+node_b = NodePath("../Chain2")
+
+[node name="Chain3" type="RigidBody2D" parent="."]
+position = Vector2(24, -128)
+rotation = 1.5726
+collision_layer = 0
+collision_mask = 7
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Chain3"]
+shape = SubResource("CapsuleShape2D_sjrkh")
+script = ExtResource("1_u8kdb")
+color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2(48, -128)
+node_a = NodePath("../Chain3")
+node_b = NodePath("../Chain4")
+
+[node name="Chain4" type="RigidBody2D" parent="."]
+position = Vector2(48, -104)
+collision_layer = 0
+collision_mask = 7
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Chain4"]
+shape = SubResource("CapsuleShape2D_sjrkh")
+script = ExtResource("1_u8kdb")
+color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="."]
+position = Vector2(48, -80)
+node_a = NodePath("../Chain4")
+node_b = NodePath("../Chain5")
+
+[node name="Chain5" type="RigidBody2D" parent="."]
+position = Vector2(48, -56)
+collision_layer = 0
+collision_mask = 7
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Chain5"]
+shape = SubResource("CapsuleShape2D_sjrkh")
+script = ExtResource("1_u8kdb")
+color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
+position = Vector2(48, -32)
+node_a = NodePath("../Chain5")
+node_b = NodePath("../Chain6")
+
+[node name="Chain6" type="RigidBody2D" parent="."]
+position = Vector2(72, -32)
+rotation = 1.5726
+collision_layer = 0
+collision_mask = 7
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Chain6"]
+shape = SubResource("CapsuleShape2D_sjrkh")
+script = ExtResource("1_u8kdb")
+color = Color(0.411765, 0.490196, 0.556863, 1)
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="."]
+position = Vector2(96, -32)
+node_a = NodePath("../Chain6")
+node_b = NodePath("../ChainedChomper")
+
+[node name="ChainedChomper" type="RigidBody2D" parent="." node_paths=PackedStringArray("timerCharge", "timerHold", "labelState", "labelVelocity")]
+position = Vector2(72, -64)
+collision_layer = 128
+collision_mask = 7
+script = ExtResource("2_7tcea")
+speed = 5000
+gravity = 400
+timerCharge = NodePath("Charge")
+timerHold = NodePath("Hold")
+labelState = NodePath("State")
+labelVelocity = NodePath("Velocity")
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="ChainedChomper"]
+position = Vector2(56, 32)
+shape = SubResource("CircleShape2D_rnqvl")
+script = ExtResource("1_u8kdb")
+color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="Camera2D" type="Camera2D" parent="ChainedChomper"]
+position = Vector2(-72, 64)
+
+[node name="Charge" type="Timer" parent="ChainedChomper"]
+one_shot = true
+
+[node name="Hold" type="Timer" parent="ChainedChomper"]
+one_shot = true
+
+[node name="State" type="Label" parent="ChainedChomper"]
+offset_left = 32.0
+offset_top = -48.0
+offset_right = 72.0
+offset_bottom = -25.0
+horizontal_alignment = 1
+
+[node name="Velocity" type="Label" parent="ChainedChomper"]
+offset_left = 32.0
+offset_top = -24.0
+offset_right = 72.0
+offset_bottom = -1.0
+horizontal_alignment = 1
+
+[node name="Eye" type="Polygon2D" parent="ChainedChomper"]
+position = Vector2(64, 24)
+polygon = PackedVector2Array(-8, -16, -8, 0, 8, 0, 8, -16)
+
+[node name="Polygon2D" type="Polygon2D" parent="ChainedChomper/Eye"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, -8, 0, 0, 8, 0, 8, -8)
+
+[connection signal="timeout" from="ChainedChomper/Charge" to="ChainedChomper" method="_on_charge_t_imer_timeout"]
+[connection signal="timeout" from="ChainedChomper/Hold" to="ChainedChomper" method="_on_hold_timeout"]

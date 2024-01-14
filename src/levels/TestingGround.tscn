@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=48 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dot2bj57yrodl" path="res://src/object/components/heal_box.tscn" id="6_3m12p"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="6_e72jf"]
 [ext_resource type="PackedScene" uid="uid://b4dxfl6nt1exf" path="res://src/object/components/bounce_box.tscn" id="6_exgp3"]
+[ext_resource type="PackedScene" uid="uid://ijsx7f88srae" path="res://src/object/trapeze.tscn" id="6_tv02l"]
 [ext_resource type="Texture2D" uid="uid://bebi3j0rfayd2" path="res://asset/objects/carrot.png" id="7_crqhc"]
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="8_pvan0"]
 [ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="10_lxvkx"]
@@ -38,12 +39,13 @@
 [ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
 [ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
 [ext_resource type="PackedScene" uid="uid://q7elrojricr" path="res://src/object/Hazards/spinning_arm.tscn" id="36_ly8xo"]
+[ext_resource type="PackedScene" uid="uid://drukkw8lpuoyf" path="res://src/actors/enemies/chain_chomp_container.tscn" id="38_ufc6o"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 192, -192, 0, 0, 0, 0, 320, -64, 0, 0, 0, 0, 512, -64)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 192, -192, 0, 0, 0, 0, 246.996, -119.651, 0, 0, 0, 0, 261.698, -94.8621, 0, 0, 0, 0, 320, -64, 0, 0, 0, 0, 512, -64)
 }
-point_count = 4
+point_count = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4766"]
 size = Vector2(64, 64)
@@ -83,7 +85,7 @@ visible = false
 
 [node name="Polygon2D9" type="Polygon2D" parent="Ground"]
 color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(1408, 0, 640, 0, 640, 64, 576, 64, 576, 0, 512, 0, 512, 64, 320, 64, 320, 0, -2432, 0, -3328, 896, -3200, 896, -2432, 128, 1280, 128, 1280, 1088.46, -5504, 1088, -5504, 1024, -5632, 1024, -5632, 768, -5504, 768, -5504, 640, -5760, 640, -5760, 1216, 1280, 1218.72, 1280, 1344, 2176, 1344, 2176, 128, 4096, 128, 4096, 0, 2048, 0, 2048, 1216, 1408, 1216)
+polygon = PackedVector2Array(1408, 0, -2432, 0, -3328, 896, -3200, 896, -2432, 128, 1280, 128, 1280, 1088.46, -5504, 1088, -5504, 1024, -5632, 1024, -5632, 768, -5504, 768, -5504, 640, -5760, 640, -5760, 1216, 1280, 1218.72, 1280, 1344, 2176, 1344, 2176, 128, 4096, 128, 4096, 0, 2048, 0, 2048, 1216, 1408, 1216)
 script = ExtResource("6_e72jf")
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground"]
@@ -128,8 +130,11 @@ script = ExtResource("6_e72jf")
 
 [node name="Interactables" type="Node2D" parent="."]
 
+[node name="Trapeze" parent="Interactables" instance=ExtResource("6_tv02l")]
+position = Vector2(1056, -288)
+
 [node name="GrindRail" parent="Interactables" instance=ExtResource("18_qvigo")]
-position = Vector2(192, 448)
+position = Vector2(1344, -192)
 curve = SubResource("Curve2D_nhl8e")
 
 [node name="BounceBox" parent="Interactables" instance=ExtResource("6_exgp3")]
@@ -381,27 +386,13 @@ script = ExtResource("25_d0jmx")
 [node name="Hazard" type="Node" parent="."]
 
 [node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
-position = Vector2(800, -320)
+position = Vector2(376, 384)
 
 [node name="MovingSpike" parent="Hazard" instance=ExtResource("32_sifvf")]
-position = Vector2(608, 64)
-
-[node name="RetractableSpikes" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(352, -192)
-rotation = 3.14159
+position = Vector2(504, 440)
 
 [node name="RetractableSpikes2" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(352, 64)
-
-[node name="RetractableSpikes3" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(416, 64)
-
-[node name="RetractableSpikes4" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(480, 64)
-
-[node name="RetractableSpikes5" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(416, -192)
-rotation = 3.14159
+position = Vector2(264, 424)
 
 [node name="SpinningHazard" parent="Hazard" instance=ExtResource("35_h0jdy")]
 position = Vector2(-736, -256)
@@ -410,6 +401,9 @@ position = Vector2(-736, -256)
 position = Vector2(-992, -256)
 
 [node name="Enemies" type="Node" parent="."]
+
+[node name="ChainChompContainer" parent="Enemies" instance=ExtResource("38_ufc6o")]
+position = Vector2(352, 0)
 
 [node name="Spik-E-Sides" parent="Enemies" instance=ExtResource("36_17bw8")]
 position = Vector2(-1056, 0)
