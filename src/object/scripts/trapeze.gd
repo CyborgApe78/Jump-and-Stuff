@@ -4,6 +4,8 @@ extends Area2D
 
 #TODO: aim system like in PoP
 #TODO: make player hands are anchor and not feet
+#TODO: able to grapple hook to it
+#TODO: grab player facing direction to determine spin directions
 
 @export var timeCooldown: float = 2
 @export var timerCooldown: Timer

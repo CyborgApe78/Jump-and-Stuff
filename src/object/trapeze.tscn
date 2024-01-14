@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_56eyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_615pq"]
-size = Vector2(8, 8)
+size = Vector2(32, 32)
 
 [node name="Trapeze" type="Area2D" node_paths=PackedStringArray("timerCooldown", "remote")]
 collision_layer = 0
