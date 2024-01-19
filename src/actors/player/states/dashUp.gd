@@ -62,7 +62,7 @@ func handle_input(event: InputEvent) -> int:
 		else:
 			timerBufferJump.start()
 			return State.Fall
-	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
+	if input.justPressedGlide and abilities.can_use(PlayerAbilities.list.Glide): ##TODO: get this to keep velocity if at end of timer
 		return State.Glide
 	if input.justPressedDive and abilities.can_use(PlayerAbilities.list.Dive):
 		return State.Dive

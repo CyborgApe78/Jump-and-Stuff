@@ -3,7 +3,7 @@ extends AnimatableBody2D
 ## Spikes that fall down and make a platform
 
 #TODO: add sound
-#FIXME: goes through floor
+#TODO: make non platform version
 #TODO: add in length export
 
 

@@ -63,6 +63,8 @@ func state_check(delta: float) -> int:
 		else:
 			player.velocity.x = 0
 			return State.Walk
+	if not player.is_on_floor(): ##lookat: letting skid in the air
+		return State.Fall
 
 
 	return State.Null

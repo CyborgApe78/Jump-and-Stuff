@@ -106,14 +106,14 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
+	if input.pressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
+		return State.Glide ##FIXME: find others that are in state check
 	
 
 	return State.Null
 
 
 func state_check(delta: float) -> int:
-	if input.pressedGlide and abilities.can_use(PlayerAbilities.list.Glide):
-		return State.Glide
 	if player.is_on_wall():
 		if !timerBufferJump.is_stopped() and abilities.can_use(PlayerAbilities.list.JumpWall):
 			return State.JumpWall

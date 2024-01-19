@@ -64,6 +64,8 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
+	if input.moveDirection.x != 0 and input.pressedCrouch:
+		return State.CrouchWalk
 	if !detector.is_colliding():
 		if !input.pressedCrouch:
 			if player.velocity.x != 0:
@@ -92,9 +94,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
-	if abs(player.velocity.x) < stats.minLongJumpVelocity:
-		if input.moveDirection.x != 0:
-			return State.CrouchWalk
+	
 
 	return State.Null
 

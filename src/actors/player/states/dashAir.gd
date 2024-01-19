@@ -1,5 +1,7 @@
 extends PlayerInfo
 
+##Lookat: change if you keep dash velocity to various states
+
 
 @export_group("Connections")
 @export var timerCoyoteJump: Timer

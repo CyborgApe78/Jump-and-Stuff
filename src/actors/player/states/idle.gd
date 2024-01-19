@@ -42,6 +42,8 @@ func handle_input(event: InputEvent) -> int:
 		return State.GrappleHook
 	if input.justPressedBash and abilities.can_use(PlayerAbilities.list.Bash) and player.targetBash != null:
 		return State.BashAim
+	if input.pressedCrouch: 
+		return State.Crouch
 #	if input.justPressedDive:
 #		return State.BellySlide
 
@@ -49,8 +51,7 @@ func handle_input(event: InputEvent) -> int:
 
 
 func state_check(delta: float) -> int:
-	if input.pressedCrouch: 
-		return State.Crouch
+	
 	if input.moveDirection.x != 0:
 		return State.Walk
 	if !player.is_on_floor():

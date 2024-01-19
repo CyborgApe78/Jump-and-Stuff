@@ -79,7 +79,7 @@ func handle_input(event: InputEvent) -> int:
 func state_check(delta: float) -> int:
 	if player.is_on_ceiling():
 		return State.Fall
-	if player.is_on_floor():
+	if player.is_on_floor(): ##Lookat: adding bonk
 		player.landed()
 		if !timerBufferJump.is_stopped():
 			timerBufferJump.stop()

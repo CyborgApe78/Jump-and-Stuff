@@ -100,7 +100,7 @@ func state_check(delta: float) -> int:
 		timerBufferJump.stop()
 		EventBus.helperUsed.emit(Util.helper.coyoteJump)
 		return State.JumpCrouch
-	if !detector.is_colliding() and !input.pressedCrouch:
+	if !detector.is_colliding() and !input.pressedCrouch: ##TODO: move to input
 		return State.Walk
 
 	return State.Null
