@@ -28,5 +28,3 @@ position = Vector2(96, 0)
 shape = SubResource("RectangleShape2D_i288y")
 script = ExtResource("2_arth6")
 color = Color(0.690196, 0.168627, 0.211765, 1)
-
-[node name="Camera2D" type="Camera2D" parent="."]
