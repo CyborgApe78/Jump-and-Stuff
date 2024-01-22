@@ -73,6 +73,9 @@ point_count = 7
 script = ExtResource("1_i5twd")
 metadata/_edit_vertical_guides_ = []
 
+[node name="Trapeze" parent="." instance=ExtResource("6_tv02l")]
+position = Vector2(1056, -376)
+
 [node name="Menu" parent="." instance=ExtResource("2_v4ta7")]
 visible = false
 
@@ -129,9 +132,6 @@ polygon = PackedVector2Array(-5056, 960, -5056, 832, -4032, 832, -4032, 960, -40
 script = ExtResource("6_e72jf")
 
 [node name="Interactables" type="Node2D" parent="."]
-
-[node name="Trapeze" parent="Interactables" instance=ExtResource("6_tv02l")]
-position = Vector2(1056, -288)
 
 [node name="GrindRail" parent="Interactables" instance=ExtResource("18_qvigo")]
 position = Vector2(1344, -192)
@@ -395,7 +395,7 @@ position = Vector2(-864, -256)
 position = Vector2(-1056, -256)
 
 [node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
-position = Vector2(376, 384)
+position = Vector2(656, 264)
 
 [node name="MovingSpike" parent="Hazard" instance=ExtResource("32_sifvf")]
 position = Vector2(504, 440)

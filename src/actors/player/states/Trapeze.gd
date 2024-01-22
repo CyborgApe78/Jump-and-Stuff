@@ -1,9 +1,10 @@
 extends PlayerInfo
 
 #TODO: PoP changes direction when at top
-#TODO: make aim arrow not sow
+#TODO: turn off aim indicator arrow
+#FIXME: change position from feet to hands as anchor point
 
-## Rotation Speed:
+## Jump Speed
 @export var speed: int = 10
 
 @export var swingPoint: Node2D
@@ -21,16 +22,6 @@ func exit() -> void:
 
 
 func physics(delta) -> void:
-	#if player.facing == -1:
-		#if input.pressedRight:
-			#swingPoint.rotation += speed * delta
-		#elif input.pressedLeft:
-			#swingPoint.rotation -= speed * delta
-	#else:
-		#if input.pressedRight:
-			#swingPoint.rotation -= speed * delta
-		#elif input.pressedLeft:
-			#swingPoint.rotation += speed * delta
 	pass
 
 
@@ -43,8 +34,9 @@ func sound(delta: float) -> void:
 
 
 func handle_input(event: InputEvent) -> int:
-	if input.justPressedJump: #TODO: make it a vector and not actual jump
-		return State.Jump
+	if input.justPressedJump: #FIXME: need find a way to slow down speed like gravity is being added
+		player.velocity = player.trapeze.aimDirection * stats.dashSpeed
+		return State.Fall
 
 	return State.Null
 

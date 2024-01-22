@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://6a5i2nmmd25s"]
+
+[node name="BumpBlock" type="AnimatableBody2D"]

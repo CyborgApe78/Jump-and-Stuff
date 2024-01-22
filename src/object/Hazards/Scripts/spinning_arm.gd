@@ -26,7 +26,6 @@ var currentSpeed: int
 func _ready() -> void:
 	super._ready()
 	set_length()
-	print(timeFreeze)
 
 
 func _physics_process(delta: float) -> void:
