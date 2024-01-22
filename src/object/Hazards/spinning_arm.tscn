@@ -11,6 +11,7 @@ size = Vector2(64, 64)
 radius = 32.0
 
 [node name="SpinningArm" type="StaticBody2D" node_paths=PackedStringArray("arm")]
+collision_mask = 0
 script = ExtResource("1_hp3wp")
 arm = NodePath("Line2D")
 

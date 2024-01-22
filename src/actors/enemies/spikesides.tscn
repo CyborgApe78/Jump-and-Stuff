@@ -51,10 +51,6 @@ rig = NodePath("Body")
 
 [node name="GroundDetector" parent="." instance=ExtResource("2_jqijs")]
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(0, -32)
-scale = Vector2(9.6, 9.6)
-
 [node name="Body" type="Polygon2D" parent="."]
 color = Color(0.713726, 0.407843, 0.235294, 1)
 polygon = PackedVector2Array(-32, -24, -32, -64, -16, -80, 0, -80, 16, -80, 32, -64, 32, -24, 0, -32)

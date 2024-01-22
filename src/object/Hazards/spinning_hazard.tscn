@@ -22,6 +22,7 @@ script = ExtResource("2_arth6")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_2gtcf")]
 position = Vector2(0, -32)
+rotation = 1.5708
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(96, 0)

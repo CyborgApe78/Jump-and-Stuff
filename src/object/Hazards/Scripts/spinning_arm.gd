@@ -1,4 +1,5 @@
-extends StaticBody2D
+extends StaticHazard
+
 
 #TODO: make length change in editor
 #TODO: make length work
@@ -18,15 +19,19 @@ extends StaticBody2D
 	get:
 		return _baseLength
 
-var length: int = _baseLength * Util.tileSize
 
+var length: int = _baseLength * Util.tileSize
+var currentSpeed: int
 
 func _ready() -> void:
+	super._ready()
 	set_length()
+	print(timeFreeze)
 
 
 func _physics_process(delta: float) -> void:
-	arm.rotate(speed * delta)
+	if not timeFreeze:
+		arm.rotate(speed * delta)
 
 
 func set_length() -> void:

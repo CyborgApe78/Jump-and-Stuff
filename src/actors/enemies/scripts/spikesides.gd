@@ -57,17 +57,22 @@ enum DIRECTION {LEFT = -1, RIGHT = 1}
 
 var moveDirection: int = 1
 var startingPosition: Vector2
+var previousVelocity: Vector2
+
 var currentState: int
+var previousState: int
 
 enum state {
 	walk,
 	fall,
 	sleep,
+	freeze,
 }
 
 
 func _ready() -> void:
 	startingPosition = global_position
+	EventBus.timeFreeze.connect(freeze)
 	if is_on_floor():
 		currentState = startingState
 	else:
@@ -103,6 +108,8 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 			if is_on_wall():
 				velocity.x = 0
+		state.freeze:
+			velocity = Vector2.ZERO
 	
 	move_and_slide()
 	
@@ -129,6 +136,16 @@ func spawn() -> void:
 	rig.scale.y = 1
 	global_position = startingPosition
 	hurtbox.set_deferred("monitoring", true)
+
+
+func freeze(v: bool) -> void:
+	if v:
+		previousVelocity = velocity
+		previousState = currentState
+		currentState = state.freeze
+	else:
+		velocity = previousVelocity
+		currentState = previousState
 
 
 func _on_bounce_box_body_entered(body: Actor) -> void:

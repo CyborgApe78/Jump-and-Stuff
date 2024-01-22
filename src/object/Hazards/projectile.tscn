@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cguhwnksmdy7r"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="1_gpfdn"]
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/projectile.gd" id="1_t3ljb"]
+[ext_resource type="Script" path="res://src/object/components/scripts/hurt_box.gd" id="2_3ekdd"]
+[ext_resource type="Script" path="res://src/object/components/scripts/bashable_component.gd" id="2_tuobc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b5x4e"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vvs8k"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6vwy"]
+radius = 8.0
+
+[node name="Projectile" type="Area2D" node_paths=PackedStringArray("hurtbox")]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_t3ljb")
+hurtbox = NodePath("HurtBox")
+
+[node name="TargetBash" type="Area2D" parent="."]
+script = ExtResource("2_tuobc")
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="TargetBash"]
+shape = SubResource("CircleShape2D_b5x4e")
+script = ExtResource("1_gpfdn")
+color = Color(1, 0.898039, 0.439216, 1)
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vvs8k")
+script = ExtResource("1_gpfdn")
+color = Color(0.690196, 0.168627, 0.211765, 1)
+
+[node name="HurtBox" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+script = ExtResource("2_3ekdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_v6vwy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

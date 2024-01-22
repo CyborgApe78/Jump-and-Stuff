@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends StaticHazard
 
 #TODO: make length change in editor
 
@@ -20,13 +20,19 @@ var length: int = _baseLength * Util.tileSize
 
 
 func _ready() -> void:
+	super._ready()
 	set_length()
+	
 
 
 func _physics_process(delta: float) -> void:
-	hurtbox.rotate(speed * delta)
+	if not timeFreeze:
+		hurtbox.rotate(speed * delta)
+	
 
 
 func set_length() -> void:
 	hurtboxCollision.position.x = length / 2
 	hurtboxCollision.shape.size.x = length
+
+

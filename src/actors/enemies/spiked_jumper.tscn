@@ -9,15 +9,15 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2t78"]
 size = Vector2(48, 24)
 
-[node name="Spik-E-Jumper" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "timerWait", "rig", "hurtbox")]
+[node name="Spik-E-Jumper" type="CharacterBody2D" node_paths=PackedStringArray("labelVelocity", "timerWait", "hurtbox", "rig")]
 collision_layer = 128
 collision_mask = 7
 script = ExtResource("1_y04id")
 _baseJump = 20.0
 labelVelocity = NodePath("VelocityLabel")
 timerWait = NodePath("WaitTimer")
-rig = NodePath("Rig")
 hurtbox = NodePath("HurtBox")
+rig = NodePath("Rig")
 
 [node name="Rig" type="Polygon2D" parent="."]
 color = Color(0.713726, 0.407843, 0.235294, 1)
@@ -77,11 +77,14 @@ offset_right = 24.0
 offset_bottom = -81.0
 horizontal_alignment = 1
 
+[node name="State" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -136.0
+offset_right = 24.0
+offset_bottom = -113.0
+horizontal_alignment = 1
+
 [node name="WaitTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-3.8147e-06, -32)
-scale = Vector2(9.6, 9.6)
 
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
