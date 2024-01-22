@@ -16,9 +16,10 @@ var aimInput: Vector2 #TODO: break aim indicator out so it can be used for other
 func enter() -> void:
 	EventBus.playerBashed.emit()
 	timers()
-	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.moveStrength
+	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.lastMoveDirection #TODO: best way to do this?
 	player.velocity = aimInput * (stats.dashSpeed)
 	abilities.reset(PlayerAbilities.listUse.All)
+	#TODO: turn off hitbox
 
 
 func exit() -> void:
