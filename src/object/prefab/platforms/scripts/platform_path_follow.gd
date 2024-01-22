@@ -2,6 +2,7 @@ extends Path2D
 
 
 ## Platform that follows a path
+#TODO: add freeze state
 
 
 @export_group("Connections")

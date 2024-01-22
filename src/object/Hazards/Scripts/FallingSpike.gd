@@ -24,12 +24,14 @@ extends AnimatableBody2D
 var startinPosition: Vector2
 
 var currentState: int
+var previousState: int
 
 enum state{
 	idle,
 	wait,
 	fall,
 	ground,
+	freeze,
 }
 
 func _ready() -> void:
@@ -37,10 +39,9 @@ func _ready() -> void:
 		labelState.visible = true
 	
 	spike.default_color = AbilityColor.hazardColor
-	
 	timerWait.wait_time = timeWait
-	
 	currentState = state.idle
+	EventBus.timeFreeze.connect(freeze_time)
 
 
 func _physics_process(delta: float) -> void:
@@ -54,6 +55,8 @@ func _physics_process(delta: float) -> void:
 			if groundDetector.is_colliding():
 				currentState = state.ground
 		state.ground:
+			pass
+		state.freeze:
 			pass
 
 
@@ -87,6 +90,16 @@ func _on_wait_timer_timeout() -> void:
 	start_fall()
 
 
+func freeze_time(v: bool) -> void:
+	if v:
+		if not timerWait.is_stopped():
+			timerWait.paused = true
+		previousState = currentState
+		currentState = state.freeze
+	else:
+		if previousState == state.wait:
+			timerWait.paused = false
+		currentState = previousState
 
 
 func random_shake(node: Node, duration: float) -> void:

@@ -1,8 +1,9 @@
-extends StaticBody2D
+extends StaticHazard
 
 ## Spikes that extend from the wall
 
 #TODO: add sound
+#TODO: make time freeze state 
 
 @export_group("Connections")
 @export var hurtbox: HurtBox
@@ -76,7 +77,6 @@ func _physics_process(delta: float) -> void:
 
 func start_idle() -> void:
 	currentState = state.idle
-	
 	hurtbox.set_deferred("monitorable", false)
 
 

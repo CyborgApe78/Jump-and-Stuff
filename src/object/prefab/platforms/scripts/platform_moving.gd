@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends AnimatablePlatform
 
 ## When enities lands on platform it moves in the direction of the arrow
 
@@ -26,6 +26,7 @@ var currentState: int
 
 
 func _ready() -> void:
+	super._ready()
 	turn_arrow(startingDirection)
 	timerReset.wait_time = timeReset
 	currentState = state.idle

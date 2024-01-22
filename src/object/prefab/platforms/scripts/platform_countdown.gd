@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends AnimatablePlatform
 
 
 ## When enities lands on platform counter goes down.
@@ -31,6 +31,7 @@ var remainingLandings: int = 0:
 
 
 func _ready() -> void:
+	super._ready()
 	timerReset.wait_time = timeReset
 	timerReplenish.wait_time = timeReplenish
 	reset()

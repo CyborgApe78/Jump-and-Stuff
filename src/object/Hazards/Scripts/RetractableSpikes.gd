@@ -5,6 +5,7 @@ extends StaticBody2D
 #TODO: eventually look at using a line to tile spikes
 #TODO: add sound
 #TODO: varitations stayDeployed, timedDeploy
+#TODO: make time freeze state 
 
 @export_group("Connections")
 @export var detector: Area2D

@@ -63,3 +63,7 @@ func shoot_direction() -> Vector2:
 
 func _on_reload_timeout() -> void:
 	prepare_to_shoot()
+
+
+func time_freeze(v: bool) -> void:
+	pass

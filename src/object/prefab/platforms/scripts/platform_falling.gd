@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends AnimatablePlatform
 
 
 ## When enities lands on platform timer starts then platform falls when reaching zero
@@ -29,6 +29,7 @@ var currentState: int
 
 
 func _ready() -> void:
+	super._ready()
 	timerReset.wait_time = timeReset
 	timerFall.wait_time = timeFall
 	currentState = state.idle

@@ -1,6 +1,7 @@
 extends StaticHazard
 
 #TODO: make length change in editor
+#FIXME: create ysort layers, have walls be lower than the hazarad boxes
 
 @export_group("Connections")
 @export var hurtbox: HurtBox
