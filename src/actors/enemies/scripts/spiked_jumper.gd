@@ -1,4 +1,4 @@
-extends Actor
+extends Enemies
 class_name SpikEJumper
 
 ## Jumps when the player jumps
@@ -30,20 +30,22 @@ class_name SpikEJumper
 @export_group("Connections")
 @export var labelVelocity: Label
 @export var timerWait: Timer
-@export var rig: Node2D
 @export var hurtbox: HurtBox
 
 @export_group("")
 @export var timeWait: float = 0.5
 
 var startingPosition: Vector2
-var currentState: int
+var previousVelocity: Vector2
 
+var currentState: int
+var previousState: int
 enum state {
 	idle,
 	wait,
 	jump,
 	fall,
+	freeze
 }
 
 
@@ -51,9 +53,12 @@ func _ready() -> void:
 	startingPosition = global_position
 	timerWait.wait_time = timeWait
 	EventBus.playerJumped.connect(prepare_jump)
+	EventBus.timeFreeze.connect(freeze)
 
 
 func _physics_process(delta: float) -> void:
+	$State.text = str(currentState)
+	
 	match currentState:
 		state.idle:
 			pass
@@ -68,6 +73,8 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				currentState = state.idle
 				velocity.y = 0
+		state.freeze:
+			velocity = Vector2.ZERO
 	
 	move_and_slide()
 	
@@ -87,6 +94,18 @@ func to_wait() -> void:
 func to_jump() -> void:
 	currentState = state.jump
 	velocity.y = -jumpSpeed
+
+
+func freeze(v: bool) -> void:
+	if v:
+		previousVelocity = velocity
+		previousState = currentState
+		currentState = state.freeze
+		timerWait.paused = true
+	else:
+		velocity = previousVelocity
+		currentState = previousState
+		timerWait.paused = false
 
 
 func facing_logic(direction: int):

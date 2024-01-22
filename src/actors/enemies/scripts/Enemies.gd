@@ -1,6 +1,7 @@
 extends Actor
 class_name Enemies
 
+
 @export var rig: Node2D
 
 
