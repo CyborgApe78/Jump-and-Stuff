@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://src/object/components/scripts/bashable_component.gd" id="1_23rjl"]
 
 [node name="BashableComponent" type="Area2D"]
+modulate = Color(1, 0.898, 0.439, 1)
+collision_layer = 131073
 script = ExtResource("1_23rjl")
 
 [node name="Label" type="Label" parent="."]

@@ -39,7 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
 [ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
 [ext_resource type="PackedScene" uid="uid://q7elrojricr" path="res://src/object/Hazards/spinning_arm.tscn" id="36_ly8xo"]
-[ext_resource type="PackedScene" uid="uid://drukkw8lpuoyf" path="res://src/actors/enemies/chain_chomp_container.tscn" id="38_ufc6o"]
+[ext_resource type="PackedScene" uid="uid://c0jsidjg47lle" path="res://src/object/turret.tscn" id="41_ndeqp"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
@@ -385,6 +385,15 @@ script = ExtResource("25_d0jmx")
 
 [node name="Hazard" type="Node" parent="."]
 
+[node name="Turret" parent="Hazard" instance=ExtResource("41_ndeqp")]
+position = Vector2(-72, -296)
+
+[node name="SpinningHazard" parent="Hazard" instance=ExtResource("35_h0jdy")]
+position = Vector2(-864, -256)
+
+[node name="SpinningArm" parent="Hazard" instance=ExtResource("36_ly8xo")]
+position = Vector2(-1056, -256)
+
 [node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
 position = Vector2(376, 384)
 
@@ -394,19 +403,10 @@ position = Vector2(504, 440)
 [node name="RetractableSpikes2" parent="Hazard" instance=ExtResource("20_4ow0q")]
 position = Vector2(264, 424)
 
-[node name="SpinningHazard" parent="Hazard" instance=ExtResource("35_h0jdy")]
-position = Vector2(-736, -256)
-
-[node name="SpinningArm" parent="Hazard" instance=ExtResource("36_ly8xo")]
-position = Vector2(-992, -256)
-
 [node name="Enemies" type="Node" parent="."]
 
-[node name="ChainChompContainer" parent="Enemies" instance=ExtResource("38_ufc6o")]
-position = Vector2(352, 0)
-
 [node name="Spik-E-Sides" parent="Enemies" instance=ExtResource("36_17bw8")]
-position = Vector2(-1056, 0)
+position = Vector2(-1440, 0)
 
 [node name="SpikedJumper" parent="Enemies" instance=ExtResource("35_q5l7e")]
 position = Vector2(-480, 0)

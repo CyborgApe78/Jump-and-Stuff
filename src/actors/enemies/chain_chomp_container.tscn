@@ -118,7 +118,7 @@ position = Vector2(96, -32)
 node_a = NodePath("../Chain6")
 node_b = NodePath("../ChainedChomper")
 
-[node name="ChainedChomper" type="RigidBody2D" parent="." node_paths=PackedStringArray("timerCharge", "timerHold", "labelState", "labelVelocity")]
+[node name="ChainedChomper" type="CharacterBody2D" parent="." node_paths=PackedStringArray("timerCharge", "timerHold", "labelState", "labelVelocity")]
 position = Vector2(72, -64)
 collision_layer = 128
 collision_mask = 7

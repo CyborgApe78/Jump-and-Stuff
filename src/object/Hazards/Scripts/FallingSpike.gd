@@ -5,6 +5,7 @@ extends AnimatableBody2D
 #TODO: add sound
 #TODO: make non platform version
 #TODO: add in length export
+#TODO: have detector stretch to ground
 
 
 @export_group("Connections")
