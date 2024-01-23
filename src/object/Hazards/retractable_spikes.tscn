@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://drbfbu4n5oaqy"]
+[gd_scene load_steps=9 format=3 uid="uid://drbfbu4n5oaqy"]
 
 [ext_resource type="Script" path="res://src/object/Hazards/Scripts/RetractableSpikes.gd" id="1_d3jj6"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_v2h1h"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/ActorDetector.gd" id="3_fvyii"]
 [ext_resource type="Script" path="res://src/object/components/scripts/hurt_box.gd" id="3_peovr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6xml"]
@@ -17,9 +18,8 @@ size = Vector2(48, 32)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.902439, 0.747253), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="RetractableSpikes" type="StaticBody2D" node_paths=PackedStringArray("detector", "hurtbox", "timerWait", "timerHold", "spikes", "spike1", "spike2", "spike3", "spike4", "labelState")]
+[node name="RetractableSpikes" type="StaticBody2D" node_paths=PackedStringArray("hurtbox", "timerWait", "timerHold", "spikes", "spike1", "spike2", "spike3", "spike4", "labelState", "actorDetector")]
 script = ExtResource("1_d3jj6")
-detector = NodePath("ActorDetector")
 hurtbox = NodePath("HurtBox")
 timerWait = NodePath("WaitTimer")
 timerHold = NodePath("HoldTimer")
@@ -29,6 +29,7 @@ spike2 = NodePath("Spikes/Spike2")
 spike3 = NodePath("Spikes/Spike3")
 spike4 = NodePath("Spikes/Spike4")
 labelState = NodePath("CurrentState")
+actorDetector = NodePath("ActorDetector")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
@@ -36,13 +37,12 @@ shape = SubResource("RectangleShape2D_t6xml")
 script = ExtResource("2_v2h1h")
 
 [node name="ActorDetector" type="Area2D" parent="."]
-position = Vector2(0, -64)
 collision_layer = 0
-collision_mask = 192
-monitorable = false
+collision_mask = 0
+script = ExtResource("3_fvyii")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActorDetector"]
-position = Vector2(0, -16)
+position = Vector2(0, -80)
 shape = SubResource("RectangleShape2D_idcjl")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -99,7 +99,7 @@ offset_right = 24.0
 offset_bottom = -1.0
 horizontal_alignment = 1
 
-[connection signal="body_entered" from="ActorDetector" to="." method="_on_actor_detector_body_entered"]
+[connection signal="body_entered" from="ActorDetector" to="ActorDetector" method="_on_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="HoldTimer" to="." method="_on_hold_timer_timeout"]

@@ -8,7 +8,6 @@ extends StaticBody2D
 #TODO: make time freeze state 
 
 @export_group("Connections")
-@export var detector: Area2D
 @export var hurtbox: HurtBox
 @export var timerWait: Timer
 @export var timerHold: Timer
@@ -18,6 +17,7 @@ extends StaticBody2D
 @export var spike3: Line2D
 @export var spike4: Line2D
 @export var labelState: Label
+@export var actorDetector: ActorDetector
 
 @export_group("")
 @export var timeWait: float = 0.5
@@ -46,6 +46,8 @@ func _ready() -> void:
 	for spike: Line2D in spikes.get_children():
 		spike.default_color = AbilityColor.hazardColor
 	
+	actorDetector.triggerd.connect(start_wait)
+	
 	startinPosition = hurtbox.position
 	timerHold.wait_time = timeHold
 	timerWait.wait_time = timeWait
@@ -69,12 +71,12 @@ func _physics_process(delta: float) -> void:
 func start_idle() -> void:
 	currentState = state.idle
 	hurtbox.set_deferred("monitorable", false)
-	detector.set_deferred("monitoring", true)
+	actorDetector.set_deferred("monitoring", true)
 
 
 func start_wait() -> void:
 	currentState = state.wait
-	detector.set_deferred("monitoring", false)
+	actorDetector.set_deferred("monitoring", false)
 	timerWait.start()
 	
 	for spike: Line2D in spikes.get_children():
@@ -109,10 +111,6 @@ func start_retract() -> void:
 
 func set_state_label(newState: int) -> void:
 	labelState.text = str(newState)
-
-
-func _on_actor_detector_body_entered(body: Actor) -> void:
-	start_wait()
 
 
 func _on_wait_timer_timeout() -> void:

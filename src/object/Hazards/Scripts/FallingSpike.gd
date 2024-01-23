@@ -6,16 +6,17 @@ extends AnimatableBody2D
 #TODO: make non platform version
 #TODO: add in length export
 #TODO: have detector stretch to ground
+#TODO: add time freeze
 
 
 @export_group("Connections")
-@export var detector: Area2D
 @export var hurtbox: HurtBox
 @export var hurtCollider: CollisionShape2D
 @export var timerWait: Timer
 @export var spike: Line2D
 @export var labelState: Label
 @export var groundDetector: RayCast2D
+@export var actorDetector: ActorDetector
 
 @export_group("")
 @export var movingSpeed: int = 200 #TODO: function for blocks per sec
@@ -38,6 +39,7 @@ func _ready() -> void:
 	if OS.has_feature("editor"):
 		labelState.visible = true
 	
+	actorDetector.triggerd.connect(start_wait)
 	spike.default_color = AbilityColor.hazardColor
 	timerWait.wait_time = timeWait
 	currentState = state.idle
@@ -63,14 +65,14 @@ func _physics_process(delta: float) -> void:
 func start_idle() -> void:
 	currentState = state.idle
 	labelState.text = str(currentState)
-	detector.set_deferred("monitoring", true)
+	actorDetector.set_deferred("monitoring", true)
 	hurtbox.set_deferred("monitorable", false)
 
 
 func start_wait() -> void:
 	currentState = state.wait
 	labelState.text = str(currentState)
-	detector.set_deferred("monitoring", false)
+	actorDetector.set_deferred("monitoring", false)
 	timerWait.start()
 	random_shake(spike, timeWait)
 
@@ -120,8 +122,8 @@ func new_position(pos: Vector2) -> Vector2:
 	return Vector2(newX, newY)
 
 
-func _on_actor_detector_body_entered(body: Actor) -> void:
-	start_wait()
+#func _on_actor_detector_body_entered(body: Actor) -> void:
+	#start_wait()
 
 
 func update_point1(newPosition: Vector2) -> void:

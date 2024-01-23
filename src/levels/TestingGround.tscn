@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=50 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -39,7 +39,9 @@
 [ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
 [ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
 [ext_resource type="PackedScene" uid="uid://q7elrojricr" path="res://src/object/Hazards/spinning_arm.tscn" id="36_ly8xo"]
+[ext_resource type="PackedScene" uid="uid://cshyp56u4p8ib" path="res://src/object/turret_triggered.tscn" id="41_msyr8"]
 [ext_resource type="PackedScene" uid="uid://c0jsidjg47lle" path="res://src/object/turret.tscn" id="41_ndeqp"]
+[ext_resource type="PackedScene" uid="uid://dkm6688s7ajbd" path="res://src/object/prefab/actor_detector.tscn" id="42_ysjnn"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
@@ -395,13 +397,13 @@ position = Vector2(-864, -256)
 position = Vector2(-1056, -256)
 
 [node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
-position = Vector2(656, 264)
+position = Vector2(328, 392)
 
 [node name="MovingSpike" parent="Hazard" instance=ExtResource("32_sifvf")]
 position = Vector2(504, 440)
 
 [node name="RetractableSpikes2" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(264, 424)
+position = Vector2(232, 320)
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -410,5 +412,12 @@ position = Vector2(-1440, 0)
 
 [node name="SpikedJumper" parent="Enemies" instance=ExtResource("35_q5l7e")]
 position = Vector2(-480, 0)
+
+[node name="TriggedTurret" parent="." node_paths=PackedStringArray("detector") instance=ExtResource("41_msyr8")]
+position = Vector2(736, -96)
+detector = NodePath("../ActorDetector")
+
+[node name="ActorDetector" parent="." instance=ExtResource("42_ysjnn")]
+position = Vector2(544, -8)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
