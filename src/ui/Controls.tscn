@@ -43,10 +43,10 @@ text = "Jump"
 
 [node name="Glide" type="Label" parent="."]
 layout_mode = 0
-offset_left = 912.0
-offset_top = 264.0
-offset_right = 955.0
-offset_bottom = 290.0
+offset_left = 184.0
+offset_top = 120.0
+offset_right = 227.0
+offset_bottom = 146.0
 text = "Glide"
 
 [node name="Dash" type="Label" parent="."]
@@ -100,9 +100,9 @@ text = "Ground Pound"
 [node name="Grapple" type="Label" parent="."]
 layout_mode = 0
 offset_left = 184.0
-offset_top = 120.0
+offset_top = 192.0
 offset_right = 246.0
-offset_bottom = 146.0
+offset_bottom = 218.0
 text = "Grapple"
 
 [node name="Roll" type="Label" parent="."]
@@ -131,10 +131,10 @@ text = "POGO"
 
 [node name="Bash" type="Label" parent="."]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 192.0
-offset_right = 286.0
-offset_bottom = 218.0
+offset_left = 952.0
+offset_top = 264.0
+offset_right = 1014.0
+offset_bottom = 290.0
 text = "Bash"
 
 [node name="Slide" type="Label" parent="."]
