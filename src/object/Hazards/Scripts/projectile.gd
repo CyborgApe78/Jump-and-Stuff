@@ -41,7 +41,8 @@ func set_damage() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	queue_free()
+	if not body is Turrets:
+		queue_free()
 
 
 func stop_time(v: bool) -> void:

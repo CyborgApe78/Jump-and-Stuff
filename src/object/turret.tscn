@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" path="res://src/object/scripts/turret.gd" id="1_wfuji"]
 [ext_resource type="PackedScene" uid="uid://cguhwnksmdy7r" path="res://src/object/Hazards/projectile.tscn" id="2_cwywm"]
-[ext_resource type="Script" path="res://script_templates/state.gd" id="3_lsybj"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="4_ggh53"]
 
-[node name="Turret" type="StaticBody2D" node_paths=PackedStringArray("shootPosition", "timerShoot", "timerReload", "directionCast")]
+[node name="Turret" type="StaticBody2D" node_paths=PackedStringArray("timerAutofire", "shootPosition", "timerShoot", "timerReload", "directionCast")]
+collision_mask = 0
 script = ExtResource("1_wfuji")
+timerAutofire = NodePath("Autofire")
 projectile = ExtResource("2_cwywm")
 shootPosition = NodePath("ShootPosition")
 timerShoot = NodePath("Shoot")
@@ -21,15 +23,21 @@ one_shot = true
 [node name="Reload" type="Timer" parent="."]
 one_shot = true
 
+[node name="Autofire" type="Timer" parent="."]
+one_shot = true
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(-5, 0)
 collision_mask = 0
 
-[node name="VisibleCollisionPolygon2D" type="Polygon2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0, 32)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-16, 0, -24, -16, -32, -16, -32, -48, -24, -48, -16, -64, 32, -64, 32, 0)
-script = ExtResource("3_lsybj")
+script = ExtResource("4_ggh53")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="timeout" from="Shoot" to="." method="_on_shoot_timeout"]
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[connection signal="timeout" from="Autofire" to="." method="_on_autofire_timeout"]
