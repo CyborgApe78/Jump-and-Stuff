@@ -1,5 +1,6 @@
 extends Turrets
 
+#TODO: make cooldown when it can't be triggered
 
 @export var detector: ActorDetector
 

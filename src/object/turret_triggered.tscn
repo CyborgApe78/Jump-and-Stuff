@@ -29,8 +29,13 @@ collision_mask = 0
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0, 32)
 color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-16, 0, -24, -16, -32, -16, -32, -48, -24, -48, -16, -64, 32, -64, 32, 0)
+polygon = PackedVector2Array(-16, 0, -16, -64, 32, -64, 32, 0)
 script = ExtResource("3_hn1kx")
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(0, 32)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-16, 0, -24, -16, -32, -16, -32, -48, -24, -48, -16, -64)
 
 [connection signal="timeout" from="Shoot" to="." method="_on_shoot_timeout"]
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
