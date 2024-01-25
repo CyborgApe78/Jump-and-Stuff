@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 
 func reload() -> void:
 	bullet = projectile.instantiate()
+	bullet.hurtbox.set_deferred("monitoring", false)
 	bullet.position = Vector2(8,0)
 	shootPosition.add_child(bullet)
 	
@@ -65,6 +66,7 @@ func shoot() -> void:
 
 
 func _on_shoot_timeout() -> void:
+	bullet.hurtbox.set_deferred("monitoring", true)
 	shoot()
 	bullet.reparent(get_parent())
 	timerReload.start()
