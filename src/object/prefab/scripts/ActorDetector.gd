@@ -1,11 +1,12 @@
 extends Area2D
 class_name ActorDetector
 
+#TODO: make seperate trigger scene, with animation
 
 @export var playerDetect: bool = true
 @export var enemyDetect: bool = true
 
-signal triggerd
+signal triggerd #FIXME: typo
 
 func _ready() -> void:
 	set_collision_mask_value(1, false)

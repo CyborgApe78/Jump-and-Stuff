@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=51 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://cmgj5u0dbvjsr" path="res://src/object/prefab/platforms/platform_path_follow.tscn" id="31_oqkat"]
 [ext_resource type="PackedScene" uid="uid://wkkjg38srvgh" path="res://src/object/Hazards/falling_spike.tscn" id="32_0tyk8"]
 [ext_resource type="PackedScene" uid="uid://bgv7obufl6ry" path="res://src/object/Hazards/moving_spike.tscn" id="32_sifvf"]
+[ext_resource type="PackedScene" uid="uid://cw2jyafv6n1sq" path="res://src/object/Hazards/smasher.tscn" id="33_6rk64"]
 [ext_resource type="PackedScene" uid="uid://dr28hpjsiiytv" path="res://src/object/Hazards/spinning_hazard.tscn" id="35_h0jdy"]
 [ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
 [ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
@@ -388,7 +389,7 @@ script = ExtResource("25_d0jmx")
 [node name="Hazard" type="Node" parent="."]
 
 [node name="Turret" parent="Hazard" instance=ExtResource("41_ndeqp")]
-position = Vector2(-72, -296)
+position = Vector2(224, -288)
 
 [node name="SpinningHazard" parent="Hazard" instance=ExtResource("35_h0jdy")]
 position = Vector2(-864, -256)
@@ -397,13 +398,13 @@ position = Vector2(-864, -256)
 position = Vector2(-1056, -256)
 
 [node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
-position = Vector2(328, 392)
+position = Vector2(96, -384)
 
 [node name="MovingSpike" parent="Hazard" instance=ExtResource("32_sifvf")]
 position = Vector2(504, 440)
 
 [node name="RetractableSpikes2" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(232, 320)
+position = Vector2(-96, 64)
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -418,6 +419,18 @@ position = Vector2(736, -96)
 detector = NodePath("../ActorDetector")
 
 [node name="ActorDetector" parent="." instance=ExtResource("42_ysjnn")]
-position = Vector2(544, -8)
+position = Vector2(736, -136)
+
+[node name="RetractableSpikes" parent="." instance=ExtResource("20_4ow0q")]
+position = Vector2(-160, 64)
+
+[node name="Smasher" parent="." instance=ExtResource("33_6rk64")]
+position = Vector2(384, 0)
+
+[node name="Smasher2" parent="." instance=ExtResource("33_6rk64")]
+position = Vector2(576, 0)
+
+[node name="FallingSpike" parent="." instance=ExtResource("32_0tyk8")]
+position = Vector2(-32, -384)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]

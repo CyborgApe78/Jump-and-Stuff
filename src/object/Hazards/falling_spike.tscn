@@ -70,6 +70,8 @@ target_position = Vector2(0, 8)
 collision_mask = 7
 
 [node name="ActorDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("4_p6y2h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActorDetector"]

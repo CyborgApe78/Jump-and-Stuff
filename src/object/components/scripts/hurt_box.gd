@@ -1,13 +1,14 @@
 extends Area2D
 class_name HurtBox
 
-#TODO: figure out a way to auto connect collision shaoe
+#TODO: figure out a way to auto connect collision shape
 
 @export var damage: int = 1
 @export var isBurning: bool = false
 @export var isFreezing: bool = false
 @export var oneUse: bool = false
 @export var kill: bool = false
+@export var noDamage: bool = false #TODO: better name #TODO: setup last safe ground, like red spikes in Lone Fungus 
 
 
 func _ready() -> void:
