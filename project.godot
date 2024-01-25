@@ -38,6 +38,8 @@ instance_dock/scenes=[{
 "scene": "res://src/object/Hazards/spinning_hazard.tscn"
 }, {
 "scene": "res://src/object/Hazards/spinning_arm.tscn"
+}, {
+"scene": "res://src/object/Hazards/smasher.tscn"
 }],
 "scroll": 0
 }, {

@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw2jyafv6n1sq"]
+
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/smasher.gd" id="1_7tg1k"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_nxt2g"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/ActorDetector.gd" id="3_2dnss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6xml"]
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3mka"]
+size = Vector2(112, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71k24"]
+size = Vector2(96, 192)
+
+[node name="Smasher" type="StaticBody2D" node_paths=PackedStringArray("actorDetector", "actorDetectorCollision", "collision", "body", "timerWait", "timerHold", "timerRetract")]
+collision_mask = 0
+script = ExtResource("1_7tg1k")
+actorDetector = NodePath("ActorDetector")
+actorDetectorCollision = NodePath("ActorDetector/CollisionShape2D")
+collision = NodePath("VisibleCollisionShape2D")
+body = NodePath("Body/VisibleCollisionShape2D")
+timerWait = NodePath("Wait")
+timerHold = NodePath("Hold")
+timerRetract = NodePath("Retract")
+timeWait = 0.5
+timeHold = 1.5
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_t6xml")
+script = ExtResource("2_nxt2g")
+
+[node name="Wait" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hold" type="Timer" parent="."]
+one_shot = true
+
+[node name="Retract" type="Timer" parent="."]
+one_shot = true
+
+[node name="Body" type="AnimatableBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_m3mka")
+script = ExtResource("2_nxt2g")
+
+[node name="ActorDetector" type="Area2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("3_2dnss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActorDetector"]
+position = Vector2(0, -96)
+shape = SubResource("RectangleShape2D_71k24")
+
+[connection signal="timeout" from="Wait" to="." method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="Hold" to="." method="_on_hold_timer_timeout"]
+[connection signal="timeout" from="Retract" to="." method="_on_retract_timeout"]
+[connection signal="body_entered" from="ActorDetector" to="ActorDetector" method="_on_body_entered"]
