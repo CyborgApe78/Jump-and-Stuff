@@ -1,18 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0jsidjg47lle"]
+[gd_scene load_steps=4 format=3 uid="uid://cshyp56u4p8ib"]
 
-[ext_resource type="Script" path="res://src/object/scripts/turret.gd" id="1_wfuji"]
-[ext_resource type="PackedScene" uid="uid://cguhwnksmdy7r" path="res://src/object/Hazards/projectile.tscn" id="2_cwywm"]
-[ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="4_ggh53"]
+[ext_resource type="Script" path="res://src/object/Hazards/Scripts/turret_triggered.gd" id="1_xk37l"]
+[ext_resource type="PackedScene" uid="uid://cguhwnksmdy7r" path="res://src/object/Hazards/projectile.tscn" id="2_1y1op"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/CreateCollisionPoly.gd" id="3_hn1kx"]
 
-[node name="Turret" type="StaticBody2D" node_paths=PackedStringArray("timerAutofire", "shootPosition", "timerShoot", "timerReload", "directionCast")]
-collision_mask = 0
-script = ExtResource("1_wfuji")
-timerAutofire = NodePath("Autofire")
-projectile = ExtResource("2_cwywm")
+[node name="TriggedTurret" type="StaticBody2D" node_paths=PackedStringArray("shootPosition", "timerShoot", "timerReload", "directionCast")]
+script = ExtResource("1_xk37l")
+projectile = ExtResource("2_1y1op")
 shootPosition = NodePath("ShootPosition")
 timerShoot = NodePath("Shoot")
 timerReload = NodePath("Reload")
 directionCast = NodePath("RayCast2D")
+timeShoot = 0.2
 
 [node name="ShootPosition" type="Marker2D" parent="."]
 position = Vector2(-16, 0)
@@ -23,9 +22,6 @@ one_shot = true
 [node name="Reload" type="Timer" parent="."]
 one_shot = true
 
-[node name="Autofire" type="Timer" parent="."]
-one_shot = true
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(-5, 0)
 collision_mask = 0
@@ -34,7 +30,7 @@ collision_mask = 0
 position = Vector2(0, 32)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-16, 0, -16, -64, 32, -64, 32, 0)
-script = ExtResource("4_ggh53")
+script = ExtResource("3_hn1kx")
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
 position = Vector2(0, 32)
@@ -43,4 +39,3 @@ polygon = PackedVector2Array(-16, 0, -24, -16, -32, -16, -32, -48, -24, -48, -16
 
 [connection signal="timeout" from="Shoot" to="." method="_on_shoot_timeout"]
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
-[connection signal="timeout" from="Autofire" to="." method="_on_autofire_timeout"]
