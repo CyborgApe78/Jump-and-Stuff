@@ -24,6 +24,8 @@ instance_dock/scenes=[{
 "scene": "res://src/object/prefab/platforms/platform_direction_change.tscn"
 }, {
 "scene": "res://src/object/prefab/AbilityBlocks/wall.tscn"
+}, {
+"scene": "res://src/object/prefab/platforms/platform_disappearing.tscn"
 }],
 "scroll": 0
 }, {

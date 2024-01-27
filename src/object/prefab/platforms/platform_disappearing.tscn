@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b43mc32jrlyk1"]
+
+[ext_resource type="Script" path="res://src/object/prefab/platforms/scripts/platform_disappearing.gd" id="1_7pmeg"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/ActorDetector.gd" id="2_2d6qa"]
+[ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_vkp31"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6koc"]
+size = Vector2(144, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgtpk"]
+size = Vector2(128, 64)
+
+[node name="Disappearing" type="AnimatableBody2D" node_paths=PackedStringArray("timerReset", "timerCountdown", "actorDetector")]
+collision_layer = 0
+collision_mask = 192
+script = ExtResource("1_7pmeg")
+timerReset = NodePath("Reset")
+timerCountdown = NodePath("Countdown")
+actorDetector = NodePath("ActorDetector")
+
+[node name="ActorDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+script = ExtResource("2_2d6qa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActorDetector"]
+shape = SubResource("RectangleShape2D_m6koc")
+
+[node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fgtpk")
+script = ExtResource("2_vkp31")
+
+[node name="Reset" type="Timer" parent="."]
+one_shot = true
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="ActorDetector" to="ActorDetector" method="_on_body_entered"]
+[connection signal="triggerd" from="ActorDetector" to="." method="_on_actor_detector_triggerd"]
+[connection signal="timeout" from="Reset" to="." method="_on_reset_timeout"]
+[connection signal="timeout" from="Countdown" to="." method="_on_countdown_timeout"]

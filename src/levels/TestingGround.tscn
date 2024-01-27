@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=52 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c7ppaujx2tal6" path="res://src/object/prefab/platforms/grind_rail.tscn" id="18_qvigo"]
 [ext_resource type="PackedScene" uid="uid://brsdvxinwtfqd" path="res://src/object/prefab/hidden_area.tscn" id="19_minfx"]
 [ext_resource type="PackedScene" uid="uid://c73h301hl1fdv" path="res://src/object/Waypoint.tscn" id="19_owdc2"]
-[ext_resource type="PackedScene" uid="uid://drbfbu4n5oaqy" path="res://src/object/Hazards/retractable_spikes.tscn" id="20_4ow0q"]
+[ext_resource type="PackedScene" uid="uid://drbfbu4n5oaqy" path="res://src/object/Hazards/retractable_spikes_sided.tscn" id="20_4ow0q"]
 [ext_resource type="PackedScene" uid="uid://cmh8jp33df7qy" path="res://src/object/prefab/doors/key.tscn" id="20_5tqcw"]
 [ext_resource type="PackedScene" uid="uid://cmrb6s6eigorv" path="res://src/object/prefab/doors/DoorLocked.tscn" id="21_vnydo"]
 [ext_resource type="PackedScene" uid="uid://87ij05swdkl4" path="res://src/object/prefab/platforms/platform_falling.tscn" id="22_d32gw"]
@@ -40,9 +40,10 @@
 [ext_resource type="PackedScene" uid="uid://44nof0yy21qr" path="res://src/actors/enemies/spiked_jumper.tscn" id="35_q5l7e"]
 [ext_resource type="PackedScene" uid="uid://d1qg27apjv00h" path="res://src/actors/enemies/spikesides.tscn" id="36_17bw8"]
 [ext_resource type="PackedScene" uid="uid://q7elrojricr" path="res://src/object/Hazards/spinning_arm.tscn" id="36_ly8xo"]
-[ext_resource type="PackedScene" uid="uid://cshyp56u4p8ib" path="res://src/object/turret_triggered.tscn" id="41_msyr8"]
-[ext_resource type="PackedScene" uid="uid://c0jsidjg47lle" path="res://src/object/turret.tscn" id="41_ndeqp"]
+[ext_resource type="PackedScene" uid="uid://cshyp56u4p8ib" path="res://src/object/Hazards/turret_triggered.tscn" id="41_msyr8"]
+[ext_resource type="PackedScene" uid="uid://c0jsidjg47lle" path="res://src/object/Hazards/turret.tscn" id="41_ndeqp"]
 [ext_resource type="PackedScene" uid="uid://dkm6688s7ajbd" path="res://src/object/prefab/actor_detector.tscn" id="42_ysjnn"]
+[ext_resource type="PackedScene" uid="uid://b43mc32jrlyk1" path="res://src/object/prefab/platforms/platform_disappearing.tscn" id="44_vuh3q"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
@@ -278,9 +279,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Platforms/Falling"]
-offset_left = -64.0
+offset_left = -120.0
 offset_top = -112.0
-offset_right = 64.0
+offset_right = 8.0
 offset_bottom = -80.0
 text = "Connected"
 horizontal_alignment = 1
@@ -300,6 +301,7 @@ position = Vector2(-2560, 1024)
 metadata/_edit_group_ = true
 
 [node name="Countdown" parent="Platforms/Countdown" instance=ExtResource("23_0k671")]
+position = Vector2(-24, -40)
 
 [node name="Label" type="Label" parent="Platforms/Countdown"]
 offset_left = -64.0
@@ -389,40 +391,37 @@ script = ExtResource("25_d0jmx")
 [node name="Hazard" type="Node" parent="."]
 
 [node name="Turret" parent="Hazard" instance=ExtResource("41_ndeqp")]
-position = Vector2(224, -288)
+position = Vector2(864, 288)
 
 [node name="SpinningHazard" parent="Hazard" instance=ExtResource("35_h0jdy")]
-position = Vector2(-864, -256)
+position = Vector2(-352, 320)
 
 [node name="SpinningArm" parent="Hazard" instance=ExtResource("36_ly8xo")]
-position = Vector2(-1056, -256)
+position = Vector2(-232, 320)
 
 [node name="FallingSpike" parent="Hazard" instance=ExtResource("32_0tyk8")]
-position = Vector2(96, -384)
+position = Vector2(344, 184)
 
 [node name="MovingSpike" parent="Hazard" instance=ExtResource("32_sifvf")]
 position = Vector2(504, 440)
 
 [node name="RetractableSpikes2" parent="Hazard" instance=ExtResource("20_4ow0q")]
-position = Vector2(-96, 64)
+position = Vector2(224, 320)
+
+[node name="TriggedTurret" parent="Hazard" node_paths=PackedStringArray("detector") instance=ExtResource("41_msyr8")]
+position = Vector2(736, -96)
+detector = NodePath("../ActorDetector")
+
+[node name="ActorDetector" parent="Hazard" instance=ExtResource("42_ysjnn")]
+position = Vector2(736, -136)
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Spik-E-Sides" parent="Enemies" instance=ExtResource("36_17bw8")]
-position = Vector2(-1440, 0)
+position = Vector2(-1576, 264)
 
 [node name="SpikedJumper" parent="Enemies" instance=ExtResource("35_q5l7e")]
-position = Vector2(-480, 0)
-
-[node name="TriggedTurret" parent="." node_paths=PackedStringArray("detector") instance=ExtResource("41_msyr8")]
-position = Vector2(736, -96)
-detector = NodePath("../ActorDetector")
-
-[node name="ActorDetector" parent="." instance=ExtResource("42_ysjnn")]
-position = Vector2(736, -136)
-
-[node name="RetractableSpikes" parent="." instance=ExtResource("20_4ow0q")]
-position = Vector2(-160, 64)
+position = Vector2(-1688, 248)
 
 [node name="Smasher" parent="." instance=ExtResource("33_6rk64")]
 position = Vector2(384, 0)
@@ -430,7 +429,15 @@ position = Vector2(384, 0)
 [node name="Smasher2" parent="." instance=ExtResource("33_6rk64")]
 position = Vector2(576, 0)
 
-[node name="FallingSpike" parent="." instance=ExtResource("32_0tyk8")]
-position = Vector2(-32, -384)
+[node name="Disappearing" parent="." instance=ExtResource("44_vuh3q")]
+position = Vector2(-1088, -160)
+
+[node name="Disappearing2" parent="." instance=ExtResource("44_vuh3q")]
+position = Vector2(-1312, -384)
+rotation = 1.5708
+
+[node name="Disappearing3" parent="." instance=ExtResource("44_vuh3q")]
+position = Vector2(-1056, -576)
+rotation = 1.5708
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
