@@ -4,27 +4,21 @@ https://docs.google.com/document/d/e/2PACX-1vTQXjHorrOCug8qg1jRInF5hh8stN_kYQIo1
 https://github.com/CyborgApe78/Jump-and-Stuff
 
 
-Let player shift camera when on ground. 
 If bouncebox is colliding with parent ignore
-Create ground and walls with various properties, speed limits and such
 Move equations in state physics to func
 Update color global from just abilities
 Ground pound into slope should have a cool interaction
 get_platform_velocity() could be used to store platform jump for late inputs
 Change same wall jump to work only when sliding up
-Grapple hook like ori or mario/steamworld
 Make a signal to change player state
-On map only show item Pickups after upgrade /difficulty setting / randomizer
-On map, show blocked walls a generic until have ability 
 Vault over one tile high objects 
 Jump when just entering water
 Make eye direction the same as move direction, even if body other way
 Break out jetpack into own statemachine
-Hazard that send player back to respawn without killing them
 
 Coyote time boosted jumps if falling near a wall, like in metroid dread
 
-Assist mode/options to tweak when making new game
+
 
 Sandbox mode, all abilities unlocked
 
@@ -405,36 +399,6 @@ Dungeons
 		Die go back a checkpoint
 	Help random people, snail getting blocked from getting dinner with friend. You have to keep the snail from getting hit
 
-Teleport upgrades, able to teleport between all, portable teleporter
-
-Challenges/Curses
-	Always run
-	Always jump
-	Hit timers to keep ground active 
-	https://github.com/Korzer420/CurseRandomizer
-
-Accessability/game options
-	infinite jump
-	infinte dashes
-	infinite dash duraction
-	Grab/glide toggle 
-	Engine speed
-	Joystick locked to 8 degrees
-	Look into celeste and towerfall options 
-	Toggle fly
-		Lets you retry sections
-	Controller inputs on screen 
-	Quick retry in options menu 
-		Player move camera on death screen 
-	Options for landing back on platform you fell off, level start, or fast travel
-	If there are enemies, spikes just reset, donot take off health 
-	Turn off helpers
-		Coyote timer, Buffer jump etc
-
-Mechanics to add
-	monorail/grindrail
-	wall run
-	trapezee bar
 
 Hub world
 	Unlock dungeons 
@@ -445,20 +409,9 @@ Hub world
 	Random level order
 	Add ability every x levels
 
-Game Modes:
-	randomizer
-		items
-		breakables
-		split abilities left and right
-		pick starting abilities
-		button to show last 5 Pickups
-	floor is lava
 
 screen wrap https://kidscancode.org/godot_recipes/2d/screen_wrap/
 
-
-wall hooks:
-	grapple can pull to
 
 
 Basic feel goods to add
@@ -487,50 +440,3 @@ SMW does a neat trick to change the jump height
 The height is varied by lowering the "force" that moves you down when you press the nump button
 (Which results in an interestingly dynamic way of changing your jump height, as well as allowing to change your fall speed by holding the jump button pressed)
 (Barely any game does its jump like that anymore, but I adore it cause of how great it feels when you know it and play some Kaizo)
-
-
-SMW also makes the top speed a little complicated
-As (simmilarly to SMB3 I think) it has 3 top speeds:
-Walking speed
-Running speed
-P-Speed
-Walking and running speed are pretty intuitive, but P-Speed is reached by filling up a meter by going Running Speed
-(And as it doesn't get reset to 0 instantly you can drag out the filling of the P-Meter for some time)
-
-
-There's also ways to go beyond the p-speed cap in smw, for example sliding.
-However when you press the directional pad it resets that speed, so the way to keep it is by not pressing any directional keys and keeping yourself away from the ground.
-
-
-But in general this is a really handy video to see a few basic movement speeds compare
-Would've been great to see some measurement numbers alongside them, though that would've taken a lot of resources
-http://www.davetech.co.uk/gamedevplatformer
-
-Platform movement based on player movement direction 
-
-Ledge boosted jump. Like metroid dread 
-
-Platform that disappears if that direction is pushed
-
-Shout out to the devs of Ori and the Blind Forest for realizing the Bash Ability.
-It took months to arrive at something as intuitive and practical as in Ori. When starting, I didn't even know Ori moves with the projectile to an "ideal" position when bashing to avoid clipping into the environment. Also, there is a "bash buffer" when you press Bash in Ori, and nothing is close by; Ori will continue to try to bash in the subsequent frames.
-
-Alternate characters:
-	luigi spillery
-	all abilities tied to single energy type
-	3d world like bullet dash
-
-Ground pound into water to sink like a rock
-
-Bunny hop, speed boost from quick jumping
-
-Change death from reseting the scene to send out a reset signal
-
-Destroyed objects add themselves to save file. Named like scene name, object name, plus location 
-Save them in an array. That checks for instant save or save at checkpoint 
-
-
-SMW Regrab
-	In Super Mario World, if you press the jump button (regular or spin) and then immediately release it, you will jump to a low height and fall very quickly back to the ground. If you are moving horizontally, you will have a very short horizontal range.
-	If you press the button and hold it, you will do a max height jump and fall slowly and floatily back to the ground. If you are moving horizontally, you will have a long horizontal range.
-	But if you combine the two, you can get a short jump height and a long horizontal range. You tap the jump button, then immediately regrab it near the highest part of the jump. This way you can make it across wide gaps under low ceilings. (Typically, you will do this using a spin jump because the max height of a spin jump is lower.)

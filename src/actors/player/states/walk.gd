@@ -27,7 +27,7 @@ func physics(delta) -> void:
 	player.move_and_slide()
 	if abs(player.velocity.x) > stats.moveSpeed * skidPercent and input.moveDirection.x != 0 and (sign(player.velocity.x) != input.moveDirection.x):
 		skidding = true
-	elif player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x: ## kill velocity when changing directions
+	elif player.velocity.x != 0 and sign(player.velocity.x) != input.lastMoveDirection.x: ## kill velocity when changing directions #TODO: add momentum var to keep track of speed or use the one for bonk
 		player.velocity.x = input.lastMoveDirection.x * 1
 	elif input.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed:
 		velocity.apply_acceleration(stats.moveSpeed, stats.accelerationGround, delta)

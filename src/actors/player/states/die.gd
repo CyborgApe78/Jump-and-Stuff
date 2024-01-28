@@ -10,7 +10,7 @@ func exit() -> void:
 	if cpSystem.currentRespawn != Vector2.ZERO:
 		player.global_position = cpSystem.currentRespawn
 	else:
-		get_tree().reload_current_scene()
+		get_tree().reload_current_scene() #TODO: Change death from reseting the scene to send out a reset signal
 		EventBus.emit_signal("error", str("no spawn point set"))
 
 
