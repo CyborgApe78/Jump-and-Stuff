@@ -44,8 +44,6 @@ func handle_input(event: InputEvent) -> int:
 		return State.BashAim
 	if input.pressedCrouch: 
 		return State.Crouch
-#	if input.justPressedDive:
-#		return State.BellySlide
 
 	return State.Null
 

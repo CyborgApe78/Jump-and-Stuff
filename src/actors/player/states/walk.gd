@@ -64,6 +64,7 @@ func handle_input(event: InputEvent) -> int:
 		return State.BashAim
 	if input.pressedCrouch: 
 		return State.Crouch
+	#TODO: add slide like in dread
 
 	return State.Null
 
