@@ -15,6 +15,7 @@ const bashColor: Color = Color(1, 0.898, 0.439) ## Yellow
 const climbColor: Color = Color.AQUA #TODO: pull from palet
 
 const hazardColor: Color = Color(0.898, 0.227, 0.29) ## Red
+const ground: Color = Color.BLACK
 
 ## Green
 
