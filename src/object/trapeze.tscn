@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ijsx7f88srae"]
+[gd_scene load_steps=6 format=3 uid="uid://ijsx7f88srae"]
 
 [ext_resource type="Script" path="res://src/object/scripts/trapeze.gd" id="1_g0ikd"]
 [ext_resource type="PackedScene" uid="uid://qlfsj2r7gj6h" path="res://src/object/prefab/Outline.tscn" id="2_56eyn"]
+[ext_resource type="PackedScene" uid="uid://bsq7iauovd76j" path="res://src/object/TargetGrapple.tscn" id="3_mgx0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_615pq"]
 size = Vector2(32, 32)
@@ -49,6 +50,13 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="TargetGrapple2" parent="." instance=ExtResource("3_mgx0m")]
+
+[node name="Label" parent="TargetGrapple2" index="3"]
+visible = false
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="TargetGrapple2"]
