@@ -369,6 +369,7 @@ metadata/_edit_group_ = true
 position = Vector2(-5598.81, 896)
 scale = Vector2(0.259259, 1)
 polygon = PackedVector2Array(-128, 128, -128, -128, 304, -128, 304, 128)
+stayVisible = true
 
 [node name="Player" parent="." instance=ExtResource("24_xrqhw")]
 position = Vector2(-617, -37)

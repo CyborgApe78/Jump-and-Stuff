@@ -6,6 +6,7 @@
 color = Color(0, 0, 0, 0.5)
 script = ExtResource("1_6c18s")
 collision = NodePath("Area2d/CollisionPolygon2D")
+stayVisible = true
 
 [node name="Area2d" type="Area2D" parent="."]
 visible = false
