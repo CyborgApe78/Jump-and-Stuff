@@ -2,6 +2,8 @@ extends Enviromental
 class_name Water
 
 #extends Fluids #TODO: create class
+#TODO: make color rect get size off of collisionshape
+#TODO: remove collision and add it 
 
 #TODO: look into 9patchrec
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D

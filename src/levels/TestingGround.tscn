@@ -47,9 +47,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 192, -192, 0, 0, 0, 0, 246.996, -119.651, 0, 0, 0, 0, 261.698, -94.8621, 0, 0, 0, 0, 320, -64, 0, 0, 0, 0, 512, -64)
+"points": PackedVector2Array(0, 0, 0, 0, 128, -128, 0, 0, 0, 0, 520, -448, 0, 0, 0, 0, 832, -376, 0, 0, 0, 0, 1280, -640)
 }
-point_count = 6
+point_count = 4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4766"]
 size = Vector2(64, 64)
@@ -78,7 +78,7 @@ script = ExtResource("1_i5twd")
 metadata/_edit_vertical_guides_ = []
 
 [node name="Trapeze" parent="." instance=ExtResource("6_tv02l")]
-position = Vector2(1056, -376)
+position = Vector2(960, -320)
 
 [node name="Menu" parent="." instance=ExtResource("2_v4ta7")]
 visible = false
@@ -369,7 +369,6 @@ metadata/_edit_group_ = true
 position = Vector2(-5598.81, 896)
 scale = Vector2(0.259259, 1)
 polygon = PackedVector2Array(-128, 128, -128, -128, 304, -128, 304, 128)
-stayVisible = true
 
 [node name="Player" parent="." instance=ExtResource("24_xrqhw")]
 position = Vector2(-617, -37)
@@ -410,11 +409,11 @@ position = Vector2(504, 440)
 position = Vector2(224, 320)
 
 [node name="TriggedTurret" parent="Hazard" node_paths=PackedStringArray("detector") instance=ExtResource("41_msyr8")]
-position = Vector2(736, -96)
+position = Vector2(864, 224)
 detector = NodePath("../ActorDetector")
 
 [node name="ActorDetector" parent="Hazard" instance=ExtResource("42_ysjnn")]
-position = Vector2(736, -136)
+position = Vector2(864, 184)
 
 [node name="Enemies" type="Node" parent="."]
 

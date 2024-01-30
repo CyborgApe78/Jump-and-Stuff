@@ -45,7 +45,7 @@ func exit() -> void:
 	player.animPlayer.stop()
 	particles.local_coords = false
 	particles.emitting = false
-	if input.moveDirection.x != 0:
+	if input.moveDirection.x != 0: #TODO: Find a better way todo this so it works with grindrail
 		player.velocity.x = player.velocityPrevious.x
 		## If no input keep dash velocity
 	player.ability_mask(CollisionLayers.DashSide, true)

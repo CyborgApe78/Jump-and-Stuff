@@ -1,5 +1,7 @@
 extends SavePoint
 
+#TODO: need to press button to save location
+
 @export var waypointName: WaypointPlayground.list
 
 func _ready() -> void:
