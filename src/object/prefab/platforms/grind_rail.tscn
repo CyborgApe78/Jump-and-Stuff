@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cyhwyt38u71g2" path="res://asset/objects/rail.png" id="2_iokx2"]
 [ext_resource type="Script" path="res://src/object/enviroment/scripts/GrindRailArea.gd" id="3_xnoo5"]
 
-[node name="GrindRail" type="Path2D" node_paths=PackedStringArray("rail", "detector", "collision", "remote", "remoteRec")]
+[node name="GrindRail" type="Path2D" node_paths=PackedStringArray("rail", "detector", "collision", "pathFollow", "remote", "remoteRec")]
 script = ExtResource("1_p0ap4")
 rail = NodePath("Line2D")
 detector = NodePath("GrindRailArea")
 collision = NodePath("GrindRailArea/CollisionPolygon2D")
+pathFollow = NodePath("PathFollow2D")
 remote = NodePath("PathFollow2D/RemoteTransform2D")
 remoteRec = NodePath("PathFollow2D/ColorRect")
 
@@ -30,6 +31,7 @@ script = ExtResource("3_xnoo5")
 build_mode = 1
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+loop = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
 

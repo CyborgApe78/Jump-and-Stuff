@@ -17,4 +17,5 @@ var inRail: bool = false: #TODO: make signal
 			enterRail.emit()
 var windVelocity: Vector2 = Vector2.ZERO
 var grindRail: Path2D
+var grindRailFollow: PathFollow2D
 var trapeze: Area2D

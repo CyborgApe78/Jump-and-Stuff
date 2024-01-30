@@ -1,11 +1,12 @@
 extends Path2D
 
-
 #TODO: look into combining base class with climbable
+#FIXME: need to figure how to move path follow to players position
 
 @export var rail: Line2D
 @export var detector: Area2D
 @export var collision: CollisionPolygon2D
+@export var pathFollow: PathFollow2D
 @export var remote: RemoteTransform2D
 @export var remoteRec: ColorRect
 
@@ -27,6 +28,7 @@ func _ready() -> void:
 func body_entered(body: Player) -> void:
 	remote.remote_path = body.get_path()
 	body.grindRail = self
+	body.grindRailFollow = pathFollow
 	body.inRail = true #TODO: change to signal like trapeze
 
 
