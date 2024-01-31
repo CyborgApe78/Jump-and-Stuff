@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgr00u8sgd2q3"]
+[gd_scene load_steps=12 format=3 uid="uid://cgr00u8sgd2q3"]
 
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu.gd" id="1_sbdkq"]
 [ext_resource type="Script" path="res://src/ui/scripts/buttons/Quit.gd" id="2_4npie"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/ui/scripts/SettingsMenu/scripts/Gameplay.gd" id="3_vxf3y"]
 [ext_resource type="Script" path="res://src/ui/base_button.gd" id="3_ykukb"]
 [ext_resource type="Script" path="res://src/ui/scripts/VideoMenu.gd" id="5_vdgk8"]
+[ext_resource type="Script" path="res://src/ui/scripts/Colors.gd" id="9_5k8qx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysjsm"]
 bg_color = Color(0.596078, 0.133333, 0.658824, 1)
@@ -23,7 +24,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="SettingsMenu" type="CenterContainer" node_paths=PackedStringArray("optionsContainer", "gameplayMenu", "hudMenu", "videoMenu", "audioMenu", "controlsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton")]
+[node name="SettingsMenu" type="CenterContainer" node_paths=PackedStringArray("optionsContainer", "gameplayMenu", "hudMenu", "videoMenu", "audioMenu", "controlsMenu", "colorsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton", "colorsButton")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -43,12 +44,14 @@ hudMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/HUD")
 videoMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Video")
 audioMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Audio")
 controlsMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Controls")
+colorsMenu = NodePath("MarginContainer/HBoxContainer/Options/MarginContainer/Colors")
 backButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back")
 gameplayButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay")
 hudButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD")
 videoButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video")
 audioButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio")
 controlsButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls")
+colorsButton = NodePath("MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Colors")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -149,6 +152,16 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_0u5pl")
 text = "Controls"
+script = ExtResource("3_ykukb")
+cursor = NodePath("../../Cursor")
+
+[node name="Colors" type="Button" parent="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("cursor")]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_0u5pl")
+text = "Colors"
 script = ExtResource("3_ykukb")
 cursor = NodePath("../../Cursor")
 
@@ -280,6 +293,7 @@ script = ExtResource("3_ykukb")
 cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
 [node name="Video" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("buttonVsync", "buttonFullscreen")]
+visible = false
 layout_mode = 2
 script = ExtResource("5_vdgk8")
 buttonVsync = NodePath("VBoxContainer/VSync")
@@ -335,18 +349,113 @@ layout_mode = 2
 text = "Controls"
 horizontal_alignment = 1
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Controls" node_paths=PackedStringArray("cursor")]
+[node name="Spoilers" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Controls" node_paths=PackedStringArray("cursor")]
 z_index = 2
 layout_mode = 2
 text = "Spoilers"
 script = ExtResource("3_ykukb")
 cursor = NodePath("../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
+[node name="Colors" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("bashLabel", "burrowLabel", "climbLabel", "dashLabel", "grappleLabel", "groundLabel", "hazardLabel", "railLabel", "usedLabel")]
+layout_mode = 2
+script = ExtResource("9_5k8qx")
+bashLabel = NodePath("Bash")
+burrowLabel = NodePath("Burrow")
+climbLabel = NodePath("Climb")
+dashLabel = NodePath("Dash")
+grappleLabel = NodePath("GrappleHook")
+groundLabel = NodePath("Ground")
+hazardLabel = NodePath("Hazard")
+railLabel = NodePath("Rail")
+usedLabel = NodePath("Used")
+
+[node name="Category" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+layout_mode = 2
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="Spoilers" type="CheckButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors" node_paths=PackedStringArray("cursor")]
+z_index = 2
+layout_mode = 2
+text = "Spoilers"
+script = ExtResource("3_ykukb")
+cursor = NodePath("../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
+
+[node name="Bash" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(1, 0.898, 0.439, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Bash"
+
+[node name="Burrow" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0.714, 0.408, 0.235, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Burrow"
+
+[node name="Climb" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Climb"
+
+[node name="Dash" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0.173, 0.612, 0.835, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Dash"
+
+[node name="GrappleHook" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0.596, 0.133, 0.659, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Grapple Hook"
+
+[node name="Ground" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Ground"
+
+[node name="Hazard" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0.898, 0.227, 0.29, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Hazard"
+
+[node name="Rail" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0.976, 0.631, 0.208, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Rail"
+
+[node name="Used" type="Label" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+modulate = Color(0.196, 0.333, 0.333, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Used"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/Options/MarginContainer/Colors"]
+layout_mode = 2
+text = "test"
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+edit_alpha = false
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Gameplay" to="." method="show_gameplay"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/HUD" to="." method="show_hud"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Video" to="." method="show_video"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Audio" to="." method="show_audio"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Controls" to="." method="show_controls"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer/MarginContainer/VBoxContainer/Colors" to="." method="show_colorss"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Back" to="." method="back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" to="MarginContainer/HBoxContainer/Buttons/Buttons/MarginContainer2/MarginContainer/HBoxContainer/Quit" method="_on_pressed"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay/VBoxContainer/Aim" to="MarginContainer/HBoxContainer/Options/MarginContainer/Gameplay" method="show_aim_indicator"]

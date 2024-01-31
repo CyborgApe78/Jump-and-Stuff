@@ -7,6 +7,7 @@ extends BaseMenu
 @export var videoMenu: VBoxContainer
 @export var audioMenu: VBoxContainer
 @export var controlsMenu: VBoxContainer
+@export var colorsMenu: VBoxContainer
 @export var backButton: Button
 @export var gameplayButton: Button
 @export var hudButton: Button
@@ -14,6 +15,7 @@ extends BaseMenu
 @export var videoButton: Button
 @export var audioButton: Button
 @export var controlsButton: Button 
+@export var colorsButton: Button
 
 var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
 
@@ -81,3 +83,8 @@ func show_audio() -> void:
 func show_controls() -> void:
 	menu_hid()
 	controlsMenu.visible = true
+
+
+func show_colorss() -> void:
+	menu_hid()
+	colorsMenu.visible = true
