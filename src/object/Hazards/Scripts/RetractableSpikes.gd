@@ -44,7 +44,7 @@ func _ready() -> void:
 		labelState.visible = true
 	
 	for spike: Line2D in spikes.get_children():
-		spike.default_color = AbilityColor.hazardColor
+		spike.default_color = GameColor.HAZARD
 	
 	actorDetector.triggerd.connect(start_wait)
 	

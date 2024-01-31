@@ -14,7 +14,7 @@ extends Path2D
 func _ready() -> void:
 	if OS.has_feature("editor"):
 		remoteRec.visible = true
-	rail.default_color = AbilityColor.RailColor
+	rail.default_color = GameColor.RailColor
 	if curve != null:
 		rail.points = curve.get_baked_points()
 		await get_tree().process_frame

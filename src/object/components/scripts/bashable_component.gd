@@ -3,5 +3,5 @@ class_name TargetBash
 
 
 func _ready() -> void:
-	modulate = AbilityColor.bashColor
+	modulate = GameColor.bashColor
 	set_collision_layer_value(CollisionLayers.Bash, true)

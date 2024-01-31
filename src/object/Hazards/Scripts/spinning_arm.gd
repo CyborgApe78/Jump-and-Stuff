@@ -5,9 +5,11 @@ extends StaticHazard
 #TODO: make length work
 #TODO: add more arms
 #TODO: hazard radius
+#TODO: shrink hurtbox collision and use another shape 
 
 @export_group("Connections")
 @export var arm: Line2D
+@export var hazardCollision: VisibleCollisionShape2D
 
 @export_group("")
 @export var speed: int = 2
@@ -26,6 +28,7 @@ var currentSpeed: int
 func _ready() -> void:
 	super._ready()
 	set_length()
+	hazardCollision.color = GameColor.HAZARD
 
 
 func _physics_process(delta: float) -> void:

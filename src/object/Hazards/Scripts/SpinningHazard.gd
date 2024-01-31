@@ -23,7 +23,7 @@ var length: int = _baseLength * Util.tileSize
 func _ready() -> void:
 	super._ready()
 	set_length()
-	
+	hurtboxCollision.color = GameColor.HAZARD
 
 
 func _physics_process(delta: float) -> void:

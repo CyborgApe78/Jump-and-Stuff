@@ -9,7 +9,7 @@ extends Path2D
 
 
 func _ready() -> void:
-	line.default_color = AbilityColor.climbColor
+	line.default_color = GameColor.climbColor
 	if curve != null:
 		line.points = curve.get_baked_points()
 		await get_tree().process_frame

@@ -40,7 +40,7 @@ func _ready() -> void:
 		labelState.visible = true
 	
 	actorDetector.triggerd.connect(start_wait)
-	spike.default_color = AbilityColor.hazardColor
+	spike.default_color = GameColor.HAZARD
 	timerWait.wait_time = timeWait
 	currentState = state.idle
 	EventBus.timeFreeze.connect(freeze_time)

@@ -1,7 +1,5 @@
 extends RefCounted
-class_name AbilityColor
-
-#TODO: rename to game colors and bring in color pallete
+class_name GameColor
 
 
 const dashSideColor: Color = Color(0.173, 0.612, 0.835) ## Blue
@@ -14,7 +12,7 @@ const burrowColor: Color = Color(0.714, 0.408, 0.235) ## Brown
 const bashColor: Color = Color(1, 0.898, 0.439) ## Yellow
 const climbColor: Color = Color.AQUA #TODO: pull from palet
 
-const hazardColor: Color = Color(0.898, 0.227, 0.29) ## Red
+const HAZARD: Color = Color(0.898, 0.227, 0.29) ## Red
 const ground: Color = Color.BLACK
 
 ## Green

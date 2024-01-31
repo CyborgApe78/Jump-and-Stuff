@@ -10,10 +10,11 @@ size = Vector2(64, 64)
 [sub_resource type="CircleShape2D" id="CircleShape2D_lilat"]
 radius = 32.0
 
-[node name="SpinningArm" type="StaticBody2D" node_paths=PackedStringArray("arm")]
+[node name="SpinningArm" type="StaticBody2D" node_paths=PackedStringArray("arm", "hazardCollision")]
 collision_mask = 0
 script = ExtResource("1_hp3wp")
 arm = NodePath("Line2D")
+hazardCollision = NodePath("Line2D/HurtBox/VisibleCollisionShape2D")
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)

@@ -10,7 +10,7 @@ var target: TargetBash
 
 func _ready() -> void:
 	set_collision_mask_value(CollisionLayers.Bash, true) #LOOKAT: convert these to a target layer and use class_name to tell what it is
-	indicatorTarget.default_color = AbilityColor.bashColor #LOOKATL change to the draw being on the object, only update on signals and nor running all the time
+	indicatorTarget.default_color = GameColor.bashColor #LOOKATL change to the draw being on the object, only update on signals and nor running all the time
 
 
 func _physics_process(delta: float) -> void:

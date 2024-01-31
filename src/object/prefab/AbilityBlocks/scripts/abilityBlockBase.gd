@@ -14,20 +14,20 @@ func _ready() -> void:
 
 func block_color() -> void:
 	if ability == PlayerAbilities.list.DashSide:
-		modulate = AbilityColor.dashSideColor
+		modulate = GameColor.dashSideColor
 	elif ability == PlayerAbilities.list.DashUp:
-		modulate = AbilityColor.dashUpColor
+		modulate = GameColor.dashUpColor
 	elif ability == PlayerAbilities.list.DashDown:
-		modulate = AbilityColor.dashDownColor
+		modulate = GameColor.dashDownColor
 #	elif ability == PlayerAbilities.list.Grapple:
-#		blockColor = AbilityColor.grappleColor
+#		blockColor = GameColor.grappleColor
 	elif ability == PlayerAbilities.list.Burrow:
-		modulate = AbilityColor.burrowColor
+		modulate = GameColor.burrowColor
 #	elif ability == PlayerAbilities.list.Pogo:
-#		blockColor = AbilityColor.pogoColor
+#		blockColor = GameColor.pogoColor
 #	elif ability == PlayerAbilities.list.Spin:
-#		blockColor = AbilityColor.spinColor
+#		blockColor = GameColor.spinColor
 #	elif ability == PlayerAbilities.list.Bash:
-#		blockColor = AbilityColor.bashColor
+#		blockColor = GameColor.bashColor
 	else:
 		EventBus.error.emit("null color " + str(self.name) + " " + str(global_position))

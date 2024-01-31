@@ -24,7 +24,7 @@ var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
 
 func _ready() -> void:
 	detector.set_collision_mask_value(CollisionLayers.GrappleHook, true)
-	indicatorTarget.default_color = AbilityColor.grappleColor
+	indicatorTarget.default_color = GameColor.grappleColor
 
 func _physics_process(delta: float) -> void:
 	aimInput = input.aimStrength if input.aimStrength != Vector2.ZERO else input.moveStrength

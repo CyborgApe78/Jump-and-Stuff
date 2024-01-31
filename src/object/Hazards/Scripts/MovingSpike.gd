@@ -48,7 +48,7 @@ func _ready() -> void:
 	if OS.has_feature("editor"):
 		labelState.visible = true
 	
-	spike.default_color = AbilityColor.hazardColor
+	spike.default_color = GameColor.HAZARD
 	
 	startinPosition = hurtbox.position
 	point1Start = spike.points[1].y

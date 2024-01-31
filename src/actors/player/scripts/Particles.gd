@@ -16,7 +16,7 @@ extends Node2D
 @onready var player = get_parent().get_parent().get_parent()
 
 func _ready() -> void:
-	dash.process_material.color = AbilityColor.dashSideColor
+	dash.process_material.color = GameColor.dashSideColor
 #	check_ground_color()
 #
 #func check_ground_color() -> void:

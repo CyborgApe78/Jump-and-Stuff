@@ -5,6 +5,7 @@ class_name Projectile
 
 @export_group("Connections")
 @export var hurtbox: HurtBox
+@export var collision: VisibleCollisionShape2D
 
 @export_group("")
 @export var damage: int = 1:
@@ -29,6 +30,7 @@ func _ready() -> void:
 	set_damage()
 	currentSpeed = speed
 	EventBus.timeFreeze.connect(stop_time)
+	collision.color= GameColor.HAZARD
 
 
 func _physics_process(delta: float) -> void:

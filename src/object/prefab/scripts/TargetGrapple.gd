@@ -4,5 +4,5 @@ class_name TargetGrapple
 
 func _ready() -> void:
 	super._ready()
-	modulate = AbilityColor.grappleColor
+	modulate = GameColor.grappleColor
 	set_collision_layer_value(CollisionLayers.GrappleHook, true)

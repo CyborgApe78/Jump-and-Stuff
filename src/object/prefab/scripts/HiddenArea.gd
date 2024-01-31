@@ -15,7 +15,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		color = Color(0,0,0, .5)
 	else:
-		color = AbilityColor.ground
+		color = GameColor.ground
 	
 	if polygon.size() > 1:
 		collision.polygon = polygon
