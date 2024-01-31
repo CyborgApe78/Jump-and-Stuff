@@ -18,5 +18,5 @@ func _on_mouse_entered() -> void:
 
 
 func send_data() -> void:
-	print(self.name)
+	#print(self.name)
 	cursor.on_focused(global_position, position, size)
