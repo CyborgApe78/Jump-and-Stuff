@@ -6,6 +6,7 @@ extends StaticBody2D
 #TODO: add sound
 #TODO: varitations stayDeployed, timedDeploy
 #TODO: make time freeze state 
+#TODO: add new SpikeGroup
 
 @export_group("Connections")
 @export var hurtbox: HurtBox
