@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dmmc6ouc7p8kh"]
+[gd_scene load_steps=53 format=3 uid="uid://dmmc6ouc7p8kh"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_i5twd"]
 [ext_resource type="PackedScene" uid="uid://blsfi16bt1nf6" path="res://src/ui/GameMenuManager.tscn" id="2_v4ta7"]
@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://c0jsidjg47lle" path="res://src/object/Hazards/turret.tscn" id="41_ndeqp"]
 [ext_resource type="PackedScene" uid="uid://dkm6688s7ajbd" path="res://src/object/prefab/actor_detector.tscn" id="42_ysjnn"]
 [ext_resource type="PackedScene" uid="uid://b43mc32jrlyk1" path="res://src/object/prefab/platforms/platform_disappearing.tscn" id="44_vuh3q"]
+[ext_resource type="PackedScene" uid="uid://wm3f4aacx5xa" path="res://src/actors/enemies/chomper.tscn" id="45_br87j"]
 
 [sub_resource type="Curve2D" id="Curve2D_nhl8e"]
 _data = {
@@ -439,5 +440,8 @@ rotation = 1.5708
 [node name="Disappearing3" parent="." instance=ExtResource("44_vuh3q")]
 position = Vector2(-1056, -576)
 rotation = 1.5708
+
+[node name="Chomper" parent="." instance=ExtResource("45_br87j")]
+position = Vector2(-800, 0)
 
 [connection signal="tree_entered" from="Player/Camera2D" to="Player/Camera2D" method="_on_tree_entered"]
