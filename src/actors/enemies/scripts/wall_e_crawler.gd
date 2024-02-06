@@ -113,7 +113,7 @@ func _physics_process(delta: float) -> void:
 				rotate(moveDirection * deg_to_rad(90))
 			else:
 				if ground.groundAngle != rotation:
-					rotation = ground.groundAngle
+					rotation = ground.groundAngle #FIXME: should this be rotation_degree
 			velocity.x = moveDirection * moveSpeed
 		state.fall:
 			velocity.y += fallSpeed * delta
