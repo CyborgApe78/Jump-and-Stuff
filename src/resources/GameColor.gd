@@ -15,6 +15,7 @@ const climbColor: Color = Color.AQUA #TODO: pull from palet
 
 const HAZARD: Color = Color(0.898, 0.227, 0.29)
 const ground: Color = Color.BLACK
+const JUMP: Color = Color.GREEN
 
 ## Green
 
