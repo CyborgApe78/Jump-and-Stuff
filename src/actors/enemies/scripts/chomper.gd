@@ -1,6 +1,7 @@
 extends StaticHazard
 
 #TODO: timefreeze
+#FIXME: find a better way to handle hurtbox, probably animationplayer
 
 @export_category("Connections")
 @export var detector: ActorDetector

@@ -1,5 +1,8 @@
 extends Turrets
 
+#TODO: connected turrets
+#TODO: break off into spawner that can be added to others
+
 @export_group("Connections")
 @export var timerAutofire: Timer
 

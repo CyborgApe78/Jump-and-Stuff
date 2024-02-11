@@ -1,7 +1,7 @@
 extends Area2D
 class_name Projectile
 
-#TODO: add as a bashable target
+#TODO: add gravity
 
 @export_group("Connections")
 @export var hurtbox: HurtBox
