@@ -1,5 +1,6 @@
 extends PlayerInfo
 
+#TODO: Make a bash state for like dash with a timer for speed
 
 @export_group("Connections")
 @export var timerDuration: Timer

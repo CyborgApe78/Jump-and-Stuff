@@ -20,7 +20,7 @@ Coyote time boosted jumps if falling near a wall, like in metroid dread
 
 
 
-Sandbox mode, all abilities unlocked
+
 
 Wall run
 
@@ -247,157 +247,12 @@ slippery slopes that you slide on
 
 run over one block
 
-Platforms
-	Elevator section but can break the platform to go faster, yooka laylee inspired
-	https://www.mariowiki.com/Category:Platforms
-	Platform you fall slowly through when standing on. Mario nut platform 
-	celeste like moving platform
-	celeste bubbles:
-		look at helper mods for more ideas
-		can jump/dash out for more distance
-	conveyors/speed boosters
-	platform throws player after amount of time (celeste lava blocks, throw platforms and thowmps)
-	spring like celestes cloud (skill based)
-		both of these can use signal from object to start a timer to let the player press jump to within a certain window to get boost
-	limited after on/off toggle
-	renzor
-	bounce pad
-	string polley attached platforms
-		can break if pushed to far
-	Ones that dont move till player is on, have an indicators to show direction and when falling/disappearing
-	Vines that are only solid when grab is held
-	Jump./dash when player does
-	Jump when player is above them 
-	Run around the screen, jump when the player is in front of them
-	Floor is lava until you kill an enemy/button 
-	Platform that goes up when jumped off. Then falls after certain time 
-	Platform that flings player after landing 
-	Speed limit ropes
-		Checks in player is in area, if velocity is above or below turn off player collision with that layer
-		Use the leave semisolid detector to turn it back on
-	go up after land on it
-	Go down for a bit then up
-		Only go up or down when player is on them
-		Freeze other wise
-	Player can steer them
-		Move side to side
-		Look at celeste for up and down
 
-
-Hazards
-	arrow/bullet bill like
-		front kills, but back is a platform
-	falling spikes
-
-enemies
-	https://www.mariowiki.com/List_of_enemies
-	https://megaman.fandom.com/wiki/Category:Enemies
-	badoline like
-	Mario buzzy beetle
-	Charging chuck
-	Enemy like bombs or celeste monster. Two stage enemies that explosion that moves player or temp platform 
-
-Blocks to add
-	https://gamebanana.com/mods/cats/5081?
-	disappear after leaving
-	Environmental blocks that cause to use a ability they learn later
-		High jump plants before increase jump height, aimable barrels before bash
-		Help people that help you go fast over water and thru teach you water run
-	https://www.mariowiki.com/List_of_items
-	boost pads
-		increased speed and no stopping for duration
-	mario odyssey fling things (forks, traffice cones)
-		can use grapple on it
-	Sheepo blocks
-		enter then choose fire angle
-		lock character in launch direction
-	hold jump/press jump to get vertical momentum
-		an untold story red block
-	look at celeste helper mods for more ideas
-	One ways
-	Most blocks should have a toggle for interaction
-		Player touch
-		Switch
-		Time
-	Moving rope
-	wind
-	walls you can not jump off of
-	spring
-		bigger bounce depending on impact speed
-		Spring that only activates when jumping off
-	SMW rope
-		have to keep speed above or below threshold or you pass throught
-	conveyor
-		floor
-		walls
-		ceiling, move along bottom of block
-	wind
-	bumpers (celeste)
-	thwomps (mario)
-	thowmps (celeste) have to be dashed into to go that way
-	snake block (mario)
-	ice/slime
-	celeste orbs. enter and can fly any directions
-	Push and pull orbs, think super meat boy
-	Hold grab to freeze in place
-	Chains you jump on and pull you up
-	Break blocks 
-		Spelunky kaizo hacks has you break a block for a Ledge, but then there is a lava behind it to make you move quick
-		break specific block to break rest of blocks, islet, insect adventure
-	
-	
-On/Off Blocks
-	timer for switching, turn off when player has ability
-	hazards
-	platforms
-	hazard to platform switch
-	Has a certain number of switches to it disappears
-
-Map ideas
-	dread shows lots of details about ability gates
-	user placable reminders
-		add notes
-	Have button for going to town, changes to last place after going to town
-
-Juice!
-	animations on most things
-	particles
-	screen shake
-	shockwave on dash
 	
 decor
 	grass/interactable enviroment
 	backgrounds
 	
-Dungeons
-	Insect adventure, break blocks have to race before it closes off section 
-	 Ori room destroy sand platforms to let bullet pass
-	Kill a snow ball to keep from ruining platforms 
-	trials, that limit what abilities you can use
-	Blocks to give temporay upgrades
-		inviceabbility 
-		phase through / ghost
-	jumpping causes on/off switch
-	Gravity switch 
-	No lights on jump
-	One color of platforms doesnot exist jump ½ part 4
-	Only one direction works
-	Freezing enemies/Hazards/platforms from a switch 
-	Sky tree
-	Vertical and horizontal escorts enemy/friend
-	Randomized set of platforming challenges that change on death
-		Pulled from a pool
-		Greyed out till you activate them 
-		Death mechanic to make you move quickly 
-	Acid rain /force quick movement or you die
-		Must get to checkpoint before dying
-	Death trail 
-		Leave death blocks / sprites behind you
-	Only allowed to touch the ground for a certain amount of time
-		Then death
-	Checkpoint regression 
-		Die go back a checkpoint
-	Help random people, snail getting blocked from getting dinner with friend. You have to keep the snail from getting hit
 
 
 Hub world
@@ -414,21 +269,7 @@ screen wrap https://kidscancode.org/godot_recipes/2d/screen_wrap/
 
 
 
-Basic feel goods to add
-	Sticky feet on land
-		Will need accel and decel first
-		Quick stop when landing if input is opposite of move direction
-	Push up through a semisolid 
-		Make a collision box that detects it is in a semisolid (and still holding jump) and put player on top of platform
-		Could use for multiple abilities like dash
-	If the joystick is slightly pushed, don’t go over edges
-	Add platform momentum to character (looks like godot 4 does that)
-	Extend wall detection when trying to use abilities
-		You can actually wall jump 2 pixels from a wall. (That sounds tiny but this is a 320x180-resolution game :P)
-		If you're doing a "super wall jump" (ie: a wall jump while dashing upward), this is a more precise and demanding maneuver so we let you do it from even further away (I think it's 5 pixels, which is more than half a tile!)
-	Wall ability control
-		different jump if holding up
-		jump/dash way from wall
+
 
 
 Adjust air control
