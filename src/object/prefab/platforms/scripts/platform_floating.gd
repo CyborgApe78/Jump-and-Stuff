@@ -19,6 +19,7 @@ signal spawned
 @export_range(0.05, 10, 0.5) var timeReset: float = 1
 @export var fallSpeed: int = 200
 @export var oneUse: bool = false
+@export var inverse: bool = false
 
 enum state {idle, fall, rise}
 var currentState: int
@@ -28,6 +29,8 @@ func _ready() -> void:
 	super._ready()
 	timerReset.wait_time = timeReset
 	currentState = state.idle
+	if inverse:
+		fallSpeed = -fallSpeed
 
 
 func _physics_process(delta: float) -> void:
