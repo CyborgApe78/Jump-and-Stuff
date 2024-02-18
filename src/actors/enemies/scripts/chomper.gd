@@ -2,7 +2,7 @@ extends StaticHazard
 
 #TODO: timefreeze
 #FIXME: find a better way to handle hurtbox, probably animationplayer
-#TODO: Add movement look (freeze) to hurt box. Will need to turn off collider on the chomper mouth
+#TODO: Add movement look (freeze) to hurt box. Will need to turn off collider on the chomper mouth. will need to the 
 
 @export_category("Connections")
 @export var detector: ActorDetector
@@ -14,6 +14,7 @@ extends StaticHazard
 @export var spikesLeft: SpikeGroup
 @export var spikesRight: SpikeGroup
 @export var hurtbox: HurtBox
+@export var animPlayer: AnimationPlayer
 
 @export_category("")
 @export var timeHold: float = 0.9
