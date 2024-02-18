@@ -2,9 +2,8 @@ extends Area2D
 
 ## Swing around a bar to launch away
 
-#TODO: aim system like in PoP
+#TODO: add buid up for speed
 #TODO: make player hands are anchor and not feet
-#TODO: able to grapple hook to it
 #TODO: grab player facing direction to determine spin directions
 
 @export var timeCooldown: float = 2
