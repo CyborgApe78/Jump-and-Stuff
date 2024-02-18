@@ -54,6 +54,9 @@ func _ready() -> void:
 	timerWait.wait_time = timeWait
 	EventBus.playerJumped.connect(prepare_jump)
 	EventBus.timeFreeze.connect(freeze)
+	
+	if not is_on_floor():
+		currentState = state.fall
 
 
 func _physics_process(delta: float) -> void:
