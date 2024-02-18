@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1qg27apjv00h"]
+[gd_scene load_steps=15 format=3 uid="uid://d1qg27apjv00h"]
 
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="1_knb35"]
 [ext_resource type="Script" path="res://src/actors/enemies/scripts/spikesides.gd" id="1_t7qeg"]
 [ext_resource type="PackedScene" uid="uid://c5m37qa00e2eq" path="res://src/object/components/ground_detector.tscn" id="2_jqijs"]
 [ext_resource type="Script" path="res://src/object/components/scripts/hitbox_component.gd" id="3_vjokl"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/BounceBox.gd" id="4_lhaph"]
+[ext_resource type="PackedScene" uid="uid://7qxe11cl2laj" path="res://src/actors/prefabs/eyes.tscn" id="6_vqeoi"]
 
 [sub_resource type="Gradient" id="Gradient_n6qn8"]
 interpolation_mode = 1
@@ -70,24 +71,6 @@ default_color = Color(0.713726, 0.407843, 0.235294, 1)
 gradient = SubResource("Gradient_jnbkh")
 joint_mode = 2
 end_cap_mode = 2
-
-[node name="Eye" type="Polygon2D" parent="Body"]
-position = Vector2(-8, 8)
-polygon = PackedVector2Array(-16, -72, -16, -56, 0, -56, 0, -72)
-
-[node name="Polygon2D" type="Polygon2D" parent="Body/Eye"]
-position = Vector2(8, 0)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-16, -64, -16, -56, -8, -56, -8, -64)
-
-[node name="Eye2" type="Polygon2D" parent="Body"]
-position = Vector2(24, 8)
-polygon = PackedVector2Array(-16, -72, -16, -56, 0, -56, 0, -72)
-
-[node name="Polygon2D" type="Polygon2D" parent="Body/Eye2"]
-position = Vector2(8, 0)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-16, -64, -16, -56, -8, -56, -8, -64)
 
 [node name="Line2D" type="Line2D" parent="Body"]
 points = PackedVector2Array(-40, -64, -32, -56, -40, -48, -32, -40, -40, -32, -32, -24)
@@ -160,6 +143,9 @@ _strength = 50
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BounceBox"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_dmc7r")
+
+[node name="Eyes" parent="." instance=ExtResource("6_vqeoi")]
+position = Vector2(0, -48)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

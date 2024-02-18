@@ -62,6 +62,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$State.text = str(currentState)
 	
+	if not is_on_floor():
+		currentState = state.fall
+		
 	match currentState:
 		state.idle:
 			pass

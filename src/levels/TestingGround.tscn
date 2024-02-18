@@ -420,10 +420,10 @@ position = Vector2(864, 184)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Spik-E-Sides" parent="Enemies" instance=ExtResource("36_17bw8")]
-position = Vector2(-1576, 264)
+position = Vector2(224, 832)
 
 [node name="SpikedJumper" parent="Enemies" instance=ExtResource("35_q5l7e")]
-position = Vector2(-1688, 248)
+position = Vector2(-736, 352)
 
 [node name="Smasher" parent="." instance=ExtResource("33_6rk64")]
 position = Vector2(384, 0)
@@ -443,7 +443,7 @@ position = Vector2(-1056, -576)
 rotation = 1.5708
 
 [node name="Chomper" parent="." instance=ExtResource("45_br87j")]
-position = Vector2(992, 1088)
+position = Vector2(1056, 1088)
 
 [node name="PlatformFlip" parent="." instance=ExtResource("46_aqlww")]
 position = Vector2(0, 336)

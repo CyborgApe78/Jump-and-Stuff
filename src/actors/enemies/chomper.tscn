@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://wm3f4aacx5xa"]
+[gd_scene load_steps=17 format=3 uid="uid://wm3f4aacx5xa"]
 
 [ext_resource type="Script" path="res://src/actors/enemies/scripts/chomper.gd" id="1_m35j4"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/DrawCollisionShape2D.gd" id="2_iyjfl"]
 [ext_resource type="Script" path="res://src/object/prefab/scripts/ActorDetector.gd" id="3_3mvte"]
 [ext_resource type="Script" path="res://src/object/Hazards/Scripts/SpikeGroup.gd" id="3_mo7hr"]
 [ext_resource type="Script" path="res://src/object/components/scripts/hurt_box.gd" id="4_qal6i"]
+[ext_resource type="PackedScene" uid="uid://7qxe11cl2laj" path="res://src/actors/prefabs/eyes.tscn" id="6_rbby6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3jgp"]
 size = Vector2(64, 64)
@@ -139,6 +140,7 @@ _data = {
 
 [node name="Chomper" type="StaticBody2D" node_paths=PackedStringArray("detector", "leftSide", "rightSide", "timerHold", "timerWait", "timerHurtbox", "spikesLeft", "spikesRight", "hurtbox", "animPlayer")]
 position = Vector2(32, 64)
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_m35j4")
 detector = NodePath("ActorDetector")
@@ -160,6 +162,7 @@ color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="Left" type="AnimatableBody2D" parent="."]
 position = Vector2(0, -64)
+collision_layer = 4
 collision_mask = 0
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Left"]
@@ -218,6 +221,7 @@ default_color = Color(0.690196, 0.168627, 0.211765, 1)
 
 [node name="Right" type="AnimatableBody2D" parent="."]
 position = Vector2(0, -64)
+collision_layer = 4
 collision_mask = 0
 
 [node name="VisibleCollisionShape2D" type="CollisionShape2D" parent="Right"]
@@ -274,6 +278,9 @@ width_curve = SubResource("Curve_386te")
 default_color = Color(0.690196, 0.168627, 0.211765, 1)
 
 [node name="ActorDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("3_3mvte")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActorDetector"]
@@ -283,6 +290,8 @@ shape = SubResource("RectangleShape2D_nx2et")
 [node name="HurtBox" type="Area2D" parent="."]
 visible = false
 position = Vector2(0, -64)
+collision_layer = 0
+collision_mask = 0
 monitoring = false
 script = ExtResource("4_qal6i")
 
@@ -290,23 +299,8 @@ script = ExtResource("4_qal6i")
 position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_hov4e")
 
-[node name="Eye" type="Polygon2D" parent="."]
-position = Vector2(8, -8)
-polygon = PackedVector2Array(0, -16, 0, 0, 16, 0, 16, -16)
-
-[node name="Polygon2D" type="Polygon2D" parent="Eye"]
-position = Vector2(8, 0)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(0, -8, 0, 0, 8, 0, 8, -8)
-
-[node name="Eye2" type="Polygon2D" parent="."]
-position = Vector2(-24, -8)
-polygon = PackedVector2Array(0, -16, 0, 0, 16, 0, 16, -16)
-
-[node name="Polygon2D" type="Polygon2D" parent="Eye2"]
-position = Vector2(8, 0)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(0, -8, 0, 0, 8, 0, 8, -8)
+[node name="Eyes" parent="." instance=ExtResource("6_rbby6")]
+position = Vector2(0, -8)
 
 [node name="Hold" type="Timer" parent="."]
 one_shot = true
