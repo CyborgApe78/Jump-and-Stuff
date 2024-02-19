@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct47r6jk2lhg"]
+
+[ext_resource type="Script" path="res://src/object/prefab/scripts/camera_stand.gd" id="1_eb2v8"]
+[ext_resource type="Script" path="res://src/object/components/scripts/FreeLookCamera.gd" id="1_f75c6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsvjj"]
+size = Vector2(128, 128)
+
+[node name="CameraStand" type="Area2D"]
+script = ExtResource("1_eb2v8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_wsvjj")
+
+[node name="FreeLookCamera" type="Camera2D" parent="." node_paths=PackedStringArray("telescope")]
+position = Vector2(0, -104)
+enabled = false
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("1_f75c6")
+telescope = NodePath("../Telescope")
+
+[node name="Stand" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-32, 0, -32, -16, -16, -16, -16, -80, -8, -80, -8, -120, 8, -120, 8, -96, 8, -80, 16, -80, 16, -16, 32, -16, 32, 0, 32, 0)
+
+[node name="Telescope" type="Polygon2D" parent="."]
+position = Vector2(0, -104)
+color = Color(0.411765, 0.490196, 0.556863, 1)
+polygon = PackedVector2Array(40, 6, 40, -6, 37, -6, 36, -4, 10, -3, -10, -3, -31, -2, -36, -2, -36, -1, -40, -1, -40, 1, -36, 1, -36, 2, -31, 2, -11, 3, 10, 3, 36, 4, 37, 6)
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, -104)
+points = PackedVector2Array(0, -5, 0, 5)
+width = 8.0
+default_color = Color(0, 0, 0, 1)
