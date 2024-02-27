@@ -6,12 +6,10 @@ extends Marker2D
 @export var pupilLeft: Line2D
 @export var pupilRight: Line2D
 @export var animPlayer: AnimationPlayer
-@export var timerBlink: Timer
+@export var timerBlink: RandomTimer
 @export var wallDetector: RayCast2D
 
-@export_category("")
-@export var baseTime: float = 1.5
-@export var timerRange: float = 0.5
+
 
 var player
 
@@ -40,12 +38,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func start_blink_timer() -> void:
-	timerBlink.wait_time = get_new_timer()
 	timerBlink.start()
-
-
-func get_new_timer() -> float:
-	return randf_range(baseTime - timerRange, baseTime + timerRange)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

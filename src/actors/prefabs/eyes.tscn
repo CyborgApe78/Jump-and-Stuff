@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://7qxe11cl2laj"]
+[gd_scene load_steps=7 format=3 uid="uid://7qxe11cl2laj"]
 
 [ext_resource type="Script" path="res://src/actors/prefabs/scripts/Eyes.gd" id="1_gyg8t"]
+[ext_resource type="Script" path="res://src/object/prefab/other/RandomTimer.gd" id="2_30vwh"]
 
 [sub_resource type="Animation" id="Animation_yyef2"]
 resource_name = "Blink"
@@ -74,7 +75,6 @@ pupilRight = NodePath("Right/Pupil")
 animPlayer = NodePath("AnimationPlayer")
 timerBlink = NodePath("Timer")
 wallDetector = NodePath("RayCast2D")
-baseTime = 4.0
 
 [node name="Left" type="Line2D" parent="."]
 position = Vector2(-16, 0)
@@ -117,6 +117,7 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+script = ExtResource("2_30vwh")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
