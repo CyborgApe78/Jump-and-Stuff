@@ -68,13 +68,13 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_m2671"]
 radius = 256.0
 
-[node name="Eyes" type="Marker2D" node_paths=PackedStringArray("pupilLeft", "pupilRight", "animPlayer", "timerBlink", "wallDetector")]
+[node name="Eyes" type="Marker2D" node_paths=PackedStringArray("pupilLeft", "pupilRight", "animPlayer", "timerBlink", "detector")]
 script = ExtResource("1_gyg8t")
 pupilLeft = NodePath("Left/Pupil")
 pupilRight = NodePath("Right/Pupil")
 animPlayer = NodePath("AnimationPlayer")
 timerBlink = NodePath("Timer")
-wallDetector = NodePath("RayCast2D")
+detector = NodePath("RayCast2D")
 
 [node name="Left" type="Line2D" parent="."]
 position = Vector2(-16, 0)

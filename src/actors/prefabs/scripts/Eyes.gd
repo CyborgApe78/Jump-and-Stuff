@@ -1,25 +1,30 @@
 extends Marker2D
 
 #TODO: move raycast to a component
+#TODO: add looking at ledges, hazards, other enemies
 
 @export_category("Connections")
 @export var pupilLeft: Line2D
 @export var pupilRight: Line2D
 @export var animPlayer: AnimationPlayer
 @export var timerBlink: RandomTimer
-@export var wallDetector: RayCast2D
+@export var detector: RayCast2D
 
-
+@export_category("")
+@export var ignoreWalls: bool = false
 
 var player
 
 func _ready() -> void:
 	start_blink_timer()
+	
+	if ignoreWalls:
+		detector.set_collision_mask_value(CollisionLayers.Ground, false)
 
 func _process(delta: float) -> void:
 	if player:
-		wallDetector.look_at(player.global_position + Vector2(0, -64))
-		if wallDetector.is_colliding() and wallDetector.get_collider() is Player:
+		detector.look_at(player.global_position + Vector2(0, -64))
+		if detector.is_colliding() and detector.get_collider() is Player:
 			pupilLeft.look_at(player.global_position + Vector2(0, -64))
 			pupilRight.look_at(player.global_position + Vector2(0, -64))
 		else:
