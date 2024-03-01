@@ -1,7 +1,7 @@
 extends Marker2D
 
 ## Flips when the Player jumps
-#TODO: figure out how to 
+#TODO: make only trigger from grounded jumps
 
 @export_category("Connections")
 @export var collision: VisibleCollisionShape2D
