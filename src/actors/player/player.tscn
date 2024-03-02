@@ -7448,7 +7448,7 @@ libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
 autoplay = "Idle"
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
+blend_times = [&"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1, &"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {

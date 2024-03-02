@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsvjj"]
 size = Vector2(128, 128)
 
-[node name="CameraStand" type="Area2D"]
+[node name="Telescope" type="Area2D"]
 script = ExtResource("1_eb2v8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

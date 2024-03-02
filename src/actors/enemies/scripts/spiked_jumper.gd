@@ -4,6 +4,7 @@ class_name SpikEJumper
 ## Jumps when the player jumps
 
 #TODO: animation
+#TODO: make only trigger from grounded jumps
 
 @export_group("Stats")
 @export_subgroup("Jump")
