@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck3lteyhs4jes"]
+
+[ext_resource type="PackedScene" uid="uid://c0jsidjg47lle" path="res://src/object/Hazards/turret.tscn" id="1_8f02o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0w0br"]
+radius = 32.0
+
+[node name="Shoot-E-Crawler" type="CharacterBody2D"]
+position = Vector2(192, 192)
+
+[node name="Turret" parent="." instance=ExtResource("1_8f02o")]
+position = Vector2(0, -32)
+rotation = 2.14914
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_0w0br")
+
+[editable path="Turret"]

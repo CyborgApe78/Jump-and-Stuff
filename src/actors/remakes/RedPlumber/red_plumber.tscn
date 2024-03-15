@@ -1,0 +1,313 @@
+[gd_scene load_steps=41 format=3 uid="uid://db543j4b6amxp"]
+
+[ext_resource type="Script" path="res://src/actors/player/scripts/StateMachine.gd" id="1_rqdcp"]
+[ext_resource type="Script" path="res://src/actors/player/states/spawn.gd" id="2_v58m4"]
+[ext_resource type="Script" path="res://src/actors/player/states/die.gd" id="3_vcq1a"]
+[ext_resource type="Script" path="res://src/actors/player/states/walk.gd" id="4_prbjv"]
+[ext_resource type="Script" path="res://src/actors/player/states/skid.gd" id="5_b2f05"]
+[ext_resource type="Script" path="res://src/actors/player/states/crouch.gd" id="6_3ihy0"]
+[ext_resource type="Script" path="res://src/actors/player/states/CrouchWalk.gd" id="7_d4wep"]
+[ext_resource type="Script" path="res://src/actors/player/states/idle.gd" id="8_q77mj"]
+[ext_resource type="Script" path="res://src/actors/player/states/jump.gd" id="9_6r141"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpConsec.gd" id="10_4p4pi"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpFlip.gd" id="11_n8752"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpLong.gd" id="12_kn2we"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpCrouch.gd" id="13_cpnu5"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpCrouchCharged.gd" id="14_e4yb6"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpApex.gd" id="15_s5cq1"]
+[ext_resource type="Script" path="res://src/actors/player/states/JumpGroundPound.gd" id="16_yrt2o"]
+[ext_resource type="Script" path="res://src/actors/player/states/jumpWall.gd" id="17_dck7b"]
+[ext_resource type="Script" path="res://src/actors/player/states/fall.gd" id="18_eyjwv"]
+[ext_resource type="Script" path="res://src/actors/player/states/glide.gd" id="19_gehgw"]
+[ext_resource type="Script" path="res://src/actors/player/states/dive.gd" id="20_5k4fy"]
+[ext_resource type="Script" path="res://src/actors/player/states/DiveHop.gd" id="21_3t4rm"]
+[ext_resource type="Script" path="res://src/actors/player/states/bellySlide.gd" id="22_bl0xo"]
+[ext_resource type="Script" path="res://src/actors/player/states/BellySlideHop.gd" id="23_i1vd3"]
+[ext_resource type="Script" path="res://src/actors/player/states/BellySlideDash.gd" id="24_gi5hc"]
+[ext_resource type="Script" path="res://src/actors/player/states/wallslide.gd" id="25_sw6cn"]
+[ext_resource type="Script" path="res://src/actors/player/states/groundPound.gd" id="26_8tfj2"]
+[ext_resource type="Script" path="res://src/actors/player/states/GroundPoundLand.gd" id="27_vf86n"]
+[ext_resource type="Script" path="res://src/actors/player/states/GroundPoundBounce.gd" id="28_m6ib2"]
+[ext_resource type="Script" path="res://src/actors/player/states/Spin.gd" id="29_ppt6b"]
+[ext_resource type="Script" path="res://src/actors/player/states/slide.gd" id="30_x3cxu"]
+[ext_resource type="Script" path="res://src/actors/player/states/SlideButt.gd" id="31_exs28"]
+[ext_resource type="Script" path="res://src/actors/player/states/roll.gd" id="32_r8lmk"]
+[ext_resource type="Script" path="res://src/actors/player/states/RollJump.gd" id="33_5umm0"]
+[ext_resource type="Script" path="res://src/actors/player/states/Swim.gd" id="34_u88nn"]
+[ext_resource type="Script" path="res://src/actors/player/states/SwimDash.gd" id="35_2exgf"]
+[ext_resource type="Script" path="res://src/actors/player/states/Bounce.gd" id="36_h2kqk"]
+[ext_resource type="Script" path="res://src/actors/player/states/Grind.gd" id="37_6r8m7"]
+[ext_resource type="Script" path="res://src/actors/player/states/Trapeze.gd" id="38_0jdly"]
+[ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="39_pp2xa"]
+[ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="40_omihb"]
+
+[node name="RedPlumber" type="CharacterBody2D"]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("stats", "velocity", "input", "ground", "wall", "surfaceDetector")]
+script = ExtResource("1_rqdcp")
+stats = NodePath("")
+velocity = NodePath("")
+input = NodePath("")
+ground = NodePath("")
+wall = NodePath("")
+surfaceDetector = NodePath("")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource("2_v58m4")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("3_vcq1a")
+
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "soundeffect")]
+script = ExtResource("4_prbjv")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+soundeffect = NodePath("")
+
+[node name="Skid" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
+script = ExtResource("5_b2f05")
+soundeffect = NodePath("")
+particles = NodePath("")
+
+[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpGroundPound", "timerBufferJump", "timerBufferRoll", "timerConsecutiveJump", "timerCharge", "detector", "particlesCharge", "particlesSlide", "soundSlide")]
+script = ExtResource("6_3ihy0")
+timerCoyoteJump = NodePath("")
+timerCoyoteJumpGroundPound = NodePath("")
+timerBufferJump = NodePath("")
+timerBufferRoll = NodePath("")
+timerConsecutiveJump = NodePath("")
+timerCharge = NodePath("")
+detector = NodePath("")
+particlesCharge = NodePath("")
+particlesSlide = NodePath("")
+soundSlide = NodePath("")
+
+[node name="CrouchWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpGroundPound", "timerBufferJump", "timerConsecutiveJump", "timerCharge", "soundeffect", "detector")]
+script = ExtResource("7_d4wep")
+timerCoyoteJump = NodePath("")
+timerCoyoteJumpGroundPound = NodePath("")
+timerBufferJump = NodePath("")
+timerConsecutiveJump = NodePath("")
+timerCharge = NodePath("")
+soundeffect = NodePath("")
+detector = NodePath("")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump")]
+script = ExtResource("8_q77mj")
+timerBufferJump = NodePath("")
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "soundeffect")]
+script = ExtResource("9_6r141")
+timerCoyoteJump = NodePath("")
+timerConsecutiveJump = NodePath("")
+soundeffect = NodePath("")
+
+[node name="JumpConsec" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerConsecutiveJump", "soundeffect", "particles")]
+script = ExtResource("10_4p4pi")
+timerCoyoteJump = NodePath("")
+timerConsecutiveJump = NodePath("")
+soundeffect = NodePath("")
+particles = NodePath("")
+
+[node name="JumpFlip" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
+script = ExtResource("11_n8752")
+soundeffect = NodePath("")
+particles = NodePath("")
+
+[node name="JumpLong" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "timerBufferRoll", "soundeffect", "particles")]
+script = ExtResource("12_kn2we")
+timerBufferJump = NodePath("")
+timerBufferRoll = NodePath("")
+soundeffect = NodePath("")
+particles = NodePath("")
+
+[node name="JumpCrouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles", "timerCoyoteJump", "timerBufferJump", "detector")]
+script = ExtResource("13_cpnu5")
+soundeffect = NodePath("")
+particles = NodePath("")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+detector = NodePath("")
+
+[node name="JumpCrouchCharged" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "particles")]
+script = ExtResource("14_e4yb6")
+soundeffect = NodePath("")
+particles = NodePath("")
+
+[node name="JumpApex" type="Node" parent="StateMachine"]
+script = ExtResource("15_s5cq1")
+
+[node name="JumpGroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundeffect", "timerCoyoteJumpGroundPound", "particles")]
+script = ExtResource("16_yrt2o")
+soundeffect = NodePath("")
+timerCoyoteJumpGroundPound = NodePath("")
+particles = NodePath("")
+
+[node name="JumpWall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpWall", "timerLock", "particles", "soundeffect")]
+script = ExtResource("17_dck7b")
+timerCoyoteJumpWall = NodePath("")
+timerLock = NodePath("")
+particles = NodePath("")
+soundeffect = NodePath("")
+
+[node name="Timer" type="Timer" parent="StateMachine/JumpWall"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerCoyoteJumpWall", "timerBufferJump", "timerBufferRoll", "timerFall", "timerConsecutiveJump", "timerSemisolidReset")]
+script = ExtResource("18_eyjwv")
+timerCoyoteJump = NodePath("")
+timerCoyoteJumpWall = NodePath("")
+timerBufferJump = NodePath("")
+timerBufferRoll = NodePath("")
+timerFall = NodePath("")
+timerConsecutiveJump = NodePath("")
+timerSemisolidReset = NodePath("")
+
+[node name="Glide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump")]
+script = ExtResource("19_gehgw")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+timerConsecutiveJump = NodePath("")
+
+[node name="Dive" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerBufferRoll", "fallTimer")]
+script = ExtResource("20_5k4fy")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+timerBufferRoll = NodePath("")
+fallTimer = NodePath("")
+
+[node name="DiveHop" type="Node" parent="StateMachine" node_paths=PackedStringArray("detector", "timerBufferJump", "timerBufferRoll")]
+script = ExtResource("21_3t4rm")
+detector = NodePath("")
+timerBufferJump = NodePath("")
+timerBufferRoll = NodePath("")
+
+[node name="BellySlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundSlide", "particlesSlide", "detector")]
+script = ExtResource("22_bl0xo")
+soundSlide = NodePath("")
+particlesSlide = NodePath("")
+detector = NodePath("")
+
+[node name="BellySlideHop" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "detector", "timerBufferJump", "timerBufferRoll", "soundeffect", "particles")]
+script = ExtResource("23_i1vd3")
+timerDuration = NodePath("")
+detector = NodePath("")
+timerBufferJump = NodePath("")
+timerBufferRoll = NodePath("")
+soundeffect = NodePath("")
+particles = NodePath("")
+
+[node name="BellySlideDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "soundSlide", "soundJetpack", "particlesSlide", "particlesJetpack", "detector")]
+script = ExtResource("24_gi5hc")
+timerDuration = NodePath("")
+soundSlide = NodePath("")
+soundJetpack = NodePath("")
+particlesSlide = NodePath("")
+particlesJetpack = NodePath("")
+detector = NodePath("")
+
+[node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("coyoteJumpWallTimer", "particles")]
+script = ExtResource("25_sw6cn")
+coyoteJumpWallTimer = NodePath("")
+particles = NodePath("")
+
+[node name="GroundPound" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerSemisolidReset", "detector")]
+script = ExtResource("26_8tfj2")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+timerSemisolidReset = NodePath("")
+detector = NodePath("")
+
+[node name="GroundPoundLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJumpGroundPound", "timerStun", "timerCharge", "particles", "soundeffect")]
+script = ExtResource("27_vf86n")
+timerCoyoteJumpGroundPound = NodePath("")
+timerStun = NodePath("")
+timerCharge = NodePath("")
+particles = NodePath("")
+soundeffect = NodePath("")
+
+[node name="Stun" type="Timer" parent="StateMachine/GroundPoundLand"]
+one_shot = true
+
+[node name="Charge" type="Timer" parent="StateMachine/GroundPoundLand"]
+wait_time = 0.5
+one_shot = true
+
+[node name="GroundPoundBounce" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerBufferJump", "soundeffect")]
+script = ExtResource("28_m6ib2")
+timerBufferJump = NodePath("")
+soundeffect = NodePath("")
+
+[node name="Spin" type="Node" parent="StateMachine"]
+script = ExtResource("29_ppt6b")
+
+[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "durationTimer", "particles", "detector")]
+script = ExtResource("30_x3cxu")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+timerConsecutiveJump = NodePath("")
+durationTimer = NodePath("")
+particles = NodePath("")
+detector = NodePath("")
+
+[node name="SlideButt" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "particles", "detector")]
+script = ExtResource("31_exs28")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+timerConsecutiveJump = NodePath("")
+particles = NodePath("")
+detector = NodePath("")
+
+[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerCoyoteJump", "timerBufferJump", "timerConsecutiveJump", "timerDuration", "timerChain", "particles", "particleChain", "detector")]
+script = ExtResource("32_r8lmk")
+timerCoyoteJump = NodePath("")
+timerBufferJump = NodePath("")
+timerConsecutiveJump = NodePath("")
+timerDuration = NodePath("")
+timerChain = NodePath("")
+particles = NodePath("")
+particleChain = NodePath("")
+detector = NodePath("")
+
+[node name="Refresh" type="Timer" parent="StateMachine/Roll"]
+one_shot = true
+
+[node name="JumpBoost" type="Timer" parent="StateMachine/Roll"]
+one_shot = true
+
+[node name="Duration" type="Timer" parent="StateMachine/Roll"]
+one_shot = true
+
+[node name="RollJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerDuration", "timerBufferJump", "timerBufferRoll", "soundeffect", "particles", "detector")]
+script = ExtResource("33_5umm0")
+timerDuration = NodePath("")
+timerBufferJump = NodePath("")
+timerBufferRoll = NodePath("")
+soundeffect = NodePath("")
+particles = NodePath("")
+detector = NodePath("")
+
+[node name="Swim" type="Node" parent="StateMachine"]
+script = ExtResource("34_u88nn")
+
+[node name="SwimDash" type="Node" parent="StateMachine"]
+script = ExtResource("35_2exgf")
+
+[node name="Bounce" type="Node" parent="StateMachine"]
+script = ExtResource("36_h2kqk")
+
+[node name="Grind" type="Node" parent="StateMachine"]
+script = ExtResource("37_6r8m7")
+
+[node name="Trapeze" type="Node" parent="StateMachine"]
+script = ExtResource("38_0jdly")
+
+[node name="BonkAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundBonk")]
+script = ExtResource("39_pp2xa")
+soundBonk = NodePath("")
+
+[node name="BonkGround" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundBonk", "soundSplat")]
+script = ExtResource("40_omihb")
+soundBonk = NodePath("")
+soundSplat = NodePath("")

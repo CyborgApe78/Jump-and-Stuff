@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds082nmx0wyrq"]
+
+[ext_resource type="Script" path="res://src/object/components/scripts/PlayerTrackerComponent.gd" id="1_4r688"]
+
+[node name="PlayerTrackerComponent" type="Marker2D"]
+script = ExtResource("1_4r688")
