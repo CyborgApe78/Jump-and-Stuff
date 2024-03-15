@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="16_7lg2w"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="18_d5p5i"]
 [ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="24_nisya"]
-[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_3blqo"]
+[ext_resource type="Script" path="res://src/actors/CamPlayer.gd" id="25_3blqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brhd2"]
 size = Vector2(128, 64)

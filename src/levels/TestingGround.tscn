@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://cvcpkjluavmfe" path="res://src/object/prefab/platforms/platform_countdown.tscn" id="23_0k671"]
 [ext_resource type="PackedScene" uid="uid://d0dtvqtj86ej1" path="res://src/object/prefab/platforms/platform_moving.tscn" id="24_kttip"]
 [ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="24_xrqhw"]
-[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="25_d0jmx"]
+[ext_resource type="Script" path="res://src/actors/CamPlayer.gd" id="25_d0jmx"]
 [ext_resource type="PackedScene" uid="uid://c6w75yfmxvi6r" path="res://src/object/prefab/platforms/platform_floating.tscn" id="25_ni1xa"]
 [ext_resource type="PackedScene" uid="uid://bd40gjjcbnun" path="res://src/object/prefab/platforms/platform_direction_change.tscn" id="26_3thjv"]
 [ext_resource type="PackedScene" uid="uid://cmgj5u0dbvjsr" path="res://src/object/prefab/platforms/platform_path_follow.tscn" id="31_oqkat"]
