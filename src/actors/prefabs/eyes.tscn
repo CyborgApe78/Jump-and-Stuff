@@ -81,34 +81,34 @@ position = Vector2(-16, 0)
 points = PackedVector2Array(0, -16, 0, 0)
 width = 16.0
 
-[node name="Lid" type="Line2D" parent="Left"]
-position = Vector2(0, -16)
-points = PackedVector2Array(0, 0, 0, 0)
-width = 16.0
-default_color = Color(0, 0, 0, 1)
-
 [node name="Pupil" type="Line2D" parent="Left"]
 position = Vector2(0, -8)
 points = PackedVector2Array(0, 0, 8, 0)
 width = 8.0
 default_color = Color(0, 0, 0, 1)
 
+[node name="Lid" type="Line2D" parent="Left"]
+position = Vector2(0, -16)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 16.0
+default_color = Color(0.541176, 0.243137, 0.105882, 1)
+
 [node name="Right" type="Line2D" parent="."]
 position = Vector2(16, 0)
 points = PackedVector2Array(0, -16, 0, 0)
 width = 16.0
-
-[node name="Lid" type="Line2D" parent="Right"]
-position = Vector2(0, -16)
-points = PackedVector2Array(0, 0, 0, 0)
-width = 16.0
-default_color = Color(0, 0, 0, 1)
 
 [node name="Pupil" type="Line2D" parent="Right"]
 position = Vector2(0, -8)
 points = PackedVector2Array(0, 0, 8, 0)
 width = 8.0
 default_color = Color(0, 0, 0, 1)
+
+[node name="Lid" type="Line2D" parent="Right"]
+position = Vector2(0, -16)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 16.0
+default_color = Color(0.541176, 0.243137, 0.105882, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

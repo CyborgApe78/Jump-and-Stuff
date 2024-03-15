@@ -1,5 +1,6 @@
 extends StaticHazard
 
+#FIXME: they tigger each other
 #TODO: use raycast to find wall and set the collision shape
 #TODO: use polygon or maybe line2d for animation
 
