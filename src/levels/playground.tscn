@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dot2bj57yrodl" path="res://src/object/components/heal_box.tscn" id="10_iwkrg"]
 [ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="11_d4pbc"]
 [ext_resource type="Texture2D" uid="uid://bfkikuksvxsuy" path="res://asset/tilemap/grass2.png" id="11_tl8nd"]
-[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="12_gn10c"]
+[ext_resource type="Script" path="res://src/levels/Camera2d.gd" id="12_gn10c"]
 [ext_resource type="Texture2D" uid="uid://bebi3j0rfayd2" path="res://asset/objects/carrot.png" id="12_hknrh"]
 [ext_resource type="PackedScene" uid="uid://rdiflormjfsq" path="res://src/object/components/hurt_box.tscn" id="12_orgcd"]
 [ext_resource type="Texture2D" uid="uid://b8vfu0d8jq3ed" path="res://asset/hazard/spikesBottom.png" id="13_33b4r"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0xilge452x64"]
+[gd_scene load_steps=13 format=3 uid="uid://c0xilge452x64"]
 
 [ext_resource type="Script" path="res://src/levels/playground.gd" id="1_l8a02"]
 [ext_resource type="Texture2D" uid="uid://dnvu4wkcrgnkh" path="res://asset/PartA.jpg" id="2_a0lnr"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dl2umkgqo1h7m" path="res://src/object/prefab/unlockables/AbilityUnlocker.tscn" id="6_c7wsg"]
 [ext_resource type="PackedScene" uid="uid://d3slbevlykvop" path="res://src/object/StartingLocation.tscn" id="7_mkp76"]
 [ext_resource type="PackedScene" uid="uid://drd1sce7py66q" path="res://src/actors/player/player.tscn" id="8_1j5yo"]
-[ext_resource type="Script" path="res://src/levels/Camera2D.gd" id="9_16t5p"]
 
 [node name="OriBF" type="Node"]
 script = ExtResource("1_l8a02")
@@ -87,7 +86,6 @@ drag_right_margin = 0.04
 drag_bottom_margin = 0.46
 editor_draw_limits = true
 editor_draw_drag_margin = true
-script = ExtResource("9_16t5p")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
