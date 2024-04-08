@@ -22,10 +22,11 @@ func _process(delta: float) -> void:
 
 
 func menu_hid() -> void:
-	mainMenu.visible = false
+	mainMenu.visible = false 
 	worldSelect.visible = false
 	settings.visible = false
 	cursor.visible = false
+	testSelect.visible = false
 
 
 func _on_world_select_pressed() -> void:
