@@ -1,5 +1,5 @@
 extends Camera2D
-
+#TODO: extends: PhantomCamera2D
 
 func _on_tree_entered() -> void:
 	make_current()
@@ -14,3 +14,4 @@ func _on_tree_entered() -> void:
 # use the aim direction to adjust the camera
 
 
+#LOOKAT: Little Runmo camera
