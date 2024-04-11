@@ -50,7 +50,7 @@ enum State {
 	Swim,
 	SwimDash,
 	Grind,
-	Trapeze,
+	Swing,
 	BonkAir,
 	BonkGround,
 	

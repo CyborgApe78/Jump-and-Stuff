@@ -3,7 +3,6 @@ extends PlayerInfo
 #TODO: PoP changes direction when at top
 #TODO: turn off aim indicator arrow
 #FIXME: change position from feet to hands as anchor point
-#TODO: rename to swing
 
 ## Jump Speed
 @export var speed: int = 10

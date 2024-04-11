@@ -73,7 +73,7 @@
 [ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="56_v8j0l"]
 [ext_resource type="PackedScene" uid="uid://hn3ey7t7ql3q" path="res://src/object/components/wall_detector.tscn" id="57_a2iuh"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AimIndicator.gd" id="57_n4b1h"]
-[ext_resource type="Script" path="res://src/actors/player/states/Trapeze.gd" id="57_yy8yl"]
+[ext_resource type="Script" path="res://src/actors/player/states/Swing.gd" id="57_po0uw"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/AbilityCollider.gd" id="58_hbso6"]
 [ext_resource type="Script" path="res://src/actors/player/scripts/BashableDetector.gd" id="62_7uo1w"]
 [ext_resource type="AudioStream" uid="uid://c3rxvgnv2uopt" path="res://asset/sounds/player/footstep.wav" id="67_scdrc"]
@@ -7323,8 +7323,8 @@ script = ExtResource("53_711h5")
 [node name="Grind" type="Node" parent="StateMachine"]
 script = ExtResource("56_lb7gn")
 
-[node name="Trapeze" type="Node" parent="StateMachine"]
-script = ExtResource("57_yy8yl")
+[node name="Swing" type="Node" parent="StateMachine"]
+script = ExtResource("57_po0uw")
 
 [node name="BonkAir" type="Node" parent="StateMachine" node_paths=PackedStringArray("soundBonk")]
 script = ExtResource("45_puitl")

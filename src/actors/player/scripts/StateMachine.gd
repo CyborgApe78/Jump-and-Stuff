@@ -48,7 +48,7 @@ extends Node
 	PlayerState.State.RollDash: $RollDash,
 	PlayerState.State.Swim: $Swim,
 	PlayerState.State.Grind: $Grind,
-	PlayerState.State.Trapeze: $Trapeze,
+	PlayerState.State.Swing: $Swing,
 	PlayerState.State.BonkAir: $BonkAir,
 	PlayerState.State.BonkGround: $BonkGround,
 	
@@ -146,4 +146,4 @@ func player_rail() -> void:
 
 
 func enter_trapeze() -> void:
-	change_state(PlayerState.State.Trapeze)
+	change_state(PlayerState.State.Swing)
