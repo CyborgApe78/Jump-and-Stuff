@@ -1,6 +1,8 @@
 extends PlayerInfo
 
 #TODO: Make a bash state for like dash with a timer for speed
+#OPtimize need to figure out a better way to freeze objects for bash. maybe groups
+#Lookat rename to sling
 
 @export_group("Connections")
 @export var timerDuration: Timer

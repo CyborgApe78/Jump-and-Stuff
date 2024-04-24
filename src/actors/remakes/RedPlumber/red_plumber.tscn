@@ -37,7 +37,7 @@
 [ext_resource type="Script" path="res://src/actors/player/states/SwimDash.gd" id="35_2exgf"]
 [ext_resource type="Script" path="res://src/actors/player/states/Bounce.gd" id="36_h2kqk"]
 [ext_resource type="Script" path="res://src/actors/player/states/Grind.gd" id="37_6r8m7"]
-[ext_resource type="Script" path="res://src/actors/player/states/Trapeze.gd" id="38_0jdly"]
+[ext_resource type="Script" path="res://src/actors/player/states/Swing.gd" id="38_0jdly"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkAir.gd" id="39_pp2xa"]
 [ext_resource type="Script" path="res://src/actors/player/states/bonkGround.gd" id="40_omihb"]
 

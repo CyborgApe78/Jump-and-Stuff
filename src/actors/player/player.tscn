@@ -7448,12 +7448,9 @@ libraries = {
 "": SubResource("AnimationLibrary_dm5wq")
 }
 autoplay = "Idle"
-blend_times = [&"Walk", &"Crouch", 0.3, &"Walk", &"Idle", 0.1, &"Idle", &"Crouch", 0.1, &"Idle", &"Walk", 0.1]
+blend_times = [&"Idle", &"Walk", 0.1, &"Idle", &"Crouch", 0.1, &"Walk", &"Idle", 0.1, &"Walk", &"Crouch", 0.3]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dm5wq")
-}
 tree_root = SubResource("AnimationNodeBlendTree_0l6b0")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -7590,8 +7587,9 @@ visible = false
 position = Vector2(-8, -64)
 points = PackedVector2Array(8, 0, 24, 0)
 
-[node name="PlatformChecker" parent="." instance=ExtResource("73_hobbw")]
+[node name="PlatformChecker" parent="." node_paths=PackedStringArray("collision") instance=ExtResource("73_hobbw")]
 visible = false
+collision = NodePath("CollisionShape2D")
 
 [connection signal="enterRail" from="." to="StateMachine" method="player_rail"]
 [connection signal="enterWater" from="." to="StateMachine" method="player_swim"]

@@ -3,6 +3,7 @@ extends PlayerInfo
 #LOOKAT: get the rail node and move progress on follow, look at modern sonic to get velocity equation
 #TODO: particles
 #TODO: check when progress is 0 or 100 to exit
+#TODO Need min speed on grid rail
 
 enum state {above, below, crouch, dash}
 
