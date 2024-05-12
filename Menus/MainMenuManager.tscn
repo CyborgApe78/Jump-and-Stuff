@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=3 uid="uid://doj3uayeto8fi"]
+
+[ext_resource type="Script" path="res://Menus/Scripts/MainMenuManager.gd" id="1_3m1l6"]
+[ext_resource type="Script" path="res://Menus/Scripts/MovingBackground.gd" id="2_k2ocr"]
+[ext_resource type="PackedScene" uid="uid://dutugpjl14gbd" path="res://Menus/MainMenu.tscn" id="3_blk3b"]
+[ext_resource type="PackedScene" uid="uid://38x1ifed88kp" path="res://Menus/SettingsMenu.tscn" id="4_vtgyd"]
+
+[sub_resource type="Gradient" id="Gradient_o2utx"]
+colors = PackedColorArray(0.0666667, 0.54902, 0.376471, 1, 0.596078, 0.133333, 0.658824, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jw2ea"]
+gradient = SubResource("Gradient_o2utx")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4tppg"]
+bg_color = Color(0.596078, 0.133333, 0.658824, 1)
+corner_radius_top_right = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_saiq1"]
+bg_color = Color(0.0666667, 0.54902, 0.376471, 1)
+corner_radius_bottom_right = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r5sy"]
+bg_color = Color(0.596078, 0.133333, 0.658824, 1)
+corner_radius_bottom_left = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pgba"]
+bg_color = Color(0.0666667, 0.54902, 0.376471, 1)
+corner_radius_top_left = 500
+
+[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("startingMenu", "mainMenu", "settings")]
+process_mode = 3
+layer = 90
+script = ExtResource("1_3m1l6")
+startingMenu = NodePath("MainMenu")
+mainMenu = NodePath("MainMenu")
+settings = NodePath("SettingsMenu")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_jw2ea")
+
+[node name="ColorRect" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -544.0
+offset_right = 832.0
+offset_bottom = 40.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4tppg")
+script = ExtResource("2_k2ocr")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect"]
+one_shot = true
+
+[node name="ColorRect2" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 704.0
+offset_bottom = 512.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_saiq1")
+script = ExtResource("2_k2ocr")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect2"]
+
+[node name="ColorRect4" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -704.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 512.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7r5sy")
+script = ExtResource("2_k2ocr")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect4"]
+
+[node name="ColorRect3" type="Panel" parent="Background" node_paths=PackedStringArray("timerMove")]
+modulate = Color(1, 1, 1, 0.235294)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -768.0
+offset_top = -544.0
+offset_right = 64.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2pgba")
+script = ExtResource("2_k2ocr")
+timerMove = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Background/ColorRect3"]
+
+[node name="MainMenu" parent="." node_paths=PackedStringArray("buttonFirst") instance=ExtResource("3_blk3b")]
+buttonFirst = NodePath("MarginContainer/Buttons/MarginContainer/VBox/Play")
+
+[node name="Settings" type="Button" parent="MainMenu/MarginContainer/Buttons/MarginContainer/VBox" index="1"]
+layout_mode = 2
+text = "Settings"
+
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("buttonFirst") instance=ExtResource("4_vtgyd")]
+visible = false
+buttonFirst = NodePath("MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls")
+
+[connection signal="timeout" from="Background/ColorRect/Timer" to="Background/ColorRect" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect2/Timer" to="Background/ColorRect2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect4/Timer" to="Background/ColorRect4" method="_on_timer_timeout"]
+[connection signal="timeout" from="Background/ColorRect3/Timer" to="Background/ColorRect3" method="_on_timer_timeout"]
+[connection signal="pressed" from="MainMenu/MarginContainer/Buttons/MarginContainer/VBox/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SettingsMenu/MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/Button" to="." method="_on_main_menu_pressed"]
+
+[editable path="MainMenu"]
+[editable path="SettingsMenu"]

@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=3 uid="uid://dutugpjl14gbd"]
+
+[ext_resource type="Script" path="res://Menus/Scripts/MainMenu.gd" id="1_3yimx"]
+[ext_resource type="Script" path="res://Menus/Scripts/GameName.gd" id="1_itdut"]
+[ext_resource type="Script" path="res://Menus/Scripts/GodotVersion.gd" id="1_suvko"]
+[ext_resource type="PackedScene" uid="uid://c7e1nr0kwftaf" path="res://Menus/Buttons/ChangeScene.tscn" id="2_2bp75"]
+[ext_resource type="Script" path="res://Menus/Scripts/GameVersion.gd" id="2_pqrxh"]
+[ext_resource type="PackedScene" uid="uid://bjvpoua1v0x5b" path="res://Menus/Buttons/Quit.tscn" id="2_pvwoi"]
+[ext_resource type="Script" path="res://Menus/Scripts/Author.gd" id="4_47yyg"]
+[ext_resource type="PackedScene" uid="uid://dmmc6ouc7p8kh" path="res://src/levels/TestingGround.tscn" id="4_trfjo"]
+[ext_resource type="Script" path="res://Menus/Scripts/Discord.gd" id="5_osbu8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8ope"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3yimx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="GameName" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 10
+
+[node name="Label" type="Label" parent="MarginContainer/GameName"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "_gameName"
+horizontal_alignment = 1
+script = ExtResource("1_itdut")
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer/Buttons"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8ope")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/Buttons/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+
+[node name="Play" parent="MarginContainer/Buttons/MarginContainer/VBox" instance=ExtResource("2_2bp75")]
+layout_mode = 2
+changeScene = ExtResource("4_trfjo")
+
+[node name="Discord" type="Button" parent="MarginContainer/Buttons/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Discord"
+script = ExtResource("5_osbu8")
+
+[node name="Quit" parent="MarginContainer/Buttons/MarginContainer/VBox" instance=ExtResource("2_pvwoi")]
+layout_mode = 2
+
+[node name="Version" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Version"]
+layout_mode = 2
+
+[node name="Godot" type="Label" parent="MarginContainer/Version/VBoxContainer"]
+layout_mode = 2
+text = "_godotVersion"
+script = ExtResource("1_suvko")
+
+[node name="Game" type="Label" parent="MarginContainer/Version/VBoxContainer"]
+layout_mode = 2
+text = "_gameVersion"
+script = ExtResource("2_pqrxh")
+
+[node name="Author" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer/Author"]
+layout_mode = 2
+text = "_author"
+script = ExtResource("4_47yyg")
+
+[connection signal="pressed" from="MarginContainer/Buttons/MarginContainer/VBox/Discord" to="MarginContainer/Buttons/MarginContainer/VBox/Discord" method="_on_pressed"]

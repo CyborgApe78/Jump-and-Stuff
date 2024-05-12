@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/ui/scripts/GameInfo.gd" id="1_eigog"]
 [ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Stats.gd" id="2_37txa"]
 [ext_resource type="Script" path="res://src/ui/GameInfo/scripts/Waypoints.gd" id="2_tm0nr"]
-[ext_resource type="Script" path="res://src/ui/MainMenu/Scripts/MovingBackground.gd" id="3_wqqw1"]
+[ext_resource type="Script" path="res://Menus/Scripts/MovingBackground.gd" id="3_wqqw1"]
 
 [sub_resource type="Gradient" id="Gradient_w2ysl"]
 colors = PackedColorArray(0.32549, 0.858824, 0.541176, 1, 0.47451, 0, 0.788235, 1)

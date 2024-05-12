@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7e1nr0kwftaf"]
+
+[ext_resource type="Script" path="res://Menus/Buttons/Scripts/ChangeScene.gd" id="1_6o5p0"]
+
+[node name="ChangeScene" type="Button"]
+text = "Play"
+script = ExtResource("1_6o5p0")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

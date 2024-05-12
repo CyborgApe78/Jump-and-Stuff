@@ -1,0 +1,305 @@
+[gd_scene load_steps=5 format=3 uid="uid://38x1ifed88kp"]
+
+[ext_resource type="PackedScene" uid="uid://bjvpoua1v0x5b" path="res://Menus/Buttons/Quit.tscn" id="1_iqbxw"]
+[ext_resource type="Script" path="res://Menus/Scripts/SettingsMenu.gd" id="1_ssrpr"]
+[ext_resource type="Script" path="res://Menus/Scripts/Audio.gd" id="3_tq26e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8e17"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("buttonFirst")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ssrpr")
+buttonFirst = NodePath("MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer/M"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8e17")
+
+[node name="H" type="HBoxContainer" parent="MarginContainer/M"]
+layout_mode = 2
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/M/H"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/M/H/Buttons"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/M/H/Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Controls" type="Button" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
+[node name="Video" type="Button" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Video"
+
+[node name="Audio" type="Button" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+
+[node name="Gameplay" type="Button" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gameplay"
+
+[node name="HUD" type="Button" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "HUD"
+
+[node name="Colors" type="Button" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Colors"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/M/H/Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Quit" parent="MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" instance=ExtResource("1_iqbxw")]
+layout_mode = 2
+
+[node name="Options" type="MarginContainer" parent="MarginContainer/M/H"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer/M/H/Options"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="MarginContainer/M/H/Options"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Controls" type="VBoxContainer" parent="MarginContainer/M/H/Options/M"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/M/H/Options/M/Controls"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/M/H/Options/M/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="Reset" type="Button" parent="MarginContainer/M/H/Options/M/Controls"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Reset"
+
+[node name="Video" type="VBoxContainer" parent="MarginContainer/M/H/Options/M"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/M/H/Options/M/Video"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Fullscreen" type="CheckButton" parent="MarginContainer/M/H/Options/M/Video/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="Resolution" type="HBoxContainer" parent="MarginContainer/M/H/Options/M/Video/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/M/H/Options/M/Video/VBoxContainer/Resolution"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/M/H/Options/M/Video/VBoxContainer/Resolution"]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="MarginContainer/M/H/Options/M/Video"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Reset"
+
+[node name="Audio" type="VBoxContainer" parent="MarginContainer/M/H/Options/M"]
+layout_mode = 2
+script = ExtResource("3_tq26e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/M/H/Options/M/Audio"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="MasterLabel" type="Label" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="UILabel" type="Label" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "UI"
+
+[node name="UISlider" type="HSlider" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="PlayerLabel" type="Label" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Player"
+
+[node name="PlayerSlider2" type="HSlider" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="EnemyLabel" type="Label" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Enemy"
+
+[node name="EnemySlider" type="HSlider" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="AmbientLabel" type="Label" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Ambient"
+
+[node name="AmbientSlider" type="HSlider" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Mute" type="CheckButton" parent="MarginContainer/M/H/Options/M/Audio/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="Reset" type="Button" parent="MarginContainer/M/H/Options/M/Audio"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Reset"
