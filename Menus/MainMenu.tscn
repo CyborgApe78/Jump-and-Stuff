@@ -47,87 +47,91 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="GameName" type="MarginContainer" parent="MarginContainer"]
+[node name="GameName" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_top = 10
 
-[node name="Label" type="Label" parent="MarginContainer/GameName"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/GameName"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "_gameName"
 horizontal_alignment = 1
 script = ExtResource("1_itdut")
 
-[node name="Buttons" type="MarginContainer" parent="MarginContainer"]
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Panel" type="Panel" parent="MarginContainer/Buttons"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/Buttons"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8ope")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Buttons"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/Buttons/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBox" type="VBoxContainer" parent="MarginContainer/Buttons/MarginContainer"]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 5
 
-[node name="Play" parent="MarginContainer/Buttons/MarginContainer/VBox" instance=ExtResource("2_2bp75")]
+[node name="Play" parent="MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox" instance=ExtResource("2_2bp75")]
 layout_mode = 2
 changeScene = ExtResource("4_trfjo")
 
-[node name="Discord" type="Button" parent="MarginContainer/Buttons/MarginContainer/VBox"]
+[node name="Settings" type="Button" parent="MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Discord" type="Button" parent="MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Discord"
 script = ExtResource("5_osbu8")
 
-[node name="Quit" parent="MarginContainer/Buttons/MarginContainer/VBox" instance=ExtResource("2_pvwoi")]
+[node name="Quit" parent="MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox" instance=ExtResource("2_pvwoi")]
 layout_mode = 2
 
-[node name="Version" type="MarginContainer" parent="MarginContainer"]
+[node name="Version" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Version"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/Version"]
 layout_mode = 2
 
-[node name="Godot" type="Label" parent="MarginContainer/Version/VBoxContainer"]
+[node name="Godot" type="Label" parent="MarginContainer/PanelContainer/Version/VBoxContainer"]
 layout_mode = 2
 text = "_godotVersion"
 script = ExtResource("1_suvko")
 
-[node name="Game" type="Label" parent="MarginContainer/Version/VBoxContainer"]
+[node name="Game" type="Label" parent="MarginContainer/PanelContainer/Version/VBoxContainer"]
 layout_mode = 2
 text = "_gameVersion"
 script = ExtResource("2_pqrxh")
 
-[node name="Author" type="MarginContainer" parent="MarginContainer"]
+[node name="Author" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="MarginContainer/Author"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Author"]
 layout_mode = 2
 text = "_author"
 script = ExtResource("4_47yyg")
 
-[connection signal="pressed" from="MarginContainer/Buttons/MarginContainer/VBox/Discord" to="MarginContainer/Buttons/MarginContainer/VBox/Discord" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox/Discord" to="MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox/Discord" method="_on_pressed"]

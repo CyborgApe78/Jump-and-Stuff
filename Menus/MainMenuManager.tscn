@@ -111,23 +111,40 @@ timerMove = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="Background/ColorRect3"]
 
-[node name="MainMenu" parent="." node_paths=PackedStringArray("buttonFirst") instance=ExtResource("3_blk3b")]
-buttonFirst = NodePath("MarginContainer/Buttons/MarginContainer/VBox/Play")
+[node name="MainMenu" parent="." instance=ExtResource("3_blk3b")]
 
-[node name="Settings" type="Button" parent="MainMenu/MarginContainer/Buttons/MarginContainer/VBox" index="1"]
-layout_mode = 2
-text = "Settings"
+[node name="GameName" parent="MainMenu/MarginContainer/PanelContainer" index="0"]
+theme_override_constants/margin_top = 20
 
-[node name="SettingsMenu" parent="." node_paths=PackedStringArray("buttonFirst") instance=ExtResource("4_vtgyd")]
+[node name="Godot" parent="MainMenu/MarginContainer/PanelContainer/Version/VBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 10
+
+[node name="Game" parent="MainMenu/MarginContainer/PanelContainer/Version/VBoxContainer" index="1"]
+theme_override_font_sizes/font_size = 10
+
+[node name="Label" parent="MainMenu/MarginContainer/PanelContainer/Author" index="0"]
+theme_override_font_sizes/font_size = 10
+
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("videoMenu", "audioMenu", "controlsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton", "colorsButton", "buttonFirst") instance=ExtResource("4_vtgyd")]
 visible = false
-buttonFirst = NodePath("MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Controls")
+videoMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video")
+audioMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio")
+controlsMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Controls")
+backButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer2/Panel/MarginContainer/HBoxContainer/Back")
+gameplayButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Gameplay")
+hudButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/HUD")
+videoButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Video")
+audioButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Audio")
+controlsButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Controls")
+colorsButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Colors")
+buttonFirst = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Controls")
 
 [connection signal="timeout" from="Background/ColorRect/Timer" to="Background/ColorRect" method="_on_timer_timeout"]
 [connection signal="timeout" from="Background/ColorRect2/Timer" to="Background/ColorRect2" method="_on_timer_timeout"]
 [connection signal="timeout" from="Background/ColorRect4/Timer" to="Background/ColorRect4" method="_on_timer_timeout"]
 [connection signal="timeout" from="Background/ColorRect3/Timer" to="Background/ColorRect3" method="_on_timer_timeout"]
-[connection signal="pressed" from="MainMenu/MarginContainer/Buttons/MarginContainer/VBox/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="SettingsMenu/MarginContainer/M/H/Buttons/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/Button" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MainMenu/MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer2/Panel/MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
 
 [editable path="MainMenu"]
 [editable path="SettingsMenu"]

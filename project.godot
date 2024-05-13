@@ -112,11 +112,16 @@ window/size/viewport_height=800
 window/size/window_width_override=1024
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/QuickSceneRunner/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/anthonyec.camera_preview/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/steam_devkit_notifier/plugin.cfg")
+
+[gui]
+
+theme/custom="res://Menus/Themes/Theme.tres"
 
 [input]
 
