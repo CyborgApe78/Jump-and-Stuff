@@ -256,7 +256,6 @@ script = ExtResource("3_ykukb")
 cursor = NodePath("../../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
 [node name="HUD" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("hideHUD", "timerCheck", "buttonController")]
-visible = false
 layout_mode = 2
 script = ExtResource("3_oufns")
 hideHUD = NodePath("VBoxContainer/HideHUD")
@@ -357,6 +356,7 @@ script = ExtResource("3_ykukb")
 cursor = NodePath("../../../../Buttons/Buttons/MarginContainer/MarginContainer/Cursor")
 
 [node name="Colors" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Options/MarginContainer" node_paths=PackedStringArray("bashLabel", "burrowLabel", "climbLabel", "dashLabel", "grappleLabel", "groundLabel", "hazardLabel", "railLabel", "usedLabel")]
+visible = false
 layout_mode = 2
 script = ExtResource("9_5k8qx")
 bashLabel = NodePath("Bash")

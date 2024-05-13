@@ -17,6 +17,7 @@ var previousMenu: int
 func _ready() -> void:
 	menu_hid()
 	startingMenu.visible = true
+	startingMenu.enter()
 
 
 func _input(event: InputEvent) -> void:
@@ -48,6 +49,7 @@ func _on_main_menu_pressed() -> void:
 func _on_settings_pressed() -> void:
 	menu_hid()
 	settings.visible = true
+	settings.enter()
 	change_menu(State.Settings)
 
 

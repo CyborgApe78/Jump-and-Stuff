@@ -111,10 +111,17 @@ timerMove = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="Background/ColorRect3"]
 
-[node name="MainMenu" parent="." instance=ExtResource("3_blk3b")]
+[node name="MainMenu" parent="." node_paths=PackedStringArray("buttonFirst") instance=ExtResource("3_blk3b")]
+buttonFirst = NodePath("MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox/Play")
 
 [node name="GameName" parent="MainMenu/MarginContainer/PanelContainer" index="0"]
 theme_override_constants/margin_top = 20
+
+[node name="Play" parent="MainMenu/MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox" index="0"]
+focus_neighbor_top = NodePath("../Quit")
+
+[node name="Quit" parent="MainMenu/MarginContainer/PanelContainer/Buttons/PanelContainer/MarginContainer/VBox" index="3"]
+focus_neighbor_bottom = NodePath("../Play")
 
 [node name="Godot" parent="MainMenu/MarginContainer/PanelContainer/Version/VBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 10
@@ -125,14 +132,20 @@ theme_override_font_sizes/font_size = 10
 [node name="Label" parent="MainMenu/MarginContainer/PanelContainer/Author" index="0"]
 theme_override_font_sizes/font_size = 10
 
-[node name="SettingsMenu" parent="." node_paths=PackedStringArray("videoMenu", "audioMenu", "controlsMenu", "backButton", "gameplayButton", "hudButton", "videoButton", "audioButton", "controlsButton", "colorsButton", "buttonFirst") instance=ExtResource("4_vtgyd")]
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("optionsContainer", "gameplayMenu", "hudMenu", "accessibilityMenu", "videoMenu", "audioMenu", "controlsMenu", "colorsMenu", "backButton", "gameplayButton", "hudButton", "accessibilityButton", "videoButton", "audioButton", "controlsButton", "colorsButton", "buttonFirst") instance=ExtResource("4_vtgyd")]
 visible = false
+optionsContainer = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M")
+gameplayMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Gameplay")
+hudMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/HUD")
+accessibilityMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Accessibility")
 videoMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video")
 audioMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio")
 controlsMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Controls")
+colorsMenu = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Colors")
 backButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer2/Panel/MarginContainer/HBoxContainer/Back")
 gameplayButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Gameplay")
 hudButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/HUD")
+accessibilityButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Accessibility")
 videoButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Video")
 audioButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Audio")
 controlsButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Controls")
