@@ -1,8 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://38x1ifed88kp"]
+[gd_scene load_steps=16 format=3 uid="uid://38x1ifed88kp"]
 
 [ext_resource type="PackedScene" uid="uid://bjvpoua1v0x5b" path="res://Menus/Buttons/Quit.tscn" id="1_iqbxw"]
-[ext_resource type="Script" path="res://Menus/Scripts/SettingsMenu.gd" id="1_ssrpr"]
-[ext_resource type="Script" path="res://Menus/Scripts/Audio.gd" id="3_tq26e"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/SettingsMenu.gd" id="1_ssrpr"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/controls.gd" id="3_mb5ku"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/Audio.gd" id="3_tq26e"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/video.gd" id="4_pnim6"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/fullscreen.gd" id="5_aow1b"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/gameplay.gd" id="6_1pq1j"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/v_sync.gd" id="6_an6gv"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/hud.gd" id="7_1cmg0"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/AudioSliderBase.gd" id="7_bw4rs"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/colors.gd" id="8_c73la"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/mute.gd" id="8_jr3es"]
+[ext_resource type="Script" path="res://Menus/Settings/Scripts/accessibility.gd" id="9_eg57b"]
+[ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="14_erwyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8e17"]
 bg_color = Color(0, 0, 0, 1)
@@ -182,9 +193,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Controls" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M"]
+[node name="Controls" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" node_paths=PackedStringArray("buttonFirst")]
 visible = false
 layout_mode = 2
+script = ExtResource("3_mb5ku")
+buttonFirst = NodePath("VBoxContainer/CheckButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Controls"]
 layout_mode = 2
@@ -204,8 +217,10 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
 
-[node name="Video" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M"]
+[node name="Video" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" node_paths=PackedStringArray("buttonFirst")]
 layout_mode = 2
+script = ExtResource("4_pnim6")
+buttonFirst = NodePath("")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video"]
 layout_mode = 2
@@ -219,10 +234,12 @@ horizontal_alignment = 1
 [node name="Fullscreen" type="CheckButton" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer"]
 layout_mode = 2
 text = "Fullscreen"
+script = ExtResource("5_aow1b")
 
 [node name="VSync" type="CheckButton" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer"]
 layout_mode = 2
 text = "VSync"
+script = ExtResource("6_an6gv")
 
 [node name="Resolution" type="HBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer"]
 layout_mode = 2
@@ -234,14 +251,14 @@ text = "Resolution"
 [node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/Resolution"]
 layout_mode = 2
 
-[node name="Resolution2" type="HBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer"]
+[node name="AntiAliasing" type="HBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/Resolution2"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/AntiAliasing"]
 layout_mode = 2
 text = "Anti-Aliasing"
 
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/Resolution2"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/AntiAliasing"]
 layout_mode = 2
 selected = 0
 item_count = 4
@@ -282,10 +299,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
 
-[node name="Audio" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M"]
+[node name="Audio" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" node_paths=PackedStringArray("buttonFirst")]
 visible = false
 layout_mode = 2
 script = ExtResource("3_tq26e")
+buttonFirst = NodePath("VBoxContainer/Mute")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio"]
 layout_mode = 2
@@ -295,6 +313,11 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Audio"
 horizontal_alignment = 1
+
+[node name="Mute" type="CheckButton" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer"]
+layout_mode = 2
+text = "Mute"
+script = ExtResource("8_jr3es")
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer"]
 layout_mode = 2
@@ -310,8 +333,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.05
+step = 0.001
 value = 1.0
+script = ExtResource("7_bw4rs")
 
 [node name="UILabel" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -323,8 +347,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.05
+step = 0.001
 value = 1.0
+script = ExtResource("7_bw4rs")
+busName = "UI"
 
 [node name="MusicLabel" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -336,8 +362,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.05
+step = 0.001
 value = 1.0
+script = ExtResource("7_bw4rs")
+busName = "Music"
 
 [node name="PlayerLabel" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -349,8 +377,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.05
+step = 0.001
 value = 1.0
+script = ExtResource("7_bw4rs")
+busName = "Player"
 
 [node name="EnemyLabel" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -362,8 +392,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.05
+step = 0.001
 value = 1.0
+script = ExtResource("7_bw4rs")
+busName = "Enemy"
 
 [node name="AmbientLabel" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -375,21 +407,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.05
+step = 0.001
 value = 1.0
-
-[node name="Mute" type="CheckButton" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio"]
-layout_mode = 2
-text = "Mute"
+script = ExtResource("7_bw4rs")
+busName = "Ambient"
 
 [node name="Reset" type="Button" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
 
-[node name="Gameplay" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M"]
+[node name="Gameplay" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" node_paths=PackedStringArray("buttonFirst")]
 visible = false
 layout_mode = 2
+script = ExtResource("6_1pq1j")
+buttonFirst = NodePath("VBoxContainer/Rumble")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Gameplay"]
 layout_mode = 2
@@ -426,9 +458,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
 
-[node name="HUD" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M"]
+[node name="HUD" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" node_paths=PackedStringArray("buttonFirst")]
 visible = false
 layout_mode = 2
+script = ExtResource("7_1cmg0")
+buttonFirst = NodePath("VBoxContainer/Show")
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/HUD"]
 layout_mode = 2
@@ -456,9 +490,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
 
-[node name="Colors" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M"]
+[node name="Colors" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" node_paths=PackedStringArray("buttonFirst")]
 visible = false
 layout_mode = 2
+script = ExtResource("8_c73la")
+buttonFirst = NodePath("VBoxContainer/CheckButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Colors"]
 layout_mode = 2
@@ -478,9 +514,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
 
-[node name="Accessibility" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M"]
+[node name="Accessibility" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" node_paths=PackedStringArray("buttonFirst")]
 visible = false
 layout_mode = 2
+script = ExtResource("9_eg57b")
+buttonFirst = NodePath("VBoxContainer/CheckButton")
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Accessibility"]
 layout_mode = 2
@@ -500,6 +538,10 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_erwyk")
+autoplay = true
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Controls" to="." method="show_controls"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Video" to="." method="show_video"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Audio" to="." method="show_audio"]
@@ -507,3 +549,6 @@ text = "Reset"
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/HUD" to="." method="show_hud"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Colors" to="." method="show_colors"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Accessibility" to="." method="show_accessibility"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/Fullscreen" to="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/Fullscreen" method="_on_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/VSync" to="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Video/VBoxContainer/VSync" method="_on_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer/Mute" to="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M/Audio/VBoxContainer/Mute" method="_on_toggled"]

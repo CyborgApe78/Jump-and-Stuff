@@ -13,6 +13,18 @@ enum State{
 	Colors,
 	}
 
+var states = {
+	State.Gameplay: gameplayMenu,
+	State.HUD: hudMenu,
+	State.Accessibility: accessibilityMenu,
+	State.Video: videoMenu,
+	State.Audio: audioMenu,
+	State.Controls: controlsMenu,
+	State.Colors: colorsMenu,
+	}
+
+var baseLevel: int = 80
+
 @export var optionsContainer: Control
 @export var gameplayMenu: VBoxContainer
 @export var hudMenu: VBoxContainer
@@ -30,11 +42,11 @@ enum State{
 @export var controlsButton: Button 
 @export var colorsButton: Button
 
-var settings: Resource = preload("res://src/resources/SettingsConfig.tres")
+var userPref: ConfigFile 
 
 
 func enter() -> void:
-	self.visible = true
+	visible = true
 	menu_hid()
 	#TEMP: need to make a dictionary to connect the buttons to the menu
 	controlsMenu.visible = true
@@ -42,9 +54,9 @@ func enter() -> void:
 
 
 func exit() -> void:
-	ResourceSaver.save(settings)
+	#userPref.save() #TODO: save and load
 	EventBus.settingsUpdate.emit()
-	self.visible = false
+	visible = false
 
 
 #func state_check() -> int:
@@ -62,36 +74,36 @@ func menu_hid() -> void:
 
 func show_gameplay() -> void:
 	menu_hid()
-	gameplayMenu.visible = true
+	gameplayMenu.enter()
 
 
 func show_accessibility() -> void:
 	menu_hid()
-	accessibilityMenu.visible = true
+	accessibilityMenu.enter()
 
 
 func show_hud() -> void:
 	menu_hid()
 	#hudMenu.update_menu()
-	hudMenu.visible = true
+	hudMenu.enter()
 
 
 func show_video() -> void:
 	menu_hid()
-	videoMenu.visible = true
+	videoMenu.enter()
 
 
 func show_audio() -> void:
 	menu_hid()
-	audioMenu.visible = true
+	audioMenu.enter()
 
 
 func show_controls() -> void:
 	menu_hid()
-	controlsMenu.visible = true
+	controlsMenu.enter()
 
 
 func show_colors() -> void:
 	menu_hid()
-	colorsMenu.visible = true
+	colorsMenu.enter()
 

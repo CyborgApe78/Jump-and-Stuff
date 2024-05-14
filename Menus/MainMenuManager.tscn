@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Menus/Scripts/MainMenuManager.gd" id="1_3m1l6"]
 [ext_resource type="Script" path="res://Menus/Scripts/MovingBackground.gd" id="2_k2ocr"]
 [ext_resource type="PackedScene" uid="uid://dutugpjl14gbd" path="res://Menus/MainMenu.tscn" id="3_blk3b"]
-[ext_resource type="PackedScene" uid="uid://38x1ifed88kp" path="res://Menus/SettingsMenu.tscn" id="4_vtgyd"]
+[ext_resource type="PackedScene" uid="uid://38x1ifed88kp" path="res://Menus/Settings/SettingsMenu.tscn" id="4_vtgyd"]
 
 [sub_resource type="Gradient" id="Gradient_o2utx"]
 colors = PackedColorArray(0.0666667, 0.54902, 0.376471, 1, 0.596078, 0.133333, 0.658824, 1)
@@ -151,6 +151,27 @@ audioButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/
 controlsButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Controls")
 colorsButton = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Colors")
 buttonFirst = NodePath("PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Controls")
+
+[node name="Controls" parent="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" index="0" node_paths=PackedStringArray("buttonFirst")]
+buttonFirst = NodePath("VBoxContainer/CheckButton")
+
+[node name="Video" parent="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" index="1" node_paths=PackedStringArray("buttonFirst")]
+buttonFirst = NodePath("VBoxContainer/Fullscreen")
+
+[node name="Audio" parent="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" index="2" node_paths=PackedStringArray("buttonFirst")]
+buttonFirst = NodePath("VBoxContainer/Mute")
+
+[node name="Gameplay" parent="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" index="3" node_paths=PackedStringArray("buttonFirst")]
+buttonFirst = NodePath("VBoxContainer/Rumble")
+
+[node name="HUD" parent="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" index="4" node_paths=PackedStringArray("buttonFirst")]
+buttonFirst = NodePath("VBoxContainer/Show")
+
+[node name="Colors" parent="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" index="5" node_paths=PackedStringArray("buttonFirst")]
+buttonFirst = NodePath("VBoxContainer/CheckButton")
+
+[node name="Accessibility" parent="SettingsMenu/PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Options/Panel/M" index="6" node_paths=PackedStringArray("buttonFirst")]
+buttonFirst = NodePath("VBoxContainer/CheckButton")
 
 [connection signal="timeout" from="Background/ColorRect/Timer" to="Background/ColorRect" method="_on_timer_timeout"]
 [connection signal="timeout" from="Background/ColorRect2/Timer" to="Background/ColorRect2" method="_on_timer_timeout"]
