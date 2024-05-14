@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://38x1ifed88kp"]
+[gd_scene load_steps=15 format=3 uid="uid://38x1ifed88kp"]
 
 [ext_resource type="PackedScene" uid="uid://bjvpoua1v0x5b" path="res://Menus/Buttons/Quit.tscn" id="1_iqbxw"]
 [ext_resource type="Script" path="res://Menus/Settings/Scripts/SettingsMenu.gd" id="1_ssrpr"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://Menus/Settings/Scripts/colors.gd" id="8_c73la"]
 [ext_resource type="Script" path="res://Menus/Settings/Scripts/mute.gd" id="8_jr3es"]
 [ext_resource type="Script" path="res://Menus/Settings/Scripts/accessibility.gd" id="9_eg57b"]
-[ext_resource type="AudioStream" uid="uid://bjt4y6k68xrcl" path="res://asset/sounds/player/AirplaneJet 6041_74.wav" id="14_erwyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8e17"]
 bg_color = Color(0, 0, 0, 1)
@@ -537,10 +536,6 @@ text = "Test"
 layout_mode = 2
 size_flags_vertical = 8
 text = "Reset"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_erwyk")
-autoplay = true
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Controls" to="." method="show_controls"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PanelContainer/M/Panel/H/Buttons/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer/Video" to="." method="show_video"]
