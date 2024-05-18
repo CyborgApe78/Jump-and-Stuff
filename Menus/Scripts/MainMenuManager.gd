@@ -43,6 +43,7 @@ func _on_main_menu_pressed() -> void:
 	menu_hid()
 	mainMenu.visible = true
 	change_menu(State.Main)
+	startingMenu.enter()
 
 
 ## Show settings menu
