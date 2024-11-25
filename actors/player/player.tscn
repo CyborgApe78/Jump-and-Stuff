@@ -1,0 +1,202 @@
+[gd_scene load_steps=19 format=3 uid="uid://cbcegtrhgfp87"]
+
+[ext_resource type="Script" uid="uid://demrexyvda27l" path="res://actors/player/player.gd" id="1_6p1w3"]
+[ext_resource type="Script" uid="uid://b6h7j84vjl6pl" path="res://addons/ninetailsrabbit.fsm/src/finite-state-machine.gd" id="1_ax26v"]
+[ext_resource type="Script" uid="uid://cqdbuf36ficgm" path="res://actors/player/stats_manager.gd" id="2_a744p"]
+[ext_resource type="Script" uid="uid://cm204oytq8tgf" path="res://actors/player/states/idle.gd" id="2_lsqbn"]
+[ext_resource type="Script" uid="uid://23hfy4iyusmj" path="res://addons/ninetailsrabbit.fsm/src/machine_state.gd" id="3_6p1w3"]
+[ext_resource type="Script" uid="uid://bgltxskpyu0pp" path="res://actors/player/states/walk.gd" id="4_lsqbn"]
+[ext_resource type="Script" uid="uid://78tc2xltqg81" path="res://actors/player/input_manger.gd" id="6_15y17"]
+[ext_resource type="Script" uid="uid://ft7ry1r26l66" path="res://actors/player/states/jump.gd" id="6_bop6h"]
+[ext_resource type="AudioStream" uid="uid://0co36p6jy1w0" path="res://actors/player/sounds/footstep.wav" id="7_7aotg"]
+[ext_resource type="Script" uid="uid://b1wa5f584jlqi" path="res://actors/player/states/skid.gd" id="7_hiosj"]
+[ext_resource type="AudioStream" uid="uid://okhw62ds1664" path="res://actors/player/sounds/skid.wav" id="8_ssdk0"]
+[ext_resource type="Script" uid="uid://dm6e34ef5f4bo" path="res://actors/player/character_rig.gd" id="9_388e2"]
+[ext_resource type="Script" uid="uid://c8knhshecjf32" path="res://actors/player/velocity_manager.gd" id="10_lsln6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15y17"]
+radius = 6.0
+
+[sub_resource type="Curve" id="Curve_lsln6"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 50.5494), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hiosj"]
+curve = SubResource("Curve_lsln6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lsln6"]
+particle_flag_disable_z = true
+angle_min = -157.2
+angle_max = 182.1
+direction = Vector3(-45, -45, 0)
+spread = 52.048
+initial_velocity_min = 10.0
+initial_velocity_max = 27.24
+gravity = Vector3(0, 50, 0)
+linear_accel_min = -0.0100022
+linear_accel_max = 9.19
+linear_accel_curve = SubResource("CurveTexture_hiosj")
+scale_min = 0.5
+scale_max = 2.0
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hiosj"]
+particle_flag_disable_z = true
+angle_min = -157.2
+angle_max = 182.1
+direction = Vector3(-45, -45, 0)
+spread = 52.048
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 50, 0)
+linear_accel_min = -0.0100022
+linear_accel_max = 9.19
+linear_accel_curve = SubResource("CurveTexture_hiosj")
+scale_min = 0.5
+scale_max = 2.0
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterRig")]
+script = ExtResource("1_6p1w3")
+characterRig = NodePath("CharacterRig")
+
+[node name="StatsManager" type="Node" parent="."]
+script = ExtResource("2_a744p")
+_baseFriction = 0.4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_15y17")
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("1_ax26v")
+current_state = NodePath("Ground/Idle")
+metadata/_custom_type_script = ExtResource("1_ax26v")
+
+[node name="Ground" type="Node" parent="FiniteStateMachine"]
+
+[node name="Idle" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("walk", "jump", "player", "inputs", "characterRig", "stats", "velocity")]
+script = ExtResource("2_lsqbn")
+walk = NodePath("../Walk")
+jump = NodePath("../../Air/Jump")
+player = NodePath("../../..")
+inputs = NodePath("../../../InputManger")
+characterRig = NodePath("../../../CharacterRig")
+stats = NodePath("../../../StatsManager")
+velocity = NodePath("../../../VelocityManager")
+metadata/_custom_type_script = ExtResource("3_6p1w3")
+
+[node name="Walk" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("idle", "jump", "skid", "particles", "soundeffect", "stepTimer", "player", "inputs", "characterRig", "stats", "velocity")]
+script = ExtResource("4_lsqbn")
+idle = NodePath("../Idle")
+jump = NodePath("../../Air/Jump")
+skid = NodePath("../Skid")
+particles = NodePath("../../../CharacterRig/Particles/Walking")
+soundeffect = NodePath("WalkSound")
+stepTimer = NodePath("StepTimer")
+player = NodePath("../../..")
+inputs = NodePath("../../../InputManger")
+characterRig = NodePath("../../../CharacterRig")
+stats = NodePath("../../../StatsManager")
+velocity = NodePath("../../../VelocityManager")
+metadata/_custom_type_script = ExtResource("3_6p1w3")
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="FiniteStateMachine/Ground/Walk"]
+stream = ExtResource("7_7aotg")
+volume_db = -10.306
+bus = &"Player"
+
+[node name="StepTimer" type="Timer" parent="FiniteStateMachine/Ground/Walk"]
+
+[node name="Skid" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("Walk", "Idle", "Jump", "particles", "soundeffect", "player", "inputs", "characterRig", "stats", "velocity")]
+script = ExtResource("7_hiosj")
+Walk = NodePath("../Walk")
+Idle = NodePath("../Idle")
+Jump = NodePath("../../Air/Jump")
+particles = NodePath("../../../CharacterRig/Particles/Skid")
+soundeffect = NodePath("SkidSound")
+player = NodePath("../../..")
+inputs = NodePath("../../../InputManger")
+characterRig = NodePath("../../../CharacterRig")
+stats = NodePath("../../../StatsManager")
+velocity = NodePath("../../../VelocityManager")
+metadata/_custom_type_script = ExtResource("3_6p1w3")
+
+[node name="SkidSound" type="AudioStreamPlayer" parent="FiniteStateMachine/Ground/Skid"]
+stream = ExtResource("8_ssdk0")
+volume_db = -10.306
+
+[node name="Air" type="Node" parent="FiniteStateMachine"]
+
+[node name="Jump" type="Node" parent="FiniteStateMachine/Air" node_paths=PackedStringArray("idle", "walk", "player", "inputs", "characterRig", "stats", "velocity")]
+script = ExtResource("6_bop6h")
+idle = NodePath("../../Ground/Idle")
+walk = NodePath("../../Ground/Walk")
+player = NodePath("../../..")
+inputs = NodePath("../../../InputManger")
+characterRig = NodePath("../../../CharacterRig")
+stats = NodePath("../../../StatsManager")
+velocity = NodePath("../../../VelocityManager")
+metadata/_custom_type_script = ExtResource("3_6p1w3")
+
+[node name="Fall" type="Node" parent="FiniteStateMachine/Air" node_paths=PackedStringArray("player")]
+script = ExtResource("3_6p1w3")
+player = NodePath("../../..")
+metadata/_custom_type_script = ExtResource("3_6p1w3")
+
+[node name="InputManger" type="Node" parent="."]
+script = ExtResource("6_15y17")
+
+[node name="VelocityManager" type="Node" parent="." node_paths=PackedStringArray("stats", "input")]
+script = ExtResource("10_lsln6")
+stats = NodePath("../StatsManager")
+input = NodePath("../InputManger")
+
+[node name="CharacterRig" type="Node2D" parent="." node_paths=PackedStringArray("player", "stats")]
+script = ExtResource("9_388e2")
+player = NodePath("..")
+stats = NodePath("../StatsManager")
+
+[node name="Body" type="ColorRect" parent="CharacterRig"]
+offset_left = -8.0
+offset_top = -32.0
+offset_right = 8.0
+
+[node name="Eye" type="ColorRect" parent="CharacterRig/Body"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 6.0
+color = Color(0, 0, 0, 1)
+
+[node name="Particles" type="Node2D" parent="CharacterRig"]
+
+[node name="Walking" type="GPUParticles2D" parent="CharacterRig/Particles"]
+position = Vector2(-8, 0)
+emitting = false
+lifetime = 0.27
+explosiveness = 0.3
+randomness = 0.28
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_lsln6")
+
+[node name="Skid" type="GPUParticles2D" parent="CharacterRig/Particles"]
+position = Vector2(-8, 0)
+emitting = false
+lifetime = 0.27
+one_shot = true
+explosiveness = 0.33
+randomness = 0.28
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_hiosj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="FiniteStateMachine/Ground/Walk/StepTimer" to="FiniteStateMachine/Ground/Walk" method="_on_step_timer_timeout"]
