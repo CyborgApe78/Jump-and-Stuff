@@ -107,7 +107,7 @@ metadata/_custom_type_script = ExtResource("3_6p1w3")
 
 [node name="WalkSound" type="AudioStreamPlayer" parent="FiniteStateMachine/Ground/Walk"]
 stream = ExtResource("7_7aotg")
-volume_db = -10.306
+volume_db = -15.0
 bus = &"Player"
 
 [node name="StepTimer" type="Timer" parent="FiniteStateMachine/Ground/Walk"]
@@ -128,7 +128,8 @@ metadata/_custom_type_script = ExtResource("3_6p1w3")
 
 [node name="SkidSound" type="AudioStreamPlayer" parent="FiniteStateMachine/Ground/Skid"]
 stream = ExtResource("8_ssdk0")
-volume_db = -10.306
+volume_db = -14.991
+bus = &"Player"
 
 [node name="Air" type="Node" parent="FiniteStateMachine"]
 

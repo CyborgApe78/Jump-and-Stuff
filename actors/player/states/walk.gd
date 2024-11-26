@@ -8,6 +8,9 @@ class_name PlayerWalk extends MachineState
 @export_range(0.1, 1, 0.01) var maxPlaybackSpeed: float = 0.5
 @export_range(0.1, 1, 0.01) var minPitch: float = 0.9
 @export_range(0.1, 2, 0.01) var maxPitch: float = 1.1
+@export_range(-2, 1, 0.01) var minVolume: float = -2
+@export_range(0, 2, 0.01) var maxVolume: float = 2
+@export var startingVolume: float = -15
 
 @export_group("Particles")
 @export_range(0.1, 1, 0.1) var particlesBaseDuration: float = 0.1
@@ -35,6 +38,7 @@ func enter() -> void:
 	
 	particles.emitting = true
 	
+	soundeffect.volume_db = startingVolume
 	soundeffect.play()
 	
 	stepTimer.wait_time = remap(abs(player.velocity.x), stats.moveSpeed, 0,  minPlaybackSpeed, maxPlaybackSpeed)
@@ -82,8 +86,12 @@ func sound_update(_delta: float):
 
 
 func _on_step_timer_timeout() -> void:
+	soundeffect.pitch_scale = 1
+	soundeffect.volume_db = startingVolume
+	
 	stepTimer.wait_time = remap(abs(player.velocity.x), stats.moveSpeed, 0,  minPlaybackSpeed, maxPlaybackSpeed)
 	soundeffect.pitch_scale = randf_range(minPitch, maxPitch)
+	soundeffect.volume_db += randf_range(minVolume, maxVolume)
 	
 	soundeffect.play()
 	stepTimer.start()
