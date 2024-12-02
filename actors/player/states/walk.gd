@@ -19,9 +19,10 @@ class_name PlayerWalk extends MachineState
 @export_range(1, 100, 1) var particlesMaxAmount: int = 16
 
 @export_group("States")
-@export var idle: PlayerIdle
-@export var jump: PlayerJump
-@export var skid: PlayerSkid
+@export var Idle: PlayerIdle
+@export var Jump: PlayerJump
+@export var Skid: PlayerSkid
+@export var Fall: PlayerFall
 
 @export_group("Connections")
 @export var particles: GPUParticles2D
@@ -34,7 +35,10 @@ func ready() -> void:
 
 
 func enter() -> void:
+	if inputs.canBufferJump == true:
+		FSM.change_state_to(Jump) #TODO: jump manager to decide which
 	print("Walk")
+	player.velocity.y = 0
 	
 	particles.emitting = true
 	
@@ -53,12 +57,12 @@ func exit(_next_state: MachineState) -> void:
 
 func handle_input(_event: InputEvent):
 	if Input.is_action_just_pressed("jump"):
-		FSM.change_state_to(jump)
+		FSM.change_state_to(Jump)
 
 
 func physics_update(_delta: float):
 	if abs(player.velocity.x) > stats.moveSpeed * skidPercent and inputs.moveDirection.x != 0 and (sign(player.velocity.x) != inputs.moveDirection.x):
-		FSM.change_state_to(skid)
+		FSM.change_state_to(Skid)
 	elif player.velocity.x != 0 and sign(player.velocity.x) != inputs.lastMoveDirection.x: ## kill velocity when changing directions
 		player.velocity.x = inputs.lastMoveDirection.x * 1
 	elif inputs.moveDirection.x != 0 and abs(player.velocity.x) < stats.moveSpeed:
@@ -71,7 +75,10 @@ func physics_update(_delta: float):
 
 func state_update(_delta: float):
 	if player.velocity.x == 0:
-		FSM.change_state_to(idle)
+		FSM.change_state_to(Idle)
+	if not player.is_on_floor():
+		inputs.leave_ground()
+		FSM.change_state_to(Fall)
 
 
 func visual_update(_delta: float):

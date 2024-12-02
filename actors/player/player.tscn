@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbcegtrhgfp87"]
+[gd_scene load_steps=25 format=3 uid="uid://cbcegtrhgfp87"]
 
 [ext_resource type="Script" uid="uid://demrexyvda27l" path="res://actors/player/player.gd" id="1_6p1w3"]
 [ext_resource type="Script" uid="uid://b6h7j84vjl6pl" path="res://addons/ninetailsrabbit.fsm/src/finite-state-machine.gd" id="1_ax26v"]
@@ -13,6 +13,11 @@
 [ext_resource type="AudioStream" uid="uid://okhw62ds1664" path="res://actors/player/sounds/skid.wav" id="8_ssdk0"]
 [ext_resource type="Script" uid="uid://dm6e34ef5f4bo" path="res://actors/player/character_rig.gd" id="9_388e2"]
 [ext_resource type="Script" uid="uid://c8knhshecjf32" path="res://actors/player/velocity_manager.gd" id="10_lsln6"]
+[ext_resource type="Script" uid="uid://b5bahocwmvxaw" path="res://actors/player/states/fall.gd" id="11_k67x5"]
+[ext_resource type="AudioStream" uid="uid://lyl5qb7uof7w" path="res://actors/player/sounds/jump.ogg" id="11_rt46e"]
+[ext_resource type="Script" uid="uid://qn4sxfwnn24n" path="res://actors/player/states/apex.gd" id="12_12xki"]
+[ext_resource type="AudioStream" uid="uid://dv8q2qmskouw0" path="res://actors/player/sounds/land.wav" id="17_0wchr"]
+[ext_resource type="Script" uid="uid://bqscqc1xckf2i" path="res://actors/player/particles_manager.gd" id="17_qrxv1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15y17"]
 radius = 6.0
@@ -60,6 +65,19 @@ scale_max = 2.0
 hue_variation_min = -0.01
 hue_variation_max = 0.00999998
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0wchr"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(12, 1, 1)
+direction = Vector3(0, -5, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 50, 0)
+scale_min = 0.1
+scale_max = 2.0
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("characterRig")]
 script = ExtResource("1_6p1w3")
 characterRig = NodePath("CharacterRig")
@@ -79,10 +97,11 @@ metadata/_custom_type_script = ExtResource("1_ax26v")
 
 [node name="Ground" type="Node" parent="FiniteStateMachine"]
 
-[node name="Idle" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("walk", "jump", "player", "inputs", "characterRig", "stats", "velocity")]
+[node name="Idle" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("Walk", "Jump", "Fall", "player", "inputs", "characterRig", "stats", "velocity")]
 script = ExtResource("2_lsqbn")
-walk = NodePath("../Walk")
-jump = NodePath("../../Air/Jump")
+Walk = NodePath("../Walk")
+Jump = NodePath("../../Air/Jump")
+Fall = NodePath("../../Air/Fall")
 player = NodePath("../../..")
 inputs = NodePath("../../../InputManger")
 characterRig = NodePath("../../../CharacterRig")
@@ -90,11 +109,12 @@ stats = NodePath("../../../StatsManager")
 velocity = NodePath("../../../VelocityManager")
 metadata/_custom_type_script = ExtResource("3_6p1w3")
 
-[node name="Walk" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("idle", "jump", "skid", "particles", "soundeffect", "stepTimer", "player", "inputs", "characterRig", "stats", "velocity")]
+[node name="Walk" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("Idle", "Jump", "Skid", "Fall", "particles", "soundeffect", "stepTimer", "player", "inputs", "characterRig", "stats", "velocity")]
 script = ExtResource("4_lsqbn")
-idle = NodePath("../Idle")
-jump = NodePath("../../Air/Jump")
-skid = NodePath("../Skid")
+Idle = NodePath("../Idle")
+Jump = NodePath("../../Air/Jump")
+Skid = NodePath("../Skid")
+Fall = NodePath("../../Air/Fall")
 particles = NodePath("../../../CharacterRig/Particles/Walking")
 soundeffect = NodePath("WalkSound")
 stepTimer = NodePath("StepTimer")
@@ -112,11 +132,12 @@ bus = &"Player"
 
 [node name="StepTimer" type="Timer" parent="FiniteStateMachine/Ground/Walk"]
 
-[node name="Skid" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("Walk", "Idle", "Jump", "particles", "soundeffect", "player", "inputs", "characterRig", "stats", "velocity")]
+[node name="Skid" type="Node" parent="FiniteStateMachine/Ground" node_paths=PackedStringArray("Walk", "Idle", "Jump", "Fall", "particles", "soundeffect", "player", "inputs", "characterRig", "stats", "velocity")]
 script = ExtResource("7_hiosj")
 Walk = NodePath("../Walk")
 Idle = NodePath("../Idle")
 Jump = NodePath("../../Air/Jump")
+Fall = NodePath("../../Air/Fall")
 particles = NodePath("../../../CharacterRig/Particles/Skid")
 soundeffect = NodePath("SkidSound")
 player = NodePath("../../..")
@@ -133,10 +154,15 @@ bus = &"Player"
 
 [node name="Air" type="Node" parent="FiniteStateMachine"]
 
-[node name="Jump" type="Node" parent="FiniteStateMachine/Air" node_paths=PackedStringArray("idle", "walk", "player", "inputs", "characterRig", "stats", "velocity")]
+[node name="Jump" type="Node" parent="FiniteStateMachine/Air" node_paths=PackedStringArray("Idle", "Walk", "Fall", "Apex", "landParticles", "soundeffect", "landSoundeffect", "player", "inputs", "characterRig", "stats", "velocity")]
 script = ExtResource("6_bop6h")
-idle = NodePath("../../Ground/Idle")
-walk = NodePath("../../Ground/Walk")
+Idle = NodePath("../../Ground/Idle")
+Walk = NodePath("../../Ground/Walk")
+Fall = NodePath("../Fall")
+Apex = NodePath("../Apex")
+landParticles = NodePath("../../../CharacterRig/Particles/Land")
+soundeffect = NodePath("JumpSound")
+landSoundeffect = NodePath("../../../Sounds/LandSound")
 player = NodePath("../../..")
 inputs = NodePath("../../../InputManger")
 characterRig = NodePath("../../../CharacterRig")
@@ -144,23 +170,64 @@ stats = NodePath("../../../StatsManager")
 velocity = NodePath("../../../VelocityManager")
 metadata/_custom_type_script = ExtResource("3_6p1w3")
 
-[node name="Fall" type="Node" parent="FiniteStateMachine/Air" node_paths=PackedStringArray("player")]
-script = ExtResource("3_6p1w3")
+[node name="JumpSound" type="AudioStreamPlayer" parent="FiniteStateMachine/Air/Jump"]
+stream = ExtResource("11_rt46e")
+volume_db = -10.306
+bus = &"Player"
+
+[node name="Fall" type="Node" parent="FiniteStateMachine/Air" node_paths=PackedStringArray("Idle", "Walk", "Jump", "landParticles", "landSoundeffect", "player", "inputs", "characterRig", "stats", "velocity")]
+script = ExtResource("11_k67x5")
+Idle = NodePath("../../Ground/Idle")
+Walk = NodePath("../../Ground/Walk")
+Jump = NodePath("../Jump")
+landParticles = NodePath("../../../CharacterRig/Particles/Land")
+landSoundeffect = NodePath("../../../Sounds/LandSound")
 player = NodePath("../../..")
+inputs = NodePath("../../../InputManger")
+characterRig = NodePath("../../../CharacterRig")
+stats = NodePath("../../../StatsManager")
+velocity = NodePath("../../../VelocityManager")
 metadata/_custom_type_script = ExtResource("3_6p1w3")
 
-[node name="InputManger" type="Node" parent="."]
+[node name="Apex" type="Node" parent="FiniteStateMachine/Air" node_paths=PackedStringArray("Idle", "Walk", "Fall", "landParticles", "landSoundeffect", "player", "inputs", "characterRig", "stats", "velocity")]
+script = ExtResource("12_12xki")
+Idle = NodePath("../../Ground/Idle")
+Walk = NodePath("../../Ground/Walk")
+Fall = NodePath("../Fall")
+landParticles = NodePath("../../../CharacterRig/Particles/Land")
+landSoundeffect = NodePath("../../../Sounds/LandSound")
+player = NodePath("../../..")
+inputs = NodePath("../../../InputManger")
+characterRig = NodePath("../../../CharacterRig")
+stats = NodePath("../../../StatsManager")
+velocity = NodePath("../../../VelocityManager")
+metadata/_custom_type_script = ExtResource("3_6p1w3")
+
+[node name="InputManger" type="Node" parent="." node_paths=PackedStringArray("player", "timerBufferJump", "timerCoyote")]
 script = ExtResource("6_15y17")
+player = NodePath("..")
+timerBufferJump = NodePath("BufferTimer")
+timerCoyote = NodePath("CoyoteTImer")
+_jumpBufferTime = 0.6
+
+[node name="BufferTimer" type="Timer" parent="InputManger"]
+wait_time = 0.1
+one_shot = true
+
+[node name="CoyoteTImer" type="Timer" parent="InputManger"]
+wait_time = 0.1
+one_shot = true
 
 [node name="VelocityManager" type="Node" parent="." node_paths=PackedStringArray("stats", "input")]
 script = ExtResource("10_lsln6")
 stats = NodePath("../StatsManager")
 input = NodePath("../InputManger")
 
-[node name="CharacterRig" type="Node2D" parent="." node_paths=PackedStringArray("player", "stats")]
+[node name="CharacterRig" type="Node2D" parent="." node_paths=PackedStringArray("player", "stats", "velocity")]
 script = ExtResource("9_388e2")
 player = NodePath("..")
 stats = NodePath("../StatsManager")
+velocity = NodePath("../VelocityManager")
 
 [node name="Body" type="ColorRect" parent="CharacterRig"]
 offset_left = -8.0
@@ -176,6 +243,7 @@ offset_bottom = 6.0
 color = Color(0, 0, 0, 1)
 
 [node name="Particles" type="Node2D" parent="CharacterRig"]
+script = ExtResource("17_qrxv1")
 
 [node name="Walking" type="GPUParticles2D" parent="CharacterRig/Particles"]
 position = Vector2(-8, 0)
@@ -198,6 +266,23 @@ fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hiosj")
 
+[node name="Land" type="GPUParticles2D" parent="CharacterRig/Particles"]
+emitting = false
+amount = 16
+lifetime = 0.71
+one_shot = true
+explosiveness = 0.7
+process_material = SubResource("ParticleProcessMaterial_0wchr")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Sounds" type="Node" parent="."]
+
+[node name="LandSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("17_0wchr")
+volume_db = -9.369
+bus = &"Player"
+
 [connection signal="timeout" from="FiniteStateMachine/Ground/Walk/StepTimer" to="FiniteStateMachine/Ground/Walk" method="_on_step_timer_timeout"]
+[connection signal="timeout" from="InputManger/BufferTimer" to="InputManger" method="_on_buffer_timer_timeout"]
+[connection signal="timeout" from="InputManger/CoyoteTImer" to="InputManger" method="_on_coyote_t_imer_timeout"]

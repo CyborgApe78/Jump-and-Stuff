@@ -16,6 +16,7 @@ class_name PlayerSkid extends MachineState
 @export var Walk: PlayerWalk
 @export var Idle: PlayerIdle
 @export var Jump: PlayerJump
+@export var Fall: PlayerFall
 
 @export_group("Connections")
 @export var particles: GPUParticles2D
@@ -28,6 +29,9 @@ func ready() -> void:
 
 func enter() -> void:
 	print("Skid")
+	if inputs.canBufferJump == true:
+		print("buffer Jump")
+		FSM.change_state_to(Jump) #TODO: jump manager to decide which
 	player.facing_logic(inputs.lastMoveDirection.x)
 	
 	soundeffect.pitch_scale = randf_range(0.9, 1.1)
@@ -47,8 +51,11 @@ func exit(_next_state: MachineState) -> void:
 
 
 func handle_input(_event: InputEvent):
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump"): #TODO special jump 
 		FSM.change_state_to(Jump)
+	if not player.is_on_floor():
+		inputs.leave_ground()
+		FSM.change_state_to(Fall)
 
 
 func physics_update(_delta: float):

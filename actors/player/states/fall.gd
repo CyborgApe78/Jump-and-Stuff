@@ -1,5 +1,7 @@
-class_name PlayerJump extends MachineState
+class_name PlayerFall extends MachineState
 
+
+@export var jumpHeldSlowModifier: float = 2.0
 
 @export_group("Sound")
 @export_range(0.1, 1, 0.01) var minPlaybackSpeed: float = 0.15
@@ -19,15 +21,11 @@ class_name PlayerJump extends MachineState
 @export_group("States")
 @export var Idle: PlayerIdle
 @export var Walk: PlayerWalk
-@export var Fall: PlayerFall
-@export var Apex: PlayerApex
+@export var Jump: PlayerJump
 
 @export_group("Connections")
-@export var particles: GPUParticles2D #TODO Jump particles
 @export var landParticles: GPUParticles2D
-@export var soundeffect: AudioStreamPlayer
 @export var landSoundeffect: AudioStreamPlayer
-
 
 
 func ready() -> void:
@@ -35,18 +33,7 @@ func ready() -> void:
 
 
 func enter() -> void:
-	print("Jump")
-	
-	soundeffect.pitch_scale = 1
-	soundeffect.volume_db = startingVolume
-	soundeffect.pitch_scale = randf_range(minPitch, maxPitch)
-	soundeffect.volume_db += randf_range(minVolume, maxVolume)
-	soundeffect.play()
-	
-	if abs(player.velocity.x) > stats.moveSpeed:
-		player.velocity.y = stats.jumpRunVelocity
-	else:
-		player.velocity.y = stats.jumpVelocity
+	print("Fall")
 
 
 func exit(_next_state: MachineState) -> void:
@@ -54,22 +41,29 @@ func exit(_next_state: MachineState) -> void:
 
 
 func handle_input(_event: InputEvent):
-	if Input.is_action_just_released("jump"):
-		player.velocity.y = max(player.velocity.y, stats.jumpVelocity * stats.percentMinJumpVelocity)
-		FSM.change_state_to(Fall)
+	pass
 
 
 func physics_update(_delta: float):
-	velocity.gravity_logic(stats.gravityJump, _delta)
+	velocity.gravity_logic(stats.gravityFall, _delta)
+	
+	if Input.is_action_pressed("jump"):
+		velocity.fall_speed_logic(stats.terminalVelocity / jumpHeldSlowModifier)
+	elif inputs.moveDirection.y == 1:
+		velocity.fall_speed_logic(stats.terminalVelocity * 1.5)
+	else:
+		velocity.fall_speed_logic(stats.terminalVelocity)
+	
 	velocity.air_velocity_logic(stats.moveSpeed, stats.accelerationAir, stats.frictionAir, _delta)
 
 
 func state_update(_delta: float):
-	if player.velocity.y > stats.jumpApexHeight:
-		FSM.change_state_to(Apex)
-	if player.is_on_ceiling():
-		FSM.change_state_to(Fall)
+	if Input.is_action_just_pressed("jump") and inputs.canCoyoteJump == true:
+		print("Coyote Jump")
+		FSM.change_state_to(Jump)
 	if player.is_on_floor():
+		#TODO: Create Landed function
+		
 		landSoundeffect.volume_db = startingVolume
 		landSoundeffect.pitch_scale = randf_range(minPitch, maxPitch)
 		landSoundeffect.volume_db += randf_range(minVolume, maxVolume)
@@ -87,6 +81,7 @@ func state_update(_delta: float):
 
 func visual_update(_delta: float):
 	player.facing_logic(inputs.moveDirection.x)
+	characterRig.squash_and_stretch(_delta)
 
 
 func sound_update(_delta: float):
